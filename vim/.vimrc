@@ -56,8 +56,8 @@ hi Cursor gui=reverse
 hi Visual gui=reverse
 
 " setting of python for neovim
-let g:python2_host_prog = '/Users/suzukisohei/.pyenv/shims/python'
-let g:python3_host_prog = '/Users/suzukisohei/.pyenv/shims/python3'
+let g:python2_host_prog = '~/.pyenv/shims/python'
+let g:python3_host_prog = '~/.pyenv/shims/python3'
 
 " runtime of user vim settings (~/.vim/vimrc/*.vim)
 ru! vimrc/*.vim
