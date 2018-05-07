@@ -332,6 +332,8 @@ augroup vimrc_python
                 \ formatoptions+=croq softtabstop=4
                 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
+let g:python_host_prog = expand('~/.pyenv/versions/2.7.10/bin/python2')
+let g:python3_host_prog = expand('~/.pyenv/versions/3.6.2/bin/python3')
 
 " FixWhitespace
 augroup FixWhitespace
