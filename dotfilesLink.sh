@@ -2,6 +2,7 @@
 
 # neovim (0.2.2)
 ln -sf ~/dotfiles/nvim/init.vim ~/.config/nvim/init.vim
+mkdir -p ~/.config/nvim
 ln -sf ~/dotfiles/nvim/vimrc ~/.config/nvim
 
 # vim (8.0.1283)
