@@ -22,7 +22,7 @@ endf
 command! -nargs=+ GetProjectName call GetProjectName(<f-args>)
 
 
-fun! Make(windowwidth, ...)
+fun! Make(width, ...)
     let l:command = 'make'
     if a:0 > 0
         for l:i in a:000
@@ -30,16 +30,11 @@ fun! Make(windowwidth, ...)
             let l:command = l:command.l:tmp
         endfor
     endif
-    if a:windowwidth == 0
-        let l:windowwidth = 10
-    else
-        let l:windowwidth = a:windowwidth
-    endif
     if findfile('GNUmakefile',getcwd()) !=# '' || findfile('Makefile',getcwd()) !=# ''
-        call BeginTerminal(l:windowwidth, l:command)
+        call BeginTerminal(a:width, l:command)
     elseif findfile('GNUmakefile',getcwd().'/../') !=# '' || findfile('Makefile',getcwd().'/../') !=# ''
         cd ../
-        call BeginTerminal(l:windowwidth, l:command)
+        call BeginTerminal(a:width, l:command)
         cd -
     else
         echo 'not found: "GNUmakefile" or "Makefile"'
@@ -55,16 +50,15 @@ fun! CMake(width, ...)
     if a:0 > 0
         if a:1 ==? 'run'
             let l:exename = GetProjectName(l:cmakelists_txt)
-            let l:command = l:command.' && '.l:exename
+            let l:command = l:command.' && ./'.l:exename
         endif
     endif
-    let l:windowwidth = a:width ? a:width : 10
     if findfile(l:cmakelists_txt,getcwd()) !=# ''
         if finddir(l:builddir,getcwd()) ==# ''
             call mkdir(l:builddir)
         endif
         cd ./build
-        call BeginTerminal(l:windowwidth, l:command)
+        call BeginTerminal(a:width, l:command)
         cd ..
     elseif findfile(l:cmakelists_txt,getcwd().'/../') !=# ''
         cd ../
@@ -72,7 +66,7 @@ fun! CMake(width, ...)
             call mkdir(l:builddir)
         endif
         cd ./build
-        call BeginTerminal(l:windowwidth, l:command)
+        call BeginTerminal(a:width, l:command)
         cd ..
     else
         echo 'not found: '.l:cmakelists_txt
@@ -93,8 +87,23 @@ endf
 command! -nargs=+ AppendChar call AppendChar(<f-args>)
 
 
+fun! Python(width, ...)
+    if &filetype ==# 'python'
+        let l:command = 'python '.expand('%')
+        for l:i in a:000
+            let l:command = l:command.' '
+            let l:command = l:command.l:i
+        endfor
+        call BeginTerminal(a:width, l:command)
+    else
+        echo 'invalid file type.'
+    endif
+endf
+command! -count -nargs=* Python call Python(<count>, <f-args>)
+
+
 fun! Pyplot(...)
-    if expand('%:e') ==# 'txt'
+    if &filetype ==# 'text'
         if a:0 == 0
             let l:column = ' -u1'
         elseif a:0 == 1
@@ -113,7 +122,7 @@ command! -nargs=* Pyplot call Pyplot(<f-args>)
 
 
 fun! Gnuplot()
-    if expand('%'.':e') ==# 'gp' || expand('%'.':e') ==# 'gpi'
+    if expand('%:e') ==# 'gp' || expand('%:e') ==# 'gpi'
         let l:command = 'gnuplot '.expand('%')
         call BeginTerminal(5, l:command)
         starti

@@ -101,6 +101,15 @@ call plug#end()
 " Required:
 filetype plugin indent on
 
+" Get OS type
+if has('win32')
+    let g:ostype = 'Win'
+elseif has('mac')
+    let g:ostype = 'Mac'
+else
+    let g:ostype = system('uname')
+endif
+
 "*****************************************************************************
 "" Basic Setup
 "*****************************************************************************"
@@ -332,8 +341,13 @@ augroup vimrc_python
                 \ formatoptions+=croq softtabstop=4
                 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
-let g:python_host_prog = expand('~/.pyenv/versions/2.7.10/bin/python2')
-let g:python3_host_prog = expand('~/.pyenv/versions/3.6.2/bin/python3')
+if g:ostype ==# 'Mac'
+    let g:python_host_prog = expand('~/.pyenv/versions/2.7.10/bin/python2')
+    let g:python3_host_prog = expand('~/.pyenv/versions/3.6.2/bin/python3')
+elseif g:ostype ==# 'Linux'
+    let g:python_host_prog = expand('~/.pyenv/versions/2.7.10/bin/python2')
+    let g:python3_host_prog = expand('~/.pyenv/versions/3.6.5/bin/python3')
+endif
 
 " FixWhitespace
 augroup FixWhitespace
