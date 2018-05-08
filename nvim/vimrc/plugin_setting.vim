@@ -98,7 +98,7 @@ let g:airline_skip_empty_sections = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-if has('Mac')
+if has('mac')
     if !exists('g:airline_powerline_fonts')
         let g:airline#extensions#tabline#left_sep = ' '
         let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -167,7 +167,7 @@ let g:webdevicons_conceal_nerdtree_brackets = 1
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 
 
-if has('Mac')
+if has('mac')
     "" dir-icons
     let g:WebDevIconsUnicodeDecorateFolderNodes = 1
     let g:DevIconsEnableFoldersOpenClose = 1

@@ -45,7 +45,7 @@ endif
 
 
 "" Mapping for Plugins
-if has('Mac')
+if has('mac')
     ino …       <ESC>:AppendChar ;<CR>i<Right>
     nno …            :AppendChar ;<CR>
     nno <silent>_     :TComment<CR>
