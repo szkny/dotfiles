@@ -26,8 +26,8 @@ nno x "_x
 vno x "_x
 
 nno <S-h> ^
-nno <S-j> 10j
-nno <S-k> 10k
+nno <S-j> 5j
+nno <S-k> 5k
 nno <S-l> $
 vno <S-h> ^
 vno <S-j> }
@@ -40,6 +40,7 @@ ino {<Enter> {}<Left><CR><Up><ESC>$i<Right>
 if system('uname') ==# 'Linux'
     ino <silent><A-[> <ESC>
     vno <silent><A-[> <ESC>
+    tno <silent><A-[> <C-\><C-n>
     nno <silent><A-w> <C-w>
 endif
 
