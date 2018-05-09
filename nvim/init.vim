@@ -32,12 +32,13 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'w0rp/ale'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
 Plug 'tomtom/tcomment_vim'
+Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline', { 'on': [] }
+Plug 'vim-airline/vim-airline-themes', { 'on': [] }
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle']}
 Plug 'jistr/vim-nerdtree-tabs', { 'on': ['NERDTreeToggle']}
 Plug 'nathanaelkane/vim-indent-guides', { 'on': []}
@@ -193,6 +194,7 @@ set scrolloff=5
 
 "" Status bar
 set laststatus=2
+set showtabline=2
 
 "" Use modeline overrides
 set modeline

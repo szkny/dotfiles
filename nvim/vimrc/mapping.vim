@@ -22,6 +22,7 @@ ino <C-j> <Down>
 ino <C-k> <Up>
 ino <C-l> <Right>
 
+nno <CR> o<ESC>
 nno x "_x
 vno x "_x
 
@@ -42,6 +43,10 @@ if system('uname') ==# 'Linux'
     vno <silent><A-[> <ESC>
     tno <silent><A-[> <C-\><C-n>
     nno <silent><A-w> <C-w>
+    ino <A-h> <Left>
+    ino <A-j> <Down>
+    ino <A-k> <Up>
+    ino <A-l> <Right>
 endif
 
 

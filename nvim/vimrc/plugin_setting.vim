@@ -56,6 +56,7 @@ let g:PyFlakeDefaultComplexity=10
 
 
 "" ale (Asynchronous Lint Engine)
+let g:ale_sign_column_always = 0
 let g:ale_completion_enabled = 1
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
@@ -69,6 +70,13 @@ let g:ale_c_cppcheck_executable = 'cppcheck'
 let g:ale_c_cppcheck_options = '--enable=style'
 let g:ale_c_gcc_executable = 'g++'
 let g:ale_c_gcc_options = '-std=c++11 -Wall'
+" hi clear ALEErrorSign
+" hi clear ALEWarningSign
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
 
 " "" indent_guides
 " let g:indent_guides_enable_on_vim_startup = 0
@@ -87,13 +95,39 @@ let g:ale_c_gcc_options = '-std=c++11 -Wall'
 " let g:indentLine_faster = 1
 
 
+"" lightline
+let g:lightline = {
+  \'active': {
+  \  'left': [
+  \    ['mode', 'paste'],
+  \    ['readonly', 'filename', 'modified', 'ale'],
+  \  ]
+  \},
+  \'component_function': {
+  \  'ale': 'ALEGetStatusLine'
+  \}
+\ }
+
 "" vim-airline
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'kalisi'
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#buffer_idx_format = {
+    \ '0': '0 ',
+    \ '1': '1 ',
+    \ '2': '2 ',
+    \ '3': '3 ',
+    \ '4': '4 ',
+    \ '5': '5 ',
+    \ '6': '6 ',
+    \ '7': '7 ',
+    \ '8': '8 ',
+    \ '9': '9 '
+    \}
+let g:airline#extensions#ale#enabled = 1
 let g:airline_skip_empty_sections = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -121,7 +155,6 @@ if has('mac')
     else
         let g:airline#extensions#tabline#left_sep = ''
         let g:airline#extensions#tabline#left_alt_sep = ''
-
         " powerline symbols
         let g:airline_left_sep = ''
         let g:airline_left_alt_sep = ''
@@ -132,7 +165,6 @@ if has('mac')
         let g:airline_symbols.linenr = ''
     endif
 endif
-let g:airline#extensions#virtualenv#enabled = 1
 
 
 "" Syntax highlight
@@ -173,7 +205,7 @@ if has('mac')
     let g:DevIconsEnableFoldersOpenClose = 1
     let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
     let g:DevIconsDefaultFolderOpenSymbol = ''
-     "" file-icons
+    "" file-icons
     let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
     let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = ''
     let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css'] = ''
