@@ -1,5 +1,4 @@
 #!/bin/sh
 git add .
 git commit -m "`date`"
-# git push -u origin master
-git push
+git push -u "`git symbolic-ref --short HEAD`"
