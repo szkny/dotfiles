@@ -13,3 +13,4 @@ ln -sf ~/dotfiles/vim/vimrc ~/.vim
 # bash
 # ln -sf ~/dotfiles/.bashrc ~/.bashrc
 
+
