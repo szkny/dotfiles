@@ -1,2 +1,2 @@
 # my dotfiles
-vimrc, init.vim, etc
+bashrc, vimrc, init.vim, etc
