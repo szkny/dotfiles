@@ -75,7 +75,7 @@ let g:ale_c_gcc_options = '-std=c++11 -Wall'
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+" let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 
 " "" indent_guides

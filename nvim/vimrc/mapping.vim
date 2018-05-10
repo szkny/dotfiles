@@ -31,8 +31,8 @@ nno <S-j> 5j
 nno <S-k> 5k
 nno <S-l> $
 vno <S-h> ^
-vno <S-j> }
-vno <S-k> {
+vno <S-j> 5j
+vno <S-k> 5k
 vno <S-l> $
 
 ino {<Enter> {}<Left><CR><Up><ESC>$i<Right>

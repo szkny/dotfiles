@@ -274,28 +274,29 @@ command! -nargs=* CloseBufferTab call CloseBufferTab(<f-args>)
 
 " 各タブページのカレントバッファ名+αを表示
 function! s:tabpage_label(n)
-  let title = gettabvar(a:n, 'title')
-  if title !=# ''
-    return title
-  endif
-  let bufnrs = tabpagebuflist(a:n)
-  let hi = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
-  let no = len(bufnrs)
-  if no is 1
-    let no = ''
-  endif
-  let mod = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? '+' : ''
-  let sp = (no . mod) ==# '' ? '' : ' '  " 隙間空ける
-  let curbufnr = bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr() は 1 origin
-  let fname = pathshorten(bufname(curbufnr))
-  let label = no . mod . sp . fname
-  return '%' . a:n . 'T' . hi . label . '%T%#TabLineFill#'
+    let l:title = gettabvar(a:n, 'title')
+    if l:title !=# ''
+        return l:title
+    endif
+    let l:bufnrs = tabpagebuflist(a:n)
+    let l:hi = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
+    let l:no = len(l:bufnrs)
+    if l:no is 1
+        let l:no = ''
+    endif
+    let l:mod = len(filter(copy(l:bufnrs), 'getbufvar(v:val, "&modified")')) ? '+' : ''
+    let l:sp = (l:no . l:mod) ==# '' ? '' : ' '  " 隙間空ける
+    let l:curbufnr = l:bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr() は 1 origin
+    let l:fname = pathshorten(bufname(l:curbufnr))
+    let l:label = l:no . l:mod . l:sp . l:fname
+    return '%' . a:n . 'T' . l:hi . l:label . '%T%#TabLineFill#'
 endfunction
 function! MakeTabLine()
-  let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
-  let sep = ' | '  " タブ間の区切り
-  let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
-  let info = ''  " 好きな情報を入れる
-  return tabpages . '%=' . info  " タブリストを左に、情報を右に表示
+    let l:titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
+    let l:sep = ' | '  " タブ間の区切り
+    let l:tabpages = join(l:titles, l:sep) . l:sep . '%#TabLineFill#%T'
+    let l:info = ''  " 好きな情報を入れる
+    return l:tabpages . '%=' . l:info  " タブリストを左に、情報を右に表示
 endfunction
 set tabline=%!MakeTabLine()
+

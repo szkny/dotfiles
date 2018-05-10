@@ -62,4 +62,3 @@ let g:python3_host_prog = '~/.pyenv/shims/python3'
 " runtime of user vim settings (~/.vim/vimrc/*.vim)
 ru! vimrc/*.vim
 
-

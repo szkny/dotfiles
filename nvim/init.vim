@@ -330,7 +330,7 @@ augroup END
 " vim-python
 augroup vimrc_python
     autocmd!
-    autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=100
+    autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=80
                 \ formatoptions+=croq softtabstop=4
                 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
