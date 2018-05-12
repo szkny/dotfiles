@@ -2,7 +2,7 @@
 bashrc, vimrc, init.vim, etc    
 
 ## install    
-In nvim, you can make dev. environment by,
+If you use vim-plug, you can make development environment by following command in neovim.
 ```
-    :PlugInstall
+:PlugInstall
 ```
