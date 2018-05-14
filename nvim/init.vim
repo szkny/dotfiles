@@ -29,7 +29,6 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "" Plug install packages
 "*****************************************************************************
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
 Plug 'w0rp/ale'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -94,9 +93,11 @@ Plug 'vim-jp/cpp-vim'
 " Plug 'ludwig/split-manpage.vim'
 
 " python
-"" Python Bundle
-" Plug 'davidhalter/jedi-vim'
-" Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
+" Python Bundle
+Plug 'davidhalter/jedi-vim'
+Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
+Plug 'cespare/vim-toml'
+Plug 'zchee/deoplete-jedi'
 
 call plug#end()
 
@@ -195,11 +196,9 @@ set scrolloff=5
 
 "" Status bar
 set laststatus=2
-<<<<<<< HEAD
+
 " set showtabline=2
-=======
 set showtabline=1
->>>>>>> 416d4982213c01e6c632001145b4aadad60b58de
 
 "" Use modeline overrides
 set modeline

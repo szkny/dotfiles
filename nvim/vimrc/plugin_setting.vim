@@ -46,8 +46,11 @@ let g:tagbar_width = 30
 " let g:jedi#rename_command = "<leader>r"
 " let g:jedi#show_call_signatures = "0"
 " let g:jedi#completions_command = "<C-Space>"
-" let g:jedi#smart_auto_mappings = 0
-
+let g:jedi#auto_initialization = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#smart_auto_mappings = 0
+let g:jedi#completions_enabled = 1
+let g:jedi#goto_command = '<Leader>d'
 
 "" PyFlake
 let g:PyFlakeOnWrite = 1
