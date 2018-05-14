@@ -29,6 +29,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "" Plug install packages
 "*****************************************************************************
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
 Plug 'w0rp/ale'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -194,7 +195,7 @@ set scrolloff=5
 
 "" Status bar
 set laststatus=2
-set showtabline=2
+" set showtabline=2
 
 "" Use modeline overrides
 set modeline
@@ -334,13 +335,18 @@ augroup vimrc_python
                 \ formatoptions+=croq softtabstop=4
                 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
-if has('mac')
-    let g:python_host_prog = expand('~/.pyenv/versions/2.7.10/bin/python2')
-    let g:python3_host_prog = expand('~/.pyenv/versions/3.6.2/bin/python3')
-elseif system('uname') ==# 'Linux'
-    let g:python_host_prog = expand('~/.pyenv/versions/2.7.10/bin/python2')
-    let g:python3_host_prog = expand('~/.pyenv/versions/3.6.5/bin/python3')
-endif
+" if findfile('Pipfile',getcwd()) !=# ''
+"     let g:python_host_prog = system('pipenv --py')
+"     let g:python3_host_prog = g:python_host_prog
+" else
+    if has('mac')
+        let g:python_host_prog = expand('~/.pyenv/versions/2.7.10/bin/python2')
+        let g:python3_host_prog = expand('~/.pyenv/versions/3.6.2/bin/python3')
+    elseif system('uname') ==# 'Linux'
+        let g:python_host_prog = expand('~/.pyenv/versions/2.7.10/bin/python2')
+        let g:python3_host_prog = expand('~/.pyenv/versions/3.6.5/bin/python3')
+    endif
+" endif
 
 " FixWhitespace
 augroup FixWhitespace

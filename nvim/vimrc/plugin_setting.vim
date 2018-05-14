@@ -20,7 +20,7 @@ highlight PmenuSbar ctermbg=0 guibg=#d6d6d6
 
 "" NERDTree
 let g:NERDTreeDirArrows = 1
-let g:NERDTreeWinSize = 20
+let g:NERDTreeWinSize = 25
 " let g:NERDTreeChDirMode=2
 " let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
 " let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']

@@ -62,7 +62,9 @@ else
     nno <silent>\     :TComment<CR>
     vno <silent>\     :TComment<CR>
 endif
-nno <silent><C-s> :ALEToggle<CR>
+if &filetype ==# 'python'
+    nno <silent><C-s> :ALEFix autopep8<CR> " code shaping for python
+endif
 nno <silent><C-n> :NERDTreeToggle<CR>
 nno <silent><C-t> :TagbarToggle<CR>
 " nno <silent><C-o> :Unite outline<CR>

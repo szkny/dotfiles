@@ -89,7 +89,11 @@ command! -nargs=+ AppendChar call AppendChar(<f-args>)
 
 fun! Python(width, ...)
     if &filetype ==# 'python'
-        let l:command = 'python '.expand('%')
+        if findfile('Pipfile',getcwd()) !=# ''
+            let l:command = 'pipenv run python '.expand('%')
+        else
+            let l:command = 'python '.expand('%')
+        endif
         for l:i in a:000
             let l:command = l:command.' '
             let l:command = l:command.l:i
@@ -284,7 +288,8 @@ function! s:tabpage_label(n)
     if l:no is 1
         let l:no = ''
     endif
-    let l:mod = len(filter(copy(l:bufnrs), 'getbufvar(v:val, "&modified")')) ? '+' : ''
+    " let l:mod = len(filter(copy(l:bufnrs), 'getbufvar(v:val, "&modified")')) ? '+' : ''
+    let l:mod = len(filter(copy(l:bufnrs), 'getbufvar(v:val, &modified)')) ? '+' : ''
     let l:sp = (l:no . l:mod) ==# '' ? '' : ' '  " 隙間空ける
     let l:curbufnr = l:bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr() は 1 origin
     let l:fname = pathshorten(bufname(l:curbufnr))
