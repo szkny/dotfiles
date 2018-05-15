@@ -112,14 +112,14 @@ let g:ale_echo_msg_warning_str = '⚠'
 
 "" vim-airline
 let g:airline_theme = 'kalisi'
-set laststatus=2
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
-let g:airline_section_c = '%t %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
+" let g:airline_section_c = '%t'
+let g:airline_section_c = '%{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
 let g:airline_section_x = '%{&filetype}'
 let g:airline_section_y = '%{&fileencodings},%{&fileformat}'
 let g:airline_section_z = '%3l/%L'
