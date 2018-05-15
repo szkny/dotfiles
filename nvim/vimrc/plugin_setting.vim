@@ -61,8 +61,8 @@ let g:PyFlakeDefaultComplexity=10
 "" ale (Asynchronous Lint Engine)
 let g:ale_sign_column_always = 0
 let g:ale_completion_enabled = 1
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
+let g:ale_sign_error = '⨉'
+let g:ale_sign_warning = '⚠'
 let g:ale_set_highlights = 1
 let g:ale_c_clang_executable = 'clang++'
 let g:ale_c_clang_options = '-std=c++11 -Wall'
@@ -73,11 +73,10 @@ let g:ale_c_cppcheck_executable = 'cppcheck'
 let g:ale_c_cppcheck_options = '--enable=style'
 let g:ale_c_gcc_executable = 'g++'
 let g:ale_c_gcc_options = '-std=c++11 -Wall'
-" hi clear ALEErrorSign
-" hi clear ALEWarningSign
+let g:ale_echo_msg_format = '[%linter%]%code: %%s'
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_error_str = '⨉'
+let g:ale_echo_msg_warning_str = '⚠'
 " let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 
@@ -99,75 +98,70 @@ let g:ale_echo_msg_warning_str = 'W'
 
 
 "" lightline
-let g:lightline = {
-  \'active': {
-  \  'left': [
-  \    ['mode', 'paste'],
-  \    ['readonly', 'filename', 'modified', 'ale'],
-  \  ]
-  \},
-  \'component_function': {
-  \  'ale': 'ALEGetStatusLine'
-  \}
-\ }
+" let g:lightline = {
+"   \'active': {
+"   \  'left': [
+"   \    ['mode', 'paste'],
+"   \    ['readonly', 'filename', 'modified', 'ale'],
+"   \  ]
+"   \},
+"   \'component_function': {
+"   \  'ale': 'ALEGetStatusLine'
+"   \}
+" \ }
 
 "" vim-airline
 let g:airline_theme = 'kalisi'
-let g:airline#extensions#ale#enabled = 1
+set laststatus=2
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#buffer_idx_format = {
-    \ '0': '0 ',
-    \ '1': '1 ',
-    \ '2': '2 ',
-    \ '3': '3 ',
-    \ '4': '4 ',
-    \ '5': '5 ',
-    \ '6': '6 ',
-    \ '7': '7 ',
-    \ '8': '8 ',
-    \ '9': '9 '
-    \}
-let g:airline#extensions#ale#enabled = 1
-let g:airline_skip_empty_sections = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-if has('mac')
-    if !exists('g:airline_powerline_fonts')
-        let g:airline#extensions#tabline#left_sep = ' '
-        let g:airline#extensions#tabline#left_alt_sep = '|'
-        " let g:airline_left_sep          = '▶'
-        let g:airline_left_sep          = ''
-        let g:airline_left_alt_sep      = '»'
-        " let g:airline_right_sep         = '◀'
-        let g:airline_right_sep         = ''
-        let g:airline_right_alt_sep     = '«'
-        let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
-        let g:airline#extensions#readonly#symbol   = '⊘'
-        let g:airline#extensions#linecolumn#prefix = '¶'
-        let g:airline#extensions#paste#symbol      = 'ρ'
-        let g:airline_symbols.linenr = '␊'
-        let g:airline_symbols.branch = '⎇'
-        let g:airline_symbols.paste  = 'ρ'
-        let g:airline_symbols.paste  = 'Þ'
-        let g:airline_symbols.paste  = '∥'
-        let g:airline_symbols.whitespace = 'Ξ'
-    else
-        let g:airline#extensions#tabline#left_sep = ''
-        let g:airline#extensions#tabline#left_alt_sep = ''
-        " powerline symbols
-        let g:airline_left_sep = ''
-        let g:airline_left_alt_sep = ''
-        let g:airline_right_sep = ''
-        let g:airline_right_alt_sep = ''
-        let g:airline_symbols.branch = ''
-        let g:airline_symbols.readonly = ''
-        let g:airline_symbols.linenr = ''
-    endif
-endif
+let g:airline#extensions#tabline#show_splits = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#wordcount#enabled = 0
+let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
+let g:airline_section_c = '%t'
+let g:airline_section_x = '%{&filetype}'
+let g:airline_section_z = '%3l:%2v %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
+let g:airline#extensions#ale#error_symbol = '⨉'
+let g:airline#extensions#ale#warning_symbol = '⚠'
+let g:airline#extensions#default#section_truncate_width = {}
+let g:airline#extensions#whitespace#enabled = 1
+" if !exists('g:airline_symbols')
+"     let g:airline_symbols = {}
+" endif
+" if has('mac')
+"     if !exists('g:airline_powerline_fonts')
+"         let g:airline#extensions#tabline#left_sep = ' '
+"         let g:airline#extensions#tabline#left_alt_sep = '|'
+"         " let g:airline_left_sep          = '▶'
+"         let g:airline_left_sep          = ''
+"         let g:airline_left_alt_sep      = '»'
+"         " let g:airline_right_sep         = '◀'
+"         let g:airline_right_sep         = ''
+"         let g:airline_right_alt_sep     = '«'
+"         let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
+"         let g:airline#extensions#readonly#symbol   = '⊘'
+"         let g:airline#extensions#linecolumn#prefix = '¶'
+"         let g:airline#extensions#paste#symbol      = 'ρ'
+"         let g:airline_symbols.linenr = '␊'
+"         let g:airline_symbols.branch = '⎇'
+"         let g:airline_symbols.paste  = 'ρ'
+"         let g:airline_symbols.paste  = 'Þ'
+"         let g:airline_symbols.paste  = '∥'
+"         let g:airline_symbols.whitespace = 'Ξ'
+"     else
+"         let g:airline#extensions#tabline#left_sep = ''
+"         let g:airline#extensions#tabline#left_alt_sep = ''
+"         " powerline symbols
+"         let g:airline_left_sep = ''
+"         let g:airline_left_alt_sep = ''
+"         let g:airline_right_sep = ''
+"         let g:airline_right_alt_sep = ''
+"         let g:airline_symbols.branch = ''
+"         let g:airline_symbols.readonly = ''
+"         let g:airline_symbols.linenr = ''
+"     endif
+" endif
 
 
 "" Syntax highlight
