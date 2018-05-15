@@ -10,6 +10,10 @@ ln -sf ~/dotfiles/vim/.vimrc ~/.vimrc
 mkdir -p ~/.vim
 ln -sf ~/dotfiles/vim/vimrc ~/.vim
 
+# python syntax checker
+mkdir -p ~/.config
+ln -sf ~/dotfiles/python_syntax_checker/flake8 ~/.config
+
 # bash
 # ln -sf ~/dotfiles/.bashrc ~/.bashrc
 
