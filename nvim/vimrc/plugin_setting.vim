@@ -39,8 +39,6 @@ let g:tagbar_width = 30
 
 "" jedi-vim
 " let g:jedi#popup_on_dot = 0
-" let g:jedi#goto_assignments_command = "<leader>g"
-" let g:jedi#goto_definitions_command = "<leader>d"
 " let g:jedi#documentation_command = "K"
 " let g:jedi#usages_command = "<leader>n"
 " let g:jedi#rename_command = "<leader>r"
@@ -50,7 +48,9 @@ let g:jedi#auto_initialization = 0
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#smart_auto_mappings = 0
 let g:jedi#completions_enabled = 1
-let g:jedi#goto_command = '<Leader>d'
+" let g:jedi#goto_command = '<Leader>d'
+let g:jedi#goto_assignments_command = '<leader>g'
+let g:jedi#goto_definitions_command = '<leader>d'
 
 "" PyFlake
 let g:PyFlakeOnWrite = 1
@@ -119,9 +119,10 @@ let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
-let g:airline_section_c = '%t'
+let g:airline_section_c = '%t %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
 let g:airline_section_x = '%{&filetype}'
-let g:airline_section_z = '%3l:%2v %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
+let g:airline_section_y = '%{&fileencodings},%{&fileformat}'
+let g:airline_section_z = '%3l/%L'
 let g:airline#extensions#ale#error_symbol = '⨉'
 let g:airline#extensions#ale#warning_symbol = '⚠'
 let g:airline#extensions#default#section_truncate_width = {}
