@@ -124,8 +124,8 @@ let g:airline_section_c = '%{airline#extensions#ale#get_warning()}'
 let g:airline_section_x = '%{&filetype}'
 let g:airline_section_y = '%{&fileencodings},%{&fileformat}'
 let g:airline_section_z = 'LOW:%3l/%L'
-let g:airline#extensions#ale#error_symbol = '⨉'
-let g:airline#extensions#ale#warning_symbol = '⚠'
+let g:airline#extensions#ale#error_symbol = '⨉ '
+let g:airline#extensions#ale#warning_symbol = '⚠ '
 let g:airline#extensions#default#section_truncate_width = {}
 let g:airline#extensions#whitespace#enabled = 1
 " if !exists('g:airline_symbols')
