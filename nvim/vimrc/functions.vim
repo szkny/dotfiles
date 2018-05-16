@@ -106,8 +106,28 @@ endf
 command! -count -nargs=* Python call Python(<count>, <f-args>)
 
 
+fun! SQL(width)
+    if &filetype ==# 'sql'
+        let l:command = 'mysql --defaults-extra-file=~/.config/mysql < '.expand('%')
+    else
+        let l:command = 'mysql --defaults-extra-file=~/.config/mysql'
+    endif
+    call BeginTerminal(a:width, l:command)
+endf
+command! -count SQL call SQL(<count>)
+
+
+fun! SQLplot(width, ...)
+    if &filetype ==# 'sql' && executable('sqlplot')
+        let l:command = 'sqlplot --config=~/.config/mysql '.expand('%')
+        call BeginTerminal(a:width, l:command)
+    endif
+endf
+command! -count -nargs=* SQLplot call SQLplot(<count>, <f-args>)
+
+
 fun! Pyplot(...)
-    if &filetype ==# 'text'
+    if &filetype ==# 'text' && executable('pyplot')
         if a:0 == 0
             let l:column = ' -u1'
         elseif a:0 == 1
