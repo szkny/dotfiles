@@ -122,7 +122,11 @@ let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
 let g:airline_section_b = '%{airline#extensions#ale#get_error()}'
 let g:airline_section_c = '%{airline#extensions#ale#get_warning()}'
 let g:airline_section_x = '%{&filetype}'
-let g:airline_section_y = '%{&fileencodings},%{&fileformat}'
+if &fileformat ==# 'unix'
+    let g:airline_section_y = '%{&fileencodings}, LN'
+else
+    let g:airline_section_y = '%{&fileencodings}, %{&fileformat}'
+endif
 let g:airline_section_z = 'LOW:%3l/%L'
 let g:airline#extensions#ale#error_symbol = '⨉ '
 let g:airline#extensions#ale#warning_symbol = '⚠ '
