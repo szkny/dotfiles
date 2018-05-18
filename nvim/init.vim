@@ -192,7 +192,7 @@ endif
 
 "" Disable the blinking cursor.
 set guicursor=a:blinkon0
-set scrolloff=5
+set scrolloff=100
 
 "" Status bar
 set laststatus=2
