@@ -108,9 +108,9 @@ command! -count -nargs=* Python call Python(<count>, <f-args>)
 
 fun! SQL(width)
     if &filetype ==# 'sql'
-        let l:command = 'mysql --defaults-extra-file=~/.config/mysql < '.expand('%')
+        let l:command = 'mysql < '.expand('%')
     else
-        let l:command = 'mysql --defaults-extra-file=~/.config/mysql'
+        let l:command = 'mysql'
     endif
     call BeginTerminal(a:width, l:command)
 endf
@@ -119,7 +119,7 @@ command! -count SQL call SQL(<count>)
 
 fun! SQLplot(width, ...)
     if &filetype ==# 'sql' && executable('sqlplot')
-        let l:command = 'sqlplot --config=~/.config/mysql '.expand('%')
+        let l:command = 'sqlplot '.expand('%')
         call BeginTerminal(a:width, l:command)
     endif
 endf
