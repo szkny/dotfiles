@@ -59,7 +59,8 @@ let g:PyFlakeDefaultComplexity=10
 
 
 "" ale (Asynchronous Lint Engine)
-let g:ale_sign_column_always = 0
+let g:ale_sign_column_always = 1
+let g:ale_change_sign_column_color = 1
 let g:ale_completion_enabled = 1
 let g:ale_sign_error = '⨉'
 let g:ale_sign_warning = '⚠'
