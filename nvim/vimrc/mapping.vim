@@ -2,7 +2,6 @@ scriptencoding utf-8
 "*****************************************************************************
 "" Key-Mappings
 "*****************************************************************************
-
 let g:mapleader = "\<Space>"
 
 tno <silent><C-[> <C-\><C-n>
@@ -52,6 +51,7 @@ endif
 
 "" Mapping for Plugins
 if has('mac')
+    nno <silent>gi <Plug>(nyaovim-popup-tooltip-open)
     ino …       <ESC>:AppendChar ;<CR>i<Right>
     nno …            :AppendChar ;<CR>
     nno <silent>_     :TComment<CR>
@@ -82,5 +82,4 @@ nno <silent><leader>sq :SQL30<CR>
 nno <silent><leader>sp :SQLplot30<CR>
 nno <silent><leader>pp :Pyplot<CR>
 nno <silent><leader>gp :Gnuplot<CR>
-
 
