@@ -38,6 +38,7 @@ Plug 'majutsushi/tagbar'
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'rhysd/nyaovim-popup-tooltip', { 'on': []}
 Plug 'itchyny/lightline.vim', { 'on': [] }
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle']}
 Plug 'jistr/vim-nerdtree-tabs', { 'on': ['NERDTreeToggle']}
