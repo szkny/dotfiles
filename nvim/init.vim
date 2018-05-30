@@ -113,7 +113,7 @@ filetype plugin indent on
 set fileencoding=utf-8
 set fileencodings=utf-8
 " set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
-" set fileformats=unix,dos,mac
+set fileformats=unix,dos,mac
 set bomb
 set binary
 
@@ -143,8 +143,6 @@ set clipboard+=unnamedplus
 "" Directories for swp files
 set nobackup
 set noswapfile
-
-set fileformats=unix,dos,mac
 
 if exists('$SHELL')
     set shell=$SHELL
