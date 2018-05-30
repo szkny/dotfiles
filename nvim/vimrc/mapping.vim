@@ -78,8 +78,8 @@ nno <silent><leader>mr :Make12 build run<CR>
 nno <silent><leader>cm :CMake12<CR>
 nno <silent><leader>cr :CMake12 run<CR>
 nno <silent><leader>py :Python12<CR>
-nno <silent><leader>sq :SQL30<CR>
-nno <silent><leader>sp :SQLplot30<CR>
+nno <silent><leader>sq :SQL<CR>
+nno <silent><leader>sp :SQLplot<CR>
 nno <silent><leader>pp :Pyplot<CR>
 nno <silent><leader>gp :Gnuplot<CR>
 
