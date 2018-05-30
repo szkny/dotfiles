@@ -37,7 +37,7 @@ vno <S-l> $
 ino {<Enter> {}<Left><CR><Up><ESC>$i<Right>
 " ino {<Enter> {}<Left><CR><ESC>O
 
-if system('uname') ==# 'Linux'
+if system('uname') ==# "Linux\n"
     ino <silent><A-[> <ESC>
     vno <silent><A-[> <ESC>
     tno <silent><A-[> <C-\><C-n>

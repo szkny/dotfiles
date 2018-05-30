@@ -255,7 +255,13 @@ endf
 
 
 fun! Google(...)
-    let l:cmd = '!open -a Google\ Chrome "http://www.google.co.jp/'
+    let l:cmd = ''
+    if has('mac')
+        let l:cmd = '!open -a Google\ Chrome'
+    elseif system('uname') ==# "Linux\n"
+        let l:cmd = '!chrome'
+    endif
+    let l:cmd = l:cmd.' "http://www.google.co.jp/'
     let l:opt = 'search?num=100'
     let l:wrd = ''
     if a:0 >= 1
@@ -267,7 +273,7 @@ fun! Google(...)
             endif
         endfor
         let l:opt = l:opt.'&q='.l:wrd
-        let l:cmd = l:cmd.l:opt
+        let l:cmd = l:cmd.' '.l:opt
     endif
     let l:cmd = l:cmd.'"'
     exe l:cmd
