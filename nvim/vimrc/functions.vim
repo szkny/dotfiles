@@ -273,7 +273,7 @@ fun! Google(...)
             endif
         endfor
         let l:opt = l:opt.'&q='.l:wrd
-        let l:cmd = l:cmd.' '.l:opt
+        let l:cmd = l:cmd.l:opt
     endif
     let l:cmd = l:cmd.'"'
     exe l:cmd
