@@ -186,38 +186,6 @@ endf
 command! Tex call Tex()
 
 
-fun! RangeChooser()
-    let l:tmp = tmpname()
-    " The option '--choosefiles' was added in ranger 1.5.1. Use the next line
-    " with ranger 1.4.2 through 1.5.0 instead.
-    "exec 'silent !ranger --choosefile=' . shellescape(l:tmp)
-    if has('gui_running')
-        exec 'silent !xterm -e ranger --choosefiles=' . shellescape(l:tmp)
-    else
-        exec 'silent !ranger --choosefiles=' . shellescape(l:tmp)
-    endif
-    if !filereadable(l:tmp)
-        redraw!
-        " Nothing to read.
-        return
-    endif
-    let l:names = readfile(l:tmp)
-    if empty(l:names)
-        redraw!
-        " Nothing to open.
-        return
-    endif
-    " Edit the first item.
-    exec 'edit ' . fnameescape(l:names[0])
-    " Add any remaning items to the arg list/buffer list.
-    for l:name in l:names[1:]
-        exec 'argadd ' . fnameescape(l:name)
-    endfor
-    redraw!
-endf
-command! -bar RangerChooser call RangeChooser()
-
-
 fun! SetHlsearch()
     if &hlsearch
         set nohlsearch

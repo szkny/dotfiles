@@ -65,10 +65,9 @@ endif
 if &filetype ==# 'python'
     nno <silent><C-s> :ALEFix autopep8<CR> " code shaping for python
 endif
+nno <silent><C-h> :Ranger<CR>
 nno <silent><C-n> :NERDTreeToggle<CR>
 nno <silent><C-t> :TagbarToggle<CR>
-" nno <silent><C-o> :Unite outline<CR>
-" nno <silent><C-i> :IndentGuidesToggle<CR>
 
 "" mapping for My Commands
 nno <silent>?     :call SetHlsearch()<CR>
