@@ -71,7 +71,8 @@ nno <silent><C-t> :TagbarToggle<CR>
 
 "" mapping for My Commands
 nno <silent>?     :call SetHlsearch()<CR>
-nno <silent>t     :BeginTerminal12<CR>
+nno <silent>t     :BeginTerminal12 sp<CR>
+nno <silent><leader>t  :BeginTerminal vs<CR>
 nno <silent><leader>ma :Make12<CR>
 nno <silent><leader>mr :Make12 build run<CR>
 nno <silent><leader>cm :CMake12<CR>

@@ -31,10 +31,10 @@ fun! Make(width, ...)
         endfor
     endif
     if findfile('GNUmakefile',getcwd()) !=# '' || findfile('Makefile',getcwd()) !=# ''
-        call BeginTerminal(a:width, l:command)
+        call BeginTerminal(a:width, 'sp', l:command)
     elseif findfile('GNUmakefile',getcwd().'/../') !=# '' || findfile('Makefile',getcwd().'/../') !=# ''
         cd ../
-        call BeginTerminal(a:width, l:command)
+        call BeginTerminal(a:width, 'sp', l:command)
         cd -
     else
         echo 'not found: "GNUmakefile" or "Makefile"'
@@ -58,7 +58,7 @@ fun! CMake(width, ...)
             call mkdir(l:builddir)
         endif
         cd ./build
-        call BeginTerminal(a:width, l:command)
+        call BeginTerminal(a:width, 'sp', l:command)
         cd ..
     elseif findfile(l:cmakelists_txt,getcwd().'/../') !=# ''
         cd ../
@@ -66,7 +66,7 @@ fun! CMake(width, ...)
             call mkdir(l:builddir)
         endif
         cd ./build
-        call BeginTerminal(a:width, l:command)
+        call BeginTerminal(a:width, 'sp', l:command)
         cd ..
     else
         echo 'not found: '.l:cmakelists_txt
@@ -98,7 +98,7 @@ fun! Python(width, ...)
             let l:command = l:command.' '
             let l:command = l:command.l:i
         endfor
-        call BeginTerminal(a:width, l:command)
+        call BeginTerminal(a:width, 'sp', l:command)
     else
         echo 'invalid file type.'
     endif
@@ -112,7 +112,7 @@ fun! SQL(width)
     else
         let l:command = 'mysql'
     endif
-    call BeginTerminal(a:width, l:command)
+    call BeginTerminal(a:width, 'sp', l:command)
 endf
 command! -count SQL call SQL(<count>)
 
@@ -120,7 +120,7 @@ command! -count SQL call SQL(<count>)
 fun! SQLplot(width, ...)
     if &filetype ==# 'sql' && executable('sqlplot')
         let l:command = 'sqlplot '.expand('%')
-        call BeginTerminal(a:width, l:command)
+        call BeginTerminal(a:width, 'sp', l:command)
     endif
 endf
 command! -count -nargs=* SQLplot call SQLplot(<count>, <f-args>)
@@ -148,7 +148,7 @@ command! -nargs=* Pyplot call Pyplot(<f-args>)
 fun! Gnuplot()
     if expand('%:e') ==# 'gp' || expand('%:e') ==# 'gpi'
         let l:command = 'gnuplot '.expand('%')
-        call BeginTerminal(5, l:command)
+        call BeginTerminal(5, 'sp', l:command)
         starti
     else
         echo 'invalid file type.'
@@ -195,9 +195,13 @@ fun! SetHlsearch()
 endf
 
 
-fun! BeginTerminal(width, ...)
+fun! BeginTerminal(width, split, ...)
     " create split window
-    let l:cmd1 = 'new'
+    if a:split ==# ''
+        let l:cmd1 = 'new'
+    else
+        let l:cmd1 = a:split
+    endif
     let l:cmd1 = a:width ? a:width.l:cmd1 : l:cmd1
     exe l:cmd1
     " execute command
