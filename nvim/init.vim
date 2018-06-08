@@ -54,16 +54,17 @@ Plug 'tpope/vim-fugitive', { 'on': [] }
 Plug 'airblade/vim-gitgutter', { 'on': [] }
 Plug 'vim-scripts/grep.vim', { 'on': [] }
 Plug 'vim-scripts/CSApprox', { 'on': [] }
-" if isdirectory('/usr/local/opt/fzf')
-"     Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-" else
-"     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-"     Plug 'junegunn/fzf.vim'
-" endif
-"" fzf.vim
-" set wildmode=list:longest,list:full
-" set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
-" let $FZF_DEFAULT_COMMAND =  'find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null'
+
+if isdirectory('/usr/local/opt/fzf')
+    Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+else
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+    Plug 'junegunn/fzf.vim'
+endif
+" fzf.vim
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
+let $FZF_DEFAULT_COMMAND =  'find * -path "*/\.*" -prune -o -path "node_modules/**" -prune -o -path "target/**" -prune -o -path "dist/**" -prune -o  -type f -print -o -type l -print 2> /dev/null'
 
 let g:make = 'gmake'
 if exists('make')
