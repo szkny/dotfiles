@@ -69,6 +69,13 @@ nno <silent><C-f> :Files<CR>
 nno <silent><C-h> :Ranger<CR>
 nno <silent><C-n> :NERDTreeToggle<CR>
 nno <silent><C-t> :TagbarToggle<CR>
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>       <Plug>(neosnippet_expand_or_jump)
+smap <C-k>       <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>       <Plug>(neosnippet_expand_target)
+smap <expr><TAB> neosnippet#expandable_or_jumpable()?
+                 \"\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
 
 "" mapping for My Commands
 nno <silent>?     :call SetHlsearch()<CR>
@@ -79,6 +86,7 @@ nno <silent><leader>mr :Make12 build run<CR>
 nno <silent><leader>cm :CMake12<CR>
 nno <silent><leader>cr :CMake12 run<CR>
 nno <silent><leader>py :Python12<CR>
+nno <silent><leader>ip :Ipython<CR>
 nno <silent><leader>sq :SQL<CR>
 nno <silent><leader>sp :SQLplot<CR>
 nno <silent><leader>pp :Pyplot<CR>

@@ -40,6 +40,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 Plug 'rhysd/nyaovim-popup-tooltip', { 'on': []}
 Plug 'itchyny/lightline.vim', { 'on': [] }
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle']}
@@ -165,6 +167,7 @@ set mouse=a
 set smartindent
 set wildmenu
 set splitbelow
+set splitright
 set virtualedit=onemore
 
 "*****************************************************************************

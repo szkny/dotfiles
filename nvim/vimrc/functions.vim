@@ -106,6 +106,16 @@ endf
 command! -count -nargs=* Python call Python(<count>, <f-args>)
 
 
+fun! Ipython(width, ...)
+    if executable('ipython')
+        call BeginTerminal(a:width, 'vs', 'ipython')
+    else
+        echo 'ipython does not exist.'
+    endif
+endf
+command! -count -nargs=* Ipython call Ipython(<count>, <f-args>)
+
+
 fun! SQL(width)
     if &filetype ==# 'sql'
         let l:command = 'mysql < '.expand('%')
