@@ -18,6 +18,10 @@ highlight PmenuSel ctermbg=1 guifg=#dddd00 guibg=#1f82cd
 highlight PmenuSbar ctermbg=0 guibg=#d6d6d6
 
 
+"" neosnippet
+let g:neosnippet#snippets_directory='~/.config/nvim/plugged/neosnippet-snippets/neosnippets'
+
+
 "" NERDTree
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeWinSize = 25
