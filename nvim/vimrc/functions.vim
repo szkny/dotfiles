@@ -98,7 +98,7 @@ fun! Python(width, ...)
             let l:command = l:command.' '
             let l:command = l:command.l:i
         endfor
-        call BeginTerminal(a:width, 'sp', l:command)
+        call BeginTerminal(a:width, l:command)
     else
         echo 'invalid file type.'
     endif
@@ -108,7 +108,7 @@ command! -count -nargs=* Python call Python(<count>, <f-args>)
 
 fun! Ipython(width, ...)
     if executable('ipython')
-        call BeginTerminal(a:width, 'vs', 'ipython')
+        call BeginTerminal(a:width, 'ipython')
     else
         echo 'ipython does not exist.'
     endif
@@ -205,14 +205,14 @@ fun! SetHlsearch()
 endf
 
 
-fun! BeginTerminal(width, split, ...)
+fun! BeginTerminal(width, ...)
     " create split window
-    if a:split ==# ''
-        let l:cmd1 = 'new'
+    if &columns >= 180
+        let l:split = 'vnew'
     else
-        let l:cmd1 = a:split
+        let l:split = 'new'
     endif
-    let l:cmd1 = a:width ? a:width.l:cmd1 : l:cmd1
+    let l:cmd1 = a:width ? a:width.l:split : l:split
     exe l:cmd1
     " execute command
     let l:cmd2 = 'terminal'
@@ -224,16 +224,9 @@ fun! BeginTerminal(width, split, ...)
     endif
     exe l:cmd2
     set nonumber
-    " call indent_guides#disable()
     startinsert
 endf
 command! -count -nargs=* BeginTerminal call BeginTerminal(<count>, <f-args>)
-
-
-fun! EndTerminal()
-    " call indent_guides#enable()
-    startinsert
-endf
 
 
 fun! Google(...)

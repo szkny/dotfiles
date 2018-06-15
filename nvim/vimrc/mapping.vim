@@ -79,13 +79,12 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable()?
 
 "" mapping for My Commands
 nno <silent>?     :call SetHlsearch()<CR>
-nno <silent>t     :BeginTerminal12 sp<CR>
-nno <silent><leader>t  :BeginTerminal vs<CR>
+nno <silent>t     :BeginTerminal<CR>
 nno <silent><leader>ma :Make12<CR>
 nno <silent><leader>mr :Make12 build run<CR>
 nno <silent><leader>cm :CMake12<CR>
 nno <silent><leader>cr :CMake12 run<CR>
-nno <silent><leader>py :Python12<CR>
+nno <silent><leader>py :Python<CR>
 nno <silent><leader>ip :Ipython<CR>
 nno <silent><leader>sq :SQL<CR>
 nno <silent><leader>sp :SQLplot<CR>
