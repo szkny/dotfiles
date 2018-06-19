@@ -17,8 +17,6 @@ nno <silent>- :ResizeWindow -1<CR>
 nno <silent>j gj
 nno <silent>k gk
 ino <C-h> <Left>
-ino <C-j> <Down>
-ino <C-k> <Up>
 ino <C-l> <Right>
 
 nno <CR> o<ESC>
@@ -76,7 +74,6 @@ xmap <C-k>       <Plug>(neosnippet_expand_target)
 smap <expr><TAB> neosnippet#expandable_or_jumpable()?
                  \"\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-
 "" mapping for My Commands
 nno <silent>?     :call SetHlsearch()<CR>
 nno <silent>t     :BeginTerminal<CR>
@@ -90,4 +87,3 @@ nno <silent><leader>sq :SQL<CR>
 nno <silent><leader>sp :SQLplot<CR>
 nno <silent><leader>pp :Pyplot<CR>
 nno <silent><leader>gp :Gnuplot<CR>
-

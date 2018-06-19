@@ -27,7 +27,7 @@ fun! Make(width, ...)
     if a:0 > 0
         for l:i in a:000
             let l:tmp     = ' '.l:i
-            let l:command = l:command.l:tmp
+            let l:command .= l:tmp
         endfor
     endif
     if findfile('GNUmakefile',getcwd()) !=# '' || findfile('Makefile',getcwd()) !=# ''
@@ -50,7 +50,7 @@ fun! CMake(width, ...)
     if a:0 > 0
         if a:1 ==? 'run'
             let l:exename = GetProjectName(l:cmakelists_txt)
-            let l:command = l:command.' && ./'.l:exename
+            let l:command .= ' && ./'.l:exename
         endif
     endif
     if findfile(l:cmakelists_txt,getcwd()) !=# ''
@@ -95,8 +95,8 @@ fun! Python(width, ...)
             let l:command = 'python '.expand('%')
         endif
         for l:i in a:000
-            let l:command = l:command.' '
-            let l:command = l:command.l:i
+            let l:command .= ' '
+            let l:command .= l:i
         endfor
         call BeginTerminal(a:width, l:command)
     else
@@ -146,7 +146,7 @@ fun! Pyplot(...)
             let l:column = ' -n'.a:0
             for l:i in a:000
                 let l:tmp  = ' -u'.l:i
-                let l:column = l:column.l:tmp
+                let l:column .= l:tmp
             endfor
         endif
         exe ':!pyplot %'.l:column
@@ -175,10 +175,10 @@ endif
 fun! Tex()
     if expand('%:e') ==# 'tex'
         let l:command = ':!platex '.expand('%')
-        let l:command = l:command.'>& /dev/null && '
+        let l:command .= '>& /dev/null && '
         let l:dvi = expand('%:r').'.dvi'
         if findfile(l:dvi,getcwd()) !=# ''
-            let l:command = l:command.'open -a Skim '
+            let l:command .= 'open -a Skim '
             exe l:command.dvi
         endif
         let l:aux = expand('%:r').'.aux'
@@ -220,7 +220,7 @@ fun! BeginTerminal(width, ...)
     if a:0 > 0
         for l:i in a:000
             let l:tmp = ' '.l:i
-            let l:cmd2 = l:cmd2.l:tmp
+            let l:cmd2 .= l:tmp
         endfor
     endif
     exe l:cmd2
@@ -251,7 +251,7 @@ fun! Google(...)
     elseif system('uname') ==# "Linux\n"
         let l:cmd = '!chrome'
     endif
-    let l:cmd = l:cmd.' "http://www.google.co.jp/'
+    let l:cmd .= ' "http://www.google.co.jp/'
     let l:opt = 'search?num=100'
     let l:wrd = ''
     if a:0 >= 1
@@ -259,13 +259,13 @@ fun! Google(...)
             if l:i == a:1
                 let l:wrd = l:i
             else
-                let l:wrd = l:wrd.'+'.l:i
+                let l:wrd .= '+'.l:i
             endif
         endfor
-        let l:opt = l:opt.'&q='.l:wrd
-        let l:cmd = l:cmd.l:opt
+        let l:opt .= '&q='.l:wrd
+        let l:cmd .= l:opt
     endif
-    let l:cmd = l:cmd.'"'
+    let l:cmd .= '"'
     exe l:cmd
 endf
 command! -nargs=* Google call Google(<f-args>)
@@ -292,32 +292,24 @@ fun! CloseBufferTab()
 endf
 command! -nargs=* CloseBufferTab call CloseBufferTab(<f-args>)
 
-" 各タブページのカレントバッファ名+αを表示
-function! s:tabpage_label(n)
-    let l:title = gettabvar(a:n, 'title')
-    if l:title !=# ''
-        return l:title
+
+fun! GetNow()
+    let l:nday = strftime('%d')
+    let l:nday = l:nday[len(l:nday)-1]
+    let l:daytail = 'th'
+    if     l:nday == 1
+        let l:daytail = 'st'
+    elseif l:nday == 2
+        let l:daytail = 'nd'
+    elseif l:nday == 3
+        let l:daytail = 'rd'
     endif
-    let l:bufnrs = tabpagebuflist(a:n)
-    let l:hi = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
-    let l:no = len(l:bufnrs)
-    if l:no is 1
-        let l:no = ''
-    endif
-    " let l:mod = len(filter(copy(l:bufnrs), 'getbufvar(v:val, "&modified")')) ? '+' : ''
-    let l:mod = len(filter(copy(l:bufnrs), 'getbufvar(v:val, &modified)')) ? '+' : ''
-    let l:sp = (l:no . l:mod) ==# '' ? '' : ' '  " 隙間空ける
-    let l:curbufnr = l:bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr() は 1 origin
-    let l:fname = pathshorten(bufname(l:curbufnr))
-    let l:label = l:no . l:mod . l:sp . l:fname
-    return '%' . a:n . 'T' . l:hi . l:label . '%T%#TabLineFill#'
-endfunction
-function! MakeTabLine()
-    let l:titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
-    let l:sep = ' | '  " タブ間の区切り
-    let l:tabpages = join(l:titles, l:sep) . l:sep . '%#TabLineFill#%T'
-    let l:info = ''  " 好きな情報を入れる
-    return l:tabpages . '%=' . l:info  " タブリストを左に、情報を右に表示
-endfunction
-set tabline=%!MakeTabLine()
+    let l:day = l:nday . l:daytail
+    let l:nweek = strftime('%w')
+    let l:weeks = [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ]
+    let l:now = strftime('%Y-%m-%d')
+    let l:now .= '(' . l:weeks[l:nweek] . ') '
+    let l:now .= strftime('%H:%M:%S')
+    return l:now
+endf
 

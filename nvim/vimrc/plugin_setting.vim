@@ -20,6 +20,9 @@ highlight PmenuSbar ctermbg=0 guibg=#d6d6d6
 
 "" neosnippet
 let g:neosnippet#snippets_directory='~/.config/nvim/plugged/neosnippet-snippets/neosnippets'
+if finddir('dotfiles/nvim/snippets', $HOME) !=# ''
+    let g:neosnippet#snippets_directory.=', ~/dotfiles/nvim/snippets'
+endif
 
 
 "" NERDTree
