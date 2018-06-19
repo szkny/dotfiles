@@ -205,9 +205,10 @@ fun! SetHlsearch()
 endf
 
 
+let g:terminal_window_columns = 180
 fun! BeginTerminal(width, ...)
     " create split window
-    if &columns >= 180
+    if &columns >= g:terminal_window_columns
         let l:split = 'vnew'
     else
         let l:split = 'new'
@@ -227,6 +228,20 @@ fun! BeginTerminal(width, ...)
     startinsert
 endf
 command! -count -nargs=* BeginTerminal call BeginTerminal(<count>, <f-args>)
+
+
+fun! ResizeWindow(size)
+    if a:size ==# ''
+        echo '[warning] the args "size" is empty.'
+        return
+    endif
+    if &columns >= g:terminal_window_columns
+        exe 'vertical res '.a:size
+    else
+        exe 'res '.a:size
+    endif
+endf
+command! -nargs=1 ResizeWindow call ResizeWindow(<f-args>)
 
 
 fun! Google(...)

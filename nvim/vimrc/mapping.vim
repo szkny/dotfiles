@@ -11,8 +11,8 @@ tno <C-w> <C-\><C-n><C-w>
 
 nno <silent>> :bn<CR>
 nno <silent>< :bp<CR>
-nno <silent>+ :res +1<CR>
-nno <silent>- :res -1<CR>
+nno <silent>+ :ResizeWindow +1<CR>
+nno <silent>- :ResizeWindow -1<CR>
 
 nno <silent>j gj
 nno <silent>k gk
