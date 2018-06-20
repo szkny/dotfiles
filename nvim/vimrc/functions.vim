@@ -310,7 +310,6 @@ fun! GetNow()
     " let l:now = strftime('%Y-%m-%d(%a) %H:%M:%S')
     return l:now
 endf
-echo GetNow()
 
 
 fun! Vimrc()
