@@ -294,8 +294,8 @@ command! -nargs=* CloseBufferTab call CloseBufferTab(<f-args>)
 
 
 fun! GetNow()
-    let l:nday = strftime('%d')
-    let l:nday = l:nday[len(l:nday)-1]
+    let l:day = strftime('%d')
+    let l:nday = l:day[len(l:day)-1]
     let l:daytail = 'th'
     if     l:nday == 1
         let l:daytail = 'st'
@@ -304,12 +304,19 @@ fun! GetNow()
     elseif l:nday == 3
         let l:daytail = 'rd'
     endif
-    let l:day = l:nday . l:daytail
-    let l:nweek = strftime('%w')
-    let l:weeks = [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ]
-    let l:now = strftime('%Y-%m-%d')
-    let l:now .= '(' . l:weeks[l:nweek] . ') '
-    let l:now .= strftime('%H:%M:%S')
+    let l:day = l:day . l:daytail
+    let l:now = strftime('%a %b ') . l:day
+    let l:now .= strftime(' %H:%M:%S, %Y')
+    " let l:now = strftime('%Y-%m-%d(%a) %H:%M:%S')
     return l:now
 endf
+echo GetNow()
 
+
+fun! Vimrc()
+    let l:vim_files = ' ~/dotfiles/nvim/init.vim '
+                    \.' ~/dotfiles/nvim/vimrc/*.vim '
+                    \.' ~/dotfiles/nvim/snippets/*.snip '
+    exe 'args' . l:vim_files
+endf
+command! Vimrc call Vimrc()
