@@ -1,6 +1,4 @@
-if &compatible
- set nocompatible
-endif
+scriptencoding utf-8
 " Add the dein installation directory into runtimepath
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 

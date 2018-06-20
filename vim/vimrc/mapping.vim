@@ -1,6 +1,7 @@
+scriptencoding utf-8
 "Key-mappings
 
-let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 
 nno <silent>> :bnext<CR>
 nno <silent>< :bprevious<CR>
