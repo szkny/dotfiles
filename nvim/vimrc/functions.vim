@@ -244,31 +244,57 @@ endf
 command! -nargs=1 ResizeWindow call ResizeWindow(<f-args>)
 
 
-fun! Google(...)
-    let l:cmd = ''
-    if has('mac')
-        let l:cmd = '!open -a Google\ Chrome'
-    elseif system('uname') ==# "Linux\n"
-        let l:cmd = '!chrome'
-    endif
-    let l:cmd .= ' "http://www.google.co.jp/'
+fun! GoogleSearch(...)
+    let l:url = '"http://www.google.co.jp/'
     let l:opt = 'search?num=100'
     let l:wrd = ''
     if a:0 >= 1
-        for l:i in a:000
-            if l:i == a:1
-                let l:wrd = l:i
-            else
-                let l:wrd .= '+'.l:i
-            endif
-        endfor
-        let l:opt .= '&q='.l:wrd
-        let l:cmd .= l:opt
+        if a:0 == 1
+            for l:i in a:1
+                if l:i == a:1[0]
+                    let l:wrd = l:i
+                else
+                    let l:wrd .= '+' . l:i
+                endif
+            endfor
+        else
+            for l:i in a:000
+                if l:i == a:1
+                    let l:wrd = l:i
+                else
+                    let l:wrd .= '+' . l:i
+                endif
+            endfor
+        endif
+        let l:opt .= '&q=' . l:wrd
+        let l:url .= l:opt
     endif
-    let l:cmd .= '"'
-    exe l:cmd
+    let l:url .= '"'
+    return l:url
 endf
-command! -nargs=* Google call Google(<f-args>)
+
+
+fun! Chrome(...)
+    let l:cmd = ''
+    if has('mac')
+        let l:cmd = '!open -a Google\ Chrome '
+    elseif system('uname') ==# "Linux\n"
+        let l:cmd = '!chrome '
+    endif
+    let l:cmd .= GoogleSearch(a:000)
+    echo l:cmd
+    " exe l:cmd
+endf
+command! -nargs=* Chrome call Chrome(<f-args>)
+
+
+fun! W3m(width, ...)
+    if executable('w3m')
+        let l:url = GoogleSearch(a:000)
+        call BeginTerminal(a:width, 'w3m', l:url)
+    endif
+endf
+command! -count -nargs=* W3m call W3m(<count>, <f-args>)
 
 
 fun! CloseBufferTab()
