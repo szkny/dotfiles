@@ -351,3 +351,16 @@ fun! Vimrc()
     exe 'args' . l:vim_files
 endf
 command! Vimrc call Vimrc()
+
+
+fun! Pyform()
+    if &filetype ==# 'python'
+        if executable('yapf')
+            exe '0, $yapf'
+        else
+            echo '[error] "yapf" command not found.'
+        endif
+        echo '[error] invalid file type. "' . &filetype. '"'
+    endif
+endf
+command! Pyform call Pyform()
