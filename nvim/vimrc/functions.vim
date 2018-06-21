@@ -208,7 +208,7 @@ endf
 let g:terminal_window_columns = 180
 fun! BeginTerminal(width, ...)
     " create split window
-    if &columns >= g:terminal_window_columns
+    if winwidth(0) >= g:terminal_window_columns
         let l:split = 'vnew'
     else
         let l:split = 'new'
