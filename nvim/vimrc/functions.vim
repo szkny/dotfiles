@@ -344,10 +344,6 @@ endf
 
 
 fun! Vimrc()
-    " let l:vim_files = ' ~/dotfiles/nvim/init.vim '
-    "                 \.' ~/dotfiles/nvim/vimrc/*.vim '
-    "                 \.' ~/dotfiles/nvim/snippets/*.snip '
-    " exe 'args' . l:vim_files
     exe 'e ~/dotfiles/nvim'
 endf
 command! Vimrc call Vimrc()
