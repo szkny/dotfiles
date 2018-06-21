@@ -16,11 +16,9 @@ ln -sf ~/dotfiles/vim/vimrc ~/.vim
 
 # python syntax checker & formatter
 if [ -L ~/.config/flake8 ]; then rm ~/.config/flake8;fi
-if [ -L ~/.config/pep8 ]; then rm ~/.config/pep8;fi
 if [ -L ~/.config/yapf ]; then rm ~/.config/yapf;fi
 mkdir -p ~/.config
 ln -sf ~/dotfiles/python_syntax_checker/flake8 ~/.config/flake8
-ln -sf ~/dotfiles/python_syntax_checker/pep8 ~/.config/pep8
 ln -sf ~/dotfiles/python_syntax_checker/yapf ~/.config
 
 # bash

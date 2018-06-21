@@ -276,27 +276,27 @@ cnoreabbrev Qall qall
 "*****************************************************************************
 "" The PC is fast enough, do syntax highlight syncing from start unless 200 lines
 augroup vimrc_sync_fromstart
-    autocmd!
-    autocmd BufEnter * :syntax sync maxlines=200
+    au!
+    au BufEnter * :syntax sync maxlines=200
 augroup END
 
 "" Remember cursor position
 augroup vimrc_remember_cursor_position
-    autocmd!
-    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+    au!
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
 
 "" txt
 augroup vimrc_wrapping
-    autocmd!
-    autocmd BufRead,BufNewFile *.txt call s:setupWrapping()
+    au!
+    au BufRead,BufNewFile *.txt call s:setupWrapping()
 augroup END
 
 "" make/cmake
 augroup vimrc_make_cmake
-    autocmd!
-    autocmd FileType make setlocal noexpandtab
-    autocmd BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
+    au!
+    au FileType make setlocal noexpandtab
+    au BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
 augroup END
 
 set autoread
@@ -323,7 +323,7 @@ let g:UltiSnipsEditSplit='vertical'
 " Disable visualbell
 set noerrorbells visualbell t_vb=
 augroup visualbell
-    autocmd GUIEnter * set visualbell t_vb=
+    au GUIEnter * set visualbell t_vb=
 augroup END
 
 "*****************************************************************************
@@ -332,14 +332,15 @@ augroup END
 
 " c
 augroup vimrc_c_cpp
-    autocmd FileType c,cpp setlocal tabstop=4 shiftwidth=4 expandtab
+    au!
+    au FileType c,cpp setlocal tabstop=4 shiftwidth=4 expandtab
 augroup END
 
 " python
 " vim-python
 augroup vimrc_python
-    autocmd!
-    autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=100
+    au!
+    au FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=100
                 \ formatoptions+=croq softtabstop=4
                 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
@@ -358,7 +359,8 @@ augroup END
 
 " FixWhitespace
 augroup FixWhitespace
-    autocmd FileType c,cpp,text if exists(":FixWhitespace") | FixWhitespace
+    au!
+    au FileType c,cpp,text if exists(":FixWhitespace") | FixWhitespace
 augroup END
 
 "*****************************************************************************

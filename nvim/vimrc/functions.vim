@@ -108,7 +108,7 @@ command! -count -nargs=* Python call Python(<count>, <f-args>)
 
 fun! Ipython(width, ...)
     if executable('ipython')
-        call BeginTerminal(a:width, 'ipython')
+        call BeginTerminal(a:width, 'ipython --no-confirm-exit')
     else
         echo 'ipython does not exist.'
     endif
@@ -358,10 +358,14 @@ fun! Pyform()
         if executable('yapf')
             exe '0, $!yapf'
         else
-            echo '[error] "yapf" command not found.'
+            echo '[error] yapf command not found.'
+            echo 'installing yapf..'
+            exe '!pip install git+https://github.com/google/yapf'
+            echo ''
+            exe '0, $!yapf'
         endif
     else
-        echo '[error] invalid file type. "' . &filetype. '"'
+        echo '[error] invalid file type. this is "' . &filetype. '"'
     endif
 endf
 command! Pyform call Pyform()
