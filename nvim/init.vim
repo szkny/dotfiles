@@ -28,10 +28,9 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'w0rp/ale'
 Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
@@ -42,20 +41,20 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
-Plug 'rhysd/nyaovim-popup-tooltip', { 'on': []}
-Plug 'itchyny/lightline.vim', { 'on': [] }
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle']}
-Plug 'jistr/vim-nerdtree-tabs', { 'on': ['NERDTreeToggle']}
-Plug 'nathanaelkane/vim-indent-guides', { 'on': []}
-Plug 'sheerun/vim-polyglot', { 'on': [] }
-Plug 'Shougo/unite.vim', { 'on': [] }
-Plug 'Shougo/unite-outline', { 'on': [] }
-Plug 'Yggdroot/indentLine', { 'on': [] }
-Plug 'tpope/vim-commentary', { 'on': [] }
-Plug 'tpope/vim-fugitive', { 'on': [] }
-Plug 'airblade/vim-gitgutter', { 'on': [] }
-Plug 'vim-scripts/grep.vim', { 'on': [] }
-Plug 'vim-scripts/CSApprox', { 'on': [] }
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': ['NERDTreeToggle']}
+Plug 'scrooloose/nerdtree',                     {'on': ['NERDTreeToggle']}
+Plug 'jistr/vim-nerdtree-tabs',                 {'on': ['NERDTreeToggle']}
+Plug 'rhysd/nyaovim-popup-tooltip',             {'on': []}
+Plug 'sheerun/vim-polyglot',                    {'on': []}
+Plug 'Shougo/unite.vim',                        {'on': []}
+Plug 'Shougo/unite-outline',                    {'on': []}
+Plug 'nathanaelkane/vim-indent-guides',         {'on': []}
+Plug 'Yggdroot/indentLine',                     {'on': []}
+Plug 'tpope/vim-commentary',                    {'on': []}
+Plug 'tpope/vim-fugitive',                      {'on': []}
+Plug 'airblade/vim-gitgutter',                  {'on': []}
+Plug 'vim-scripts/grep.vim',                    {'on': []}
+Plug 'vim-scripts/CSApprox',                    {'on': []}
 
 if isdirectory('/usr/local/opt/fzf')
     Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -315,6 +314,10 @@ if executable('rg')
 endif
 
 " snippets
+augroup vimrc_snippet
+    au!
+    au FileType neosnippet setlocal noexpandtab
+augroup END
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<c-b>'

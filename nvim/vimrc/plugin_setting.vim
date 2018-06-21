@@ -28,15 +28,6 @@ endif
 "" NERDTree
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeWinSize = 25
-" let g:NERDTreeChDirMode=2
-" let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
-" let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
-" let g:NERDTreeShowBookmarks=1
-" let g:nerdtree_tabs_focus_on_files=1
-" let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-" set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
-" " nnoremap <silent> <F2> :NERDTreeFind<CR>
-" " nnoremap <silent> <F3> :NERDTreeToggle<CR>
 
 
 "" Tagbar
@@ -88,35 +79,22 @@ let g:ale_echo_msg_warning_str = '⚠'
 " let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 
-" "" indent_guides
-" let g:indent_guides_enable_on_vim_startup = 0
-" let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
-" let g:indent_guides_guide_size = 2
-" let g:indent_guides_start_level = 1
-" let g:indent_guides_auto_colors = 0
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#113344 ctermbg=gray
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#223344 ctermbg=darkgray
-"
-"
-" "" indentLine
-" let g:indentLine_enabled = 0
-" let g:indentLine_concealcursor = 0
-" let g:indentLine_char = '┆'
-" let g:indentLine_faster = 1
+"" indent_guides
+let g:indent_guides_enable_on_vim_startup = 0
+let g:indent_guides_exclude_filetypes = ['', 'help', 'nerdtree']
+let g:indent_guides_guide_size = 2
+let g:indent_guides_start_level = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#113344 ctermbg=gray
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#223344 ctermbg=darkgray
 
 
-"" lightline
-" let g:lightline = {
-"   \'active': {
-"   \  'left': [
-"   \    ['mode', 'paste'],
-"   \    ['readonly', 'filename', 'modified', 'ale'],
-"   \  ]
-"   \},
-"   \'component_function': {
-"   \  'ale': 'ALEGetStatusLine'
-"   \}
-" \ }
+"" indentLine
+let g:indentLine_enabled = 0
+let g:indentLine_concealcursor = 0
+let g:indentLine_char = '┆'
+let g:indentLine_faster = 1
+
 
 "" vim-airline
 let g:airline_theme = 'kalisi'
@@ -140,42 +118,6 @@ let g:airline#extensions#ale#error_symbol = '⨉ '
 let g:airline#extensions#ale#warning_symbol = '⚠ '
 let g:airline#extensions#default#section_truncate_width = {}
 let g:airline#extensions#whitespace#enabled = 1
-" if !exists('g:airline_symbols')
-"     let g:airline_symbols = {}
-" endif
-" if has('mac')
-"     if !exists('g:airline_powerline_fonts')
-"         let g:airline#extensions#tabline#left_sep = ' '
-"         let g:airline#extensions#tabline#left_alt_sep = '|'
-"         " let g:airline_left_sep          = '▶'
-"         let g:airline_left_sep          = ''
-"         let g:airline_left_alt_sep      = '»'
-"         " let g:airline_right_sep         = '◀'
-"         let g:airline_right_sep         = ''
-"         let g:airline_right_alt_sep     = '«'
-"         let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
-"         let g:airline#extensions#readonly#symbol   = '⊘'
-"         let g:airline#extensions#linecolumn#prefix = '¶'
-"         let g:airline#extensions#paste#symbol      = 'ρ'
-"         let g:airline_symbols.linenr = '␊'
-"         let g:airline_symbols.branch = '⎇'
-"         let g:airline_symbols.paste  = 'ρ'
-"         let g:airline_symbols.paste  = 'Þ'
-"         let g:airline_symbols.paste  = '∥'
-"         let g:airline_symbols.whitespace = 'Ξ'
-"     else
-"         let g:airline#extensions#tabline#left_sep = ''
-"         let g:airline#extensions#tabline#left_alt_sep = ''
-"         " powerline symbols
-"         let g:airline_left_sep = ''
-"         let g:airline_left_alt_sep = ''
-"         let g:airline_right_sep = ''
-"         let g:airline_right_alt_sep = ''
-"         let g:airline_symbols.branch = ''
-"         let g:airline_symbols.readonly = ''
-"         let g:airline_symbols.linenr = ''
-"     endif
-" endif
 
 
 "" Syntax highlight

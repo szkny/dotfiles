@@ -282,8 +282,7 @@ fun! Chrome(...)
         let l:cmd = '!chrome '
     endif
     let l:cmd .= GoogleSearch(a:000)
-    echo l:cmd
-    " exe l:cmd
+    exe l:cmd
 endf
 command! -nargs=* Chrome call Chrome(<f-args>)
 
@@ -345,10 +344,11 @@ endf
 
 
 fun! Vimrc()
-    let l:vim_files = ' ~/dotfiles/nvim/init.vim '
-                    \.' ~/dotfiles/nvim/vimrc/*.vim '
-                    \.' ~/dotfiles/nvim/snippets/*.snip '
-    exe 'args' . l:vim_files
+    " let l:vim_files = ' ~/dotfiles/nvim/init.vim '
+    "                 \.' ~/dotfiles/nvim/vimrc/*.vim '
+    "                 \.' ~/dotfiles/nvim/snippets/*.snip '
+    " exe 'args' . l:vim_files
+    exe 'e ~/dotfiles/nvim'
 endf
 command! Vimrc call Vimrc()
 
