@@ -100,7 +100,7 @@ fun! Python(width, ...)
         endfor
         call BeginTerminal(a:width, l:command)
     else
-        echo 'invalid file type.'
+        echo '[error] invalid file type. this is "' . &filetype. '" file.'
     endif
 endf
 command! -count -nargs=* Python call Python(<count>, <f-args>)
@@ -161,7 +161,7 @@ fun! Gnuplot()
         call BeginTerminal(5, l:command)
         starti
     else
-        echo 'invalid file type.'
+        echo '[error] invalid file type. this is "' . &filetype. '" file.'
     endif
 endf
 command! -nargs=* Gnuplot call Gnuplot(<f-args>)
@@ -190,7 +190,7 @@ fun! Tex()
             call delete(l:log)
         endif
     else
-        echo 'invalid file type.'
+        echo '[error] invalid file type. this is "' . &filetype. '" file.'
     endif
 endf
 command! Tex call Tex()
@@ -355,8 +355,12 @@ fun! Pyform()
             exe '0, $!yapf'
         else
             echo '[error] yapf command not found.'
-            echo 'installing yapf..'
-            exe '!pip install git+https://github.com/google/yapf'
+            echo 'installing yapf...'
+            if !executable('pip')
+                echoerr 'You have to install pip!'
+                exe 'q!'
+            endif
+            silent exe '!pip install git+https://github.com/google/yapf'
             echo ''
             exe '0, $!yapf'
         endif

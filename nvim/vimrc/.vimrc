@@ -1,1 +1,0 @@
-/home/suzuki/dotfiles/vim/.vimrc
