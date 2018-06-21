@@ -365,7 +365,7 @@ fun! Pyform()
             exe '0, $!yapf'
         endif
     else
-        echo '[error] invalid file type. this is "' . &filetype. '"'
+        echo '[error] invalid file type. this is "' . &filetype. '" file.'
     endif
 endf
 command! Pyform call Pyform()
