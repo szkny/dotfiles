@@ -351,7 +351,9 @@ command! Vimrc call Vimrc()
 fun! Pyform()
     if &filetype ==# 'python'
         if executable('yapf')
+            let l:pos = getpos('.')
             exe '0, $!yapf'
+            call setpos('.', l:pos)
         else
             echo '[error] yapf command not found.'
             echo 'installing yapf...'
@@ -361,7 +363,9 @@ fun! Pyform()
             endif
             silent exe '!pip install git+https://github.com/google/yapf'
             echo ''
+            let l:pos = getpos('.')
             exe '0, $!yapf'
+            call setpos('.', l:pos)
         endif
     else
         echo '[error] invalid file type. this is "' . &filetype. '" file.'
