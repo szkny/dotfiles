@@ -205,10 +205,9 @@ fun! SetHlsearch()
 endf
 
 
-let g:terminal_window_columns = 180
 fun! BeginTerminal(width, ...)
     " create split window
-    if winwidth(0) >= g:terminal_window_columns
+    if winwidth(0) >= winheight(0) * 3
         let l:split = 'vnew'
     else
         let l:split = 'new'
@@ -235,10 +234,10 @@ fun! ResizeWindow(size)
         echo '[warning] the args "size" is empty.'
         return
     endif
-    if &columns >= g:terminal_window_columns
-        exe 'vertical res '.a:size
-    else
+    if winwidth(0) >= winheight(0) * 3
         exe 'res '.a:size
+    else
+        exe 'vertical res '.a:size
     endif
 endf
 command! -nargs=1 ResizeWindow call ResizeWindow(<f-args>)
