@@ -100,7 +100,7 @@ fun! Python(width, ...)
         endfor
         call BeginTerminal(a:width, l:command)
     else
-        echo '[error] invalid file type. this is "' . &filetype. '" file.'
+        echo 'Python: [error] invalid file type. this is "' . &filetype. '" file.'
     endif
 endf
 command! -count -nargs=* Python call Python(<count>, <f-args>)
@@ -161,7 +161,7 @@ fun! Gnuplot()
         call BeginTerminal(5, l:command)
         starti
     else
-        echo '[error] invalid file type. this is "' . &filetype. '" file.'
+        echo 'Gnuplot: [error] invalid file type. this is "' . &filetype. '" file.'
     endif
 endf
 command! -nargs=* Gnuplot call Gnuplot(<f-args>)
@@ -190,7 +190,7 @@ fun! Tex()
             call delete(l:log)
         endif
     else
-        echo '[error] invalid file type. this is "' . &filetype. '" file.'
+        echo 'Tex: [error] invalid file type. this is "' . &filetype. '" file.'
     endif
 endf
 command! Tex call Tex()
@@ -342,8 +342,21 @@ fun! GetNow()
 endf
 
 
+fun! VimrcGit(command)
+    if &filetype ==# 'vim'
+        let l:cmd = 'git '
+        if a:command ==# 'push'
+            let l:cmd = './gitcommit.sh'
+        else
+            let l:cmd .= a:command
+        endif
+        call BeginTerminal(0, 'cd ~/dotfiles && ' . l:cmd)
+    else
+        echo 'VimrcGit: [error] invalid file type. this is "' . &filetype. '" file.'
+    endif
+endf
+command! -nargs=1 VimrcGit call VimrcGit(<f-args>)
 command! Vimrc edit ~/dotfiles/nvim
-command! VimrcGitPush call BeginTerminal(0, 'cd ~/dotfiles/ && ./gitcommit.sh')
 
 
 fun! Pyform()
@@ -353,8 +366,8 @@ fun! Pyform()
             exe '0, $!yapf'
             call setpos('.', l:pos)
         else
-            echo '[error] yapf command not found.'
-            echo 'installing yapf...'
+            echo 'Pyform: [error] yapf command not found.'
+            echo '                installing yapf...'
             if !executable('pip')
                 echoerr 'You have to install pip!'
                 exe 'q!'
@@ -366,7 +379,7 @@ fun! Pyform()
             call setpos('.', l:pos)
         endif
     else
-        echo '[error] invalid file type. this is "' . &filetype. '" file.'
+        echo 'Pyform: [error] invalid file type. this is "' . &filetype. '" file.'
     endif
 endf
 command! Pyform call Pyform()
