@@ -45,6 +45,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': ['NERDTreeToggle']}
 Plug 'scrooloose/nerdtree',                     {'on': ['NERDTreeToggle']}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': ['NERDTreeToggle']}
 Plug 'rhysd/nyaovim-popup-tooltip',             {'on': []}
+Plug 'rhysd/nyaovim-markdown-preview',          {'on': []}
 Plug 'sheerun/vim-polyglot',                    {'on': []}
 Plug 'Shougo/unite.vim',                        {'on': []}
 Plug 'Shougo/unite-outline',                    {'on': []}

@@ -342,10 +342,8 @@ fun! GetNow()
 endf
 
 
-fun! Vimrc()
-    exe 'e ~/dotfiles/nvim'
-endf
-command! Vimrc call Vimrc()
+command! Vimrc edit ~/dotfiles/nvim
+command! VimrcGitPush call BeginTerminal(0, 'cd ~/dotfiles/ && ./gitcommit.sh')
 
 
 fun! Pyform()
