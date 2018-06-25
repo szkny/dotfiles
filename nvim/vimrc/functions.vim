@@ -350,7 +350,7 @@ endf
 
 
 fun! VimrcGit(command)
-    if &filetype ==# 'vim'
+    if &filetype ==# 'vim' || &filetype ==# 'neosnippet'
         let l:cmd = 'git '
         if a:command ==# 'push'
             let l:cmd = './gitcommit.sh'
