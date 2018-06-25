@@ -10,7 +10,7 @@ command! CdCurrent call CdCurrent()
 
 
 fun! BeginTerminal(width, ...)
-    call CdCurrent()
+    let l:current_dir = expand('%:p:h')
     "" create split window
     if winwidth(0) >= winheight(0) * 3
         let l:split = 'vnew'
@@ -19,6 +19,7 @@ fun! BeginTerminal(width, ...)
     endif
     let l:cmd1 = a:width ? a:width.l:split : l:split
     exe l:cmd1
+    exe 'cd ' . l:current_dir
     "" execute command
     let l:cmd2 = 'terminal'
     if a:0 > 0
