@@ -4,7 +4,7 @@ scriptencoding utf-8
 "*****************************************************************************
 
 fun! BeginTerminal(width, ...)
-    " create split window
+    "" create split window
     if winwidth(0) >= winheight(0) * 3
         let l:split = 'vnew'
     else
@@ -12,7 +12,7 @@ fun! BeginTerminal(width, ...)
     endif
     let l:cmd1 = a:width ? a:width.l:split : l:split
     exe l:cmd1
-    " execute command
+    "" execute command
     let l:cmd2 = 'terminal'
     if a:0 > 0
         for l:i in a:000
@@ -21,15 +21,31 @@ fun! BeginTerminal(width, ...)
         endfor
     endif
     exe l:cmd2
-    if a:0 == 0
-        exe 'file bash'
-    elseif a:0 > 0
-        exe 'file ' . a:1
+    "" change buffer name
+    let l:bufname = 'bash'
+    if a:0 > 0
+        let l:bufname = a:1
     endif
+    while bufexists(l:bufname)
+        let l:bufname = AddNameNumber(l:bufname)
+    endwhile
+    exe 'file ' . l:bufname
+    "" visual settings & start terminal mode
     set nonumber
     startinsert
 endf
 command! -count -nargs=* BeginTerminal call BeginTerminal(<count>, <f-args>)
+
+
+fun! AddNameNumber(name)
+    let l:num = str2nr(a:name[0])
+    if l:num == 0
+        let l:name = '1 ' . a:name
+    else
+        let l:name = printf('%d', l:num+1) . a:name[1:]
+    endif
+    return l:name
+endf
 
 
 fun! ResizeWindow(size)
@@ -151,7 +167,12 @@ command! -count -nargs=* Python call Python(<count>, <f-args>)
 
 fun! Ipython(width, ...)
     if executable('ipython')
-        call BeginTerminal(a:width, 'ipython', ' --no-confirm-exit')
+        let l:command = 'ipython'
+        let l:args = ' --no-confirm-exit'
+        if &filetype ==# 'python'
+            let l:args = expand('%')
+        endif
+        call BeginTerminal(a:width, l:command, l:args)
     else
         echo 'ipython does not exist.'
     endif
