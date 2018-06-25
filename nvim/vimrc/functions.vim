@@ -19,7 +19,7 @@ fun! BeginTerminal(width, ...)
     endif
     let l:cmd1 = a:width ? a:width.l:split : l:split
     exe l:cmd1
-    exe 'cd ' . l:current_dir
+    exe 'lcd ' . l:current_dir
     "" execute command
     let l:cmd2 = 'terminal'
     if a:0 > 0
