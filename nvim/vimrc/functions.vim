@@ -168,16 +168,40 @@ command! -count -nargs=* Python call Python(<count>, <f-args>)
 fun! Ipython(width, ...)
     if executable('ipython')
         let l:command = 'ipython'
-        let l:args = ' --no-confirm-exit'
+        let l:args = '--no-confirm-exit'
         if &filetype ==# 'python'
-            let l:args = expand('%')
+            let l:profile_name = InitIpython()
+            let l:args .= ' --profile=' . l:profile_name
         endif
         call BeginTerminal(a:width, l:command, l:args)
     else
-        echo 'ipython does not exist.'
+        echo 'Ipython: [error] ipython does not exist.'
     endif
 endf
 command! -count -nargs=* Ipython call Ipython(<count>, <f-args>)
+
+
+fun! InitIpython()
+    let l:ipython_root_dir = finddir('.ipython', $HOME)
+    if l:ipython_root_dir !=# ''
+        let l:profile_name = 'neovim'
+        let l:ipython_profile_dir = finddir('profile_' . l:profile_name, l:ipython_root_dir)
+        if l:ipython_profile_dir ==# ''
+            exe '!ipython profile create ' . l:profile_name
+            let l:ipython_profile_dir = finddir('profile_' . l:profile_name, l:ipython_root_dir)
+            if l:ipython_profile_dir ==# ''
+                return
+            endif
+        endif
+        let l:ipython_config_profile = l:ipython_profile_dir . '/ipython_config.py'
+        let l:modulename = expand('%:t:r')
+        let l:ipython_init_command = 'c.InteractiveShellApp.exec_lines = ["from ' . l:modulename . ' import *"]'
+        call writefile([l:ipython_init_command], l:ipython_config_profile)
+        return l:profile_name
+    else
+        echo 'Ipython: [error] ~/.ipython directory does not exist.'
+    endif
+endf
 
 
 fun! SQL(width)
