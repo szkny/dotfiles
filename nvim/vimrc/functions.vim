@@ -196,26 +196,16 @@ command! -count -nargs=* Ipython call Ipython(<count>, <f-args>)
 
 
 fun! InitIpython()
-    let l:ipython_root_dir = finddir('.ipython', $HOME)
-    if l:ipython_root_dir !=# ''
-        let l:profile_name = 'neovim'
-        let l:ipython_profile_dir = finddir('profile_' . l:profile_name, l:ipython_root_dir)
-        if l:ipython_profile_dir ==# ''
-            echo 'initializing ipython ...'
-            silent exe '!ipython profile create ' . l:profile_name
-            let l:ipython_profile_dir = finddir('profile_' . l:profile_name, l:ipython_root_dir)
-            if l:ipython_profile_dir ==# ''
-                return
-            endif
-        endif
-        let l:ipython_config_profile = l:ipython_profile_dir . '/ipython_config.py'
-        let l:modulename = expand('%:t:r')
-        let l:ipython_init_command = 'c.InteractiveShellApp.exec_lines = ["from ' . l:modulename . ' import *"]'
-        call writefile([l:ipython_init_command], l:ipython_config_profile)
-        return l:profile_name
-    else
-        echo 'Ipython: [error] ~/.ipython directory does not exist.'
+    let l:profile_name = 'neovim'
+    let l:ipython_startup_dir = $HOME . '/.ipython/profile_' . l:profile_name . '/startup'
+    if finddir(l:ipython_startup_dir) ==# ''
+        silent exe '!mkdir -p ' . l:ipython_startup_dir
     endif
+    let l:modulename = expand('%:t:r')
+    let l:ipython_init_command = ['from ' . l:modulename . ' import *']
+    let l:ipython_startup_file = l:ipython_startup_dir . '/startup.py'
+    call writefile(l:ipython_init_command, l:ipython_startup_file)
+    return l:profile_name
 endf
 
 
