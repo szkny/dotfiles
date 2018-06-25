@@ -24,17 +24,18 @@ command! -nargs=+ GetProjectName call GetProjectName(<f-args>)
 
 fun! Make(width, ...)
     let l:command = 'make'
+    let l:args = ''
     if a:0 > 0
         for l:i in a:000
             let l:tmp     = ' '.l:i
-            let l:command .= l:tmp
+            let l:args .= l:tmp
         endfor
     endif
     if findfile('GNUmakefile',getcwd()) !=# '' || findfile('Makefile',getcwd()) !=# ''
-        call BeginTerminal(a:width, l:command)
+        call BeginTerminal(a:width, l:command, l:args)
     elseif findfile('GNUmakefile',getcwd().'/../') !=# '' || findfile('Makefile',getcwd().'/../') !=# ''
         cd ../
-        call BeginTerminal(a:width, l:command)
+        call BeginTerminal(a:width, l:command, l:args)
         cd -
     else
         echo 'not found: "GNUmakefile" or "Makefile"'
@@ -88,19 +89,18 @@ command! -nargs=+ AppendChar call AppendChar(<f-args>)
 
 
 fun! Python(width, ...)
+    let l:command = 'python'
     if &filetype ==# 'python'
+        let l:args = ' ' . expand('%')
         if findfile('Pipfile',getcwd()) !=# ''
-            let l:command = 'pipenv run python '.expand('%')
-        else
-            let l:command = 'python '.expand('%')
+            let l:command = 'pipenv run python'
         endif
         for l:i in a:000
-            let l:command .= ' '
-            let l:command .= l:i
+            let l:args .= ' ' . l:i
         endfor
-        call BeginTerminal(a:width, l:command)
+        call BeginTerminal(a:width, l:command, l:args)
     else
-        echo 'Python: [error] invalid file type. this is "' . &filetype. '" file.'
+        call BeginTerminal(a:width, l:command)
     endif
 endf
 command! -count -nargs=* Python call Python(<count>, <f-args>)
@@ -108,7 +108,7 @@ command! -count -nargs=* Python call Python(<count>, <f-args>)
 
 fun! Ipython(width, ...)
     if executable('ipython')
-        call BeginTerminal(a:width, 'ipython --no-confirm-exit')
+        call BeginTerminal(a:width, 'ipython', ' --no-confirm-exit')
     else
         echo 'ipython does not exist.'
     endif
@@ -117,20 +117,21 @@ command! -count -nargs=* Ipython call Ipython(<count>, <f-args>)
 
 
 fun! SQL(width)
+    let l:command = 'mysql'
+    let l:args = ''
     if &filetype ==# 'sql'
-        let l:command = 'mysql < '.expand('%')
-    else
-        let l:command = 'mysql'
+        let l:args = ' < ' . expand('%')
     endif
-    call BeginTerminal(a:width, l:command)
+    call BeginTerminal(a:width, l:command, l:args)
 endf
 command! -count SQL call SQL(<count>)
 
 
 fun! SQLplot(width, ...)
     if &filetype ==# 'sql' && executable('sqlplot')
-        let l:command = 'sqlplot '.expand('%')
-        call BeginTerminal(a:width, l:command)
+        let l:command = 'sqlplot'
+        let l:args = ' ' . expand('%')
+        call BeginTerminal(a:width, l:command, l:args)
     endif
 endf
 command! -count -nargs=* SQLplot call SQLplot(<count>, <f-args>)
@@ -157,8 +158,9 @@ command! -nargs=* Pyplot call Pyplot(<f-args>)
 
 fun! Gnuplot()
     if expand('%:e') ==# 'gp' || expand('%:e') ==# 'gpi'
-        let l:command = 'gnuplot '.expand('%')
-        call BeginTerminal(5, l:command)
+        let l:command = 'gnuplot'
+        let l:args = ' ' . expand('%')
+        call BeginTerminal(0, l:command, l:args)
         starti
     else
         echo 'Gnuplot: [error] invalid file type. this is "' . &filetype. '" file.'
@@ -223,6 +225,11 @@ fun! BeginTerminal(width, ...)
         endfor
     endif
     exe l:cmd2
+    if a:0 == 0
+        exe 'file bash'
+    elseif a:0 > 0
+        exe 'file ' . a:1
+    endif
     set nonumber
     startinsert
 endf
