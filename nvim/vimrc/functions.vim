@@ -20,6 +20,7 @@ fun! BeginTerminal(width, ...)
             let l:cmd2 .= l:tmp
         endfor
     endif
+    exe 'cd ' . expand('%:h')
     exe l:cmd2
     "" change buffer name
     let l:bufname = 'bash'
