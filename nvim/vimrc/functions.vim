@@ -3,23 +3,47 @@ scriptencoding utf-8
 "" My-Functions
 "*****************************************************************************
 
-fun! GetProjectName(cmakelists_txt)
-    if findfile(a:cmakelists_txt,getcwd()) !=# ''
-        let  l:cmakelists_txt = a:cmakelists_txt
-    elseif findfile(a:cmakelists_txt,getcwd().'/../') !=# ''
-        let  l:cmakelists_txt = '../'.a:cmakelists_txt
+fun! BeginTerminal(width, ...)
+    " create split window
+    if winwidth(0) >= winheight(0) * 3
+        let l:split = 'vnew'
     else
+        let l:split = 'new'
+    endif
+    let l:cmd1 = a:width ? a:width.l:split : l:split
+    exe l:cmd1
+    " execute command
+    let l:cmd2 = 'terminal'
+    if a:0 > 0
+        for l:i in a:000
+            let l:tmp = ' '.l:i
+            let l:cmd2 .= l:tmp
+        endfor
+    endif
+    exe l:cmd2
+    if a:0 == 0
+        exe 'file bash'
+    elseif a:0 > 0
+        exe 'file ' . a:1
+    endif
+    set nonumber
+    startinsert
+endf
+command! -count -nargs=* BeginTerminal call BeginTerminal(<count>, <f-args>)
+
+
+fun! ResizeWindow(size)
+    if a:size ==# ''
+        echo '[warning] the args "size" is empty.'
         return
     endif
-    for l:line in readfile(l:cmakelists_txt)
-        let l:AddExe = matchstrpos(l:line,'add_executable')
-        if l:AddExe[0] !=# ''
-            let l:Name = split(l:line[l:AddExe[2]+1:],' ')[0]
-            return l:Name
-        endif
-    endfor
+    if winwidth(0) >= winheight(0) * 3
+        exe 'res '.a:size
+    else
+        exe 'vertical res '.a:size
+    endif
 endf
-command! -nargs=+ GetProjectName call GetProjectName(<f-args>)
+command! -nargs=1 ResizeWindow call ResizeWindow(<f-args>)
 
 
 fun! Make(width, ...)
@@ -74,6 +98,25 @@ fun! CMake(width, ...)
     endif
 endf
 command! -count -nargs=* CMake call CMake(<count>, <f-args>)
+
+
+fun! GetProjectName(cmakelists_txt)
+    if findfile(a:cmakelists_txt,getcwd()) !=# ''
+        let  l:cmakelists_txt = a:cmakelists_txt
+    elseif findfile(a:cmakelists_txt,getcwd().'/../') !=# ''
+        let  l:cmakelists_txt = '../'.a:cmakelists_txt
+    else
+        return
+    endif
+    for l:line in readfile(l:cmakelists_txt)
+        let l:AddExe = matchstrpos(l:line,'add_executable')
+        if l:AddExe[0] !=# ''
+            let l:Name = split(l:line[l:AddExe[2]+1:],' ')[0]
+            return l:Name
+        endif
+    endfor
+endf
+command! -nargs=+ GetProjectName call GetProjectName(<f-args>)
 
 
 fun! AppendChar(arg)
@@ -205,49 +248,6 @@ fun! SetHlsearch()
         set hlsearch
     endif
 endf
-
-
-fun! BeginTerminal(width, ...)
-    " create split window
-    if winwidth(0) >= winheight(0) * 3
-        let l:split = 'vnew'
-    else
-        let l:split = 'new'
-    endif
-    let l:cmd1 = a:width ? a:width.l:split : l:split
-    exe l:cmd1
-    " execute command
-    let l:cmd2 = 'terminal'
-    if a:0 > 0
-        for l:i in a:000
-            let l:tmp = ' '.l:i
-            let l:cmd2 .= l:tmp
-        endfor
-    endif
-    exe l:cmd2
-    if a:0 == 0
-        exe 'file bash'
-    elseif a:0 > 0
-        exe 'file ' . a:1
-    endif
-    set nonumber
-    startinsert
-endf
-command! -count -nargs=* BeginTerminal call BeginTerminal(<count>, <f-args>)
-
-
-fun! ResizeWindow(size)
-    if a:size ==# ''
-        echo '[warning] the args "size" is empty.'
-        return
-    endif
-    if winwidth(0) >= winheight(0) * 3
-        exe 'res '.a:size
-    else
-        exe 'vertical res '.a:size
-    endif
-endf
-command! -nargs=1 ResizeWindow call ResizeWindow(<f-args>)
 
 
 fun! GoogleSearch(...)
