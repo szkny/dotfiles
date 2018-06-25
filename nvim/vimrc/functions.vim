@@ -416,23 +416,43 @@ command! -nargs=1 VimrcGit call VimrcGit(<f-args>)
 command! Vimrc e ~/dotfiles/nvim
 
 
-fun! Pyform()
+fun! Pyform(...)
     if &filetype ==# 'python'
-        if !executable('yapf')
-            echo 'Pyform: [error] yapf command not found.'
-            echo '                installing yapf...'
-            if !executable('pip')
-                echoerr 'You have to install pip!'
-                exe 'q!'
-            endif
-            silent exe '!pip install git+https://github.com/google/yapf'
-            echo ''
+        let l:formatter = 'autopep8'
+        if a:0 > 0
+            let l:formatter = a:1
         endif
-        let l:pos = getpos('.')
-        exe '0, $!yapf'
-        call setpos('.', l:pos)
+        if l:formatter ==# 'autopep8'
+            if !executable('autopep8')
+                echo 'Pyform: [error] autopep8 command not found.'
+                echo '                installing autopep8...'
+                if !executable('pip')
+                    echoerr 'You have to install pip!'
+                    exe 'q!'
+                endif
+                silent exe '!pip install autopep8'
+                echo ''
+            endif
+            let l:pos = getpos('.')
+            silent exe '%!autopep8 -'
+            call setpos('.', l:pos)
+        elseif l:formatter ==# 'yapf'
+            if !executable('yapf')
+                echo 'Pyform: [error] yapf command not found.'
+                echo '                installing yapf...'
+                if !executable('pip')
+                    echoerr 'You have to install pip!'
+                    exe 'q!'
+                endif
+                silent exe '!pip install git+https://github.com/google/yapf'
+                echo ''
+            endif
+            let l:pos = getpos('.')
+            silent exe '0, $!yapf'
+            call setpos('.', l:pos)
+        endif
     else
         echo 'Pyform: [error] invalid file type. this is "' . &filetype. '" file.'
     endif
 endf
-command! Pyform call Pyform()
+command! -nargs=* Pyform call Pyform(<f-args>)
