@@ -358,6 +358,7 @@ endf
 command! -nargs=1 VimrcGit call VimrcGit(<f-args>)
 command! Vimrc e ~/dotfiles/nvim
 
+
 fun! Pyform()
     if &filetype ==# 'python'
         if executable('yapf')
