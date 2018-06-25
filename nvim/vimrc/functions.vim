@@ -187,7 +187,8 @@ fun! InitIpython()
         let l:profile_name = 'neovim'
         let l:ipython_profile_dir = finddir('profile_' . l:profile_name, l:ipython_root_dir)
         if l:ipython_profile_dir ==# ''
-            exe '!ipython profile create ' . l:profile_name
+            echo 'initializing ipython ...'
+            silent exe '!ipython profile create ' . l:profile_name
             let l:ipython_profile_dir = finddir('profile_' . l:profile_name, l:ipython_root_dir)
             if l:ipython_profile_dir ==# ''
                 return
