@@ -3,7 +3,14 @@ scriptencoding utf-8
 "" My-Functions
 "*****************************************************************************
 
+fun! CdCurrent()
+    exe 'cd ' . expand('%:p:h')
+endf
+command! CdCurrent call CdCurrent()
+
+
 fun! BeginTerminal(width, ...)
+    call CdCurrent()
     "" create split window
     if winwidth(0) >= winheight(0) * 3
         let l:split = 'vnew'
@@ -20,7 +27,6 @@ fun! BeginTerminal(width, ...)
             let l:cmd2 .= l:tmp
         endfor
     endif
-    exe 'cd ' . expand('%:h')
     exe l:cmd2
     "" change buffer name
     let l:bufname = 'bash'
