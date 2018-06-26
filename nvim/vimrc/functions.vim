@@ -197,10 +197,12 @@ command! -count -nargs=* Ipython call Ipython(<count>, <f-args>)
 
 fun! InitIpython()
     let l:profile_name = 'neovim'
-    let l:ipython_startup_dir = $HOME . '/.ipython/profile_' . l:profile_name . '/startup'
-    if finddir(l:ipython_startup_dir) ==# ''
-        silent exe '!mkdir -p ' . l:ipython_startup_dir
+    let l:ipython_profile_dir = $HOME . '/.ipython/profile_' . l:profile_name
+    let l:ipython_startup_dir = l:ipython_profile_dir . '/startup'
+    if finddir(l:ipython_profile_dir) !=# ''
+        silent exe '!rm -rf ' . l:ipython_profile_dir
     endif
+    silent exe '!mkdir -p ' . l:ipython_startup_dir
     let l:modulename = expand('%:t:r')
     let l:ipython_init_command = ['from ' . l:modulename . ' import *']
     let l:ipython_startup_file = l:ipython_startup_dir . '/startup.py'
@@ -393,7 +395,8 @@ fun! GetNow()
     let l:months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     let l:month = l:months[l:nmonth] . ' '
     let l:now = l:week . l:month . l:day
-    let l:now .= strftime('%H:%M:%S %z (%Z) %Y')
+    let l:now .= strftime('%H:%M:%S %Y')
+    " let l:now .= strftime('%H:%M:%S %z (%Z) %Y')
     " let l:now = strftime('%Y-%m-%d(%a) %H:%M:%S')
     return l:now
 endf
