@@ -450,6 +450,8 @@ fun! Pyform(...)
             let l:pos = getpos('.')
             silent exe '0, $!yapf'
             call setpos('.', l:pos)
+        else
+            echo 'Pyfrom: [error] you can use autopep8 or yapf.'
         endif
     else
         echo 'Pyform: [error] invalid file type. this is "' . &filetype. '" file.'
