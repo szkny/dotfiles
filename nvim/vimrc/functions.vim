@@ -486,3 +486,23 @@ fun! Pyform(...)
     endif
 endf
 command! -nargs=* Pyform call Pyform(<f-args>)
+
+
+fun! GetMaxLineLength()
+    let l:flake8_config = $HOME.'/.config/flake8'
+    if findfile(l:flake8_config) ==# ''
+        return 100
+    endif
+    for l:line in readfile(l:flake8_config)
+        let l:match_param = matchstrpos(l:line,'max-line-length')
+        if l:match_param[0] !=# ''
+            let l:max_line_length = split(l:line, ' ')
+            if len(l:max_line_length) == 3
+                return l:max_line_length[2]
+            elseif len(l:max_line_length) == 1
+                let l:max_line_length = split(l:line, '=')
+                return l:max_line_length[1]
+            endif
+        endif
+    endfor
+endf
