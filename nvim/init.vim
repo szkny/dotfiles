@@ -233,7 +233,7 @@ let g:enable_bold_font = 1
 let g:enable_italic_font = 1
 let g:cpp_class_scope_highlight = 1
 
-set cursorline
+" set cursorline
 " set cursorcolumn
 set list
 set listchars=tab:¦\ 
@@ -249,7 +249,7 @@ hi Visual guifg=#000000 guibg=#cceeff
 hi LineNr guifg=#aabbcc guibg=#204056
 hi VertSplit guifg=#10202b guibg=#aaaaaa
 " hi CursorLine gui=underline
-hi CursorLine guibg=#0c1820
+" hi CursorLine guibg=#0c1820
 " hi CursorColumn guibg=#0c1820
 hi clear Cursor
 hi Cursor gui=reverse
@@ -344,9 +344,11 @@ augroup END
 " vim-python
 augroup vimrc_python
     au!
-    au FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=100
+    au FileType python setlocal expandtab shiftwidth=4 tabstop=8
                 \ formatoptions+=croq softtabstop=4
                 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+    au FileType python let &colorcolumn=join(range(GetMaxLineLength()+1, 500), ',')
+    au FileType python hi  ColorColumn guibg=#050f15
 augroup END
 " if findfile('Pipfile',getcwd()) !=# ''
 "     let g:python_host_prog = system('pipenv --py')
