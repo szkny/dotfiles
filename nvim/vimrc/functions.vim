@@ -165,7 +165,21 @@ fun! Python(width, ...)
         for l:i in a:000
             let l:args .= ' ' . l:i
         endfor
-        call BeginTerminal(a:width, l:command, l:args)
+        "" setting of window width
+        if winwidth(0) >= winheight(0) * 3
+            let l:linenumwidth = 0
+            if &number
+                let l:linenum = line('$')
+                while l:linenum
+                    let l:linenumwidth += 1
+                    let l:linenum = l:linenum/10
+                endwhile
+            endif
+            let l:width = a:width ? a:width : winwidth(0)-&colorcolumn-l:linenumwidth
+        else
+            let l:width = a:width ? a:width : 12
+        endif
+        call BeginTerminal(l:width, l:command, l:args)
     else
         call BeginTerminal(a:width, l:command)
     endif
@@ -190,7 +204,21 @@ fun! Ipython(width, ...)
         let l:profile_name = InitIpython()
         let l:args .= ' --profile=' . l:profile_name
     endif
-    call BeginTerminal(a:width, l:command, l:args)
+    "" setting of window width
+    if winwidth(0) >= winheight(0) * 3
+        let l:linenumwidth = 0
+        if &number
+            let l:linenum = line('$')
+            while l:linenum
+                let l:linenumwidth += 1
+                let l:linenum = l:linenum/10
+            endwhile
+        endif
+        let l:width = a:width ? a:width : winwidth(0)-&colorcolumn-l:linenumwidth
+    else
+        let l:width = a:width ? a:width : 12
+    endif
+    call BeginTerminal(l:width, l:command, l:args)
 endf
 command! -count -nargs=* Ipython call Ipython(<count>, <f-args>)
 
