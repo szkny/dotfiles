@@ -24,4 +24,5 @@ ln -sf ~/dotfiles/python_syntax_checker/yapf ~/.config
 # bash
 # ln -sf ~/dotfiles/bashrc ~/.bashrc
 
-
+# tmux
+ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf

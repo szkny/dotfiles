@@ -236,6 +236,50 @@ fun! InitIpython()
 endf
 
 
+fun! Pyform(...)
+    if &filetype ==# 'python'
+        let l:formatter = 'autopep8'
+        if a:0 > 0
+            let l:formatter = a:1
+        endif
+        if l:formatter ==# 'autopep8'
+            if !executable('autopep8')
+                echo 'Pyform: [error] autopep8 command not found.'
+                echo '                installing autopep8...'
+                if !executable('pip')
+                    echoerr 'You have to install pip!'
+                    exe 'q!'
+                endif
+                silent exe '!pip install autopep8'
+                echo ''
+            endif
+            let l:pos = getpos('.')
+            silent exe '%!autopep8 -'
+            call setpos('.', l:pos)
+        elseif l:formatter ==# 'yapf'
+            if !executable('yapf')
+                echo 'Pyform: [error] yapf command not found.'
+                echo '                installing yapf...'
+                if !executable('pip')
+                    echoerr 'You have to install pip!'
+                    exe 'q!'
+                endif
+                silent exe '!pip install git+https://github.com/google/yapf'
+                echo ''
+            endif
+            let l:pos = getpos('.')
+            silent exe '0, $!yapf'
+            call setpos('.', l:pos)
+        else
+            echo 'Pyfrom: [error] you can use autopep8 or yapf.'
+        endif
+    else
+        echo 'Pyform: [error] invalid file type. this is "' . &filetype. '" file.'
+    endif
+endf
+command! -nargs=* Pyform call Pyform(<f-args>)
+
+
 fun! SQL(width)
     let l:command = 'mysql'
     let l:args = ''
@@ -428,64 +472,23 @@ endf
 
 
 fun! VimrcGit(command)
-    if &filetype ==# 'vim' || &filetype ==# 'neosnippet'
+    let l:dotfiles_dir = $HOME.'/dotfiles'
+    if split(expand('%:p:h'), '/')[:2] == split(l:dotfiles_dir, '/')
+        let l:cd = 'cd '.l:dotfiles_dir.' && '
         let l:cmd = 'git '
         if a:command ==# 'push'
             let l:cmd = './gitcommit.sh'
         else
             let l:cmd .= a:command
         endif
-        call BeginTerminal(0, 'cd ~/dotfiles && ' . l:cmd)
+        let l:cmd = l:cd . l:cmd
+        call BeginTerminal(0, l:cmd)
     else
-        echo 'VimrcGit: [error] invalid file type. this is "' . &filetype. '" file.'
+        echo 'VimrcGit: [error] invalid file type. this is "' . expand('%:t'). '".'
     endif
 endf
 command! -nargs=1 VimrcGit call VimrcGit(<f-args>)
 command! Vimrc e ~/dotfiles/nvim
-
-
-fun! Pyform(...)
-    if &filetype ==# 'python'
-        let l:formatter = 'autopep8'
-        if a:0 > 0
-            let l:formatter = a:1
-        endif
-        if l:formatter ==# 'autopep8'
-            if !executable('autopep8')
-                echo 'Pyform: [error] autopep8 command not found.'
-                echo '                installing autopep8...'
-                if !executable('pip')
-                    echoerr 'You have to install pip!'
-                    exe 'q!'
-                endif
-                silent exe '!pip install autopep8'
-                echo ''
-            endif
-            let l:pos = getpos('.')
-            silent exe '%!autopep8 -'
-            call setpos('.', l:pos)
-        elseif l:formatter ==# 'yapf'
-            if !executable('yapf')
-                echo 'Pyform: [error] yapf command not found.'
-                echo '                installing yapf...'
-                if !executable('pip')
-                    echoerr 'You have to install pip!'
-                    exe 'q!'
-                endif
-                silent exe '!pip install git+https://github.com/google/yapf'
-                echo ''
-            endif
-            let l:pos = getpos('.')
-            silent exe '0, $!yapf'
-            call setpos('.', l:pos)
-        else
-            echo 'Pyfrom: [error] you can use autopep8 or yapf.'
-        endif
-    else
-        echo 'Pyform: [error] invalid file type. this is "' . &filetype. '" file.'
-    endif
-endf
-command! -nargs=* Pyform call Pyform(<f-args>)
 
 
 fun! GetMaxLineLength()
