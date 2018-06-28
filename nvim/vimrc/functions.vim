@@ -493,19 +493,23 @@ command! Vimrc e ~/dotfiles/nvim
 
 fun! GetMaxLineLength()
     let l:flake8_config = $HOME.'/.config/flake8'
-    if findfile(l:flake8_config) ==# ''
-        return 100
-    endif
-    for l:line in readfile(l:flake8_config)
-        let l:match_param = matchstrpos(l:line,'max-line-length')
-        if l:match_param[0] !=# ''
-            let l:max_line_length = split(l:line, ' ')
-            if len(l:max_line_length) == 3
-                return l:max_line_length[2]
-            elseif len(l:max_line_length) == 1
-                let l:max_line_length = split(l:line, '=')
-                return l:max_line_length[1]
+    let l:max_line_length = 0
+    if findfile(l:flake8_config) !=# ''
+        for l:line in readfile(l:flake8_config)
+            let l:match_param = matchstrpos(l:line,'max-line-length')
+            if l:match_param[0] !=# ''
+                let l:param_list = split(l:line, ' ')
+                if len(l:param_list) == 3
+                    let l:max_line_length = str2nr(l:param_list[2])
+                elseif len(l:param_list) == 1
+                    let l:param_list = split(l:line, '=')
+                    let l:max_line_length = str2nr(l:param_list[1])
+                endif
             endif
-        endif
-    endfor
+        endfor
+    endif
+    if l:max_line_length == 0
+        let l:max_line_length = 100
+    endif
+    return l:max_line_length
 endf
