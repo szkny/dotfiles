@@ -169,13 +169,17 @@ fun! Python(width, ...)
         if winwidth(0) >= winheight(0) * 3
             let l:linenumwidth = 0
             if &number
+                let l:linenumwidth = 2
                 let l:linenum = line('$')
                 while l:linenum
                     let l:linenumwidth += 1
                     let l:linenum = l:linenum/10
                 endwhile
             endif
-            let l:tmpwidth = winwidth(0)-&colorcolumn-l:linenumwidth-2
+            if airline#extensions#ale#get_error() !=# '' || airline#extensions#ale#get_warning() !=# ''
+                let l:linenumwidth += 2
+            endif
+            let l:tmpwidth = winwidth(0)-&colorcolumn-l:linenumwidth
             let l:tmpwidth = l:tmpwidth>0 ? l:tmpwidth : 0
             let l:width = a:width ? a:width : l:tmpwidth
         endif
@@ -208,13 +212,17 @@ fun! Ipython(width, ...)
         if winwidth(0) >= winheight(0) * 3
             let l:linenumwidth = 0
             if &number
+                let l:linenumwidth = 2
                 let l:linenum = line('$')
                 while l:linenum
                     let l:linenumwidth += 1
                     let l:linenum = l:linenum/10
                 endwhile
             endif
-            let l:tmpwidth = winwidth(0)-&colorcolumn-l:linenumwidth-2
+            if airline#extensions#ale#get_error() !=# '' || airline#extensions#ale#get_warning() !=# ''
+                let l:linenumwidth += 2
+            endif
+            let l:tmpwidth = winwidth(0)-&colorcolumn-l:linenumwidth
             let l:tmpwidth = l:tmpwidth>0 ? l:tmpwidth : 0
             let l:width = a:width ? a:width : l:tmpwidth
         endif
