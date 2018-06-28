@@ -8,6 +8,7 @@ tno <silent><C-[> <C-\><C-n>
 
 nno ; :
 nno <silent>q :CloseBufferTab<CR>
+nno <silent>Q :q!<CR>
 tno <C-w> <C-\><C-n><C-w>
 
 nno <silent>> :bn<CR>
