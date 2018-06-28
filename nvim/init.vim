@@ -239,15 +239,15 @@ set list
 set listchars=tab:¦\ 
 set fillchars+=vert:\ 
 
-hi matchparen ctermbg=236
-hi Normal ctermbg=NONE guibg=NONE
+" hi matchparen ctermbg=236
+" hi Normal ctermbg=NONE guibg=NONE
 " hi NonText ctermbg=NONE guibg=NONE
 " hi SpecialKey ctermbg=NONE guibg=NONE
 " hi EndOfBuffer ctermbg=NONE guibg=NONE
-hi SpecialKey guifg=#555555
-hi Visual guifg=#000000 guibg=#cceeff
-hi LineNr guifg=#aabbcc guibg=#204056
-hi VertSplit guifg=#10202b guibg=#aaaaaa
+" hi SpecialKey guifg=#555555
+" hi Visual guifg=#000000 guibg=#cceeff
+" hi LineNr guifg=#aabbcc guibg=#204056
+" hi VertSplit guifg=#10202b guibg=#aaaaaa
 " hi CursorLine gui=underline
 " hi CursorLine guibg=#0c1820
 " hi CursorColumn guibg=#0c1820
