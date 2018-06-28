@@ -219,7 +219,8 @@ fun! Ipython(width, ...)
                     let l:linenum = l:linenum/10
                 endwhile
             endif
-            if airline#extensions#ale#get_error() !=# '' || airline#extensions#ale#get_warning() !=# ''
+            if airline#extensions#ale#get_error() !=# ''
+                        \ || airline#extensions#ale#get_warning() !=# ''
                 let l:linenumwidth += 2
             endif
             let l:tmpwidth = winwidth(0)-&colorcolumn-l:linenumwidth
@@ -236,10 +237,9 @@ fun! InitIpython()
     let l:profile_name = 'neovim'
     let l:ipython_profile_dir = $HOME . '/.ipython/profile_' . l:profile_name
     let l:ipython_startup_dir = l:ipython_profile_dir . '/startup'
-    if finddir(l:ipython_profile_dir) !=# ''
-        silent exe '!rm -rf ' . l:ipython_profile_dir
+    if finddir(l:ipython_startup_dir) ==# ''
+        call mkdir(l:ipython_startup_dir, 'p')
     endif
-    silent exe '!mkdir -p ' . l:ipython_startup_dir
     let l:modulename = expand('%:t:r')
     let l:ipython_init_command = ['from ' . l:modulename . ' import *']
     let l:ipython_startup_file = l:ipython_startup_dir . '/startup.py'

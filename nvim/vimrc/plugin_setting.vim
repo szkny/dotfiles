@@ -120,7 +120,6 @@ let g:airline#extensions#ale#warning_symbol = '⚠ '
 let g:airline#extensions#default#section_truncate_width = {}
 let g:airline#extensions#whitespace#enabled = 1
 
-
 "" Syntax highlight
 " Default highlight is better than polyglot
 let g:polyglot_disabled = ['python']
