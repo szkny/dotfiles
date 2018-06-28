@@ -226,7 +226,7 @@ set termguicolors " for iTerm2
 set background=dark
 " colorscheme solarized
 " colorscheme tender
-" colorscheme molokai
+colorscheme molokai
 " colorscheme material-theme
 
 let g:enable_bold_font = 1
