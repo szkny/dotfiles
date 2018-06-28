@@ -175,7 +175,9 @@ fun! Python(width, ...)
                     let l:linenum = l:linenum/10
                 endwhile
             endif
-            let l:width = a:width ? a:width : winwidth(0)-&colorcolumn-l:linenumwidth-2
+            let l:tmpwidth = winwidth(0)-&colorcolumn-l:linenumwidth-2
+            let l:tmpwidth = l:tmpwidth ? l:tmpwidth : 0
+            let l:width = a:width ? a:width : l:tmpwidth
         endif
         call BeginTerminal(l:width, l:command, l:args)
     else
@@ -212,7 +214,9 @@ fun! Ipython(width, ...)
                     let l:linenum = l:linenum/10
                 endwhile
             endif
-            let l:width = a:width ? a:width : winwidth(0)-&colorcolumn-l:linenumwidth-2
+            let l:tmpwidth = winwidth(0)-&colorcolumn-l:linenumwidth-2
+            let l:tmpwidth = l:tmpwidth ? l:tmpwidth : 0
+            let l:width = a:width ? a:width : l:tmpwidth
         endif
     endif
     call BeginTerminal(l:width, l:command, l:args)
