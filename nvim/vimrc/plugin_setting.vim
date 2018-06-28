@@ -77,8 +77,8 @@ let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
 let g:ale_echo_msg_error_str = '⨉'
 let g:ale_echo_msg_warning_str = '⚠'
 " let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-hi ALEErrorSign   guifg=#ff1010
-hi ALEWarningSign guifg=#ffff10
+hi ALEErrorSign   guifg=#000000 guibg=#801010
+hi ALEWarningSign guifg=#000000 guibg=#808010
 
 "" indent_guides
 let g:indent_guides_enable_on_vim_startup = 0
