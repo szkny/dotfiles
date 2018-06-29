@@ -496,7 +496,7 @@ fun! VimrcGit(command)
         let l:cmd = l:cd . l:cmd
         call BeginTerminal(0, l:cmd)
     else
-        echo 'VimrcGit: [error] invalid file type. this is "' . expand('%:t'). '".'
+        echo 'VimrcGit: [error] "'.expand('%:t').'" is not under the control of git.'
     endif
 endf
 command! -nargs=1 VimrcGit call VimrcGit(<f-args>)
