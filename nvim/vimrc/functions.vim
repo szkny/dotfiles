@@ -429,7 +429,7 @@ command! -nargs=* Chrome call Chrome(<f-args>)
 fun! W3m(width, ...)
     if executable('w3m')
         let l:url = GoogleSearch(a:000)
-        call BeginTerminal(a:width, 'w3m', l:url)
+        call BeginTerminal(a:width, 'w3m -M', l:url)
     endif
 endf
 command! -count -nargs=* W3m call W3m(<count>, <f-args>)
