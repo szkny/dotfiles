@@ -73,9 +73,9 @@ let g:ale_c_cppcheck_options = '--enable=style'
 let g:ale_c_gcc_executable = 'g++'
 let g:ale_c_gcc_options = '-std=c++11 -Wall'
 let g:ale_echo_msg_format = '[%linter%]%code: %%s'
-let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
-let g:ale_echo_msg_error_str = '⨉'
-let g:ale_echo_msg_warning_str = '⚠'
+let g:ale_statusline_format = [g:ale_sign_error.' %d', g:ale_sign_warning.' %d', '']
+let g:ale_echo_msg_error_str = g:ale_sign_error
+let g:ale_echo_msg_warning_str = g:ale_sign_warning
 " let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 hi ALEErrorSign   guifg=#000000 guibg=#801010
 hi ALEWarningSign guifg=#000000 guibg=#808010
@@ -115,8 +115,8 @@ else
     let g:airline_section_y = '%{&fileencodings}, %{&fileformat}'
 endif
 let g:airline_section_z = 'LOW:%3l/%L'
-let g:airline#extensions#ale#error_symbol = '⨉ '
-let g:airline#extensions#ale#warning_symbol = '⚠ '
+let g:airline#extensions#ale#error_symbol = g:ale_sign_error.' '
+let g:airline#extensions#ale#warning_symbol = g:ale_sign_warning. ' '
 let g:airline#extensions#default#section_truncate_width = {}
 let g:airline#extensions#whitespace#enabled = 1
 
