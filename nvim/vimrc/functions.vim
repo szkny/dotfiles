@@ -9,6 +9,7 @@ endf
 command! CdCurrent call CdCurrent()
 
 
+"" バッファーではなくウィンドウで開けるかどうか ""
 fun! BeginTerminal(width, ...)
     let l:current_dir = expand('%:p:h')
     "" create split window
