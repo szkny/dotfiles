@@ -9,7 +9,6 @@ endf
 command! CdCurrent call CdCurrent()
 
 
-"" バッファーではなくウィンドウで開けるかどうか ""
 fun! BeginTerminal(width, ...)
     let l:current_dir = expand('%:p:h')
     "" create split window
@@ -25,20 +24,17 @@ fun! BeginTerminal(width, ...)
     let l:cmd2 = 'terminal'
     if a:0 > 0
         for l:i in a:000
-            let l:tmp = ' '.l:i
-            let l:cmd2 .= l:tmp
+            let l:cmd2 .= ' '.l:i
         endfor
     endif
     exe l:cmd2
     "" change buffer name
-    let l:bufname = 'bash'
-    if a:0 > 0
-        let l:bufname = a:1
+    if a:0 == 0
+        let l:bufname = GetNewBufName('bash')
+    elseif a:0 > 0
+        let l:bufname = GetNewBufName(a:1)
     endif
-    while bufexists(l:bufname)
-        let l:bufname = AddNameNumber(l:bufname)
-    endwhile
-    exe 'file ' . l:bufname
+    exe 'file '.l:bufname
     "" visual settings & start terminal mode
     set nonumber
     startinsert
@@ -46,13 +42,13 @@ endf
 command! -count -nargs=* BeginTerminal call BeginTerminal(<count>, <f-args>)
 
 
-fun! AddNameNumber(name)
-    let l:num = str2nr(a:name[0])
-    if l:num == 0
-        let l:name = '1 ' . a:name
-    else
-        let l:name = printf('%d', l:num+1) . a:name[1:]
-    endif
+fun! GetNewBufName(name)
+    let l:num = 1
+    let l:name = l:num.' '.a:name
+    while bufexists(l:name)
+        let l:num += 1
+        let l:name = l:num.l:name[1:]
+    endwhile
     return l:name
 endf
 
