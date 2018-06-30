@@ -457,7 +457,7 @@ command! -nargs=* CloseBufferTab call CloseBufferTab(<f-args>)
 
 
 fun! GetNow()
-    let l:day = strftime('%d')
+    let l:day = printf('%d', strftime('%d'))
     let l:nday = l:day[len(l:day)-1]
     let l:daytail = 'th'
     if     l:nday == 1
