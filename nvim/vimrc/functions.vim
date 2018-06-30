@@ -200,7 +200,7 @@ fun! Ipython(width, ...)
         echo ''
     endif
     let l:command = 'ipython'
-    let l:args = '--no-confirm-exit'
+    let l:args = '--no-confirm-exit --colors=Linux'
     let l:width = a:width
     if &filetype ==# 'python'
         let l:profile_name = InitIpython()
@@ -216,9 +216,11 @@ fun! Ipython(width, ...)
                     let l:linenum = l:linenum/10
                 endwhile
             endif
-            if airline#extensions#ale#get_error() !=# ''
-                        \ || airline#extensions#ale#get_warning() !=# ''
-                let l:linenumwidth += 2
+            if exists('airline#extensions#ale#get_error')
+                if airline#extensions#ale#get_error() !=# ''
+                            \ || airline#extensions#ale#get_warning() !=# ''
+                    let l:linenumwidth += 2
+                endif
             endif
             let l:tmpwidth = winwidth(0)-&colorcolumn-l:linenumwidth
             let l:tmpwidth = l:tmpwidth>0 ? l:tmpwidth : 0
@@ -483,14 +485,12 @@ endf
 fun! VimrcGit(command)
     let l:dotfiles_dir = $HOME.'/dotfiles'
     if split(expand('%:p:h'), '/')[:2] == split(l:dotfiles_dir, '/')
-        let l:cd = 'cd '.l:dotfiles_dir.' && '
-        let l:cmd = 'git '
         if a:command ==# 'push'
             let l:cmd = './gitcommit.sh'
         else
-            let l:cmd .= a:command
+            let l:cmd = 'git '.a:command
         endif
-        let l:cmd = l:cd . l:cmd
+        let l:cmd = 'cd '.l:dotfiles_dir.' && '.l:cmd
         call BeginTerminal(0, l:cmd)
     else
         echo 'VimrcGit: [error] "'.expand('%:t').'" is not under the control of git.'
