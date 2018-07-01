@@ -25,4 +25,5 @@ ln -sf ~/dotfiles/python_syntax_checker/yapf ~/.config
 # ln -sf ~/dotfiles/bashrc ~/.bashrc
 
 # tmux
+if [ -L ~/.tmux.conf ]; then rm ~/.tmux.conf;fi
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
