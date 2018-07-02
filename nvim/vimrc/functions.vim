@@ -162,33 +162,44 @@ fun! Python(width, ...)
         for l:i in a:000
             let l:args .= ' ' . l:i
         endfor
-        "" setting of window width
-        if winwidth(0) >= winheight(0) * 3
-            let l:linenumwidth = 0
-            if &number
-                let l:linenumwidth = 2
-                let l:linenum = line('$')
-                while l:linenum
-                    let l:linenumwidth += 1
-                    let l:linenum = l:linenum/10
-                endwhile
-            endif
-            if exists('airline#extensions#ale#get_error')
-                if airline#extensions#ale#get_error() !=# ''
-                            \ || airline#extensions#ale#get_warning() !=# ''
-                    let l:linenumwidth += 2
-                endif
-            endif
-            let l:tmpwidth = winwidth(0)-&colorcolumn-l:linenumwidth
-            let l:tmpwidth = l:tmpwidth>0 ? l:tmpwidth : 0
-            let l:width = a:width ? a:width : l:tmpwidth
-        endif
+        let l:width = PythonWinWidth(a:width)
         call BeginTerminal(l:width, l:command, l:args)
     else
         call BeginTerminal(a:width, l:command)
     endif
 endf
 command! -count -nargs=* Python call Python(<count>, <f-args>)
+
+
+fun! PythonWinWidth(width)
+    if winwidth(0) >= winheight(0) * 3
+        let l:linenumwidth = 0
+        if &number
+            let l:linenumwidth = 4
+            let l:digits = 0
+            let l:linenum = line('$')
+            while l:linenum
+                let l:digits += 1
+                let l:linenum = l:linenum/10
+            endwhile
+            if l:digits > 3
+                let l:linenumwidth += l:digits - 3
+            endif
+        endif
+        if exists('*airline#extensions#ale#get_error')
+            if airline#extensions#ale#get_error() !=# ''
+               \|| airline#extensions#ale#get_warning() !=# ''
+                let l:linenumwidth += 2
+            endif
+        endif
+        let l:tmpwidth = winwidth(0)-GetMaxLineLength()-1-l:linenumwidth
+        let l:tmpwidth = l:tmpwidth>0 ? l:tmpwidth : 0
+        let l:width = a:width ? a:width : l:tmpwidth
+        return l:width
+    else
+        return 0
+    endif
+endf
 
 
 fun! Ipython(width, ...)
@@ -208,27 +219,7 @@ fun! Ipython(width, ...)
     if &filetype ==# 'python'
         let l:profile_name = InitIpython()
         let l:args .= ' --profile=' . l:profile_name
-        "" setting of window width
-        if winwidth(0) >= winheight(0) * 3
-            let l:linenumwidth = 0
-            if &number
-                let l:linenumwidth = 2
-                let l:linenum = line('$')
-                while l:linenum
-                    let l:linenumwidth += 1
-                    let l:linenum = l:linenum/10
-                endwhile
-            endif
-            if exists('airline#extensions#ale#get_error')
-                if airline#extensions#ale#get_error() !=# ''
-                            \ || airline#extensions#ale#get_warning() !=# ''
-                    let l:linenumwidth += 2
-                endif
-            endif
-            let l:tmpwidth = winwidth(0)-&colorcolumn-l:linenumwidth
-            let l:tmpwidth = l:tmpwidth>0 ? l:tmpwidth : 0
-            let l:width = a:width ? a:width : l:tmpwidth
-        endif
+        let l:width = PythonWinWidth(a:width)
     endif
     call BeginTerminal(l:width, l:command, l:args)
 endf
@@ -247,6 +238,30 @@ fun! InitIpython()
     let l:ipython_startup_file = l:ipython_startup_dir . '/startup.py'
     call writefile(l:ipython_init_command, l:ipython_startup_file)
     return l:profile_name
+endf
+
+
+fun! GetMaxLineLength()
+    let l:flake8_config = $HOME.'/.config/flake8'
+    let l:max_line_length = 0
+    if findfile(l:flake8_config) !=# ''
+        for l:line in readfile(l:flake8_config)
+            let l:match_param = matchstrpos(l:line,'max-line-length')
+            if l:match_param[0] !=# ''
+                let l:param_list = split(l:line, ' ')
+                if len(l:param_list) == 3
+                    let l:max_line_length = str2nr(l:param_list[2])
+                elseif len(l:param_list) == 1
+                    let l:param_list = split(l:line, '=')
+                    let l:max_line_length = str2nr(l:param_list[1])
+                endif
+            endif
+        endfor
+    endif
+    if l:max_line_length == 0
+        let l:max_line_length = 100
+    endif
+    return l:max_line_length
 endf
 
 
@@ -501,27 +516,3 @@ fun! VimrcGit(command)
 endf
 command! -nargs=1 VimrcGit call VimrcGit(<f-args>)
 command! Vimrc e ~/dotfiles/nvim
-
-
-fun! GetMaxLineLength()
-    let l:flake8_config = $HOME.'/.config/flake8'
-    let l:max_line_length = 0
-    if findfile(l:flake8_config) !=# ''
-        for l:line in readfile(l:flake8_config)
-            let l:match_param = matchstrpos(l:line,'max-line-length')
-            if l:match_param[0] !=# ''
-                let l:param_list = split(l:line, ' ')
-                if len(l:param_list) == 3
-                    let l:max_line_length = str2nr(l:param_list[2])
-                elseif len(l:param_list) == 1
-                    let l:param_list = split(l:line, '=')
-                    let l:max_line_length = str2nr(l:param_list[1])
-                endif
-            endif
-        endfor
-    endif
-    if l:max_line_length == 0
-        let l:max_line_length = 100
-    endif
-    return l:max_line_length
-endf
