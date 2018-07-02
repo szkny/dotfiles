@@ -307,11 +307,15 @@ command! -nargs=* Pyform call Pyform(<f-args>)
 
 fun! SQL(width)
     let l:command = 'mysql'
-    let l:args = ''
-    if &filetype ==# 'sql'
-        let l:args = ' < ' . expand('%')
+    if executable(l:command)
+        let l:args = ''
+        if &filetype ==# 'sql'
+            let l:args = ' < ' . expand('%')
+        endif
+        call BeginTerminal(a:width, l:command, l:args)
+    else
+        echo 'SQL: [error] '.l:command.' command not found.'
     endif
-    call BeginTerminal(a:width, l:command, l:args)
 endf
 command! -count SQL call SQL(<count>)
 
@@ -443,6 +447,8 @@ fun! W3m(width, ...)
     if executable('w3m')
         let l:url = GoogleSearch(a:000)
         call BeginTerminal(a:width, 'w3m -M', l:url)
+    else
+        echo 'W3m: [error] w3m command not found.'
     endif
 endf
 command! -count -nargs=* W3m call W3m(<count>, <f-args>)
