@@ -41,6 +41,7 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'kannokanno/previm'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': ['NERDTreeToggle']}
 Plug 'scrooloose/nerdtree',                     {'on': ['NERDTreeToggle']}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': ['NERDTreeToggle']}
@@ -155,11 +156,20 @@ else
     set shell=/bin/sh
 endif
 
-"" session management
+"" Session Management
 let g:session_directory = '~/.config/nvim/session'
 let g:session_autoload = 'no'
 let g:session_autosave = 'no'
 let g:session_command_aliases = 1
+
+"" Python Host Program
+if has('mac')
+    let g:python_host_prog = expand('~/.pyenv/versions/2.7.10/bin/python2')
+    let g:python3_host_prog = expand('~/.pyenv/versions/3.6.2/bin/python3')
+elseif system('uname') ==# "Linux\n"
+    let g:python_host_prog = expand('~/.pyenv/versions/2.7.10/bin/python2')
+    let g:python3_host_prog = expand('~/.pyenv/versions/3.6.5/bin/python3')
+endif
 
 "" etc..
 set whichwrap=b,s,h,l,<,>,[,]
@@ -341,7 +351,6 @@ augroup vimrc_c_cpp
 augroup END
 
 " python
-" vim-python
 augroup vimrc_python
     au!
     au FileType python setlocal expandtab shiftwidth=4 tabstop=8
@@ -350,18 +359,6 @@ augroup vimrc_python
     au FileType python let &colorcolumn=join(range(PythonMaxLineLength(), 500), ',')
     au FileType python hi  ColorColumn guibg=#0f0f0f
 augroup END
-" if findfile('Pipfile',getcwd()) !=# ''
-"     let g:python_host_prog = system('pipenv --py')
-"     let g:python3_host_prog = g:python_host_prog
-" else
-    if has('mac')
-        let g:python_host_prog = expand('~/.pyenv/versions/2.7.10/bin/python2')
-        let g:python3_host_prog = expand('~/.pyenv/versions/3.6.2/bin/python3')
-    elseif system('uname') ==# "Linux\n"
-        let g:python_host_prog = expand('~/.pyenv/versions/2.7.10/bin/python2')
-        let g:python3_host_prog = expand('~/.pyenv/versions/3.6.5/bin/python3')
-    endif
-" endif
 
 " FixWhitespace
 augroup FixWhitespace

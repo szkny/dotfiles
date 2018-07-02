@@ -158,6 +158,23 @@ let g:NERDTreeHijackNetrw = 0  " add this line if you use NERDTree
 let g:ranger_replace_netrw = 1 " open ranger when vim open a directory
 
 
+"" previm.vim
+fun! s:PrevimOpenCmd()
+    let l:cmd = ''
+    if has('mac')
+        let l:cmd = 'open -a Google\ Chrome'
+    elseif system('uname') ==# "Linux\n"
+        let l:cmd = 'chrome'
+    endif
+    return l:cmd
+endf
+let g:previm_open_cmd = s:PrevimOpenCmd()
+augroup PrevimSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+augroup END
+
+
 if has('mac')
     "" dir-icons
     let g:WebDevIconsUnicodeDecorateFolderNodes = 1
