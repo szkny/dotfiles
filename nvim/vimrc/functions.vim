@@ -3,12 +3,6 @@ scriptencoding utf-8
 "" My-Functions
 "*****************************************************************************
 
-fun! CdCurrent()
-    exe 'cd ' . expand('%:p:h')
-endf
-command! CdCurrent call CdCurrent()
-
-
 fun! BeginTerminal(width, ...)
     let l:current_dir = expand('%:p:h')
     "" create split window
@@ -175,6 +169,7 @@ fun! PythonWinWidth(width)
     if winwidth(0) >= winheight(0) * 3
         let l:linenumwidth = 0
         if &number
+            "" add line number width
             let l:linenumwidth = 4
             let l:digits = 0
             let l:linenum = line('$')
@@ -186,15 +181,16 @@ fun! PythonWinWidth(width)
                 let l:linenumwidth += l:digits - 3
             endif
         endif
+        "" add ale sign line width
         if exists('*airline#extensions#ale#get_error')
             if airline#extensions#ale#get_error() !=# ''
                \|| airline#extensions#ale#get_warning() !=# ''
                 let l:linenumwidth += 2
             endif
         endif
-        let l:tmpwidth = winwidth(0)-GetMaxLineLength()-1-l:linenumwidth
-        let l:tmpwidth = l:tmpwidth>0 ? l:tmpwidth : 0
-        let l:width = a:width ? a:width : l:tmpwidth
+        let l:width = winwidth(0)-PythonMaxLineLength()-l:linenumwidth
+        let l:width = l:width>0 ? l:width : 0
+        let l:width = a:width ? a:width : l:width
         return l:width
     else
         return 0
@@ -241,7 +237,7 @@ fun! InitIpython()
 endf
 
 
-fun! GetMaxLineLength()
+fun! PythonMaxLineLength()
     let l:flake8_config = $HOME.'/.config/flake8'
     let l:max_line_length = 0
     if findfile(l:flake8_config) !=# ''
@@ -261,7 +257,7 @@ fun! GetMaxLineLength()
     if l:max_line_length == 0
         let l:max_line_length = 100
     endif
-    return l:max_line_length
+    return l:max_line_length + 1
 endf
 
 

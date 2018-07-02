@@ -347,7 +347,7 @@ augroup vimrc_python
     au FileType python setlocal expandtab shiftwidth=4 tabstop=8
                 \ formatoptions+=croq softtabstop=4
                 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-    au FileType python let &colorcolumn=join(range(GetMaxLineLength()+1, 500), ',')
+    au FileType python let &colorcolumn=join(range(PythonMaxLineLength(), 500), ',')
     au FileType python hi  ColorColumn guibg=#0f0f0f
 augroup END
 " if findfile('Pipfile',getcwd()) !=# ''
