@@ -210,6 +210,9 @@ fun! Ipython(width, ...)
         echo ''
     endif
     let l:command = 'ipython'
+    if findfile('Pipfile',getcwd()) !=# ''
+        let l:command = 'pipenv run ipython'
+    endif
     let l:args = '--no-confirm-exit --colors=Linux'
     let l:width = a:width
     if &filetype ==# 'python'
