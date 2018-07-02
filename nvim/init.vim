@@ -150,6 +150,9 @@ set clipboard+=unnamedplus
 set nobackup
 set noswapfile
 
+"" keyboard timeout
+set ttimeoutlen=1
+
 if exists('$SHELL')
     set shell=$SHELL
 else
@@ -284,6 +287,15 @@ cnoreabbrev Qall qall
 "*****************************************************************************
 "" Autocmd Rules
 "*****************************************************************************
+"" IME
+if has('mac')
+  let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102"'
+  augroup MyIMEGroup
+    autocmd!
+    autocmd InsertLeave * :call system(g:imeoff)
+  augroup END
+endif
+
 "" The PC is fast enough, do syntax highlight syncing from start unless 200 lines
 augroup vimrc_sync_fromstart
     au!
