@@ -62,9 +62,6 @@ else
     nno <silent>\     :TComment<CR>
     vno <silent>\     :TComment<CR>
 endif
-if &filetype ==# 'python'
-    nno <silent><C-s> :ALEFix autopep8<CR>
-endif
 nno <silent><C-f> :Files<CR>
 nno <silent><C-h> :Ranger<CR>
 nno <silent><C-n> :NERDTreeToggle<CR>
