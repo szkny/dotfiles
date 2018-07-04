@@ -512,6 +512,8 @@ fun! VimrcGit(command)
     if split(expand('%:p:h'), '/')[:2] == split(l:dotfiles_dir, '/')
         if a:command ==# 'push'
             let l:cmd = './gitcommit.sh'
+        elseif a:command ==# 'diff'
+            let l:cmd = 'git status -v -v'
         else
             let l:cmd = 'git '.a:command
         endif
