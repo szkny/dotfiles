@@ -151,6 +151,7 @@ fun! Python(width, ...)
     if &filetype ==# 'python'
         let l:args = ' ' . expand('%')
         if findfile('Pipfile',getcwd()) !=# ''
+            \ && findfile('Pipfile.lock',getcwd()) !=# ''
             let l:command = 'pipenv run python'
         endif
         for l:i in a:000
@@ -211,6 +212,7 @@ fun! Ipython(width, ...)
     endif
     let l:command = 'ipython'
     if findfile('Pipfile',getcwd()) !=# ''
+        \ && findfile('Pipfile.lock',getcwd()) !=# ''
         let l:command = 'pipenv run ipython'
     endif
     let l:args = '--no-confirm-exit --colors=Linux'
