@@ -375,7 +375,7 @@ augroup END
 " FixWhitespace
 augroup FixWhitespace
     au!
-    au FileType c,cpp,text,python if exists(":FixWhitespace") | FixWhitespace
+    au FileType text if exists(':FixWhitespace') | FixWhitespace
 augroup END
 
 "*****************************************************************************
