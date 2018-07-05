@@ -24,7 +24,7 @@ command! -nargs=1 ChangeBuffer call ChangeBuffer(<f-args>)
 
 fun! BeginTerminal(width, ...)
     let l:min_split_width = 80
-    let l:min_split_height = 30
+    let l:min_split_height = 40
     if a:0 == 0
         if winwidth(0) >= l:min_split_width
            \ && winheight(0) >= l:min_split_height
