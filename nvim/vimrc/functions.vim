@@ -507,6 +507,17 @@ fun! GetNow()
 endf
 
 
+fun! Git(command)
+    if a:command ==# 'diff'
+        let l:cmd = 'git status -v -v'
+    else
+        let l:cmd = 'git '.a:command
+    endif
+    call BeginTerminal(0, l:cmd)
+endf
+command! -nargs=1 Git call Git(<f-args>)
+
+
 fun! VimrcGit(command)
     let l:dotfiles_dir = $HOME.'/dotfiles'
     if split(expand('%:p:h'), '/')[:2] == split(l:dotfiles_dir, '/')
