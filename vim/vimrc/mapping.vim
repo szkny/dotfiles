@@ -26,6 +26,7 @@ vno x "_x
 " noremap <C-w> <C-w>w
 
 nno <silent>q :q<CR>
+nno <silent>Q :qall<CR>
 " nno <Enter> o<ESC>
 ino {<Enter> {}<Left><CR><Up><ESC>$i<Right>
 " ino {<Enter> {}<Left><CR><ESC>O
