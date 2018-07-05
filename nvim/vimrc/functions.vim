@@ -534,23 +534,27 @@ command! -count -nargs=* W3m call W3m(<count>, <f-args>)
 
 
 fun! CloseBufferTab()
-    try
-        let l:buf_number = 0
-        for l:i in range(1, bufnr('$'))
-            if buflisted(l:i) == 1
-                let l:buf_number += 1
+    if winnr() == 1
+        try
+            let l:buf_number = 0
+            for l:i in range(1, bufnr('$'))
+                if buflisted(l:i) == 1
+                    let l:buf_number += 1
+                endif
+            endfor
+            if l:buf_number == 1
+                exe 'quit'
+            else
+                exe 'bdelete'
+                call win_gotoid(1000)
             endif
-        endfor
-        if l:buf_number == 1
-            exe 'quit'
-        else
+        catch
             exe 'bdelete'
             call win_gotoid(1000)
-        endif
-    catch
-        exe 'bdelete'
-        call win_gotoid(1000)
-    endtry
+        endtry
+    else " split window exist
+        exe 'quit'
+    endif
 endf
 command! -nargs=* CloseBufferTab call CloseBufferTab(<f-args>)
 
