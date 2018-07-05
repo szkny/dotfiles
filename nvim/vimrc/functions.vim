@@ -3,7 +3,81 @@ scriptencoding utf-8
 "" My-Functions
 "*****************************************************************************
 
+fun! ChangeBuffer(direction)
+    if a:direction ==? 'next' || a:direction ==? 'n'
+        let l:cmd = 'bnext'
+    elseif a:direction ==? 'previous' || a:direction ==? 'p'
+        let l:cmd = 'bprevious'
+    else
+        return
+    endif
+    exe l:cmd
+    let l:termflag = str2nr(buffer_name('%')[0])
+    if l:termflag
+        set nonumber
+    else
+        set number
+    endif
+endf
+command! -nargs=1 ChangeBuffer call ChangeBuffer(<f-args>)
+
+
 fun! BeginTerminal(width, ...)
+    let l:min_split_width = 80
+    let l:min_split_height = 30
+    if a:0 == 0
+        if winwidth(0) >= l:min_split_width
+           \ && winheight(0) >= l:min_split_height
+            call SplitTerminal(a:width)
+        else
+            call NewTerminal()
+        endif
+    elseif a:0 >= 1
+        let l:cmd = a:1
+        let l:args = ''
+        if a:0 >= 2
+            for l:i in a:000[1:]
+                let l:args .= ' '.l:i
+            endfor
+        endif
+        if winwidth(0) >= l:min_split_width
+           \ && winheight(0) >= l:min_split_height
+            call SplitTerminal(a:width, l:cmd, l:args)
+        else
+            call NewTerminal(l:cmd, l:args)
+        endif
+    endif
+endf
+command! -count -nargs=* BeginTerminal call BeginTerminal(<count>, <f-args>)
+
+
+fun! NewTerminal(...)
+    let l:current_dir = expand('%:p:h')
+    "" execute command
+    let l:cmd = 'terminal'
+    if a:0 > 0
+        for l:i in a:000
+            let l:cmd .= ' '.l:i
+        endfor
+    endif
+    exe 'enew'
+    exe 'lcd ' . l:current_dir
+    exe l:cmd
+    "" change buffer name
+    if a:0 == 0
+        let l:bufname = GetNewBufName('bash')
+    elseif a:0 > 0
+        let l:bufname = GetNewBufName(a:1)
+    endif
+    exe 'file '.l:bufname
+    "" visual settings & start terminal mode
+    set nonumber
+    startinsert
+endf
+command! -nargs=* NewTerminal call NewTerminal(<f-args>)
+
+
+fun! SplitTerminal(width, ...)
     let l:current_dir = expand('%:p:h')
     "" create split window
     if winwidth(0) >= winheight(0) * 3
@@ -33,7 +107,7 @@ fun! BeginTerminal(width, ...)
     set nonumber
     startinsert
 endf
-command! -count -nargs=* BeginTerminal call BeginTerminal(<count>, <f-args>)
+command! -count -nargs=* SplitTerminal call SplitTerminal(<count>, <f-args>)
 
 
 fun! GetNewBufName(name)
