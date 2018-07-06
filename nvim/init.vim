@@ -1,6 +1,9 @@
 scriptencoding utf-8
 " vim-bootstrap a9ad349
 
+" $ nvim --startuptime profile.txt
+" 快適動作のための原因分析
+
 "*****************************************************************************
 "" Vim-PLug core
 "*****************************************************************************
@@ -143,7 +146,6 @@ set smartcase
 set inccommand=split
 
 "" Copy/Paste/Cut
-" set clipboard=unnamed
 set clipboard+=unnamedplus
 
 "" Directories for swp files
