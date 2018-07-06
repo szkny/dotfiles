@@ -136,6 +136,7 @@ command! -nargs=1 ResizeWindow call ResizeWindow(<f-args>)
 
 
 fun! Make(width, ...)
+    let l:current_dir = expand('%:p:h')
     let l:command = 'make'
     let l:args = ''
     if a:0 > 0
@@ -144,12 +145,13 @@ fun! Make(width, ...)
             let l:args .= l:tmp
         endfor
     endif
-    if findfile('GNUmakefile',getcwd()) !=# '' || findfile('Makefile',getcwd()) !=# ''
+    if findfile('GNUmakefile',l:current_dir) !=# ''
+       \|| findfile('Makefile',l:current_dir) !=# ''
         call BeginTerminal(a:width, l:command, l:args)
-    elseif findfile('GNUmakefile',getcwd().'/../') !=# '' || findfile('Makefile',getcwd().'/../') !=# ''
-        cd ../
+    elseif findfile('GNUmakefile',l:current_dir.'/../') !=# ''
+           \|| findfile('Makefile',l:current_dir.'/../') !=# ''
+        let l:command = 'cd ../ && '.l:command
         call BeginTerminal(a:width, l:command, l:args)
-        cd -
     else
         echo 'not found: "GNUmakefile" or "Makefile"'
     endif
@@ -158,6 +160,7 @@ command! -count -nargs=* Make call Make(<count>, <f-args>)
 
 
 fun! CMake(width, ...)
+    let l:current_dir = expand('%:p:h')
     let l:builddir = 'build'
     let l:cmakelists_txt = 'CMakeLists.txt'
     let l:command = 'cmake .. && make'
@@ -167,21 +170,19 @@ fun! CMake(width, ...)
             let l:command .= ' && ./'.l:exename
         endif
     endif
-    if findfile(l:cmakelists_txt,getcwd()) !=# ''
-        if finddir(l:builddir,getcwd()) ==# ''
+    if findfile(l:cmakelists_txt,l:current_dir) !=# ''
+        if finddir(l:builddir,l:current_dir) ==# ''
             call mkdir(l:builddir)
         endif
-        cd ./build
+        let l:command = 'cd '.l:builddir.' && '.l:command
         call BeginTerminal(a:width, l:command)
-        cd ..
-    elseif findfile(l:cmakelists_txt,getcwd().'/../') !=# ''
-        cd ../
-        if finddir(l:builddir,getcwd()) ==# ''
+    elseif findfile(l:cmakelists_txt,l:current_dir.'/../') !=# ''
+        let l:builddir = '../'.l:builddir
+        if finddir(l:builddir,l:current_dir) ==# ''
             call mkdir(l:builddir)
         endif
-        cd ./build
+        let l:command = 'cd '.l:builddir.' && '.l:command
         call BeginTerminal(a:width, l:command)
-        cd ..
     else
         echo 'not found: '.l:cmakelists_txt
     endif
