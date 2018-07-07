@@ -23,7 +23,7 @@ nno <silent>k gk
 ino <C-h> <Left>
 ino <C-l> <Right>
 
-nno <CR> i<CR><C-\><C-n>
+nno <CR> o<ESC>
 nno x "_x
 vno x "_x
 
