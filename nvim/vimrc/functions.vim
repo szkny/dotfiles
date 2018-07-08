@@ -590,7 +590,7 @@ fun! Git(command)
     if a:command ==# 'diff'
         let l:cmd = 'git status -v -v'
     elseif a:command ==# 'routin'
-        let l:cmd = 'git add. && git commit -m "`date`" && git push'
+        let l:cmd = 'git add . && git commit -m "`date`" && git push'
     else
         let l:cmd = 'git '.a:command
     endif
