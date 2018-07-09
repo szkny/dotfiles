@@ -302,7 +302,7 @@ fun! Ipython(width, ...)
         echo '                 isntalling ipython ...'
         if !executable('pip')
             echoerr 'You have to install pip!'
-            exe 'q!'
+            return
         endif
         silent exe '!pip install ipython'
         echo ''
@@ -374,7 +374,7 @@ fun! Pyform(...)
                 echo '                installing autopep8...'
                 if !executable('pip')
                     echoerr 'You have to install pip!'
-                    exe 'q!'
+                    return
                 endif
                 silent exe '!pip install autopep8'
                 echo ''
@@ -388,7 +388,7 @@ fun! Pyform(...)
                 echo '                installing yapf...'
                 if !executable('pip')
                     echoerr 'You have to install pip!'
-                    exe 'q!'
+                    return
                 endif
                 silent exe '!pip install git+https://github.com/google/yapf'
                 echo ''
@@ -404,6 +404,22 @@ fun! Pyform(...)
     endif
 endf
 command! -nargs=* Pyform call Pyform(<f-args>)
+
+
+fun! Pudb()
+    if !executable('pudb3')
+        echo 'Pudb: [error] pudb3 command not found.'
+        echo '                   installing pudb3...'
+        if !executable('pip')
+            echoerr 'You have to install pip!'
+            return
+        endif
+        silent exe '!pip install pudb'
+        echo ''
+    endif
+    call NewTerm('pudb3', expand('%'))
+endf
+command! Pubd call Pudb()
 
 
 fun! SQL(width)
