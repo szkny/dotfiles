@@ -53,6 +53,9 @@ command! -count -nargs=* BeginTerm call BeginTerm(<count>, <f-args>)
 
 fun! NewTerm(...)
     let l:current_dir = expand('%:p:h')
+    if l:current_dir[0] !=# '/'
+        let l:current_dir = getcwd()
+    endif
     "" execute command
     let l:cmd = 'terminal'
     if a:0 > 0
@@ -79,6 +82,9 @@ command! -nargs=* NewTerm call NewTerm(<f-args>)
 
 fun! SplitTerm(width, ...)
     let l:current_dir = expand('%:p:h')
+    if l:current_dir[0] !=# '/'
+        let l:current_dir = getcwd()
+    endif
     "" create split window
     let l:width = Vsplitwidth()
     if l:width
