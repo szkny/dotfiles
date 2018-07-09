@@ -431,6 +431,20 @@ endf
 command! Pudb call Pudb()
 
 
+fun! Pdb()
+    if &filetype ==# 'python'
+        if !executable('pdb')
+            echo 'Pdb: [error] pdb command not found.'
+            return
+        endif
+        call BeginTerm(0, 'pdb', expand('%'))
+    else
+        echo 'Pdb: [error] invalid file type. this is "' . &filetype. '" file.'
+    endif
+endf
+command! Pdb call Pdb()
+
+
 fun! SQL(width)
     let l:command = 'mysql'
     if executable(l:command)
