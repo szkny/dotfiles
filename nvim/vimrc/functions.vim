@@ -275,47 +275,12 @@ fun! Python(width, ...)
         for l:i in a:000
             let l:args .= ' ' . l:i
         endfor
-        " let l:width = PythonWinWidth(a:width)
-        " call BeginTerm(l:width, l:command, l:args)
         call BeginTerm(a:width, l:command, l:args)
     else
         call BeginTerm(a:width, l:command)
     endif
 endf
 command! -count -nargs=* Python call Python(<count>, <f-args>)
-
-
-" fun! PythonWinWidth(width)
-"     if winwidth(0) >= winheight(0) * 3
-"         let l:linenumwidth = 0
-"         if &number
-"             "" add line number width
-"             let l:linenumwidth = 4
-"             let l:digits = 0
-"             let l:linenum = line('$')
-"             while l:linenum
-"                 let l:digits += 1
-"                 let l:linenum = l:linenum/10
-"             endwhile
-"             if l:digits > 3
-"                 let l:linenumwidth += l:digits - 3
-"             endif
-"         endif
-"         "" add ale sign line width
-"         if exists('*airline#extensions#ale#get_error')
-"             if airline#extensions#ale#get_error() !=# ''
-"                \|| airline#extensions#ale#get_warning() !=# ''
-"                 let l:linenumwidth += 2
-"             endif
-"         endif
-"         let l:width = winwidth(0)-PythonMaxLineLength()-l:linenumwidth
-"         let l:width = l:width>0 ? l:width : 0
-"         let l:width = a:width ? a:width : l:width
-"         return l:width
-"     else
-"         return 0
-"     endif
-" endf
 
 
 fun! Ipython(width, ...)
@@ -339,9 +304,7 @@ fun! Ipython(width, ...)
     if &filetype ==# 'python'
         let l:profile_name = InitIpython()
         let l:args .= ' --profile=' . l:profile_name
-        " let l:width = PythonWinWidth(a:width)
     endif
-    " call BeginTerm(l:width, l:command, l:args)
     call BeginTerm(a:width, l:command, l:args)
 endf
 command! -count -nargs=* Ipython call Ipython(<count>, <f-args>)
