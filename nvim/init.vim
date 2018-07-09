@@ -45,10 +45,10 @@ Plug 'rbgrouleff/bclose.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'kannokanno/previm'
-Plug 'tpope/vim-fugitive'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': ['NERDTreeToggle']}
 Plug 'scrooloose/nerdtree',                     {'on': ['NERDTreeToggle']}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': ['NERDTreeToggle']}
+Plug 'tpope/vim-fugitive',                      {'on': []}
 Plug 'rhysd/nyaovim-popup-tooltip',             {'on': []}
 Plug 'rhysd/nyaovim-markdown-preview',          {'on': []}
 Plug 'sheerun/vim-polyglot',                    {'on': []}

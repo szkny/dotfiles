@@ -23,11 +23,11 @@ command! -nargs=1 ChangeBuffer call ChangeBuffer(<f-args>)
 
 
 fun! BeginTerminal(width, ...)
-    let l:min_split_width = 80
-    let l:min_split_height = 40
+    let l:min_winwidth = 80
+    let l:min_winheight = 40
     if a:0 == 0
-        if winwidth(0) >= l:min_split_width
-           \ && winheight(0) >= l:min_split_height
+        if winwidth(0) >= l:min_winwidth
+           \ && winheight(0) >= l:min_winheight
             call SplitTerminal(a:width)
         else
             call NewTerminal()
@@ -40,8 +40,8 @@ fun! BeginTerminal(width, ...)
                 let l:args .= ' '.l:i
             endfor
         endif
-        if winwidth(0) >= l:min_split_width
-           \ && winheight(0) >= l:min_split_height
+        if winwidth(0) >= l:min_winwidth
+           \ && winheight(0) >= l:min_winheight
             call SplitTerminal(a:width, l:cmd, l:args)
         else
             call NewTerminal(l:cmd, l:args)
@@ -80,13 +80,14 @@ command! -nargs=* NewTerminal call NewTerminal(<f-args>)
 fun! SplitTerminal(width, ...)
     let l:current_dir = expand('%:p:h')
     "" create split window
-    if winwidth(0) >= winheight(0) * 3
-        let l:split = 'vnew'
+    let l:width = Vsplitwidth()
+    if l:width
+        let l:width = a:width ? a:width : l:width
+        let l:split = a:width ? a:width.'vnew' : l:width.'vnew'
     else
-        let l:split = 'new'
+        let l:split = a:width ? a:width.'new' : 'new'
     endif
-    let l:cmd1 = a:width ? a:width.l:split : l:split
-    exe l:cmd1
+    exe l:split
     exe 'lcd ' . l:current_dir
     "" execute command
     let l:cmd2 = 'terminal'
@@ -121,12 +122,52 @@ fun! GetNewBufName(name)
 endf
 
 
+fun! Vsplitwidth()
+    let l:min_split_winwidth = 80
+    "" ## count max line length ##
+    let l:all_lines = getline(0, '$')
+    let l:max_line_len = 0
+    for l:line in l:all_lines
+        if len(l:line) > l:max_line_len
+            let l:max_line_len = len(l:line)
+            let l:text = l:line
+        endif
+    endfor
+    let l:max_line_len += 1
+    "" ## count line number width ##
+    let l:linenumwidth = 0
+    if &number
+        "" add line number width
+        let l:linenumwidth = 4
+        let l:digits = 0
+        let l:linenum = line('$')
+        while l:linenum
+            let l:digits += 1
+            let l:linenum = l:linenum/10
+        endwhile
+        if l:digits > 3
+            let l:linenumwidth += l:digits - 3
+        endif
+    endif
+    "" add ale sign line width
+    if exists('*airline#extensions#ale#get_error')
+        if airline#extensions#ale#get_error() !=# ''
+           \|| airline#extensions#ale#get_warning() !=# ''
+            let l:linenumwidth += 2
+        endif
+    endif
+    let l:width = winwidth(0)-l:max_line_len-l:linenumwidth
+    let l:width = l:width>l:min_split_winwidth ? l:width : 0
+    return l:width
+endf
+
+
 fun! ResizeWindow(size)
     if a:size ==# ''
         echo '[warning] the args "size" is empty.'
         return
     endif
-    if winwidth(0) >= winheight(0) * 3
+    if Vsplitwidth()
         exe 'res '.a:size
     else
         exe 'vertical res '.a:size
@@ -232,8 +273,9 @@ fun! Python(width, ...)
         for l:i in a:000
             let l:args .= ' ' . l:i
         endfor
-        let l:width = PythonWinWidth(a:width)
-        call BeginTerminal(l:width, l:command, l:args)
+        " let l:width = PythonWinWidth(a:width)
+        " call BeginTerminal(l:width, l:command, l:args)
+        call BeginTerminal(a:width, l:command, l:args)
     else
         call BeginTerminal(a:width, l:command)
     endif
@@ -241,37 +283,37 @@ endf
 command! -count -nargs=* Python call Python(<count>, <f-args>)
 
 
-fun! PythonWinWidth(width)
-    if winwidth(0) >= winheight(0) * 3
-        let l:linenumwidth = 0
-        if &number
-            "" add line number width
-            let l:linenumwidth = 4
-            let l:digits = 0
-            let l:linenum = line('$')
-            while l:linenum
-                let l:digits += 1
-                let l:linenum = l:linenum/10
-            endwhile
-            if l:digits > 3
-                let l:linenumwidth += l:digits - 3
-            endif
-        endif
-        "" add ale sign line width
-        if exists('*airline#extensions#ale#get_error')
-            if airline#extensions#ale#get_error() !=# ''
-               \|| airline#extensions#ale#get_warning() !=# ''
-                let l:linenumwidth += 2
-            endif
-        endif
-        let l:width = winwidth(0)-PythonMaxLineLength()-l:linenumwidth
-        let l:width = l:width>0 ? l:width : 0
-        let l:width = a:width ? a:width : l:width
-        return l:width
-    else
-        return 0
-    endif
-endf
+" fun! PythonWinWidth(width)
+"     if winwidth(0) >= winheight(0) * 3
+"         let l:linenumwidth = 0
+"         if &number
+"             "" add line number width
+"             let l:linenumwidth = 4
+"             let l:digits = 0
+"             let l:linenum = line('$')
+"             while l:linenum
+"                 let l:digits += 1
+"                 let l:linenum = l:linenum/10
+"             endwhile
+"             if l:digits > 3
+"                 let l:linenumwidth += l:digits - 3
+"             endif
+"         endif
+"         "" add ale sign line width
+"         if exists('*airline#extensions#ale#get_error')
+"             if airline#extensions#ale#get_error() !=# ''
+"                \|| airline#extensions#ale#get_warning() !=# ''
+"                 let l:linenumwidth += 2
+"             endif
+"         endif
+"         let l:width = winwidth(0)-PythonMaxLineLength()-l:linenumwidth
+"         let l:width = l:width>0 ? l:width : 0
+"         let l:width = a:width ? a:width : l:width
+"         return l:width
+"     else
+"         return 0
+"     endif
+" endf
 
 
 fun! Ipython(width, ...)
@@ -295,9 +337,10 @@ fun! Ipython(width, ...)
     if &filetype ==# 'python'
         let l:profile_name = InitIpython()
         let l:args .= ' --profile=' . l:profile_name
-        let l:width = PythonWinWidth(a:width)
+        " let l:width = PythonWinWidth(a:width)
     endif
-    call BeginTerminal(l:width, l:command, l:args)
+    " call BeginTerminal(l:width, l:command, l:args)
+    call BeginTerminal(a:width, l:command, l:args)
 endf
 command! -count -nargs=* Ipython call Ipython(<count>, <f-args>)
 
