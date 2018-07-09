@@ -150,7 +150,6 @@ fun! Vsplitwidth()
     for l:line in l:all_lines
         if len(l:line) > l:max_line_len
             let l:max_line_len = len(l:line)
-            let l:text = l:line
         endif
     endfor
     let l:max_line_len += 1
