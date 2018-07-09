@@ -45,6 +45,7 @@ Plug 'rbgrouleff/bclose.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'kannokanno/previm'
+Plug 'tpope/vim-fugitive'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': ['NERDTreeToggle']}
 Plug 'scrooloose/nerdtree',                     {'on': ['NERDTreeToggle']}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': ['NERDTreeToggle']}
@@ -56,7 +57,6 @@ Plug 'Shougo/unite-outline',                    {'on': []}
 Plug 'nathanaelkane/vim-indent-guides',         {'on': []}
 Plug 'Yggdroot/indentLine',                     {'on': []}
 Plug 'tpope/vim-commentary',                    {'on': []}
-Plug 'tpope/vim-fugitive',                      {'on': []}
 Plug 'airblade/vim-gitgutter',                  {'on': []}
 Plug 'vim-scripts/grep.vim',                    {'on': []}
 Plug 'vim-scripts/CSApprox',                    {'on': []}
@@ -198,6 +198,7 @@ let g:no_buffers_menu=1
 
 set mousemodel=popup
 set t_Co=256
+set termguicolors " for iTerm2
 set guioptions=egmrti
 set guifont=Monospace\ 10
 
@@ -237,7 +238,6 @@ if !exists('*s:setupWrapping')
     endfunction
 endif
 
-set termguicolors " for iTerm2
 set background=dark
 " colorscheme solarized
 " colorscheme tender
