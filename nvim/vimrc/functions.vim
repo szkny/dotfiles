@@ -80,18 +80,14 @@ command! -nargs=* NewTerm call NewTerm(<f-args>)
 fun! SplitTerm(width, ...)
     let l:current_dir = expand('%:p:h')
     "" create split window
-    let l:height = Splitheight()
-    if l:height
-        let l:height = a:width ? a:width : l:height
-        let l:split = l:height.'new'
+    let l:width = Vsplitwidth()
+    if l:width
+        let l:width = a:width ? a:width : l:width
+        let l:split = l:width.'vnew'
     else
-        let l:width = Vsplitwidth()
-        if l:width
-            let l:width = a:width ? a:width : l:width
-            let l:split = l:width.'vnew'
-        else
-            let l:split = a:width ? a:width.'new' : '20new'
-        endif
+        let l:height = Splitheight()
+        let l:height = a:width ? a:width : l:height
+        let l:split = l:height? l:height.'new' : '20new'
     endif
     exe l:split
     exe 'lcd ' . l:current_dir
