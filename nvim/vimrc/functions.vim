@@ -80,12 +80,18 @@ command! -nargs=* NewTerm call NewTerm(<f-args>)
 fun! SplitTerm(width, ...)
     let l:current_dir = expand('%:p:h')
     "" create split window
-    let l:width = Vsplitwidth()
-    if l:width
-        let l:width = a:width ? a:width : l:width
-        let l:split = a:width ? a:width.'vnew' : l:width.'vnew'
+    let l:height = Splitheight()
+    if l:height
+        let l:height = a:width ? a:width : l:height
+        let l:split = l:height ? l:height.'new' : 'new'
     else
-        let l:split = a:width ? a:width.'new' : 'new'
+        let l:width = Vsplitwidth()
+        if l:width
+            let l:width = a:width ? a:width : l:width
+            let l:split = l:width ? l:width.'vnew' : 'vnew'
+        else
+            let l:split = a:width ? a:width.'new' : 'new'
+        endif
     endif
     exe l:split
     exe 'lcd ' . l:current_dir
@@ -122,9 +128,20 @@ fun! GetNewBufName(name)
 endf
 
 
+fun! Splitheight()
+    let l:min_winheight = 10
+    let l:max_winheight = winheight(0)/2
+    "" ## count max line length ##
+    let l:height = winheight(0)-line('$')
+    let l:height = l:height>l:min_winheight ? l:height : 0
+    let l:height = l:height>l:max_winheight ? l:max_winheight : l:height
+    return l:height
+endf
+
+
 fun! Vsplitwidth()
-    let l:min_split_winwidth = 80
-    let l:max_split_winwidth = winwidth(0)/2
+    let l:min_winwidth = 80
+    let l:max_winwidth = winwidth(0)/2
     "" ## count max line length ##
     let l:all_lines = getline(0, '$')
     let l:max_line_len = 0
@@ -158,8 +175,8 @@ fun! Vsplitwidth()
         endif
     endif
     let l:width = winwidth(0)-l:max_line_len-l:linenumwidth
-    let l:width = l:width>l:min_split_winwidth ? l:width : 0
-    let l:width = l:width>l:max_split_winwidth ? l:max_split_winwidth : l:width
+    let l:width = l:width>l:min_winwidth ? l:width : 0
+    let l:width = l:width>l:max_winwidth ? l:max_winwidth : l:width
     return l:width
 endf
 
@@ -169,7 +186,7 @@ fun! ResizeWindow(size)
         echo '[warning] the args "size" is empty.'
         return
     endif
-    if Vsplitwidth()
+    if winwidth(0) >= winheight(0)*3
         exe 'res '.a:size
     else
         exe 'vertical res '.a:size
