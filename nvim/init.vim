@@ -191,6 +191,7 @@ set virtualedit=onemore
 syntax on
 set ruler
 set number
+set nowrap
 
 set ambiwidth=double
 
