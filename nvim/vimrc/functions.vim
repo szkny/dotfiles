@@ -124,6 +124,7 @@ endf
 
 fun! Vsplitwidth()
     let l:min_split_winwidth = 80
+    let l:max_split_winwidth = winwidth(0)/2
     "" ## count max line length ##
     let l:all_lines = getline(0, '$')
     let l:max_line_len = 0
@@ -158,6 +159,7 @@ fun! Vsplitwidth()
     endif
     let l:width = winwidth(0)-l:max_line_len-l:linenumwidth
     let l:width = l:width>l:min_split_winwidth ? l:width : 0
+    let l:width = l:width>l:max_split_winwidth ? l:max_split_winwidth : l:width
     return l:width
 endf
 
