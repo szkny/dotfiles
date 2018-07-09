@@ -407,19 +407,23 @@ command! -nargs=* Pyform call Pyform(<f-args>)
 
 
 fun! Pudb()
-    if !executable('pudb3')
-        echo 'Pudb: [error] pudb3 command not found.'
-        echo '                   installing pudb3...'
-        if !executable('pip')
-            echoerr 'You have to install pip!'
-            return
+    if &filetype ==# 'python'
+        if !executable('pudb3')
+            echo 'Pudb: [error] pudb3 command not found.'
+            echo '                   installing pudb3...'
+            if !executable('pip')
+                echoerr 'You have to install pip!'
+                return
+            endif
+            silent exe '!pip install pudb'
+            echo ''
         endif
-        silent exe '!pip install pudb'
-        echo ''
+        call NewTerm('pudb3', expand('%'))
+    else
+        echo 'Pudb: [error] invalid file type. this is "' . &filetype. '" file.'
     endif
-    call NewTerm('pudb3', expand('%'))
 endf
-command! Pubd call Pudb()
+command! Pudb call Pudb()
 
 
 fun! SQL(width)
