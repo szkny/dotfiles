@@ -22,15 +22,15 @@ endf
 command! -nargs=1 ChangeBuffer call ChangeBuffer(<f-args>)
 
 
-fun! BeginTerminal(width, ...)
+fun! BeginTerm(width, ...)
     let l:min_winwidth = 80
     let l:min_winheight = 40
     if a:0 == 0
         if winwidth(0) >= l:min_winwidth
            \ && winheight(0) >= l:min_winheight
-            call SplitTerminal(a:width)
+            call SplitTerm(a:width)
         else
-            call NewTerminal()
+            call NewTerm()
         endif
     elseif a:0 >= 1
         let l:cmd = a:1
@@ -42,16 +42,16 @@ fun! BeginTerminal(width, ...)
         endif
         if winwidth(0) >= l:min_winwidth
            \ && winheight(0) >= l:min_winheight
-            call SplitTerminal(a:width, l:cmd, l:args)
+            call SplitTerm(a:width, l:cmd, l:args)
         else
-            call NewTerminal(l:cmd, l:args)
+            call NewTerm(l:cmd, l:args)
         endif
     endif
 endf
-command! -count -nargs=* BeginTerminal call BeginTerminal(<count>, <f-args>)
+command! -count -nargs=* BeginTerm call BeginTerm(<count>, <f-args>)
 
 
-fun! NewTerminal(...)
+fun! NewTerm(...)
     let l:current_dir = expand('%:p:h')
     "" execute command
     let l:cmd = 'terminal'
@@ -74,10 +74,10 @@ fun! NewTerminal(...)
     set nonumber
     startinsert
 endf
-command! -nargs=* NewTerminal call NewTerminal(<f-args>)
+command! -nargs=* NewTerm call NewTerm(<f-args>)
 
 
-fun! SplitTerminal(width, ...)
+fun! SplitTerm(width, ...)
     let l:current_dir = expand('%:p:h')
     "" create split window
     let l:width = Vsplitwidth()
@@ -108,7 +108,7 @@ fun! SplitTerminal(width, ...)
     set nonumber
     startinsert
 endf
-command! -count -nargs=* SplitTerminal call SplitTerminal(<count>, <f-args>)
+command! -count -nargs=* SplitTerm call SplitTerm(<count>, <f-args>)
 
 
 fun! GetNewBufName(name)
@@ -188,11 +188,11 @@ fun! Make(width, ...)
     endif
     if findfile('GNUmakefile',l:current_dir) !=# ''
        \|| findfile('Makefile',l:current_dir) !=# ''
-        call BeginTerminal(a:width, l:command, l:args)
+        call BeginTerm(a:width, l:command, l:args)
     elseif findfile('GNUmakefile',l:current_dir.'/../') !=# ''
            \|| findfile('Makefile',l:current_dir.'/../') !=# ''
         let l:command = 'cd ../ && '.l:command
-        call BeginTerminal(a:width, l:command, l:args)
+        call BeginTerm(a:width, l:command, l:args)
     else
         echo 'not found: "GNUmakefile" or "Makefile"'
     endif
@@ -216,14 +216,14 @@ fun! CMake(width, ...)
             call mkdir(l:builddir)
         endif
         let l:command = 'cd '.l:builddir.' && '.l:command
-        call BeginTerminal(a:width, l:command)
+        call BeginTerm(a:width, l:command)
     elseif findfile(l:cmakelists_txt,l:current_dir.'/../') !=# ''
         let l:builddir = '../'.l:builddir
         if finddir(l:builddir,l:current_dir) ==# ''
             call mkdir(l:builddir)
         endif
         let l:command = 'cd '.l:builddir.' && '.l:command
-        call BeginTerminal(a:width, l:command)
+        call BeginTerm(a:width, l:command)
     else
         echo 'not found: '.l:cmakelists_txt
     endif
@@ -274,10 +274,10 @@ fun! Python(width, ...)
             let l:args .= ' ' . l:i
         endfor
         " let l:width = PythonWinWidth(a:width)
-        " call BeginTerminal(l:width, l:command, l:args)
-        call BeginTerminal(a:width, l:command, l:args)
+        " call BeginTerm(l:width, l:command, l:args)
+        call BeginTerm(a:width, l:command, l:args)
     else
-        call BeginTerminal(a:width, l:command)
+        call BeginTerm(a:width, l:command)
     endif
 endf
 command! -count -nargs=* Python call Python(<count>, <f-args>)
@@ -339,8 +339,8 @@ fun! Ipython(width, ...)
         let l:args .= ' --profile=' . l:profile_name
         " let l:width = PythonWinWidth(a:width)
     endif
-    " call BeginTerminal(l:width, l:command, l:args)
-    call BeginTerminal(a:width, l:command, l:args)
+    " call BeginTerm(l:width, l:command, l:args)
+    call BeginTerm(a:width, l:command, l:args)
 endf
 command! -count -nargs=* Ipython call Ipython(<count>, <f-args>)
 
@@ -435,7 +435,7 @@ fun! SQL(width)
         if &filetype ==# 'sql'
             let l:args = ' < ' . expand('%')
         endif
-        call BeginTerminal(a:width, l:command, l:args)
+        call BeginTerm(a:width, l:command, l:args)
     else
         echo 'SQL: [error] '.l:command.' command not found.'
     endif
@@ -447,7 +447,7 @@ fun! SQLplot(width, ...)
     if &filetype ==# 'sql' && executable('sqlplot')
         let l:command = 'sqlplot'
         let l:args = ' ' . expand('%')
-        call BeginTerminal(a:width, l:command, l:args)
+        call BeginTerm(a:width, l:command, l:args)
     endif
 endf
 command! -count -nargs=* SQLplot call SQLplot(<count>, <f-args>)
@@ -476,7 +476,7 @@ fun! Gnuplot()
     if expand('%:e') ==# 'gp' || expand('%:e') ==# 'gpi'
         let l:command = 'gnuplot'
         let l:args = ' ' . expand('%')
-        call BeginTerminal(0, l:command, l:args)
+        call BeginTerm(0, l:command, l:args)
         starti
     else
         echo 'Gnuplot: [error] invalid file type. this is "' . &filetype. '" file.'
@@ -569,7 +569,7 @@ command! -nargs=* Chrome call Chrome(<f-args>)
 fun! W3m(width, ...)
     if executable('w3m')
         let l:url = GoogleSearch(a:000)
-        call BeginTerminal(a:width, 'w3m -M', l:url)
+        call BeginTerm(a:width, 'w3m -M', l:url)
     else
         echo 'W3m: [error] w3m command not found.'
     endif
@@ -637,7 +637,7 @@ fun! Git(command)
     else
         let l:cmd = 'git '.a:command
     endif
-    call BeginTerminal(0, l:cmd)
+    call BeginTerm(0, l:cmd)
 endf
 command! -nargs=1 Git call Git(<f-args>)
 
@@ -653,7 +653,7 @@ fun! VimrcGit(command)
             let l:cmd = 'git '.a:command
         endif
         let l:cmd = 'cd '.l:dotfiles_dir.' && '.l:cmd
-        call BeginTerminal(0, l:cmd)
+        call BeginTerm(0, l:cmd)
     else
         echo 'VimrcGit: [error] "'.expand('%:t').'" is not under the control of git.'
     endif
