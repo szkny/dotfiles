@@ -24,7 +24,7 @@ command! -nargs=1 ChangeBuffer call ChangeBuffer(<f-args>)
 
 fun! BeginTerm(width, ...)
     let l:min_winwidth = 80
-    let l:min_winheight = 40
+    let l:min_winheight = 30
     if a:0 == 0
         if winwidth(0) >= l:min_winwidth
            \ && winheight(0) >= l:min_winheight
