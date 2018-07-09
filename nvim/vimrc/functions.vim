@@ -83,14 +83,14 @@ fun! SplitTerm(width, ...)
     let l:height = Splitheight()
     if l:height
         let l:height = a:width ? a:width : l:height
-        let l:split = l:height ? l:height.'new' : 'new'
+        let l:split = l:height.'new'
     else
         let l:width = Vsplitwidth()
         if l:width
             let l:width = a:width ? a:width : l:width
-            let l:split = l:width ? l:width.'vnew' : 'vnew'
+            let l:split = l:width.'vnew'
         else
-            let l:split = a:width ? a:width.'new' : 'new'
+            let l:split = a:width ? a:width.'new' : '20new'
         endif
     endif
     exe l:split
