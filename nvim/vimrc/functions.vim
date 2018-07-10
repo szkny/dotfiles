@@ -433,11 +433,11 @@ command! Pudb call Pudb()
 
 fun! Pdb()
     if &filetype ==# 'python'
-        if !executable('pdb')
-            echo 'Pdb: [error] pdb command not found.'
-            return
+        if executable('pdb')
+            call BeginTerm(0, 'pdb', expand('%'))
+        else
+            call BeginTerm(0, 'python -m pdb', expand('%'))
         endif
-        call BeginTerm(0, 'pdb', expand('%'))
     else
         echo 'Pdb: [error] invalid file type. this is "' . &filetype. '" file.'
     endif
