@@ -104,6 +104,7 @@ fun! SplitTerm(width, ...)
             let l:cmd2 .= ' '.l:i
         endfor
     endif
+    echo l:cmd2
     exe l:cmd2
     "" change buffer name
     if a:0 == 0
@@ -121,7 +122,8 @@ command! -count -nargs=* SplitTerm call SplitTerm(<count>, <f-args>)
 
 fun! GetNewBufName(name)
     let l:num = 1
-    let l:name = l:num.' '.a:name
+    let l:name = split(a:name,' ')[0]
+    let l:name = l:num.' '.l:name
     while bufexists(l:name)
         let l:num += 1
         let l:name = l:num.l:name[1:]
@@ -436,7 +438,7 @@ fun! Pdb()
         if executable('pdb')
             call BeginTerm(0, 'pdb', expand('%'))
         else
-            call BeginTerm(0, 'python -m pdb', expand('%'))
+            call BeginTerm(0, 'python', '-m pdb', expand('%'))
         endif
     else
         echo 'Pdb: [error] invalid file type. this is "' . &filetype. '" file.'
@@ -586,7 +588,7 @@ command! -nargs=* Chrome call Chrome(<f-args>)
 fun! W3m(width, ...)
     if executable('w3m')
         let l:url = GoogleSearch(a:000)
-        call BeginTerm(a:width, 'w3m -M', l:url)
+        call BeginTerm(a:width, 'w3m', '-M', l:url)
     else
         echo 'W3m: [error] w3m command not found.'
     endif
