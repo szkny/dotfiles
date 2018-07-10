@@ -104,7 +104,6 @@ fun! SplitTerm(width, ...)
             let l:cmd2 .= ' '.l:i
         endfor
     endif
-    echo l:cmd2
     exe l:cmd2
     "" change buffer name
     if a:0 == 0
@@ -542,19 +541,25 @@ fun! SetHlsearch()
 endf
 
 
-fun! GoogleSearch(...)
+fun! GoogleSearchURL(...)
     let l:url = '"http://www.google.co.jp/'
     let l:opt = 'search?num=100'
     let l:wrd = ''
     if a:0 >= 1
         if a:0 == 1
-            for l:i in a:1
-                if l:i == a:1[0]
-                    let l:wrd = l:i
-                else
-                    let l:wrd .= '+' . l:i
-                endif
-            endfor
+            if type(a:1) == 1
+                "" case of a:1 == string
+                let l:wrd = a:1
+            elseif type(a:1) == 3
+                "" case of a:1 == list
+                for l:i in a:1
+                    if l:i == a:1[0]
+                        let l:wrd = l:i
+                    else
+                        let l:wrd .= '+' . l:i
+                    endif
+                endfor
+            endif
         else
             for l:i in a:000
                 if l:i == a:1
@@ -579,7 +584,7 @@ fun! Chrome(...)
     elseif system('uname') ==# "Linux\n"
         let l:cmd = '!chrome '
     endif
-    let l:cmd .= GoogleSearch(a:000)
+    let l:cmd .= GoogleSearchURL(a:000)
     exe l:cmd
 endf
 command! -nargs=* Chrome call Chrome(<f-args>)
@@ -587,7 +592,7 @@ command! -nargs=* Chrome call Chrome(<f-args>)
 
 fun! W3m(width, ...)
     if executable('w3m')
-        let l:url = GoogleSearch(a:000)
+        let l:url = GoogleSearchURL(a:000)
         call BeginTerm(a:width, 'w3m', '-M', l:url)
     else
         echo 'W3m: [error] w3m command not found.'
