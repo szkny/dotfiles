@@ -27,7 +27,7 @@ fun! BeginTerm(width, ...)
     let l:min_winheight = 30
     if a:0 == 0
         if winwidth(0) >= l:min_winwidth
-           \ && winheight(0) >= l:min_winheight
+           \ || winheight(0) >= l:min_winheight
             call SplitTerm(a:width)
         else
             call NewTerm()
