@@ -116,7 +116,7 @@ fun! SplitTerm(width, ...)
     exe 'file '.l:bufname
     "" visual settings & start terminal mode
     setlocal nonumber
-    " setlocal bufhidden=wipe
+    setlocal bufhidden=wipe
     setlocal nocursorline
     setlocal nocursorcolumn
     startinsert
