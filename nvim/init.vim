@@ -245,7 +245,7 @@ let g:enable_bold_font = 1
 let g:enable_italic_font = 1
 let g:cpp_class_scope_highlight = 1
 
-set cursorline
+" set cursorline
 " set cursorcolumn
 set list
 set listchars=tab:¦\ 
@@ -261,7 +261,7 @@ set fillchars+=vert:\
 " hi LineNr guifg=#aabbcc guibg=#204056
 " hi VertSplit guifg=#10202b guibg=#aaaaaa
 " hi CursorLine gui=underline
-hi CursorLine guibg=#0c1820
+" hi CursorLine guibg=#0c1820
 " hi CursorColumn guibg=#0c1820
 hi clear Cursor
 hi Cursor gui=reverse
