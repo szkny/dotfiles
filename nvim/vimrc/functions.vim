@@ -12,12 +12,6 @@ fun! ChangeBuffer(direction)
         return
     endif
     exe l:cmd
-    " let l:termflag = str2nr(buffer_name('%')[0])
-    " if l:termflag
-    "     set nonumber
-    " else
-    "     set number
-    " endif
 endf
 command! -nargs=1 ChangeBuffer call ChangeBuffer(<f-args>)
 
@@ -76,6 +70,8 @@ fun! NewTerm(...)
     "" visual settings & start terminal mode
     setlocal nonumber
     setlocal bufhidden=wipe
+    setlocal nocursorline
+    setlocal nocursorcolumn
     startinsert
 endf
 command! -nargs=* NewTerm call NewTerm(<f-args>)
@@ -116,6 +112,8 @@ fun! SplitTerm(width, ...)
     "" visual settings & start terminal mode
     setlocal nonumber
     setlocal bufhidden=wipe
+    setlocal nocursorline
+    setlocal nocursorcolumn
     startinsert
 endf
 command! -count -nargs=* SplitTerm call SplitTerm(<count>, <f-args>)
@@ -438,7 +436,7 @@ fun! Pdb()
     if &filetype ==# 'python'
         call BeginTerm(0, 'python', '-m pdb', expand('%'))
     else
-        echo 'Pdb: [error] invalid file type. this is "' . &filetype. '" file.'
+        echo 'Ipdb: [error] invalid file type. this is "' . &filetype. '" file.'
     endif
 endf
 command! Pdb call Pdb()
