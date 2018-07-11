@@ -93,7 +93,7 @@ fun! SplitTerm(width, ...)
     else
         let l:height = Splitheight()
         let l:height = a:width ? a:width : l:height
-        let l:split = l:height? l:height.'new' : '20new'
+        let l:split = l:height ? l:height.'new' : 'new'
     endif
     exe l:split
     exe 'lcd ' . l:current_dir
@@ -657,7 +657,7 @@ fun! Git(command)
     if a:command ==# 'diff'
         let l:cmd = 'git status -v -v'
     elseif a:command ==# 'routin'
-        let l:cmd = 'git add . && git commit -m "`date`" && git push'
+        let l:cmd = 'git add . && git commit -m "`date`" && git push -u'
     else
         let l:cmd = 'git '.a:command
     endif
