@@ -190,8 +190,7 @@ set ruler
 set number
 set nowrap
 
-set ambiwidth=double
-
+" set ambiwidth=double
 let g:no_buffers_menu=1
 
 set mousemodel=popup
