@@ -12,12 +12,12 @@ fun! ChangeBuffer(direction)
         return
     endif
     exe l:cmd
-    let l:termflag = str2nr(buffer_name('%')[0])
-    if l:termflag
-        set nonumber
-    else
-        set number
-    endif
+    " let l:termflag = str2nr(buffer_name('%')[0])
+    " if l:termflag
+    "     set nonumber
+    " else
+    "     set number
+    " endif
 endf
 command! -nargs=1 ChangeBuffer call ChangeBuffer(<f-args>)
 
@@ -74,7 +74,8 @@ fun! NewTerm(...)
     endif
     exe 'file '.l:bufname
     "" visual settings & start terminal mode
-    set nonumber
+    setlocal nonumber
+    setlocal bufhidden=wipe
     startinsert
 endf
 command! -nargs=* NewTerm call NewTerm(<f-args>)
@@ -113,7 +114,8 @@ fun! SplitTerm(width, ...)
     endif
     exe 'file '.l:bufname
     "" visual settings & start terminal mode
-    set nonumber
+    setlocal nonumber
+    setlocal bufhidden=wipe
     startinsert
 endf
 command! -count -nargs=* SplitTerm call SplitTerm(<count>, <f-args>)
