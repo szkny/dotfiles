@@ -441,7 +441,7 @@ fun! Pdb()
     if &filetype ==# 'python'
         call BeginTerm(0, 'python', '-m pdb', expand('%'))
     else
-        echo 'Ipdb: [error] invalid file type. this is "' . &filetype. '" file.'
+        echo 'Pdb: [error] invalid file type. this is "' . &filetype. '" file.'
     endif
 endf
 command! Pdb call Pdb()
@@ -451,7 +451,7 @@ fun! Ipdb()
     if &filetype ==# 'python'
         call BeginTerm(0, 'python', '-m ipdb', expand('%'))
     else
-        echo 'Pdb: [error] invalid file type. this is "' . &filetype. '" file.'
+        echo 'Ipdb: [error] invalid file type. this is "' . &filetype. '" file.'
     endif
 endf
 command! Ipdb call Ipdb()
