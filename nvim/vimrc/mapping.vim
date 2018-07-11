@@ -85,7 +85,6 @@ nno <silent><leader>cm :CMake<CR>
 nno <silent><leader>cr :CMake run<CR>
 nno <silent><leader>py :Python<CR>
 nno <silent><leader>ip :Ipython<CR>
+nno <silent><leader>pd :Ipdb<CR>
 nno <silent><leader>sq :SQL<CR>
 nno <silent><leader>sp :SQLplot<CR>
-nno <silent><leader>pp :Pyplot<CR>
-nno <silent><leader>gp :Gnuplot<CR>
