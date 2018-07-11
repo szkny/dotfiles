@@ -63,7 +63,7 @@ let g:ale_completion_enabled = 1
 " let g:ale_sign_error = 'Ｘ'
 " let g:ale_sign_warning = '⚠'
 let g:ale_sign_error = 'E-'
-let g:ale_sign_warning = 'w-'
+let g:ale_sign_warning = 'W-'
 let g:ale_set_highlights = 1
 let g:ale_c_clang_executable = 'clang++'
 let g:ale_c_clang_options = '-std=c++11 -Wall'
