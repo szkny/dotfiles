@@ -14,9 +14,9 @@ fun! ChangeBuffer(direction)
     exe l:cmd
     let l:termflag = str2nr(buffer_name('%')[0])
     if l:termflag
-        set nonumber
+        setlocal nonumber
     else
-        set number
+        setlocal number
     endif
 endf
 command! -nargs=1 ChangeBuffer call ChangeBuffer(<f-args>)
