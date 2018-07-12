@@ -388,3 +388,4 @@ augroup END
 " set path+=**
 set runtimepath+=~/.config/nvim
 ru! vimrc/*.vim
+command! Vimrc e ~/dotfiles/nvim

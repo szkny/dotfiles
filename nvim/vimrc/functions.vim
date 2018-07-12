@@ -683,31 +683,13 @@ endf
 fun! Git(command)
     if a:command ==# 'diff'
         let l:cmd = 'git status -v -v'
-    elseif a:command ==# 'routin'
+    elseif a:command ==# 'acp'
         let l:cmd = 'git add . && git commit -m "`date`" && git push -u'
+    elseif a:command ==# 'reset'
+        let l:cmd = 'git reset --hard'
     else
         let l:cmd = 'git '.a:command
     endif
     call BeginTerm(0, l:cmd)
 endf
 command! -nargs=1 Git call Git(<f-args>)
-
-
-fun! VimrcGit(command)
-    let l:dotfiles_dir = $HOME.'/dotfiles'
-    if split(expand('%:p:h'), '/')[:2] == split(l:dotfiles_dir, '/')
-        if a:command ==# 'push'
-            let l:cmd = './gitcommit.sh'
-        elseif a:command ==# 'diff'
-            let l:cmd = 'git status -v -v'
-        else
-            let l:cmd = 'git '.a:command
-        endif
-        let l:cmd = 'cd '.l:dotfiles_dir.' && '.l:cmd
-        call BeginTerm(0, l:cmd)
-    else
-        echo 'VimrcGit: [error] "'.expand('%:t').'" is not under the control of git.'
-    endif
-endf
-command! -nargs=1 VimrcGit call VimrcGit(<f-args>)
-command! Vimrc e ~/dotfiles/nvim
