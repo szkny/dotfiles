@@ -25,6 +25,33 @@ endf
 command! -nargs=1 ChangeBuffer call ChangeBuffer(<f-args>)
 
 
+fun! CloseBufferTab()
+    " バッファタブを閉じる関数
+    if winnr() == 1
+        try
+            let l:buf_number = 0
+            for l:i in range(1, bufnr('$'))
+                if buflisted(l:i) == 1
+                    let l:buf_number += 1
+                endif
+            endfor
+            if l:buf_number == 1
+                exe 'quit'
+            else
+                exe 'bdelete'
+                call win_gotoid(1000)
+            endif
+        catch
+            exe 'bdelete'
+            call win_gotoid(1000)
+        endtry
+    else " split window exist
+        exe 'quit'
+    endif
+endf
+command! -nargs=* CloseBufferTab call CloseBufferTab(<f-args>)
+
+
 fun! BeginTerm(width, ...)
     " 現在のウィンドウサイズに応じてNewTerm()かSplitTerm()を呼び出す関数
     "      :BeginTerm [Command] で任意のシェルコマンドを実行
@@ -126,6 +153,13 @@ fun! SplitTerm(width, ...)
         endfor
     endif
     exe l:cmd2
+    " change buffer name
+    if a:0 == 0
+        let l:bufname = GetNewBufName('bash')
+    elseif a:0 > 0
+        let l:bufname = GetNewBufName(a:1)
+    endif
+    exe 'file '.l:bufname
     " set local settings
     setlocal nonumber
     setlocal buftype=terminal
@@ -164,7 +198,7 @@ fun! Splitheight()
     "      SplitTermで利用している
     let l:min_winheight = 10
     let l:max_winheight = winheight(0)/2
-    " ## count max line length ##
+    " count max line length
     let l:height = winheight(0)-line('$')
     let l:height = l:height>l:min_winheight ? l:height : 0
     let l:height = l:height>l:max_winheight ? l:max_winheight : l:height
@@ -177,7 +211,7 @@ fun! Vsplitwidth()
     "      SplitTermで利用している
     let l:min_winwidth = 80
     let l:max_winwidth = winwidth(0)/2
-    " ## count max line length ##
+    " count max line length
     let l:all_lines = getline(0, '$')
     let l:max_line_len = 0
     for l:line in l:all_lines
@@ -186,7 +220,7 @@ fun! Vsplitwidth()
         endif
     endfor
     let l:max_line_len += 1
-    " ## count line number width ##
+    " count line number width
     let l:linenumwidth = 0
     if &number
         " add line number width
@@ -546,6 +580,7 @@ command! -count SQL call SQL(<count>)
 
 
 fun! SQLplot(width, ...)
+    " sqlplot(自作シェルコマンド) を実行する関数
     if &filetype ==# 'sql' && executable('sqlplot')
         let l:command = 'sqlplot'
         let l:args = ' ' . expand('%')
@@ -556,6 +591,7 @@ command! -count -nargs=* SQLplot call SQLplot(<count>, <f-args>)
 
 
 fun! Pyplot(...)
+    " pyplot(自作シェルコマンド) を実行する関数
     if &filetype ==# 'text' && executable('pyplot')
         if a:0 == 0
             let l:column = ' -u1'
@@ -575,6 +611,7 @@ command! -nargs=* Pyplot call Pyplot(<f-args>)
 
 
 fun! Gnuplot()
+    " gnuplotを実行する関数
     if expand('%:e') ==# 'gp' || expand('%:e') ==# 'gpi'
         let l:command = 'gnuplot'
         let l:args = ' ' . expand('%')
@@ -592,31 +629,8 @@ if executable('pdftotext')
 endif
 
 
-fun! Tex()
-    if expand('%:e') ==# 'tex'
-        let l:command = ':!platex '.expand('%')
-        let l:command .= '>& /dev/null && '
-        let l:dvi = expand('%:r').'.dvi'
-        if findfile(l:dvi,getcwd()) !=# ''
-            let l:command .= 'open -a Skim '
-            exe l:command.dvi
-        endif
-        let l:aux = expand('%:r').'.aux'
-        let l:log = expand('%:r').'.log'
-        if findfile(l:aux,getcwd()) !=# ''
-            call delete(l:aux)
-        endif
-        if findfile(l:log,getcwd()) !=# ''
-            call delete(l:log)
-        endif
-    else
-        echo 'Tex: [error] invalid file type. this is "' . &filetype. '" file.'
-    endif
-endf
-command! Tex call Tex()
-
-
 fun! SetHlsearch()
+    " 検索結果のハイライトのオン/オフ切り替え
     if &hlsearch
         set nohlsearch
     else
@@ -626,6 +640,7 @@ endf
 
 
 fun! GoogleSearchURL(...)
+    " Google検索をするURLを返す関数
     let l:url = '"http://www.google.co.jp/'
     let l:opt = 'search?num=100'
     let l:wrd = ''
@@ -662,6 +677,7 @@ endf
 
 
 fun! Chrome(...)
+    " Google Chrome を開いて引数のキーワードを検索する関数
     let l:cmd = ''
     if has('mac')
         let l:cmd = '!open -a Google\ Chrome '
@@ -675,6 +691,7 @@ command! -nargs=* Chrome call Chrome(<f-args>)
 
 
 fun! W3m(width, ...)
+    " w3mで引数のキーワードを検索する関数
     if executable('w3m')
         let l:url = GoogleSearchURL(a:000)
         call BeginTerm(a:width, 'w3m', '-M', l:url)
@@ -685,33 +702,8 @@ endf
 command! -count -nargs=* W3m call W3m(<count>, <f-args>)
 
 
-fun! CloseBufferTab()
-    if winnr() == 1
-        try
-            let l:buf_number = 0
-            for l:i in range(1, bufnr('$'))
-                if buflisted(l:i) == 1
-                    let l:buf_number += 1
-                endif
-            endfor
-            if l:buf_number == 1
-                exe 'quit'
-            else
-                exe 'bdelete'
-                call win_gotoid(1000)
-            endif
-        catch
-            exe 'bdelete'
-            call win_gotoid(1000)
-        endtry
-    else " split window exist
-        exe 'quit'
-    endif
-endf
-command! -nargs=* CloseBufferTab call CloseBufferTab(<f-args>)
-
-
 fun! GetNow()
+    " 現在時刻を取得する関数
     let l:day = printf('%d', strftime('%d'))
     let l:nday = l:day[len(l:day)-1]
     let l:daytail = 'th'
@@ -738,6 +730,7 @@ endf
 
 
 fun! Git(command)
+    " gitコマンドを実行する関数
     if a:command ==# 'diff'
         let l:cmd = 'git status -v -v'
     elseif a:command ==# 'acp'
