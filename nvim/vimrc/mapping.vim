@@ -13,6 +13,7 @@ tno <C-w> <C-\><C-n><C-w>
 
 " nno <silent>> :bn<CR>
 " nno <silent>< :bp<CR>
+nno <silent><Tab> :ChangeBuffer next<CR>
 nno <silent>> :ChangeBuffer next<CR>
 nno <silent>< :ChangeBuffer previous<CR>
 nno <silent>+ :ResizeWindow +1<CR>
