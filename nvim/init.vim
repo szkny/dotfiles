@@ -1,8 +1,9 @@
 scriptencoding utf-8
 " vim-bootstrap a9ad349
 
-"" To Do
-"" - vim内からpythonのステップ実行 (pdbの利用?)
+" To Do
+"  - vim内からpythonのステップ実行 (pdbの利用)
+"  - マウスでタブの入れ替え
 
 "*****************************************************************************
 "" Vim-PLug core
