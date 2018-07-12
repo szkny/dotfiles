@@ -28,14 +28,14 @@ nno <CR> o<ESC>
 nno x "_x
 vno x "_x
 
-nno <S-h> ^
+nno <S-h> 10h
 nno <S-j> 5j
 nno <S-k> 5k
-nno <S-l> $
-vno <S-h> ^
+nno <S-l> 10l
+vno <S-h> 10h
 vno <S-j> 5j
 vno <S-k> 5k
-vno <S-l> $
+vno <S-l> 10l
 
 ino {<Enter> {}<Left><CR><Up><ESC>$i<Right>
 " ino {<Enter> {}<Left><CR><ESC>O

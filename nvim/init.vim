@@ -239,10 +239,7 @@ if !exists('*s:setupWrapping')
 endif
 
 set background=dark
-" colorscheme solarized
-" colorscheme tender
 colorscheme molokai
-" colorscheme material-theme
 
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
