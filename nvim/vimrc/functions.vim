@@ -731,11 +731,11 @@ endf
 
 fun! Git(command)
     " gitコマンドを実行する関数
-    if a:command ==# 'diff'
+    if a:command ==? 'diff'
         let l:cmd = 'git status -v -v'
-    elseif a:command ==# 'acp'
+    elseif a:command ==? 'acp'
         let l:cmd = 'git add . && git commit -m "`date`" && git push -u'
-    elseif a:command ==# 'reset'
+    elseif a:command ==? 'reset'
         let l:cmd = 'git reset --hard'
     else
         let l:cmd = 'git '.a:command
