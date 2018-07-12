@@ -29,12 +29,12 @@ nno x "_x
 vno x "_x
 
 nno <S-h> 10h
-nno <S-j> 5j
-nno <S-k> 5k
+nno <S-j> 5gj
+nno <S-k> 5gk
 nno <S-l> 10l
 vno <S-h> 10h
-vno <S-j> 5j
-vno <S-k> 5k
+vno <S-j> 5gj
+vno <S-k> 5gk
 vno <S-l> 10l
 
 ino {<Enter> {}<Left><CR><Up><ESC>$i<Right>

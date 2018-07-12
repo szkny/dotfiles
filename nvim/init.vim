@@ -152,7 +152,7 @@ set clipboard+=unnamedplus
 set nobackup
 set noswapfile
 
-"" keyboard timeout
+"" keyboard timeout (msec)
 set ttimeoutlen=1
 
 if exists('$SHELL')
@@ -177,7 +177,8 @@ elseif system('uname') ==# "Linux\n"
 endif
 
 "" etc..
-set whichwrap=b,s,h,l,<,>,[,]
+" set whichwrap=b,s,h,l,<,>,[,]
+set whichwrap=b,s,<,>,[,]
 set mouse=a
 set smartindent
 set wildmenu
