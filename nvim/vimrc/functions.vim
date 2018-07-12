@@ -4,6 +4,8 @@ scriptencoding utf-8
 "*****************************************************************************
 
 fun! ChangeBuffer(direction)
+    "" バッファタブを切り替える関数
+    "" directionにはnextかpreviousを指定する
     if a:direction ==? 'next' || a:direction ==? 'n'
         let l:cmd = 'bnext'
     elseif a:direction ==? 'previous' || a:direction ==? 'p'
@@ -23,6 +25,8 @@ command! -nargs=1 ChangeBuffer call ChangeBuffer(<f-args>)
 
 
 fun! BeginTerm(width, ...)
+    "" 現在のウィンドウサイズに応じてNewTerm()かSplitTerm()を呼び出す関数
+    ""      :BeginTerm [Command] で任意のシェルコマンドを実行
     let l:min_winwidth = 80
     let l:min_winheight = 30
     if a:0 == 0
@@ -52,6 +56,8 @@ command! -count -nargs=* BeginTerm call BeginTerm(<count>, <f-args>)
 
 
 fun! NewTerm(...)
+    "" 新規バッファでターミナルモードを開始する関数
+    ""      :NewTerm [Command] で任意のシェルコマンドを実行
     let l:current_dir = expand('%:p:h')
     if l:current_dir[0] !=# '/'
         let l:current_dir = getcwd()
@@ -83,6 +89,10 @@ command! -nargs=* NewTerm call NewTerm(<f-args>)
 
 
 fun! SplitTerm(width, ...)
+    "" 分割ウィンドウでターミナルモードを開始する関数
+    ""      縦分割か横分割かは現在のファイル内の文字数と
+    ""      ウィンドウサイズとの兼ね合いで決まる
+    ""      :SplitTerm [Command] で任意のシェルコマンドを実行
     let l:current_dir = expand('%:p:h')
     if l:current_dir[0] !=# '/'
         let l:current_dir = getcwd()
@@ -125,6 +135,8 @@ command! -count -nargs=* SplitTerm call SplitTerm(<count>, <f-args>)
 
 
 fun! GetNewBufName(name)
+    "" 新規バッファのバッファ名(例: '1 bash')を決める関数
+    ""      NewTermとSplitTermで利用している
     let l:num = 1
     let l:name = split(a:name,' ')[0]
     let l:name = l:num.' '.l:name
@@ -137,6 +149,8 @@ endf
 
 
 fun! Splitheight()
+    "" 新規分割ウィンドウの高さを決める関数
+    ""      SplitTermで利用している
     let l:min_winheight = 10
     let l:max_winheight = winheight(0)/2
     "" ## count max line length ##
@@ -148,6 +162,8 @@ endf
 
 
 fun! Vsplitwidth()
+    "" 新規分割ウィンドウの幅を決める関数
+    ""      SplitTermで利用している
     let l:min_winwidth = 80
     let l:max_winwidth = winwidth(0)/2
     "" ## count max line length ##
@@ -189,6 +205,12 @@ endf
 
 
 fun! ResizeWindow(size)
+    "" 分割ウィンドウの高さと幅を調節する関数
+    ""      :ResizeWindow + でカレントウィンドウを広くする
+    ""      :ResizeWindow - でカレントウィンドウを狭くする
+    ""      以下のマッピングがおすすめ
+    ""      nno +  :ResizeWindow +<CR>
+    ""      nno -  :ResizeWindow -<CR>
     if a:size ==# ''
         echo '[warning] the args "size" is empty.'
         return
@@ -203,6 +225,7 @@ command! -nargs=1 ResizeWindow call ResizeWindow(<f-args>)
 
 
 fun! Make(width, ...)
+    "" makeコマンドを走らせる関数
     let l:current_dir = expand('%:p:h')
     let l:command = 'make'
     let l:args = ''
@@ -227,6 +250,7 @@ command! -count -nargs=* Make call Make(<count>, <f-args>)
 
 
 fun! CMake(width, ...)
+    "" cmakeコマンドを走らせる関数
     let l:current_dir = expand('%:p:h')
     let l:builddir = 'build'
     let l:cmakelists_txt = 'CMakeLists.txt'
@@ -258,6 +282,8 @@ command! -count -nargs=* CMake call CMake(<count>, <f-args>)
 
 
 fun! GetProjectName(cmakelists_txt)
+    "" CMakeLists.txtからプロジェクト名を取得する関数
+    ""      CMake関数で利用している
     if findfile(a:cmakelists_txt,getcwd()) !=# ''
         let  l:cmakelists_txt = a:cmakelists_txt
     elseif findfile(a:cmakelists_txt,getcwd().'/../') !=# ''
@@ -277,6 +303,9 @@ command! -nargs=+ GetProjectName call GetProjectName(<f-args>)
 
 
 fun! AppendChar(arg)
+    "" 現在のカーソルがある行の末尾に引数の文字を追加する関数
+    ""      C言語等で末尾にセミコロンをつけるときに便利
+    ""      :AppendChar ;
     let l:text = a:arg
     if l:text ==# ''
         let l:text = ';'
@@ -289,6 +318,11 @@ command! -nargs=+ AppendChar call AppendChar(<f-args>)
 
 
 fun! Python(width, ...)
+    "" 現在開いているPythonスクリプトを実行する関数
+    ""      以下のようにスクリプト名は必要ない
+    ""      :Python
+    ""      コマンドライン引数が必要な場合は
+    ""      :Python [引数]
     let l:command = 'python'
     if &filetype ==# 'python'
         let l:args = ' ' . expand('%')
@@ -308,6 +342,7 @@ command! -count -nargs=* Python call Python(<count>, <f-args>)
 
 
 fun! Ipython(width, ...)
+    "" ipythonを起動して現在開いているPythonスクリプトをロードする関数
     if !executable('ipython')
         echo 'Ipython: [error] ipython does not exist.'
         echo '                 isntalling ipython ...'
@@ -335,6 +370,8 @@ command! -count -nargs=* Ipython call Ipython(<count>, <f-args>)
 
 
 fun! InitIpython()
+    "" ipythonの初期化関数
+    ""      Ipython()で利用している
     let l:profile_name = 'neovim'
     let l:ipython_profile_dir = $HOME . '/.ipython/profile_' . l:profile_name
     let l:ipython_startup_dir = l:ipython_profile_dir . '/startup'
@@ -366,6 +403,9 @@ endf
 
 
 fun! PythonMaxLineLength()
+    "" flake8のconfigファイルからpythonスクリプトの文字数上限(max-line-length)を取得する関数
+    ""      以下のようにcolorcolumnを設定することでバッファに文字数の上限ラインが引かれる
+    ""      :set colorcolumn=PythonMaxLineLength()
     let l:flake8_config = $HOME.'/.config/flake8'
     let l:max_line_length = 0
     if findfile(l:flake8_config) !=# ''
@@ -390,6 +430,8 @@ endf
 
 
 fun! Pyform(...)
+    "" autopep8やyapfに利用して編集中のPythonスクリプトを自動整形する関数
+    ""      :Pyform [autopep8(デフォルト) もしくは yapf]
     if &filetype ==# 'python'
         let l:formatter = 'autopep8'
         if a:0 > 0
@@ -434,6 +476,7 @@ command! -nargs=* Pyform call Pyform(<f-args>)
 
 
 fun! Pudb()
+    "" Pudbを起動する関数
     if &filetype ==# 'python'
         if !executable('pudb3')
             echo 'Pudb: [error] pudb3 command not found.'
@@ -454,6 +497,7 @@ command! Pudb call Pudb()
 
 
 fun! Pdb()
+    "" Pdbを起動する関数
     if &filetype ==# 'python'
         call BeginTerm(0, 'python', '-m pdb', expand('%'))
     else
@@ -464,6 +508,7 @@ command! Pdb call Pdb()
 
 
 fun! Ipdb()
+    "" Ipdbを起動する関数
     if &filetype ==# 'python'
         call BeginTerm(0, 'python', '-m ipdb', expand('%'))
     else
@@ -474,6 +519,7 @@ command! Ipdb call Ipdb()
 
 
 fun! SQL(width)
+    "" mysqlを起動する関数
     let l:command = 'mysql'
     if executable(l:command)
         let l:args = ''
