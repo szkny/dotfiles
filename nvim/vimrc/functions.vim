@@ -4,8 +4,8 @@ scriptencoding utf-8
 "*****************************************************************************
 
 fun! ChangeBuffer(direction)
-    "" バッファタブを切り替える関数
-    "" directionにはnextかpreviousを指定する
+    " バッファタブを切り替える関数
+    " directionにはnextかpreviousを指定する
     if a:direction ==? 'next' || a:direction ==? 'n'
         let l:cmd = 'bnext'
     elseif a:direction ==? 'previous' || a:direction ==? 'p'
@@ -25,8 +25,8 @@ command! -nargs=1 ChangeBuffer call ChangeBuffer(<f-args>)
 
 
 fun! BeginTerm(width, ...)
-    "" 現在のウィンドウサイズに応じてNewTerm()かSplitTerm()を呼び出す関数
-    ""      :BeginTerm [Command] で任意のシェルコマンドを実行
+    " 現在のウィンドウサイズに応じてNewTerm()かSplitTerm()を呼び出す関数
+    "      :BeginTerm [Command] で任意のシェルコマンドを実行
     let l:min_winwidth = 80
     let l:min_winheight = 30
     if a:0 == 0
@@ -56,13 +56,13 @@ command! -count -nargs=* BeginTerm call BeginTerm(<count>, <f-args>)
 
 
 fun! NewTerm(...)
-    "" 新規バッファでターミナルモードを開始する関数
-    ""      :NewTerm [Command] で任意のシェルコマンドを実行
+    " 新規バッファでターミナルモードを開始する関数
+    "      :NewTerm [Command] で任意のシェルコマンドを実行
     let l:current_dir = expand('%:p:h')
     if l:current_dir[0] !=# '/'
         let l:current_dir = getcwd()
     endif
-    "" execute command
+    " execute command
     let l:cmd = 'terminal'
     if a:0 > 0
         for l:i in a:000
@@ -72,14 +72,14 @@ fun! NewTerm(...)
     exe 'enew'
     exe 'lcd ' . l:current_dir
     exe l:cmd
-    "" change buffer name
+    " change buffer name
     if a:0 == 0
         let l:bufname = GetNewBufName('bash')
     elseif a:0 > 0
         let l:bufname = GetNewBufName(a:1)
     endif
     exe 'file '.l:bufname
-    "" visual settings & start terminal mode
+    " visual settings & start terminal mode
     setlocal nonumber
     setlocal nocursorline
     setlocal nocursorcolumn
@@ -89,15 +89,15 @@ command! -nargs=* NewTerm call NewTerm(<f-args>)
 
 
 fun! SplitTerm(width, ...)
-    "" 分割ウィンドウでターミナルモードを開始する関数
-    ""      縦分割か横分割かは現在のファイル内の文字数と
-    ""      ウィンドウサイズとの兼ね合いで決まる
-    ""      :SplitTerm [Command] で任意のシェルコマンドを実行
+    " 分割ウィンドウでターミナルモードを開始する関数
+    "      縦分割か横分割かは現在のファイル内の文字数と
+    "      ウィンドウサイズとの兼ね合いで決まる
+    "      :SplitTerm [Command] で任意のシェルコマンドを実行
     let l:current_dir = expand('%:p:h')
     if l:current_dir[0] !=# '/'
         let l:current_dir = getcwd()
     endif
-    "" create split window
+    " create split window
     let l:width = Vsplitwidth()
     if l:width
         let l:width = a:width ? a:width : l:width
@@ -109,7 +109,7 @@ fun! SplitTerm(width, ...)
     endif
     exe l:split
     exe 'lcd ' . l:current_dir
-    "" execute command
+    " execute command
     let l:cmd2 = 'terminal'
     if a:0 > 0
         for l:i in a:000
@@ -117,14 +117,14 @@ fun! SplitTerm(width, ...)
         endfor
     endif
     exe l:cmd2
-    "" change buffer name
+    " change buffer name
     if a:0 == 0
         let l:bufname = GetNewBufName('bash')
     elseif a:0 > 0
         let l:bufname = GetNewBufName(a:1)
     endif
     exe 'file '.l:bufname
-    "" visual settings & start terminal mode
+    " visual settings & start terminal mode
     setlocal nonumber
     setlocal bufhidden=wipe
     setlocal nocursorline
@@ -135,8 +135,8 @@ command! -count -nargs=* SplitTerm call SplitTerm(<count>, <f-args>)
 
 
 fun! GetNewBufName(name)
-    "" 新規バッファのバッファ名(例: '1 bash')を決める関数
-    ""      NewTermとSplitTermで利用している
+    " 新規バッファのバッファ名(例: '1 bash')を決める関数
+    "      NewTermとSplitTermで利用している
     let l:num = 1
     let l:name = split(a:name,' ')[0]
     let l:name = l:num.' '.l:name
@@ -149,11 +149,11 @@ endf
 
 
 fun! Splitheight()
-    "" 新規分割ウィンドウの高さを決める関数
-    ""      SplitTermで利用している
+    " 新規分割ウィンドウの高さを決める関数
+    "      SplitTermで利用している
     let l:min_winheight = 10
     let l:max_winheight = winheight(0)/2
-    "" ## count max line length ##
+    " ## count max line length ##
     let l:height = winheight(0)-line('$')
     let l:height = l:height>l:min_winheight ? l:height : 0
     let l:height = l:height>l:max_winheight ? l:max_winheight : l:height
@@ -162,11 +162,11 @@ endf
 
 
 fun! Vsplitwidth()
-    "" 新規分割ウィンドウの幅を決める関数
-    ""      SplitTermで利用している
+    " 新規分割ウィンドウの幅を決める関数
+    "      SplitTermで利用している
     let l:min_winwidth = 80
     let l:max_winwidth = winwidth(0)/2
-    "" ## count max line length ##
+    " ## count max line length ##
     let l:all_lines = getline(0, '$')
     let l:max_line_len = 0
     for l:line in l:all_lines
@@ -175,10 +175,10 @@ fun! Vsplitwidth()
         endif
     endfor
     let l:max_line_len += 1
-    "" ## count line number width ##
+    " ## count line number width ##
     let l:linenumwidth = 0
     if &number
-        "" add line number width
+        " add line number width
         let l:linenumwidth = 4
         let l:digits = 0
         let l:linenum = line('$')
@@ -190,7 +190,7 @@ fun! Vsplitwidth()
             let l:linenumwidth += l:digits - 3
         endif
     endif
-    "" add ale sign line width
+    " add ale sign line width
     if exists('*airline#extensions#ale#get_error')
         if airline#extensions#ale#get_error() !=# ''
            \|| airline#extensions#ale#get_warning() !=# ''
@@ -205,12 +205,12 @@ endf
 
 
 fun! ResizeWindow(size)
-    "" 分割ウィンドウの高さと幅を調節する関数
-    ""      :ResizeWindow + でカレントウィンドウを広くする
-    ""      :ResizeWindow - でカレントウィンドウを狭くする
-    ""      以下のマッピングがおすすめ
-    ""      nno +  :ResizeWindow +<CR>
-    ""      nno -  :ResizeWindow -<CR>
+    " 分割ウィンドウの高さと幅を調節する関数
+    "      :ResizeWindow + でカレントウィンドウを広くする
+    "      :ResizeWindow - でカレントウィンドウを狭くする
+    "      以下のマッピングがおすすめ
+    "      nno +  :ResizeWindow +<CR>
+    "      nno -  :ResizeWindow -<CR>
     if a:size ==# ''
         echo '[warning] the args "size" is empty.'
         return
@@ -225,7 +225,7 @@ command! -nargs=1 ResizeWindow call ResizeWindow(<f-args>)
 
 
 fun! Make(width, ...)
-    "" makeコマンドを走らせる関数
+    " makeコマンドを走らせる関数
     let l:current_dir = expand('%:p:h')
     let l:command = 'make'
     let l:args = ''
@@ -250,7 +250,7 @@ command! -count -nargs=* Make call Make(<count>, <f-args>)
 
 
 fun! CMake(width, ...)
-    "" cmakeコマンドを走らせる関数
+    " cmakeコマンドを走らせる関数
     let l:current_dir = expand('%:p:h')
     let l:builddir = 'build'
     let l:cmakelists_txt = 'CMakeLists.txt'
@@ -282,8 +282,8 @@ command! -count -nargs=* CMake call CMake(<count>, <f-args>)
 
 
 fun! GetProjectName(cmakelists_txt)
-    "" CMakeLists.txtからプロジェクト名を取得する関数
-    ""      CMake関数で利用している
+    " CMakeLists.txtからプロジェクト名を取得する関数
+    "      CMake関数で利用している
     if findfile(a:cmakelists_txt,getcwd()) !=# ''
         let  l:cmakelists_txt = a:cmakelists_txt
     elseif findfile(a:cmakelists_txt,getcwd().'/../') !=# ''
@@ -303,9 +303,9 @@ command! -nargs=+ GetProjectName call GetProjectName(<f-args>)
 
 
 fun! AppendChar(arg)
-    "" 現在のカーソルがある行の末尾に引数の文字を追加する関数
-    ""      C言語等で末尾にセミコロンをつけるときに便利
-    ""      :AppendChar ;
+    " 現在のカーソルがある行の末尾に引数の文字を追加する関数
+    "      C言語等で末尾にセミコロンをつけるときに便利
+    "      :AppendChar ;
     let l:text = a:arg
     if l:text ==# ''
         let l:text = ';'
@@ -318,11 +318,11 @@ command! -nargs=+ AppendChar call AppendChar(<f-args>)
 
 
 fun! Python(width, ...)
-    "" 現在開いているPythonスクリプトを実行する関数
-    ""      以下のようにスクリプト名は必要ない
-    ""      :Python
-    ""      コマンドライン引数が必要な場合は
-    ""      :Python [引数]
+    " 現在開いているPythonスクリプトを実行する関数
+    "      以下のようにスクリプト名は必要ない
+    "      :Python
+    "      コマンドライン引数が必要な場合は
+    "      :Python [引数]
     let l:command = 'python'
     if &filetype ==# 'python'
         let l:args = ' ' . expand('%')
@@ -342,7 +342,7 @@ command! -count -nargs=* Python call Python(<count>, <f-args>)
 
 
 fun! Ipython(width, ...)
-    "" ipythonを起動して現在開いているPythonスクリプトをロードする関数
+    " ipythonを起動して現在開いているPythonスクリプトをロードする関数
     if !executable('ipython')
         echo 'Ipython: [error] ipython does not exist.'
         echo '                 isntalling ipython ...'
@@ -370,8 +370,8 @@ command! -count -nargs=* Ipython call Ipython(<count>, <f-args>)
 
 
 fun! InitIpython()
-    "" ipythonの初期化関数
-    ""      Ipython()で利用している
+    " ipythonの初期化関数
+    "      Ipython()で利用している
     let l:profile_name = 'neovim'
     let l:ipython_profile_dir = $HOME . '/.ipython/profile_' . l:profile_name
     let l:ipython_startup_dir = l:ipython_profile_dir . '/startup'
@@ -403,9 +403,9 @@ endf
 
 
 fun! PythonMaxLineLength()
-    "" flake8のconfigファイルからpythonスクリプトの文字数上限(max-line-length)を取得する関数
-    ""      以下のようにcolorcolumnを設定することでバッファに文字数の上限ラインが引かれる
-    ""      :set colorcolumn=PythonMaxLineLength()
+    " flake8のconfigファイルからpythonスクリプトの文字数上限(max-line-length)を取得する関数
+    "      以下のようにcolorcolumnを設定することでバッファに文字数の上限ラインが引かれる
+    "      :set colorcolumn=PythonMaxLineLength()
     let l:flake8_config = $HOME.'/.config/flake8'
     let l:max_line_length = 0
     if findfile(l:flake8_config) !=# ''
@@ -430,8 +430,8 @@ endf
 
 
 fun! Pyform(...)
-    "" autopep8やyapfに利用して編集中のPythonスクリプトを自動整形する関数
-    ""      :Pyform [autopep8(デフォルト) もしくは yapf]
+    " autopep8やyapfに利用して編集中のPythonスクリプトを自動整形する関数
+    "      :Pyform [autopep8(デフォルト) もしくは yapf]
     if &filetype ==# 'python'
         let l:formatter = 'autopep8'
         if a:0 > 0
@@ -476,7 +476,7 @@ command! -nargs=* Pyform call Pyform(<f-args>)
 
 
 fun! Pudb()
-    "" Pudbを起動する関数
+    " Pudbを起動する関数
     if &filetype ==# 'python'
         if !executable('pudb3')
             echo 'Pudb: [error] pudb3 command not found.'
@@ -497,7 +497,7 @@ command! Pudb call Pudb()
 
 
 fun! Pdb()
-    "" Pdbを起動する関数
+    " Pdbを起動する関数
     if &filetype ==# 'python'
         call BeginTerm(0, 'python', '-m pdb', expand('%'))
     else
@@ -508,7 +508,7 @@ command! Pdb call Pdb()
 
 
 fun! Ipdb()
-    "" Ipdbを起動する関数
+    " Ipdbを起動する関数
     if &filetype ==# 'python'
         call BeginTerm(0, 'python', '-m ipdb', expand('%'))
     else
@@ -519,7 +519,7 @@ command! Ipdb call Ipdb()
 
 
 fun! SQL(width)
-    "" mysqlを起動する関数
+    " mysqlを起動する関数
     let l:command = 'mysql'
     if executable(l:command)
         let l:args = ''
@@ -621,10 +621,10 @@ fun! GoogleSearchURL(...)
     if a:0 >= 1
         if a:0 == 1
             if type(a:1) == 1
-                "" case of a:1 == string
+                " case of a:1 == string
                 let l:wrd = a:1
             elseif type(a:1) == 3
-                "" case of a:1 == list
+                " case of a:1 == list
                 for l:i in a:1
                     if l:i == a:1[0]
                         let l:wrd = l:i
