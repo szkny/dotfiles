@@ -348,7 +348,7 @@ command! -nargs=+ GetProjectName call GetProjectName(<f-args>)
 
 
 fun! AppendChar(arg)
-    " 現在のカーソルがある行の末尾に引数の文字を追加する関数
+    " カーソルがある行の末尾に引数の文字を追加する関数
     "      C言語等で末尾にセミコロンをつけるときに便利
     "      :AppendChar ;
     let l:text = a:arg
@@ -363,7 +363,7 @@ command! -nargs=+ AppendChar call AppendChar(<f-args>)
 
 
 fun! Python(width, ...)
-    " 現在開いているPythonスクリプトを実行する関数
+    " 開いているPythonスクリプトを実行する関数
     "      以下のようにスクリプト名は必要ない
     "      :Python
     "      コマンドライン引数が必要な場合は
@@ -387,7 +387,7 @@ command! -count -nargs=* Python call Python(<count>, <f-args>)
 
 
 fun! Ipython(width, ...)
-    " ipythonを起動して現在開いているPythonスクリプトをロードする関数
+    " ipythonを起動して開いているPythonスクリプトをロードする関数
     if !executable('ipython')
         echo 'Ipython: [error] ipython does not exist.'
         echo '                 isntalling ipython ...'
