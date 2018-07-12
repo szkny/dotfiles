@@ -341,9 +341,25 @@ fun! InitIpython()
     if finddir(l:ipython_startup_dir) ==# ''
         call mkdir(l:ipython_startup_dir, 'p')
     endif
-    let l:modulename = expand('%:t:r')
-    let l:ipython_init_command = ['from ' . l:modulename . ' import *']
     let l:ipython_startup_file = l:ipython_startup_dir . '/startup.py'
+    if expand('%:t:e') !=# ''
+        let l:modulename = expand('%:t:r')
+        let l:ipython_init_command = ['from ' . l:modulename . ' import *']
+    else
+        let l:ipython_init_command = getline('0','$')
+        let l:main_flag = 0
+        let l:operator = 0
+        for l:line in l:ipython_init_command
+            if l:line ==# 'if __name__ == ''__main__'':'
+                let l:main_flag = 1
+            endif
+            if l:main_flag
+                unlet l:ipython_init_command[l:operator]
+            else
+                let l:operator += 1
+            endif
+        endfor
+    endif
     call writefile(l:ipython_init_command, l:ipython_startup_file)
     return l:profile_name
 endf
