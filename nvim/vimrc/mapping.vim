@@ -78,7 +78,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable()?
 
 "" mapping for My Commands
 nno <silent>?          :call SetHlsearch()<CR>
-nno <silent>t          :BeginTerm<CR>
+nno <silent>t          :SplitTerm<CR>
 nno <silent><leader>ma :Make<CR>
 nno <silent><leader>mr :Make build run<CR>
 nno <silent><leader>cm :CMake<CR>

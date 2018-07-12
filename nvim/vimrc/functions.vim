@@ -3,48 +3,6 @@ scriptencoding utf-8
 "" My-Functions
 "*****************************************************************************
 
-function! s:InitWindow() abort
-    " Buffer-local options
-    setlocal filetype=tagbar
-    setlocal noreadonly " in case the "view" mode is used
-    setlocal buftype=nofile
-    setlocal bufhidden=hide
-    setlocal noswapfile
-    setlocal nobuflisted
-    setlocal nomodifiable
-    setlocal textwidth=0
-    " Window-local options
-    setlocal nolist
-    setlocal nowrap
-    setlocal winfixwidth
-    setlocal nospell
-    if g:tagbar_show_linenumbers == 0
-        setlocal nonumber
-        if exists('+relativenumber')
-            setlocal norelativenumber
-        endif
-    elseif g:tagbar_show_linenumbers == 1
-        setlocal number
-    elseif g:tagbar_show_linenumbers == 2
-        setlocal relativenumber
-    else
-        set number<
-        if exists('+relativenumber')
-            set relativenumber<
-        endif
-    endif
-    setlocal nofoldenable
-    setlocal foldcolumn=0
-    " Reset fold settings in case a plugin set them globally to something
-    " expensive. Apparently 'foldexpr' gets executed even if 'foldenable' is
-    " off, and then for every appended line (like with :put).
-    setlocal foldmethod&
-    setlocal foldexpr&
-    let l:cpoptions_save = &cpoptions
-    set cpoptions&vim
-    let &cpoptions = l:cpoptions_save
-endfunction
-
 
 fun! ChangeBuffer(direction)
     " バッファタブを切り替える関数
@@ -70,11 +28,11 @@ command! -nargs=1 ChangeBuffer call ChangeBuffer(<f-args>)
 fun! BeginTerm(width, ...)
     " 現在のウィンドウサイズに応じてNewTerm()かSplitTerm()を呼び出す関数
     "      :BeginTerm [Command] で任意のシェルコマンドを実行
-    let l:min_winwidth = 80
-    let l:min_winheight = 30
+    let l:min_winwidth = 50
+    let l:min_winheight = 20
     if a:0 == 0
         if winwidth(0) >= l:min_winwidth
-           \ || winheight(0) >= l:min_winheight
+           \ && winheight(0) >= l:min_winheight
             call SplitTerm(a:width)
         else
             call NewTerm()
@@ -122,10 +80,18 @@ fun! NewTerm(...)
         let l:bufname = GetNewBufName(a:1)
     endif
     exe 'file '.l:bufname
-    " visual settings & start terminal mode
+    " set local settings
     setlocal nonumber
+    setlocal buftype=terminal
     setlocal nocursorline
     setlocal nocursorcolumn
+    setlocal winfixwidth
+    setlocal noswapfile
+    setlocal nomodifiable
+    setlocal nolist
+    setlocal nowrap
+    setlocal nospell
+    " start terminal mode
     startinsert
 endf
 command! -nargs=* NewTerm call NewTerm(<f-args>)
@@ -160,18 +126,20 @@ fun! SplitTerm(width, ...)
         endfor
     endif
     exe l:cmd2
-    " change buffer name
-    if a:0 == 0
-        let l:bufname = GetNewBufName('bash')
-    elseif a:0 > 0
-        let l:bufname = GetNewBufName(a:1)
-    endif
-    exe 'file '.l:bufname
-    " visual settings & start terminal mode
+    " set local settings
     setlocal nonumber
-    setlocal bufhidden=wipe
+    setlocal buftype=terminal
+    setlocal bufhidden=wipe " windowが閉じられた時にバッファを消去
+    setlocal nobuflisted    " バッファリストに追加しない
     setlocal nocursorline
     setlocal nocursorcolumn
+    setlocal winfixwidth
+    setlocal noswapfile
+    setlocal nomodifiable
+    setlocal nolist
+    setlocal nowrap
+    setlocal nospell
+    " start terminal mode
     startinsert
 endf
 command! -count -nargs=* SplitTerm call SplitTerm(<count>, <f-args>)
