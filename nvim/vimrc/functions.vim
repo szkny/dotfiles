@@ -737,6 +737,8 @@ fun! Git(command)
         let l:cmd = 'git add . && git commit -m "`date`" && git push -u'
     elseif a:command ==? 'reset'
         let l:cmd = 'git reset --hard'
+    elseif a:command ==? 'fpull'
+        let l:cmd = 'git reset --hard && git pull'
     else
         let l:cmd = 'git '.a:command
     endif
