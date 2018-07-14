@@ -11,7 +11,7 @@ fun! s:ChangeBuffer(direction) abort
     elseif a:direction ==? 'previous' || a:direction ==? 'p'
         let l:cmd = 'bprevious'
     else
-        return
+        let l:cmd = 'b'.a:direction
     endif
     exe l:cmd
     let l:termflag = str2nr(buffer_name('%')[0])
