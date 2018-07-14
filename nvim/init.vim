@@ -32,6 +32,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
+Plug 'kassio/neoterm'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'w0rp/ale'
 Plug 'ryanoasis/vim-devicons'
@@ -178,8 +179,7 @@ elseif system('uname') ==# "Linux\n"
 endif
 
 "" etc..
-" set whichwrap=b,s,h,l,<,>,[,]
-set whichwrap=b,s,<,>,[,]
+set whichwrap=b,s,h,l,<,>,[,]
 set mouse=a
 set smartindent
 set wildmenu

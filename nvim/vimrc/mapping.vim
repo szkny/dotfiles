@@ -66,7 +66,7 @@ else
     vno <silent>\     :TComment<CR>
 endif
 nno <silent><C-f> :Files<CR>
-nno <silent><C-h> :Ranger<CR>
+nno <silent><C-h> :Ranger<CR><C-\><C-n>:file ranger<CR>i
 nno <silent><C-n> :NERDTreeToggle<CR>
 nno <silent><C-t> :TagbarToggle<CR>
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
@@ -77,14 +77,14 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable()?
                  \"\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 "" mapping for My Commands
-nno <silent>?          :call SetHlsearch()<CR>
-nno <silent>t          :SplitTerm<CR>
-nno <silent><leader>ma :Make<CR>
-nno <silent><leader>mr :Make build run<CR>
-nno <silent><leader>cm :CMake<CR>
-nno <silent><leader>cr :CMake run<CR>
-nno <silent><leader>py :Python<CR>
-nno <silent><leader>ip :Ipython<CR>
-nno <silent><leader>pd :Ipdb<CR>
-nno <silent><leader>sq :SQL<CR>
-nno <silent><leader>sp :SQLplot<CR>
+nno <silent>?  :call SetHlsearch()<CR>
+nno <silent>t  :SplitTerm<CR>
+nno <leader>ma :Make<CR>
+nno <leader>mr :Make build run<CR>
+nno <leader>cm :CMake<CR>
+nno <leader>cr :CMake run<CR>
+nno <leader>py :Python<CR>
+nno <leader>ip :Ipython<CR>
+nno <leader>pd :Ipdb<CR>
+nno <leader>sq :SQL<CR>
+nno <leader>sp :SQLplot<CR>

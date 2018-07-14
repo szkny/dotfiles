@@ -4,7 +4,7 @@ scriptencoding utf-8
 "*****************************************************************************
 
 
-fun! ChangeBuffer(direction)
+fun! s:ChangeBuffer(direction)
     " バッファタブを切り替える関数
     " directionにはnextかpreviousを指定する
     if a:direction ==? 'next' || a:direction ==? 'n'
@@ -22,10 +22,10 @@ fun! ChangeBuffer(direction)
         setlocal number
     endif
 endf
-command! -nargs=1 ChangeBuffer call ChangeBuffer(<f-args>)
+command! -nargs=1 ChangeBuffer call s:ChangeBuffer(<f-args>)
 
 
-fun! CloseBufferTab()
+fun! s:CloseBufferTab()
     " バッファタブを閉じる関数
     if winnr() == 1
         try
@@ -42,13 +42,13 @@ fun! CloseBufferTab()
                 call win_gotoid(1000)
             endif
         catch
-            echoerr '"'.expand('%:t').'" に加えた変更が保存されていません。'
+            echo 'CloseBufferTab: [error] "'.expand('%:t').'" を閉じることができません。'
         endtry
     else " split window exist
         exe 'quit'
     endif
 endf
-command! -nargs=* CloseBufferTab call CloseBufferTab(<f-args>)
+command! -nargs=* CloseBufferTab call s:CloseBufferTab(<f-args>)
 
 
 fun! BeginTerm(width, ...)
@@ -82,6 +82,12 @@ endf
 command! -count -nargs=* BeginTerm call BeginTerm(<count>, <f-args>)
 
 
+fun! Ranger()
+    call OpenRanger()
+    exe 'file '.s:GetNewBufName('ranger')
+endf
+
+
 fun! NewTerm(...)
     " 新規バッファでターミナルモードを開始する関数
     "      :NewTerm [Command] で任意のシェルコマンドを実行
@@ -101,9 +107,9 @@ fun! NewTerm(...)
     exe l:cmd
     " change buffer name
     if a:0 == 0
-        let l:bufname = GetNewBufName('bash')
+        let l:bufname = s:GetNewBufName('bash')
     elseif a:0 > 0
-        let l:bufname = GetNewBufName(a:1)
+        let l:bufname = s:GetNewBufName(a:1)
     endif
     exe 'file '.l:bufname
     " set local settings
@@ -154,9 +160,9 @@ fun! SplitTerm(width, ...)
     exe l:cmd2
     " change buffer name
     if a:0 == 0
-        let l:bufname = GetNewBufName('bash')
+        let l:bufname = s:GetNewBufName('bash')
     elseif a:0 > 0
-        let l:bufname = GetNewBufName(a:1)
+        let l:bufname = s:GetNewBufName(a:1)
     endif
     exe 'file '.l:bufname
     " set local settings
@@ -178,7 +184,7 @@ endf
 command! -count -nargs=* SplitTerm call SplitTerm(<count>, <f-args>)
 
 
-fun! GetNewBufName(name)
+fun! s:GetNewBufName(name)
     " 新規バッファのバッファ名(例: '1 bash')を決める関数
     "      NewTermとSplitTermで利用している
     let l:num = 1
