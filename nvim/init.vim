@@ -265,10 +265,10 @@ set fillchars+=vert:\
 " hi CursorLine gui=underline
 " hi CursorLine guibg=#0c1820
 " hi CursorColumn guibg=#0c1820
-hi clear Cursor
-hi Cursor gui=reverse
-hi clear Visual
-hi Visual gui=reverse
+" hi clear Cursor
+" hi Cursor gui=reverse
+" hi clear Visual
+" hi Visual gui=reverse
 
 "*****************************************************************************
 "" Abbreviations
@@ -369,8 +369,7 @@ augroup vimrc_python
     au FileType python setlocal expandtab shiftwidth=4 tabstop=8
                 \ formatoptions+=croq softtabstop=4
                 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-                \|let &colorcolumn=PythonMaxLineLength()
-                " \|let &colorcolumn=join(range(PythonMaxLineLength(), 300), ',')
+                \|let &colorcolumn=join(range(PythonMaxLineLength(), 300), ',')
                 \|hi  ColorColumn guibg=#0f0f0f
                 \|nno <silent> <leader>a :call jedi#goto_assignments()<CR>
                 \|nno <silent> <leader>d :call jedi#goto_definitions()<CR>
