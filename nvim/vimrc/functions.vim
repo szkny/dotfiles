@@ -4,7 +4,7 @@ scriptencoding utf-8
 "*****************************************************************************
 
 
-fun! s:ChangeBuffer(direction)
+fun! s:ChangeBuffer(direction) abort
     " バッファタブを切り替える関数
     " directionにはnextかpreviousを指定する
     if a:direction ==? 'next' || a:direction ==? 'n'
@@ -25,7 +25,7 @@ endf
 command! -nargs=1 ChangeBuffer call s:ChangeBuffer(<f-args>)
 
 
-fun! s:CloseBufferTab()
+fun! s:CloseBufferTab() abort
     " バッファタブを閉じる関数
     if winnr() == 1
         try
@@ -51,7 +51,7 @@ endf
 command! -nargs=* CloseBufferTab call s:CloseBufferTab(<f-args>)
 
 
-fun! BeginTerm(width, ...)
+fun! BeginTerm(width, ...) abort
     " 現在のウィンドウサイズに応じてNewTerm()かSplitTerm()を呼び出す関数
     "      :BeginTerm [Command] で任意のシェルコマンドを実行
     let l:min_winwidth = 50
@@ -82,13 +82,13 @@ endf
 command! -count -nargs=* BeginTerm call BeginTerm(<count>, <f-args>)
 
 
-fun! Ranger()
+fun! Ranger() abort
     call OpenRanger()
     exe 'file '.s:GetNewBufName('ranger')
 endf
 
 
-fun! NewTerm(...)
+fun! NewTerm(...) abort
     " 新規バッファでターミナルモードを開始する関数
     "      :NewTerm [Command] で任意のシェルコマンドを実行
     let l:current_dir = expand('%:p:h')
@@ -129,7 +129,7 @@ endf
 command! -nargs=* NewTerm call NewTerm(<f-args>)
 
 
-fun! SplitTerm(width, ...)
+fun! SplitTerm(width, ...) abort
     " 分割ウィンドウでターミナルモードを開始する関数
     "      縦分割か横分割かは現在のファイル内の文字数と
     "      ウィンドウサイズとの兼ね合いで決まる
@@ -139,12 +139,12 @@ fun! SplitTerm(width, ...)
         let l:current_dir = getcwd()
     endif
     " create split window
-    let l:width = Vsplitwidth()
+    let l:width = s:Vsplitwidth()
     if l:width
         let l:width = a:width ? a:width : l:width
         let l:split = l:width.'vnew'
     else
-        let l:height = Splitheight()
+        let l:height = s:Splitheight()
         let l:height = a:width ? a:width : l:height
         let l:split = l:height ? l:height.'new' : 'new'
     endif
@@ -184,7 +184,7 @@ endf
 command! -count -nargs=* SplitTerm call SplitTerm(<count>, <f-args>)
 
 
-fun! s:GetNewBufName(name)
+fun! s:GetNewBufName(name) abort
     " 新規バッファのバッファ名(例: '1 bash')を決める関数
     "      NewTermとSplitTermで利用している
     let l:num = 1
@@ -198,7 +198,7 @@ fun! s:GetNewBufName(name)
 endf
 
 
-fun! Splitheight()
+fun! s:Splitheight() abort
     " 新規分割ウィンドウの高さを決める関数
     "      SplitTermで利用している
     let l:min_winheight = 10
@@ -211,7 +211,7 @@ fun! Splitheight()
 endf
 
 
-fun! Vsplitwidth()
+fun! s:Vsplitwidth() abort
     " 新規分割ウィンドウの幅を決める関数
     "      SplitTermで利用している
     let l:min_winwidth = 80
@@ -254,7 +254,7 @@ fun! Vsplitwidth()
 endf
 
 
-fun! ResizeWindow(size)
+fun! ResizeWindow(size) abort
     " 分割ウィンドウの高さと幅を調節する関数
     "      :ResizeWindow + でカレントウィンドウを広くする
     "      :ResizeWindow - でカレントウィンドウを狭くする
@@ -274,7 +274,7 @@ endf
 command! -nargs=1 ResizeWindow call ResizeWindow(<f-args>)
 
 
-fun! Make(width, ...)
+fun! Make(width, ...) abort
     " makeコマンドを走らせる関数
     let l:current_dir = expand('%:p:h')
     let l:command = 'make'
@@ -299,7 +299,7 @@ endf
 command! -count -nargs=* Make call Make(<count>, <f-args>)
 
 
-fun! CMake(width, ...)
+fun! CMake(width, ...) abort
     " cmakeコマンドを走らせる関数
     let l:current_dir = expand('%:p:h')
     let l:builddir = 'build'
@@ -331,7 +331,7 @@ endf
 command! -count -nargs=* CMake call CMake(<count>, <f-args>)
 
 
-fun! GetProjectName(cmakelists_txt)
+fun! GetProjectName(cmakelists_txt) abort
     " CMakeLists.txtからプロジェクト名を取得する関数
     "      CMake関数で利用している
     if findfile(a:cmakelists_txt,getcwd()) !=# ''
@@ -352,7 +352,7 @@ endf
 command! -nargs=+ GetProjectName call GetProjectName(<f-args>)
 
 
-fun! AppendChar(arg)
+fun! AppendChar(arg) abort
     " カーソルがある行の末尾に引数の文字を追加する関数
     "      C言語等で末尾にセミコロンをつけるときに便利
     "      :AppendChar ;
@@ -367,7 +367,7 @@ endf
 command! -nargs=+ AppendChar call AppendChar(<f-args>)
 
 
-fun! Python(width, ...)
+fun! Python(width, ...) abort
     " 開いているPythonスクリプトを実行する関数
     "      以下のようにスクリプト名は必要ない
     "      :Python
@@ -391,7 +391,7 @@ endf
 command! -count -nargs=* Python call Python(<count>, <f-args>)
 
 
-fun! Ipython(width, ...)
+fun! Ipython(width, ...) abort
     " ipythonを起動して開いているPythonスクリプトをロードする関数
     if !executable('ipython')
         echo 'Ipython: [error] ipython does not exist.'
@@ -419,7 +419,7 @@ endf
 command! -count -nargs=* Ipython call Ipython(<count>, <f-args>)
 
 
-fun! InitIpython()
+fun! InitIpython() abort
     " ipythonの初期化関数
     "      Ipython()で利用している
     let l:profile_name = 'neovim'
@@ -452,7 +452,7 @@ fun! InitIpython()
 endf
 
 
-fun! PythonMaxLineLength()
+fun! PythonMaxLineLength() abort
     " flake8のconfigファイルからpythonスクリプトの文字数上限(max-line-length)を取得する関数
     "      以下のようにcolorcolumnを設定することでバッファに文字数の上限ラインが引かれる
     "      :set colorcolumn=PythonMaxLineLength()
@@ -479,7 +479,7 @@ fun! PythonMaxLineLength()
 endf
 
 
-fun! Pyform(...)
+fun! Pyform(...) abort
     " autopep8やyapfに利用して編集中のPythonスクリプトを自動整形する関数
     "      :Pyform [autopep8(デフォルト) もしくは yapf]
     if &filetype ==# 'python'
@@ -525,7 +525,7 @@ endf
 command! -nargs=* Pyform call Pyform(<f-args>)
 
 
-fun! Pudb()
+fun! Pudb() abort
     " Pudbを起動する関数
     if &filetype ==# 'python'
         if !executable('pudb3')
@@ -546,7 +546,7 @@ endf
 command! Pudb call Pudb()
 
 
-fun! Pdb()
+fun! Pdb() abort
     " Pdbを起動する関数
     if &filetype ==# 'python'
         call BeginTerm(0, 'python', '-m pdb', expand('%'))
@@ -557,7 +557,7 @@ endf
 command! Pdb call Pdb()
 
 
-fun! Ipdb()
+fun! Ipdb() abort
     " Ipdbを起動する関数
     if &filetype ==# 'python'
         call BeginTerm(0, 'python', '-m ipdb', expand('%'))
@@ -568,7 +568,7 @@ endf
 command! Ipdb call Ipdb()
 
 
-fun! SQL(width)
+fun! SQL(width) abort
     " mysqlを起動する関数
     let l:command = 'mysql'
     if executable(l:command)
@@ -584,7 +584,7 @@ endf
 command! -count SQL call SQL(<count>)
 
 
-fun! SQLplot(width, ...)
+fun! SQLplot(width, ...) abort
     " sqlplot(自作シェルコマンド) を実行する関数
     if &filetype ==# 'sql' && executable('sqlplot')
         let l:command = 'sqlplot'
@@ -595,7 +595,7 @@ endf
 command! -count -nargs=* SQLplot call SQLplot(<count>, <f-args>)
 
 
-fun! Pyplot(...)
+fun! Pyplot(...) abort
     " pyplot(自作シェルコマンド) を実行する関数
     if &filetype ==# 'text' && executable('pyplot')
         if a:0 == 0
@@ -615,7 +615,7 @@ endf
 command! -nargs=* Pyplot call Pyplot(<f-args>)
 
 
-fun! Gnuplot()
+fun! Gnuplot() abort
     " gnuplotを実行する関数
     if expand('%:e') ==# 'gp' || expand('%:e') ==# 'gpi'
         let l:command = 'gnuplot'
@@ -634,7 +634,7 @@ if executable('pdftotext')
 endif
 
 
-fun! SetHlsearch()
+fun! SetHlsearch() abort
     " 検索結果のハイライトのオン/オフ切り替え
     if &hlsearch
         set nohlsearch
@@ -644,7 +644,7 @@ fun! SetHlsearch()
 endf
 
 
-fun! GoogleSearchURL(...)
+fun! GoogleSearchURL(...) abort
     " Google検索をするURLを返す関数
     let l:url = '"http://www.google.co.jp/'
     let l:opt = 'search?num=100'
@@ -681,7 +681,7 @@ fun! GoogleSearchURL(...)
 endf
 
 
-fun! Chrome(...)
+fun! Chrome(...) abort
     " Google Chrome を開いて引数のキーワードを検索する関数
     let l:cmd = ''
     if has('mac')
@@ -695,7 +695,7 @@ endf
 command! -nargs=* Chrome call Chrome(<f-args>)
 
 
-fun! W3m(width, ...)
+fun! W3m(width, ...) abort
     " w3mで引数のキーワードを検索する関数
     if executable('w3m')
         let l:url = GoogleSearchURL(a:000)
@@ -707,7 +707,7 @@ endf
 command! -count -nargs=* W3m call W3m(<count>, <f-args>)
 
 
-fun! GetNow()
+fun! GetNow() abort
     " 現在時刻を取得する関数
     let l:day = printf('%d', strftime('%d'))
     let l:nday = l:day[len(l:day)-1]
@@ -734,7 +734,7 @@ fun! GetNow()
 endf
 
 
-fun! Git(command)
+fun! Git(command) abort
     " gitコマンドを実行する関数
     if a:command ==? 'diff'
         let l:cmd = 'git status -v -v'
