@@ -42,8 +42,7 @@ fun! CloseBufferTab()
                 call win_gotoid(1000)
             endif
         catch
-            exe 'bdelete'
-            call win_gotoid(1000)
+            echoerr '"'.expand('%:t').'" に加えた変更が保存されていません。'
         endtry
     else " split window exist
         exe 'quit'
