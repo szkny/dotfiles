@@ -66,7 +66,7 @@ else
     vno <silent>\     :TComment<CR>
 endif
 nno <silent><C-f> :Files<CR>
-nno <silent><C-h> :Ranger<CR><C-\><C-n>:file ranger<CR>i
+nno <silent><C-h> :call Ranger()<CR>
 nno <silent><C-n> :NERDTreeToggle<CR>
 nno <silent><C-t> :TagbarToggle<CR>
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.

@@ -3,7 +3,6 @@ scriptencoding utf-8
 "" My-Functions
 "*****************************************************************************
 
-
 fun! s:ChangeBuffer(direction) abort
     " バッファタブを切り替える関数
     " directionにはnextかpreviousを指定する
