@@ -47,7 +47,7 @@ fun! s:CloseBufferTab() abort
         exe 'quit'
     endif
 endf
-command! -nargs=* CloseBufferTab call s:CloseBufferTab(<f-args>)
+command! CloseBufferTab call s:CloseBufferTab()
 
 
 fun! BeginTerm(width, ...) abort
@@ -78,7 +78,7 @@ fun! BeginTerm(width, ...) abort
         endif
     endif
 endf
-command! -count -nargs=* BeginTerm call BeginTerm(<count>, <f-args>)
+command! -count -complete=shellcmd -nargs=* BeginTerm call BeginTerm(<count>, <f-args>)
 
 
 fun! Ranger() abort
@@ -125,7 +125,7 @@ fun! NewTerm(...) abort
     " start terminal mode
     startinsert
 endf
-command! -nargs=* NewTerm call NewTerm(<f-args>)
+command! -complete=shellcmd -nargs=* NewTerm call NewTerm(<f-args>)
 
 
 fun! SplitTerm(width, ...) abort
@@ -180,7 +180,7 @@ fun! SplitTerm(width, ...) abort
     " start terminal mode
     startinsert
 endf
-command! -count -nargs=* SplitTerm call SplitTerm(<count>, <f-args>)
+command! -count -complete=shellcmd -nargs=* SplitTerm call SplitTerm(<count>, <f-args>)
 
 
 fun! s:GetNewBufName(name) abort
@@ -348,7 +348,7 @@ fun! GetProjectName(cmakelists_txt) abort
         endif
     endfor
 endf
-command! -nargs=+ GetProjectName call GetProjectName(<f-args>)
+command! -nargs=1 GetProjectName call GetProjectName(<f-args>)
 
 
 fun! AppendChar(arg) abort
@@ -387,10 +387,10 @@ fun! Python(width, ...) abort
         call BeginTerm(a:width, l:command)
     endif
 endf
-command! -count -nargs=* Python call Python(<count>, <f-args>)
+command! -count -complete=file -nargs=* Python call Python(<count>, <f-args>)
 
 
-fun! Ipython(width, ...) abort
+fun! Ipython(width) abort
     " ipythonを起動して開いているPythonスクリプトをロードする関数
     if !executable('ipython')
         echo 'Ipython: [error] ipython does not exist.'
@@ -415,7 +415,7 @@ fun! Ipython(width, ...) abort
     endif
     call BeginTerm(a:width, l:command, l:args)
 endf
-command! -count -nargs=* Ipython call Ipython(<count>, <f-args>)
+command! -count Ipython call Ipython(<count>)
 
 
 fun! InitIpython() abort
@@ -521,7 +521,10 @@ fun! Pyform(...) abort
         echo 'Pyform: [error] invalid file type. this is "' . &filetype. '" file.'
     endif
 endf
-command! -nargs=* Pyform call Pyform(<f-args>)
+fun! CompletionPyformCommands(ArgLead, CmdLine, CusorPos)
+    return filter(['autopep8', 'yapf'], printf('v:val =~ "^%s"', a:ArgLead))
+endf
+command! -complete=customlist,CompletionPyformCommands -nargs=* Pyform call Pyform(<f-args>)
 
 
 fun! Pudb() abort
@@ -733,19 +736,26 @@ fun! GetNow() abort
 endf
 
 
-fun! Git(command) abort
+fun! Git(...) abort
     " gitコマンドを実行する関数
-    if a:command ==? 'diff'
+    if a:1 ==? 'diff'
         let l:cmd = 'git status -v -v'
-    elseif a:command ==? 'acp'
+    elseif a:1 ==? 'acp'
         let l:cmd = 'git add . && git commit -m "`date`" && git push -u'
-    elseif a:command ==? 'reset'
+    elseif a:1 ==? 'reset'
         let l:cmd = 'git reset --hard'
-    elseif a:command ==? 'fpull'
+    elseif a:1 ==? 'fpull'
         let l:cmd = 'git reset --hard && git pull'
     else
-        let l:cmd = 'git '.a:command
+        let l:args = ''
+        for l:i in a:000
+            let l:args .= ' '.l:i
+        endfor
+        let l:cmd = 'git'.l:args
     endif
     call BeginTerm(0, l:cmd)
 endf
-command! -nargs=1 Git call Git(<f-args>)
+fun! CompletionGitCommands(ArgLead, CmdLine, CusorPos)
+    return filter(['acp','fpull',  'diff', 'reset', 'status'], printf('v:val =~ "^%s"', a:ArgLead))
+endf
+command! -complete=customlist,CompletionGitCommands -nargs=* Git call Git(<f-args>)
