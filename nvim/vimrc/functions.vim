@@ -524,7 +524,7 @@ endf
 fun! CompletionPyformCommands(ArgLead, CmdLine, CusorPos)
     return filter(['autopep8', 'yapf'], printf('v:val =~ "^%s"', a:ArgLead))
 endf
-command! -complete=customlist,CompletionPyformCommands -nargs=* Pyform call Pyform(<f-args>)
+command! -complete=customlist,CompletionPyformCommands -nargs=? Pyform call Pyform(<f-args>)
 
 
 fun! Pudb() abort
