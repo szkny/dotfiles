@@ -373,6 +373,8 @@ augroup vimrc_python
                 \|hi  ColorColumn guibg=#0f0f0f
                 \|nno <silent> <leader>a :call jedi#goto_assignments()<CR>
                 \|nno <silent> <leader>d :call jedi#goto_definitions()<CR>
+    au BufNewFile,BufRead Pipfile setf toml
+    au BufNewFile,BufRead Pipfile.lock setf json
 augroup END
 
 " FixWhitespace

@@ -738,20 +738,21 @@ endf
 
 fun! Git(...) abort
     " gitコマンドを実行する関数
-    if a:1 ==? 'diff'
+    let l:cmd = 'git'
+    if a:1 ==# 'diff'
         let l:cmd = 'git status -v -v'
-    elseif a:1 ==? 'acp'
+    elseif a:1 ==# 'acp'
         let l:cmd = 'git add . && git commit -m "`date`" && git push -u'
-    elseif a:1 ==? 'reset'
+    elseif a:1 ==# 'reset'
         let l:cmd = 'git reset --hard'
-    elseif a:1 ==? 'fpull'
+    elseif a:1 ==# 'fpull'
         let l:cmd = 'git reset --hard && git pull'
     else
         let l:args = ''
         for l:i in a:000
             let l:args .= ' '.l:i
         endfor
-        let l:cmd = 'git'.l:args
+        let l:cmd .= l:args
     endif
     call BeginTerm(0, l:cmd)
 endf
