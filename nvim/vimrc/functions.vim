@@ -521,10 +521,10 @@ fun! Pyform(...) abort
         echo 'Pyform: [error] invalid file type. this is "' . &filetype. '" file.'
     endif
 endf
-fun! CompletionPyformCommands(ArgLead, CmdLine, CusorPos)
+fun! s:CompletionPyformCommands(ArgLead, CmdLine, CusorPos)
     return filter(['autopep8', 'yapf'], printf('v:val =~ "^%s"', a:ArgLead))
 endf
-command! -complete=customlist,CompletionPyformCommands -nargs=? Pyform call Pyform(<f-args>)
+command! -complete=customlist,s:CompletionPyformCommands -nargs=? Pyform call Pyform(<f-args>)
 
 
 fun! Pudb() abort
@@ -755,7 +755,7 @@ fun! Git(...) abort
     endif
     call BeginTerm(0, l:cmd)
 endf
-fun! CompletionGitCommands(ArgLead, CmdLine, CusorPos)
+fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)
     return filter(['acp','fpull',  'diff', 'reset', 'status'], printf('v:val =~ "^%s"', a:ArgLead))
 endf
-command! -complete=customlist,CompletionGitCommands -nargs=* Git call Git(<f-args>)
+command! -complete=customlist,s:CompletionGitCommands -nargs=* Git call Git(<f-args>)
