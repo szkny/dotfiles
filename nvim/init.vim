@@ -3,7 +3,8 @@ scriptencoding utf-8
 
 " To Do
 "  - vim内からpythonのステップ実行 (pdbの利用)
-"  - マウスでタブの入れ替え
+"  - BeginTermの終了確認を無くす
+"  - タブの入れ替え
 
 "*****************************************************************************
 "" Vim-PLug core
@@ -291,36 +292,36 @@ cnoreabbrev Qall qall
 "" IME
 if has('mac')
   let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102"'
-  augroup MyIMEGroup
+  aug MyIMEGroup
     autocmd!
     autocmd InsertLeave * :call system(g:imeoff)
-  augroup END
+  aug END
 endif
 
 "" The PC is fast enough, do syntax highlight syncing from start unless 200 lines
-augroup vimrc_sync_fromstart
+aug vimrc_sync_fromstart
     au!
     au BufEnter * :syntax sync maxlines=200
-augroup END
+aug END
 
 "" Remember cursor position
-augroup vimrc_remember_cursor_position
+aug vimrc_remember_cursor_position
     au!
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-augroup END
+aug END
 
 "" txt
-augroup vimrc_wrapping
+aug vimrc_wrapping
     au!
     au BufRead,BufNewFile *.txt call s:setupWrapping()
-augroup END
+aug END
 
 "" make/cmake
-augroup vimrc_make_cmake
+aug vimrc_make_cmake
     au!
     au FileType make setlocal noexpandtab
     au BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
-augroup END
+aug END
 
 set autoread
 
@@ -338,10 +339,10 @@ if executable('rg')
 endif
 
 " snippets
-augroup vimrc_snippet
+aug vimrc_snippet
     au!
     au FileType neosnippet setlocal noexpandtab
-augroup END
+aug END
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<c-b>'
@@ -349,22 +350,22 @@ let g:UltiSnipsEditSplit='vertical'
 
 " Disable visualbell
 set noerrorbells visualbell t_vb=
-augroup visualbell
+aug visualbell
     au GUIEnter * set visualbell t_vb=
-augroup END
+aug END
 
 "*****************************************************************************
 "" Custom configs
 "*****************************************************************************
 
 " c
-augroup vimrc_c_cpp
+aug vimrc_c_cpp
     au!
     au FileType c,cpp setlocal tabstop=4 shiftwidth=4 expandtab
-augroup END
+aug END
 
 " python
-augroup vimrc_python
+aug vimrc_python
     au!
     au FileType python setlocal expandtab shiftwidth=4 tabstop=8
                 \ formatoptions+=croq softtabstop=4
@@ -375,13 +376,13 @@ augroup vimrc_python
                 \|nno <silent> <leader>d :call jedi#goto_definitions()<CR>
     au BufNewFile,BufRead Pipfile setf toml
     au BufNewFile,BufRead Pipfile.lock setf json
-augroup END
+aug END
 
 " FixWhitespace
-augroup FixWhitespace
+aug FixWhitespace
     au!
     au FileType text if exists(':FixWhitespace') | FixWhitespace
-augroup END
+aug END
 
 "*****************************************************************************
 "" Include user's local vim config
