@@ -33,7 +33,6 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-Plug 'kassio/neoterm'
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'w0rp/ale'
 Plug 'ryanoasis/vim-devicons'
@@ -47,10 +46,11 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
-Plug 'kannokanno/previm'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': ['NERDTreeToggle']}
 Plug 'scrooloose/nerdtree',                     {'on': ['NERDTreeToggle']}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': ['NERDTreeToggle']}
+Plug 'kassio/neoterm',                          {'on': []}
+Plug 'kannokanno/previm',                       {'on': []}
 Plug 'tpope/vim-fugitive',                      {'on': []}
 Plug 'rhysd/nyaovim-popup-tooltip',             {'on': []}
 Plug 'rhysd/nyaovim-markdown-preview',          {'on': []}
