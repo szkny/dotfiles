@@ -49,20 +49,21 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': ['NERDTreeToggle']}
 Plug 'scrooloose/nerdtree',                     {'on': ['NERDTreeToggle']}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': ['NERDTreeToggle']}
-Plug 'kassio/neoterm',                          {'on': []}
-Plug 'kannokanno/previm',                       {'on': []}
-Plug 'tpope/vim-fugitive',                      {'on': []}
-Plug 'rhysd/nyaovim-popup-tooltip',             {'on': []}
-Plug 'rhysd/nyaovim-markdown-preview',          {'on': []}
-Plug 'sheerun/vim-polyglot',                    {'on': []}
-Plug 'Shougo/unite.vim',                        {'on': []}
-Plug 'Shougo/unite-outline',                    {'on': []}
-Plug 'nathanaelkane/vim-indent-guides',         {'on': []}
-Plug 'Yggdroot/indentLine',                     {'on': []}
-Plug 'tpope/vim-commentary',                    {'on': []}
-Plug 'airblade/vim-gitgutter',                  {'on': []}
-Plug 'vim-scripts/grep.vim',                    {'on': []}
-Plug 'vim-scripts/CSApprox',                    {'on': []}
+" Plug 'kassio/neoterm',                          {'on': []}
+" Plug 'kannokanno/previm',                       {'on': []}
+" Plug 'tpope/vim-fugitive',                      {'on': []}
+" Plug 'rhysd/nyaovim-popup-tooltip',             {'on': []}
+" Plug 'rhysd/nyaovim-markdown-preview',          {'on': []}
+" Plug 'sheerun/vim-polyglot',                    {'on': []}
+" Plug 'Shougo/unite.vim',                        {'on': []}
+" Plug 'Shougo/unite-outline',                    {'on': []}
+" Plug 'nathanaelkane/vim-indent-guides',         {'on': []}
+" Plug 'Yggdroot/indentLine',                     {'on': []}
+" Plug 'tpope/vim-commentary',                    {'on': []}
+" Plug 'airblade/vim-gitgutter',                  {'on': []}
+" Plug 'vim-scripts/grep.vim',                    {'on': []}
+" Plug 'vim-scripts/CSApprox',                    {'on': []}
+" Plug 'mattn/benchvimrc-vim',                    {'on': []}
 
 if isdirectory('/usr/local/opt/fzf')
     Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -187,6 +188,7 @@ set wildmenu
 set splitbelow
 set splitright
 set virtualedit=onemore
+" set lazyredraw
 
 "*****************************************************************************
 "" Visual Settings
