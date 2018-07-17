@@ -7,8 +7,8 @@ let g:mapleader = "\<Space>"
 tno <silent><C-[> <C-\><C-n>
 
 nno ; :
-nno <silent>q :CloseBufferTab<CR>
-nno <silent>Q :qall<CR>
+nno <silent><C-q>   :CloseBufferTab<CR>
+nno <silent><S-q>   :qall<CR>
 tno <C-w> <C-\><C-n><C-w>
 
 nno <silent><Tab>   :ChangeBuffer next<CR>
