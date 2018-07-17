@@ -208,7 +208,7 @@ endf
 fun! s:Vsplitwidth() abort
     " 新規分割ウィンドウの幅を決める関数
     "      SplitTermで利用している
-    let l:min_winwidth = 70
+    let l:min_winwidth = 60
     let l:max_winwidth = winwidth(0)/2
     " count max line length
     let l:all_lines = getline('w0', 'w$')
