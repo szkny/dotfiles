@@ -50,6 +50,18 @@ endf
 command! CloseBufferTab call s:CloseBufferTab()
 
 
+fun! Ranger() abort
+    " rangerを利用してファイルを選択する関数
+    call OpenRanger()
+    setlocal nonumber
+    call s:SetNewBufName('ranger')
+    aug vimrc_ranger
+        au!
+        au BufNewFile * setlocal number
+    aug END
+endf
+
+
 fun! BeginTerm(width, ...) abort
     " 現在のウィンドウサイズに応じてNewTerm()かSplitTerm()を呼び出す関数
     "      :BeginTerm [Command] で任意のシェルコマンドを実行
@@ -79,12 +91,6 @@ fun! BeginTerm(width, ...) abort
     endif
 endf
 command! -count -complete=shellcmd -nargs=* BeginTerm call BeginTerm(<count>, <f-args>)
-
-
-fun! Ranger() abort
-    call OpenRanger()
-    call s:SetNewBufName('ranger')
-endf
 
 
 fun! NewTerm(...) abort
@@ -179,16 +185,14 @@ command! -count -complete=shellcmd -nargs=* SplitTerm call SplitTerm(<count>, <f
 
 
 fun! s:SetNewBufName(name) abort
-    " 新規バッファのバッファ名(例: '1 bash')を決める関数
+    " 新規バッファのバッファ名(例: '1 bash')を設定する関数
     "      NewTermとSplitTermで利用している
     let l:num = 1
     let l:name = split(a:name,' ')[0]
-    let l:name = l:num.' '.l:name
-    while bufexists(l:name)
+    while bufexists(l:num.' '.l:name)
         let l:num += 1
-        let l:name = l:num.l:name[1:]
     endwhile
-    exe 'file '.l:name
+    exe 'file '.l:num.' '.l:name
 endf
 
 
