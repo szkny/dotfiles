@@ -2,8 +2,9 @@ scriptencoding utf-8
 
 " To Do
 "  - vim内からpythonのステップ実行 (pdbの利用)
-"  - BeginTermの終了確認を無くす
+"  - BeginTermの終了確認を無くす (neotermを参考に)
 "  - タブの入れ替え
+"  - copy/paste <=> yank/paste
 
 "*****************************************************************************
 "" Vim-PLug core
@@ -19,8 +20,6 @@ if !filereadable(g:vimplug_exists)
     echo ''
     silent !\curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     let g:not_finish_vimplug = 'yes'
-
-    " autocmd VimEnter * PlugInstall
 endif
 
 " Required:
@@ -41,6 +40,8 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'tyru/open-browser.vim'
+Plug 'kannokanno/previm'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': ['NERDTreeToggle']}
 Plug 'scrooloose/nerdtree',                     {'on': ['NERDTreeToggle']}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': ['NERDTreeToggle']}
@@ -290,8 +291,8 @@ cnoreabbrev Qall qall
 if has('mac')
   let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102"'
   aug MyIMEGroup
-    autocmd!
-    autocmd InsertLeave * :call system(g:imeoff)
+    au!
+    au InsertLeave * :call system(g:imeoff)
   aug END
 endif
 
