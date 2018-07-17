@@ -75,7 +75,7 @@ let g:ale_c_cppcheck_options = '--enable=style'
 let g:ale_c_gcc_executable = 'g++'
 let g:ale_c_gcc_options = '-std=c++11 -Wall'
 let g:ale_echo_msg_format = '[%linter%]%code: %%s'
-let g:ale_statusline_format = [g:ale_sign_error.' %d', g:ale_sign_warning.' %d', '']
+let g:ale_statusline_format = [g:ale_sign_error.'%d', g:ale_sign_warning.'%d', '']
 let g:ale_echo_msg_error_str = g:ale_sign_error
 let g:ale_echo_msg_warning_str = g:ale_sign_warning
 " let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
@@ -107,16 +107,16 @@ let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
-" let g:airline_section_c = '%t'
-let g:airline_section_b = '%{airline#extensions#ale#get_error()}'
-let g:airline_section_c = '%{airline#extensions#ale#get_warning()}'
-let g:airline_section_x = '%{&filetype}'
+let g:airline_section_b = '%t'
+let g:airline_section_c = '%{airline#extensions#ale#get_error()} '
+let g:airline_section_c.= '%{airline#extensions#ale#get_warning()}'
+let g:airline_section_x = 'LOW:%3l/%L  COL:%3c'
+let g:airline_section_y = '%{&filetype}'
 if &fileformat ==# 'unix'
-    let g:airline_section_y = '%{&fileencodings}, LN'
+    let g:airline_section_z = '%{&fileencodings}, LN'
 else
-    let g:airline_section_y = '%{&fileencodings}, %{&fileformat}'
+    let g:airline_section_z = '%{&fileencodings}, %{&fileformat}'
 endif
-let g:airline_section_z = 'LOW:%3l/%L'
 let g:airline#extensions#ale#error_symbol = g:ale_sign_error.' '
 let g:airline#extensions#ale#warning_symbol = g:ale_sign_warning. ' '
 let g:airline#extensions#default#section_truncate_width = {}
