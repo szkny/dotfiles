@@ -120,7 +120,6 @@ fun! NewTerm(...) abort
     setlocal noswapfile
     setlocal nomodifiable
     setlocal nolist
-    setlocal nowrap
     setlocal nospell
     " start terminal mode
     startinsert
@@ -175,7 +174,6 @@ fun! SplitTerm(width, ...) abort
     setlocal noswapfile
     setlocal nomodifiable
     setlocal nolist
-    setlocal nowrap
     setlocal nospell
     " start terminal mode
     startinsert
@@ -216,18 +214,18 @@ fun! s:Vsplitwidth() abort
     let l:min_winwidth = 80
     let l:max_winwidth = winwidth(0)/2
     " count max line length
-    let l:all_lines = getline(0, '$')
+    let l:all_lines = getline('w0', 'w$')
     let l:max_line_len = 0
     for l:line in l:all_lines
         if len(l:line) > l:max_line_len
-            let l:max_line_len = len(l:line)
+            let l:max_line_len = strwidth(l:line)
         endif
     endfor
     let l:max_line_len += 1
-    " count line number width
+    " count line number or ale column width
     let l:linenumwidth = 0
     if &number
-        " add line number width
+        " add line number column width
         let l:linenumwidth = 4
         let l:digits = 0
         let l:linenum = line('$')
@@ -239,7 +237,7 @@ fun! s:Vsplitwidth() abort
             let l:linenumwidth += l:digits - 3
         endif
     endif
-    " add ale sign line width
+    " add ale sign line column width
     if exists('*airline#extensions#ale#get_error')
         if airline#extensions#ale#get_error() !=# ''
            \|| airline#extensions#ale#get_warning() !=# ''
