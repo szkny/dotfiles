@@ -174,11 +174,19 @@ vmap <leader>w <Plug>(openbrowser-smart-search)
 aug PrevimSettings
     au!
     au BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+    au BufWritePost *.{md,mdwn,mkd,mkdn,mark*} call previm#refresh()
 aug END
 fun! s:PrevimOpenCmd()
     if &filetype ==# 'markdown'
-        call previm#refresh()
-        exe '!open ~/.config/nvim/plugged/previm/preview/index.html'
+        if has('mac')
+            exe 'PrevimOpen'
+        elseif system('uname') ==# "Linux\n"
+            let l:previm_index_path = 'file:///C:/Users/user/AppData/Local/lxss/home/suzuki/.config/nvim/plugged/previm/preview/index.html'
+            call previm#refresh()
+            exe 'OpenBrowser '.l:previm_index_path
+        else
+            return
+        endif
     endif
 endf
 command! Previm call s:PrevimOpenCmd()
