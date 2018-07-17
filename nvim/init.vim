@@ -228,11 +228,7 @@ set showtabline=1
 "" Use modeline overrides
 set modeline
 set modelines=10
-set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
-
-if exists('*fugitive#statusline')
-    set statusline+=%{fugitive#statusline()}
-endif
+" set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 
 if !exists('*s:setupWrapping')
     function s:setupWrapping()

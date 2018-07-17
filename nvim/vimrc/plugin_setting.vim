@@ -128,14 +128,14 @@ let g:polyglot_disabled = ['python']
 let g:python_highlight_all = 1
 
 
-"" grep.vim
+"" grep
 " nnoremap <silent> <leader>f :Rgrep<CR>
 let g:Grep_Default_Options = '-IR'
 let g:Grep_Skip_Files = '*.log *.db'
 let g:Grep_Skip_Dirs = '.git node_modules'
 
 
-"" vimshell.vim
+"" vimshell
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
 
@@ -149,16 +149,22 @@ let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid err
 let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets the color for files ending with _spec.rb
 
 
+"" fugitive
+if exists('*fugitive#statusline')
+    set statusline+=%{fugitive#statusline()}
+endif
+
+
 "" vim-devicons
 let g:webdevicons_conceal_nerdtree_brackets = 1
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 
-"" ranger.vim
+"" ranger
 let g:NERDTreeHijackNetrw = 0  " add this line if you use NERDTree
 let g:ranger_replace_netrw = 1 " open ranger when vim open a directory
 
 
-"" previm.vim
+"" previm
 fun! s:PrevimOpenCmd()
     let l:cmd = ''
     if has('mac')
