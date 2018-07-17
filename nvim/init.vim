@@ -1,5 +1,4 @@
 scriptencoding utf-8
-" vim-bootstrap a9ad349
 
 " To Do
 "  - vim内からpythonのステップ実行 (pdbの利用)
@@ -10,9 +9,6 @@ scriptencoding utf-8
 "" Vim-PLug core
 "*****************************************************************************
 let g:vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
-
-let g:vim_bootstrap_langs = 'c,python'
-let g:vim_bootstrap_editor = 'nvim'     "nvim or vim
 
 if !filereadable(g:vimplug_exists)
     if !executable('curl')
@@ -35,7 +31,6 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'w0rp/ale'
-Plug 'ryanoasis/vim-devicons'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
@@ -97,21 +92,25 @@ endif
 
 Plug 'honza/vim-snippets'
 
-"" Color
+" color scheme
 Plug 'tomasr/molokai'
 Plug 'altercation/vim-colors-solarized'
 
-" c
+" c/c++
 Plug 'vim-jp/cpp-vim'
 " Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
 " Plug 'ludwig/split-manpage.vim'
 
 " python
-" Python Bundle
 Plug 'davidhalter/jedi-vim'
+Plug 'zchee/deoplete-jedi'
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
 Plug 'cespare/vim-toml'
-Plug 'zchee/deoplete-jedi'
+
+if has('mac')
+    " icon
+    Plug 'ryanoasis/vim-devicons'
+endif
 
 call plug#end()
 
