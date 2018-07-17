@@ -1,0 +1,18 @@
+snippet     underbar
+abbr        <u>...</u>
+options     head
+	<u>${0}</u>
+
+
+snippet     bold
+abbr        **...**
+options     head
+	**${0}**
+
+
+snippet     table
+abbr        | A | B |...
+options     head
+	| ${1:#:COL1} | ${2:#:COL2} |
+	|:---:|:---:|
+	| ${0}  |    |
