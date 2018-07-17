@@ -107,9 +107,9 @@ let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
-let g:airline_section_b = '%t'
-let g:airline_section_c = '%{airline#extensions#ale#get_error()}  '
-let g:airline_section_c.= '%{airline#extensions#ale#get_warning()}'
+let g:airline_section_b = '%{airline#extensions#ale#get_error()}  '
+let g:airline_section_b.= '%{airline#extensions#ale#get_warning()}'
+let g:airline_section_c = '%t'
 let g:airline_section_x = 'LOW:%3l/%L  COL:%3c'
 let g:airline_section_y = '%{&filetype}'
 if &fileformat ==# 'unix'
@@ -164,21 +164,32 @@ let g:NERDTreeHijackNetrw = 0  " add this line if you use NERDTree
 let g:ranger_replace_netrw = 1 " open ranger when vim open a directory
 
 
+"" open-browser
+let g:netrw_nogx = 1
+nmap <leader>w <Plug>(openbrowser-smart-search)
+vmap <leader>w <Plug>(openbrowser-smart-search)
+
+
 "" previm
+aug PrevimSettings
+    au!
+    au BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+aug END
 fun! s:PrevimOpenCmd()
-    let l:cmd = ''
-    if has('mac')
-        let l:cmd = 'open -a Google\ Chrome'
-    elseif system('uname') ==# "Linux\n"
-        let l:cmd = 'chrome'
-    endif
-    return l:cmd
+    call previm#refresh()
+    exe '!open ~/.config/nvim/plugged/previm/preview/index.html'
 endf
-let g:previm_open_cmd = s:PrevimOpenCmd()
-augroup PrevimSettings
-    autocmd!
-    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-augroup END
+command! Previm call s:PrevimOpenCmd()
+" fun! s:PrevimOpenCmd()
+"     let l:cmd = ''
+"     if has('mac')
+"         let l:cmd = 'open -a Google\ Chrome'
+"     elseif system('uname') ==# "Linux\n"
+"         let l:cmd = 'chrome'
+"     endif
+"     return l:cmd
+" endf
+" let g:previm_open_cmd = s:PrevimOpenCmd()
 
 
 if has('mac')
