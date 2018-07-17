@@ -83,7 +83,7 @@ command! -count -complete=shellcmd -nargs=* BeginTerm call BeginTerm(<count>, <f
 
 fun! Ranger() abort
     call OpenRanger()
-    exe 'file '.s:GetNewBufName('ranger')
+    call s:SetNewBufName('ranger')
 endf
 
 
@@ -106,17 +106,15 @@ fun! NewTerm(...) abort
     exe l:cmd
     " change buffer name
     if a:0 == 0
-        let l:bufname = s:GetNewBufName('bash')
+        call s:SetNewBufName('bash')
     elseif a:0 > 0
-        let l:bufname = s:GetNewBufName(a:1)
+        call s:SetNewBufName(a:1)
     endif
-    exe 'file '.l:bufname
     " set local settings
     setlocal nonumber
     setlocal buftype=terminal
     setlocal nocursorline
     setlocal nocursorcolumn
-    setlocal winfixwidth
     setlocal noswapfile
     setlocal nomodifiable
     setlocal nolist
@@ -158,11 +156,10 @@ fun! SplitTerm(width, ...) abort
     exe l:cmd2
     " change buffer name
     if a:0 == 0
-        let l:bufname = s:GetNewBufName('bash')
+        call s:SetNewBufName('bash')
     elseif a:0 > 0
-        let l:bufname = s:GetNewBufName(a:1)
+        call s:SetNewBufName(a:1)
     endif
-    exe 'file '.l:bufname
     " set local settings
     setlocal nonumber
     setlocal buftype=terminal
@@ -170,7 +167,7 @@ fun! SplitTerm(width, ...) abort
     setlocal nobuflisted    " バッファリストに追加しない
     setlocal nocursorline
     setlocal nocursorcolumn
-    setlocal winfixwidth
+    " setlocal winfixwidth   " ウィンドウ開閉時に幅を保持
     setlocal noswapfile
     setlocal nomodifiable
     setlocal nolist
@@ -181,7 +178,7 @@ endf
 command! -count -complete=shellcmd -nargs=* SplitTerm call SplitTerm(<count>, <f-args>)
 
 
-fun! s:GetNewBufName(name) abort
+fun! s:SetNewBufName(name) abort
     " 新規バッファのバッファ名(例: '1 bash')を決める関数
     "      NewTermとSplitTermで利用している
     let l:num = 1
@@ -191,7 +188,7 @@ fun! s:GetNewBufName(name) abort
         let l:num += 1
         let l:name = l:num.l:name[1:]
     endwhile
-    return l:name
+    exe 'file '.l:name
 endf
 
 
