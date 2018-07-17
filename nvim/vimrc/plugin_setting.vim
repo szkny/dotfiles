@@ -176,8 +176,10 @@ aug PrevimSettings
     au BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 aug END
 fun! s:PrevimOpenCmd()
-    call previm#refresh()
-    exe '!open ~/.config/nvim/plugged/previm/preview/index.html'
+    if &filetype ==# 'markdown'
+        call previm#refresh()
+        exe '!open ~/.config/nvim/plugged/previm/preview/index.html'
+    endif
 endf
 command! Previm call s:PrevimOpenCmd()
 " fun! s:PrevimOpenCmd()
