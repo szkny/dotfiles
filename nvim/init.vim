@@ -3,8 +3,8 @@ scriptencoding utf-8
 " To Do
 "  - vim内からpythonのステップ実行 (pdbの利用)
 "  - BeginTermの終了確認を無くす (neotermを参考に)
+"  - SplitTermのウィンドウを開いたまま編集中のバッファを閉じる
 "  - タブの入れ替え
-"  - copy/paste <=> yank/paste
 "  - previmに以下を追記
 "       - index.html (l38あたり)
 "           <!-- 数式機能追加(2018.7.18) -->
@@ -19,6 +19,7 @@ scriptencoding utf-8
 "           // 数式機能追加(2018.7.18)
 "           MathJax.Hub.Typeset(document.getElementById("preview"));
 "           MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });
+"  - ranger.vimを利用して、NERDTreeのようにウィンドウ分割してファイル選択する
 
 "*****************************************************************************
 "" Vim-PLug core

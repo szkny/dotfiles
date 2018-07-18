@@ -53,10 +53,16 @@ command! CloseBufferTab call s:CloseBufferTab()
 fun! Ranger() abort
     " rangerを利用してファイルを選択する関数
     "   (francoiscabrol/ranger.vimを利用)
+    " vnew
     call OpenRanger()
     call s:SetNewBufName('ranger')
     setlocal nonumber
 endf
+" NERDTreeのようにウィンドウ分割してファイル選択する機能を追加
+" aug vimrc_ranger
+"     au!
+"     au BufNewFile * call CloseBufferTab()
+" aug END
 
 
 fun! BeginTerm(width, ...) abort
