@@ -51,6 +51,7 @@ Plug 'majutsushi/tagbar'
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'Shougo/neosnippet.vim'
@@ -68,7 +69,6 @@ Plug 'jistr/vim-nerdtree-tabs',                 {'on': ['NERDTreeToggle']}
 " Plug 'sheerun/vim-polyglot',                    {'on': []}
 " Plug 'Shougo/unite.vim',                        {'on': []}
 " Plug 'Shougo/unite-outline',                    {'on': []}
-" Plug 'nathanaelkane/vim-indent-guides',         {'on': []}
 " Plug 'Yggdroot/indentLine',                     {'on': []}
 " Plug 'tpope/vim-commentary',                    {'on': []}
 " Plug 'airblade/vim-gitgutter',                  {'on': []}
