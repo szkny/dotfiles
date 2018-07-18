@@ -99,6 +99,11 @@ aug MyMarkdownSetting
 aug END
 
 fun! MyMdMap()
-    ino <buffer><A-;> <ESC>:AppendChar \ \ <CR>a
-    nno <buffer><A-;>      :AppendChar \ \ <CR>
+    if has('mac')
+        ino <buffer>…     <ESC>:AppendChar \ \ <CR>a
+        nno <buffer>…          :AppendChar \ \ <CR>
+    elseif system('uname') ==# "Linux\n"
+        ino <buffer><A-;> <ESC>:AppendChar \ \ <CR>a
+        nno <buffer><A-;>      :AppendChar \ \ <CR>
+    endif
 endf
