@@ -88,8 +88,8 @@ let g:indent_guides_exclude_filetypes = ['terminal', 'help', 'nerdtree']
 let g:indent_guides_guide_size = 2
 let g:indent_guides_start_level = 1
 let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#151515 ctermbg=gray
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#050505 ctermbg=darkgray
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#303030 ctermbg=gray
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#222222 ctermbg=darkgray
 
 
 "" indentLine
