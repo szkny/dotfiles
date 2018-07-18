@@ -181,25 +181,15 @@ fun! s:PrevimOpenCmd()
         if has('mac')
             exe 'PrevimOpen'
         elseif system('uname') ==# "Linux\n"
-            let l:previm_index_path = 'file:///C:/Users/user/AppData/Local/lxss/home/suzuki/.config/nvim/plugged/previm/preview/index.html'
-            call previm#refresh()
-            exe 'OpenBrowser '.l:previm_index_path
+            let g:previm_custom_dir = $HOME.'/.config/nvim/plugged/previm/preview'
+            let l:preview_html_file = 'C:/Users/user/AppData/Local/lxss'.g:previm_custom_dir.'/index.html'
+            call previm#open(l:preview_html_file)
         else
             return
         endif
     endif
 endf
 command! Previm call s:PrevimOpenCmd()
-" fun! s:PrevimOpenCmd()
-"     let l:cmd = ''
-"     if has('mac')
-"         let l:cmd = 'open -a Google\ Chrome'
-"     elseif system('uname') ==# "Linux\n"
-"         let l:cmd = 'chrome'
-"     endif
-"     return l:cmd
-" endf
-" let g:previm_open_cmd = s:PrevimOpenCmd()
 
 
 if has('mac')

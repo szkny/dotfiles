@@ -5,6 +5,20 @@ scriptencoding utf-8
 "  - BeginTermの終了確認を無くす (neotermを参考に)
 "  - タブの入れ替え
 "  - copy/paste <=> yank/paste
+"  - previmに以下を追記
+"       - index.html (l38あたり)
+"           <!-- 数式機能追加(2018.7.18) -->
+"           <script type="text/x-mathjax-config">
+"             MathJax.Hub.Config({
+"               CommonHTML: { matchFontHeight: false }
+"             });
+"           </script>
+"           <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+"           </script>
+"       - previm.js (l98あたり)
+"           // 数式機能追加(2018.7.18)
+"           MathJax.Hub.Typeset(document.getElementById("preview"));
+"           MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });
 
 "*****************************************************************************
 "" Vim-PLug core
