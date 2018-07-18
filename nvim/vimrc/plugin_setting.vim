@@ -169,6 +169,7 @@ aug ReplaceNetrwByRangerVim
                 \| call OpenRangerOnVimLoadDir('%')
                 \| file ranger
                 \| setlocal nonumber
+                \| setlocal nobuflisted
                 \| endif
 aug END
 

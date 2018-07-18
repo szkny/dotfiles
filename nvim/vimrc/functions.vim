@@ -54,12 +54,8 @@ fun! Ranger() abort
     " rangerを利用してファイルを選択する関数
     "   (francoiscabrol/ranger.vimを利用)
     call OpenRanger()
-    setlocal nonumber
     call s:SetNewBufName('ranger')
-    aug vimrc_ranger
-        au!
-        au BufNewFile * setlocal number
-    aug END
+    setlocal nonumber
 endf
 
 
