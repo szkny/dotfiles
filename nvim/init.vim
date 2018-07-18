@@ -3,7 +3,7 @@ scriptencoding utf-8
 " To Do
 "  - vim内からpythonのステップ実行 (pdbの利用)
 "  - BeginTermの終了確認を無くす (neotermを参考に)
-"  - SplitTermのウィンドウを開いたまま編集中のバッファを閉じる
+"  - SplitTermのウィンドウを開いたまま編集中のバッファを一つ閉じる
 "  - タブの入れ替え
 "  - previmに以下を追記
 "       - index.html (l38あたり)
