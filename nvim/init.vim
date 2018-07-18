@@ -6,7 +6,7 @@ scriptencoding utf-8
 "  - SplitTermのウィンドウを開いたまま編集中のバッファを一つ閉じる
 "  - タブの入れ替え
 "  - previmに以下を追記
-"       - index.html (l38あたり)
+"       - index.html (L38あたり)
 "           <!-- 数式機能追加(2018.7.18) -->
 "           <script type="text/x-mathjax-config">
 "             MathJax.Hub.Config({
@@ -15,7 +15,7 @@ scriptencoding utf-8
 "           </script>
 "           <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
 "           </script>
-"       - previm.js (l98あたり)
+"       - previm.js (L98あたり)
 "           // 数式機能追加(2018.7.18)
 "           MathJax.Hub.Typeset(document.getElementById("preview"));
 "           MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });

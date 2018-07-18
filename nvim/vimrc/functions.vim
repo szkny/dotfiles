@@ -747,7 +747,7 @@ fun! Git(...) abort
     if a:1 ==# 'diff'
         let l:cmd = 'git status -v -v'
     elseif a:1 ==# 'acp'
-        let l:cmd = 'git add . && git commit -m "`date`" && git push -u'
+        let l:cmd = 'git add -A && git commit -m "`date`" && git push -u'
     elseif a:1 ==# 'reset'
         let l:cmd = 'git reset --hard'
     elseif a:1 ==# 'fpull'
