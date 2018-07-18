@@ -37,7 +37,7 @@ vno <S-j> 5gj
 vno <S-k> 5gk
 vno <S-l> 10l
 
-ino {<Enter> {}<Left><CR><Up><ESC>$i<Right>
+ino {<Enter> {}<Left><CR><Up><ESC>$a
 " ino {<Enter> {}<Left><CR><ESC>O
 
 if system('uname') ==# "Linux\n"
@@ -55,13 +55,9 @@ endif
 "" Mapping for Plugins
 if has('mac')
     nno <silent>gi <Plug>(nyaovim-popup-tooltip-open)
-    ino …       <ESC>:AppendChar ;<CR>i<Right>
-    nno …            :AppendChar ;<CR>
     nno <silent>_     :TComment<CR>
     vno <silent>_     :TComment<CR>
 else
-    ino <A-;>    <ESC>:AppendChar ;<CR>i<Right>
-    nno <A-;>         :AppendChar ;<CR>
     nno <silent>\     :TComment<CR>
     vno <silent>\     :TComment<CR>
 endif
@@ -78,6 +74,13 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable()?
                  \"\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 "" mapping for My Commands
+if has('mac')
+    ino …       <ESC>:AppendChar ;<CR>a
+    nno …            :AppendChar ;<CR>
+else
+    ino <A-;>    <ESC>:AppendChar ;<CR>a
+    nno <A-;>         :AppendChar ;<CR>
+endif
 nno <silent>?  :call SetHlsearch()<CR>
 nno <silent>t  :SplitTerm<CR>
 nno <leader>ma :Make<CR>
@@ -89,3 +92,13 @@ nno <leader>ip :Ipython<CR>
 nno <leader>pd :Ipdb<CR>
 nno <leader>sq :SQL<CR>
 nno <leader>sp :SQLplot<CR>
+
+"" Markdown Mapping
+aug MyMarkdownSetting
+    au BufEnter *.{md,mdwn,mkd,mkdn,mark*} call MyMdMap()
+aug END
+
+fun! MyMdMap()
+    ino <buffer><A-;> <ESC>:AppendChar \ \ <CR>a
+    nno <buffer><A-;>      :AppendChar \ \ <CR>
+endf

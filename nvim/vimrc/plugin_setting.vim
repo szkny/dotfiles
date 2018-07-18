@@ -82,14 +82,15 @@ let g:ale_echo_msg_warning_str = g:ale_sign_warning
 hi ALEErrorSign   guifg=#000000 guibg=#a01010
 hi ALEWarningSign guifg=#000000 guibg=#808010
 
+
 "" indent_guides
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['terminal', 'help', 'nerdtree']
 let g:indent_guides_guide_size = 2
 let g:indent_guides_start_level = 1
 let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#303030 ctermbg=gray
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#222222 ctermbg=darkgray
+au VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#303030 ctermbg=gray
+au VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#222222 ctermbg=darkgray
 
 
 "" indentLine
@@ -164,7 +165,7 @@ let g:NERDTreeHijackNetrw = 0  " add this line if you use NERDTree
 aug ReplaceNetrwByRangerVim
     " open ranger when vim open a director
     au!
-    au VimEnter * silent! autocmd! FileExplorer
+    au VimEnter * silent! au! FileExplorer
     au BufEnter * if isdirectory(expand("%"))
                 \| call OpenRangerOnVimLoadDir('%')
                 \| file ranger
