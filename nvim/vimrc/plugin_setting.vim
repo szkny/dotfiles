@@ -161,7 +161,16 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 
 "" ranger
 let g:NERDTreeHijackNetrw = 0  " add this line if you use NERDTree
-let g:ranger_replace_netrw = 1 " open ranger when vim open a directory
+aug ReplaceNetrwByRangerVim
+    " open ranger when vim open a director
+    au!
+    au VimEnter * silent! autocmd! FileExplorer
+    au BufEnter * if isdirectory(expand("%"))
+                \| call OpenRangerOnVimLoadDir('%')
+                \| file ranger
+                \| setlocal nonumber
+                \| endif
+aug END
 
 
 "" open-browser
