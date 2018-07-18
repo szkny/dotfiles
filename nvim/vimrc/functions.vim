@@ -57,6 +57,7 @@ fun! Ranger() abort
     call OpenRanger()
     call s:SetNewBufName('ranger')
     setlocal nonumber
+    setlocal filetype=terminal
 endf
 " NERDTreeのようにウィンドウ分割してファイル選択する機能を追加
 " aug vimrc_ranger
@@ -122,6 +123,7 @@ fun! NewTerm(...) abort
     " set local settings
     setlocal nonumber
     setlocal buftype=terminal
+    setlocal filetype=terminal
     setlocal nocursorline
     setlocal nocursorcolumn
     setlocal noswapfile
@@ -172,6 +174,7 @@ fun! SplitTerm(width, ...) abort
     " set local settings
     setlocal nonumber
     setlocal buftype=terminal
+    setlocal filetype=terminal
     setlocal bufhidden=wipe " windowが閉じられた時にバッファを消去
     setlocal nobuflisted    " バッファリストに追加しない
     setlocal nocursorline
