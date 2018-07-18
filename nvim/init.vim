@@ -5,20 +5,6 @@ scriptencoding utf-8
 "  - BeginTermの終了確認を無くす (neotermを参考に)
 "  - SplitTermのウィンドウを開いたまま編集中のバッファを一つ閉じる
 "  - タブの入れ替え
-"  - previmに以下を追記
-"       - index.html (L38あたり)
-"           <!-- 数式機能追加(2018.7.18) -->
-"           <script type="text/x-mathjax-config">
-"             MathJax.Hub.Config({
-"               CommonHTML: { matchFontHeight: false }
-"             });
-"           </script>
-"           <script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
-"           </script>
-"       - previm.js (L98あたり)
-"           // 数式機能追加(2018.7.18)
-"           MathJax.Hub.Typeset(document.getElementById("preview"));
-"           MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });
 "  - ranger.vimを利用して、NERDTreeのようにウィンドウ分割してファイル選択する
 
 "*****************************************************************************
