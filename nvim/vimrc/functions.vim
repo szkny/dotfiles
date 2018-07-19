@@ -46,8 +46,14 @@ fun! s:CloseBufferTab() abort
             else
                 return
             endif
+            " [No Name] のバッファを削除
+            for l:i in range(1, bufnr('$'))
+                if buflisted(l:i) && buffer_name(l:i) ==# ''
+                    bdelete l:i
+                endif
+            endfor
+            " 複数ウィンドウがある場合、元のウィンドウに移動
             if winnr('$') > 1
-                " 複数ウィンドウがある場合、元のウィンドウに移動
                 let l:goto_winid = -1
                 for l:bufnum in range(1, bufnr('$'))
                     let l:goto_winid = bufwinid(l:bufnum)
