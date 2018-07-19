@@ -49,6 +49,7 @@ fun! s:CloseBufferTab() abort
         elseif winnr('$') > 1
             " 複数ウィンドウの場合
             if len(win_findbuf(bufnr('%'))) == 1 && &buflisted
+                " 異なるファイルを画面分割している場合
                 if l:buf_number == 1
                     quit
                     return
