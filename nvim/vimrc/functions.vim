@@ -26,7 +26,7 @@ command! -nargs=1 ChangeBuffer call s:ChangeBuffer(<f-args>)
 
 fun! s:CloseBufferTab() abort
     " バッファタブを閉じる関数
-    if winnr() == 1
+    if winnr('$') == 1
         try
             let l:buf_number = 0
             for l:i in range(1, bufnr('$'))
@@ -35,16 +35,16 @@ fun! s:CloseBufferTab() abort
                 endif
             endfor
             if l:buf_number == 1
-                exe 'quit'
+                quit
             else
-                exe 'bdelete'
+                bdelete
                 call win_gotoid(1000)
             endif
         catch
             echo 'CloseBufferTab: [error] "'.expand('%:t').'" を閉じることができません。'
         endtry
     else " split window exist
-        exe 'quit'
+        quit
     endif
 endf
 command! CloseBufferTab call s:CloseBufferTab()
