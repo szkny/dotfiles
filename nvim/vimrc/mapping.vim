@@ -75,11 +75,11 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable()?
 
 "" mapping for My Commands
 if has('mac')
-    ino …       <ESC>:AppendChar ;<CR>a
-    nno …            :AppendChar ;<CR>
+    ino <silent>…       <ESC>:Appendchar ;<CR>a
+    no  <silent>…            :Appendchar ;<CR>
 else
-    ino <A-;>    <ESC>:AppendChar ;<CR>a
-    nno <A-;>         :AppendChar ;<CR>
+    ino <silent><A-;>    <ESC>:Appendchar ;<CR>a
+    no  <silent><A-;>         :Appendchar ;<CR>
 endif
 nno <silent>?  :call SetHlsearch()<CR>
 nno <silent>t  :SplitTerm<CR>
@@ -97,13 +97,14 @@ nno <leader>sp :SQLplot<CR>
 aug MyMarkdownSetting
     au BufEnter *.{md,mdwn,mkd,mkdn,mark*} call MyMdMap()
 aug END
-
 fun! MyMdMap()
     if has('mac')
-        ino <buffer>…     <ESC>:AppendChar \ \ <CR>a
-        nno <buffer>…          :AppendChar \ \ <CR>
+        ino <silent><buffer>…     <ESC>:Appendchar \ \ <CR>a
+        no  <silent><buffer>…          :Appendchar \ \ <CR>
     elseif system('uname') ==# "Linux\n"
-        ino <buffer><A-;> <ESC>:AppendChar \ \ <CR>a
-        nno <buffer><A-;>      :AppendChar \ \ <CR>
+        " ino <silent><buffer><A-;> <ESC>:Appendchar \ \ <CR>a
+        " no  <silent><buffer><A-;>      :Appendchar \ \ <CR>
+        ino <silent><buffer><A-;> <ESC>:normal A  <CR>a
+        no  <silent><buffer><A-;>      :normal A  <CR>
     endif
 endf
