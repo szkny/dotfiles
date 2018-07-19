@@ -50,13 +50,9 @@ let g:jedi#completions_enabled = 1
 " let g:jedi#goto_assignments_command = '<leader>g'
 " let g:jedi#goto_definitions_command = ''
 
-"" PyFlake
-let g:PyFlakeOnWrite = 0
-let g:PyFlakeCheckers = 'mccabe,pyflakes'
-let g:PyFlakeDefaultComplexity=10
-
 
 "" ale (Asynchronous Lint Engine)
+let g:ale_lint_on_enter = 1
 let g:ale_sign_column_always = 0
 let g:ale_change_sign_column_color = 0
 let g:ale_completion_enabled = 1

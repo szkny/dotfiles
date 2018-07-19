@@ -695,7 +695,14 @@ fun! GoogleSearchURL(...) abort
         if a:0 == 1
             if type(a:1) == 1
                 " case of a:1 == string
-                let l:wrd = a:1
+                let l:arglist = split(a:1, ' ')
+                for l:i in l:arglist
+                    if l:i == l:arglist[0]
+                        let l:wrd = l:i
+                    else
+                        let l:wrd .= '+' . l:i
+                    endif
+                endfor
             elseif type(a:1) == 3
                 " case of a:1 == list
                 for l:i in a:1
@@ -723,18 +730,29 @@ fun! GoogleSearchURL(...) abort
 endf
 
 
-fun! Chrome(...) abort
+fun! Chrome(...) abort range
     " Google Chrome を開いて引数のキーワードを検索する関数
-    let l:cmd = ''
     if has('mac')
         let l:cmd = '!open -a Google\ Chrome '
     elseif system('uname') ==# "Linux\n"
         let l:cmd = '!chrome '
+    else
+        return
     endif
-    let l:cmd .= GoogleSearchURL(a:000)
-    exe l:cmd
+    let l:args = ''
+    if a:0 == 0
+        let l:tmp = @@
+        exe 'silent normal gvy'
+        if @@ !=# ''
+            let l:args = GoogleSearchURL(@@)
+        endif
+        let @@ = l:tmp
+    else
+        let l:args = GoogleSearchURL(a:000)
+    endif
+    exe 'silent '.l:cmd.l:args
 endf
-command! -nargs=* Chrome call Chrome(<f-args>)
+command! -nargs=* -range Chrome :<line1>,<line2>call Chrome(<f-args>)
 
 
 fun! W3m(width, ...) abort

@@ -3,9 +3,11 @@
 # neovim (0.2.2)
 if [ -L ~/.config/nvim/init.vim ]; then rm ~/.config/nvim/init.vim;fi
 if [ -L ~/.config/nvim/vimrc ]; then rm ~/.config/nvim/vimrc;fi
+if [ -L ~/.config/nvim/ftplugin ]; then rm ~/.config/nvim/ftplugin;fi
 mkdir -p ~/.config/nvim
 ln -sf ~/dotfiles/nvim/init.vim ~/.config/nvim/init.vim
 ln -sf ~/dotfiles/nvim/vimrc ~/.config/nvim
+ln -sf ~/dotfiles/nvim/ftplugin ~/.config/nvim
 
 # vim (8.0.1283)
 if [ -L ~/.vimrc ]; then rm ~/.vimrc;fi
