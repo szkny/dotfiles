@@ -26,48 +26,48 @@ command! -nargs=1 ChangeBuffer call s:ChangeBuffer(<f-args>)
 
 fun! s:CloseBufferTab() abort
     " バッファタブを閉じる関数
-    let l:bufname = buffer_name('%')
-    if str2nr(l:bufname[0])
-        " ターミナルモードを閉じる
-        quit
-    else
-        try
+    " バッファリストの数をカウント
+    let l:buf_number = 0
+    for l:i in range(1, bufnr('$'))
+        if buflisted(l:i)
+            let l:buf_number += 1
+        endif
+    endfor
+    try
+        if winnr('$') == 1
+            " 単一ウィンドウの場合
             " バッファリストが１つならquit、複数あればbdelete
-            let l:buf_number = 0
-            for l:i in range(1, bufnr('$'))
-                if buflisted(l:i)
-                    let l:buf_number += 1
-                endif
-            endfor
             if l:buf_number == 1
                 quit
-            elseif l:buf_number > 1
-                bdelete
+                return
             else
+                let l:deletebufnr = bufnr('%')
+                bnext
+                exe 'bdelete! '.l:deletebufnr
                 return
             endif
-            " [No Name] のバッファを削除
-            for l:i in range(1, bufnr('$'))
-                if buflisted(l:i) && buffer_name(l:i) ==# ''
-                    bdelete l:i
-                endif
-            endfor
-            " 複数ウィンドウがある場合、元のウィンドウに移動
-            if winnr('$') > 1
-                let l:goto_winid = -1
-                for l:bufnum in range(1, bufnr('$'))
-                    let l:goto_winid = bufwinid(l:bufnum)
-                    if l:goto_winid != -1
-                        break
+        elseif winnr('$') > 1
+            " 複数ウィンドウの場合
+                if &buflisted
+                    if l:buf_number == 1
+                        quit
+                        return
+                    else
+                        let l:deletebufnr = bufnr('%')
+                        bnext
+                        exe 'bdelete! '.l:deletebufnr
+                        return
                     endif
-                endfor
-                call win_gotoid(l:goto_winid)
-            endif
-        catch
-            echo 'CloseBufferTab: [error] "'.expand('%:t').'" を閉じることができません。'
-            return
-        endtry
-    endif
+                else
+                    " バッファリストになければquit
+                    quit
+                    return
+                endif
+        endif
+    catch
+        echo 'CloseBufferTab: [error] "'.bufname('%').'" を閉じることができません。'
+        return
+    endtry
 endf
 command! CloseBufferTab call s:CloseBufferTab()
 
