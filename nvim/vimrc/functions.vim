@@ -48,21 +48,20 @@ fun! s:CloseBufferTab() abort
             endif
         elseif winnr('$') > 1
             " 複数ウィンドウの場合
-                if &buflisted
-                    if l:buf_number == 1
-                        quit
-                        return
-                    else
-                        let l:deletebufnr = bufnr('%')
-                        bnext
-                        exe 'bdelete! '.l:deletebufnr
-                        return
-                    endif
-                else
-                    " バッファリストになければquit
+            if len(win_findbuf(bufnr('%'))) == 1 && &buflisted
+                if l:buf_number == 1
                     quit
                     return
+                else
+                    let l:deletebufnr = bufnr('%')
+                    bnext
+                    exe 'bdelete! '.l:deletebufnr
+                    return
                 endif
+            else
+                quit
+                return
+            endif
         endif
     catch
         echo 'CloseBufferTab: [error] "'.bufname('%').'" を閉じることができません。'
