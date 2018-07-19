@@ -372,19 +372,26 @@ endf
 command! -nargs=1 GetProjectName call GetProjectName(<f-args>)
 
 
-fun! AppendChar(arg) abort
+fun! AppendChar(...) abort range
     " カーソルがある行の末尾に引数の文字を追加する関数
-    "      C言語等で末尾にセミコロンをつけるときに便利
+    "      C言語,js等で末尾にセミコロンをつけるときに使う
     "      :AppendChar ;
-    let l:text = a:arg
-    if l:text ==# ''
-        let l:text = ';'
-    endif
     let l:pos = getpos('.')
-    exe ':normal A'.l:text
+    let l:pos[1] = a:lastline
+    let l:args = ''
+    for l:i in a:000
+        let l:args .= l:i
+    endfor
+    if l:args ==# ''
+        return
+    endif
+    for l:linenum in range(a:firstline,a:lastline)
+        call setpos('.', [0,l:linenum,0,0])
+        exe 'silent normal A'.l:args
+    endfor
     call setpos('.', l:pos)
 endf
-command! -nargs=+ AppendChar call AppendChar(<f-args>)
+command! -nargs=* -range AppendChar :<line1>,<line2>call AppendChar(<f-args>)
 
 
 fun! Python(width, ...) abort
