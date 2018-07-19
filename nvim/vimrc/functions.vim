@@ -26,11 +26,11 @@ command! -nargs=1 ChangeBuffer call s:ChangeBuffer(<f-args>)
 
 fun! s:CloseBufferTab() abort
     " バッファタブを閉じる関数
-    if winnr('$') == 1
+    " if winnr('$') == 1
         try
             let l:buf_number = 0
             for l:i in range(1, bufnr('$'))
-                if buflisted(l:i) == 1
+                if buflisted(l:i)
                     let l:buf_number += 1
                 endif
             endfor
@@ -38,14 +38,25 @@ fun! s:CloseBufferTab() abort
                 quit
             else
                 bdelete
-                call win_gotoid(1000)
             endif
         catch
             echo 'CloseBufferTab: [error] "'.expand('%:t').'" を閉じることができません。'
+            return
         endtry
-    else " split window exist
-        quit
-    endif
+        if winnr('$') != 1 && bufnr('$') > 0
+            " 複数ウィンドウがある場合、元のウィンドウに移動
+            let l:goto_winid = -1
+            for l:bufnum in range(1, bufnr('$'))
+                let l:goto_winid = bufwinid(l:bufnum)
+                if l:goto_winid != -1
+                    break
+                endif
+            endfor
+            call win_gotoid(l:goto_winid)
+        endif
+    " else " split window exist
+    "     quit
+    " endif
 endf
 command! CloseBufferTab call s:CloseBufferTab()
 
