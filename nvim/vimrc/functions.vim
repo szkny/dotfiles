@@ -36,13 +36,15 @@ fun! s:CloseBufferTab() abort
     try
         if winnr('$') == 1
             " 単一ウィンドウの場合
-            " バッファリストが１つならquit、複数あればbdelete
             if l:buf_number == 1
+                " バッファリストが１つの場合 quit
                 quit
                 return
             else
+                " バッファリストが複数の場合 bdelete
                 let l:deletebufnr = bufnr('%')
                 let l:beforebufnr = bufnr('#')
+                " 1つ前に編集していたバッファがあれば戻る、なければbnext
                 if l:beforebufnr != -1 && buflisted(l:beforebufnr)
                     exe 'buffer '.l:beforebufnr
                 else
@@ -56,11 +58,14 @@ fun! s:CloseBufferTab() abort
             if len(win_findbuf(bufnr('%'))) == 1 && &buflisted
                 " 異なるファイルを画面分割している場合
                 if l:buf_number == 1
+                    " バッファリストが１つの場合 quit
                     quit
                     return
                 else
+                    " バッファリストが複数の場合 bdelete
                     let l:deletebufnr = bufnr('%')
                     let l:beforebufnr = bufnr('#')
+                    " 1つ前に編集していたバッファがあれば戻る、なければbnext
                     if l:beforebufnr != -1 && buflisted(l:beforebufnr)
                         exe 'buffer '.l:beforebufnr
                     else
