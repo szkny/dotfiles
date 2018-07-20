@@ -760,6 +760,7 @@ fun! Chrome(...) abort range
         let l:tmp = @@
         exe 'silent normal gvy'
         if @@ !=# ''
+            let @@ = join(split(@@,'\n'))
             let l:args = GoogleSearchURL(@@)
         endif
         let @@ = l:tmp
@@ -768,7 +769,7 @@ fun! Chrome(...) abort range
     endif
     exe 'silent '.l:cmd.l:args
 endf
-command! -nargs=* -range Chrome :<line1>,<line2>call Chrome(<f-args>)
+command! -nargs=* -range Chrome call Chrome(<f-args>)
 
 
 fun! W3m(width, ...) abort

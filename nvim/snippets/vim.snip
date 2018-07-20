@@ -1,7 +1,7 @@
 snippet     fun
 abbr        fun! endf command!
 options     head
-	fun! ${1:#:NAME}(${2:#:args})
+	fun! ${1:#:NAME}(${2:#:args}) abort
 		${0:#:TARGET}
 	endf
 	command! $1 call $1()
