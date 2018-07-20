@@ -31,6 +31,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "" Plug install packages
 "*****************************************************************************
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+" Plug 'Shougo/deol.nvim'
 Plug 'w0rp/ale'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'Raimondi/delimitMate'
