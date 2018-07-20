@@ -42,7 +42,12 @@ fun! s:CloseBufferTab() abort
                 return
             else
                 let l:deletebufnr = bufnr('%')
-                bnext
+                let l:beforebufnr = bufnr('#')
+                if l:beforebufnr != -1 && buflisted(l:beforebufnr)
+                    exe 'buffer '.l:beforebufnr
+                else
+                    bnext
+                endif
                 exe 'bdelete! '.l:deletebufnr
                 return
             endif
@@ -55,11 +60,17 @@ fun! s:CloseBufferTab() abort
                     return
                 else
                     let l:deletebufnr = bufnr('%')
-                    bnext
+                    let l:beforebufnr = bufnr('#')
+                    if l:beforebufnr != -1 && buflisted(l:beforebufnr)
+                        exe 'buffer '.l:beforebufnr
+                    else
+                        bnext
+                    endif
                     exe 'bdelete! '.l:deletebufnr
                     return
                 endif
             else
+                " 同じファイルを画面分割している場合
                 quit
                 return
             endif
