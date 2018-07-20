@@ -455,7 +455,7 @@ fun! Ipython(width) abort
             echoerr 'You have to install pip!'
             return
         endif
-        silent exe '!pip install ipython'
+        call system('pip install ipython')
         echo ''
     endif
     let l:command = 'ipython'
@@ -550,7 +550,7 @@ fun! Pyform(...) abort
                     echoerr 'You have to install pip!'
                     return
                 endif
-                silent exe '!pip install autopep8'
+                call system('pip install autopep8')
                 echo ''
             endif
             let l:pos = getpos('.')
@@ -564,7 +564,7 @@ fun! Pyform(...) abort
                     echoerr 'You have to install pip!'
                     return
                 endif
-                silent exe '!pip install git+https://github.com/google/yapf'
+                call system('pip install git+https://github.com/google/yapf')
                 echo ''
             endif
             let l:pos = getpos('.')
@@ -593,7 +593,7 @@ fun! Pudb() abort
                 echoerr 'You have to install pip!'
                 return
             endif
-            silent exe '!pip install pudb'
+            call system('pip install pudb')
             echo ''
         endif
         call NewTerm('pudb3', expand('%'))
@@ -667,7 +667,7 @@ fun! Pyplot(...) abort
                 let l:column .= l:tmp
             endfor
         endif
-        exe ':!pyplot %'.l:column
+        call system('pyplot %'.l:column)
     endif
 endf
 command! -nargs=* Pyplot call Pyplot(<f-args>)
@@ -755,39 +755,49 @@ endf
 fun! Chrome(...) abort range
     " Google Chrome を開いて引数のキーワードを検索する関数
     if has('mac')
-        let l:cmd = '!open -a Google\ Chrome '
+        let l:cmd = 'open -a Google\ Chrome '
     elseif system('uname') ==# "Linux\n"
-        let l:cmd = '!chrome '
+        let l:cmd = 'chrome '
     else
         return
     endif
-    let l:args = ''
+    let l:url = ''
     if a:0 == 0
         let l:tmp = @@
         exe 'silent normal gvy'
         if @@ !=# ''
             let @@ = join(split(@@,'\n'))
-            let l:args = GoogleSearchURL(@@)
+            let l:url = GoogleSearchURL(@@)
         endif
         let @@ = l:tmp
     else
-        let l:args = GoogleSearchURL(a:000)
+        let l:url = GoogleSearchURL(a:000)
     endif
-    exe 'silent '.l:cmd.l:args
+    call system(l:cmd.l:url)
 endf
 command! -nargs=* -range Chrome call Chrome(<f-args>)
 
 
-fun! W3m(width, ...) abort
+fun! W3m(width, ...) abort range
     " w3mで引数のキーワードを検索する関数
     if executable('w3m')
-        let l:url = GoogleSearchURL(a:000)
+        let l:url = ''
+        if a:0 == 0
+            let @@ = ''
+            exe 'silent normal gvy'
+            if @@ !=# ''
+                let @@ = join(split(@@,'\n'))
+            endif
+            let l:url = GoogleSearchURL(@@)
+        else
+            let l:url = GoogleSearchURL(a:000)
+        endif
         call BeginTerm(a:width, 'w3m', '-M', l:url)
     else
         echo 'W3m: [error] w3m command not found.'
     endif
 endf
-command! -count -nargs=* W3m call W3m(<count>, <f-args>)
+command! -count -range -nargs=* W3m call W3m(<count>, <f-args>)
 
 
 fun! GetNow() abort
