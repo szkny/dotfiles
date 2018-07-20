@@ -778,7 +778,7 @@ endf
 command! -nargs=* -range Chrome call Chrome(<f-args>)
 
 
-fun! W3m(width, ...) abort range
+fun! W3m(...) abort range
     " w3mで引数のキーワードを検索する関数
     if executable('w3m')
         let l:url = ''
@@ -792,12 +792,12 @@ fun! W3m(width, ...) abort range
         else
             let l:url = GoogleSearchURL(a:000)
         endif
-        call BeginTerm(a:width, 'w3m', '-M', l:url)
+        call BeginTerm(0, 'w3m', '-M', l:url)
     else
         echo 'W3m: [error] w3m command not found.'
     endif
 endf
-command! -count -range -nargs=* W3m call W3m(<count>, <f-args>)
+command! -range -nargs=* W3m call W3m(<f-args>)
 
 
 fun! GetNow() abort
