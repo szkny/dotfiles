@@ -83,7 +83,7 @@ else
 endif
 nno <silent>?  :call SetHlsearch()<CR>
 nno <silent>t  :SplitTerm<CR>
-nno <leader>g  :call SplitTerm(0, 'grep -rin', expand('<cword>'), '*')<CR>
+nno <leader>g  :Fgrep<CR>
 nno <leader>ma :Make<CR>
 nno <leader>mr :Make build run<CR>
 nno <leader>cm :CMake<CR>

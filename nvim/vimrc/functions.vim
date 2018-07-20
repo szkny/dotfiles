@@ -702,6 +702,12 @@ fun! SetHlsearch() abort
 endf
 
 
+fun! Fgrep() abort
+    call SplitTerm(0, 'grep -rin '.expand('<cword>').' * | fzf')
+endf
+command! Fgrep call Fgrep()
+
+
 fun! GoogleSearchURL(...) abort
     " Google検索をするURLを返す関数
     let l:url = '"http://www.google.co.jp/'
