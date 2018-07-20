@@ -3,10 +3,9 @@ scriptencoding utf-8
 " To Do
 "  - vim内からpythonのステップ実行 (pdbの利用)
 "  - BeginTermの終了確認を無くす (neotermを参考に)
-"  - SplitTermのウィンドウを開いたまま編集中のバッファを一つ閉じる
-"  - タブの入れ替え
 "  - ranger.vimを利用して、NERDTreeのようにウィンドウ分割してファイル選択する
 "  - fgrep -> ファイル開く
+"  - markdown強調(**で囲む)をexpand('<cword>')を利用してショートカット化
 
 "*****************************************************************************
 "" Vim-PLug core
