@@ -132,11 +132,6 @@ let g:Grep_Skip_Files = '*.log *.db'
 let g:Grep_Skip_Dirs = '.git node_modules'
 
 
-"" vimshell
-let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
-let g:vimshell_prompt =  '$ '
-
-
 "" vim-nerdtree-syntax-highlight
 let s:rspec_red = 'FE405F'
 let s:git_orange = 'F54D27'
@@ -165,6 +160,7 @@ aug ReplaceNetrwByRangerVim
     au BufEnter * if isdirectory(expand("%"))
                 \| call OpenRangerOnVimLoadDir('%')
                 \| file ranger
+                \| setlocal buftype=terminal
                 \| setlocal nonumber
                 \| setlocal nobuflisted
                 \| endif

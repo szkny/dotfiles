@@ -47,20 +47,20 @@ Plug 'kannokanno/previm'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': ['NERDTreeToggle']}
 Plug 'scrooloose/nerdtree',                     {'on': ['NERDTreeToggle']}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': ['NERDTreeToggle']}
-" Plug 'kassio/neoterm',                          {'on': []}
-" Plug 'kannokanno/previm',                       {'on': []}
-" Plug 'tpope/vim-fugitive',                      {'on': []}
-" Plug 'rhysd/nyaovim-popup-tooltip',             {'on': []}
-" Plug 'rhysd/nyaovim-markdown-preview',          {'on': []}
-" Plug 'sheerun/vim-polyglot',                    {'on': []}
-" Plug 'Shougo/unite.vim',                        {'on': []}
-" Plug 'Shougo/unite-outline',                    {'on': []}
-" Plug 'Yggdroot/indentLine',                     {'on': []}
-" Plug 'tpope/vim-commentary',                    {'on': []}
-" Plug 'airblade/vim-gitgutter',                  {'on': []}
-" Plug 'vim-scripts/grep.vim',                    {'on': []}
-" Plug 'vim-scripts/CSApprox',                    {'on': []}
-" Plug 'mattn/benchvimrc-vim',                    {'on': []}
+" Plug 'kassio/neoterm'
+" Plug 'kannokanno/previm'
+" Plug 'tpope/vim-fugitive'
+" Plug 'rhysd/nyaovim-popup-tooltip'
+" Plug 'rhysd/nyaovim-markdown-preview'
+" Plug 'sheerun/vim-polyglot'
+" Plug 'Shougo/unite.vim'
+" Plug 'Shougo/unite-outline'
+" Plug 'Yggdroot/indentLine'
+" Plug 'tpope/vim-commentary'
+" Plug 'airblade/vim-gitgutter'
+" Plug 'vim-scripts/grep.vim'
+" Plug 'vim-scripts/CSApprox'
+" Plug 'mattn/benchvimrc-vim'
 
 if isdirectory('/usr/local/opt/fzf')
     Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -82,17 +82,6 @@ Plug 'Shougo/vimproc.vim', {'do': g:make}
 "" Vim-Session
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
-
-if v:version >= 703
-    Plug 'Shougo/vimshell.vim'
-endif
-
-if v:version >= 704
-    "" Snippets
-    Plug 'SirVer/ultisnips'
-endif
-
-Plug 'honza/vim-snippets'
 
 " color scheme
 Plug 'tomasr/molokai'
