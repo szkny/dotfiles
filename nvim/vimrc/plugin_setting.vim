@@ -52,7 +52,6 @@ let g:jedi#completions_enabled = 1
 
 
 "" ale (Asynchronous Lint Engine)
-let g:ale_lint_on_enter = 1
 let g:ale_sign_column_always = 0
 let g:ale_change_sign_column_color = 0
 let g:ale_completion_enabled = 1
