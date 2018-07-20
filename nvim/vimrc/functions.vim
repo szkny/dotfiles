@@ -702,10 +702,48 @@ fun! SetHlsearch() abort
 endf
 
 
-fun! Fgrep() abort
-    call SplitTerm(0, 'grep -rin '.expand('<cword>').' * | fzf')
+" fun! s:Fgrep(...) abort range
+"     if a:0 == 0
+"         let l:tmp = @@
+"         exe 'silent normal gvy'
+"         if @@ !=# l:tmp
+"             let @@ = join(split(@@,'\n'))
+"             call SplitTerm(0, 'grep -rin "'.@@.'" * | fzf')
+"         else
+"             call SplitTerm(0, 'grep -rin "'.expand('<cword>').'" * | fzf')
+"         endif
+"         let @@ = l:tmp
+"     else
+"         let l:word = ''
+"         for l:i in a:000
+"             if l:i ==# a:000[0]
+"                 let l:word = l:i
+"             else
+"                 let l:word .= ' '.l:i
+"             endif
+"         endfor
+"         call SplitTerm(0, 'grep -rin "'.l:word.'" * | fzf')
+"     endif
+" endf
+" command! -nargs=* -range Fgrep call s:Fgrep(<f-args>)
+
+
+fun! s:Fgrep(...) abort
+    if a:0 == 0
+        call SplitTerm(0, 'grep -rin "'.expand('<cword>').'" * | fzf')
+    else
+        let l:word = ''
+        for l:i in a:000
+            if l:i ==# a:000[0]
+                let l:word = l:i
+            else
+                let l:word .= ' '.l:i
+            endif
+        endfor
+        call SplitTerm(0, 'grep -rin "'.l:word.'" * | fzf')
+    endif
 endf
-command! Fgrep call Fgrep()
+command! -nargs=* Fgrep call s:Fgrep(<f-args>)
 
 
 fun! GoogleSearchURL(...) abort
@@ -763,13 +801,13 @@ fun! Chrome(...) abort range
     endif
     let l:url = ''
     if a:0 == 0
-        let l:tmp = @@
+        let @@ = ''
         exe 'silent normal gvy'
         if @@ !=# ''
             let @@ = join(split(@@,'\n'))
             let l:url = GoogleSearchURL(@@)
         endif
-        let @@ = l:tmp
+        let l:url = GoogleSearchURL()
     else
         let l:url = GoogleSearchURL(a:000)
     endif
@@ -787,8 +825,9 @@ fun! W3m(...) abort range
             exe 'silent normal gvy'
             if @@ !=# ''
                 let @@ = join(split(@@,'\n'))
+                let l:url = GoogleSearchURL(@@)
             endif
-            let l:url = GoogleSearchURL(@@)
+            let l:url = GoogleSearchURL()
         else
             let l:url = GoogleSearchURL(a:000)
         endif
