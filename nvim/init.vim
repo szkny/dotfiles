@@ -1,7 +1,10 @@
 scriptencoding utf-8
 
 " To Do
-"  - vim内からpythonのステップ実行 (pdbの利用)
+"  - vim内からpythonのステップ実行 (Ipdbの利用, Pudb風に)
+"      - デバッガモードの実装 = modifiable off
+"      - b:termianl_job_idを保持
+"      - jobsend(self.terminal_job_id, "\<CR>")
 "  - BeginTermの終了確認を無くす (neotermを参考に)
 "  - ranger.vimを利用して、NERDTreeのようにウィンドウ分割してファイル選択する
 "  - fgrep -> ファイル開く
