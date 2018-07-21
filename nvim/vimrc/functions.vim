@@ -679,7 +679,7 @@ fun! Gnuplot() abort
         let l:command = 'gnuplot'
         let l:args = ' ' . expand('%')
         call BeginTerm(0, l:command, l:args)
-        starti
+        startinsert
     else
         echo 'Gnuplot: [error] invalid file type. this is "' . &filetype. '" file.'
     endif
