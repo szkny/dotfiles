@@ -31,7 +31,6 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "" Plug install packages
 "*****************************************************************************
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-" Plug 'Shougo/deol.nvim'
 Plug 'w0rp/ale'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'Raimondi/delimitMate'
@@ -51,7 +50,6 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': ['NERDTreeToggle']}
 Plug 'scrooloose/nerdtree',                     {'on': ['NERDTreeToggle']}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': ['NERDTreeToggle']}
 " Plug 'kassio/neoterm'
-" Plug 'kannokanno/previm'
 " Plug 'tpope/vim-fugitive'
 " Plug 'rhysd/nyaovim-popup-tooltip'
 " Plug 'rhysd/nyaovim-markdown-preview'
@@ -62,7 +60,6 @@ Plug 'jistr/vim-nerdtree-tabs',                 {'on': ['NERDTreeToggle']}
 " Plug 'tpope/vim-commentary'
 " Plug 'vim-scripts/grep.vim'
 " Plug 'vim-scripts/CSApprox'
-" Plug 'mattn/benchvimrc-vim'
 
 if isdirectory('/usr/local/opt/fzf')
     Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
