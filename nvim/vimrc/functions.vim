@@ -89,7 +89,7 @@ command! CloseBufferTab call s:CloseBufferTab()
 
 
 fun! Ranger() abort
-    " rangerを利用してファイルを選択する関数
+    " rangerコマンドでファイルを選択する関数
     "   (francoiscabrol/ranger.vimを利用)
     " vnew
     call OpenRanger()
@@ -97,14 +97,14 @@ fun! Ranger() abort
     setlocal nonumber
     setlocal filetype=terminal
 endf
-" NERDTreeのようにウィンドウ分割してファイル選択する機能を追加
+" NERDTreeのようにウィンドウ分割してファイル選択する
 " aug vimrc_ranger
 "     au!
 "     au BufNewFile * call CloseBufferTab()
 " aug END
 
 
-fun! BeginTerm(width, ...) abort
+fun! BeginTerm(...) abort
     " 現在のウィンドウサイズに応じてNewTerm()かSplitTerm()を呼び出す関数
     "      :BeginTerm [Command] で任意のシェルコマンドを実行
     let l:min_winwidth = 50
@@ -112,7 +112,7 @@ fun! BeginTerm(width, ...) abort
     if a:0 == 0
         if winwidth(0) >= l:min_winwidth
            \ && winheight(0) >= l:min_winheight
-            call SplitTerm(a:width)
+            call SplitTerm()
         else
             call NewTerm()
         endif
@@ -126,13 +126,13 @@ fun! BeginTerm(width, ...) abort
         endif
         if winwidth(0) >= l:min_winwidth
            \ && winheight(0) >= l:min_winheight
-            call SplitTerm(a:width, l:cmd, l:args)
+            call SplitTerm(l:cmd, l:args)
         else
             call NewTerm(l:cmd, l:args)
         endif
     endif
 endf
-command! -count -complete=shellcmd -nargs=* BeginTerm call BeginTerm(<count>, <f-args>)
+command! -complete=shellcmd -nargs=* BeginTerm call BeginTerm(<f-args>)
 
 
 fun! NewTerm(...) abort
@@ -168,13 +168,11 @@ fun! NewTerm(...) abort
     setlocal nomodifiable
     setlocal nolist
     setlocal nospell
-    " start terminal mode
-    startinsert
 endf
 command! -complete=shellcmd -nargs=* NewTerm call NewTerm(<f-args>)
 
 
-fun! SplitTerm(width, ...) abort
+fun! SplitTerm(...) abort
     " 分割ウィンドウでターミナルモードを開始する関数
     "      縦分割か横分割かは現在のファイル内の文字数と
     "      ウィンドウサイズとの兼ね合いで決まる
@@ -186,11 +184,9 @@ fun! SplitTerm(width, ...) abort
     " create split window
     let l:width = s:Vsplitwidth()
     if l:width
-        let l:width = a:width ? a:width : l:width
         let l:split = l:width.'vnew'
     else
         let l:height = s:Splitheight()
-        let l:height = a:width ? a:width : l:height
         let l:split = l:height ? l:height.'new' : 'new'
     endif
     exe l:split
@@ -222,10 +218,8 @@ fun! SplitTerm(width, ...) abort
     setlocal nomodifiable
     setlocal nolist
     setlocal nospell
-    " start terminal mode
-    startinsert
 endf
-command! -count -complete=shellcmd -nargs=* SplitTerm call SplitTerm(<count>, <f-args>)
+command! -complete=shellcmd -nargs=* SplitTerm call SplitTerm(<f-args>)
 
 
 fun! s:SetNewBufName(name) abort
@@ -316,7 +310,7 @@ endf
 command! -nargs=1 ResizeWindow call ResizeWindow(<f-args>)
 
 
-fun! Make(width, ...) abort
+fun! Make(...) abort
     " makeコマンドを走らせる関数
     let l:current_dir = expand('%:p:h')
     let l:command = 'make'
@@ -329,19 +323,19 @@ fun! Make(width, ...) abort
     endif
     if findfile('GNUmakefile',l:current_dir) !=# ''
        \|| findfile('Makefile',l:current_dir) !=# ''
-        call BeginTerm(a:width, l:command, l:args)
+        call BeginTerm(l:command, l:args)
     elseif findfile('GNUmakefile',l:current_dir.'/../') !=# ''
            \|| findfile('Makefile',l:current_dir.'/../') !=# ''
         let l:command = 'cd ../ && '.l:command
-        call BeginTerm(a:width, l:command, l:args)
+        call BeginTerm(l:command, l:args)
     else
         echo 'not found: "GNUmakefile" or "Makefile"'
     endif
 endf
-command! -count -nargs=* Make call Make(<count>, <f-args>)
+command! -nargs=* Make call Make(<f-args>)
 
 
-fun! CMake(width, ...) abort
+fun! CMake(...) abort
     " cmakeコマンドを走らせる関数
     let l:current_dir = expand('%:p:h')
     let l:builddir = 'build'
@@ -358,19 +352,19 @@ fun! CMake(width, ...) abort
             call mkdir(l:builddir)
         endif
         let l:command = 'cd '.l:builddir.' && '.l:command
-        call BeginTerm(a:width, l:command)
+        call BeginTerm(l:command)
     elseif findfile(l:cmakelists_txt,l:current_dir.'/../') !=# ''
         let l:builddir = '../'.l:builddir
         if finddir(l:builddir,l:current_dir) ==# ''
             call mkdir(l:builddir)
         endif
         let l:command = 'cd '.l:builddir.' && '.l:command
-        call BeginTerm(a:width, l:command)
+        call BeginTerm(l:command)
     else
         echo 'not found: '.l:cmakelists_txt
     endif
 endf
-command! -count -nargs=* CMake call CMake(<count>, <f-args>)
+command! -nargs=* CMake call CMake(<f-args>)
 
 
 fun! GetProjectName(cmakelists_txt) abort
@@ -422,211 +416,7 @@ endf
 command! -nargs=* -range Appendchar :<line1>,<line2>call AppendChar(<f-args>)
 
 
-fun! Python(width, ...) abort
-    " 開いているPythonスクリプトを実行する関数
-    "      以下のようにスクリプト名は必要ない
-    "      :Python
-    "      コマンドライン引数が必要な場合は
-    "      :Python [引数]
-    let l:command = 'python'
-    if &filetype ==# 'python'
-        let l:args = ' ' . expand('%')
-        if findfile('Pipfile',getcwd()) !=# ''
-            \ && findfile('Pipfile.lock',getcwd()) !=# ''
-            let l:command = 'pipenv run python'
-        endif
-        for l:i in a:000
-            let l:args .= ' ' . l:i
-        endfor
-        call BeginTerm(a:width, l:command, l:args)
-    else
-        call BeginTerm(a:width, l:command)
-    endif
-endf
-command! -count -complete=file -nargs=* Python call Python(<count>, <f-args>)
-
-
-fun! Ipython(width) abort
-    " ipythonを起動して開いているPythonスクリプトをロードする関数
-    if !executable('ipython')
-        echo 'Ipython: [error] ipython does not exist.'
-        echo '                 isntalling ipython ...'
-        if !executable('pip')
-            echoerr 'You have to install pip!'
-            return
-        endif
-        call system('pip install ipython')
-        echo ''
-    endif
-    let l:command = 'ipython'
-    if findfile('Pipfile',getcwd()) !=# ''
-        \ && findfile('Pipfile.lock',getcwd()) !=# ''
-        let l:command = 'pipenv run ipython'
-    endif
-    let l:args = '--no-confirm-exit --colors=Linux'
-    let l:width = a:width
-    if &filetype ==# 'python'
-        let l:profile_name = InitIpython()
-        let l:args .= ' --profile=' . l:profile_name
-    endif
-    call BeginTerm(a:width, l:command, l:args)
-endf
-command! -count Ipython call Ipython(<count>)
-
-
-fun! InitIpython() abort
-    " ipythonの初期化関数
-    "      Ipython()で利用している
-    let l:profile_name = 'neovim'
-    let l:ipython_profile_dir = $HOME . '/.ipython/profile_' . l:profile_name
-    let l:ipython_startup_dir = l:ipython_profile_dir . '/startup'
-    if finddir(l:ipython_startup_dir) ==# ''
-        call mkdir(l:ipython_startup_dir, 'p')
-    endif
-    let l:ipython_startup_file = l:ipython_startup_dir . '/startup.py'
-    if expand('%:t:e') !=# ''
-        let l:modulename = expand('%:t:r')
-        let l:ipython_init_command = ['from ' . l:modulename . ' import *']
-    else
-        let l:ipython_init_command = getline('0','$')
-        let l:main_flag = 0
-        let l:operator = 0
-        for l:line in l:ipython_init_command
-            if l:line ==# 'if __name__ == ''__main__'':'
-                let l:main_flag = 1
-            endif
-            if l:main_flag
-                unlet l:ipython_init_command[l:operator]
-            else
-                let l:operator += 1
-            endif
-        endfor
-    endif
-    call writefile(l:ipython_init_command, l:ipython_startup_file)
-    return l:profile_name
-endf
-
-
-fun! PythonMaxLineLength() abort
-    " flake8のconfigファイルからpythonスクリプトの文字数上限(max-line-length)を取得する関数
-    "      以下のようにcolorcolumnを設定することでバッファに文字数の上限ラインが引かれる
-    "      :set colorcolumn=PythonMaxLineLength()
-    let l:flake8_config = $HOME.'/.config/flake8'
-    let l:max_line_length = 0
-    if findfile(l:flake8_config) !=# ''
-        for l:line in readfile(l:flake8_config)
-            let l:match_param = matchstrpos(l:line,'max-line-length')
-            if l:match_param[0] !=# ''
-                let l:param_list = split(l:line, ' ')
-                if len(l:param_list) == 3
-                    let l:max_line_length = str2nr(l:param_list[2])
-                elseif len(l:param_list) == 1
-                    let l:param_list = split(l:line, '=')
-                    let l:max_line_length = str2nr(l:param_list[1])
-                endif
-            endif
-        endfor
-    endif
-    if l:max_line_length == 0
-        let l:max_line_length = 100
-    endif
-    return l:max_line_length + 1
-endf
-
-
-fun! Pyform(...) abort
-    " autopep8やyapfに利用して編集中のPythonスクリプトを自動整形する関数
-    "      :Pyform [autopep8(デフォルト) もしくは yapf]
-    if &filetype ==# 'python'
-        let l:formatter = 'autopep8'
-        if a:0 > 0
-            let l:formatter = a:1
-        endif
-        if l:formatter ==# 'autopep8'
-            if !executable('autopep8')
-                echo 'Pyform: [error] autopep8 command not found.'
-                echo '                installing autopep8...'
-                if !executable('pip')
-                    echoerr 'You have to install pip!'
-                    return
-                endif
-                call system('pip install autopep8')
-                echo ''
-            endif
-            let l:pos = getpos('.')
-            silent exe '%!autopep8 -'
-            call setpos('.', l:pos)
-        elseif l:formatter ==# 'yapf'
-            if !executable('yapf')
-                echo 'Pyform: [error] yapf command not found.'
-                echo '                installing yapf...'
-                if !executable('pip')
-                    echoerr 'You have to install pip!'
-                    return
-                endif
-                call system('pip install git+https://github.com/google/yapf')
-                echo ''
-            endif
-            let l:pos = getpos('.')
-            silent exe '0, $!yapf'
-            call setpos('.', l:pos)
-        else
-            echo 'Pyfrom: [error] you can use autopep8 or yapf.'
-        endif
-    else
-        echo 'Pyform: [error] invalid file type. this is "' . &filetype. '" file.'
-    endif
-endf
-fun! s:CompletionPyformCommands(ArgLead, CmdLine, CusorPos)
-    return filter(['autopep8', 'yapf'], printf('v:val =~ "^%s"', a:ArgLead))
-endf
-command! -complete=customlist,s:CompletionPyformCommands -nargs=? Pyform call Pyform(<f-args>)
-
-
-fun! Pudb() abort
-    " Pudbを起動する関数
-    if &filetype ==# 'python'
-        if !executable('pudb3')
-            echo 'Pudb: [error] pudb3 command not found.'
-            echo '                   installing pudb3...'
-            if !executable('pip')
-                echoerr 'You have to install pip!'
-                return
-            endif
-            call system('pip install pudb')
-            echo ''
-        endif
-        call NewTerm('pudb3', expand('%'))
-    else
-        echo 'Pudb: [error] invalid file type. this is "' . &filetype. '" file.'
-    endif
-endf
-command! Pudb call Pudb()
-
-
-fun! Pdb() abort
-    " Pdbを起動する関数
-    if &filetype ==# 'python'
-        call BeginTerm(0, 'python', '-m pdb', expand('%'))
-    else
-        echo 'Pdb: [error] invalid file type. this is "' . &filetype. '" file.'
-    endif
-endf
-command! Pdb call Pdb()
-
-
-fun! Ipdb() abort
-    " Ipdbを起動する関数
-    if &filetype ==# 'python'
-        call BeginTerm(0, 'python', '-m ipdb', expand('%'))
-    else
-        echo 'Ipdb: [error] invalid file type. this is "' . &filetype. '" file.'
-    endif
-endf
-command! Ipdb call Ipdb()
-
-
-fun! SQL(width) abort
+fun! SQL() abort
     " mysqlを起動する関数
     let l:command = 'mysql'
     if executable(l:command)
@@ -634,23 +424,23 @@ fun! SQL(width) abort
         if &filetype ==# 'sql'
             let l:args = ' < ' . expand('%')
         endif
-        call BeginTerm(a:width, l:command, l:args)
+        call BeginTerm(l:command, l:args)
     else
         echo 'SQL: [error] '.l:command.' command not found.'
     endif
 endf
-command! -count SQL call SQL(<count>)
+command! SQL call SQL()
 
 
-fun! SQLplot(width, ...) abort
+fun! SQLplot(...) abort
     " sqlplot(自作シェルコマンド) を実行する関数
     if &filetype ==# 'sql' && executable('sqlplot')
         let l:command = 'sqlplot'
         let l:args = ' ' . expand('%')
-        call BeginTerm(a:width, l:command, l:args)
+        call BeginTerm(l:command, l:args)
     endif
 endf
-command! -count -nargs=* SQLplot call SQLplot(<count>, <f-args>)
+command! -nargs=* SQLplot call SQLplot(<f-args>)
 
 
 fun! Pyplot(...) abort
@@ -678,10 +468,10 @@ fun! Gnuplot() abort
     if expand('%:e') ==# 'gp' || expand('%:e') ==# 'gpi'
         let l:command = 'gnuplot'
         let l:args = ' ' . expand('%')
-        call BeginTerm(0, l:command, l:args)
+        call BeginTerm(l:command, l:args)
         startinsert
     else
-        echo 'Gnuplot: [error] invalid file type. this is "' . &filetype. '" file.'
+        echo 'Gnuplot: [error] invalid file type. this is "' . &filetype. '".'
     endif
 endf
 command! -nargs=* Gnuplot call Gnuplot(<f-args>)
@@ -708,9 +498,9 @@ endf
 "         exe 'silent normal gvy'
 "         if @@ !=# l:tmp
 "             let @@ = join(split(@@,'\n'))
-"             call SplitTerm(0, 'grep -rin "'.@@.'" * | fzf')
+"             call SplitTerm('grep -rin "'.@@.'" * | fzf')
 "         else
-"             call SplitTerm(0, 'grep -rin "'.expand('<cword>').'" * | fzf')
+"             call SplitTerm('grep -rin "'.expand('<cword>').'" * | fzf')
 "         endif
 "         let @@ = l:tmp
 "     else
@@ -722,7 +512,7 @@ endf
 "                 let l:word .= ' '.l:i
 "             endif
 "         endfor
-"         call SplitTerm(0, 'grep -rin "'.l:word.'" * | fzf')
+"         call SplitTerm('grep -rin "'.l:word.'" * | fzf')
 "     endif
 " endf
 " command! -nargs=* -range Fgrep call s:Fgrep(<f-args>)
@@ -730,7 +520,7 @@ endf
 
 fun! s:Fgrep(...) abort
     if a:0 == 0
-        call SplitTerm(0, 'grep -rin "'.expand('<cword>').'" * | fzf')
+        call SplitTerm('grep -rin "'.expand('<cword>').'" * | fzf')
     else
         let l:word = ''
         for l:i in a:000
@@ -740,7 +530,7 @@ fun! s:Fgrep(...) abort
                 let l:word .= ' '.l:i
             endif
         endfor
-        call SplitTerm(0, 'grep -rin "'.l:word.'" * | fzf')
+        call SplitTerm('grep -rin "'.l:word.'" * | fzf')
     endif
 endf
 command! -nargs=* Fgrep call s:Fgrep(<f-args>)
@@ -831,7 +621,7 @@ fun! W3m(...) abort range
         else
             let l:url = GoogleSearchURL(a:000)
         endif
-        call BeginTerm(0, 'w3m', '-M', l:url)
+        call BeginTerm('w3m', '-M', l:url)
     else
         echo 'W3m: [error] w3m command not found.'
     endif
@@ -884,7 +674,7 @@ fun! Git(...) abort
         endfor
         let l:cmd .= l:args
     endif
-    call BeginTerm(0, l:cmd)
+    call BeginTerm(l:cmd)
 endf
 fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)
     return filter(['acp','fpull',  'diff', 'reset', 'status'], printf('v:val =~ "^%s"', a:ArgLead))

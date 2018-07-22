@@ -10,6 +10,7 @@ nno ; :
 ino <C-s>           <ESC>:w<CR>a
 nno <C-s>           :w<CR>
 nno <silent>q       :CloseBufferTab<CR>
+tno <silent><C-d>   <C-\><C-n>:CloseBufferTab<CR>
 nno <silent><S-q>   :qall<CR>
 tno <C-w>           <C-\><C-n><C-w>
 
@@ -82,17 +83,13 @@ else
     no  <silent><A-;>         :Appendchar ;<CR>
 endif
 nno <silent>?  :call SetHlsearch()<CR>
-nno <silent>t  :SplitTerm<CR>
-nno <leader>g  :Fgrep<CR>
+nno <silent>t  :SplitTerm<CR>i
+nno <leader>g  :Fgrep<CR>i
 nno <leader>ma :Make<CR>
 nno <leader>mr :Make build run<CR>
 nno <leader>cm :CMake<CR>
 nno <leader>cr :CMake run<CR>
-nno <leader>py :Python<CR>
-nno <leader>ip :Ipython<CR>
-nno <leader>pd :Ipdb<CR>
-nno <leader>sq :SQL<CR>
-nno <leader>sp :SQLplot<CR>
+nno <leader>sq :SQL<CR>i
 
 "" Markdown Mapping
 aug MyMarkdownSetting

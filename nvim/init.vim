@@ -1,14 +1,12 @@
 scriptencoding utf-8
 
 " To Do
-"  - vim内からpythonのステップ実行 (Ipdbの利用, Pudb風に)
-"      - デバッガモードの実装 = modifiable off
-"      - b:termianl_job_idを保持
-"      - jobsend(self.terminal_job_id, "\<CR>")
-"  - BeginTermの終了確認を無くす (neotermを参考に)
-"  - ranger.vimを利用して、NERDTreeのようにウィンドウ分割してファイル選択する
-"  - fgrep -> ファイル開く
-"  - markdown強調(**で囲む)をexpand('<cword>')を利用してショートカット化
+"   - vim内からpythonのステップ実行 (Ipdbの利用, Pudb風に)
+"   - ranger.vimを利用して、NERDTreeのようにウィンドウ分割してファイル選択する
+"   - fgrep
+"       - ファイル開く
+"       - visual modeで文字列選択
+"   - markdown強調(**で囲む)をexpand('<cword>')を利用してショートカット化
 
 "*****************************************************************************
 "" Vim-PLug core
@@ -48,6 +46,7 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'tyru/open-browser.vim'
 Plug 'kannokanno/previm'
+Plug 'airblade/vim-gitgutter'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': ['NERDTreeToggle']}
 Plug 'scrooloose/nerdtree',                     {'on': ['NERDTreeToggle']}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': ['NERDTreeToggle']}
@@ -61,7 +60,6 @@ Plug 'jistr/vim-nerdtree-tabs',                 {'on': ['NERDTreeToggle']}
 " Plug 'Shougo/unite-outline'
 " Plug 'Yggdroot/indentLine'
 " Plug 'tpope/vim-commentary'
-" Plug 'airblade/vim-gitgutter'
 " Plug 'vim-scripts/grep.vim'
 " Plug 'vim-scripts/CSApprox'
 " Plug 'mattn/benchvimrc-vim'
@@ -354,20 +352,6 @@ aug END
 aug vimrc_c_cpp
     au!
     au FileType c,cpp setlocal tabstop=4 shiftwidth=4 expandtab
-aug END
-
-" python
-aug vimrc_python
-    au!
-    au FileType python setlocal expandtab shiftwidth=4 tabstop=8
-                \ formatoptions+=croq softtabstop=4
-                \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-                \|let &colorcolumn=join(range(PythonMaxLineLength(), 300), ',')
-                \|hi  ColorColumn guibg=#0f0f0f
-                \|nno <silent> <leader>a :call jedi#goto_assignments()<CR>
-                \|nno <silent> <leader>d :call jedi#goto_definitions()<CR>
-    au BufNewFile,BufRead Pipfile setf toml
-    au BufNewFile,BufRead Pipfile.lock setf json
 aug END
 
 " FixWhitespace
