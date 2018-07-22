@@ -146,8 +146,8 @@ if exists('*fugitive#statusline')
 endif
 
 
-"" gitgutter
-let g:gitgutter_enabled = 0
+"" vim-gitgutter
+let g:gitgutter_enabled = 1
 
 
 "" vim-devicons
