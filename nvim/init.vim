@@ -33,22 +33,19 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'w0rp/ale'
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'francoiscabrol/ranger.vim'
-Plug 'rbgrouleff/bclose.vim'
+Plug 'rbgrouleff/bclose.vim'  " for ranger.vim
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
-Plug 'tyru/open-browser.vim'
-Plug 'kannokanno/previm'
 Plug 'airblade/vim-gitgutter'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': ['NERDTreeToggle']}
-Plug 'scrooloose/nerdtree',                     {'on': ['NERDTreeToggle']}
-Plug 'jistr/vim-nerdtree-tabs',                 {'on': ['NERDTreeToggle']}
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
+Plug 'scrooloose/nerdtree',                     {'on': 'NERDTreeToggle'}
+Plug 'jistr/vim-nerdtree-tabs',                 {'on': 'NERDTreeToggle'}
 " Plug 'kassio/neoterm'
 " Plug 'tpope/vim-fugitive'
 " Plug 'rhysd/nyaovim-popup-tooltip'
@@ -84,23 +81,27 @@ Plug 'xolox/vim-session'
 
 " color scheme
 Plug 'tomasr/molokai'
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
 
 " c/c++
-Plug 'vim-jp/cpp-vim'
-" Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
+Plug 'vim-jp/cpp-vim',    {'for': 'cpp'}
+Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
 " Plug 'ludwig/split-manpage.vim'
 
 " python
-Plug 'davidhalter/jedi-vim'
-Plug 'zchee/deoplete-jedi'
-Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
-Plug 'cespare/vim-toml'
+Plug 'davidhalter/jedi-vim',          {'for': 'python'}
+Plug 'zchee/deoplete-jedi',           {'for': 'python'}
 
-if has('mac')
-    " icon
-    Plug 'ryanoasis/vim-devicons'
-endif
+" misc
+Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
+Plug 'cespare/vim-toml',              {'for': 'toml'}
+Plug 'tyru/open-browser.vim',         {'for': 'markdown'}
+Plug 'kannokanno/previm',             {'for': 'markdown'}
+
+" if has('mac')
+"     " icon
+"     Plug 'ryanoasis/vim-devicons'
+" endif
 
 call plug#end()
 
