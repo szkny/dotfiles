@@ -28,6 +28,7 @@ ino <C-l> <Right>
 
 nno x "_x
 vno x "_x
+nno D "_D
 
 nno <S-h> 10h
 nno <S-j> 5gj

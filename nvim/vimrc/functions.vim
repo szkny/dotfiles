@@ -81,7 +81,7 @@ fun! s:CloseBufferTab() abort
             endif
         endif
     catch
-        echo 'CloseBufferTab: [error] "'.bufname('%').'" を閉じることができません。'
+        echon 'CloseBufferTab: [error] "'.bufname('%').'" を閉じることができません。'
         return
     endtry
 endf
@@ -298,7 +298,7 @@ fun! ResizeWindow(size) abort
     "      nno +  :ResizeWindow +<CR>
     "      nno -  :ResizeWindow -<CR>
     if a:size ==# ''
-        echo '[warning] the args "size" is empty.'
+        echon '[warning] the args "size" is empty.'
         return
     endif
     if winwidth(0) >= winheight(0)*3
@@ -329,7 +329,7 @@ fun! Make(...) abort
         let l:command = 'cd ../ && '.l:command
         call BeginTerm(l:command, l:args)
     else
-        echo 'not found: "GNUmakefile" or "Makefile"'
+        echon 'not found: "GNUmakefile" or "Makefile"'
     endif
 endf
 command! -nargs=* Make call Make(<f-args>)
@@ -361,7 +361,7 @@ fun! CMake(...) abort
         let l:command = 'cd '.l:builddir.' && '.l:command
         call BeginTerm(l:command)
     else
-        echo 'not found: '.l:cmakelists_txt
+        echon 'not found: '.l:cmakelists_txt
     endif
 endf
 command! -nargs=* CMake call CMake(<f-args>)
@@ -426,7 +426,7 @@ fun! SQL() abort
         endif
         call BeginTerm(l:command, l:args)
     else
-        echo 'SQL: [error] '.l:command.' command not found.'
+        echon 'SQL: [error] '.l:command.' command not found.'
     endif
 endf
 command! SQL call SQL()
@@ -471,7 +471,7 @@ fun! Gnuplot() abort
         call BeginTerm(l:command, l:args)
         startinsert
     else
-        echo 'Gnuplot: [error] invalid file type. this is "' . &filetype. '".'
+        echon 'Gnuplot: [error] invalid file type. this is "' . &filetype. '".'
     endif
 endf
 command! -nargs=* Gnuplot call Gnuplot(<f-args>)
@@ -623,7 +623,7 @@ fun! W3m(...) abort range
         endif
         call BeginTerm('w3m', '-M', l:url)
     else
-        echo 'W3m: [error] w3m command not found.'
+        echon 'W3m: [error] w3m command not found.'
     endif
 endf
 command! -range -nargs=* W3m call W3m(<f-args>)

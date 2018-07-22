@@ -17,9 +17,9 @@ if getline(0, '$') == ['']
 endif
 
 " mapping
-nno <buffer><leader>py :Python<CR>i
-nno <buffer><leader>ip :Ipython<CR>i
-nno <buffer><leader>pd :Ipdb<CR>
+nno <buffer><silent><leader>py :Python<CR>i
+nno <buffer><silent><leader>ip :Ipython<CR>i
+nno <buffer><silent><leader>pd :Ipdb<CR>
 
 " auto command
 aug vimrc_python
@@ -209,58 +209,97 @@ command! Pdb call s:pdb()
 
 
 let s:ipdb = {}
-fun! s:ipdb.open() abort
+fun! s:ipdb_open() abort
     " Ipdbを起動する関数
     if &filetype ==# 'python'
         " start ipdb debbug mode
         silent write
+        let s:ipdb.save_updatetime = &updatetime
+        setlocal updatetime=100
         setlocal nomodifiable
-        nmap <buffer><silent> q :<C-u>call <SID>ipdb_close()<CR>
-        nmap <buffer><silent> <leader>n :<C-u>call <SID>ipdb_step()<CR>
-        nmap <buffer><silent> <leader>u :<C-u>call <SID>ipdb_until()<CR>
-        let l:tmp_winid = win_getid()
-        call SplitTerm('python', '-m ipdb', expand('%'))
-        let l:self.jobid = b:terminal_job_id
-        let l:self.winid = win_getid()
-        if l:self.winid != l:tmp_winid
-            call win_gotoid(l:tmp_winid)
-        endif
+        " if exists('*airline#add_statusline_func')
+        "     call airline#add_statusline_func('IpdbStatus')
+        " endif
+        " mapping
+        nno <buffer><silent> <ESC> :<C-u>call <SID>ipdb_close()<CR>
+        nno <buffer><silent> <C-[> :<C-u>call <SID>ipdb_close()<CR>
+        nno <buffer><silent> q     :<C-u>call <SID>ipdb_close()<CR>
+        nno <buffer><silent> n     :<C-u>call <SID>ipdb_step()<CR>
+        nno <buffer><silent> u     :<C-u>call <SID>ipdb_until()<CR>
+        nno <buffer><silent> <C-c> :<C-u>call <SID>ipdb_sigint()<CR>
+        " autocmd
+        aug ipdb_auto_command
+            au!
+            au CursorHold <buffer> echon '-- DEBUG --'
+        aug END
+        let s:ipdb.script_winid = win_getid()
+        silent call SplitTerm('python', '-m ipdb', expand('%'))
+        nno <buffer><silent> <ESC> :<C-u>call <SID>ipdb_close()<CR>
+        nno <buffer><silent> <C-[> :<C-u>call <SID>ipdb_close()<CR>
+        nno <buffer><silent> q     :<C-u>call <SID>ipdb_close()<CR>
+        let s:ipdb.jobid = b:terminal_job_id
+        let s:ipdb.debug_winid = win_getid()
+        call win_gotoid(s:ipdb.script_winid)
+        echon '-- DEBUG -- '
     else
-        echo 'Ipdb: [error] invalid file type. this is "' . &filetype. '".'
+        echo 'ipdb: [error] invalid file type. this is "' . &filetype. '".'
     endif
 endf
-command! Ipdb call s:ipdb.open()
+command! Ipdb call s:ipdb_open()
 
-fun! s:ipdb.close() abort
-    if has_key(l:self, 'jobid') && has_key(l:self, 'winid')
+fun! IpdbStatus(...)
+  let w:airline_section_a = 'IPDB'
+  let w:airline_section_b = g:airline_section_b
+  let w:airline_section_c = g:airline_section_c
+endf
+
+fun! s:ipdb_close()
+    if has_key(s:ipdb, 'jobid')
+       \&& has_key(s:ipdb, 'save_updatetime')
+           \&& has_key(s:ipdb, 'script_winid')
+               \&& has_key(s:ipdb, 'debug_winid')
+        call win_gotoid(s:ipdb.script_winid)
+        let &updatetime=s:ipdb.save_updatetime
         setlocal modifiable
-        " nmapclear <buffer>
-        unmap <buffer><silent> q
-        unmap <buffer><silent> <leader>n
-        unmap <buffer><silent> <leader>u
-        call win_gotoid(l:self.winid)
+        try
+            " nunmap <buffer><silent> <ESC>
+            nunmap <buffer><silent> <C-[>
+            nunmap <buffer><silent> q
+            nunmap <buffer><silent> n
+            nunmap <buffer><silent> u
+            nunmap <buffer><silent> <C-c>
+        endtry
+        aug ipdb_auto_command
+            au!
+        aug END
+        call win_gotoid(s:ipdb.debug_winid)
+        try
+            " nunmap <buffer><silent> <ESC>
+            nunmap <buffer><silent> <C-[>
+            nunmap <buffer><silent> q
+        endtry
         quit
         unlet s:ipdb.jobid
-        unlet s:ipdb.winid
+        unlet s:ipdb.script_winid
+        unlet s:ipdb.debug_winid
+        echon
     endif
 endf
 
-fun! s:ipdb.step() abort
-    call jobsend(l:self.jobid, "n\<CR>")
-endf
-
-fun! s:ipdb.until() abort
-    call jobsend(l:self.jobid, 'until '.line('.')."\<CR>")
-endf
-
-fun! s:ipdb_close() abort
-    call s:ipdb.close()
-endf
 fun! s:ipdb_step() abort
-    call s:ipdb.step()
+    try
+        call jobsend(s:ipdb.jobid, "n\<CR>")
+    catch
+        call s:ipdb_close()
+    endtry
 endf
+
 fun! s:ipdb_until() abort
-    call s:ipdb.until()
+    call jobsend(s:ipdb.jobid, 'until '.line('.')."\<CR>")
+endf
+
+fun! s:ipdb_sigint() abort
+    call jobsend(s:ipdb.jobid, "\<C-c>")
 endf
 
 
