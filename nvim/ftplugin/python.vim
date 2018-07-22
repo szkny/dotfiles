@@ -64,14 +64,14 @@ command! -complete=file -nargs=* Python call Python(<f-args>)
 fun! Ipython() abort
     " ipythonを起動して開いているPythonスクリプトをロードする関数
     if !executable('ipython')
-        echo 'Ipython: [error] ipython does not exist.'
-        echo '                 isntalling ipython ...'
+        echon 'Ipython: [error] ipython does not exist.'
+        echon '                 isntalling ipython ...'
         if !executable('pip')
             echoerr 'You have to install pip!'
             return
         endif
         call system('pip install ipython')
-        echo ''
+        echo
     endif
     let l:command = 'ipython'
     if findfile('Pipfile',getcwd()) !=# ''
@@ -158,37 +158,37 @@ fun! s:pyform(...) abort
         endif
         if l:formatter ==# 'autopep8'
             if !executable('autopep8')
-                echo 'Pyform: [error] autopep8 command not found.'
-                echo '                installing autopep8...'
+                echon 'Pyform: [error] autopep8 command not found.'
+                echon '                installing autopep8...'
                 if !executable('pip')
                     echoerr 'You have to install pip!'
                     return
                 endif
                 call system('pip install autopep8')
-                echo ''
+                echon
             endif
             let l:pos = getpos('.')
             silent exe '%!autopep8 -'
             call setpos('.', l:pos)
         elseif l:formatter ==# 'yapf'
             if !executable('yapf')
-                echo 'Pyform: [error] yapf command not found.'
-                echo '                installing yapf...'
+                echon 'Pyform: [error] yapf command not found.'
+                echon '                installing yapf...'
                 if !executable('pip')
                     echoerr 'You have to install pip!'
                     return
                 endif
                 call system('pip install git+https://github.com/google/yapf')
-                echo ''
+                echon
             endif
             let l:pos = getpos('.')
             silent exe '0, $!yapf'
             call setpos('.', l:pos)
         else
-            echo 'Pyfrom: [error] you can use autopep8 or yapf.'
+            echon 'Pyfrom: [error] you can use autopep8 or yapf.'
         endif
     else
-        echo 'Pyform: [error] invalid file type. this is "' . &filetype. '".'
+        echon 'Pyform: [error] invalid file type. this is "' . &filetype. '".'
     endif
 endf
 fun! s:CompletionPyformCommands(ArgLead, CmdLine, CusorPos)
@@ -202,7 +202,7 @@ fun! s:pdb() abort
     if &filetype ==# 'python'
         call BeginTerm('python', '-m pdb', expand('%'))
     else
-        echo 'Pdb: [error] invalid file type. this is "' . &filetype. '".'
+        echon 'Pdb: [error] invalid file type. this is "' . &filetype. '".'
     endif
 endf
 command! Pdb call s:pdb()
@@ -242,7 +242,7 @@ fun! s:ipdb_open() abort
         call win_gotoid(s:ipdb.script_winid)
         echon '-- DEBUG -- '
     else
-        echo 'ipdb: [error] invalid file type. this is "' . &filetype. '".'
+        echon 'ipdb: [error] invalid file type. this is "' . &filetype. '".'
     endif
 endf
 command! Ipdb call s:ipdb_open()
@@ -307,18 +307,18 @@ fun! s:pudb() abort
     " pudbを起動する関数
     if &filetype ==# 'python'
         if !executable('pudb3')
-            echo 'Pudb: [error] pudb3 command not found.'
-            echo '                   installing pudb3...'
+            echon 'Pudb: [error] pudb3 command not found.'
+            echon '                   installing pudb3...'
             if !executable('pip')
                 echoerr 'You have to install pip!'
                 return
             endif
             call system('pip install pudb')
-            echo ''
+            echon
         endif
         call NewTerm('pudb3', expand('%'))
     else
-        echo 'Pudb: [error] invalid file type. this is "' . &filetype. '".'
+        echon 'Pudb: [error] invalid file type. this is "' . &filetype. '".'
     endif
 endf
 command! Pudb call s:pudb()
