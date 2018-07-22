@@ -146,6 +146,10 @@ if exists('*fugitive#statusline')
 endif
 
 
+"" gitgutter
+let g:gitgutter_enabled = 1
+
+
 "" vim-devicons
 let g:webdevicons_conceal_nerdtree_brackets = 1
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '

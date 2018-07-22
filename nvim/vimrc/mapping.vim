@@ -100,9 +100,7 @@ fun! MyMdMap()
         ino <silent><buffer>…     <ESC>:Appendchar \ \ <CR>a
         no  <silent><buffer>…          :Appendchar \ \ <CR>
     elseif system('uname') ==# "Linux\n"
-        " ino <silent><buffer><A-;> <ESC>:Appendchar \ \ <CR>a
-        " no  <silent><buffer><A-;>      :Appendchar \ \ <CR>
-        ino <silent><buffer><A-;> <ESC>:normal A  <CR>a
-        no  <silent><buffer><A-;>      :normal A  <CR>
+        ino <silent><buffer><A-;> <ESC>:Appendchar \ \ <CR>a
+        no  <silent><buffer><A-;>      :Appendchar \ \ <CR>
     endif
 endf
