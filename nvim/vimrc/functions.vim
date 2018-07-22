@@ -149,14 +149,14 @@ fun! NewTerm(...) abort
             let l:cmd .= ' '.l:i
         endfor
     endif
-    exe 'enew'
-    exe 'lcd ' . l:current_dir
-    exe l:cmd
+    silent enew
+    silent exe 'lcd ' . l:current_dir
+    silent exe l:cmd
     " change buffer name
     if a:0 == 0
-        call s:SetNewBufName('bash')
+        silent call s:SetNewBufName('bash')
     elseif a:0 > 0
-        call s:SetNewBufName(a:1)
+        silent call s:SetNewBufName(a:1)
     endif
     " set local settings
     setlocal nonumber
@@ -189,8 +189,8 @@ fun! SplitTerm(...) abort
         let l:height = s:Splitheight()
         let l:split = l:height ? l:height.'new' : 'new'
     endif
-    exe l:split
-    exe 'lcd ' . l:current_dir
+    silent exe l:split
+    silent exe 'lcd ' . l:current_dir
     " execute command
     let l:cmd2 = 'terminal'
     if a:0 > 0
@@ -198,12 +198,12 @@ fun! SplitTerm(...) abort
             let l:cmd2 .= ' '.l:i
         endfor
     endif
-    exe l:cmd2
+    silent exe l:cmd2
     " change buffer name
     if a:0 == 0
-        call s:SetNewBufName('bash')
+        silent call s:SetNewBufName('bash')
     elseif a:0 > 0
-        call s:SetNewBufName(a:1)
+        silent call s:SetNewBufName(a:1)
     endif
     " set local settings
     setlocal nonumber
