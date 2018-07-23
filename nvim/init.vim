@@ -1,6 +1,7 @@
 scriptencoding utf-8
 
 " To Do
+"   - normalモードでのspaceキーの挙動がおかしい
 "   - vim内からpythonのステップ実行 (Ipdbの利用, Pudb風に)
 "   - ranger.vimを利用して、NERDTreeのようにウィンドウ分割してファイル選択する
 "   - fgrep
