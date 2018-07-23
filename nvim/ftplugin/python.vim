@@ -74,7 +74,7 @@ fun! Ipython() abort
             return
         endif
         call system('pip install ipython')
-        echo
+        echon
     endif
     let l:command = 'ipython'
     if findfile('Pipfile',getcwd()) !=# ''
@@ -287,11 +287,41 @@ fun! s:ipdb_open() abort
 endf
 command! Ipdb call s:ipdb_open()
 
+fun! s:ipdb_close()
+    " ipdbを終了する関数
+    if s:ipdb_exist()
+        call win_gotoid(s:ipdb.script_winid)
+        if exists('*airline#add_statusline_func')
+            silent call airline#remove_statusline_func('IpdbStatusLine')
+        endif
+        let &updatetime=s:ipdb.save_updatetime
+        setlocal modifiable
+        call s:ipdb_unmap()
+        aug ipdb_auto_command
+            au!
+        aug END
+        call win_gotoid(s:ipdb.debug_winid)
+        quit
+        echon
+        unlet s:ipdb.jobid
+    endif
+endf
+command! IpdbClose call s:ipdb_close()
+
 fun! s:ipdb_exist() abort
+    " ipdbを起動しているか確認する関数
+    "   もしipythonが無ければインストール
+    if !executable('ipython')
+        echon 'Ipython: [error] ipython does not exist.'
+        echon '                 isntalling ipython ...'
+        if !executable('pip')
+            echoerr 'You have to install pip!'
+            return
+        endif
+        silent call system('pip install ipython')
+        echon
+    endif
     if has_key(s:ipdb, 'jobid')
-       \&& has_key(s:ipdb, 'save_updatetime')
-           \&& has_key(s:ipdb, 'script_winid')
-               \&& has_key(s:ipdb, 'debug_winid')
         return 1
     else
         return 0
@@ -299,6 +329,7 @@ fun! s:ipdb_exist() abort
 endf
 
 fun! s:ipdb_map()
+    " キーマッピングを行う関数
     if has_key(s:ipdb, 'maps') && has_key(s:ipdb, 'map_options')
         for [l:mode, l:map, l:func] in s:ipdb.maps
             let l:cmd = ''
@@ -318,6 +349,7 @@ fun! s:ipdb_map()
     endif
 endf
 fun! s:ipdb_unmap()
+    " キーマッピングを解除する関数
     if has_key(s:ipdb, 'maps') && has_key(s:ipdb, 'map_options')
         for [l:mode, l:map, l:func] in s:ipdb.maps
             if l:mode ==? 'n' || l:mode ==? 'normal'
@@ -336,32 +368,9 @@ fun! s:ipdb_unmap()
     endif
 endf
 
-fun! s:ipdb_close()
-    if has_key(s:ipdb, 'jobid')
-       \&& has_key(s:ipdb, 'save_updatetime')
-           \&& has_key(s:ipdb, 'script_winid')
-               \&& has_key(s:ipdb, 'debug_winid')
-        call win_gotoid(s:ipdb.script_winid)
-        if exists('*airline#add_statusline_func')
-            silent call airline#remove_statusline_func('IpdbStatusLine')
-        endif
-        let &updatetime=s:ipdb.save_updatetime
-        setlocal modifiable
-        call s:ipdb_unmap()
-        aug ipdb_auto_command
-            au!
-        aug END
-        call win_gotoid(s:ipdb.debug_winid)
-        quit
-        unlet s:ipdb.jobid
-        unlet s:ipdb.save_updatetime
-        unlet s:ipdb.script_winid
-        unlet s:ipdb.debug_winid
-        echon
-    endif
-endf
-
 fun! s:ipdb_jobsend(...) abort
+    " ipdbにコマンドを送る関数
+    "    call s:ipdb_jobsend('ipdbコマンド')
     if has_key(s:ipdb, 'jobid')
         let l:command = ''
         for l:arg in a:000
@@ -381,7 +390,8 @@ fun! s:ipdb_sigint() abort
 endf
 
 fun! IpdbStatusLine(...)
-  let w:airline_section_a = 'IPDB'
-  let w:airline_section_b = g:airline_section_b
-  let w:airline_section_c = g:airline_section_c
+    " ipdbデバッグモード用のairlineの設定
+    let w:airline_section_a = '%#__accent_bold#IPDB'
+    let w:airline_section_b = g:airline_section_b
+    let w:airline_section_c = g:airline_section_c
 endf

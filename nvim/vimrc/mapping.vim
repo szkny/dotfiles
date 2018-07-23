@@ -10,7 +10,6 @@ nno <silent> ; :
 ino <silent> <C-s>   <ESC>:w<CR>a
 nno <silent> <C-s>   :w<CR>
 nno <silent> q       :CloseBufferTab<CR>
-" tno <silent> <C-d>   <C-\><C-n>:CloseBufferTab<CR>
 nno <silent> <S-q>   :qall<CR>
 tno <silent> <C-w>   <C-\><C-n><C-w>
 
@@ -33,17 +32,17 @@ nno <silent> de      "_de
 nno <silent> j       gj
 nno <silent> k       gk
 ino <silent> <C-h>   <Left>
-ino <silent> <C-j> <Down>
-ino <silent> <C-k> <Up>
+ino <silent> <C-j>   <Down>
+ino <silent> <C-k>   <Up>
 ino <silent> <C-l>   <Right>
-nno <silent> <S-h> $
-nno <silent> <S-j> 5gj
-nno <silent> <S-k> 5gk
-nno <silent> <S-l> ^
-vno <silent> <S-h> $
-vno <silent> <S-j> 5gj
-vno <silent> <S-k> 5gk
-vno <silent> <S-l> ^
+nno <silent> <S-h>   ^
+nno <silent> <S-j>   5gj
+nno <silent> <S-k>   5gk
+nno <silent> <S-l>   $
+vno <silent> <S-h>   ^
+vno <silent> <S-j>   5gj
+vno <silent> <S-k>   5gk
+vno <silent> <S-l>   $
 if system('uname') ==# "Linux\n"
     ino <silent> <A-h> <Left>
     ino <silent> <A-j> <Down>
