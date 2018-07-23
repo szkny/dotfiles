@@ -4,70 +4,84 @@ scriptencoding utf-8
 "*****************************************************************************
 let g:mapleader = "\<Space>"
 
-tno <silent><C-[> <C-\><C-n>
+" general
+tno <silent> <C-[> <C-\><C-n>
+nno <silent> ; :
+ino <silent> <C-s>   <ESC>:w<CR>a
+nno <silent> <C-s>   :w<CR>
+nno <silent> q       :CloseBufferTab<CR>
+" tno <silent> <C-d>   <C-\><C-n>:CloseBufferTab<CR>
+nno <silent> <S-q>   :qall<CR>
+tno <silent> <C-w>   <C-\><C-n><C-w>
 
-nno ; :
-ino <C-s>           <ESC>:w<CR>a
-nno <C-s>           :w<CR>
-nno <silent>q       :CloseBufferTab<CR>
-tno <silent><C-d>   <C-\><C-n>:CloseBufferTab<CR>
-nno <silent><S-q>   :qall<CR>
-tno <C-w>           <C-\><C-n><C-w>
+" tab/window
+nno <silent> <Tab>   :ChangeBuffer next<CR>
+nno <silent> <S-Tab> :ChangeBuffer previous<CR>
+nno <silent> >       :ChangeBuffer next<CR>
+nno <silent> <       :ChangeBuffer previous<CR>
+nno <silent> +       :ResizeWindow +1<CR>
+nno <silent> -       :ResizeWindow -1<CR>
 
-nno <silent><Tab>   :ChangeBuffer next<CR>
-nno <silent><S-Tab> :ChangeBuffer previous<CR>
-nno <silent>>       :ChangeBuffer next<CR>
-nno <silent><       :ChangeBuffer previous<CR>
-nno <silent>+       :ResizeWindow +1<CR>
-nno <silent>-       :ResizeWindow -1<CR>
+" yank/delete/paste
+vno <silent> p       "0p
+nno <silent> x       "_x
+vno <silent> x       "_x
+nno <silent> D       "_D
+nno <silent> de      "_de
 
-nno <silent>j gj
-nno <silent>k gk
-ino <C-h> <Left>
-ino <C-l> <Right>
+" cursor move
+nno <silent> j       gj
+nno <silent> k       gk
+ino <silent> <C-h>   <Left>
+ino <silent> <C-j> <Down>
+ino <silent> <C-k> <Up>
+ino <silent> <C-l>   <Right>
+nno <silent> <S-h> $
+nno <silent> <S-j> 5gj
+nno <silent> <S-k> 5gk
+nno <silent> <S-l> ^
+vno <silent> <S-h> $
+vno <silent> <S-j> 5gj
+vno <silent> <S-k> 5gk
+vno <silent> <S-l> ^
+if system('uname') ==# "Linux\n"
+    ino <silent> <A-h> <Left>
+    ino <silent> <A-j> <Down>
+    ino <silent> <A-k> <Up>
+    ino <silent> <A-l> <Right>
+endif
 
-nno x "_x
-vno x "_x
-nno D "_D
-
-nno <S-h> 10h
-nno <S-j> 5gj
-nno <S-k> 5gk
-nno <S-l> 10l
-vno <S-h> 10h
-vno <S-j> 5gj
-vno <S-k> 5gk
-vno <S-l> 10l
-
+" utility
 ino {<Enter> {}<Left><CR><Up><ESC>$a
 " ino {<Enter> {}<Left><CR><ESC>O
 
-if system('uname') ==# "Linux\n"
-    ino <silent><A-[> <ESC>
-    vno <silent><A-[> <ESC>
-    tno <silent><A-[> <C-\><C-n>
-    nno <silent><A-w> <C-w>
-    ino <A-h> <Left>
-    ino <A-j> <Down>
-    ino <A-k> <Up>
-    ino <A-l> <Right>
-endif
-
+" for IME
+nno <silent> あ      a
+nno <silent> い      i
+nno <silent> う      u
+nno <silent> お      o
+nno <silent> ｒ      r
+nno <silent> ｊ      gj
+nno <silent> ｋ      gj
+nno <silent> ｌ      l
+nno <silent> ｈ      h
+nno <silent> ｐ      p
+nno <silent> ｄｄ    dd
+nno <silent> ｙｙ    yy
 
 "" Mapping for Plugins
 if has('mac')
-    nno <silent>gi <Plug>(nyaovim-popup-tooltip-open)
-    nno <silent>_     :TComment<CR>
-    vno <silent>_     :TComment<CR>
+    nno <silent> _     :TComment<CR>
+    vno <silent> _     :TComment<CR>
 else
-    nno <silent>\     :TComment<CR>
-    vno <silent>\     :TComment<CR>
+    nno <silent> \     :TComment<CR>
+    vno <silent> \     :TComment<CR>
 endif
-nno <silent><C-b> :Buffers<CR>
-nno <silent><C-f> :Files<CR>
-nno <silent><C-h> :call Ranger()<CR>
-nno <silent><C-n> :NERDTreeToggle<CR>
-nno <silent><C-t> :TagbarToggle<CR>
+nno <silent> <C-b> :Buffers<CR>
+nno <silent> <C-f> :Files<CR>
+nno <silent> <C-h> :call Ranger()<CR>
+nno <silent> <C-n> :NERDTreeToggle<CR>
+nno <silent> <C-t> :TagbarToggle<CR>
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-k>       <Plug>(neosnippet_expand_or_jump)
 smap <C-k>       <Plug>(neosnippet_expand_or_jump)
@@ -77,20 +91,20 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable()?
 
 "" mapping for My Commands
 if has('mac')
-    ino <silent>…       <ESC>:Appendchar ;<CR>a
-    no  <silent>…            :Appendchar ;<CR>
+    ino <silent> …       <ESC>:Appendchar ;<CR>a
+    no  <silent> …            :Appendchar ;<CR>
 else
-    ino <silent><A-;>    <ESC>:Appendchar ;<CR>a
-    no  <silent><A-;>         :Appendchar ;<CR>
+    ino <silent> <A-;>    <ESC>:Appendchar ;<CR>a
+    no  <silent> <A-;>         :Appendchar ;<CR>
 endif
-nno <silent>?  :call SetHlsearch()<CR>
-nno <silent>t  :SplitTerm<CR>i
-nno <leader>g  :Fgrep<CR>i
-nno <leader>ma :Make<CR>
-nno <leader>mr :Make build run<CR>
-nno <leader>cm :CMake<CR>
-nno <leader>cr :CMake run<CR>
-nno <leader>sq :SQL<CR>i
+nno <silent> ?  :call SetHlsearch()<CR>
+nno <silent> t  :SplitTerm<CR>i
+nno <leader> g  :Fgrep<CR>i
+nno <leader> ma :Make<CR>
+nno <leader> mr :Make build run<CR>
+nno <leader> cm :CMake<CR>
+nno <leader> cr :CMake run<CR>
+nno <leader> sq :SQL<CR>i
 
 "" Markdown Mapping
 aug MyMarkdownSetting
@@ -98,10 +112,10 @@ aug MyMarkdownSetting
 aug END
 fun! MyMdMap()
     if has('mac')
-        ino <silent><buffer>…     <ESC>:Appendchar \ \ <CR>a
-        no  <silent><buffer>…          :Appendchar \ \ <CR>
+        ino <silent><buffer> …     <ESC>:Appendchar \ \ <CR>a
+        no  <silent><buffer> …          :Appendchar \ \ <CR>
     elseif system('uname') ==# "Linux\n"
-        ino <silent><buffer><A-;> <ESC>:Appendchar \ \ <CR>a
-        no  <silent><buffer><A-;>      :Appendchar \ \ <CR>
+        ino <silent><buffer> <A-;> <ESC>:Appendchar \ \ <CR>a
+        no  <silent><buffer> <A-;>      :Appendchar \ \ <CR>
     endif
 endf

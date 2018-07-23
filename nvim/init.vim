@@ -147,8 +147,9 @@ set clipboard+=unnamedplus
 set nobackup
 set noswapfile
 
-"" keyboard timeout (msec)
-set ttimeoutlen=1
+"" Time (msec)
+set ttimeoutlen=1  " keyboard timeout
+set updatetime=250
 
 if exists('$SHELL')
     set shell=$SHELL
