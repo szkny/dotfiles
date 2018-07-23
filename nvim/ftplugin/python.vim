@@ -232,7 +232,7 @@ endf
 command! Pudb call s:pudb()
 
 
-"" 以下ipdbによるデバッガ
+"" 以下ipdb用プラグイン
 let s:ipdb = {}
 let s:ipdb.maps = [
     \['normal',   '<ESC>',  'ipdb_close()'],
