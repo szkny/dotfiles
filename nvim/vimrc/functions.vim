@@ -532,6 +532,7 @@ fun! s:Fgrep(...) abort
         endfor
         call SplitTerm('grep -rin "'.l:word.'" * | fzf')
     endif
+    startinsert
 endf
 command! -nargs=* Fgrep call s:Fgrep(<f-args>)
 
@@ -622,6 +623,7 @@ fun! W3m(...) abort range
             let l:url = GoogleSearchURL(a:000)
         endif
         call BeginTerm('w3m', '-M', l:url)
+        startinsert
     else
         echon 'W3m: [error] w3m command not found.'
     endif
