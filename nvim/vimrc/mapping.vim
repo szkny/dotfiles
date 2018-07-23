@@ -32,8 +32,6 @@ nno <silent> de      "_de
 nno <silent> j       gj
 nno <silent> k       gk
 ino <silent> <C-h>   <Left>
-ino <silent> <C-j>   <Down>
-ino <silent> <C-k>   <Up>
 ino <silent> <C-l>   <Right>
 nno <silent> <S-h>   ^
 nno <silent> <S-j>   5gj
@@ -96,14 +94,14 @@ else
     ino <silent> <A-;>    <ESC>:Appendchar ;<CR>a
     no  <silent> <A-;>         :Appendchar ;<CR>
 endif
-nno <silent> ?  :call SetHlsearch()<CR>
-nno <silent> t  :SplitTerm<CR>i
-nno <leader> g  :Fgrep<CR>i
-nno <leader> ma :Make<CR>
-nno <leader> mr :Make build run<CR>
-nno <leader> cm :CMake<CR>
-nno <leader> cr :CMake run<CR>
-nno <leader> sq :SQL<CR>i
+nno <silent> ?          :call SetHlsearch()<CR>
+nno <silent> t          :SplitTerm<CR>i
+" nno <silent> <leader>g  :Fgrep<CR>
+nno <silent> <leader>ma :Make<CR>
+nno <silent> <leader>mr :Make build run<CR>
+nno <silent> <leader>cm :CMake<CR>
+nno <silent> <leader>cr :CMake run<CR>
+nno <silent> <leader>sq :SQL<CR>i
 
 "" Markdown Mapping
 aug MyMarkdownSetting

@@ -55,10 +55,28 @@ fun! s:CloseBufferTab() abort
             endif
         elseif winnr('$') > 1
             " 複数ウィンドウの場合
+            " if &buftype ==? 'terminal'
+            "     " バッファリストが複数の場合 bdelete
+            "     let l:deletebufnr = bufnr('%')
+            "     let l:beforebufnr = bufnr('#')
+            "     " 1つ前に編集していたバッファがあれば戻る、なければbnext
+            "     if l:beforebufnr != -1 && buflisted(l:beforebufnr)
+            "         exe 'buffer '.l:beforebufnr
+            "     else
+            "         bnext
+            "     endif
+            "     exe 'bdelete! '.l:deletebufnr
+            "     return
+            " else
+            "     quit
+            "     return
+            " endif
             if len(win_findbuf(bufnr('%'))) == 1 && &buflisted
                 " 異なるファイルを画面分割している場合
-                if l:buf_number == 1
-                    " バッファリストが１つの場合 quit
+                if l:buf_number == 1 ||
+                        \&buftype ==? 'terminal' ||
+                            \&buftype ==? 'quickfix'
+                    " バッファリストが１つ、または特定のバッファタイプの場合 quit
                     quit
                     return
                 else

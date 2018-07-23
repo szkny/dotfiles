@@ -45,6 +45,7 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'airblade/vim-gitgutter'
 Plug 'Raimondi/delimitMate'
+Plug 'vim-scripts/grep.vim'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
 Plug 'scrooloose/nerdtree',                     {'on': 'NERDTreeToggle'}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': 'NERDTreeToggle'}
@@ -57,7 +58,6 @@ Plug 'jistr/vim-nerdtree-tabs',                 {'on': 'NERDTreeToggle'}
 " Plug 'Shougo/unite-outline'
 " Plug 'Yggdroot/indentLine'
 " Plug 'tpope/vim-commentary'
-" Plug 'vim-scripts/grep.vim'
 " Plug 'vim-scripts/CSApprox'
 
 if isdirectory('/usr/local/opt/fzf')
