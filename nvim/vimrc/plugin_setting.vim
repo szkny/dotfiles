@@ -47,8 +47,8 @@ let g:jedi#completions_enabled = 1
 " let g:jedi#show_call_signatures = "0"
 " let g:jedi#completions_command = "<C-Space>"
 " let g:jedi#goto_command = '<Leader>d'
-let g:jedi#goto_assignments_command = '<leader>a'
-let g:jedi#goto_definitions_command = '<leader>d'
+" let g:jedi#goto_assignments_command = '<leader>a'
+" let g:jedi#goto_definitions_command = '<leader>d'
 
 
 "" ale (Asynchronous Lint Engine)
