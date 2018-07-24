@@ -48,10 +48,6 @@ if system('uname') ==# "Linux\n"
     ino <silent> <A-l> <Right>
 endif
 
-" utility
-ino {<Enter> {}<Left><CR><Up><ESC>$a
-" ino {<Enter> {}<Left><CR><ESC>O
-
 " for IME
 nno <silent> あ      a
 nno <silent> い      i
