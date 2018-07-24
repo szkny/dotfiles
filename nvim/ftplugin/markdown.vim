@@ -30,6 +30,7 @@ fun! s:PrevimOpenCmd()
 endf
 command! Previm call s:PrevimOpenCmd()
 
+
 " mapping
 if has('mac')
     ino <silent><buffer> …     <ESC>:Appendchar \ \ <CR>a

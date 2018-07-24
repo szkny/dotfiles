@@ -117,12 +117,6 @@ let g:airline#extensions#default#section_truncate_width = {}
 let g:airline#extensions#whitespace#enabled = 1
 
 
-"" Syntax highlight
-" Default highlight is better than polyglot
-let g:polyglot_disabled = ['python']
-let g:python_highlight_all = 1
-
-
 "" grep
 " nnoremap <silent> <leader>f :Rgrep<CR>
 let g:Grep_Default_Options = '-IR'

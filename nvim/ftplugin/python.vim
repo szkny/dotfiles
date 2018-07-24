@@ -15,6 +15,7 @@ if getline(0, '$') == ['']
     call append(7,'"""')
 endif
 
+
 " mapping
 nno <silent><leader>py :Python<CR>i
 nno <silent><leader>ip :Ipython<CR>i
@@ -24,6 +25,7 @@ if exists('*jedi#goto')
     " nno <silent> <leader>a :call jedi#goto_assignments()<CR>
     " nno <silent> <leader>d :call jedi#goto_definitions()<CR>
 endif
+
 
 " auto command
 aug vimrc_python
@@ -51,6 +53,10 @@ aug END
 
 " plugin setting
 let b:ale_linters = ['flake8']
+" Syntax highlight
+" Default highlight is better than polyglot
+let g:polyglot_disabled = ['python']
+let g:python_highlight_all = 1
 
 
 " function
