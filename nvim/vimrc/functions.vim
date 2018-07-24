@@ -115,11 +115,6 @@ fun! Ranger() abort
     setlocal nonumber
     setlocal filetype=terminal
 endf
-" NERDTreeのようにウィンドウ分割してファイル選択する
-" aug vimrc_ranger
-"     au!
-"     au BufNewFile * call CloseBufferTab()
-" aug END
 
 
 fun! BeginTerm(...) abort
@@ -296,10 +291,9 @@ fun! s:Vsplitwidth() abort
     endif
     " add ale sign line column width
     if exists('*airline#extensions#ale#get_error')
-        if airline#extensions#ale#get_error() !=# ''
-           \|| airline#extensions#ale#get_warning() !=# ''
-            let l:linenumwidth += 2
-        endif
+        \&& (airline#extensions#ale#get_error()!=#'' || airline#extensions#ale#get_warning()!=#'')
+            \|| exists('*GitGutterGetHunkSummary') && GitGutterGetHunkSummary() != [0, 0, 0]
+        let l:linenumwidth += 2
     endif
     let l:width = winwidth(0)-l:max_line_len-l:linenumwidth
     let l:width = l:width>l:min_winwidth ? l:width : 0
