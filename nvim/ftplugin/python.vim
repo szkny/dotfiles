@@ -32,8 +32,8 @@ aug vimrc_python
                 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
                 \|let &colorcolumn=join(range(PythonMaxLineLength(), 300), ',')
                 \|hi  ColorColumn guibg=#0f0f0f
-    au BufNewFile,BufRead Pipfile setf toml
-    au BufNewFile,BufRead Pipfile.lock setf json
+    au BufNewFile,BufRead Pipfile      setfiletype toml
+    au BufNewFile,BufRead Pipfile.lock setfiletype json
 aug END
 
 " plugin setting
