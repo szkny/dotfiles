@@ -39,7 +39,7 @@ elseif system('uname') ==# "Linux\n"
     ino <silent><buffer> <A-;> <ESC>:Appendchar \ \ <CR>a
     no  <silent><buffer> <A-;>      :Appendchar \ \ <CR>
 endif
-nno <silent> <leader>b :<C-u>call <SID>bold()<CR>
+nno <silent><nowait> <leader>b :<C-u>call <SID>bold()<CR>
 
 
 " function
