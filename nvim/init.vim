@@ -41,10 +41,10 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'airblade/vim-gitgutter'
 Plug 'Raimondi/delimitMate'
-Plug 'vim-scripts/grep.vim'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
 Plug 'scrooloose/nerdtree',                     {'on': 'NERDTreeToggle'}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': 'NERDTreeToggle'}
+" Plug 'vim-scripts/grep.vim'
 " Plug 'kassio/neoterm'
 " Plug 'tpope/vim-fugitive'
 " Plug 'rhysd/nyaovim-popup-tooltip'
@@ -52,6 +52,7 @@ Plug 'jistr/vim-nerdtree-tabs',                 {'on': 'NERDTreeToggle'}
 " Plug 'sheerun/vim-polyglot'
 " Plug 'Shougo/unite.vim'
 " Plug 'Shougo/unite-outline'
+" Plug 'Shougo/denite.nvim'
 " Plug 'Yggdroot/indentLine'
 " Plug 'tpope/vim-commentary'
 " Plug 'vim-scripts/CSApprox'
@@ -82,13 +83,14 @@ Plug 'tomasr/molokai'
 " Plug 'altercation/vim-colors-solarized'
 
 " c/c++
-Plug 'vim-jp/cpp-vim',    {'for': 'cpp'}
-Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
+Plug 'vim-jp/cpp-vim',                {'for': 'cpp'}
+Plug 'vim-scripts/c.vim',             {'for': ['c', 'cpp']}
 " Plug 'ludwig/split-manpage.vim'
 
 " python
 Plug 'davidhalter/jedi-vim',          {'for': 'python'}
 Plug 'zchee/deoplete-jedi',           {'for': 'python'}
+Plug 'tweekmonster/braceless.vim',    {'for': 'python'}
 
 " misc
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
@@ -154,21 +156,6 @@ else
     set shell=/bin/sh
 endif
 
-"" Session Management
-let g:session_directory = '~/.config/nvim/session'
-let g:session_autoload = 'no'
-let g:session_autosave = 'no'
-let g:session_command_aliases = 1
-
-"" Python Host Program
-if has('mac')
-    let g:python_host_prog = expand('~/.pyenv/versions/2.7.10/bin/python2')
-    let g:python3_host_prog = expand('~/.pyenv/versions/3.6.2/bin/python3')
-elseif system('uname') ==# "Linux\n"
-    let g:python_host_prog = expand('~/.pyenv/versions/2.7.10/bin/python2')
-    let g:python3_host_prog = expand('~/.pyenv/versions/3.6.5/bin/python3')
-endif
-
 "" etc..
 set whichwrap=b,s,h,l,<,>,[,]
 set mouse=a
@@ -177,7 +164,31 @@ set wildmenu
 set splitbelow
 set splitright
 set virtualedit=onemore
-" set lazyredraw
+set foldmethod=manual
+set lazyredraw
+
+"" Session Management
+let g:session_directory = '~/.config/nvim/session'
+let g:session_autoload = 'no'
+let g:session_autosave = 'no'
+let g:session_command_aliases = 1
+
+"" Python Host Program
+let g:python_host_prog = ''
+let g:python3_host_prog = ''
+if has('mac')
+    let g:python_host_prog = expand('~/.pyenv/versions/2.7.10/bin/python2')
+    let g:python3_host_prog = expand('~/.pyenv/versions/3.6.2/bin/python3')
+elseif system('uname') ==# "Linux\n"
+    let g:python_host_prog = expand('~/.pyenv/versions/2.7.10/bin/python2')
+    let g:python3_host_prog = expand('~/.pyenv/versions/3.6.5/bin/python3')
+endif
+if findfile(g:python_host_prog) ==# ''
+    let g:python_host_prog = split(system('which python2'), "\n")[0]
+endif
+if findfile(g:python3_host_prog) ==# ''
+    let g:python3_host_prog = split(system('which python3'), "\n")[0]
+endif
 
 "*****************************************************************************
 "" Visual Settings
@@ -220,14 +231,6 @@ set modeline
 set modelines=10
 " set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 
-if !exists('*s:setupWrapping')
-    function s:setupWrapping()
-        set wrap
-        set wrapmargin=2
-        set textwidth=79
-    endfunction
-endif
-
 set background=dark
 colorscheme molokai
 
@@ -235,7 +238,7 @@ let g:enable_bold_font = 1
 let g:enable_italic_font = 1
 let g:cpp_class_scope_highlight = 1
 
-" set cursorline
+set cursorline
 " set cursorcolumn
 set list
 set listchars=tab:¦\ 
@@ -251,7 +254,7 @@ set fillchars+=vert:\
 " hi LineNr guifg=#aabbcc guibg=#204056
 " hi VertSplit guifg=#10202b guibg=#aaaaaa
 " hi CursorLine gui=underline
-" hi CursorLine guibg=#0c1820
+hi CursorLine guibg=#1a1a1a
 " hi CursorColumn guibg=#0c1820
 " hi clear Cursor
 " hi Cursor gui=reverse
@@ -300,7 +303,7 @@ aug END
 "" txt
 aug vimrc_wrapping
     au!
-    au BufRead,BufNewFile *.txt call s:setupWrapping()
+    au BufRead,BufNewFile *.txt setlocal wrap wrapmargin=2 textwidth=79
 aug END
 
 "" make/cmake
@@ -322,7 +325,10 @@ endif
 if executable('rg')
     let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
     set grepprg=rg\ --vimgrep
-    command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+    command! -bang -nargs=* Find call fzf#vim#grep(
+                \'rg --column --line-number --no-heading --fixed-strings --ignore-case '
+                \.'--hidden --follow --glob "!.git/*" --color "always" '
+                \.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
 
 " Disable visualbell

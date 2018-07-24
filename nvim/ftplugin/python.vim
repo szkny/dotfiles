@@ -20,8 +20,9 @@ nno <silent><leader>py :Python<CR>i
 nno <silent><leader>ip :Ipython<CR>i
 nno <silent><C-p>      :Ipdb<CR>
 if exists('*jedi#goto')
-    nno <silent> <leader>a :call jedi#goto_assignments()<CR>
-    nno <silent> <leader>d :call jedi#goto_definitions()<CR>
+    nno <silent> <leader>d :call jedi#goto()<CR>
+    " nno <silent> <leader>a :call jedi#goto_assignments()<CR>
+    " nno <silent> <leader>d :call jedi#goto_definitions()<CR>
 endif
 
 " auto command
@@ -40,6 +41,13 @@ aug delimitMate
         au FileType python   let b:delimitMate_nesting_quotes = ['"',"'"]
     endif
 aug END
+aug Braceless
+    if exists(':BracelessEnable') == 2
+        au FileType python BracelessEnable +indent +fold +highlight
+        hi BracelessIndent guifg=#004000
+    endif
+aug END
+
 
 " plugin setting
 let b:ale_linters = ['flake8']

@@ -504,51 +504,6 @@ fun! SetHlsearch() abort
 endf
 
 
-" fun! s:Fgrep(...) abort range
-"     if a:0 == 0
-"         let l:tmp = @@
-"         exe 'silent normal gvy'
-"         if @@ !=# l:tmp
-"             let @@ = join(split(@@,'\n'))
-"             call SplitTerm('grep -rin "'.@@.'" * | fzf')
-"         else
-"             call SplitTerm('grep -rin "'.expand('<cword>').'" * | fzf')
-"         endif
-"         let @@ = l:tmp
-"     else
-"         let l:word = ''
-"         for l:i in a:000
-"             if l:i ==# a:000[0]
-"                 let l:word = l:i
-"             else
-"                 let l:word .= ' '.l:i
-"             endif
-"         endfor
-"         call SplitTerm('grep -rin "'.l:word.'" * | fzf')
-"     endif
-" endf
-" command! -nargs=* -range Fgrep call s:Fgrep(<f-args>)
-
-
-fun! s:Fgrep(...) abort
-    if a:0 == 0
-        call SplitTerm('grep -rin "'.expand('<cword>').'" * | fzf')
-    else
-        let l:word = ''
-        for l:i in a:000
-            if l:i ==# a:000[0]
-                let l:word = l:i
-            else
-                let l:word .= ' '.l:i
-            endif
-        endfor
-        call SplitTerm('grep -rin "'.l:word.'" * | fzf')
-    endif
-    startinsert
-endf
-command! -nargs=* Fgrep call s:Fgrep(<f-args>)
-
-
 fun! GoogleSearchURL(...) abort
     " Google検索をするURLを返す関数
     let l:url = '"http://www.google.co.jp/'

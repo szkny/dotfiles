@@ -71,7 +71,7 @@ else
     vno <silent> \     :TComment<CR>
 endif
 nno <silent> <C-b> :Buffers<CR>
-nno <silent> <C-f> :Files<CR>
+nno <silent> <C-f> :Find<CR>
 nno <silent> <C-h> :call Ranger()<CR>
 nno <silent> <C-n> :NERDTreeToggle<CR>
 nno <silent> <C-t> :TagbarToggle<CR>
@@ -101,17 +101,3 @@ nno <silent> <leader>mr :Make build run<CR>
 nno <silent> <leader>cm :CMake<CR>
 nno <silent> <leader>cr :CMake run<CR>
 nno <silent> <leader>sq :SQL<CR>i
-
-"" Markdown Mapping
-aug MyMarkdownSetting
-    au BufEnter *.{md,mdwn,mkd,mkdn,mark*} call MyMdMap()
-aug END
-fun! MyMdMap()
-    if has('mac')
-        ino <silent><buffer> …     <ESC>:Appendchar \ \ <CR>a
-        no  <silent><buffer> …          :Appendchar \ \ <CR>
-    elseif system('uname') ==# "Linux\n"
-        ino <silent><buffer> <A-;> <ESC>:Appendchar \ \ <CR>a
-        no  <silent><buffer> <A-;>      :Appendchar \ \ <CR>
-    endif
-endf

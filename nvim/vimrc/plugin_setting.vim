@@ -80,7 +80,7 @@ hi ALEWarningSign guifg=#000000 guibg=#808010
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['terminal', 'help', 'nerdtree']
 let g:indent_guides_guide_size = 2
-let g:indent_guides_start_level = 1
+let g:indent_guides_start_level = 2
 let g:indent_guides_auto_colors = 0
 au VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#303030 ctermbg=gray
 au VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#222222 ctermbg=darkgray
@@ -170,28 +170,6 @@ aug END
 let g:netrw_nogx = 1
 nmap <leader>w <Plug>(openbrowser-smart-search)
 vmap <leader>w <Plug>(openbrowser-smart-search)
-
-
-"" previm
-aug PrevimSettings
-    au!
-    au BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-    au BufWritePost *.{md,mdwn,mkd,mkdn,mark*} call previm#refresh()
-aug END
-fun! s:PrevimOpenCmd()
-    if &filetype ==# 'markdown'
-        if has('mac')
-            exe 'PrevimOpen'
-        elseif system('uname') ==# "Linux\n"
-            let g:previm_custom_dir = $HOME.'/.config/nvim/plugged/previm/preview'
-            let l:preview_html_file = 'C:/Users/user/AppData/Local/lxss'.g:previm_custom_dir.'/index.html'
-            call previm#open(l:preview_html_file)
-        else
-            return
-        endif
-    endif
-endf
-command! Previm call s:PrevimOpenCmd()
 
 
 "" vim-devicons
