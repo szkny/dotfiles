@@ -147,6 +147,7 @@ endif
 
 "" vim-gitgutter
 let g:gitgutter_enabled = 1
+let g:gitgutter_async = 1
 
 
 "" ranger
