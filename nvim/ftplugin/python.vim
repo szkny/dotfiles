@@ -20,6 +20,10 @@ endif
 nno <silent><leader>py :Python<CR>i
 nno <silent><leader>ip :Ipython<CR>i
 nno <silent><C-p>      :Ipdb<CR>
+if exists('*jedi#goto')
+    nno <silent> <leader>a :call jedi#goto_assignments()<CR>
+    nno <silent> <leader>d :call jedi#goto_definitions()<CR>
+endif
 
 " auto command
 aug vimrc_python
@@ -29,8 +33,6 @@ aug vimrc_python
                 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
                 \|let &colorcolumn=join(range(PythonMaxLineLength(), 300), ',')
                 \|hi  ColorColumn guibg=#0f0f0f
-                \|nno <silent> <leader>a :call jedi#goto_assignments()<CR>
-                \|nno <silent> <leader>d :call jedi#goto_definitions()<CR>
     au BufNewFile,BufRead Pipfile setf toml
     au BufNewFile,BufRead Pipfile.lock setf json
 aug END

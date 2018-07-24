@@ -37,8 +37,8 @@ let g:tagbar_sort = 0
 
 
 "" jedi-vim
-let g:jedi#popup_on_dot = 0
 let g:jedi#auto_initialization = 0
+let g:jedi#popup_on_dot = 0
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#smart_auto_mappings = 0
 let g:jedi#completions_enabled = 1
@@ -47,9 +47,6 @@ let g:jedi#completions_enabled = 1
 " let g:jedi#rename_command = "<leader>r"
 " let g:jedi#show_call_signatures = "0"
 " let g:jedi#completions_command = "<C-Space>"
-" let g:jedi#goto_command = '<Leader>d'
-" let g:jedi#goto_assignments_command = '<leader>a'
-" let g:jedi#goto_definitions_command = '<leader>d'
 
 
 "" ale (Asynchronous Lint Engine)
