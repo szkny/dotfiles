@@ -2,10 +2,10 @@ scriptencoding utf-8
 
 " To Do
 "   - vim内からpythonのステップ実行 (Ipdbの利用, Pudb風に)
-"   - ranger.vimを利用して、NERDTreeのようにウィンドウ分割してファイル選択する
 "   - fgrep
 "       - ファイル開く
 "       - visual modeで文字列選択
+"       - grep.vimで実現できる？
 "   - markdown強調(**で囲む)をexpand('<cword>')を利用してショートカット化
 
 "*****************************************************************************
