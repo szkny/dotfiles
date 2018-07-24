@@ -54,7 +54,6 @@ Plug 'jistr/vim-nerdtree-tabs',                 {'on': 'NERDTreeToggle'}
 " Plug 'Shougo/unite-outline'
 " Plug 'Shougo/denite.nvim'
 " Plug 'Yggdroot/indentLine'
-" Plug 'tpope/vim-commentary'
 " Plug 'vim-scripts/CSApprox'
 
 if isdirectory('/usr/local/opt/fzf')
