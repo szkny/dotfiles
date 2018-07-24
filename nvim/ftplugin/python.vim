@@ -35,6 +35,11 @@ aug vimrc_python
     au BufNewFile,BufRead Pipfile      setfiletype toml
     au BufNewFile,BufRead Pipfile.lock setfiletype json
 aug END
+aug delimitMate
+    if exists('delimitMate_version')
+        au FileType python   let b:delimitMate_nesting_quotes = ['"',"'"]
+    endif
+aug END
 
 " plugin setting
 let b:ale_linters = ['flake8']

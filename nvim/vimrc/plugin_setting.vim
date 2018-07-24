@@ -93,12 +93,6 @@ let g:indentLine_char = '┆'
 let g:indentLine_faster = 1
 
 
-"" delimitMate
-aug DelimitMate
-    au FileType python   let b:delimitMate_nesting_quotes = ['"',"'"]
-    au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
-aug END
-
 "" vim-airline
 let g:airline_theme = 'kalisi'
 let g:airline#extensions#branch#enabled = 1

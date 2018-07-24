@@ -2,10 +2,6 @@ scriptencoding utf-8
 
 " To Do
 "   - vim内からpythonのステップ実行 (Ipdbの利用, Pudb風に)
-"   - fgrep
-"       - ファイル開く
-"       - visual modeで文字列選択
-"       - grep.vimで実現できる？
 "   - markdown強調(**で囲む)をexpand('<cword>')を利用してショートカット化
 
 "*****************************************************************************
@@ -328,16 +324,6 @@ if executable('rg')
     set grepprg=rg\ --vimgrep
     command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
-
-" snippets
-aug vimrc_snippet
-    au!
-    au FileType neosnippet setlocal noexpandtab
-aug END
-let g:UltiSnipsExpandTrigger='<tab>'
-let g:UltiSnipsJumpForwardTrigger='<tab>'
-let g:UltiSnipsJumpBackwardTrigger='<c-b>'
-let g:UltiSnipsEditSplit='vertical'
 
 " Disable visualbell
 set noerrorbells visualbell t_vb=
