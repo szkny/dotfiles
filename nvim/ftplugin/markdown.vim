@@ -39,3 +39,15 @@ elseif system('uname') ==# "Linux\n"
     ino <silent><buffer> <A-;> <ESC>:Appendchar \ \ <CR>a
     no  <silent><buffer> <A-;>      :Appendchar \ \ <CR>
 endif
+nno <silent> <leader>b :<C-u>call <SID>bold()<CR>
+
+
+" function
+fun!  s:bold() abort
+    if getline('.') !=# ''
+        let l:pos = getcurpos()
+        let l:word = expand('<cword>')
+        exe line('.').'s/'.l:word.'/'.'**'.l:word.'**'
+        call setpos('.', l:pos)
+    endif
+endf
