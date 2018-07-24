@@ -80,6 +80,8 @@ nno <silent> <C-h> :call Ranger()<CR>
 nno <silent> <C-n> :NERDTreeToggle<CR>
 nno <silent> <C-t> :TagbarToggle<CR>
 nno <silent> <C-g> :exe 'Ag '.expand('<cword>')<CR>
+nno <silent> [a    :ALENextWrap<CR>
+nno <silent> ]a    :ALEPreviousWrap<CR>
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-k>       <Plug>(neosnippet_expand_or_jump)
 smap <C-k>       <Plug>(neosnippet_expand_or_jump)
