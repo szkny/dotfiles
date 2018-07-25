@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-" To Do
+" :TODO:
 "   - vim内からpythonのステップ実行 (Ipdbの利用, Pudb風に)
 "   - markdown強調(**で囲む)をexpand('<cword>')を利用してショートカット化
 
