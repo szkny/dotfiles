@@ -255,9 +255,9 @@ command! Pudb call s:pudb()
 "" 以下ipdb用プラグイン
 let s:ipdb = {}
 let s:ipdb.maps = [
+    \['normal',   'q',          'ipdb_close()'],
     \['normal',   '<ESC>',      'ipdb_close()'],
     \['normal',   '<C-[>',      'ipdb_close()'],
-    \['normal',   'q',          'ipdb_close()'],
     \['terminal', '<C-d>',      'ipdb_close()'],
     \['normal',   '<C-c>',      'ipdb_sigint()'],
     \['normal',   '<CR>',       'ipdb_jobsend()'],
