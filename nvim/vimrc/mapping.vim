@@ -14,8 +14,6 @@ nno <silent> <S-q>   :qall<CR>
 tno <silent> <C-w>   <C-\><C-n><C-w>
 
 " tab/window
-nno <silent> <Tab>   :ChangeBuffer next<CR>
-nno <silent> <S-Tab> :ChangeBuffer previous<CR>
 nno <silent> >       :ChangeBuffer next<CR>
 nno <silent> <       :ChangeBuffer previous<CR>
 nno <silent> +       :ResizeWindow +1<CR>
