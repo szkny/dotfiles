@@ -21,9 +21,9 @@ nno <silent><leader>py :Python<CR>i
 nno <silent><leader>ip :Ipython<CR>i
 nno <silent><C-p>      :Ipdb<CR>
 if exists('*jedi#goto')
-    nno <silent> <leader>d :call jedi#goto()<CR>
-    " nno <silent> <leader>a :call jedi#goto_assignments()<CR>
-    " nno <silent> <leader>d :call jedi#goto_definitions()<CR>
+    " nno <silent> <leader>d :call jedi#goto()<CR>
+    nno <silent> <leader>a :call jedi#goto_assignments()<CR>
+    nno <silent> <leader>d :call jedi#goto_definitions()<CR>
 endif
 
 
@@ -255,20 +255,22 @@ command! Pudb call s:pudb()
 "" 以下ipdb用プラグイン
 let s:ipdb = {}
 let s:ipdb.maps = [
-    \['normal',   '<ESC>',  'ipdb_close()'],
-    \['normal',   '<C-[>',  'ipdb_close()'],
-    \['normal',   'q',      'ipdb_close()'],
-    \['terminal', '<C-d>',  'ipdb_close()'],
-    \['normal',   '<C-c>',  'ipdb_sigint()'],
-    \['normal',   '<CR>',   'ipdb_jobsend()'],
-    \['normal',   'h',      'ipdb_jobsend("help")'],
-    \['normal',   'n',      'ipdb_jobsend("next")'],
-    \['normal',   's',      'ipdb_jobsend("step")'],
-    \['normal',   'w',      'ipdb_jobsend("where")'],
-    \['normal',   'r',      'ipdb_jobsend("return")'],
-    \['normal',   'c',      'ipdb_jobsend("continue")'],
-    \['normal',   'b',      'ipdb_jobsend("break ".line("."))'],
-    \['normal',   'u',      'ipdb_jobsend("until ".line("."))'],
+    \['normal',   '<ESC>',      'ipdb_close()'],
+    \['normal',   '<C-[>',      'ipdb_close()'],
+    \['normal',   'q',          'ipdb_close()'],
+    \['normal',   '<leader>q',  'ipdb_close()'],
+    \['terminal', '<C-d>',      'ipdb_close()'],
+    \['normal',   '<C-c>',      'ipdb_sigint()'],
+    \['normal',   '<CR>',       'ipdb_jobsend()'],
+    \['normal',   '<leader>h',  'ipdb_jobsend("help")'],
+    \['normal',   '<leader>n',  'ipdb_jobsend("next")'],
+    \['normal',   '<leader>s',  'ipdb_jobsend("step")'],
+    \['normal',   '<leader>w',  'ipdb_jobsend("where")'],
+    \['normal',   '<leader>r',  'ipdb_jobsend("return")'],
+    \['normal',   '<leader>c',  'ipdb_jobsend("continue")'],
+    \['normal',   '<leader>p',  'ipdb_jobsend("p ".expand("<cword>"))'],
+    \['normal',   '<leader>b',  'ipdb_jobsend("break ".line("."))'],
+    \['normal',   '<leader>u',  'ipdb_jobsend("until ".line("."))'],
 \]   " mode       {lhs}     {rhs}
 let s:ipdb.map_options = '<script> <silent> <buffer> <nowait>'
 fun! s:ipdb_open() abort
