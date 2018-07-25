@@ -44,7 +44,6 @@ Plug 'Raimondi/delimitMate'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
 Plug 'scrooloose/nerdtree',                     {'on': 'NERDTreeToggle'}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': 'NERDTreeToggle'}
-" Plug 'vim-scripts/grep.vim'
 " Plug 'kassio/neoterm'
 " Plug 'tpope/vim-fugitive'
 " Plug 'rhysd/nyaovim-popup-tooltip'

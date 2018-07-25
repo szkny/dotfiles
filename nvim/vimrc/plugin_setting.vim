@@ -117,13 +117,6 @@ let g:airline#extensions#default#section_truncate_width = {}
 let g:airline#extensions#whitespace#enabled = 1
 
 
-"" grep
-" nnoremap <silent> <leader>f :Rgrep<CR>
-let g:Grep_Default_Options = '-IR'
-let g:Grep_Skip_Files = '*.log *.db'
-let g:Grep_Skip_Dirs = '.git node_modules'
-
-
 "" vim-nerdtree-syntax-highlight
 let s:rspec_red = 'FE405F'
 let s:git_orange = 'F54D27'
