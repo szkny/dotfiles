@@ -240,7 +240,7 @@ set cursorline
 " set cursorcolumn
 set list
 set listchars=tab:¦\ 
-set fillchars+=vert:\ 
+set fillchars=vert:\ 
 
 " hi matchparen ctermbg=236
 " hi Normal ctermbg=NONE guibg=NONE
@@ -250,7 +250,7 @@ set fillchars+=vert:\
 " hi SpecialKey guifg=#555555
 " hi Visual guifg=#000000 guibg=#cceeff
 " hi LineNr guifg=#aabbcc guibg=#204056
-" hi VertSplit guifg=#10202b guibg=#aaaaaa
+hi VertSplit guibg=#222222
 " hi CursorLine gui=underline
 hi CursorLine guibg=#1a1a1a
 " hi CursorColumn guibg=#0c1820
