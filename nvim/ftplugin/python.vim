@@ -258,7 +258,6 @@ let s:ipdb.maps = [
     \['normal',   '<ESC>',      'ipdb_close()'],
     \['normal',   '<C-[>',      'ipdb_close()'],
     \['normal',   'q',          'ipdb_close()'],
-    \['normal',   '<leader>q',  'ipdb_close()'],
     \['terminal', '<C-d>',      'ipdb_close()'],
     \['normal',   '<C-c>',      'ipdb_sigint()'],
     \['normal',   '<CR>',       'ipdb_jobsend()'],
