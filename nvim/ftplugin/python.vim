@@ -267,6 +267,8 @@ let s:ipdb.maps = [
     \['normal',   '<C-[>',      'ipdb_close()'],
     \['normal',   '<C-c>',      'ipdb_sigint()'],
     \['normal',   '<CR>',       'ipdb_jobsend()'],
+    \['normal',   'i',          'ipdb_goto_debugwin()'],
+    \['terminal', '<ESC>',      'ipdb_goto_scriptwin()'],
     \['normal',   '<leader>h',  'ipdb_jobsend("help")'],
     \['normal',   '<leader>n',  'ipdb_jobsend("next")'],
     \['normal',   '<leader>s',  'ipdb_jobsend("step")'],
@@ -307,8 +309,7 @@ fun! s:ipdb_open() abort
             " autocmd
             aug ipdb_auto_command
                 au!
-                au CursorHold <buffer> echon '-- DEBUG --'
-                au WinLeave echon 'hoge'
+                au CursorHold <buffer> call s:ipdb_idle()
             aug END
             let s:ipdb.script_winid = win_getid()
             " open debug window
@@ -328,22 +329,22 @@ command! Ipdb call s:ipdb_open()
 
 fun! s:ipdb_close()
     " ipdbを終了する関数
-    if s:ipdb_exist()
-        call win_gotoid(s:ipdb.script_winid)
-        if exists('*airline#add_statusline_func')
+    if win_gotoid(s:ipdb.script_winid)
+        if exists('*airline#remove_statusline_func')
             silent call airline#remove_statusline_func('IpdbStatusLine')
         endif
         let &updatetime=s:ipdb.save_updatetime
         setlocal modifiable
         call s:ipdb_unmap()
-        aug ipdb_auto_command
-            au!
-        aug END
-        call win_gotoid(s:ipdb.debug_winid)
-        quit
-        echon
-        unlet s:ipdb.jobid
     endif
+    aug ipdb_auto_command
+        au!
+    aug END
+    if win_gotoid(s:ipdb.debug_winid)
+        quit
+    endif
+    echon
+    unlet s:ipdb.jobid
 endf
 command! IpdbClose call s:ipdb_close()
 
@@ -354,6 +355,20 @@ fun! s:ipdb_exist() abort
         return 1
     else
         return 0
+    endif
+endf
+
+fun! s:ipdb_idle() abort
+    " ipdb起動中に定期的に実行する関数
+    " (autocmdを利用している)
+    "       au CursorHold <buffer> call s:ipdb_idle()
+    " s:ipdb_open()関数で、
+    "       setlocal updatetime=100
+    " と記述して更新間隔を設定 (ミリ秒)
+    if s:ipdb_exist()
+        echon '-- DEBUG --'
+    else
+        call s:ipdb_close()
     endif
 endf
 
@@ -406,7 +421,7 @@ endf
 fun! s:ipdb_jobsend(...) abort
     " ipdbにコマンドを送る関数
     "    call s:ipdb_jobsend('ipdbコマンド')
-    if has_key(s:ipdb, 'jobid') && a:0 > 0
+    if s:ipdb_exist() && a:0 > 0
         let l:command = a:1
         for l:arg in a:000[1:]
             let l:command .= ' ' . l:arg
@@ -418,13 +433,17 @@ fun! s:ipdb_jobsend(...) abort
         endtry
     endif
 endf
+
 fun! s:ipdb_sigint() abort
-    if has_key(s:ipdb, 'jobid')
+    " ipdbにSIGINT(<C-c>)を送る関数
+    if s:ipdb_exist()
         call jobsend(s:ipdb.jobid, "\<C-c>")
     endif
 endf
+
 fun! s:ipdb_vprint() abort
-    if has_key(s:ipdb, 'jobid')
+    " ipdbにvisualモードで選択した変数を送りprintさせる関数
+    if s:ipdb_exist()
         let @@ = ''
         exe 'silent normal gvy'
         if @@ !=# ''
@@ -433,6 +452,22 @@ fun! s:ipdb_vprint() abort
             let l:text = expand('<cword>')
         endif
         call s:ipdb_jobsend('p '.l:text)
+    endif
+endf
+
+fun! s:ipdb_goto_debugwin() abort
+    " ipdbのデバッグウィンドウに移動する関数
+    if s:ipdb_exist() && has_key(s:ipdb, 'debug_winid')
+        call win_gotoid(s:ipdb.debug_winid)
+        startinsert
+    endif
+endf
+
+fun! s:ipdb_goto_scriptwin() abort
+    " idpbのスクリプトウィンドウにいどうする関数
+    if s:ipdb_exist() && has_key(s:ipdb, 'script_winid')
+        call win_gotoid(s:ipdb.script_winid)
+        exe "normal \<Esc>"
     endif
 endf
 

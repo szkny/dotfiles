@@ -184,6 +184,7 @@ fun! NewTerm(...) abort
     setlocal nomodifiable
     setlocal nolist
     setlocal nospell
+    setlocal lazyredraw
 endf
 command! -complete=shellcmd -nargs=* NewTerm call NewTerm(<f-args>)
 
@@ -234,6 +235,7 @@ fun! SplitTerm(...) abort
     setlocal nomodifiable
     setlocal nolist
     setlocal nospell
+    setlocal lazyredraw
 endf
 command! -complete=shellcmd -nargs=* SplitTerm call SplitTerm(<f-args>)
 
