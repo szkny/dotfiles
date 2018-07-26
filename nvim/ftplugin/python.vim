@@ -255,10 +255,9 @@ command! Pudb call s:pudb()
 "" 以下ipdb用プラグイン
 let s:ipdb = {}
 let s:ipdb.maps = [
+    \['normal',   'q',          'ipdb_close()'],
     \['normal',   '<ESC>',      'ipdb_close()'],
     \['normal',   '<C-[>',      'ipdb_close()'],
-    \['normal',   'q',          'ipdb_close()'],
-    \['normal',   '<leader>q',  'ipdb_close()'],
     \['terminal', '<C-d>',      'ipdb_close()'],
     \['normal',   '<C-c>',      'ipdb_sigint()'],
     \['normal',   '<CR>',       'ipdb_jobsend()'],
@@ -271,12 +270,23 @@ let s:ipdb.maps = [
     \['normal',   '<leader>p',  'ipdb_jobsend("p ".expand("<cword>"))'],
     \['normal',   '<leader>b',  'ipdb_jobsend("break ".line("."))'],
     \['normal',   '<leader>u',  'ipdb_jobsend("until ".line("."))'],
-\]   " mode       {lhs}     {rhs}
+\]   " mode       {lhs}         {rhs}
 let s:ipdb.map_options = '<script> <silent> <buffer> <nowait>'
 fun! s:ipdb_open() abort
     " Ipdbを起動する関数
     if &filetype ==# 'python'
         if !s:ipdb_exist()
+            " install ipython
+            if !executable('ipython')
+                echon 'Ipython: [error] ipython does not exist.'
+                echon '                 isntalling ipython ...'
+                if !executable('pip')
+                    echoerr 'You have to install pip!'
+                    return
+                endif
+                silent call system('pip install ipdb')
+                echon
+            endif
             " start ipdb debbug mode
             silent write
             let s:ipdb.save_updatetime = &updatetime
@@ -333,16 +343,6 @@ command! IpdbClose call s:ipdb_close()
 fun! s:ipdb_exist() abort
     " ipdbを起動しているか確認する関数
     "   もしipythonが無ければインストール
-    if !executable('ipython')
-        echon 'Ipython: [error] ipython does not exist.'
-        echon '                 isntalling ipython ...'
-        if !executable('pip')
-            echoerr 'You have to install pip!'
-            return
-        endif
-        silent call system('pip install ipython')
-        echon
-    endif
     if has_key(s:ipdb, 'jobid')
         return 1
     else
