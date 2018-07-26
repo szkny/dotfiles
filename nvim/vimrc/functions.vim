@@ -602,6 +602,7 @@ command! -range -nargs=* W3m call W3m(<f-args>)
 
 
 fun! Trans(...) abort
+    " transコマンド(Google翻訳)を利用してvisual選択中の文字列を日本語変換する関数
     if executable('trans')
         let l:text = ''
         if a:0 == 0
@@ -619,7 +620,21 @@ fun! Trans(...) abort
         endif
         call SplitTerm('trans', '{en=ja}', '"'.l:text.'"')
     else
-        echon 'Trans: [error] trans command not found.'
+        if has('mac')
+            let l:install_cmd = 'brew install http://www.soimort.org/translate-shell/translate-shell.rb'
+        elseif system('uname') ==# "Linux\n"
+            let l:exe = '/usr/local/bin/trans'
+            let l:install_cmd = 'sudo wget git.io/trans -O '.l:exe
+            let l:install_cmd .= ' && sudo chmod +x '.l:exe
+        else
+            echon 'Trans: [error] trans command not found.'
+            return
+        endif
+        silent call SplitTerm('echo "trans command not found. installing ..."'
+                            \.' && '.l:install_cmd
+                            \.' && echo " Success !!"'
+                            \.' && echo " you can do \":Trans [WORD]\"."')
+        startinsert
     endif
 endf
 command! -range -nargs=* Trans call Trans(<f-args>)
