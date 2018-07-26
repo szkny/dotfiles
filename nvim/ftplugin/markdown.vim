@@ -44,6 +44,7 @@ nno <silent><nowait> <leader>b :<C-u>call <SID>bold()<CR>
 
 " function
 fun!  s:bold() abort
+    " カーソル下の単語を強調表示(**WORD**)する関数
     if getline('.') !=# ''
         let l:pos = getcurpos()
         let l:word = expand('<cword>')
