@@ -285,7 +285,7 @@ fun! s:ipdb_open() abort
     " Ipdbを起動する関数
     if &filetype ==# 'python'
         if !s:ipdb_exist()
-            " install ipython
+            " ipythonが無ければインストール
             if !executable('ipython')
                 echon 'Ipython: [error] ipython does not exist.'
                 echon '                 isntalling ipython ...'
@@ -296,30 +296,29 @@ fun! s:ipdb_open() abort
                 silent call system('pip install ipdb')
                 echon
             endif
-            " start ipdb debbug mode
+            " デバッグモードの初期設定
             silent write
             let s:ipdb.save_updatetime = &updatetime
-            setlocal updatetime=100
+            setlocal updatetime=200
             setlocal nomodifiable
             if exists('*airline#add_statusline_func')
                 silent call airline#add_statusline_func('IpdbStatusLine')
             endif
-            " mapping
+            " キーマッピング
             call s:ipdb_map()
-            " autocmd
+            " autocmdの設定 (定期実行関数の呼び出し)
             aug ipdb_auto_command
                 au!
                 au CursorHold <buffer> call s:ipdb_idle()
             aug END
             let s:ipdb.script_winid = win_getid()
-            " open debug window
+            " デバッグウィンドウを開く
             silent call SplitTerm('python', '-m ipdb', expand('%'))
-            call setpos('.', getpos('$'))
+            exe 'normal G'
             call s:ipdb_map()
             let s:ipdb.jobid = b:terminal_job_id
             let s:ipdb.debug_winid = win_getid()
             call win_gotoid(s:ipdb.script_winid)
-            echon '-- DEBUG -- '
         endif
     else
         echon 'ipdb: [error] invalid file type. this is "' . &filetype. '".'
@@ -350,8 +349,10 @@ command! IpdbClose call s:ipdb_close()
 
 fun! s:ipdb_exist() abort
     " ipdbを起動しているか確認する関数
-    "   もしipythonが無ければインストール
-    if has_key(s:ipdb, 'jobid')
+    let l:current_winid = win_getid()
+    if has_key(s:ipdb, 'jobid') && has_key(s:ipdb, 'debug_winid')
+        \&& win_gotoid(s:ipdb.debug_winid)
+        call win_gotoid(l:current_winid)
         return 1
     else
         return 0
@@ -466,13 +467,13 @@ endf
 fun! s:ipdb_goto_scriptwin() abort
     " idpbのスクリプトウィンドウにいどうする関数
     if s:ipdb_exist() && has_key(s:ipdb, 'script_winid')
+        exe "normal \<C-\>\<C-n>"
         call win_gotoid(s:ipdb.script_winid)
-        exe "normal \<Esc>"
     endif
 endf
 
 fun! IpdbStatusLine(...)
-    " ipdbデバッグモード用のairlineの設定
+    " ipdbデバッグモード用のairline(plugin)の設定
     let w:airline_section_a = '%#__accent_bold#IPDB'
     let w:airline_section_b = g:airline_section_b
     let w:airline_section_c = g:airline_section_c
