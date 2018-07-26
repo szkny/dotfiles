@@ -252,13 +252,19 @@ endf
 command! Pudb call s:pudb()
 
 
-"" 以下ipdb用プラグイン
+"" ipdbによるPythonデバッガプラグイン
+" TODO:
+"   - PUDB風にする
+"       - ブレークポイントのハイライト
+"       - ステップ実行時のカーソル自動移動
+"       - スタックトレースの表示
+"       - airlineのモードカラー連携
 let s:ipdb = {}
 let s:ipdb.maps = [
+    \['terminal', '<C-d>',      'ipdb_close()'],
     \['normal',   'q',          'ipdb_close()'],
     \['normal',   '<ESC>',      'ipdb_close()'],
     \['normal',   '<C-[>',      'ipdb_close()'],
-    \['terminal', '<C-d>',      'ipdb_close()'],
     \['normal',   '<C-c>',      'ipdb_sigint()'],
     \['normal',   '<CR>',       'ipdb_jobsend()'],
     \['normal',   '<leader>h',  'ipdb_jobsend("help")'],
@@ -267,9 +273,10 @@ let s:ipdb.maps = [
     \['normal',   '<leader>w',  'ipdb_jobsend("where")'],
     \['normal',   '<leader>r',  'ipdb_jobsend("return")'],
     \['normal',   '<leader>c',  'ipdb_jobsend("continue")'],
-    \['normal',   '<leader>p',  'ipdb_jobsend("p ".expand("<cword>"))'],
     \['normal',   '<leader>b',  'ipdb_jobsend("break ".line("."))'],
     \['normal',   '<leader>u',  'ipdb_jobsend("until ".line("."))'],
+    \['normal',   '<leader>p',  'ipdb_jobsend("p ".expand("<cword>"))'],
+    \['visual',   '<leader>p',  'ipdb_vprint()'],
 \]   " mode       {lhs}         {rhs}
 let s:ipdb.map_options = '<script> <silent> <buffer> <nowait>'
 fun! s:ipdb_open() abort
@@ -359,6 +366,10 @@ fun! s:ipdb_map()
                 let l:cmd = 'nno '.s:ipdb.map_options.
                         \' '.l:map.
                         \' '.':<C-u>call <SID>'.l:func.'<CR>'
+            elseif l:mode ==? 'v' || l:mode ==? 'visual'
+                let l:cmd = 'vno '.s:ipdb.map_options.
+                        \' '.l:map.
+                        \' '.':<C-u>call <SID>'.l:func.'<CR>'
             elseif l:mode ==? 't' || l:mode ==? 'terminal'
                 let l:cmd = 'tno '.s:ipdb.map_options.
                         \' '.l:map.
@@ -376,6 +387,8 @@ fun! s:ipdb_unmap()
         for [l:mode, l:map, l:func] in s:ipdb.maps
             if l:mode ==? 'n' || l:mode ==? 'normal'
                 let l:cmd = 'nunmap'.s:ipdb.map_options.l:map
+            elseif l:mode ==? 'v' || l:mode ==? 'visual'
+                let l:cmd = 'vunmap'.s:ipdb.map_options.l:map
             elseif l:mode ==? 't' || l:mode ==? 'terminal'
                 let l:cmd = 'tunmap'.s:ipdb.map_options.l:map
             else
@@ -393,9 +406,9 @@ endf
 fun! s:ipdb_jobsend(...) abort
     " ipdbにコマンドを送る関数
     "    call s:ipdb_jobsend('ipdbコマンド')
-    if has_key(s:ipdb, 'jobid')
-        let l:command = ''
-        for l:arg in a:000
+    if has_key(s:ipdb, 'jobid') && a:0 > 0
+        let l:command = a:1
+        for l:arg in a:000[1:]
             let l:command .= ' ' . l:arg
         endfor
         try
@@ -408,6 +421,18 @@ endf
 fun! s:ipdb_sigint() abort
     if has_key(s:ipdb, 'jobid')
         call jobsend(s:ipdb.jobid, "\<C-c>")
+    endif
+endf
+fun! s:ipdb_vprint() abort
+    if has_key(s:ipdb, 'jobid')
+        let @@ = ''
+        exe 'silent normal gvy'
+        if @@ !=# ''
+            let l:text = join(split(@@,'\n'))
+        else
+            let l:text = expand('<cword>')
+        endif
+        call s:ipdb_jobsend('p '.l:text)
     endif
 endf
 
