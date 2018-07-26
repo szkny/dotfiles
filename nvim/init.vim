@@ -85,6 +85,7 @@ Plug 'vim-scripts/c.vim',             {'for': ['c', 'cpp']}
 Plug 'davidhalter/jedi-vim',          {'for': 'python'}
 Plug 'zchee/deoplete-jedi',           {'for': 'python'}
 Plug 'tweekmonster/braceless.vim',    {'for': 'python'}
+Plug 'szkny/IpdbDebugger',            {'for': 'python'}
 
 " misc
 Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}

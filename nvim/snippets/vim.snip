@@ -12,3 +12,13 @@ options     head
 		${0:#:TARGET}
 	endf
 	command! $1 call $1()
+
+snippet     plugin_doc
+abbr        FILE AUTHOR LICENSE
+options     head
+    "=============================================================================
+    " FILE:    `expand('%:t')`
+    " AUTHOR:  `$USER`
+    " License: MIT license
+    "=============================================================================
+    ${0}
