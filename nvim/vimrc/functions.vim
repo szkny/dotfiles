@@ -601,6 +601,30 @@ endf
 command! -range -nargs=* W3m call W3m(<f-args>)
 
 
+fun! Trans(...) abort
+    if executable('trans')
+        let l:text = ''
+        if a:0 == 0
+            let @@ = ''
+            exe 'silent normal gvy'
+            if @@ !=# ''
+                let l:text = join(split(@@,'\n'))
+            else
+                let l:text = expand('<cword>')
+            endif
+        else
+            for l:i in a:000
+                let l:text .= ' '.l:i
+            endfor
+        endif
+        call SplitTerm('trans', '{en=ja}', '"'.l:text.'"')
+    else
+        echon 'Trans: [error] trans command not found.'
+    endif
+endf
+command! -range -nargs=* Trans call Trans(<f-args>)
+
+
 fun! GetNow() abort
     " 現在時刻を取得する関数
     let l:day = printf('%d', strftime('%d'))

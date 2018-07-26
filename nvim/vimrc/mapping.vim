@@ -99,3 +99,4 @@ nno <silent> <leader>mr :Make build run<CR>
 nno <silent> <leader>cm :CMake<CR>
 nno <silent> <leader>cr :CMake run<CR>
 nno <silent> <leader>sq :SQL<CR>i
+vno <silent> <leader>tr :Trans<CR>
