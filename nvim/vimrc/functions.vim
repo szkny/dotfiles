@@ -569,8 +569,9 @@ fun! Chrome(...) abort range
         if @@ !=# ''
             let @@ = join(split(@@,'\n'))
             let l:url = GoogleSearchURL(@@)
+        else
+            let l:url = GoogleSearchURL()
         endif
-        let l:url = GoogleSearchURL()
     else
         let l:url = GoogleSearchURL(a:000)
     endif
@@ -589,8 +590,9 @@ fun! W3m(...) abort range
             if @@ !=# ''
                 let @@ = join(split(@@,'\n'))
                 let l:url = GoogleSearchURL(@@)
+            else
+                let l:url = GoogleSearchURL()
             endif
-            let l:url = GoogleSearchURL()
         else
             let l:url = GoogleSearchURL(a:000)
         endif
@@ -603,7 +605,7 @@ endf
 command! -range -nargs=* W3m call W3m(<f-args>)
 
 
-fun! Trans(...) abort
+fun! Trans(...) abort range
     " transコマンド(Google翻訳)を利用してvisual選択中の文字列を日本語変換する関数
     if executable('trans')
         let l:text = ''
@@ -620,7 +622,12 @@ fun! Trans(...) abort
                 let l:text .= ' '.l:i
             endfor
         endif
-        call SplitTerm('trans', '{en=ja}', '"'.l:text.'"')
+        let l:text = substitute(l:text, '"', '\\"', 'g')
+        if len(l:text) < 900
+            call SplitTerm('trans', '{en=ja}', '"'.l:text.'"')
+        else
+            echo 'Trans: [error] text too long.'
+        endif
     else
         if has('mac')
             let l:install_cmd = 'brew install http://www.soimort.org/translate-shell/translate-shell.rb'
