@@ -509,6 +509,16 @@ fun! SetHlsearch() abort
 endf
 
 
+fun! AgWord() abort
+    let l:file_dir = expand('%:p:h')
+    if l:file_dir[0] !=# '/'
+        let l:file_dir = getcwd()
+    endif
+    silent exe 'lcd '.l:file_dir
+    silent exe 'Ag '.expand('<cword>')
+endf
+
+
 fun! GoogleSearchURL(...) abort
     " Google検索をするURLを返す関数
     let l:url = '"http://www.google.co.jp/'
