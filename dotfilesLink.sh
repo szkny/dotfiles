@@ -16,16 +16,16 @@ mkdir -p ~/.config
 ln -sf ~/dotfiles/python_syntax_checker/flake8 ~/.config/flake8
 ln -sf ~/dotfiles/python_syntax_checker/yapf ~/.config
 
-# # vim (8.0.1283)
-# if [ -L ~/.vimrc ]; then rm ~/.vimrc;fi
-# if [ -L ~/.vim/vimrc ]; then rm ~/.vim/vimrc;fi
-# mkdir -p ~/.vim
-# ln -sf ~/dotfiles/vim/.vimrc ~/.vimrc
-# ln -sf ~/dotfiles/vim/vimrc ~/.vim
+# vim (8.0.1283)
+if [ -L ~/.vimrc ]; then rm ~/.vimrc;fi
+if [ -L ~/.vim/vimrc ]; then rm ~/.vim/vimrc;fi
+mkdir -p ~/.vim
+ln -sf ~/dotfiles/vim/.vimrc ~/.vimrc
+ln -sf ~/dotfiles/vim/vimrc ~/.vim
 #
 # # bash
 # # ln -sf ~/dotfiles/bashrc ~/.bashrc
 #
-# # tmux
-# if [ -L ~/.tmux.conf ]; then rm ~/.tmux.conf;fi
-# ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
+# tmux
+if [ -L ~/.tmux.conf ]; then rm ~/.tmux.conf;fi
+ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
