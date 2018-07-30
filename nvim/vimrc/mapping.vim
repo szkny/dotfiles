@@ -70,7 +70,7 @@ else
 endif
 nno <silent> <C-b> :Buffers<CR>
 nno <silent> <C-f> :Find<CR>
-nno <silent> <C-g> :exe 'Ag '.expand('<cword>')<CR>
+nno <silent> <C-g> :call AgWord()<CR>
 nno <silent> <C-h> :call Ranger()<CR>
 nno <silent> <C-n> :NERDTreeToggle<CR>
 nno <silent> <C-t> :TagbarToggle<CR>
