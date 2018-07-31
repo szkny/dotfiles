@@ -40,6 +40,7 @@ elseif system('uname') ==# "Linux\n"
     no  <silent><buffer> <A-;>      :Appendchar \ \ <CR>
 endif
 nno <silent><nowait> <leader>b :<C-u>call <SID>bold()<CR>
+vno <silent><nowait> <leader>b :<C-u>call <SID>vbold()<CR>
 
 
 " function
@@ -48,6 +49,21 @@ fun!  s:bold() abort
     if getline('.') !=# ''
         let l:pos = getcurpos()
         let l:word = expand('<cword>')
+        exe line('.').'s/'.l:word.'/'.'**'.l:word.'**'
+        call setpos('.', l:pos)
+    endif
+endf
+fun!  s:vbold() abort range
+    " カーソル下の単語を強調表示(**WORD**)する関数
+    if getline('.') !=# ''
+        let l:pos = getcurpos()
+        let @@ = ''
+        exe 'silent normal gvy'
+        if @@ !=# ''
+            let l:word = join(split(@@,'\n'))
+        else
+            let l:word = expand('<cword>')
+        endif
         exe line('.').'s/'.l:word.'/'.'**'.l:word.'**'
         call setpos('.', l:pos)
     endif
