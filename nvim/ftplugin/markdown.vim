@@ -10,6 +10,10 @@ aug delimitMate
     endif
 aug END
 " previm
+let g:previm_disable_default_css = 1
+let g:previm_custom_css_path = '~/dotfiles/preview/css/github_style.css'
+let g:previm_disable_default_js = 1
+let g:previm_custom_js_path = '~/dotfiles/preview/js/previm.js'
 aug PrevimSettings
     au!
     au BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown

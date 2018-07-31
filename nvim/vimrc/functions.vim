@@ -509,13 +509,37 @@ fun! SetHlsearch() abort
 endf
 
 
-fun! AgWord() abort
+fun! AgWord(...) abort
     let l:file_dir = expand('%:p:h')
     if l:file_dir[0] !=# '/'
         let l:file_dir = getcwd()
     endif
     silent exe 'lcd '.l:file_dir
-    silent exe 'Ag '.expand('<cword>')
+    if a:0 == 0
+        let l:text = expand('<cword>')
+    else
+        let l:text = ''
+        for l:i in a:000
+            let l:text .= ' '.l:i
+        endfor
+    endif
+    silent exe 'Ag '.l:text
+endf
+command! -nargs=* AgWord call AgWord(<f-args>)
+
+
+fun! VAgWord() abort range
+    let l:file_dir = expand('%:p:h')
+    if l:file_dir[0] !=# '/'
+        let l:file_dir = getcwd()
+    endif
+    silent exe 'lcd '.l:file_dir
+    let @@ = ''
+    exe 'silent normal gvy'
+    if @@ !=# ''
+        let l:text = join(split(@@,'\n'))
+        silent exe 'Ag '.l:text
+    endif
 endf
 
 
@@ -615,22 +639,16 @@ endf
 command! -range -nargs=* W3m call W3m(<f-args>)
 
 
-fun! Trans(...) abort range
+fun! Trans() abort range
     " transコマンド(Google翻訳)を利用してvisual選択中の文字列を日本語変換する関数
     if executable('trans')
         let l:text = ''
-        if a:0 == 0
-            let @@ = ''
-            exe 'silent normal gvy'
-            if @@ !=# ''
-                let l:text = join(split(@@,'\n'))
-            else
-                let l:text = expand('<cword>')
-            endif
+        let @@ = ''
+        exe 'silent normal gvy'
+        if @@ !=# ''
+            let l:text = join(split(@@,'\n'))
         else
-            for l:i in a:000
-                let l:text .= ' '.l:i
-            endfor
+            let l:text = expand('<cword>')
         endif
         let l:text = substitute(l:text, '"', '\\"', 'g')
         if len(l:text) < 900
@@ -639,24 +657,29 @@ fun! Trans(...) abort range
             echo 'Trans: [error] text too long.'
         endif
     else
-        if has('mac')
-            let l:install_cmd = 'brew install http://www.soimort.org/translate-shell/translate-shell.rb'
-        elseif system('uname') ==# "Linux\n"
-            let l:exe = '/usr/local/bin/trans'
-            let l:install_cmd = 'sudo wget git.io/trans -O '.l:exe
-            let l:install_cmd .= ' && sudo chmod +x '.l:exe
-        else
-            echon 'Trans: [error] trans command not found.'
-            return
-        endif
-        silent call SplitTerm('echo "trans command not found. installing ..."'
-                            \.' && '.l:install_cmd
-                            \.' && echo " Success !!"'
-                            \.' && echo " you can do \":Trans [WORD]\"."')
-        startinsert
+        call s:install_trans()
     endif
 endf
-command! -range -nargs=* Trans call Trans(<f-args>)
+command! -range Trans call Trans()
+
+
+fun! s:install_trans() abort
+    if has('mac')
+        let l:install_cmd = 'brew install http://www.soimort.org/translate-shell/translate-shell.rb'
+    elseif system('uname') ==# "Linux\n"
+        let l:exe = '/usr/local/bin/trans'
+        let l:install_cmd = 'sudo wget git.io/trans -O '.l:exe
+        let l:install_cmd .= ' && sudo chmod +x '.l:exe
+    else
+        echon 'Trans: [error] trans command not found.'
+        return
+    endif
+    silent call SplitTerm('echo "trans command not found. installing ..."'
+                        \.' && '.l:install_cmd
+                        \.' && echo " Success !!"'
+                        \.' && echo " you can do \":Trans [WORD]\"."')
+    startinsert
+endf
 
 
 fun! GetNow() abort
