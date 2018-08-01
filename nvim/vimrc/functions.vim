@@ -438,7 +438,7 @@ fun! SQL() abort
     let l:command = 'mysql'
     if executable(l:command)
         let l:args = ''
-        if &filetype ==# 'sql'
+        if &filetype ==# 'sql' || &filetype ==# 'mysql'
             let l:args = ' < ' . expand('%')
         endif
         call BeginTerm(l:command, l:args)
@@ -451,7 +451,7 @@ command! SQL call SQL()
 
 fun! SQLplot(...) abort
     " sqlplot(自作シェルコマンド) を実行する関数
-    if &filetype ==# 'sql' && executable('sqlplot')
+    if (&filetype ==# 'sql' || &filetype ==# 'mysql') && executable('sqlplot')
         let l:command = 'sqlplot'
         let l:args = ' ' . expand('%')
         call BeginTerm(l:command, l:args)

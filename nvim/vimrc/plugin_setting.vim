@@ -36,6 +36,12 @@ let g:tagbar_width = 30
 let g:tagbar_sort = 0
 
 
+"" tcomment_vim
+if !exists('g:tcomment_types')
+    let g:tcomment_types = {}
+endif
+
+
 "" jedi-vim
 let g:jedi#auto_initialization = 0
 let g:jedi#popup_on_dot = 0
@@ -146,7 +152,7 @@ aug ReplaceNetrwByRangerVim
     au BufEnter * if isdirectory(expand("%"))
                \|     call OpenRangerOnVimLoadDir('%')
                \|     file ranger
-               \|     setlocal buftype=terminal
+               \|     setlocal filetype=terminal
                \|     setlocal nonumber
                \|     setlocal nobuflisted
                \| endif
