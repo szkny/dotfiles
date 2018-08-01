@@ -43,22 +43,26 @@ elseif system('uname') ==# "Linux\n"
     ino <silent><buffer> <A-;> <ESC>:Appendchar \ \ <CR>a
     no  <silent><buffer> <A-;>      :Appendchar \ \ <CR>
 endif
-nno <silent><nowait> <leader>b :<C-u>call <SID>bold()<CR>
-vno <silent><nowait> <leader>b :<C-u>call <SID>vbold()<CR>
+"" bold (強調表示)
+nno <silent><nowait> <leader>b :<C-u>call <SID>surround('**')<CR>
+nno <silent><nowait> <leader>b :<C-u>call <SID>surround('**')<CR>
+"" cross-off (打ち消し線)
+nno <silent><nowait> <leader>c :<C-u>call <SID>surround('~~')<CR>
+vno <silent><nowait> <leader>c :<C-u>call <SID>vsurround('~~')<CR>
 
 
 " function
-fun!  s:bold() abort
-    " カーソル下の単語を強調表示(**WORD**)する関数
+fun!  s:surround(char) abort
+    " カーソル下の単語をa:charで囲む関数
     if getline('.') !=# ''
         let l:pos = getcurpos()
         let l:word = expand('<cword>')
-        exe line('.').'s/'.l:word.'/'.'**'.l:word.'**'
+        exe line('.').'s/'.l:word.'/'.a:char.l:word.a:char
         call setpos('.', l:pos)
     endif
 endf
-fun!  s:vbold() abort range
-    " カーソル下の単語を強調表示(**WORD**)する関数
+fun!  s:vsurround(char) abort range
+    " カーソル下の単語をa:charで囲む関数
     if getline('.') !=# ''
         let l:pos = getcurpos()
         let @@ = ''
@@ -68,7 +72,7 @@ fun!  s:vbold() abort range
         else
             let l:word = expand('<cword>')
         endif
-        exe line('.').'s/'.l:word.'/'.'**'.l:word.'**'
+        exe line('.').'s/'.l:word.'/'.a:char.l:word.a:char
         call setpos('.', l:pos)
     endif
 endf
