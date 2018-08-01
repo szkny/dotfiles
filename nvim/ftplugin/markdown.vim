@@ -45,10 +45,10 @@ elseif system('uname') ==# "Linux\n"
 endif
 "" bold (強調表示)
 nno <silent><nowait> <leader>b :<C-u>call <SID>surround('**')<CR>
-nno <silent><nowait> <leader>b :<C-u>call <SID>surround('**')<CR>
+vno <silent><nowait> <leader>b :<C-u>call <SID>surround('**')<CR>
 "" cross-off (打ち消し線)
-nno <silent><nowait> <leader>c :<C-u>call <SID>surround('~~')<CR>
-vno <silent><nowait> <leader>c :<C-u>call <SID>vsurround('~~')<CR>
+nno <silent><nowait> <leader>c :<C-u>call <SID>surround('\~\~')<CR>
+vno <silent><nowait> <leader>c :<C-u>call <SID>vsurround('\~\~')<CR>
 
 
 " function
@@ -61,6 +61,7 @@ fun!  s:surround(char) abort
         call setpos('.', l:pos)
     endif
 endf
+
 fun!  s:vsurround(char) abort range
     " カーソル下の単語をa:charで囲む関数
     if getline('.') !=# ''
