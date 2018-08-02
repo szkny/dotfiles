@@ -641,20 +641,26 @@ endf
 command! -range -nargs=* W3m call W3m(<f-args>)
 
 
-fun! Trans() abort range
+fun! Trans(...) abort range
     " transコマンド(Google翻訳)を利用してvisual選択中の文字列を日本語変換する関数
     if executable('trans')
         let l:text = ''
-        let @@ = ''
-        exe 'silent normal gvy'
-        if @@ !=# ''
-            let l:text = join(split(@@,'\n'))
+        if a:0 ==0
+            let @@ = ''
+            exe 'silent normal gvy'
+            if @@ !=# ''
+                let l:text = join(split(@@,'\n'))
+            else
+                let l:text = expand('<cword>')
+            endif
         else
-            let l:text = expand('<cword>')
+            for l:i in a:000
+                let l:text .= ' '.l:i
+            endfor
         endif
         let l:text = substitute(l:text, '"', '\\"', 'g')
         if len(l:text) < 900
-            call SplitTerm('trans', '"'.l:text.'"')
+            call SplitTerm('trans', '{en=ja}', '"'.l:text.'"')
         else
             echo 'Trans: [error] text too long.'
         endif
@@ -662,7 +668,7 @@ fun! Trans() abort range
         call s:install_trans()
     endif
 endf
-command! -range Trans call Trans()
+command! -range -nargs=* Trans call Trans(<f-args>)
 
 
 fun! s:install_trans() abort
