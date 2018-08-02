@@ -654,7 +654,7 @@ fun! Trans() abort range
         endif
         let l:text = substitute(l:text, '"', '\\"', 'g')
         if len(l:text) < 900
-            call SplitTerm('trans', '{en=ja}', '"'.l:text.'"')
+            call SplitTerm('trans', '"'.l:text.'"')
         else
             echo 'Trans: [error] text too long.'
         endif
