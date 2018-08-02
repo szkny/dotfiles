@@ -113,8 +113,8 @@ fun! Ranger() abort
     " rangerコマンドでファイルを選択する関数
     "   (francoiscabrol/ranger.vimを利用)
     " vnew
-    call OpenRanger()
-    call s:SetNewBufName('ranger')
+    silent call OpenRanger()
+    silent call s:SetNewBufName('ranger')
     setlocal nonumber
     setlocal filetype=terminal
 endf
