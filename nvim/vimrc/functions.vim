@@ -48,28 +48,6 @@ fun! s:CloseBufferTab() abort
             endif
         elseif winnr('$') > 1
             " 複数ウィンドウの場合
-            " let l:current_winid = win_getid()
-            " if &buflisted
-            "     let l:bd_flag = 1
-            " else
-            "     let l:bd_flag = 0
-            " endif
-            " let l:iterator = 1000
-            " if !l:bd_flag
-            "     while l:iterator < 1050 && !l:bd_flag
-            "         if win_gotoid(l:iterator) && !&buflisted
-            "             let l:bd_flag = 1
-            "         endif
-            "         let l:iterator += 1
-            "     endwhile
-            " endif
-            " if l:bd_flag
-            "     call s:deletebuffer()
-            "     return
-            " else
-            "     quit
-            "     return
-            " endif
             if len(win_findbuf(bufnr('%'))) == 1 && &buflisted
                 " 異なるファイルを画面分割している場合
                 if l:buf_number == 1 || &buftype ==? 'quickfix'
