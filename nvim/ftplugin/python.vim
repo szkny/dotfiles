@@ -19,7 +19,7 @@ endif
 " mapping
 nno <silent> <leader>py :Python<CR>i
 nno <silent> <leader>ip :Ipython<CR>i
-nno <silent> <C-p>      :IpdbDebugToggle<CR>
+nno <silent> <C-p>      :IpdbToggle<CR>
 if exists('*jedi#goto')
     " nno <silent> <leader>d :call jedi#goto()<CR>
     nno <silent> <leader>a :call jedi#goto_assignments()<CR>
