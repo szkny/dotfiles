@@ -44,6 +44,10 @@ if system('uname') ==# "Linux\n"
     ino <silent> <A-j> <Down>
     ino <silent> <A-k> <Up>
     ino <silent> <A-l> <Right>
+    tno <silent> <A-h> <Left>
+    tno <silent> <A-j> <Down>
+    tno <silent> <A-k> <Up>
+    tno <silent> <A-l> <Right>
 endif
 
 " for IME
