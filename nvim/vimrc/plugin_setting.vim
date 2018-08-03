@@ -60,10 +60,10 @@ let g:jedi#completions_enabled = 1
 let g:ale_sign_column_always = 0
 let g:ale_change_sign_column_color = 0
 let g:ale_completion_enabled = 1
-" let g:ale_sign_error = '✗✗'
-" let g:ale_sign_warning = '⚠'
-let g:ale_sign_error = 'Ｘ'
-let g:ale_sign_warning = '!!'
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
+" let g:ale_sign_error = 'Ｘ'
+" let g:ale_sign_warning = '!!'
 let g:ale_set_highlights = 1
 let g:ale_c_clang_executable = 'clang++'
 let g:ale_c_clang_options = '-std=c++11 -Wall'
@@ -79,8 +79,8 @@ let g:ale_statusline_format = [g:ale_sign_error.'%d', g:ale_sign_warning.'%d', '
 let g:ale_echo_msg_error_str = g:ale_sign_error
 let g:ale_echo_msg_warning_str = g:ale_sign_warning
 " let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-hi ALEErrorSign   guifg=#000000 guibg=#a01010
-hi ALEWarningSign guifg=#000000 guibg=#808010
+hi ALEErrorSign   guifg=#a01010 guibg=#222222
+hi ALEWarningSign guifg=#808010 guibg=#222222
 
 
 "" indent_guides
