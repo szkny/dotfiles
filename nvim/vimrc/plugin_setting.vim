@@ -75,7 +75,7 @@ let g:ale_c_cppcheck_options = '--enable=style'
 let g:ale_c_gcc_executable = 'g++'
 let g:ale_c_gcc_options = '-std=c++11 -Wall'
 let g:ale_echo_msg_format = '[%linter%]%code: %%s'
-let g:ale_statusline_format = [g:ale_sign_error.'%d', g:ale_sign_warning.'%d', '']
+let g:ale_statusline_format = [g:ale_sign_error.'%d', g:ale_sign_warning.'%d', '⬥ ok']
 let g:ale_echo_msg_error_str = g:ale_sign_error
 let g:ale_echo_msg_warning_str = g:ale_sign_warning
 " let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
