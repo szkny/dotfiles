@@ -90,7 +90,7 @@ fun!  s:vunderline() abort range
         else
             let l:word = expand('<cword>')
         endif
-        exe line('.').'s/'.l:word.'/'.'<u>'.l:word.'</u>'
+        exe line('.').'s/'.l:word.'/'.'<u>'.l:word.'<\/u>'
         call setpos('.', l:pos)
     endif
 endf
