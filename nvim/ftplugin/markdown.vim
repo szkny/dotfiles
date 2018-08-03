@@ -46,9 +46,10 @@ endif
 "" bold (強調表示)
 nno <silent><nowait> <leader>b :<C-u>call <SID>surround('**')<CR>
 vno <silent><nowait> <leader>b :<C-u>call <SID>surround('**')<CR>
-"" cross-off (打ち消し線)
-nno <silent><nowait> <leader>c :<C-u>call <SID>surround('\~\~')<CR>
-vno <silent><nowait> <leader>c :<C-u>call <SID>vsurround('\~\~')<CR>
+"" line (打ち消し線)
+vno <silent><nowait> <leader>l :<C-u>call <SID>vsurround('\~\~')<CR>
+"" under line (下線)
+vno <silent><nowait> <leader>u :<C-u>call <SID>vunderline()<CR>
 
 
 " function
@@ -63,7 +64,7 @@ fun!  s:surround(char) abort
 endf
 
 fun!  s:vsurround(char) abort range
-    " カーソル下の単語をa:charで囲む関数
+    " 選択範囲をa:charで囲む関数
     if getline('.') !=# ''
         let l:pos = getcurpos()
         let @@ = ''
@@ -74,6 +75,22 @@ fun!  s:vsurround(char) abort range
             let l:word = expand('<cword>')
         endif
         exe line('.').'s/'.l:word.'/'.a:char.l:word.a:char
+        call setpos('.', l:pos)
+    endif
+endf
+
+fun!  s:vunderline() abort range
+    " 選択範囲を<u>...</u>で囲む関数
+    if getline('.') !=# ''
+        let l:pos = getcurpos()
+        let @@ = ''
+        exe 'silent normal gvy'
+        if @@ !=# ''
+            let l:word = join(split(@@,'\n'))
+        else
+            let l:word = expand('<cword>')
+        endif
+        exe line('.').'s/'.l:word.'/'.'<u>'.l:word.'</u>'
         call setpos('.', l:pos)
     endif
 endf
