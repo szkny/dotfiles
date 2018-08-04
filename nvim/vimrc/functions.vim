@@ -634,6 +634,7 @@ fun! s:nyaovim_browser(...) abort range
         else
             let l:url = s:googlesearchurl(a:000)
         endif
+        let l:url = split(l:url, '"')[0]
         exe 'MiniBrowser '.l:url
     endif
 endf
