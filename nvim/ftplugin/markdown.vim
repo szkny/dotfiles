@@ -37,9 +37,11 @@ command! Previm call s:PrevimOpenCmd()
 "" nyaovim-popup-tooltip
 
 "" nyaovim-markdown-preview
-let g:markdow_preview_auto = 1
-let g:markdow_preview_eager = 1
-let g:markdow_preview_no_default_mapping = 0
+if exists('g:nyaovim_version')
+    let g:markdow_preview_auto = 1
+    let g:markdow_preview_eager = 1
+    let g:markdow_preview_no_default_mapping = 0
+endif
 
 
 " mapping
