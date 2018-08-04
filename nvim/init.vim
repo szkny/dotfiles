@@ -48,8 +48,6 @@ Plug 'scrooloose/nerdtree',                     {'on': 'NERDTreeToggle'}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': 'NERDTreeToggle'}
 " Plug 'kassio/neoterm'
 " Plug 'tpope/vim-fugitive'
-" Plug 'rhysd/nyaovim-popup-tooltip'
-" Plug 'rhysd/nyaovim-markdown-preview'
 " Plug 'sheerun/vim-polyglot'
 " Plug 'Shougo/unite.vim'
 " Plug 'Shougo/unite-outline'
@@ -83,21 +81,23 @@ Plug 'tomasr/molokai'
 " Plug 'altercation/vim-colors-solarized'
 
 " c/c++
-Plug 'vim-jp/cpp-vim',                {'for': 'cpp'}
-Plug 'vim-scripts/c.vim',             {'for': ['c', 'cpp']}
+Plug 'vim-jp/cpp-vim',                 {'for': 'cpp'}
+Plug 'vim-scripts/c.vim',              {'for': ['c', 'cpp']}
 " Plug 'ludwig/split-manpage.vim'
 
 " python
-Plug 'davidhalter/jedi-vim',          {'for': 'python'}
-Plug 'zchee/deoplete-jedi',           {'for': 'python'}
-Plug 'tweekmonster/braceless.vim',    {'for': 'python'}
-Plug 'szkny/IpdbDebugger',            {'for': 'python'}
+Plug 'davidhalter/jedi-vim',           {'for': 'python'}
+Plug 'zchee/deoplete-jedi',            {'for': 'python'}
+Plug 'tweekmonster/braceless.vim',     {'for': 'python'}
+Plug 'szkny/IpdbDebugger',             {'for': 'python'}
 
 " misc
-Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
-Plug 'cespare/vim-toml',              {'for': 'toml'}
-Plug 'tyru/open-browser.vim',         {'for': 'markdown'}
-Plug 'kannokanno/previm',             {'for': 'markdown'}
+Plug 'raimon49/requirements.txt.vim',  {'for': 'requirements'}
+Plug 'cespare/vim-toml',               {'for': 'toml'}
+Plug 'tyru/open-browser.vim',          {'for': 'markdown'}
+Plug 'kannokanno/previm',              {'for': 'markdown'}
+Plug 'rhysd/nyaovim-popup-tooltip',    {'for': 'markdown'}
+Plug 'rhysd/nyaovim-markdown-preview', {'for': 'markdown'}
 
 " if has('mac')
 "     " icon
