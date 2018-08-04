@@ -3,13 +3,14 @@ scriptencoding utf-8
 "" markdown ftplugin
 "*****************************************************************************
 
-" auto command
+" plugin setting
+"" delimitMate
 aug delimitMate
     if exists('delimitMate_version')
         au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
     endif
 aug END
-" previm
+"" previm
 let g:previm_disable_default_css = 1
 let g:previm_custom_css_path = '~/dotfiles/preview/css/github_style.css'
 let g:previm_disable_default_js = 1
@@ -33,6 +34,12 @@ fun! s:PrevimOpenCmd()
     endif
 endf
 command! Previm call s:PrevimOpenCmd()
+"" nyaovim-popup-tooltip
+
+"" nyaovim-markdown-preview
+let g:markdow_preview_auto = 1
+let g:markdow_preview_eager = 1
+let g:markdow_preview_no_default_mapping = 0
 
 
 " mapping
