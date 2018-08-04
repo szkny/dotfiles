@@ -95,7 +95,7 @@ else
     ino <silent> <A-;>    <ESC>:Appendchar ;<CR>a
     no  <silent> <A-;>         :Appendchar ;<CR>
 endif
-nno <silent> ?          :call SetHlsearch()<CR>
+nno <silent> ?          :SetHlSearch<CR>
 nno <silent> t          :SplitTerm<CR>i
 " nno <silent> <leader>g  :Fgrep<CR>
 nno <silent> <leader>ma :Make<CR>

@@ -3,7 +3,7 @@ scriptencoding utf-8
 "" My-Functions
 "*****************************************************************************
 
-fun! s:ChangeBuffer(direction) abort
+fun! s:changebuffer(direction) abort
     " バッファタブを切り替える関数
     " directionにはnextかpreviousを指定する
     if &buflisted
@@ -23,10 +23,10 @@ fun! s:ChangeBuffer(direction) abort
         endif
     endif
 endf
-command! -nargs=1 ChangeBuffer call s:ChangeBuffer(<f-args>)
+command! -nargs=1 ChangeBuffer call s:changebuffer(<f-args>)
 
 
-fun! s:CloseBufferTab() abort
+fun! s:closebuffertab() abort
     " バッファタブを閉じる関数
     " バッファリストの数をカウント
     let l:buf_number = 0
@@ -69,7 +69,7 @@ fun! s:CloseBufferTab() abort
         return
     endtry
 endf
-command! CloseBufferTab call s:CloseBufferTab()
+command! CloseBufferTab call s:closebuffertab()
 
 
 fun! s:deletebuffer() abort
@@ -94,7 +94,7 @@ fun! Ranger() abort
     "   (francoiscabrol/ranger.vimを利用)
     " vnew
     silent call OpenRanger()
-    silent call s:SetNewBufName('ranger')
+    silent call s:setnewbufname('ranger')
     setlocal nonumber
     setlocal filetype=terminal
 endf
@@ -150,9 +150,9 @@ fun! NewTerm(...) abort
     silent exe l:cmd
     " change buffer name
     if a:0 == 0
-        silent call s:SetNewBufName('bash')
+        silent call s:setnewbufname('bash')
     elseif a:0 > 0
-        silent call s:SetNewBufName(a:1)
+        silent call s:setnewbufname(a:1)
     endif
     " set local settings
     setlocal nonumber
@@ -179,11 +179,11 @@ fun! SplitTerm(...) abort
         let l:current_dir = getcwd()
     endif
     " create split window
-    let l:width = s:Vsplitwidth()
+    let l:width = s:vsplitwidth()
     if l:width
         let l:split = l:width.'vnew'
     else
-        let l:height = s:Splitheight()
+        let l:height = s:splitheight()
         let l:split = l:height ? l:height.'new' : 'new'
     endif
     silent exe l:split
@@ -198,9 +198,9 @@ fun! SplitTerm(...) abort
     silent exe l:cmd2
     " change buffer name
     if a:0 == 0
-        silent call s:SetNewBufName('bash')
+        silent call s:setnewbufname('bash')
     elseif a:0 > 0
-        silent call s:SetNewBufName(a:1)
+        silent call s:setnewbufname(a:1)
     endif
     " set local settings
     setlocal nonumber
@@ -220,7 +220,7 @@ endf
 command! -complete=shellcmd -nargs=* SplitTerm call SplitTerm(<f-args>)
 
 
-fun! s:SetNewBufName(name) abort
+fun! s:setnewbufname(name) abort
     " 新規バッファのバッファ名(例: '1:bash')を設定する関数
     "      NewTermとSplitTermで利用している
     let l:num = 1
@@ -232,7 +232,7 @@ fun! s:SetNewBufName(name) abort
 endf
 
 
-fun! s:Splitheight() abort
+fun! s:splitheight() abort
     " 新規分割ウィンドウの高さを決める関数
     "      SplitTermで利用している
     let l:min_winheight = 10
@@ -245,7 +245,7 @@ fun! s:Splitheight() abort
 endf
 
 
-fun! s:Vsplitwidth() abort
+fun! s:vsplitwidth() abort
     " 新規分割ウィンドウの幅を決める関数
     "      SplitTermで利用している
     let l:min_winwidth = 60
@@ -287,7 +287,7 @@ fun! s:Vsplitwidth() abort
 endf
 
 
-fun! ResizeWindow(size) abort
+fun! s:resizewindow(size) abort
     " 分割ウィンドウの高さと幅を調節する関数
     "      :ResizeWindow + でカレントウィンドウを広くする
     "      :ResizeWindow - でカレントウィンドウを狭くする
@@ -304,10 +304,10 @@ fun! ResizeWindow(size) abort
         exe 'vertical res '.a:size
     endif
 endf
-command! -nargs=1 ResizeWindow call ResizeWindow(<f-args>)
+command! -nargs=1 ResizeWindow call s:resizewindow(<f-args>)
 
 
-fun! Make(...) abort
+fun! s:make(...) abort
     " makeコマンドを走らせる関数
     let l:current_dir = expand('%:p:h')
     let l:command = 'make'
@@ -329,10 +329,10 @@ fun! Make(...) abort
         echon 'not found: "GNUmakefile" or "Makefile"'
     endif
 endf
-command! -nargs=* Make call Make(<f-args>)
+command! -nargs=* Make call s:make(<f-args>)
 
 
-fun! CMake(...) abort
+fun! s:cmake(...) abort
     " cmakeコマンドを走らせる関数
     let l:current_dir = expand('%:p:h')
     let l:builddir = 'build'
@@ -340,7 +340,7 @@ fun! CMake(...) abort
     let l:command = 'cmake .. && make'
     if a:0 > 0
         if a:1 ==? 'run'
-            let l:exename = GetProjectName(l:cmakelists_txt)
+            let l:exename = s:getprojectname(l:cmakelists_txt)
             let l:command .= ' && ./'.l:exename
         endif
     endif
@@ -361,10 +361,10 @@ fun! CMake(...) abort
         echon 'not found: '.l:cmakelists_txt
     endif
 endf
-command! -nargs=* CMake call CMake(<f-args>)
+command! -nargs=* CMake call s:cmake(<f-args>)
 
 
-fun! GetProjectName(cmakelists_txt) abort
+fun! s:getprojectname(cmakelists_txt) abort
     " CMakeLists.txtからプロジェクト名を取得する関数
     "      CMake関数で利用している
     if findfile(a:cmakelists_txt,getcwd()) !=# ''
@@ -382,10 +382,9 @@ fun! GetProjectName(cmakelists_txt) abort
         endif
     endfor
 endf
-command! -nargs=1 GetProjectName call GetProjectName(<f-args>)
 
 
-fun! AppendChar(...) abort range
+fun! s:appendchar(...) abort range
     " カーソルがある行の末尾に引数の文字を追加する関数
     "      C言語,js等で末尾にセミコロンをつけるときに使う
     "      すでに指定の文字が末尾にあれば追加しない。
@@ -410,10 +409,10 @@ fun! AppendChar(...) abort range
     endfor
     call setpos('.', l:pos)
 endf
-command! -nargs=* -range Appendchar :<line1>,<line2>call AppendChar(<f-args>)
+command! -nargs=* -range Appendchar :<line1>,<line2>call s:appendchar(<f-args>)
 
 
-fun! SQL() abort
+fun! s:sql() abort
     " mysqlを起動する関数
     let l:command = 'mysql'
     if executable(l:command)
@@ -426,10 +425,10 @@ fun! SQL() abort
         echon 'SQL: [error] '.l:command.' command not found.'
     endif
 endf
-command! SQL call SQL()
+command! SQL call s:sql()
 
 
-fun! SQLplot(...) abort
+fun! s:sqlplot(...) abort
     " sqlplot(自作シェルコマンド) を実行する関数
     if (&filetype ==# 'sql' || &filetype ==# 'mysql') && executable('sqlplot')
         let l:command = 'sqlplot'
@@ -437,10 +436,10 @@ fun! SQLplot(...) abort
         call BeginTerm(l:command, l:args)
     endif
 endf
-command! -nargs=* SQLplot call SQLplot(<f-args>)
+command! -nargs=* SQLplot call s:sqlplot(<f-args>)
 
 
-fun! Pyplot(...) abort
+fun! s:pyplot(...) abort
     " pyplot(自作シェルコマンド) を実行する関数
     if &filetype ==# 'text' && executable('pyplot')
         if a:0 == 0
@@ -457,10 +456,10 @@ fun! Pyplot(...) abort
         call system('pyplot %'.l:column)
     endif
 endf
-command! -nargs=* Pyplot call Pyplot(<f-args>)
+command! -nargs=* Pyplot call s:pyplot(<f-args>)
 
 
-fun! Gnuplot() abort
+fun! s:gnuplot() abort
     " gnuplotを実行する関数
     if expand('%:e') ==# 'gp' || expand('%:e') ==# 'gpi'
         let l:command = 'gnuplot'
@@ -471,7 +470,7 @@ fun! Gnuplot() abort
         echon 'Gnuplot: [error] invalid file type. this is "' . &filetype. '".'
     endif
 endf
-command! -nargs=* Gnuplot call Gnuplot(<f-args>)
+command! -nargs=* Gnuplot call s:gnuplot(<f-args>)
 
 
 if executable('pdftotext')
@@ -479,7 +478,7 @@ if executable('pdftotext')
 endif
 
 
-fun! SetHlsearch() abort
+fun! s:sethlsearch() abort
     " 検索結果のハイライトのオン/オフ切り替え
     if &hlsearch
         set nohlsearch
@@ -487,6 +486,7 @@ fun! SetHlsearch() abort
         set hlsearch
     endif
 endf
+command! SetHlSearch call s:sethlsearch()
 
 
 fun! AgWord(...) abort
@@ -523,7 +523,7 @@ fun! VAgWord() abort range
 endf
 
 
-fun! GoogleSearchURL(...) abort
+fun! s:googlesearchurl(...) abort
     " Google検索をするURLを返す関数
     let l:url = '"http://www.google.co.jp/'
     let l:opt = 'search?num=100'
@@ -567,7 +567,7 @@ fun! GoogleSearchURL(...) abort
 endf
 
 
-fun! Chrome(...) abort range
+fun! s:chrome(...) abort range
     " Google Chrome を開いて引数のキーワードを検索する関数
     if has('mac')
         let l:cmd = 'open -a Google\ Chrome '
@@ -582,19 +582,19 @@ fun! Chrome(...) abort range
         exe 'silent normal gvy'
         if @@ !=# ''
             let @@ = join(split(@@,'\n'))
-            let l:url = GoogleSearchURL(@@)
+            let l:url = s:googlesearchurl(@@)
         else
-            let l:url = GoogleSearchURL()
+            let l:url = s:googlesearchurl()
         endif
     else
-        let l:url = GoogleSearchURL(a:000)
+        let l:url = s:googlesearchurl(a:000)
     endif
     call system(l:cmd.l:url)
 endf
-command! -nargs=* -range Chrome call Chrome(<f-args>)
+command! -nargs=* -range Chrome call s:chrome(<f-args>)
 
 
-fun! W3m(...) abort range
+fun! s:w3m(...) abort range
     " w3mで引数のキーワードを検索する関数
     if executable('w3m')
         let l:url = ''
@@ -603,12 +603,12 @@ fun! W3m(...) abort range
             exe 'silent normal gvy'
             if @@ !=# ''
                 let @@ = join(split(@@,'\n'))
-                let l:url = GoogleSearchURL(@@)
+                let l:url = s:googlesearchurl(@@)
             else
-                let l:url = GoogleSearchURL()
+                let l:url = s:googlesearchurl()
             endif
         else
-            let l:url = GoogleSearchURL(a:000)
+            let l:url = s:googlesearchurl(a:000)
         endif
         call BeginTerm('w3m', '-M', l:url)
         startinsert
@@ -616,10 +616,31 @@ fun! W3m(...) abort range
         echon 'W3m: [error] w3m command not found.'
     endif
 endf
-command! -range -nargs=* W3m call W3m(<f-args>)
+command! -range -nargs=* W3m call s:w3m(<f-args>)
 
 
-fun! Trans(...) abort range
+fun! s:nyaovim_browser(...) abort range
+    if exists('g:nyaovim_version')
+        let l:url = ''
+        if a:0 == 0
+            let @@ = ''
+            exe 'silent normal gvy'
+            if @@ !=# ''
+                let @@ = join(split(@@,'\n'))
+                let l:url = s:googlesearchurl(@@)
+            else
+                let l:url = s:googlesearchurl()
+            endif
+        else
+            let l:url = s:googlesearchurl(a:000)
+        endif
+        exe 'MiniBrowser '.l:url
+    endif
+endf
+command! -range -nargs=* Browse call s:nyaovim_browser(<f-args>)
+
+
+fun! s:trans(...) abort range
     " transコマンド(Google翻訳)を利用してvisual選択中の文字列を日本語変換する関数
     if executable('trans')
         let l:text = ''
@@ -646,7 +667,7 @@ fun! Trans(...) abort range
         call s:install_trans()
     endif
 endf
-command! -range -nargs=* Trans call Trans(<f-args>)
+command! -range -nargs=* Trans call s:trans(<f-args>)
 
 
 fun! s:install_trans() abort
@@ -695,7 +716,7 @@ fun! GetNow() abort
 endf
 
 
-fun! Git(...) abort
+fun! s:git(...) abort
     " gitコマンドを実行する関数
     let l:cmd = 'git'
     if a:1 ==# 'diff'
@@ -718,4 +739,4 @@ endf
 fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)
     return filter(['acp','fpull',  'diff', 'reset', 'status'], printf('v:val =~ "^%s"', a:ArgLead))
 endf
-command! -complete=customlist,s:CompletionGitCommands -nargs=* Git call Git(<f-args>)
+command! -complete=customlist,s:CompletionGitCommands -nargs=* Git call s:git(<f-args>)

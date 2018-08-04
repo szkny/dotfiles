@@ -91,13 +91,18 @@ Plug 'zchee/deoplete-jedi',            {'for': 'python'}
 Plug 'tweekmonster/braceless.vim',     {'for': 'python'}
 Plug 'szkny/IpdbDebugger',             {'for': 'python'}
 
+" nyaovim
+if exists('g:nyaovim_version')
+    Plug 'rhysd/nyaovim-mini-browser'
+    Plug 'rhysd/nyaovim-popup-tooltip'
+    Plug 'rhysd/nyaovim-markdown-preview', {'for': 'markdown'}
+endif
+
 " misc
 Plug 'raimon49/requirements.txt.vim',  {'for': 'requirements'}
 Plug 'cespare/vim-toml',               {'for': 'toml'}
 Plug 'tyru/open-browser.vim',          {'for': 'markdown'}
 Plug 'kannokanno/previm',              {'for': 'markdown'}
-Plug 'rhysd/nyaovim-popup-tooltip',    {'for': 'markdown'}
-Plug 'rhysd/nyaovim-markdown-preview', {'for': 'markdown'}
 
 " if has('mac')
 "     " icon
@@ -106,7 +111,7 @@ Plug 'rhysd/nyaovim-markdown-preview', {'for': 'markdown'}
 
 call plug#end()
 
-" Required:
+" Required: ftpluginディレクトリをロードする
 filetype plugin indent on
 
 "*****************************************************************************
