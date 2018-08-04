@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# neovim (0.2.2)
+# neovim
 if [ -L ~/.config/nvim/init.vim ]; then rm ~/.config/nvim/init.vim;fi
 if [ -L ~/.config/nvim/vimrc ]; then rm ~/.config/nvim/vimrc;fi
 if [ -L ~/.config/nvim/ftplugin ]; then rm ~/.config/nvim/ftplugin;fi
@@ -8,6 +8,11 @@ mkdir -p ~/.config/nvim
 ln -sf ~/dotfiles/nvim/init.vim ~/.config/nvim/init.vim
 ln -sf ~/dotfiles/nvim/vimrc ~/.config/nvim
 ln -sf ~/dotfiles/nvim/ftplugin ~/.config/nvim
+
+# nyaovim
+if [ -L ~/.config/nyaovim/nyaovimrc.html ]; then rm ~/.config/nyaovim/nyaovimrc.html;fi
+mkdir -p ~/.config/nyaovim
+ln -sf ~/dotfiles/nyaovim/nyaovimrc.html ~/.config/nyaovim/nyaovimrc.html
 
 # python syntax checker & formatter
 if [ -L ~/.config/flake8 ]; then rm ~/.config/flake8;fi
@@ -22,10 +27,11 @@ if [ -L ~/.vim/vimrc ]; then rm ~/.vim/vimrc;fi
 mkdir -p ~/.vim
 ln -sf ~/dotfiles/vim/.vimrc ~/.vimrc
 ln -sf ~/dotfiles/vim/vimrc ~/.vim
-#
-# # bash
-# # ln -sf ~/dotfiles/bashrc ~/.bashrc
-#
+
 # tmux
 if [ -L ~/.tmux.conf ]; then rm ~/.tmux.conf;fi
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
+
+# bash
+# ln -sf ~/dotfiles/bashrc ~/.bashrc
+

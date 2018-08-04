@@ -1,0 +1,36 @@
+<dom-module id="nyaovim-app">
+  <template>
+    <style>
+      /* CSS configurations here */
+      .horizontal {
+        display: flex;
+        width: 100%;
+        height: 100%;
+      }
+      neovim-editor {
+        width: 100%;
+        height: 100%;
+      }
+      <mini-browser
+        url="https://google.com"
+        width="600"
+        useragent="...(snip)"
+        visible
+      ></mini-browser>
+    </style>
+    <div class="horizontal">
+      <neovim-editor
+          id="nyaovim-editor"
+          argv="[[argv]]"
+          font-size="14"
+          line-height="1.0"
+          no-blink-cursor="True"
+          font="Ricty Discord, Monaco">
+      </neovim-editor>
+      <!-- Put component -->
+      <popup-tooltip editor="[[editor]]"></popup-tooltip>
+      <markdown-preview editor="[[editor]]"></markdown-preview>
+      <mini-browser editor="[[editor]]"></mini-browser>
+    </div>
+  </template>
+</dom-module>
