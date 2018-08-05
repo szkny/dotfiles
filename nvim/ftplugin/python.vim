@@ -33,7 +33,7 @@ aug vimrc_python
     au FileType python setlocal expandtab shiftwidth=4 tabstop=8
                 \ formatoptions+=croq softtabstop=4
                 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-                \|let &colorcolumn=join(range(PythonMaxLineLength(), 300), ',')
+                \|let &colorcolumn=join(range(s:pythonmaxlinelength(), 300), ',')
                 \|hi  ColorColumn guibg=#0f0f0f
     au BufNewFile,BufRead Pipfile      setfiletype toml
     au BufNewFile,BufRead Pipfile.lock setfiletype json
@@ -149,10 +149,10 @@ fun! InitIpython() abort
 endf
 
 
-fun! PythonMaxLineLength() abort
+fun! s:pythonmaxlinelength() abort
     " flake8のconfigファイルからpythonスクリプトの文字数上限(max-line-length)を取得する関数
     "      以下のようにcolorcolumnを設定することでバッファに文字数の上限ラインが引かれる
-    "      :set colorcolumn=PythonMaxLineLength()
+    "      :set colorcolumn=s:pythonmaxlinelength()
     let l:flake8_config = $HOME.'/.config/flake8'
     let l:max_line_length = 0
     if findfile(l:flake8_config) !=# ''
