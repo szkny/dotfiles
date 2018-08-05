@@ -226,7 +226,7 @@ fun! s:setnewbufname(name) abort
     " 新規バッファのバッファ名(例: '1:bash')を設定する関数
     "      NewTermとSplitTermで利用している
     let l:num = 1
-    let l:name = split(a:name,':')[0]
+    let l:name = split(a:name,' ')[0]
     while bufexists(l:num.':'.l:name)
         let l:num += 1
     endwhile
