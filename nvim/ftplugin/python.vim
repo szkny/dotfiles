@@ -69,19 +69,22 @@ fun! Python(...) abort
     "      コマンドライン引数が必要な場合は
     "      :Python [引数]
     let l:command = 'python'
+    if findfile('Pipfile',getcwd()) !=# ''
+        \ && findfile('Pipfile.lock',getcwd()) !=# ''
+        let l:command = 'pipenv run python'
+    endif
+    let l:filename = ' '
     if &filetype ==# 'python'
-        let l:args = ' ' . expand('%')
-        if findfile('Pipfile',getcwd()) !=# ''
-            \ && findfile('Pipfile.lock',getcwd()) !=# ''
-            let l:command = 'pipenv run python'
-        endif
+        let l:filename .= expand('%')
+    endif
+    let l:args = ''
+    if a:0 > 0
         for l:i in a:000
             let l:args .= ' ' . l:i
         endfor
-        call BeginTerm(l:command, l:args)
-    else
-        call BeginTerm(l:command)
     endif
+    let l:args = l:filename . l:args
+    call BeginTerm(l:command, l:args)
 endf
 command! -complete=file -nargs=* Python call Python(<f-args>)
 
@@ -252,3 +255,59 @@ fun! s:pudb() abort
     endif
 endf
 command! Pudb call s:pudb()
+
+
+"" Python Console plugin test
+let s:term = {}
+fun! PythonConsole(...) abort
+    " Pythonコンソールを呼び出す関数
+    "      以下のように使用する
+    "      :PythonConsole
+    if &filetype ==# 'python'
+        if !s:console_exist()
+            let l:command = 'python'
+            let l:filename = ' ' . expand('%')
+            if findfile('Pipfile',getcwd()) !=# ''
+                \ && findfile('Pipfile.lock',getcwd()) !=# ''
+                let l:command = 'pipenv run python'
+            endif
+            let s:term.script_winid = win_getid()
+            call BeginTerm(l:command)
+            exe 'normal G'
+            let s:term.jobid = b:terminal_job_id
+            let s:term.python_winid = win_getid()
+            call win_gotoid(s:term.script_winid)
+        else
+            call s:console_jobsend('exec(open("'.expand('%').'").read())')
+        endif
+    endif
+endf
+command! -complete=file -nargs=* PythonConsole call PythonConsole(<f-args>)
+
+
+fun! s:console_exist() abort
+    if has_key(s:term, 'jobid')
+        return 1
+    else
+        return 0
+    endif
+endf
+
+
+fun! s:console_jobsend(...) abort
+    if s:console_exist()
+        let l:command = ''
+        if a:0 > 0
+            let l:command = a:1
+            for l:arg in a:000[1:]
+                let l:command .= ' ' . l:arg
+            endfor
+        endif
+        try
+            call jobsend(s:term.jobid, l:command."\<CR>")
+        catch
+        endtry
+    endif
+endf
+
+

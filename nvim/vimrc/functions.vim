@@ -92,7 +92,6 @@ endf
 fun! Ranger() abort
     " rangerコマンドでファイルを選択する関数
     "   (francoiscabrol/ranger.vimを利用)
-    " vnew
     if &buflisted
         silent call OpenRanger()
         silent call s:setnewbufname('ranger')
