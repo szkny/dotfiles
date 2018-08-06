@@ -52,7 +52,7 @@ function pyhistio(){
 function ranger-cd(){
     tempfile="$(mktemp -t tmp.XXXXXX)"
     /usr/local/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
-    echo -en "\033[1A\033[2K"
+    echo -en "\033[1A\033[2K\033[1A\033[2K"
     test -f "$tempfile" &&
     if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
         cd -- "$(cat "$tempfile")"
