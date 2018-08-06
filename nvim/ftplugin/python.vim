@@ -17,8 +17,8 @@ endif
 
 
 " mapping
-nno <silent> <leader>py :Python<CR>i
-nno <silent> <leader>ip :Ipython<CR>i
+nno <silent> <leader>py :Python<CR>
+nno <silent> <leader>ip :Ipython<CR>
 nno <silent> <C-p>      :IpdbToggle<CR>
 if exists('*jedi#goto')
     " nno <silent> <leader>d :call jedi#goto()<CR>
@@ -62,7 +62,7 @@ let g:ipdbdebug_map_enabled = 1
 
 
 " function
-fun! Python(...) abort
+fun! s:python(...) abort
     " 開いているPythonスクリプトを実行する関数
     "      以下のように使用する
     "      :Python
@@ -86,10 +86,10 @@ fun! Python(...) abort
     let l:args = l:filename . l:args
     call BeginTerm(l:command, l:args)
 endf
-command! -complete=file -nargs=* Python call Python(<f-args>)
+" command! -complete=file -nargs=* Python call s:python(<f-args>)
 
 
-fun! Ipython() abort
+fun! s:ipython() abort
     " ipythonを起動して開いているPythonスクリプトをロードする関数
     if !executable('ipython')
         echon 'Ipython: [error] ipython does not exist.'
@@ -108,15 +108,16 @@ fun! Ipython() abort
     endif
     let l:args = '--no-confirm-exit --colors=Linux'
     if &filetype ==# 'python'
-        let l:profile_name = InitIpython()
+        let l:profile_name = s:initipython()
         let l:args .= ' --profile=' . l:profile_name
     endif
     call BeginTerm(l:command, l:args)
+    startinsert
 endf
-command! Ipython call Ipython()
+command! Ipython call s:ipython()
 
 
-fun! InitIpython() abort
+fun! s:initipython() abort
     " ipythonの初期化関数
     "      Ipython()で利用している
     let l:profile_name = 'neovim'
@@ -259,34 +260,47 @@ command! Pudb call s:pudb()
 
 "" Python Console plugin test
 let s:term = {}
-fun! PythonConsole(...) abort
+fun! s:console_open(...) abort
     " Pythonコンソールを呼び出す関数
     "      以下のように使用する
-    "      :PythonConsole
+    "      :Python
     if &filetype ==# 'python'
         if !s:console_exist()
-            let l:command = 'python'
+            let l:command = 'ipython'
             let l:filename = ' ' . expand('%')
             if findfile('Pipfile',getcwd()) !=# ''
                 \ && findfile('Pipfile.lock',getcwd()) !=# ''
-                let l:command = 'pipenv run python'
+                let l:command = 'pipenv run ipython'
             endif
             let s:term.script_winid = win_getid()
-            call BeginTerm(l:command)
-            exe 'normal G'
+            silent call SplitTerm(l:command, '--no-confirm-exit --colors=Linux')
+            silent exe 'normal G'
             let s:term.jobid = b:terminal_job_id
-            let s:term.python_winid = win_getid()
+            let s:term.console_winid = win_getid()
             call win_gotoid(s:term.script_winid)
+            call s:console_run()
         else
-            call s:console_jobsend('exec(open("'.expand('%').'").read())')
+            call s:console_run()
         endif
     endif
 endf
-command! -complete=file -nargs=* PythonConsole call PythonConsole(<f-args>)
+command! -complete=file -nargs=* Python call s:console_open(<f-args>)
+
+
+fun! s:console_run() abort
+    if s:console_exist()
+        " call s:console_jobsend('exec(open("'.expand('%').'").read())')
+        call s:console_jobsend('%run '.expand('%'))
+    endif
+endf
 
 
 fun! s:console_exist() abort
+    let l:current_winid = win_getid()
     if has_key(s:term, 'jobid')
+      \&& has_key(s:term, 'console_winid')
+        \&& win_gotoid(s:term.console_winid)
+        call win_gotoid(l:current_winid)
         return 1
     else
         return 0
@@ -309,5 +323,3 @@ fun! s:console_jobsend(...) abort
         endtry
     endif
 endf
-
-
