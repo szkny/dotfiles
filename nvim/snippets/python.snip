@@ -19,3 +19,9 @@ snippet     debugger
 abbr        Pdb().set_trace()
 options     head
 	from IPython.core.debugger import Pdb; Pdb().set_trace()
+
+snippet     signal
+abbr        signal.signal(...)
+options     head
+    import signal
+    signal.signal(signal.SIGINT, signal.SIG_DFL)
