@@ -252,6 +252,7 @@ set list
 set listchars=tab:¦\ 
 set fillchars=vert:\ 
 
+hi EndOfBuffer guifg=bg
 " hi matchparen ctermbg=236
 " hi Normal ctermbg=NONE guibg=NONE
 " hi NonText ctermbg=NONE guibg=NONE
@@ -268,7 +269,6 @@ hi clear CursorLine
 " hi Cursor gui=reverse
 " hi clear Visual
 " hi Visual gui=reverse
-hi EndOfBuffer guifg=bg
 
 "*****************************************************************************
 "" Abbreviations
