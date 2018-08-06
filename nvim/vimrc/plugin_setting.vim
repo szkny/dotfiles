@@ -79,8 +79,8 @@ let g:ale_statusline_format = [g:ale_sign_error.'%d', g:ale_sign_warning.'%d', '
 let g:ale_echo_msg_error_str = g:ale_sign_error
 let g:ale_echo_msg_warning_str = g:ale_sign_warning
 " let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-hi ALEErrorSign   guifg=#ff0000 guibg=#222222
-hi ALEWarningSign guifg=#ffff00 guibg=#222222
+hi ALEErrorSign   gui=bold guifg=#ff0000 guibg=#222222
+hi ALEWarningSign gui=None guifg=#ffff00 guibg=#222222
 
 
 "" indent_guides
