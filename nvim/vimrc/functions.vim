@@ -97,6 +97,7 @@ fun! Ranger() abort
         silent call s:setnewbufname('ranger')
         setlocal nonumber
         setlocal filetype=terminal
+        setlocal nobuflisted
     endif
 endf
 
