@@ -258,7 +258,7 @@ endf
 command! Pudb call s:pudb()
 
 
-"" Python Console plugin test
+"" Python Console plugin
 let s:term = {}
 fun! s:console_open(...) abort
     " Pythonコンソールを呼び出す関数
@@ -289,8 +289,13 @@ command! -complete=file -nargs=* Python call s:console_open(<f-args>)
 
 fun! s:console_run() abort
     if s:console_exist()
-        " call s:console_jobsend('exec(open("'.expand('%:p').'").read())')
-        call s:console_jobsend('%run '.expand('%:p'))
+        if has_key(s:term, 'script_name')
+            \&& s:term.script_name !=# expand('%:p')
+            call s:console_jobsend('%reset')
+            call s:console_jobsend('y')
+        endif
+        let s:term.script_name = expand('%:p')
+        call s:console_jobsend('%run '.s:term.script_name)
     endif
 endf
 
