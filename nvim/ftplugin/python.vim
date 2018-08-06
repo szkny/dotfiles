@@ -289,8 +289,8 @@ command! -complete=file -nargs=* Python call s:console_open(<f-args>)
 
 fun! s:console_run() abort
     if s:console_exist()
-        " call s:console_jobsend('exec(open("'.expand('%').'").read())')
-        call s:console_jobsend('%run '.expand('%'))
+        " call s:console_jobsend('exec(open("'.expand('%:p').'").read())')
+        call s:console_jobsend('%run '.expand('%:p'))
     endif
 endf
 
