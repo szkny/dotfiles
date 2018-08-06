@@ -268,6 +268,7 @@ hi clear CursorLine
 " hi Cursor gui=reverse
 " hi clear Visual
 " hi Visual gui=reverse
+hi EndOfBuffer guifg=bg
 
 "*****************************************************************************
 "" Abbreviations
