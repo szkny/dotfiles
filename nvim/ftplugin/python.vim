@@ -293,13 +293,7 @@ fun! s:console_run(...) abort
             endif
             let s:term = {}
             let s:term.script_winid = win_getid()
-            let l:split = s:splitterm(l:command, '--no-confirm-exit --colors=Linux')
-            setlocal winfixwidth " ウィンドウ開閉時に幅を保持
-            if l:split ==? 'new'
-                silent res 10
-            else
-                silent vertical res 60
-            endif
+            call s:splitterm(l:command, '--no-confirm-exit --colors=Linux')
             silent exe 'normal G'
             let s:term.jobid = b:terminal_job_id
             let s:term.console_winid = win_getid()
@@ -353,9 +347,6 @@ fun! s:splitterm(...) abort
     "      ウィンドウサイズとの兼ね合いで決まる
     "      :SplitTerm [Command] で任意のシェルコマンドを実行
     let l:current_dir = expand('%:p:h')
-    if l:current_dir[0] !=# '/'
-        let l:current_dir = getcwd()
-    endif
     " create split window
     let l:split = ''
     let l:width = s:vsplitwidth()
@@ -387,11 +378,11 @@ fun! s:splitterm(...) abort
     setlocal nonumber
     setlocal buftype=terminal
     setlocal filetype=terminal
-    setlocal bufhidden=wipe " windowが閉じられた時にバッファを消去
-    setlocal nobuflisted    " バッファリストに追加しない
+    setlocal bufhidden=wipe
+    setlocal nobuflisted
     setlocal nocursorline
     setlocal nocursorcolumn
-    " setlocal winfixwidth   " ウィンドウ開閉時に幅を保持
+    setlocal winfixwidth
     setlocal noswapfile
     setlocal nomodifiable
     setlocal nolist
