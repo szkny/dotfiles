@@ -181,14 +181,17 @@ fun! SplitTerm(...) abort
         let l:current_dir = getcwd()
     endif
     " create split window
+    let l:split = ''
     let l:width = s:vsplitwidth()
     if l:width
-        let l:split = l:width.'vnew'
+        let l:split = 'vnew'
+        let l:cmd1 = l:width.l:split
     else
+        let l:split = 'new'
         let l:height = s:splitheight()
-        let l:split = l:height ? l:height.'new' : 'new'
+        let l:cmd1 = l:height ? l:height.l:split : l:split
     endif
-    silent exe l:split
+    silent exe l:cmd1
     silent exe 'lcd ' . l:current_dir
     " execute command
     let l:cmd2 = 'terminal'
@@ -218,6 +221,7 @@ fun! SplitTerm(...) abort
     setlocal nolist
     setlocal nospell
     setlocal lazyredraw
+    return l:split
 endf
 command! -complete=shellcmd -nargs=* SplitTerm call SplitTerm(<f-args>)
 

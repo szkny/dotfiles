@@ -273,7 +273,13 @@ fun! s:console_open(...) abort
             endif
             let s:term = {}
             let s:term.script_winid = win_getid()
-            silent call SplitTerm(l:command, '--no-confirm-exit --colors=Linux')
+            let l:split = SplitTerm(l:command, '--no-confirm-exit --colors=Linux')
+            setlocal winfixwidth " ウィンドウ開閉時に幅を保持
+            if l:split ==? 'new'
+                silent res 10
+            else
+                silent vertical res 60
+            endif
             silent exe 'normal G'
             let s:term.jobid = b:terminal_job_id
             let s:term.console_winid = win_getid()
