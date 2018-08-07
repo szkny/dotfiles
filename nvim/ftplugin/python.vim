@@ -324,7 +324,7 @@ fun! s:console_jobsend(...) abort
             endfor
         endif
         try
-            call jobsend(s:term.jobid, l:command."\<CR>")
+            call jobsend(s:term.jobid, "\<C-u>".l:command."\<CR>")
         catch
         endtry
     endif
@@ -334,4 +334,4 @@ endf
 fun! s:console_info() abort
     echo s:term
 endf
-command! PythonInfo call s:console_info()
+command! PythonConsoleInfo call s:console_info()
