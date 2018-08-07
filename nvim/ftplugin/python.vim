@@ -17,9 +17,9 @@ endif
 
 
 " mapping
-nno <silent> <leader>py :Python<CR>
+nno <silent> <C-p>      :Python<CR>
 nno <silent> <leader>ip :Ipython<CR>
-nno <silent> <C-p>      :IpdbToggle<CR>
+nno <silent> <leader>pd :IpdbToggle<CR>
 if exists('*jedi#goto')
     " nno <silent> <leader>d :call jedi#goto()<CR>
     nno <silent> <leader>a :<C-u>call jedi#goto_assignments()<CR>
@@ -259,7 +259,6 @@ command! Pudb call s:pudb()
 
 
 "" Python Console plugin
-let s:term = {}
 fun! s:console_open(...) abort
     " Pythonコンソールを呼び出す関数
     "      以下のように使用する
@@ -268,8 +267,8 @@ fun! s:console_open(...) abort
         if !s:console_exist()
             let l:command = 'ipython'
             let l:filename = ' ' . expand('%')
-            if findfile('Pipfile',getcwd()) !=# ''
-                \ && findfile('Pipfile.lock',getcwd()) !=# ''
+            if findfile('Pipfile', expand('%:p')) !=# ''
+                \ && findfile('Pipfile.lock', expand('%:p')) !=# ''
                 let l:command = 'pipenv run ipython'
             endif
             let s:term = {}
@@ -302,6 +301,9 @@ endf
 
 
 fun! s:console_exist() abort
+    if !exists('s:term')
+        let s:term = {}
+    endif
     let l:current_winid = win_getid()
     if has_key(s:term, 'jobid')
       \&& has_key(s:term, 'console_winid')

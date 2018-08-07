@@ -97,7 +97,6 @@ else
 endif
 nno <silent> ?          :SetHlSearch<CR>
 nno <silent> t          :SplitTerm<CR>i
-" nno <silent> <leader>g  :Fgrep<CR>
 nno <silent> <leader>ma :Make<CR>
 nno <silent> <leader>mr :Make build run<CR>
 nno <silent> <leader>cm :CMake<CR>
