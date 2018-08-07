@@ -231,10 +231,7 @@ endf
 command! Pudb call s:pudb()
 
 
-""""""""""""""" Python Console plugin """"""""""""""""""""
-command! -complete=file -nargs=* Python call s:python_run(<f-args>)
-
-fun! s:python_run(...) abort
+fun! s:python_run() abort
     " Pythonコンソール上で編集中のPythonスクリプトを実行する関数
     " szkny/SplitTerm プラグインを利用している
     "      以下のように使用する
@@ -274,6 +271,7 @@ fun! s:python_run(...) abort
         endif
     endif
 endf
+command! Python call s:python_run()
 
 fun! s:python_exist() abort
     if splitterm#exist()
