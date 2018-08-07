@@ -103,14 +103,14 @@ endf
 
 
 fun! BeginTerm(...) abort
-    " 現在のウィンドウサイズに応じてNewTerm()かSplitTerm()を呼び出す関数
+    " 現在のウィンドウサイズに応じてNewTerm()かsplitterm#open()を呼び出す関数
     "      :BeginTerm [Command] で任意のシェルコマンドを実行
     let l:min_winwidth = 50
     let l:min_winheight = 20
     if a:0 == 0
         if winwidth(0) >= l:min_winwidth
            \ && winheight(0) >= l:min_winheight
-            call SplitTerm()
+            call splitterm#open()
         else
             call NewTerm()
         endif
@@ -173,7 +173,7 @@ command! -complete=shellcmd -nargs=* NewTerm call NewTerm(<f-args>)
 
 fun! s:setnewbufname(name) abort
     " 新規バッファのバッファ名(例: '1:bash')を設定する関数
-    "      NewTermとSplitTermで利用している
+    "      NewTermで利用している
     let l:num = 1
     let l:name = split(a:name,' ')[0]
     while bufexists(l:num.':'.l:name)
@@ -556,7 +556,7 @@ fun! s:trans(...) abort range
         endif
         let l:text = substitute(l:text, '"', '\\"', 'g')
         if len(l:text) < 900
-            call SplitTerm('trans', '{en=ja}', '"'.l:text.'"')
+            call splitterm#open('trans', '{en=ja}', '"'.l:text.'"')
         else
             echo 'Trans: [error] text too long.'
         endif
@@ -578,10 +578,10 @@ fun! s:install_trans() abort
         echon 'Trans: [error] trans command not found.'
         return
     endif
-    silent call SplitTerm('echo "trans command not found. installing ..."'
-                        \.' && '.l:install_cmd
-                        \.' && echo " Success !!"'
-                        \.' && echo " you can do \":Trans [WORD]\"."')
+    silent call splitterm#open('echo "trans command not found. installing ..."'
+                             \.' && '.l:install_cmd
+                             \.' && echo " Success !!"'
+                             \.' && echo " you can do \":Trans [WORD]\"."')
     startinsert
 endf
 
