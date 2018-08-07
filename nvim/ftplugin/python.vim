@@ -259,30 +259,30 @@ command! Pudb call s:pudb()
 
 
 """"""""""""""" Python Console plugin """"""""""""""""""""
-command! -complete=file -nargs=* Python call s:console_run(<f-args>)
-command! PythonConsoleInfo call s:console_info()
+command! -complete=file -nargs=* Python call s:python_run(<f-args>)
 
-fun! s:console_run(...) abort
+fun! s:python_run(...) abort
     " Pythonコンソール上で編集中のPythonスクリプトを実行する関数
+    " szkny/SplitTerm プラグインを利用している
     "      以下のように使用する
     "      :Python
     if &filetype ==# 'python'
-        if s:console_exist()
+        if s:python_exist()
             "" コンソールが有ればスクリプトを実行
             let l:script_name = expand('%:p')
             let l:script_dir = expand('%:p:h')
-            if has_key(s:term, 'script_name')
-                \&& s:term.script_name !=# l:script_name
-                call s:console_jobsend('%reset')
-                call s:console_jobsend('y')
+            if has_key(s:ipython, 'script_name')
+                \&& s:ipython.script_name !=# l:script_name
+                call splitterm#jobsend('%reset')
+                call splitterm#jobsend('y')
             endif
-            if has_key(s:term, 'script_dir')
-                \ && s:term.script_dir !=# l:script_dir
-                call s:console_jobsend('%cd '.l:script_dir)
+            if has_key(s:ipython, 'script_dir')
+                \ && s:ipython.script_dir !=# l:script_dir
+                call splitterm#jobsend('%cd '.l:script_dir)
             endif
-            let s:term.script_name = l:script_name
-            let s:term.script_dir = l:script_dir
-            call s:console_jobsend('%run '.s:term.script_name)
+            let s:ipython.script_name = l:script_name
+            let s:ipython.script_dir = l:script_dir
+            call splitterm#jobsend('%run '.s:ipython.script_name)
         else
             "" コンソールが無ければコンソール用のウィンドウを作る
             let l:command = 'ipython'
@@ -291,147 +291,22 @@ fun! s:console_run(...) abort
                 \ && findfile('Pipfile.lock', expand('%:p')) !=# ''
                 let l:command = 'pipenv run ipython'
             endif
-            let s:term = {}
-            let s:term.script_winid = win_getid()
-            call s:splitterm(l:command, '--no-confirm-exit --colors=Linux')
+            let s:ipython = {}
+            let s:ipython.script_name = expand('%:p')
+            let s:ipython.script_dir = expand('%:p:h')
+            let l:script_winid = win_getid()
+            call splitterm#open(l:command, '--no-confirm-exit --colors=Linux')
             silent exe 'normal G'
-            let s:term.jobid = b:terminal_job_id
-            let s:term.console_winid = win_getid()
-            call win_gotoid(s:term.script_winid)
+            call win_gotoid(l:script_winid)
         endif
     endif
 endf
 
-
-fun! s:console_exist() abort
-    if !exists('s:term')
-        let s:term = {}
-    endif
-    let l:current_winid = win_getid()
-    if has_key(s:term, 'jobid')
-      \&& has_key(s:term, 'console_winid')
-        \&& win_gotoid(s:term.console_winid)
-        call win_gotoid(l:current_winid)
+fun! s:python_exist() abort
+    if splitterm#exist()
         return 1
     else
+        let s:ipython = {}
         return 0
     endif
-endf
-
-
-fun! s:console_jobsend(...) abort
-    if s:console_exist()
-        let l:command = ''
-        if a:0 > 0
-            let l:command = a:1
-            for l:arg in a:000[1:]
-                let l:command .= ' ' . l:arg
-            endfor
-        endif
-        try
-            call jobsend(s:term.jobid, "\<C-u>".l:command."\<CR>")
-        catch
-        endtry
-    endif
-endf
-
-
-fun! s:console_info() abort
-    echo s:term
-endf
-
-
-fun! s:splitterm(...) abort
-    " 分割ウィンドウでターミナルモードを開始する関数
-    "      縦分割か横分割かは現在のファイル内の文字数と
-    "      ウィンドウサイズとの兼ね合いで決まる
-    "      :SplitTerm [Command] で任意のシェルコマンドを実行
-    let l:current_dir = expand('%:p:h')
-    " create split window
-    let l:split = ''
-    let l:width = s:vsplitwidth()
-    if l:width
-        let l:split = 'vnew'
-        let l:cmd1 = l:width.l:split
-    else
-        let l:split = 'new'
-        let l:height = s:splitheight()
-        let l:cmd1 = l:height ? l:height.l:split : l:split
-    endif
-    silent exe l:cmd1
-    silent exe 'lcd ' . l:current_dir
-    " execute command
-    let l:cmd2 = 'terminal'
-    if a:0 > 0
-        for l:i in a:000
-            let l:cmd2 .= ' '.l:i
-        endfor
-    endif
-    silent exe l:cmd2
-    " change buffer name
-    if a:0 == 0
-        silent call s:setnewbufname('bash')
-    elseif a:0 > 0
-        silent call s:setnewbufname(a:1)
-    endif
-    " set local settings
-    setlocal nonumber
-    setlocal buftype=terminal
-    setlocal filetype=terminal
-    setlocal bufhidden=wipe
-    setlocal nobuflisted
-    setlocal nocursorline
-    setlocal nocursorcolumn
-    setlocal winfixwidth
-    setlocal noswapfile
-    setlocal nomodifiable
-    setlocal nolist
-    setlocal nospell
-    setlocal lazyredraw
-    return l:split
-endf
-
-
-fun! s:setnewbufname(name) abort
-    " 新規バッファのバッファ名(例: '1:bash')を設定する関数
-    "      NewTermとSplitTermで利用している
-    let l:num = 1
-    let l:name = split(a:name,' ')[0]
-    while bufexists(l:num.':'.l:name)
-        let l:num += 1
-    endwhile
-    exe 'file '.l:num.':'.l:name
-endf
-
-
-fun! s:splitheight() abort
-    " 新規分割ウィンドウの高さを決める関数
-    "      SplitTermで利用している
-    let l:min_winheight = 10
-    let l:max_winheight = winheight(0)/2
-    " count max line length
-    let l:height = winheight(0)-line('$')
-    let l:height = l:height>l:min_winheight ? l:height : 0
-    let l:height = l:height>l:max_winheight ? l:max_winheight : l:height
-    return l:height
-endf
-
-
-fun! s:vsplitwidth() abort
-    " 新規分割ウィンドウの幅を決める関数
-    "      SplitTermで利用している
-    let l:min_winwidth = 60
-    let l:max_winwidth = winwidth(0)/2
-    " count max line length
-    let l:all_lines = getline('w0', 'w$')
-    let l:max_line_len = 0
-    for l:line in l:all_lines
-        if len(l:line) > l:max_line_len
-            let l:max_line_len = strwidth(l:line)
-        endif
-    endfor
-    let l:width = winwidth(0)-l:max_line_len - 1
-    let l:width = l:width>l:min_winwidth ? l:width : 0
-    let l:width = l:width>l:max_winwidth ? l:max_winwidth : l:width
-    return l:width
 endf
