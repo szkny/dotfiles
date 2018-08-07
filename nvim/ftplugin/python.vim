@@ -272,13 +272,13 @@ fun! s:console_open(...) abort
                 \ && findfile('Pipfile.lock',getcwd()) !=# ''
                 let l:command = 'pipenv run ipython'
             endif
+            let s:term = {}
             let s:term.script_winid = win_getid()
             silent call SplitTerm(l:command, '--no-confirm-exit --colors=Linux')
             silent exe 'normal G'
             let s:term.jobid = b:terminal_job_id
             let s:term.console_winid = win_getid()
             call win_gotoid(s:term.script_winid)
-            call s:console_run()
         else
             call s:console_run()
         endif
@@ -295,6 +295,7 @@ fun! s:console_run() abort
             call s:console_jobsend('y')
         endif
         let s:term.script_name = expand('%:p')
+        call s:console_jobsend('%cd '.expand('%:p:h'))
         call s:console_jobsend('%run '.s:term.script_name)
     endif
 endf
@@ -328,3 +329,9 @@ fun! s:console_jobsend(...) abort
         endtry
     endif
 endf
+
+
+fun! s:console_info() abort
+    echo s:term
+endf
+command! PythonInfo call s:console_info()
