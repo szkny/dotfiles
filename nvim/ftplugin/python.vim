@@ -258,13 +258,17 @@ endf
 command! Pudb call s:pudb()
 
 
-"" Python Console plugin
+""""""""""""""" Python Console plugin """"""""""""""""""""
+command! -complete=file -nargs=* Python call s:console_run(<f-args>)
+command! PythonConsoleInfo call s:console_info()
+
 fun! s:console_run(...) abort
     " Pythonコンソール上で編集中のPythonスクリプトを実行する関数
     "      以下のように使用する
     "      :Python
     if &filetype ==# 'python'
         if s:console_exist()
+            "" コンソールが有ればスクリプトを実行
             let l:script_name = expand('%:p')
             let l:script_dir = expand('%:p:h')
             if has_key(s:term, 'script_name')
@@ -280,6 +284,7 @@ fun! s:console_run(...) abort
             let s:term.script_dir = l:script_dir
             call s:console_jobsend('%run '.s:term.script_name)
         else
+            "" コンソールが無ければコンソール用のウィンドウを作る
             let l:command = 'ipython'
             let l:filename = ' ' . expand('%')
             if findfile('Pipfile', expand('%:p')) !=# ''
@@ -288,7 +293,7 @@ fun! s:console_run(...) abort
             endif
             let s:term = {}
             let s:term.script_winid = win_getid()
-            let l:split = SplitTerm(l:command, '--no-confirm-exit --colors=Linux')
+            let l:split = s:splitterm(l:command, '--no-confirm-exit --colors=Linux')
             setlocal winfixwidth " ウィンドウ開閉時に幅を保持
             if l:split ==? 'new'
                 silent res 10
@@ -302,7 +307,6 @@ fun! s:console_run(...) abort
         endif
     endif
 endf
-command! -complete=file -nargs=* Python call s:console_run(<f-args>)
 
 
 fun! s:console_exist() abort
@@ -341,4 +345,102 @@ endf
 fun! s:console_info() abort
     echo s:term
 endf
-command! PythonConsoleInfo call s:console_info()
+
+
+fun! s:splitterm(...) abort
+    " 分割ウィンドウでターミナルモードを開始する関数
+    "      縦分割か横分割かは現在のファイル内の文字数と
+    "      ウィンドウサイズとの兼ね合いで決まる
+    "      :SplitTerm [Command] で任意のシェルコマンドを実行
+    let l:current_dir = expand('%:p:h')
+    if l:current_dir[0] !=# '/'
+        let l:current_dir = getcwd()
+    endif
+    " create split window
+    let l:split = ''
+    let l:width = s:vsplitwidth()
+    if l:width
+        let l:split = 'vnew'
+        let l:cmd1 = l:width.l:split
+    else
+        let l:split = 'new'
+        let l:height = s:splitheight()
+        let l:cmd1 = l:height ? l:height.l:split : l:split
+    endif
+    silent exe l:cmd1
+    silent exe 'lcd ' . l:current_dir
+    " execute command
+    let l:cmd2 = 'terminal'
+    if a:0 > 0
+        for l:i in a:000
+            let l:cmd2 .= ' '.l:i
+        endfor
+    endif
+    silent exe l:cmd2
+    " change buffer name
+    if a:0 == 0
+        silent call s:setnewbufname('bash')
+    elseif a:0 > 0
+        silent call s:setnewbufname(a:1)
+    endif
+    " set local settings
+    setlocal nonumber
+    setlocal buftype=terminal
+    setlocal filetype=terminal
+    setlocal bufhidden=wipe " windowが閉じられた時にバッファを消去
+    setlocal nobuflisted    " バッファリストに追加しない
+    setlocal nocursorline
+    setlocal nocursorcolumn
+    " setlocal winfixwidth   " ウィンドウ開閉時に幅を保持
+    setlocal noswapfile
+    setlocal nomodifiable
+    setlocal nolist
+    setlocal nospell
+    setlocal lazyredraw
+    return l:split
+endf
+
+
+fun! s:setnewbufname(name) abort
+    " 新規バッファのバッファ名(例: '1:bash')を設定する関数
+    "      NewTermとSplitTermで利用している
+    let l:num = 1
+    let l:name = split(a:name,' ')[0]
+    while bufexists(l:num.':'.l:name)
+        let l:num += 1
+    endwhile
+    exe 'file '.l:num.':'.l:name
+endf
+
+
+fun! s:splitheight() abort
+    " 新規分割ウィンドウの高さを決める関数
+    "      SplitTermで利用している
+    let l:min_winheight = 10
+    let l:max_winheight = winheight(0)/2
+    " count max line length
+    let l:height = winheight(0)-line('$')
+    let l:height = l:height>l:min_winheight ? l:height : 0
+    let l:height = l:height>l:max_winheight ? l:max_winheight : l:height
+    return l:height
+endf
+
+
+fun! s:vsplitwidth() abort
+    " 新規分割ウィンドウの幅を決める関数
+    "      SplitTermで利用している
+    let l:min_winwidth = 60
+    let l:max_winwidth = winwidth(0)/2
+    " count max line length
+    let l:all_lines = getline('w0', 'w$')
+    let l:max_line_len = 0
+    for l:line in l:all_lines
+        if len(l:line) > l:max_line_len
+            let l:max_line_len = strwidth(l:line)
+        endif
+    endfor
+    let l:width = winwidth(0)-l:max_line_len - 1
+    let l:width = l:width>l:min_winwidth ? l:width : 0
+    let l:width = l:width>l:max_winwidth ? l:max_winwidth : l:width
+    return l:width
+endf
