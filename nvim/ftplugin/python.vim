@@ -265,13 +265,19 @@ fun! s:console_run(...) abort
     "      :Python
     if &filetype ==# 'python'
         if s:console_exist()
+            let l:script_name = expand('%:p')
+            let l:script_dir = expand('%:p:h')
             if has_key(s:term, 'script_name')
-                \&& s:term.script_name !=# expand('%:p')
+                \&& s:term.script_name !=# l:script_name
                 call s:console_jobsend('%reset')
                 call s:console_jobsend('y')
             endif
-            let s:term.script_name = expand('%:p')
-            call s:console_jobsend('%cd '.expand('%:p:h'))
+            if has_key(s:term, 'script_dir')
+                \ && s:term.script_dir !=# l:script_dir
+                call s:console_jobsend('%cd '.l:script_dir)
+            endif
+            let s:term.script_name = l:script_name
+            let s:term.script_dir = l:script_dir
             call s:console_jobsend('%run '.s:term.script_name)
         else
             let l:command = 'ipython'
