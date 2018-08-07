@@ -259,12 +259,21 @@ command! Pudb call s:pudb()
 
 
 "" Python Console plugin
-fun! s:console_open(...) abort
-    " Pythonコンソールを呼び出す関数
+fun! s:console_run(...) abort
+    " Pythonコンソール上で編集中のPythonスクリプトを実行する関数
     "      以下のように使用する
     "      :Python
     if &filetype ==# 'python'
-        if !s:console_exist()
+        if s:console_exist()
+            if has_key(s:term, 'script_name')
+                \&& s:term.script_name !=# expand('%:p')
+                call s:console_jobsend('%reset')
+                call s:console_jobsend('y')
+            endif
+            let s:term.script_name = expand('%:p')
+            call s:console_jobsend('%cd '.expand('%:p:h'))
+            call s:console_jobsend('%run '.s:term.script_name)
+        else
             let l:command = 'ipython'
             let l:filename = ' ' . expand('%')
             if findfile('Pipfile', expand('%:p')) !=# ''
@@ -284,26 +293,10 @@ fun! s:console_open(...) abort
             let s:term.jobid = b:terminal_job_id
             let s:term.console_winid = win_getid()
             call win_gotoid(s:term.script_winid)
-        else
-            call s:console_run()
         endif
     endif
 endf
-command! -complete=file -nargs=* Python call s:console_open(<f-args>)
-
-
-fun! s:console_run() abort
-    if s:console_exist()
-        if has_key(s:term, 'script_name')
-            \&& s:term.script_name !=# expand('%:p')
-            call s:console_jobsend('%reset')
-            call s:console_jobsend('y')
-        endif
-        let s:term.script_name = expand('%:p')
-        call s:console_jobsend('%cd '.expand('%:p:h'))
-        call s:console_jobsend('%run '.s:term.script_name)
-    endif
-endf
+command! -complete=file -nargs=* Python call s:console_run(<f-args>)
 
 
 fun! s:console_exist() abort
