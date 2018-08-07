@@ -62,33 +62,6 @@ let g:ipdbdebug_map_enabled = 1
 
 
 " function
-fun! s:python(...) abort
-    " 開いているPythonスクリプトを実行する関数
-    "      以下のように使用する
-    "      :Python
-    "      コマンドライン引数が必要な場合は
-    "      :Python [引数]
-    let l:command = 'python'
-    if findfile('Pipfile',getcwd()) !=# ''
-        \ && findfile('Pipfile.lock',getcwd()) !=# ''
-        let l:command = 'pipenv run python'
-    endif
-    let l:filename = ' '
-    if &filetype ==# 'python'
-        let l:filename .= expand('%')
-    endif
-    let l:args = ''
-    if a:0 > 0
-        for l:i in a:000
-            let l:args .= ' ' . l:i
-        endfor
-    endif
-    let l:args = l:filename . l:args
-    call BeginTerm(l:command, l:args)
-endf
-" command! -complete=file -nargs=* Python call s:python(<f-args>)
-
-
 fun! s:ipython() abort
     " ipythonを起動して開いているPythonスクリプトをロードする関数
     if !executable('ipython')
