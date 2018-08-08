@@ -45,8 +45,8 @@ aug delimitMate
 aug END
 aug Braceless
     if exists(':BracelessEnable') == 2
-        au FileType python BracelessEnable +indent +fold "+highlight
-        hi BracelessIndent guifg=#a0a0a0
+        au FileType python BracelessEnable +indent +fold +highlight
+        hi BracelessIndent guifg=#555555
     endif
 aug END
 
