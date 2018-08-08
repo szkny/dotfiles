@@ -65,7 +65,7 @@ fun! s:closebuffertab() abort
             endif
         endif
     catch
-        echon 'CloseBufferTab: [error] "'.bufname('%').'" を閉じることができません。'
+        echoerr 'CloseBufferTab: [error] "'.bufname('%').'" を閉じることができません。'
         return
     endtry
 endf
@@ -469,13 +469,37 @@ fun! s:w3m(...) abort range
         else
             let l:url = s:googlesearchurl(a:000)
         endif
-        call BeginTerm('w3m', '-M', l:url)
+        echo l:url
+        call w3m#Open(g:w3m#OPEN_VSPLIT, l:url)
         startinsert
     else
         echon 'W3m: [error] w3m command not found.'
     endif
 endf
 command! -range -nargs=* W3m call s:w3m(<f-args>)
+
+
+fun! s:w3msearch(...) abort range
+    " w3mで引数のキーワードを検索する関数
+    if executable('w3m')
+        let l:text = ''
+        if a:0 == 0
+            let @@ = ''
+            exe 'silent normal gvy'
+            if @@ !=# ''
+                let @@ = join(split(@@,'\n'))
+                let l:text = @@
+            endif
+        else
+            let l:text = join(a:000)
+        endif
+        silent exe 'W3mVSplit google '.l:text
+        setlocal nobuflisted
+    else
+        echon 'W3m: [error] w3m command not found.'
+    endif
+endf
+command! -range -nargs=* W3mSearch call s:w3msearch(<f-args>)
 
 
 fun! s:nyaovim_browser(...) abort range
