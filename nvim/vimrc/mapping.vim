@@ -39,7 +39,16 @@ vno <silent> <S-h>   10h
 vno <silent> <S-j>   5gj
 vno <silent> <S-k>   5gk
 vno <silent> <S-l>   10l
-if system('uname') ==# "Linux\n"
+if has('mac')
+    ino <silent> ˙ <Left>
+    ino <silent> ∆ <Down>
+    ino <silent> ˚ <Up>
+    ino <silent> ¬ <Right>
+    tno <silent> ˙ <Left>
+    tno <silent> ∆ <Down>
+    tno <silent> ˚ <Up>
+    tno <silent> ¬ <Right>
+elseif system('uname') ==# "Linux\n"
     ino <silent> <A-h> <Left>
     ino <silent> <A-j> <Down>
     ino <silent> <A-k> <Up>
