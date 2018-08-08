@@ -115,18 +115,11 @@ fun! BeginTerm(...) abort
             call NewTerm()
         endif
     elseif a:0 >= 1
-        let l:cmd = a:1
-        let l:args = ''
-        if a:0 >= 2
-            for l:i in a:000[1:]
-                let l:args .= ' '.l:i
-            endfor
-        endif
         if winwidth(0) >= l:min_winwidth
            \ && winheight(0) >= l:min_winheight
-            call splitterm#open(l:cmd, l:args)
+            call splitterm#open(join(a:000))
         else
-            call NewTerm(l:cmd, l:args)
+            call NewTerm(join(a:000))
         endif
     endif
 endf
@@ -141,12 +134,7 @@ fun! NewTerm(...) abort
         let l:current_dir = getcwd()
     endif
     " execute command
-    let l:cmd = 'terminal'
-    if a:0 > 0
-        for l:i in a:000
-            let l:cmd .= ' '.l:i
-        endfor
-    endif
+    let l:cmd = 'terminal '.join(a:000)
     silent enew
     silent exe 'lcd ' . l:current_dir
     silent exe l:cmd
@@ -206,21 +194,14 @@ command! -nargs=1 ResizeWindow call s:resizewindow(<f-args>)
 fun! s:make(...) abort
     " makeコマンドを走らせる関数
     let l:current_dir = expand('%:p:h')
-    let l:command = 'make'
-    let l:args = ''
-    if a:0 > 0
-        for l:i in a:000
-            let l:tmp     = ' '.l:i
-            let l:args .= l:tmp
-        endfor
-    endif
+    let l:command = 'make '.join(a:000)
     if findfile('GNUmakefile',l:current_dir) !=# ''
        \|| findfile('Makefile',l:current_dir) !=# ''
-        call BeginTerm(l:command, l:args)
+        call BeginTerm(l:command)
     elseif findfile('GNUmakefile',l:current_dir.'/../') !=# ''
            \|| findfile('Makefile',l:current_dir.'/../') !=# ''
         let l:command = 'cd ../ && '.l:command
-        call BeginTerm(l:command, l:args)
+        call BeginTerm(l:command)
     else
         echon 'not found: "GNUmakefile" or "Makefile"'
     endif
@@ -287,10 +268,7 @@ fun! s:appendchar(...) abort range
     "      :AppendChar ;
     let l:pos = getpos('.')
     let l:pos[1] = a:lastline
-    let l:args = ''
-    for l:i in a:000
-        let l:args .= l:i
-    endfor
+    let l:args = join(a:000)
     let l:len = len(l:args)
     if !l:len
         return
@@ -394,10 +372,7 @@ fun! AgWord(...) abort
     if a:0 == 0
         let l:text = expand('<cword>')
     else
-        let l:text = ''
-        for l:i in a:000
-            let l:text .= ' '.l:i
-        endfor
+        let l:text = join(a:000)
     endif
     silent exe 'Ag '.l:text
 endf
@@ -437,23 +412,11 @@ fun! s:googlesearchurl(...) abort
                     endif
                 endfor
             elseif type(a:1) == 3
-                " case of a:1 == list
-                for l:i in a:1
-                    if l:i == a:1[0]
-                        let l:wrd = l:i
-                    else
-                        let l:wrd .= '+' . l:i
-                    endif
-                endfor
+                " case of a:1 is list
+                let l:wrd = join(a:1, '+')
             endif
         else
-            for l:i in a:000
-                if l:i == a:1
-                    let l:wrd = l:i
-                else
-                    let l:wrd .= '+' . l:i
-                endif
-            endfor
+            let l:wrd = join(a:000, '+')
         endif
         let l:opt .= '&q=' . l:wrd
         let l:url .= l:opt
@@ -550,9 +513,7 @@ fun! s:trans(...) abort range
                 let l:text = expand('<cword>')
             endif
         else
-            for l:i in a:000
-                let l:text .= ' '.l:i
-            endfor
+            let l:text = join(a:000)
         endif
         let l:text = substitute(l:text, '"', '\\"', 'g')
         if len(l:text) < 900
@@ -615,7 +576,6 @@ endf
 
 fun! s:git(...) abort
     " gitコマンドを実行する関数
-    let l:cmd = 'git'
     if a:1 ==# 'diff'
         let l:cmd = 'git status -v -v'
     elseif a:1 ==# 'acp'
@@ -625,11 +585,7 @@ fun! s:git(...) abort
     elseif a:1 ==# 'fpull'
         let l:cmd = 'git reset --hard && git pull'
     else
-        let l:args = ''
-        for l:i in a:000
-            let l:args .= ' '.l:i
-        endfor
-        let l:cmd .= l:args
+        let l:cmd = 'git '.join(a:000)
     endif
     call BeginTerm(l:cmd)
 endf
