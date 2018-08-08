@@ -266,7 +266,7 @@ fun! s:python_run() abort
             let s:ipython.script_dir = expand('%:p:h')
             let l:script_winid = win_getid()
             call splitterm#open(l:command, '--no-confirm-exit --colors=Linux')
-            setlocal winfixwidth
+            " setlocal winfixwidth
             let s:ipython.info = splitterm#getinfo()
             silent exe 'normal G'
             call win_gotoid(l:script_winid)
