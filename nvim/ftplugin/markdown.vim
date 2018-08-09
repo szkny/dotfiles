@@ -81,7 +81,8 @@ endf
 
 fun!  s:vsurround(char) abort range
     " 選択範囲をa:charで囲む関数
-    if getline('.') !=# ''
+    let l:line = getline('.')
+    if l:line !=# ''
         let l:pos = getpos('.')
         let @@ = ''
         exe 'silent normal gvy'
@@ -90,7 +91,12 @@ fun!  s:vsurround(char) abort range
         else
             let l:word = expand('<cword>')
         endif
-        exe line('.').'s/'.l:word.'/'.a:char.l:word.a:char
+        let l:formed_word = a:char.l:word.a:char
+        if match(l:line, l:formed_word) == -1
+            exe line('.').'s/'.l:word.'/'.l:formed_word
+        else
+            exe line('.').'s/'.l:formed_word.'/'.l:word
+        endif
         call setpos('.', l:pos)
     endif
 endf
