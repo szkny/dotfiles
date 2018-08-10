@@ -18,8 +18,8 @@ endif
 
 " mapping
 nno <silent> <leader>py :Python<CR>
-nno <silent> <leader>ip :Ipython<CR>
-nno <silent> <leader>pd :IpdbToggle<CR>
+" nno <silent> <leader>ip :Ipython<CR>
+nno <silent> <leader>pd :Ipdb<CR>
 if exists('*jedi#goto')
     " nno <silent> <leader>d :call jedi#goto()<CR>
     nno <silent> <leader>a :<C-u>call jedi#goto_assignments()<CR>
@@ -87,7 +87,7 @@ fun! s:ipython() abort
     call BeginTerm(l:command, l:args)
     startinsert
 endf
-command! Ipython call s:ipython()
+" command! Ipython call s:ipython()
 
 
 fun! s:initipython() abort
