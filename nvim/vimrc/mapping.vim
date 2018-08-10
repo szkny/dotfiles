@@ -20,7 +20,6 @@ nno <silent> +       :ResizeWindow +1<CR>
 nno <silent> -       :ResizeWindow -1<CR>
 
 " yank/delete/paste
-vno <silent> p       "0p
 nno <silent> x       "_x
 vno <silent> x       "_x
 nno <silent> D       "_D

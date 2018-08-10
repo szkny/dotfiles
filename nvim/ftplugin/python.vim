@@ -58,7 +58,7 @@ let b:ale_linters = ['flake8']
 let g:polyglot_disabled = ['python']
 let g:python_highlight_all = 1
 "" IpdbDebugger
-let g:ipdbdebug_map_enabled = 1
+let g:ipdbdebug_map_enabled = 0
 
 
 " function
