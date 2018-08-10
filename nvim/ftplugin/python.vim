@@ -20,6 +20,15 @@ endif
 nno <silent> <leader>py :Python<CR>
 " nno <silent> <leader>ip :Ipython<CR>
 nno <silent> <leader>pd :Ipdb<CR>
+
+nmap <silent> <leader>n <Plug>(ipdbdebug_next)
+nmap <silent> <leader>u <Plug>(ipdbdebug_until)
+nmap <silent> <leader>b <Plug>(ipdbdebug_break)
+nmap <silent> <leader>c <Plug>(ipdbdebug_continue)
+nmap <silent> <leader>p <Plug>(ipdbdebug_print)
+vmap <silent> <leader>p <Plug>(ipdbdebug_vprint)
+nmap <silent> <leader>q <Plug>(ipdbdebug_close)
+
 if exists('*jedi#goto')
     " nno <silent> <leader>d :call jedi#goto()<CR>
     nno <silent> <leader>a :<C-u>call jedi#goto_assignments()<CR>
