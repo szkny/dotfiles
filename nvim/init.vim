@@ -2,8 +2,6 @@ scriptencoding utf-8
 
 " TODO
 "   - 長いPythonコードの編集時にシンタックスが複数行のコメントと逆転する現象を直す
-"   - SplitTermプラグイン
-"   - PythoonConsoleプラグイン
 "   - jedi-vimが重い
 "       - タグジャンプ機能しか使っていないので、タグジャンプのみのプラグインを探すかctagsで実現する
 "       - 変数の参照先一覧をquickfix画面かFZF画面に表示
