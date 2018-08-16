@@ -18,7 +18,6 @@ endif
 
 " mapping
 nno <silent> <leader>py :Python<CR>
-" nno <silent> <leader>ip :Ipython<CR>
 nno <silent> <leader>pd :Ipdb<CR>
 
 nmap <silent> <leader>n <Plug>(ipdbdebug_next)
@@ -96,7 +95,6 @@ fun! s:ipython() abort
     call BeginTerm(l:command, l:args)
     startinsert
 endf
-" command! Ipython call s:ipython()
 
 
 fun! s:initipython() abort
@@ -241,13 +239,13 @@ command! Pudb call s:pudb()
 
 
 fun! s:python_run() abort
-    " Pythonコンソール上で編集中のPythonスクリプトを実行する関数
+    " Pythonコンソールウィンドウを作り、編集中のPythonスクリプトを実行する関数
     " szkny/SplitTerm プラグインを利用している
     "      以下のように使用する
     "      :Python
     if &filetype ==# 'python'
         if s:python_exist()
-            "" コンソールが有ればスクリプトを実行
+            "" コンソールウィンドウが有ればスクリプトを実行
             let l:script_name = expand('%:p')
             let l:script_dir = expand('%:p:h')
             if has_key(s:ipython, 'script_name')
@@ -263,7 +261,7 @@ fun! s:python_run() abort
             let s:ipython.script_dir = l:script_dir
             call splitterm#jobsend_id(s:ipython.info, '%run '.s:ipython.script_name)
         else
-            "" コンソールが無ければコンソール用のウィンドウを作る
+            "" コンソールウィンドウが無ければコンソール用のウィンドウを作る
             let l:command = 'ipython'
             let l:filename = ' ' . expand('%')
             if findfile('Pipfile', expand('%:p')) !=# ''
@@ -283,6 +281,7 @@ fun! s:python_run() abort
     endif
 endf
 command! Python call s:python_run()
+
 
 fun! s:python_exist() abort
     if exists('s:ipython')
