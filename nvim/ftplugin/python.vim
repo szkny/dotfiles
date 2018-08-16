@@ -288,7 +288,7 @@ fun! s:python_exist() abort
         \&& has_key(s:ipython, 'script_name')
         \&& has_key(s:ipython, 'script_dir')
         \&& has_key(s:ipython, 'info')
-        if splitterm#exist_id(s:ipython.info)
+        if splitterm#exist(s:ipython.info)
             return 1
         endif
     endif
