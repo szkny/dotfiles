@@ -102,30 +102,6 @@ fun! Ranger() abort
 endf
 
 
-fun! BeginTerm(...) abort
-    " 現在のウィンドウサイズに応じてNewTerm()かsplitterm#open()を呼び出す関数
-    "      :BeginTerm [Command] で任意のシェルコマンドを実行
-    let l:min_winwidth = 50
-    let l:min_winheight = 20
-    if a:0 == 0
-        if winwidth(0) >= l:min_winwidth
-           \ && winheight(0) >= l:min_winheight
-            call splitterm#open()
-        else
-            call NewTerm()
-        endif
-    elseif a:0 >= 1
-        if winwidth(0) >= l:min_winwidth
-           \ && winheight(0) >= l:min_winheight
-            call splitterm#open(join(a:000))
-        else
-            call NewTerm(join(a:000))
-        endif
-    endif
-endf
-command! -complete=shellcmd -nargs=* BeginTerm call BeginTerm(<f-args>)
-
-
 fun! NewTerm(...) abort
     " 新規バッファでターミナルモードを開始する関数
     "      :NewTerm [Command] で任意のシェルコマンドを実行
@@ -197,11 +173,11 @@ fun! s:make(...) abort
     let l:command = 'make '.join(a:000)
     if findfile('GNUmakefile',l:current_dir) !=# ''
        \|| findfile('Makefile',l:current_dir) !=# ''
-        call BeginTerm(l:command)
+        call splitterm#open(l:command)
     elseif findfile('GNUmakefile',l:current_dir.'/../') !=# ''
            \|| findfile('Makefile',l:current_dir.'/../') !=# ''
         let l:command = 'cd ../ && '.l:command
-        call BeginTerm(l:command)
+        call splitterm#open(l:command)
     else
         echon 'not found: "GNUmakefile" or "Makefile"'
     endif
@@ -226,14 +202,14 @@ fun! s:cmake(...) abort
             call mkdir(l:builddir)
         endif
         let l:command = 'cd '.l:builddir.' && '.l:command
-        call BeginTerm(l:command)
+        call splitterm#open(l:command)
     elseif findfile(l:cmakelists_txt,l:current_dir.'/../') !=# ''
         let l:builddir = '../'.l:builddir
         if finddir(l:builddir,l:current_dir) ==# ''
             call mkdir(l:builddir)
         endif
         let l:command = 'cd '.l:builddir.' && '.l:command
-        call BeginTerm(l:command)
+        call splitterm#open(l:command)
     else
         echon 'not found: '.l:cmakelists_txt
     endif
@@ -294,7 +270,7 @@ fun! s:sql() abort
         if &filetype ==# 'sql' || &filetype ==# 'mysql'
             let l:args = ' < ' . expand('%')
         endif
-        call BeginTerm(l:command, l:args)
+        call splitterm#open(l:command, l:args)
     else
         echon 'SQL: [error] '.l:command.' command not found.'
     endif
@@ -307,7 +283,7 @@ fun! s:sqlplot(...) abort
     if (&filetype ==# 'sql' || &filetype ==# 'mysql') && executable('sqlplot')
         let l:command = 'sqlplot'
         let l:args = ' ' . expand('%')
-        call BeginTerm(l:command, l:args)
+        call splitterm#open(l:command, l:args)
     endif
 endf
 command! -nargs=* SQLplot call s:sqlplot(<f-args>)
@@ -338,7 +314,7 @@ fun! s:gnuplot() abort
     if expand('%:e') ==# 'gp' || expand('%:e') ==# 'gpi'
         let l:command = 'gnuplot'
         let l:args = ' ' . expand('%')
-        call BeginTerm(l:command, l:args)
+        call splitterm#open(l:command, l:args)
         startinsert
     else
         echon 'Gnuplot: [error] invalid file type. this is "' . &filetype. '".'
@@ -589,7 +565,7 @@ fun! s:git(...) abort
     else
         let l:cmd = 'git '.join(a:000)
     endif
-    call BeginTerm(l:cmd)
+    call splitterm#open(l:cmd)
 endf
 fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)
     return filter(['acp','fpull',  'diff', 'reset', 'status', 'blame', 'show'], printf('v:val =~ "^%s"', a:ArgLead))
