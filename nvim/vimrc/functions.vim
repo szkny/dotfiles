@@ -584,12 +584,14 @@ fun! s:git(...) abort
         let l:cmd = 'git reset --hard'
     elseif a:1 ==# 'fpull'
         let l:cmd = 'git reset --hard && git pull'
+    elseif a:1 ==# 'blame'
+        let l:cmd = 'git blame '.expand('%:p')
     else
         let l:cmd = 'git '.join(a:000)
     endif
     call BeginTerm(l:cmd)
 endf
 fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)
-    return filter(['acp','fpull',  'diff', 'reset', 'status'], printf('v:val =~ "^%s"', a:ArgLead))
+    return filter(['acp','fpull',  'diff', 'reset', 'status', 'blame', 'show'], printf('v:val =~ "^%s"', a:ArgLead))
 endf
 command! -complete=customlist,s:CompletionGitCommands -nargs=* Git call s:git(<f-args>)
