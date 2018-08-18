@@ -36,9 +36,6 @@ fun! s:PrevimOpenCmd()
     endif
 endf
 command! Previm call s:PrevimOpenCmd()
-if exists(':PrevimOpen') == 2
-    delcommand PrevimOpen
-endif
 
 "" nyaovim-popup-tooltip
 
