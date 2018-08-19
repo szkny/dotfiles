@@ -127,7 +127,15 @@ let g:airline#extensions#ale#error_symbol = g:ale_sign_error.' '
 let g:airline#extensions#ale#warning_symbol = g:ale_sign_warning. ' '
 let g:airline#extensions#default#section_truncate_width = {}
 let g:airline#extensions#whitespace#enabled = 1
-
+"" vim-airline separator
+let g:airline#extensions#tabline#right_sep = ' '
+let g:airline#extensions#tabline#left_sep  = ' '
+let g:airline#extensions#tabline#right_alt_sep = '|'
+let g:airline#extensions#tabline#left_alt_sep  = '|'
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
 
 "" vim-nerdtree-syntax-highlight
 let s:rspec_red = 'FE405F'
@@ -172,20 +180,20 @@ vmap <leader>w <Plug>(openbrowser-smart-search)
 
 
 "" vim-devicons
-" let g:webdevicons_conceal_nerdtree_brackets = 1
-" let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
-" if has('mac')
-"     "" dir-icons
-"     let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-"     let g:DevIconsEnableFoldersOpenClose = 1
-"     let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
-"     let g:DevIconsDefaultFolderOpenSymbol = ''
-"     "" file-icons
-"     let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
-"     let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = ''
-"     let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css'] = ''
-"     let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = ''
-"     let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['txt'] = ''
-"     "" installed-font
-"     set guifont=Ricty\ Discord\ Regular\ Nerd\ Font\ Plus\ Font\ Awesome\ Plus\ Octicons\ Plus\ Pomicons\ Plus\ Font\ Linux:h14
-" endif
+if has('mac')
+    let g:webdevicons_conceal_nerdtree_brackets = 1
+    let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+    "" dir-icons
+    let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+    let g:DevIconsEnableFoldersOpenClose = 1
+    let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
+    let g:DevIconsDefaultFolderOpenSymbol = ''
+    "" file-icons
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = ''
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css'] = ''
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = ''
+    let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['txt'] = ''
+    "" installed-font
+    set guifont=Ricty\ Discord\ Regular\ Nerd\ Font\ Plus\ Font\ Awesome\ Plus\ Octicons\ Plus\ Pomicons\ Plus\ Font\ Linux:h14
+endif
