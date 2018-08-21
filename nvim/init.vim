@@ -104,6 +104,8 @@ Plug 'raimon49/requirements.txt.vim',  {'for': 'requirements'}
 Plug 'cespare/vim-toml',               {'for': 'toml'}
 Plug 'tyru/open-browser.vim',          {'for': 'markdown'}
 Plug 'kannokanno/previm',              {'for': 'markdown'}
+Plug 'godlygeek/tabular',              {'for': 'markdown'}
+Plug 'plasticboy/vim-markdown',        {'for': 'markdown'}
 
 " if has('mac')
 "     " icon
