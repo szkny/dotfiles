@@ -90,6 +90,7 @@ Plug 'vim-scripts/c.vim',              {'for': ['c', 'cpp']}
 Plug 'davidhalter/jedi-vim',           {'for': 'python'}
 Plug 'zchee/deoplete-jedi',            {'for': 'python'}
 Plug 'tweekmonster/braceless.vim',     {'for': 'python'}
+Plug 'szkny/Ipython',                  {'for': 'python'}
 Plug 'szkny/IpdbDebugger',             {'for': 'python'}
 
 " nyaovim
