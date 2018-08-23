@@ -178,7 +178,7 @@ endf
 command! Pudb call s:pudb()
 
 
-fun! s:python_run() abort
+fun! s:python() abort
     " Pythonコンソールウィンドウを作り、編集中のPythonスクリプトを実行する関数
     " szkny/SplitTerm プラグインを利用している
     "      以下のように使用する
@@ -186,53 +186,32 @@ fun! s:python_run() abort
     if &filetype ==# 'python'
         if s:python_exist()
             "" コンソールウィンドウが有ればスクリプトを実行
-            let l:script_name = expand('%:p')
-            let l:script_dir = expand('%:p:h')
-            if has_key(s:ipython, 'script_name')
-                \&& s:ipython.script_name !=# l:script_name
-                call splitterm#jobsend_id(s:ipython.info, '%reset')
-                call splitterm#jobsend_id(s:ipython.info, 'y')
-            endif
-            if has_key(s:ipython, 'script_dir')
-                \ && s:ipython.script_dir !=# l:script_dir
-                call splitterm#jobsend_id(s:ipython.info, '%cd '.l:script_dir)
-            endif
-            let s:ipython.script_name = l:script_name
-            let s:ipython.script_dir = l:script_dir
-            call splitterm#jobsend_id(s:ipython.info, '%run '.s:ipython.script_name)
+            call s:python_run()
         else
             "" コンソールウィンドウが無ければコンソール用のウィンドウを作る
-            let l:command = 'ipython'
-            let l:args = '--no-confirm-exit --colors=Linux --profile='.s:init_ipython()
-            let l:filename = ' ' . expand('%')
-            if findfile('Pipfile', expand('%:p')) !=# ''
-                \ && findfile('Pipfile.lock', expand('%:p')) !=# ''
-                let l:command = 'pipenv run ipython'
-            endif
-            let s:ipython = {}
-            let s:ipython.script_name = expand('%:p')
-            let s:ipython.script_dir = expand('%:p:h')
-            let l:script_winid = win_getid()
-            call splitterm#open(l:command, l:args)
-            let s:ipython.info = splitterm#getinfo()
-            silent exe 'normal G'
-            call win_gotoid(l:script_winid)
+            call s:python_open()
         endif
     endif
 endf
-command! Python call s:python_run()
+command! Python call s:python()
 
 
-fun! s:python_exist() abort
-    if exists('s:ipython')
-        \&& has_key(s:ipython, 'script_name')
-        \&& has_key(s:ipython, 'script_dir')
-        \&& has_key(s:ipython, 'info')
-        if splitterm#exist(s:ipython.info)
-            return 1
-        endif
+fun! s:python_open() abort
+    let l:command = 'ipython'
+    let l:args = '--no-confirm-exit --colors=Linux --profile='.s:init_ipython()
+    let l:filename = ' ' . expand('%')
+    if findfile('Pipfile', expand('%:p')) !=# ''
+        \ && findfile('Pipfile.lock', expand('%:p')) !=# ''
+        let l:command = 'pipenv run ipython'
     endif
-    return 0
+    let s:ipython = {}
+    let s:ipython.script_name = expand('%:p')
+    let s:ipython.script_dir = expand('%:p:h')
+    let l:script_winid = win_getid()
+    call splitterm#open(l:command, l:args)
+    let s:ipython.info = splitterm#getinfo()
+    silent exe 'normal G'
+    call win_gotoid(l:script_winid)
 endf
 
 
@@ -262,4 +241,35 @@ fun! s:init_ipython() abort
                 \'mgc("%autoreload 2")']
     call writefile(l:ipython_init_command, l:ipython_startup_file)
     return l:profile_name
+endf
+
+
+fun! s:python_run() abort
+    let l:script_name = expand('%:p')
+    let l:script_dir = expand('%:p:h')
+    if has_key(s:ipython, 'script_name')
+        \&& s:ipython.script_name !=# l:script_name
+        call splitterm#jobsend_id(s:ipython.info, '%reset')
+        call splitterm#jobsend_id(s:ipython.info, 'y')
+    endif
+    if has_key(s:ipython, 'script_dir')
+        \ && s:ipython.script_dir !=# l:script_dir
+        call splitterm#jobsend_id(s:ipython.info, '%cd '.l:script_dir)
+    endif
+    let s:ipython.script_name = l:script_name
+    let s:ipython.script_dir = l:script_dir
+    call splitterm#jobsend_id(s:ipython.info, '%run '.s:ipython.script_name)
+endf
+
+
+fun! s:python_exist() abort
+    if exists('s:ipython')
+        \&& has_key(s:ipython, 'script_name')
+        \&& has_key(s:ipython, 'script_dir')
+        \&& has_key(s:ipython, 'info')
+        if splitterm#exist(s:ipython.info)
+            return 1
+        endif
+    endif
+    return 0
 endf
