@@ -18,6 +18,7 @@ endif
 
 " mapping
 nno <silent> <leader>ip :Ipython<CR>
+vno <silent> <leader>ip :VIpython<CR>
 nno <silent> <leader>pd :Ipdb<CR>
 
 nmap <silent> <leader>n <Plug>(ipdbdebug_next)
