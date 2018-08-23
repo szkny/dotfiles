@@ -70,33 +70,6 @@ let g:ipdbdebug_map_enabled = 0
 
 
 " function
-fun! s:ipython() abort
-    " ipythonを起動して開いているPythonスクリプトをロードする関数
-    if !executable('ipython')
-        echon 'Ipython: [error] ipython does not exist.'
-        echon '                 isntalling ipython ...'
-        if !executable('pip')
-            echoerr 'You have to install pip!'
-            return
-        endif
-        call system('pip install ipython')
-        echon
-    endif
-    let l:command = 'ipython'
-    if findfile('Pipfile',getcwd()) !=# ''
-        \ && findfile('Pipfile.lock',getcwd()) !=# ''
-        let l:command = 'pipenv run ipython'
-    endif
-    let l:args = '--no-confirm-exit --colors=Linux'
-    if &filetype ==# 'python'
-        let l:profile_name = s:init_ipython()
-        let l:args .= ' --profile=' . l:profile_name
-    endif
-    call BeginTerm(l:command, l:args)
-    startinsert
-endf
-
-
 fun! s:pythonmaxlinelength() abort
     " flake8のconfigファイルからpythonスクリプトの文字数上限(max-line-length)を取得する関数
     "      以下のようにcolorcolumnを設定することでバッファに文字数の上限ラインが引かれる
