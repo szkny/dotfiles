@@ -63,11 +63,20 @@ aug END
 " plugin setting
 "" ALE (Asynchronous Lint Engine)
 let b:ale_linters = ['flake8']
-" polyglot (Syntax highlight) Default highlight is better than polyglot
+"" polyglot (Syntax highlight) Default highlight is better than polyglot
 let g:polyglot_disabled = ['python']
 let g:python_highlight_all = 1
 "" IpdbDebugger
 let g:ipdbdebug_map_enabled = 0
+"" Ipython
+let g:ipython_startup_options = [
+            \'--no-confirm-exit',
+            \'--colors=Linux',
+            \'--no-banner']
+let g:ipython_startup_import_modules = [
+            \'import matplotlib.pyplot as plt',
+            \'import pandas as pd',
+            \'import numpy as np']
 
 
 " function
