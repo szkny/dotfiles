@@ -5,7 +5,6 @@ scriptencoding utf-8
 let g:mapleader = "\<Space>"
 
 " general
-nno ; :
 tno <silent> <C-[> <C-\><C-n>
 ino <silent> <C-s>   <ESC>:w<CR>a
 nno <silent> <C-s>   :w<CR>
