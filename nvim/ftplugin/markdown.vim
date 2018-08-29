@@ -22,29 +22,14 @@ aug delimitMate
 aug END
 
 "" previm
-let g:previm_disable_default_css = 1
-let g:previm_custom_css_path = '~/dotfiles/preview/css/github_style.css'
-let g:previm_disable_default_js = 1
-let g:previm_custom_js_path = '~/dotfiles/preview/js/previm.js'
+let g:previm_show_header = 0
+let g:previm_enable_realtime = 1
+let g:previm_open_cmd = 'open'
 aug PrevimSettings
     au!
     au BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
     au BufWritePost *.{md,mdwn,mkd,mkdn,mark*} call previm#refresh()
 aug END
-fun! s:PrevimOpenCmd()
-    if &filetype ==# 'markdown'
-        if has('mac')
-            exe 'PrevimOpen'
-        elseif system('uname') ==# "Linux\n"
-            let g:previm_custom_dir = $HOME.'/dotfiles/preview'
-            let l:preview_html_file = 'C:/Users/user/AppData/Local/lxss'.g:previm_custom_dir.'/index.html'
-            call previm#open(l:preview_html_file)
-        else
-            return
-        endif
-    endif
-endf
-command! Previm call s:PrevimOpenCmd()
 
 "" nyaovim-popup-tooltip
 
