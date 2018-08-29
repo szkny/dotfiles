@@ -599,3 +599,12 @@ fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)
     return filter(['acp','fpull',  'diff', 'reset', 'status', 'blame', 'show'], printf('v:val =~ "^%s"', a:ArgLead))
 endf
 command! -complete=customlist,s:CompletionGitCommands -nargs=* Git call s:git(<f-args>)
+
+
+fun! s:open() abort
+    " openコマンドにより編集中ファイルを開く関数
+    if executable('open')
+        silent exe '!open '.expand('%:p')
+    endif
+endf
+command! Open call s:open()
