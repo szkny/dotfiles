@@ -36,7 +36,7 @@ fun! s:PrevimOpenCmd()
         if has('mac')
             exe 'PrevimOpen'
         elseif system('uname') ==# "Linux\n"
-            let g:previm_custom_dir = $HOME.'/.config/nvim/plugged/previm/preview'
+            let g:previm_custom_dir = $HOME.'/dotfiles/preview'
             let l:preview_html_file = 'C:/Users/user/AppData/Local/lxss'.g:previm_custom_dir.'/index.html'
             call previm#open(l:preview_html_file)
         else
