@@ -39,9 +39,9 @@ aug END
 
 "" nyaovim-markdown-preview
 if exists('g:nyaovim_version')
-    let g:markdow_preview_auto = 1
-    let g:markdow_preview_eager = 1
-    let g:markdow_preview_no_default_mapping = 0
+    let g:markdown_preview_auto = 1
+    let g:markdown_preview_eager = 1
+    let g:markdown_preview_no_default_mapping = 0
 endif
 
 
