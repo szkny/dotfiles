@@ -24,7 +24,11 @@ aug END
 "" previm
 let g:previm_show_header = 0
 let g:previm_enable_realtime = 1
-let g:previm_open_cmd = 'open'
+if has('mac')
+    let g:previm_open_cmd = 'open -a Google\ Chrome'
+elseif system('uname') ==# 'Linux\n'
+    let g:previm_open_cmd = 'open'
+endif
 aug PrevimSettings
     au!
     au BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
