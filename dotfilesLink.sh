@@ -32,6 +32,12 @@ ln -sf ~/dotfiles/vim/vimrc ~/.vim
 if [ -L ~/.tmux.conf ]; then rm ~/.tmux.conf;fi
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
 
+# ipython
+if [ -L ~/.jupyter/jupyter_qtconsole_config.py ]; then
+    rm ~/.jupyter/jupyter_qtconsole_config.py
+fi
+ln -sf ~/dotfiles/ipython/jupyter_qtconsole_config.py ~/.jupyter
+
 # bash
 # ln -sf ~/dotfiles/bashrc ~/.bashrc
 

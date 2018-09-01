@@ -86,6 +86,7 @@ Plug 'zchee/deoplete-jedi',            {'for': 'python'}
 Plug 'tweekmonster/braceless.vim',     {'for': 'python'}
 Plug 'szkny/Ipython',                  {'for': 'python'}
 Plug 'szkny/IpdbDebugger',             {'for': 'python'}
+Plug 'szkny/jupyter-vim',              {'for': 'python'}
 
 " nyaovim
 if exists('g:nyaovim_version')
