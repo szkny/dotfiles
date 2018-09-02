@@ -593,7 +593,9 @@ fun! s:git(...) abort
     else
         let l:cmd = 'git '.join(a:000)
     endif
+    let l:script_winid = win_getid()
     call splitterm#open(l:cmd)
+    call win_gotoid(l:script_winid)
 endf
 fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)
     return filter(['acp','fpull',  'diff', 'reset', 'status', 'blame', 'show'], printf('v:val =~ "^%s"', a:ArgLead))
