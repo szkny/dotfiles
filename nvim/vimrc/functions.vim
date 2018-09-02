@@ -593,31 +593,12 @@ fun! s:git(...) abort
     else
         let l:cmd = 'git '.join(a:000)
     endif
-    let l:script_winid = win_getid()
     call splitterm#open(l:cmd)
-    let s:git_winid = win_getid()
-    aug git_auto_command
-        au CursorHold call s:auto_close_git_window()
-    aug END
-    call win_gotoid(l:script_winid)
 endf
 fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)
     return filter(['acp','fpull',  'diff', 'reset', 'status', 'blame', 'show'], printf('v:val =~ "^%s"', a:ArgLead))
 endf
 command! -complete=customlist,s:CompletionGitCommands -nargs=* Git call s:git(<f-args>)
-fun! s:auto_close_git_window() abort
-    let l:current_winid = win_getid()
-    if win_gotoid(s:git_winid)
-        let l:bufline_all = getline(0, '$')
-        for l:line in l:bufline_all
-            if l:line ==# '[Process exited 0]'
-                quit
-                return
-            endif
-        endfor
-        call win_gotoid(l:current_winid)
-    endif
-endf
 
 
 fun! s:open() abort
