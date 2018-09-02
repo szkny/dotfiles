@@ -77,6 +77,11 @@ let g:ipython_startup_import_modules = [
             \'import matplotlib.pyplot as plt',
             \'import pandas as pd',
             \'import numpy as np']
+"" jupyter-vim
+let g:jupyter_auto_connect = 1
+let g:jupyter_mapkeys = 0
+let g:jupyter_monitor_console = 1
+let g:jupyter_verbose = 1
 
 
 " function

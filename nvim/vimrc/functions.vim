@@ -594,6 +594,13 @@ fun! s:git(...) abort
         let l:cmd = 'git '.join(a:000)
     endif
     call splitterm#open(l:cmd)
+    let l:bufline_all = getline(0, '$')
+    for l:line in l:bufline_all
+        if l:line ==# '[Process exited 0]'
+            quit
+            return
+        endif
+    endfor
 endf
 fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)
     return filter(['acp','fpull',  'diff', 'reset', 'status', 'blame', 'show'], printf('v:val =~ "^%s"', a:ArgLead))
