@@ -595,8 +595,9 @@ fun! s:git(...) abort
     endif
     let l:script_winid = win_getid()
     call splitterm#open(l:cmd)
+    let l:git_winid = win_getid()
     aug git_auto_command
-        au CursorHold <buffer> call s:auto_close_git_window()
+        au CursorHold <buffer> call s:auto_close_git_window(l:git_winid)
     aug END
     call win_gotoid(l:script_winid)
 endf
@@ -604,14 +605,18 @@ fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)
     return filter(['acp','fpull',  'diff', 'reset', 'status', 'blame', 'show'], printf('v:val =~ "^%s"', a:ArgLead))
 endf
 command! -complete=customlist,s:CompletionGitCommands -nargs=* Git call s:git(<f-args>)
-fun! s:auto_close_git_window() abort
-    let l:bufline_all = getline(0, '$')
-    for l:line in l:bufline_all
-        if l:line ==# '[Process exited 0]'
-            quit
-            return
-        endif
-    endfor
+fun! s:auto_close_git_window(git_winid) abort
+    let l:current_winid = win_getid()
+    if win_gotoid(a:git_winid)
+        let l:bufline_all = getline(0, '$')
+        for l:line in l:bufline_all
+            if l:line ==# '[Process exited 0]'
+                quit
+                return
+            endif
+        endfor
+        call win_gotoid(l:current_winid)
+    endif
 endf
 
 
