@@ -431,7 +431,11 @@ command! -nargs=* -range Chrome call s:chrome(<f-args>)
 
 fun! s:w3m(...) abort range
     " w3mで引数のキーワードを検索する関数
-    if executable('w3m')
+    let l:cmd = 'w3m'
+    if executable(l:cmd)
+        if $HTTP_PROXY !=# ''
+            let l:cmd .= printf(' -o http_proxy="%s"', $HTTP_PROXY)
+        endif
         let l:url = ''
         if a:0 == 0
             let @@ = ''
@@ -445,7 +449,7 @@ fun! s:w3m(...) abort range
         else
             let l:url = s:googlesearchurl(a:000)
         endif
-        call splitterm#open('w3m '.l:url)
+        call splitterm#open(l:cmd, l:url)
         startinsert
     else
         echon 'W3m: [error] w3m command not found.'
