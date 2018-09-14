@@ -132,7 +132,7 @@ set backspace=indent,eol,start
 set tabstop=4
 set softtabstop=0
 set shiftwidth=4
-set expandtab=1
+set expandtab
 
 "" Enable hidden buffers
 set hidden
