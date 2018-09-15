@@ -241,7 +241,7 @@ let g:enable_bold_font = 1
 let g:enable_italic_font = 1
 let g:cpp_class_scope_highlight = 1
 
-set cursorline
+" set cursorline
 " set cursorcolumn
 set list
 set listchars=tab:¦\ 
