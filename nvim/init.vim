@@ -258,7 +258,7 @@ hi EndOfBuffer guifg=bg
 " hi LineNr guifg=#aabbcc guibg=#204056
 hi VertSplit guibg=#222222
 " hi CursorLine gui=underline
-" hi clear CursorLine
+hi clear CursorLine
 " hi CursorColumn guibg=#0c1820
 " hi clear Cursor
 " hi Cursor gui=reverse
