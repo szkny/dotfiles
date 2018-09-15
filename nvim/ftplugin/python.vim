@@ -74,6 +74,7 @@ let g:ipython_startup_options = [
             \'--colors=Linux',
             \'--no-banner']
 let g:ipython_startup_import_modules = [
+            \'import os',
             \'import matplotlib.pyplot as plt',
             \'import pandas as pd',
             \'import numpy as np']
