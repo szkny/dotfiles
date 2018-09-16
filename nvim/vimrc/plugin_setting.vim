@@ -65,8 +65,13 @@ let g:jedi#completions_enabled = 1
 let g:ale_sign_column_always = 0
 let g:ale_change_sign_column_color = 0
 let g:ale_completion_enabled = 1
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚠'
+if has('mac')
+    let g:ale_sign_error = '❌'
+    let g:ale_sign_warning = '⚠️'
+elseif system('uname') ==# "Linux\n"
+    let g:ale_sign_error = '✗'
+    let g:ale_sign_warning = '⚠'
+endif
 " let g:ale_sign_error = '⤫'
 " let g:ale_sign_warning = '!!'
 let g:ale_set_highlights = 1
@@ -123,8 +128,8 @@ if &fileformat ==# 'unix'
 else
     let g:airline_section_z = '%{&fileencodings}, %{&fileformat}'
 endif
-let g:airline#extensions#ale#error_symbol = g:ale_sign_error.' '
-let g:airline#extensions#ale#warning_symbol = g:ale_sign_warning. ' '
+let g:airline#extensions#ale#error_symbol = g:ale_sign_error.'  '
+let g:airline#extensions#ale#warning_symbol = g:ale_sign_warning.'  '
 let g:airline#extensions#default#section_truncate_width = {}
 let g:airline#extensions#whitespace#enabled = 1
 "" vim-airline separator
