@@ -588,6 +588,9 @@ fun! s:git(...) abort
         let l:cmd = 'git status -v -v'
     elseif a:1 ==# 'acp'
         let l:cmd = 'git add -A && git commit -m "`date`" && git push -u'
+        aug git_auto_command
+            au CursorHold <buffer> call s:git_close()
+        aug END
     elseif a:1 ==# 'reset'
         let l:cmd = 'git reset --hard'
     elseif a:1 ==# 'fpull'
@@ -598,13 +601,7 @@ fun! s:git(...) abort
         let l:cmd = 'git '.join(a:000)
     endif
     let l:script_winid = win_getid()
-    aug git_auto_command
-        au CursorHold <buffer> call s:git_close()
-    aug END
     call splitterm#open(l:cmd)
-    aug git_auto_command
-        au CursorHold <buffer> call s:git_close()
-    aug END
     call win_gotoid(l:script_winid)
     let s:git_winid = splitterm#getinfo()['console_winid']
 endf
