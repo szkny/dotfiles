@@ -620,6 +620,10 @@ fun! s:git_close() abort
             endif
         endfor
         call win_gotoid(l:script_winid)
+    else
+        aug git_auto_command
+            au!
+        aug END
     endif
 endf
 
