@@ -241,11 +241,11 @@ let g:enable_bold_font = 1
 let g:enable_italic_font = 1
 let g:cpp_class_scope_highlight = 1
 
-set cursorline
-" set cursorcolumn
 set list
 set listchars=tab:¦\ 
 set fillchars=vert:\ 
+" set cursorline
+" set cursorcolumn
 
 hi EndOfBuffer guifg=bg
 " hi matchparen ctermbg=236
@@ -258,7 +258,7 @@ hi EndOfBuffer guifg=bg
 " hi LineNr guifg=#aabbcc guibg=#204056
 hi VertSplit guibg=#222222
 " hi CursorLine gui=underline
-hi clear CursorLine
+" hi clear CursorLine
 " hi CursorColumn guibg=#0c1820
 " hi clear Cursor
 " hi Cursor gui=reverse
