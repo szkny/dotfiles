@@ -617,6 +617,7 @@ fun! s:git_close() abort
         for l:line in l:lines
             if l:line ==# '[Process exited 0]'
                 quit
+                edit
             endif
         endfor
         call win_gotoid(l:script_winid)
