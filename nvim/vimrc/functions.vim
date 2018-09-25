@@ -584,17 +584,20 @@ endf
 
 fun! s:git(...) abort
     " gitコマンドを実行する関数
-    if a:1 ==# 'diff'
-        let l:cmd = 'git status -v -v'
-    elseif a:1 ==# 'acp'
+    if a:1 ==# 'acp'
         let l:cmd = 'git add -A && git commit -m "`date`" && git push -u'
         aug git_auto_command
             au CursorHold <buffer> call s:git_close()
         aug END
-    elseif a:1 ==# 'reset'
-        let l:cmd = 'git reset --hard'
     elseif a:1 ==# 'fpull'
         let l:cmd = 'git reset --hard && git pull'
+        aug git_auto_command
+            au CursorHold <buffer> call s:git_close()
+        aug END
+    elseif a:1 ==# 'diff'
+        let l:cmd = 'git status -v -v'
+    elseif a:1 ==# 'reset'
+        let l:cmd = 'git reset --hard'
     elseif a:1 ==# 'blame'
         let l:cmd = 'git blame '.expand('%:p')
     else
@@ -606,7 +609,7 @@ fun! s:git(...) abort
     let s:git_winid = splitterm#getinfo()['console_winid']
 endf
 fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)
-    return filter(['acp','fpull',  'diff', 'reset', 'status', 'blame', 'show'], printf('v:val =~ "^%s"', a:ArgLead))
+    return filter(['acp','fpull',  'diff', 'reset', 'status', 'blame', 'show', 'pull'], printf('v:val =~ "^%s"', a:ArgLead))
 endf
 command! -complete=customlist,s:CompletionGitCommands -nargs=* Git call s:git(<f-args>)
 
