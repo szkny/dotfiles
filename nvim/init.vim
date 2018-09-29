@@ -38,19 +38,9 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'airblade/vim-gitgutter'
 Plug 'Raimondi/delimitMate'
 Plug 'szkny/SplitTerm'
-Plug 'severin-lemaignan/vim-minimap'
-Plug 'hisaknown/nanomap.vim'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
 Plug 'scrooloose/nerdtree',                     {'on': 'NERDTreeToggle'}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': 'NERDTreeToggle'}
-" Plug 'kassio/neoterm'
-" Plug 'tpope/vim-fugitive'
-" Plug 'sheerun/vim-polyglot'
-" Plug 'Shougo/unite.vim'
-" Plug 'Shougo/unite-outline'
-" Plug 'Shougo/denite.nvim'
-" Plug 'Yggdroot/indentLine'
-" Plug 'vim-scripts/CSApprox'
 
 if isdirectory('/usr/local/opt/fzf')
     Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
