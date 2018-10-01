@@ -54,12 +54,13 @@ elseif system('uname') ==# "Linux\n"
     no  <silent><buffer> <A-;>      :Appendchar \ \ <CR>
 endif
 "" bold (強調表示)
-nno <silent><nowait> <leader>b :<C-u>call <SID>surround('\*\*')<CR>
-vno <silent><nowait> <leader>b :<C-u>call <SID>vsurround('\*\*')<CR>
+nno <silent><nowait> <leader>b :call <SID>surround('**')<CR>
+" nno <silent><nowait> <leader>b :call <SID>surround('\*\*')<CR>
+vno <silent><nowait> <leader>b :call <SID>vsurround('\*\*')<CR>
 "" line (打ち消し線)
-vno <silent><nowait> <leader>l :<C-u>call <SID>vsurround('\~\~')<CR>
+vno <silent><nowait> <leader>l :call <SID>vsurround('\~\~')<CR>
 "" under line (下線)
-vno <silent><nowait> <leader>u :<C-u>call <SID>vunderline()<CR>
+vno <silent><nowait> <leader>u :call <SID>vunderline()<CR>
 
 
 " function
@@ -67,18 +68,34 @@ fun!  s:surround(char) abort
     " カーソル下の単語をa:charで囲む関数
     let l:line = getline('.')
     if l:line !=# ''
-        let l:pos = getpos('.')
-        let l:word = expand('<cword>')
-        let l:formed_word = a:char.l:word.a:char
-        echo l:line l:formed_word
-        if match(l:line, l:formed_word) == -1
-            exe line('.').'s/'.l:word.'/'.l:formed_word
+        if len(a:char) == 1
+            call feedkeys('ciw'.a:char.a:char."\<ESC>P")
         else
-            exe line('.').'s/'.l:formed_word.'/'.l:word
+            let l:move_left = ''
+            for l:i in range(len(a:char)-1)
+                let l:move_left .= 'h'
+            endfor
+            call feedkeys('ciw'.a:char.a:char."\<ESC>".l:move_left.'P')
         endif
-        call setpos('.', l:pos)
     endif
 endf
+
+" fun!  s:surround(char) abort
+"     " カーソル下の単語をa:charで囲む関数
+"     let l:line = getline('.')
+"     if l:line !=# ''
+"         let l:pos = getpos('.')
+"         let l:word = expand('<cword>')
+"         let l:formed_word = a:char.l:word.a:char
+"         echo l:line l:formed_word
+"         if match(l:line, l:formed_word) == -1
+"             exe line('.').'s/'.l:word.'/'.l:formed_word
+"         else
+"             exe line('.').'s/'.l:formed_word.'/'.l:word
+"         endif
+"         call setpos('.', l:pos)
+"     endif
+" endf
 
 fun!  s:vsurround(char) abort range
     " 選択範囲をa:charで囲む関数
