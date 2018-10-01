@@ -645,3 +645,29 @@ fun! s:open() abort
     endif
 endf
 command! Open call s:open()
+
+" for ctags
+set tags=.tags
+
+function! s:execute_ctags() abort
+    " 探すタグファイル名
+    let l:tag_name = '.tags'
+    " ディレクトリを遡り、タグファイルを探し、パス取得
+    let l:tags_path = findfile(l:tag_name, '.;')
+    " タグファイルパスが見つからなかった場合
+    if l:tags_path ==# ''
+        " return
+        silent exe '!touch '.l:tag_name
+    endif
+
+    " タグファイルのディレクトリパスを取得
+    " `:p:h`の部分は、:h filename-modifiersで確認
+    let l:tags_dirpath = fnamemodify(l:tags_path, ':p:h')
+    " 見つかったタグファイルのディレクトリに移動して、ctagsをバックグラウンド実行（エラー出力破棄）
+    silent exe '!cd' l:tags_dirpath '&& ctags -R -f' l:tag_name '2> /dev/null &'
+endfunction
+
+aug ctags
+    au!
+    au BufWritePost * call s:execute_ctags()
+aug END
