@@ -585,7 +585,11 @@ endf
 fun! s:git(...) abort
     " gitコマンドを実行する関数
     if a:1 ==# 'acp'
-        let l:cmd = 'git add -A && git commit -m "`date`" && git push -u'
+        if a:0 >= 2
+            let l:cmd = 'git add -A && git commit -m "'.join(a:000[1:], ' ').'" && git push -u'
+        else
+            let l:cmd = 'git add -A && git commit -m "`date`" && git push -u'
+        endif
         call s:git_autocmd()
     elseif a:1 ==# 'pull'
         let l:cmd = 'git pull'
