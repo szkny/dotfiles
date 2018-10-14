@@ -76,11 +76,8 @@ let g:ipython_startup_options = [
             \'--colors=Linux',
             \'--no-banner']
 let g:ipython_startup_import_modules = [
-            \'import os',
-            \'import sys',
-            \'import matplotlib.pyplot as plt',
-            \'import pandas as pd',
-            \'import numpy as np']
+            \'from pylab import *',
+            \'import pandas as pd']
 let g:ipython_window_width = 8
 "" jupyter-vim
 let g:jupyter_auto_connect = 1
