@@ -65,6 +65,7 @@ Plug 'xolox/vim-session'
 
 " color scheme
 Plug 'tomasr/molokai'
+" Plug 'arcticicestudio/nord-vim'
 " Plug 'altercation/vim-colors-solarized'
 
 " c/c++
