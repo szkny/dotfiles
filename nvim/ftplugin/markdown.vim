@@ -55,6 +55,7 @@ elseif system('uname') ==# "Linux\n"
 endif
 "" bold (強調表示)
 nno <silent><nowait> <leader>m :call <SID>surround('$')<CR>
+vno <silent><nowait> <leader>m :call <SID>vsurround('$')<CR>
 nno <silent><nowait> <leader>b :call <SID>surround('**')<CR>
 " nno <silent><nowait> <leader>b :call <SID>surround('\*\*')<CR>
 vno <silent><nowait> <leader>b :call <SID>vsurround('\*\*')<CR>
