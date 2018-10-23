@@ -9,6 +9,7 @@ ignore = E126,  # continuation line over-indented for hanging indent
        \ E402,  # module level import not at top of file
        \ E501,  # line too long
        \ E722,  # do not use bare except
+       \ E731,  # do not assign a lambda expression, use a def
        \ F403,  # unable to detect undefined names
        \ W503,  # line break before binary operator
 max-line-length = 100
