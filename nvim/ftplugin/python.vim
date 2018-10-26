@@ -75,9 +75,12 @@ let g:ipython_startup_options = [
             \'--no-confirm-exit',
             \'--colors=Linux',
             \'--no-banner']
-let g:ipython_startup_import_modules = [
+let g:ipython_startup_command = [
             \'from pylab import *',
-            \'import pandas as pd']
+            \'import pandas as pd',
+            \'pd.options.display.max_rows = 10',
+            \'pd.options.display.max_columns = 10',
+            \'pd.options.display.precision = 3']
 let g:ipython_window_width = 8
 "" jupyter-vim
 let g:jupyter_auto_connect = 1
