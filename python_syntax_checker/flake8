@@ -3,6 +3,7 @@ ignore = E126,  # continuation line over-indented for hanging indent
        \ E128,  # continuation line under-indented for visual indent
        \ E221,  # multiple spaces before operator
        \ E226,  # missing whitespace around arithmetic operator
+       \ E241,  # multiple spaces after ','
        \ E262,  # inline comment should start with '# '
        \ E265,  #  block comment should start with '# '
        \ E266,  # too many leading '#' for block comment
