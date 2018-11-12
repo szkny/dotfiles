@@ -175,8 +175,8 @@ let g:session_command_aliases = 1
 let g:python_host_prog = ''
 let g:python3_host_prog = ''
 if has('mac')
-    let g:python_host_prog = expand('~/.pyenv/versions/2.7.10/bin/python2')
-    let g:python3_host_prog = expand('~/.pyenv/versions/3.6.2/bin/python3')
+    let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/bin/python2')
+    let g:python3_host_prog = expand('~/.pyenv/versions/3.7.0/bin/python3')
 elseif system('uname') ==# "Linux\n"
     let g:python_host_prog = expand('~/.pyenv/versions/2.7.10/bin/python2')
     let g:python3_host_prog = expand('~/.pyenv/versions/3.6.5/bin/python3')
