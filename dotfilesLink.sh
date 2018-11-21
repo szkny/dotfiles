@@ -14,12 +14,12 @@ ln -sf ~/dotfiles/nvim/ftplugin ~/.config/nvim
 # mkdir -p ~/.config/nyaovim
 # ln -sf ~/dotfiles/nyaovim/nyaovimrc.html ~/.config/nyaovim/nyaovimrc.html
 
-# python syntax checker & formatter
-if [ -L ~/.config/flake8 ]; then rm ~/.config/flake8;fi
-if [ -L ~/.config/yapf ]; then rm ~/.config/yapf;fi
-mkdir -p ~/.config
-ln -sf ~/dotfiles/python_syntax_checker/flake8 ~/.config/flake8
-ln -sf ~/dotfiles/python_syntax_checker/yapf ~/.config
+# # python syntax checker & formatter
+# if [ -L ~/.config/flake8 ]; then rm ~/.config/flake8;fi
+# if [ -L ~/.config/yapf ]; then rm ~/.config/yapf;fi
+# mkdir -p ~/.config
+# ln -sf ~/dotfiles/python_syntax_checker/flake8 ~/.config/flake8
+# ln -sf ~/dotfiles/python_syntax_checker/yapf ~/.config
 
 # # vim (8.0.1283)
 # if [ -L ~/.vimrc ]; then rm ~/.vimrc;fi
@@ -28,9 +28,9 @@ ln -sf ~/dotfiles/python_syntax_checker/yapf ~/.config
 # ln -sf ~/dotfiles/vim/.vimrc ~/.vimrc
 # ln -sf ~/dotfiles/vim/vimrc ~/.vim
 
-# tmux
-if [ -L ~/.tmux.conf ]; then rm ~/.tmux.conf;fi
-ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
+# # tmux
+# if [ -L ~/.tmux.conf ]; then rm ~/.tmux.conf;fi
+# ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
 
 # # ipython
 # if [ -L ~/.jupyter/jupyter_qtconsole_config.py ]; then
