@@ -17,8 +17,6 @@ endif
 
 
 " mapping
-nno <silent> <leader>ip :Ipython<CR>
-vno <silent> <leader>ip :VIpython<CR>
 nno <silent> <CR>       :Ipython<CR>
 vno <silent> <CR>       :VIpython<CR>
 nno <silent> <leader>pd :Ipdb<CR>
@@ -79,7 +77,10 @@ let g:ipython_startup_command = [
             \'from pylab import *',
             \'import pandas as pd',
             \'pd.options.display.max_rows = 10',
-            \'pd.options.display.max_columns = 10']
+            \'pd.options.display.max_columns = 10',
+            \'import warnings',
+            \'warnings.filterwarnings(action="ignore",'
+            \.'module="sklearn",message="^internal gelsd")']
 let g:ipython_window_width = 8
 "" jupyter-vim
 let g:jupyter_auto_connect = 1
