@@ -16,16 +16,11 @@ ino <silent> <C-w>   <ESC><C-w>
 " tab/window
 nno <silent> >       :ChangeBuffer next<CR>
 nno <silent> <       :ChangeBuffer previous<CR>
-nno <silent> +       :ResizeWindow +1<CR>
-nno <silent> -       :ResizeWindow -1<CR>
 nno <silent> <Right> :ChangeBuffer next<CR>
 nno <silent> <Left>  :ChangeBuffer previous<CR>
-ino <silent> <Right> <ESC>:ChangeBuffer next<CR>
-ino <silent> <Left>  <ESC>:ChangeBuffer previous<CR>
-nno <silent> <Up>    :ResizeWindow +1<CR>
-nno <silent> <Down>  :ResizeWindow -1<CR>
-ino <silent> <Up>    <ESC>:ResizeWindow +1<CR>
-ino <silent> <Down>  <ESC>:ResizeWindow -1<CR>
+nno <silent> +       :ResizeWindow +1<CR>
+nno <silent> -       :ResizeWindow -1<CR>
+nno <silent><Tab>    :NewTabPage<CR>
 
 " yank/delete/paste
 nno <silent> x       "_x

@@ -6,21 +6,32 @@ scriptencoding utf-8
 fun! s:changebuffer(direction) abort
     " バッファタブを切り替える関数
     " directionにはnextかpreviousを指定する
-    if &buflisted
+    if tabpagenr('$') == 1
+        if &buflisted
+            if a:direction ==? 'next' || a:direction ==? 'n'
+                let l:cmd = 'bnext'
+            elseif a:direction ==? 'previous' || a:direction ==? 'p'
+                let l:cmd = 'bprevious'
+            else
+                return
+            endif
+            exe l:cmd
+            let l:termflag = str2nr(buffer_name('%')[0])
+            if l:termflag
+                setlocal nonumber
+            else
+                setlocal number
+            endif
+        endif
+    else
         if a:direction ==? 'next' || a:direction ==? 'n'
-            let l:cmd = 'bnext'
+            let l:cmd = 'tabnext'
         elseif a:direction ==? 'previous' || a:direction ==? 'p'
-            let l:cmd = 'bprevious'
+            let l:cmd = 'tabprevious'
         else
             return
         endif
         exe l:cmd
-        let l:termflag = str2nr(buffer_name('%')[0])
-        if l:termflag
-            setlocal nonumber
-        else
-            setlocal number
-        endif
     endif
 endf
 command! -nargs=1 ChangeBuffer call s:changebuffer(<f-args>)
@@ -29,45 +40,49 @@ command! -nargs=1 ChangeBuffer call s:changebuffer(<f-args>)
 fun! s:closebuffertab() abort
     " バッファタブを閉じる関数
     " バッファリストの数をカウント
-    let l:buf_number = 0
-    for l:i in range(1, bufnr('$'))
-        if buflisted(l:i)
-            let l:buf_number += 1
-        endif
-    endfor
-    try
-        if winnr('$') == 1
-            " 単一ウィンドウの場合
-            if l:buf_number == 1
-                " バッファリストが１つの場合 quit
-                quit
-                return
-            else
-                call s:deletebuffer()
-                return
+    if tabpagenr('$') > 1
+        exe 'bd '.buffer_number('%')
+    else
+        let l:buf_number = 0
+        for l:i in range(1, bufnr('$'))
+            if buflisted(l:i)
+                let l:buf_number += 1
             endif
-        elseif winnr('$') > 1
-            " 複数ウィンドウの場合
-            if len(win_findbuf(bufnr('%'))) == 1 && &buflisted
-                " 異なるファイルを画面分割している場合
-                if l:buf_number == 1 || &buftype ==? 'quickfix'
-                    " バッファリストが１つ、または特定のバッファタイプの場合quit
+        endfor
+        try
+            if winnr('$') == 1
+                " 単一ウィンドウの場合
+                if l:buf_number == 1
+                    " バッファリストが１つの場合 quit
                     quit
                     return
                 else
                     call s:deletebuffer()
                     return
                 endif
-            else
-                " 同じファイルを画面分割している、またはバッファリストにないウィンドウの場合
-                quit
-                return
+            elseif winnr('$') > 1
+                " 複数ウィンドウの場合
+                if len(win_findbuf(bufnr('%'))) == 1 && &buflisted
+                    " 異なるファイルを画面分割している場合
+                    if l:buf_number == 1 || &buftype ==? 'quickfix'
+                        " バッファリストが１つ、または特定のバッファタイプの場合quit
+                        quit
+                        return
+                    else
+                        call s:deletebuffer()
+                        return
+                    endif
+                else
+                    " 同じファイルを画面分割している、またはバッファリストにないウィンドウの場合
+                    quit
+                    return
+                endif
             endif
-        endif
-    catch
-        echoerr 'CloseBufferTab: [error] "'.bufname('%').'" を閉じることができません。'
-        return
-    endtry
+        catch
+            echoerr 'CloseBufferTab: [error] "'.bufname('%').'" を閉じることができません。'
+            return
+        endtry
+    endif
 endf
 command! CloseBufferTab call s:closebuffertab()
 
@@ -87,6 +102,13 @@ fun! s:deletebuffer() abort
     catch
     endtry
 endf
+
+
+fun! s:newtabpage() abort
+    tabnew
+    call Ranger()
+endf
+command! NewTabPage call s:newtabpage()
 
 
 fun! Ranger() abort
