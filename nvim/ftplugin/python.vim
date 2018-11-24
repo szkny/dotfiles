@@ -169,7 +169,7 @@ command! -complete=customlist,s:CompletionPyformCommands -nargs=? Pyform call s:
 fun! s:pdb() abort
     " Pdbを起動する関数
     if &filetype ==# 'python'
-        call BeginTerm('python', '-m pdb', expand('%'))
+        call splitterm#open('python', '-m pdb', expand('%'))
     else
         echon 'Pdb: [error] invalid file type. this is "' . &filetype. '".'
     endif
