@@ -40,15 +40,19 @@ command! -nargs=1 ChangeBuffer call s:changebuffer(<f-args>)
 fun! s:closebuffertab() abort
     " バッファタブを閉じる関数
     " バッファリストの数をカウント
+    let l:buf_number = 0
+    for l:i in range(1, bufnr('$'))
+        if buflisted(l:i)
+            let l:buf_number += 1
+        endif
+    endfor
     if tabpagenr('$') > 1
-        exe 'bd '.buffer_number('%')
+        if l:buf_number == 1
+            tabclose
+        else
+            exe 'bd '.buffer_number('%')
+        endif
     else
-        let l:buf_number = 0
-        for l:i in range(1, bufnr('$'))
-            if buflisted(l:i)
-                let l:buf_number += 1
-            endif
-        endfor
         try
             if winnr('$') == 1
                 " 単一ウィンドウの場合
