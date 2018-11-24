@@ -20,6 +20,8 @@ nno <silent> <Right> :ChangeBuffer next<CR>
 nno <silent> <Left>  :ChangeBuffer previous<CR>
 nno <silent> +       :ResizeWindow +1<CR>
 nno <silent> -       :ResizeWindow -1<CR>
+nno <silent> <Up>    :ResizeWindow +1<CR>
+nno <silent> <Down>  :ResizeWindow -1<CR>
 nno <silent><Tab>    :NewTabPage<CR>
 
 " yank/delete/paste
