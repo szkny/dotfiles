@@ -50,7 +50,11 @@ fun! s:closebuffertab() abort
         if l:buf_number == 1
             tabclose
         else
-            exe 'bd '.buffer_number('%')
+            if &buflisted
+                exe 'bd '.buffer_number('%')
+            else
+                quit
+            endif
         endif
     else
         try
