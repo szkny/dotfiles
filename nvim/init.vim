@@ -350,6 +350,11 @@ aug FixWhitespace
     au FileType text if exists(':FixWhitespace') | FixWhitespace
 aug END
 
+" javascript
+aug vimrc_js
+    au BufNewFile,BufRead *.tsx setfiletype javascript
+aug END
+
 "*****************************************************************************
 "" Include user's local vim config
 "*****************************************************************************
