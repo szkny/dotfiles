@@ -81,7 +81,7 @@ let g:ipython_startup_command = [
             \'import warnings',
             \'warnings.filterwarnings(action="ignore",'
             \.'module="sklearn",message="^internal gelsd")']
-let g:ipython_window_width = 8
+let g:ipython_window_width = 10
 "" jupyter-vim
 let g:jupyter_auto_connect = 1
 let g:jupyter_mapkeys = 0
