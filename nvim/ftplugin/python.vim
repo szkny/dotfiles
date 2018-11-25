@@ -17,14 +17,9 @@ endif
 
 
 " mapping
-if $TERM_PROGRAM ==# 'iTerm.app'
-    nno <silent> ✠      :Ipython<CR>
-    vno <silent> ✠      :VIpython<CR>
-else
-    nno <silent> <C-CR> :Ipython<CR>
-    vno <silent> <C-CR> :VIpython<CR>
-endif
-nno <silent> <leader>pd :Ipdb<CR>
+nno <silent> <leader><CR> :Ipython<CR>
+vno <silent> <leader><CR> :VIpython<CR>
+nno <silent> <leader>pd   :Ipdb<CR>
 
 nmap <silent> <leader>n <Plug>(ipdbdebug_next)
 nmap <silent> <leader>u <Plug>(ipdbdebug_until)
