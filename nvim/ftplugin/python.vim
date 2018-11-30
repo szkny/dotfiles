@@ -75,12 +75,13 @@ let g:ipython_startup_options = [
             \'--no-banner']
 let g:ipython_startup_command = [
             \'from pylab import *',
+            \'ion()',
             \'import pandas as pd',
             \'pd.options.display.max_rows = 10',
             \'pd.options.display.max_columns = 10',
             \'import warnings',
             \'warnings.filterwarnings(action="ignore",'
-            \.'module="sklearn",message="^internal gelsd")']
+            \.' module="sklearn", message="^internal gelsd")']
 let g:ipython_window_width = 10
 "" jupyter-vim
 let g:jupyter_auto_connect = 1
