@@ -2,10 +2,10 @@ scriptencoding utf-8
 " Add the dein installation directory into runtimepath
 set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-if dein#load_state('~/.cache/dein')
- call dein#begin('~/.cache/dein')
+if dein#load_state('~/.vim/dein')
+ call dein#begin('~/.vim/dein')
 
- call dein#add('~/.cache/dein')
+ call dein#add('~/.vim/dein')
  call dein#add('Shougo/deoplete.nvim')
 	call dein#add('Shougo/neosnippet.vim')
 	call dein#add('Shougo/neosnippet-snippets')
