@@ -144,11 +144,11 @@ fun! s:make(...) abort
     let l:command = 'make '.join(a:000)
     if findfile('GNUmakefile',l:current_dir) !=# ''
        \|| findfile('Makefile',l:current_dir) !=# ''
-        call splitterm#open(l:command)
+        call term_start(l:command)
     elseif findfile('GNUmakefile',l:current_dir.'/../') !=# ''
            \|| findfile('Makefile',l:current_dir.'/../') !=# ''
         let l:command = 'cd ../ && '.l:command
-        call splitterm#open(l:command)
+        call term_start(l:command)
     else
         echon 'not found: "GNUmakefile" or "Makefile"'
     endif
@@ -173,14 +173,14 @@ fun! s:cmake(...) abort
             call mkdir(l:builddir)
         endif
         let l:command = 'cd '.l:builddir.' && '.l:command
-        call splitterm#open(l:command)
+        call term_start(l:command)
     elseif findfile(l:cmakelists_txt,l:current_dir.'/../') !=# ''
         let l:builddir = '../'.l:builddir
         if finddir(l:builddir,l:current_dir) ==# ''
             call mkdir(l:builddir)
         endif
         let l:command = 'cd '.l:builddir.' && '.l:command
-        call splitterm#open(l:command)
+        call term_start(l:command)
     else
         echon 'not found: '.l:cmakelists_txt
     endif
@@ -241,7 +241,7 @@ fun! s:sql() abort
         if &filetype ==# 'sql' || &filetype ==# 'mysql'
             let l:args = ' < ' . expand('%')
         endif
-        call splitterm#open(l:command, l:args)
+        call term_start(l:command.' '.l:args)
     else
         echon 'SQL: [error] '.l:command.' command not found.'
     endif
@@ -254,7 +254,7 @@ fun! s:sqlplot(...) abort
     if (&filetype ==# 'sql' || &filetype ==# 'mysql') && executable('sqlplot')
         let l:command = 'sqlplot'
         let l:args = ' ' . expand('%')
-        call splitterm#open(l:command, l:args)
+        call term_start(l:command.' '.l:args)
     endif
 endf
 command! -nargs=* SQLplot call s:sqlplot(<f-args>)
@@ -285,7 +285,7 @@ fun! s:gnuplot() abort
     if expand('%:e') ==# 'gp' || expand('%:e') ==# 'gpi'
         let l:command = 'gnuplot'
         let l:args = ' ' . expand('%')
-        call splitterm#open(l:command, l:args)
+        call term_start(l:command.' '.l:args)
         startinsert
     else
         echon 'Gnuplot: [error] invalid file type. this is "' . &filetype. '".'
@@ -420,7 +420,7 @@ fun! s:w3m(...) abort range
         else
             let l:url = s:googlesearchurl(a:000)
         endif
-        call splitterm#open(l:cmd, l:url)
+        call term_start(l:cmd.' '.l:url)
         startinsert
     else
         echon 'W3m: [error] w3m command not found.'
@@ -468,7 +468,7 @@ fun! s:trans(...) abort range
         endif
         let l:text = substitute(l:text, '"', '\\"', 'g')
         if len(l:text) < 900
-            call splitterm#open('trans', '{en=ja}', '"'.l:text.'"')
+            call term_start('trans {en=ja} '.'"'.l:text.'"')
         else
             echo 'Trans: [error] text too long.'
         endif
@@ -496,7 +496,7 @@ fun! s:transja(...) abort range
         endif
         let l:text = substitute(l:text, '"', '\\"', 'g')
         if len(l:text) < 900
-            call splitterm#open('trans', '{ja=en}', '"'.l:text.'"')
+            call term_start('trans {ja=en} '.'"'.l:text.'"')
         else
             echo 'Trans: [error] text too long.'
         endif
@@ -518,7 +518,7 @@ fun! s:install_trans() abort
         echon 'Trans: [error] trans command not found.'
         return
     endif
-    silent call splitterm#open('echo "trans command not found. installing ..."'
+    silent call term_start('echo "trans command not found. installing ..."'
                              \.' && '.l:install_cmd
                              \.' && echo " Success !!"'
                              \.' && echo " you can do \":Trans [WORD]\"."')
@@ -579,7 +579,7 @@ fun! s:git(...) abort
         let l:cmd = 'git '.join(a:000)
     endif
     let l:script_winid = win_getid()
-    let s:git_wininfo = splitterm#open(l:cmd)
+    let s:git_wininfo = term_start(l:cmd)
     call win_gotoid(l:script_winid)
 endf
 fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)
