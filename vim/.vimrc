@@ -4,7 +4,8 @@ filetype on
 filetype plugin on
 
 syntax on
-" set termguicolors " for iTerm2
+set termguicolors " for iTerm2
+set background=dark
 
 set hlsearch
 " set incsearch

@@ -22,12 +22,17 @@ if dein#load_state('~/.vim/dein')
     call dein#add('ap/vim-buftabline')
 	call dein#add('vim-airline/vim-airline')
 	call dein#add('vim-airline/vim-airline-themes')
+	call dein#add('w0rp/ale')
+    call dein#add('tomasr/molokai')
+    call dein#add('francoiscabrol/ranger.vim')
+    call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
+    call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 	" for swift
 	call dein#add('keith/swift.vim')
 	" for python
 	call dein#add('hynek/vim-python-pep8-indent')
 	call dein#add('Townk/vim-autoclose')
-	call dein#add('vim-scripts/Flake8-vim')
+	" call dein#add('vim-scripts/Flake8-vim')
 	" for applescript
 	call dein#add('vim-scripts/applescript.vim')
 

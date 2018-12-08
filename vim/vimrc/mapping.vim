@@ -1,50 +1,169 @@
+" scriptencoding utf-8
+" "Key-mappings
+"
+" let g:mapleader = "\<Space>"
+"
+" nno <silent>> :bnext<CR>
+" nno <silent>< :bprevious<CR>
+" nno <silent>+ :res +1<CR>
+" nno <silent>- :res -1<CR>
+"
+" ino <C-h> <Left>
+" ino <C-j> <Down>
+" ino <C-k> <Up>
+" ino <C-l> <Right>
+"
+" nno <silent>j gj
+" nno <silent>k gk
+" nno <S-h>   ^
+" nno <S-j>   10j
+" nno <S-k>   10k
+" nno <S-l>   $
+"
+" nno x "_x
+" vno x "_x
+"
+" " noremap <C-w> <C-w>w
+"
+" nno <silent>q :q<CR>
+" nno <silent>Q :qall<CR>
+" " nno <Enter> o<ESC>
+" ino {<Enter> {}<Left><CR><Up><ESC>$i<Right>
+" " ino {<Enter> {}<Left><CR><ESC>O
+" nno <silent>e     :e!<CR>
+" nno <silent>sh    :!:<CR>
+" nno <silent>sc    :source ~/.vimrc<CR>
+"
+" ino … <ESC>:AppendChar<Space>;<CR>i<Right>
+" nno …      :AppendChar<Space>;<CR>
+" nno <silent>_     :TComment<CR>
+" vno <silent>_     :TComment<CR>
+" nno <silent><C-n> :NERDTreeToggle<CR>
+" nno <silent><C-o> :Unite outline<CR>
+" nno <silent><C-p> :PyPlot<CR>
+" nno <silent>ma    :Make all<CR>
+" nno <silent>mr    :Make build run<CR>
+" nno <silent><C-g> :GnuPlot %<CR>
+" nno <leader>r     :<C-U>RangerChooser<CR>
+" nno <leader>j     :!chrome_scroll next<CR><CR>
+" nno <leader>k     :!chrome_scroll previous<CR><CR>
+" nno <silent>?     :call SetHlsearch()<CR>
 scriptencoding utf-8
-"Key-mappings
-
+"*****************************************************************************
+"" Key-Mappings
+"*****************************************************************************
 let g:mapleader = "\<Space>"
 
-nno <silent>> :bnext<CR>
-nno <silent>< :bprevious<CR>
-nno <silent>+ :res +1<CR>
-nno <silent>- :res -1<CR>
+" general
+tno <silent> <C-[>   <C-\><C-n>
+ino <silent> <C-s>   <ESC>:w<CR>a
+nno <silent> <C-s>   :w<CR>
+nno <silent> q       :CloseBufferTab<CR>
+nno <silent> <S-q>   :qall<CR>
+tno <silent> <C-w>   <C-\><C-n><C-w>
+ino <silent> <C-w>   <ESC><C-w>
 
-ino <C-h> <Left>
-ino <C-j> <Down>
-ino <C-k> <Up>
-ino <C-l> <Right>
+" tab/window
+nno <silent> >       :ChangeBuffer next<CR>
+nno <silent> <       :ChangeBuffer previous<CR>
+nno <silent> <Right> :ChangeBuffer next<CR>
+nno <silent> <Left>  :ChangeBuffer previous<CR>
+nno <silent> +       :ResizeWindow +1<CR>
+nno <silent> -       :ResizeWindow -1<CR>
+nno <silent> <Up>    :ResizeWindow +1<CR>
+nno <silent> <Down>  :ResizeWindow -1<CR>
+nno <silent><Tab>    :NewTabPage<CR>
 
-nno <silent>j gj
-nno <silent>k gk
-nno <S-h>   ^
-nno <S-j>   10j
-nno <S-k>   10k
-nno <S-l>   $
+" yank/delete/paste
+nno <silent> x       "_x
+vno <silent> x       "_x
+nno <silent> D       "_D
+nno <silent> de      "_de
 
-nno x "_x
-vno x "_x
+" cursor move
+nno <silent> j       gj
+nno <silent> k       gk
+ino <silent> <C-h>   <Left>
+ino <silent> <C-l>   <Right>
+nno <silent> <S-h>   10h
+nno <silent> <S-j>   5gj
+nno <silent> <S-k>   5gk
+nno <silent> <S-l>   10l
+vno <silent> <S-h>   10h
+vno <silent> <S-j>   5gj
+vno <silent> <S-k>   5gk
+vno <silent> <S-l>   10l
+if has('mac')
+    ino <silent> ˙ <Left>
+    ino <silent> ∆ <Down>
+    ino <silent> ˚ <Up>
+    ino <silent> ¬ <Right>
+    tno <silent> ˙ <Left>
+    tno <silent> ∆ <Down>
+    tno <silent> ˚ <Up>
+    tno <silent> ¬ <Right>
+elseif system('uname') ==# "Linux\n"
+    ino <silent> <A-h> <Left>
+    ino <silent> <A-j> <Down>
+    ino <silent> <A-k> <Up>
+    ino <silent> <A-l> <Right>
+    tno <silent> <A-h> <Left>
+    tno <silent> <A-j> <Down>
+    tno <silent> <A-k> <Up>
+    tno <silent> <A-l> <Right>
+endif
 
-" noremap <C-w> <C-w>w
+" for IME
+nno <silent> あ      a
+nno <silent> い      i
+nno <silent> う      u
+nno <silent> お      o
+nno <silent> ｒ      r
+nno <silent> ｊ      gj
+nno <silent> ｋ      gj
+nno <silent> ｌ      l
+nno <silent> ｈ      h
+nno <silent> ｐ      p
+nno <silent> ｄｄ    dd
+nno <silent> ｙｙ    yy
 
-nno <silent>q :q<CR>
-nno <silent>Q :qall<CR>
-" nno <Enter> o<ESC>
-ino {<Enter> {}<Left><CR><Up><ESC>$i<Right>
-" ino {<Enter> {}<Left><CR><ESC>O
-nno <silent>e     :e!<CR>
-nno <silent>sh    :!:<CR>
-nno <silent>sc    :source ~/.vimrc<CR>
+"" Mapping for Plugins
+if has('mac')
+    nno <silent> _     :TComment<CR>
+    vno <silent> _     :TComment<CR>
+else
+    nno <silent> \     :TComment<CR>
+    vno <silent> \     :TComment<CR>
+endif
+nno <silent> <C-b> :Buffers<CR>
+nno <silent> <C-f> :Find<CR>
+nno <silent> <C-g> :call AgWord()<CR>
+vno <silent> <C-g> :call VAgWord()<CR>
+nno <silent> <C-h> :call OpenRanger()<CR>
+nno <silent> <C-n> :NERDTreeToggle<CR>
+nno <silent> <C-t> :TagbarToggle<CR>
+nno <silent> [a    :ALENextWrap<CR>
+nno <silent> ]a    :ALEPreviousWrap<CR>
+" NOTE: プラグインのマッピングはnoremapではなくmapにすること
+imap <C-k>       <Plug>(neosnippet_expand_or_jump)
+smap <C-k>       <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>       <Plug>(neosnippet_expand_target)
+smap <expr><TAB> neosnippet#expandable_or_jumpable()?
+                 \"\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-ino … <ESC>:AppendChar<Space>;<CR>i<Right>
-nno …      :AppendChar<Space>;<CR>
-nno <silent>_     :TComment<CR>
-vno <silent>_     :TComment<CR>
-nno <silent><C-n> :NERDTreeToggle<CR>
-nno <silent><C-o> :Unite outline<CR>
-nno <silent><C-p> :PyPlot<CR>
-nno <silent>ma    :Make all<CR>
-nno <silent>mr    :Make build run<CR>
-nno <silent><C-g> :GnuPlot %<CR>
-nno <leader>r     :<C-U>RangerChooser<CR>
-nno <leader>j     :!chrome_scroll next<CR><CR>
-nno <leader>k     :!chrome_scroll previous<CR><CR>
-nno <silent>?     :call SetHlsearch()<CR>
+"" mapping for My Commands
+if has('mac')
+    ino <silent> …       <ESC>:Appendchar ;<CR>a
+    no  <silent> …            :Appendchar ;<CR>
+else
+    ino <silent> <A-;>    <ESC>:Appendchar ;<CR>a
+    no  <silent> <A-;>         :Appendchar ;<CR>
+endif
+nno <silent> ?          :SetHlSearch<CR>
+nno <silent> t          :SplitTerm<CR>i
+nno <silent> <leader>ma :Make<CR>
+nno <silent> <leader>mr :Make build run<CR>
+nno <silent> <leader>cm :CMake<CR>
+nno <silent> <leader>cr :CMake run<CR>
+nno <silent> <leader>sq :SQL<CR>i
+vno <silent> <leader>t  :Trans<CR>

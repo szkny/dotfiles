@@ -62,6 +62,7 @@ let g:jedi#completions_enabled = 1
 
 
 "" ale (Asynchronous Lint Engine)
+let g:ale_linters_explicit = 1
 let g:ale_sign_column_always = 0
 let g:ale_change_sign_column_color = 0
 let g:ale_completion_enabled = 1
@@ -74,8 +75,6 @@ elseif system('uname') ==# "Linux\n"
     let g:ale_sign_error = '✗'
     let g:ale_sign_warning = '⚠'
 endif
-" let g:ale_sign_error = '⤫'
-" let g:ale_sign_warning = '!!'
 let g:ale_set_highlights = 1
 let g:ale_c_clang_executable = 'clang++'
 let g:ale_c_clang_options = '-std=c++11 -Wall'

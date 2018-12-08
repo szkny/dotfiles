@@ -61,6 +61,11 @@ aug END
 
 
 " plugin setting
+"" LanguageClient-neovim
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['pyls'],
+    \ }
+let g:LanguageClient_diagnosticsEnable = 0
 "" ALE (Asynchronous Lint Engine)
 let b:ale_linters = ['flake8']
 "" polyglot (Syntax highlight) Default highlight is better than polyglot

@@ -77,6 +77,11 @@ Plug 'vim-scripts/c.vim',              {'for': ['c', 'cpp']}
 Plug 'davidhalter/jedi-vim',           {'for': 'python'}
 Plug 'zchee/deoplete-jedi',            {'for': 'python'}
 Plug 'tweekmonster/braceless.vim',     {'for': 'python'}
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'for': 'python',
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 Plug 'szkny/Ipython',                  {'for': 'python'}
 Plug 'szkny/IpdbDebugger',             {'for': 'python'}
 " Plug 'szkny/jupyter-vim',              {'for': 'python'}
