@@ -101,6 +101,7 @@ Plug 'kannokanno/previm',              {'for': 'markdown'}
 Plug 'godlygeek/tabular',              {'for': 'markdown'}
 Plug 'plasticboy/vim-markdown',        {'for': 'markdown'}
 Plug 'yaasita/ore_markdown',           {'for': 'markdown'}
+Plug 'vim-scripts/applescript.vim',    {'for': 'applescript'}
 
 " if has('mac')
 "     " icon
