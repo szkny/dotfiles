@@ -4,7 +4,9 @@ filetype on
 filetype plugin on
 
 syntax on
-set termguicolors " for iTerm2
+if has('mac')
+    set termguicolors " for iTerm2
+endif
 set background=dark
 
 set hlsearch
