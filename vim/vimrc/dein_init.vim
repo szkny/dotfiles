@@ -25,6 +25,7 @@ if dein#load_state('~/.vim/dein')
 	call dein#add('w0rp/ale')
     call dein#add('tomasr/molokai')
     call dein#add('francoiscabrol/ranger.vim')
+    call dein#add('majutsushi/tagbar')
     call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
     call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 	" for swift
