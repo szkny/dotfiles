@@ -38,6 +38,7 @@ set wildmenu
 " hightlight color
 " hi matchparen ctermbg=236
 " set list
+set fillchars=vert:\ 
 " set listchars=tab:¦\ 
 " hi SpecialKey guifg=#555555
 " hi Visual guifg=#000000 guibg=#cceeff
