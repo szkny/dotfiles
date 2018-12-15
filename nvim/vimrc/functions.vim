@@ -624,9 +624,6 @@ fun! s:git(...) abort
             let l:cmd = 'git add -A && git commit -m "`date`" && git push -u'
         endif
         call s:git_autocmd()
-    elseif a:1 ==# 'pull'
-        let l:cmd = 'git pull'
-        call s:git_autocmd()
     elseif a:1 ==# 'fpull'
         let l:cmd = 'git reset --hard && git pull'
         call s:git_autocmd()
@@ -645,7 +642,7 @@ fun! s:git(...) abort
     call win_gotoid(l:script_winid)
 endf
 fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)
-    return filter(['acp', 'pull', 'fpull',  'diff', 'reset', 'status', 'blame', 'show'], printf('v:val =~ "^%s"', a:ArgLead))
+    return filter(['acp', 'pull', 'fpull',  'diff', 'reset', 'status', 'blame', 'show', 'push'], printf('v:val =~ "^%s"', a:ArgLead))
 endf
 command! -complete=customlist,s:CompletionGitCommands -nargs=* Git call s:git(<f-args>)
 
