@@ -20,8 +20,6 @@ vno <silent> >       >gv
 vno <silent> <       <gv
 
 " for tab/window
-nno <silent> >       :ChangeBuffer next<CR>
-nno <silent> <       :ChangeBuffer previous<CR>
 nno <silent> <Right> :ChangeBuffer next<CR>
 nno <silent> <Left>  :ChangeBuffer previous<CR>
 nno <silent> +       :ResizeWindow +1<CR>
