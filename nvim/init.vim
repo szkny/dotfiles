@@ -228,6 +228,7 @@ set scrolloff=0
 "" Status bar
 set laststatus=2
 set showtabline=1
+set noshowmode
 
 "" Use modeline overrides
 set modeline
