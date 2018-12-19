@@ -15,7 +15,11 @@ nno <silent> <S-q>   :qall<CR>
 tno <silent> <C-w>   <C-\><C-n><C-w>
 ino <silent> <C-w>   <ESC><C-w>
 
-" tab/window
+" for edit
+vno <silent> >       >gv
+vno <silent> <       <gv
+
+" for tab/window
 nno <silent> >       :ChangeBuffer next<CR>
 nno <silent> <       :ChangeBuffer previous<CR>
 nno <silent> <Right> :ChangeBuffer next<CR>
@@ -26,13 +30,13 @@ nno <silent> <Up>    :ResizeWindow +1<CR>
 nno <silent> <Down>  :ResizeWindow -1<CR>
 nno <silent><Tab>    :NewTabPage<CR>
 
-" yank/delete/paste
+" for yank/delete/paste
 nno <silent> x       "_x
 vno <silent> x       "_x
 nno <silent> D       "_D
 nno <silent> de      "_de
 
-" cursor move
+" for cursor move
 nno <silent> j       gj
 nno <silent> k       gk
 ino <silent> <C-h>   <Left>
@@ -79,7 +83,7 @@ nno <silent> ｐ      p
 nno <silent> ｄｄ    dd
 nno <silent> ｙｙ    yy
 
-"" Mapping for Plugins
+"" for Plugins
 if has('mac')
     nno <silent> _     :TComment<CR>
     vno <silent> _     :TComment<CR>
@@ -103,7 +107,7 @@ xmap <C-k>       <Plug>(neosnippet_expand_target)
 smap <expr><TAB> neosnippet#expandable_or_jumpable()?
                  \"\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-"" mapping for My Commands
+"" for My Commands
 if has('mac')
     ino <silent> …       <ESC>:Appendchar ;<CR>a
     no  <silent> …            :Appendchar ;<CR>
