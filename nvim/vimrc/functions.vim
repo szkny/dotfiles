@@ -78,9 +78,9 @@ fun! s:closebuffertab() abort
                         return
                     else
                         call s:deletebuffer()
-                        if l:buf_number == 2
-                            quit
-                        endif
+                        " if l:buf_number == 2
+                        "     quit
+                        " endif
                         return
                     endif
                 else
