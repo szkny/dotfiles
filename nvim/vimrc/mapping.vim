@@ -6,6 +6,7 @@ let g:mapleader = "\<Space>"
 
 " general
 ino <silent> <C-j>   <ESC>
+vno <silent> <C-j>   <ESC>
 tno <silent> <C-j>   <C-\><C-n>
 tno <silent> <C-[>   <C-\><C-n>
 ino <silent> <C-s>   <ESC>:w<CR>a
