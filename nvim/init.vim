@@ -86,6 +86,9 @@ Plug 'szkny/Ipython',                  {'for': 'python'}
 Plug 'szkny/IpdbDebugger',             {'for': 'python'}
 " Plug 'szkny/jupyter-vim',              {'for': 'python'}
 
+" golang
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+
 " nyaovim
 if exists('g:nyaovim_version')
     Plug 'rhysd/nyaovim-mini-browser'
