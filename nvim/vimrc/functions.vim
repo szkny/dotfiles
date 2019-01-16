@@ -65,7 +65,8 @@ fun! s:closebuffertab() abort
                     quit
                     return
                 else
-                    call s:deletebuffer()
+                    " call s:deletebuffer()
+                    bdelete!
                     return
                 endif
             elseif winnr('$') > 1
@@ -77,10 +78,8 @@ fun! s:closebuffertab() abort
                         quit
                         return
                     else
-                        call s:deletebuffer()
-                        " if l:buf_number == 2
-                        "     quit
-                        " endif
+                        " call s:deletebuffer()
+                        bdelete!
                         return
                     endif
                 else
