@@ -89,6 +89,8 @@ else
     nno <silent> \     :TComment<CR>
     vno <silent> \     :TComment<CR>
 endif
+nno <silent> <C-/> :TComment<CR>
+vno <silent> <C-/> :TComment<CR>
 nno <silent> <C-b> :Buffers<CR>
 nno <silent> <C-f> :Find<CR>
 nno <silent> <C-g> :call AgWord()<CR>
