@@ -88,7 +88,10 @@ Plug 'szkny/IpdbDebugger',             {'for': 'python'}
 " Plug 'szkny/jupyter-vim',              {'for': 'python'}
 
 " golang
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'fatih/vim-go',                   {'do': ':GoInstallBinaries'}
+
+" julia
+Plug 'JuliaEditorSupport/julia-vim',   {'for': 'julia'}
 
 " nyaovim
 if exists('g:nyaovim_version')
