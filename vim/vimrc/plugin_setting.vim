@@ -53,16 +53,16 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#113344 ctermbg=gray
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#223344 ctermbg=darkgray
 " vim-airline
-let g:airline_theme = 'powerlineish'
-let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
-let g:airline_skip_empty_sections = 1
-let g:airline#extensions#virtualenv#enabled = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
+" let g:airline_theme = 'powerlineish'
+" let g:airline#extensions#syntastic#enabled = 1
+" let g:airline#extensions#branch#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tagbar#enabled = 1
+" let g:airline_skip_empty_sections = 1
+" let g:airline#extensions#virtualenv#enabled = 1
+" if !exists('g:airline_symbols')
+"     let g:airline_symbols = {}
+" endif
 " if !exists('g:airline_powerline_fonts')
 "     let g:airline#extensions#tabline#left_sep = ' '
 "     let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -95,3 +95,33 @@ endif
 "     let g:airline_symbols.linenr = ''
 " endif
 "
+let g:airline_theme = 'kalisi'
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_splits = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#wordcount#enabled = 0
+let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
+let g:airline_section_b = '%{airline#extensions#ale#get_error()}  '
+" let g:airline_section_b.= '%{airline#extensions#ale#get_warning()}'
+let g:airline_section_c = '%t'
+let g:airline_section_x = 'LOW:%3l/%L  COL:%3c'
+let g:airline_section_y = '%{&filetype}'
+if &fileformat ==# 'unix'
+    let g:airline_section_z = '%{&fileencodings}, LN'
+else
+    let g:airline_section_z = '%{&fileencodings}, %{&fileformat}'
+endif
+let g:airline#extensions#ale#error_symbol = g:ale_sign_error.'  '
+let g:airline#extensions#ale#warning_symbol = g:ale_sign_warning.'  '
+let g:airline#extensions#default#section_truncate_width = {}
+let g:airline#extensions#whitespace#enabled = 1
+"" vim-airline separator
+let g:airline#extensions#tabline#right_sep = ' '
+let g:airline#extensions#tabline#left_sep  = ' '
+let g:airline#extensions#tabline#right_alt_sep = '|'
+let g:airline#extensions#tabline#left_alt_sep  = '|'
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
