@@ -108,9 +108,9 @@ let g:airline_section_c = '%t'
 let g:airline_section_x = 'LOW:%3l/%L  COL:%3c'
 let g:airline_section_y = '%{&filetype}'
 if &fileformat ==# 'unix'
-    let g:airline_section_z = '%{&fileencodings}, LN'
+    let g:airline_section_z = '%{&fileencoding}, LN'
 else
-    let g:airline_section_z = '%{&fileencodings}, %{&fileformat}'
+    let g:airline_section_z = '%{&fileencoding}, %{&fileformat}'
 endif
 let g:airline#extensions#ale#error_symbol = g:ale_sign_error.'  '
 let g:airline#extensions#ale#warning_symbol = g:ale_sign_warning.'  '
