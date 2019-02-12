@@ -39,10 +39,6 @@ let g:NERDTreeWinSize = 15
 let g:PyFlakeOnWrite = 1
 let g:PyFlakeCheckers = 'mccabe,pyflakes'
 let g:PyFlakeDefaultComplexity=10
-" syntastic
-let g:syntastic_python_checkers = ['pyflakes']
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = '-std=c++14 -stdlib=libc++ -I/opt/local/include -I/Users/suzukisohei/Library/root_6_06/include'
 " indent guide
 " let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
