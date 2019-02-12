@@ -24,9 +24,11 @@ ln -sf ~/dotfiles/python_syntax_checker/yapf ~/.config
 # # vim (8.0.1283)
 # if [ -L ~/.vimrc ]; then rm ~/.vimrc;fi
 # if [ -L ~/.vim/vimrc ]; then rm ~/.vim/vimrc;fi
+# if [ -L ~/.vim/ftplugin ]; then rm ~/.vim/ftplugin;fi
 # mkdir -p ~/.vim
 # ln -sf ~/dotfiles/vim/_vimrc ~/.vimrc
 # ln -sf ~/dotfiles/vim/vimrc ~/.vim
+# ln -sf ~/dotfiles/vim/ftplugin ~/.vim
 
 # # tmux
 # if [ -L ~/.tmux.conf ]; then rm ~/.tmux.conf;fi
