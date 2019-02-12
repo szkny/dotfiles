@@ -17,6 +17,21 @@ if executable('rg')
                 \.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
 
+" ALE
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
+" let g:ale_linters_explicit = 1
+let g:ale_sign_column_always = 0
+let g:ale_change_sign_column_color = 0
+let g:ale_completion_enabled = 1
+let g:ale_set_highlights = 1
+let g:ale_echo_msg_format = '[%linter%]%code: %%s'
+let g:ale_statusline_format = [g:ale_sign_error.'%d', g:ale_sign_warning.'%d', '⬥ ok']
+let g:ale_echo_msg_error_str = g:ale_sign_error
+let g:ale_echo_msg_warning_str = g:ale_sign_warning
+hi ALEErrorSign   gui=bold guifg=#ff0000 guibg=#222222
+hi ALEWarningSign gui=None guifg=#ffff00 guibg=#222222
+
 " NERDTree
 let g:NERDTreeWinSize = 15
 " PyFlake
@@ -48,35 +63,35 @@ let g:airline#extensions#virtualenv#enabled = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-if !exists('g:airline_powerline_fonts')
-    let g:airline#extensions#tabline#left_sep = ' '
-    let g:airline#extensions#tabline#left_alt_sep = '|'
-    " let g:airline_left_sep          = '▶'
-    let g:airline_left_sep          = ''
-    let g:airline_left_alt_sep      = '»'
-    " let g:airline_right_sep         = '◀'
-    let g:airline_right_sep         = ''
-    let g:airline_right_alt_sep     = '«'
-    let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
-    let g:airline#extensions#readonly#symbol   = '⊘'
-    let g:airline#extensions#linecolumn#prefix = '¶'
-    let g:airline#extensions#paste#symbol      = 'ρ'
-    let g:airline_symbols.linenr    = '␊'
-    let g:airline_symbols.branch    = '⎇'
-    let g:airline_symbols.paste     = 'ρ'
-    let g:airline_symbols.paste     = 'Þ'
-    let g:airline_symbols.paste     = '∥'
-    let g:airline_symbols.whitespace = 'Ξ'
-else
-    let g:airline#extensions#tabline#left_sep = ''
-    let g:airline#extensions#tabline#left_alt_sep = ''
-    " powerline symbols
-    let g:airline_left_sep = ''
-    let g:airline_left_alt_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_right_alt_sep = ''
-    let g:airline_symbols.branch = ''
-    let g:airline_symbols.readonly = ''
-    let g:airline_symbols.linenr = ''
-endif
-
+" if !exists('g:airline_powerline_fonts')
+"     let g:airline#extensions#tabline#left_sep = ' '
+"     let g:airline#extensions#tabline#left_alt_sep = '|'
+"     let g:airline_left_sep          = '▶'
+"     " let g:airline_left_sep          = ''
+"     let g:airline_left_alt_sep      = '»'
+"     let g:airline_right_sep         = '◀'
+"     " let g:airline_right_sep         = ''
+"     let g:airline_right_alt_sep     = '«'
+"     let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
+"     let g:airline#extensions#readonly#symbol   = '⊘'
+"     let g:airline#extensions#linecolumn#prefix = '¶'
+"     let g:airline#extensions#paste#symbol      = 'ρ'
+"     let g:airline_symbols.linenr    = '␊'
+"     let g:airline_symbols.branch    = '⎇'
+"     let g:airline_symbols.paste     = 'ρ'
+"     let g:airline_symbols.paste     = 'Þ'
+"     let g:airline_symbols.paste     = '∥'
+"     let g:airline_symbols.whitespace = 'Ξ'
+" else
+"     let g:airline#extensions#tabline#left_sep = ''
+"     let g:airline#extensions#tabline#left_alt_sep = ''
+"     " powerline symbols
+"     let g:airline_left_sep = ''
+"     let g:airline_left_alt_sep = ''
+"     let g:airline_right_sep = ''
+"     let g:airline_right_alt_sep = ''
+"     let g:airline_symbols.branch = ''
+"     let g:airline_symbols.readonly = ''
+"     let g:airline_symbols.linenr = ''
+" endif
+"
