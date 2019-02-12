@@ -36,6 +36,9 @@ set path+=**
 set wildmenu
 set showtabline=1
 
+set guicursor=a:blinkon0
+set scrolloff=3
+
 " hightlight color
 " hi matchparen ctermbg=236
 " set list
@@ -43,22 +46,24 @@ set fillchars=vert:\
 " set listchars=tab:¦\ 
 " hi SpecialKey guifg=#555555
 " hi Visual guifg=#000000 guibg=#cceeff
-hi matchparen ctermbg=236
-hi Normal ctermbg=NONE guibg=NONE
+" hi matchparen ctermbg=236
+" hi Normal ctermbg=NONE guibg=NONE
 " hi NonText ctermbg=NONE guibg=NONE
 " hi SpecialKey ctermbg=NONE guibg=NONE
 " hi EndOfBuffer ctermbg=NONE guibg=NONE
-hi SpecialKey guifg=#555555
-hi Visual guifg=#000000 guibg=#cceeff
-hi LineNr guifg=#aabbcc guibg=#204056
-hi VertSplit guifg=#10202b guibg=#aaaaaa
+" hi SpecialKey guifg=#555555
+" hi Visual guifg=#000000 guibg=#cceeff
+" hi LineNr guifg=#aabbcc guibg=#204056
+" hi VertSplit guifg=#10202b guibg=#aaaaaa
 " hi CursorLine gui=underline
-hi CursorLine guibg=#0c1820
+" hi CursorLine guibg=#0c1820
 " hi CursorColumn guibg=#0c1820
-hi clear Cursor
-hi Cursor gui=reverse
+" hi clear Cursor
+" hi Cursor gui=reverse
 " hi clear Visual
-hi Visual gui=reverse
+" hi Visual gui=reverse
+hi EndOfBuffer guifg=bg
+hi VertSplit guibg=#222222
 
 " setting of python for neovim
 let g:python2_host_prog = '~/.pyenv/shims/python'
