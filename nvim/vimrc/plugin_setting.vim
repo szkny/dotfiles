@@ -164,6 +164,7 @@ let g:gitgutter_async = 1
 
 
 "" ranger
+let g:ranger_map_keys = 0
 let g:NERDTreeHijackNetrw = 0  " add this line if you use NERDTree
 aug ReplaceNetrwByRangerVim
     " open ranger when vim open a director
