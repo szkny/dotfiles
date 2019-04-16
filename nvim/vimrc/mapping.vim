@@ -11,7 +11,6 @@ nno <silent> <C-s>     :w<CR>
 " nno <silent> q         :CloseBufferTab<CR>
 nno <silent> q         :q<CR>
 nno <silent> <S-q>     :qall<CR>
-nno <silent> <leader>q :tabclose<CR>
 tno <silent> <C-w>     <C-\><C-n><C-w>
 ino <silent> <C-w>     <ESC><C-w>
 
