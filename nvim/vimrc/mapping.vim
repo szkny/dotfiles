@@ -5,13 +5,15 @@ scriptencoding utf-8
 let g:mapleader = "\<Space>"
 
 " general
-tno <silent> <C-[>   <C-\><C-n>
-ino <silent> <C-s>   <ESC>:w<CR>a
-nno <silent> <C-s>   :w<CR>
-nno <silent> q       :CloseBufferTab<CR>
-nno <silent> <S-q>   :qall<CR>
-tno <silent> <C-w>   <C-\><C-n><C-w>
-ino <silent> <C-w>   <ESC><C-w>
+tno <silent> <C-[>     <C-\><C-n>
+ino <silent> <C-s>     <ESC>:w<CR>a
+nno <silent> <C-s>     :w<CR>
+" nno <silent> q         :CloseBufferTab<CR>
+nno <silent> q         :q<CR>
+nno <silent> <S-q>     :qall<CR>
+nno <silent> <leader>q :tabclose<CR>
+tno <silent> <C-w>     <C-\><C-n><C-w>
+ino <silent> <C-w>     <ESC><C-w>
 
 " for edit
 vno <silent> >       >gv
