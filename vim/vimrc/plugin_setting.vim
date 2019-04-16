@@ -1,9 +1,6 @@
 scriptencoding utf-8
 " plugin settings
 
-" molokai
-colorscheme molokai
-
 " fzf.vim
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
@@ -34,7 +31,7 @@ hi ALEErrorSign   gui=bold guifg=#ff0000 guibg=#222222
 hi ALEWarningSign gui=None guifg=#ffff00 guibg=#222222
 
 " NERDTree
-let g:NERDTreeWinSize = 15
+let g:NERDTreeWinSize = 20
 " PyFlake
 let g:PyFlakeOnWrite = 1
 let g:PyFlakeCheckers = 'mccabe,pyflakes'

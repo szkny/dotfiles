@@ -5,12 +5,10 @@ scriptencoding utf-8
 let g:mapleader = "\<Space>"
 
 " general
-tno <silent> <C-[>   <C-\><C-n>
 ino <silent> <C-s>   <ESC>:w<CR>a
 nno <silent> <C-s>   :w<CR>
 nno <silent> q       :CloseBufferTab<CR>
 nno <silent> <S-q>   :qall<CR>
-tno <silent> <C-w>   <C-\><C-n><C-w>
 ino <silent> <C-w>   <ESC><C-w>
 
 " tab/window
@@ -48,19 +46,11 @@ if has('mac')
     ino <silent> ∆ <Down>
     ino <silent> ˚ <Up>
     ino <silent> ¬ <Right>
-    tno <silent> ˙ <Left>
-    tno <silent> ∆ <Down>
-    tno <silent> ˚ <Up>
-    tno <silent> ¬ <Right>
 elseif system('uname') ==# "Linux\n"
     ino <silent> <A-h> <Left>
     ino <silent> <A-j> <Down>
     ino <silent> <A-k> <Up>
     ino <silent> <A-l> <Right>
-    tno <silent> <A-h> <Left>
-    tno <silent> <A-j> <Down>
-    tno <silent> <A-k> <Up>
-    tno <silent> <A-l> <Right>
 endif
 
 " for IME
