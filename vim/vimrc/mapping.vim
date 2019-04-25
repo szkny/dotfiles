@@ -11,9 +11,11 @@ nno <silent> q       :CloseBufferTab<CR>
 nno <silent> <S-q>   :qall<CR>
 ino <silent> <C-w>   <ESC><C-w>
 
+" for edit
+vno <silent> >       >gv
+vno <silent> <       <gv
+
 " tab/window
-nno <silent> >       :ChangeBuffer next<CR>
-nno <silent> <       :ChangeBuffer previous<CR>
 nno <silent> <Right> :ChangeBuffer next<CR>
 nno <silent> <Left>  :ChangeBuffer previous<CR>
 nno <silent> +       :ResizeWindow +1<CR>
