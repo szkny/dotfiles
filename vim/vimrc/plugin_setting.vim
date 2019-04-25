@@ -30,12 +30,11 @@ let g:ale_echo_msg_warning_str = g:ale_sign_warning
 hi ALEErrorSign   gui=bold guifg=#ff0000 guibg=#222222
 hi ALEWarningSign gui=None guifg=#ffff00 guibg=#222222
 
-" NERDTree
-let g:NERDTreeWinSize = 20
 " PyFlake
 let g:PyFlakeOnWrite = 1
 let g:PyFlakeCheckers = 'mccabe,pyflakes'
 let g:PyFlakeDefaultComplexity=10
+
 " indent guide
 " let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
@@ -46,6 +45,22 @@ let g:indent_guides_auto_colors = 0
 " hi IndentGuidesEven guibg=#223344
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#113344 ctermbg=gray
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#223344 ctermbg=darkgray
+
+" NERDTree
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeWinSize = 25
+
+" Tagbar
+let g:tagbar_autofocus = 1
+let g:tagbar_width = 40
+let g:tagbar_sort = 0
+
+
+" tcomment_vim
+if !exists('g:tcomment_types')
+    let g:tcomment_types = {}
+endif
+
 " vim-airline
 " let g:airline_theme = 'powerlineish'
 " let g:airline#extensions#syntastic#enabled = 1
