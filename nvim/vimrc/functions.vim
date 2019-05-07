@@ -16,8 +16,7 @@ fun! s:changebuffer(direction) abort
                 return
             endif
             exe l:cmd
-            let l:termflag = str2nr(buffer_name('%')[0])
-            if l:termflag
+            if &buftype ==? 'terminal'
                 setlocal nonumber
             else
                 setlocal number
