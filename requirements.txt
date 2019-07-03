@@ -115,8 +115,6 @@ notebook==5.7.8
 notify-run==0.0.12
 numba==0.39.0
 numpy==1.16.4
-oandapy==0.1
-oandapyV20==0.6.3
 optuna==0.7.0
 osqp==0.5.0
 packaging==17.1
