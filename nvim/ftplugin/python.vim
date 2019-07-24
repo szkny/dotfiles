@@ -39,7 +39,7 @@ endif
 " auto command
 aug vimrc_python
     au!
-    au FileType python setlocal expandtab shiftwidth=4 tabstop=8
+    au FileType python setlocal expandtab shiftwidth=4 tabstop=4
                 \ formatoptions+=croq softtabstop=4
                 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
                 \|let &colorcolumn=join(range(s:pythonmaxlinelength(), 300), ',')
