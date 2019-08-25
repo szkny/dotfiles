@@ -24,6 +24,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "" Plug install packages
 "*****************************************************************************
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+" Plug 'zxqfl/tabnine-vim'
 Plug 'w0rp/ale'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'majutsushi/tagbar'
