@@ -89,6 +89,8 @@ else
     nno <silent> \     :TComment<CR>
     vno <silent> \     :TComment<CR>
 endif
+map <silent> p     <Plug>(miniyank-autoput)
+map <silent> P     <Plug>(miniyank-autoPut)
 nno <silent> <C-b> :Buffers<CR>
 nno <silent> <C-f> :Find<CR>
 nno <silent> <C-g> :call AgWord()<CR>
