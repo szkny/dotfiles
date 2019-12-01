@@ -259,7 +259,6 @@ vega-datasets==0.7.0
 vim-vint==0.3.18
 virtualenv==15.2.0
 virtualenv-clone==0.3.0
-vivid==0.2.1
 vtk==8.1.2
 wcwidth==0.1.7
 webencodings==0.5.1
