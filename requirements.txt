@@ -145,8 +145,6 @@ notify-run==0.0.12
 numba==0.39.0
 numdifftools==0.9.39
 numpy==1.17.4
-oandapy==0.1
-oandapyV20==0.6.3
 oauthlib==3.1.0
 opt-einsum==3.1.0
 OptGBM==0.3.1

@@ -29,16 +29,19 @@ ln -sf ~/dotfiles/python_syntax_checker/yapf ~/.config
 # ln -sf ~/dotfiles/vim/_vimrc ~/.vimrc
 # ln -sf ~/dotfiles/vim/vimrc ~/.vim
 # ln -sf ~/dotfiles/vim/ftplugin ~/.vim
-
+#
 # # tmux
 # if [ -L ~/.tmux.conf ]; then rm ~/.tmux.conf;fi
 # ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
-
+#
 # # ipython
 # if [ -L ~/.jupyter/jupyter_qtconsole_config.py ]; then
 #     rm ~/.jupyter/jupyter_qtconsole_config.py
 # fi
 # ln -sf ~/dotfiles/ipython/jupyter_qtconsole_config.py ~/.jupyter
-
-# bash
+#
+# # bash
 # ln -sf ~/dotfiles/bashrc ~/.bashrc
+#
+# # zsh
+# ln -sf ~/dotfiles/zshrc ~/.zshrc
