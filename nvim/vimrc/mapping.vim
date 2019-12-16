@@ -123,3 +123,8 @@ nno <silent> <leader>cm :CMake<CR>
 nno <silent> <leader>cr :CMake run<CR>
 nno <silent> <leader>sq :SQL<CR>i
 vno <silent> <leader>t  :Trans<CR>
+
+nnoremap <leader>f :MyLineSearch<Space>
+nnoremap <leader>F :MyLineBackSearch<Space>
+nnoremap <leader>; :MyLineSameSearch<CR>
+nnoremap <leader>, :MyLineBackSameSearch<CR>
