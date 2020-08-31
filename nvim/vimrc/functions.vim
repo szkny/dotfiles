@@ -705,7 +705,7 @@ command! Open call s:open()
 
 
 " 縦方向fコマンド
-command -nargs=1 MyLineSearch let @m=<q-args> | call search('^\s*'. @m)
-command -nargs=1 MyLineBackSearch let @m=<q-args> | call search('^\s*'. @m, 'b')
-command MyLineSameSearch call search('^\s*'. @m)
-command MyLineBackSameSearch call search('^\s*'. @m, 'b')
+command! -nargs=1 MyLineSearch let @m=<q-args> | call search('^\s*'. @m)
+command! -nargs=1 MyLineBackSearch let @m=<q-args> | call search('^\s*'. @m, 'b')
+command! MyLineSameSearch call search('^\s*'. @m)
+command! MyLineBackSameSearch call search('^\s*'. @m, 'b')

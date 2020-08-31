@@ -22,11 +22,11 @@ vno <silent> <       <gv
 " for tab/window
 nno <silent> <Right> :ChangeBuffer next<CR>
 nno <silent> <Left>  :ChangeBuffer previous<CR>
-nno <silent> +       :ResizeWindow +1<CR>
-nno <silent> -       :ResizeWindow -1<CR>
+" nno <silent> +       :ResizeWindow +1<CR>
+" nno <silent> -       :ResizeWindow -1<CR>
 nno <silent> <Up>    :ResizeWindow +1<CR>
 nno <silent> <Down>  :ResizeWindow -1<CR>
-nno <silent><Tab>    :NewTabPage<CR>
+" nno <silent><Tab>    :NewTabPage<CR>
 
 " for yank/delete/paste
 nno <silent> x       "_x
@@ -91,15 +91,23 @@ else
 endif
 map <silent> p     <Plug>(miniyank-autoput)
 map <silent> P     <Plug>(miniyank-autoPut)
-nno <silent> <C-b> :Buffers<CR>
-nno <silent> <C-f> :Find<CR>
-nno <silent> <C-g> :call AgWord()<CR>
-vno <silent> <C-g> :call VAgWord()<CR>
-nno <silent> <C-h> :call Ranger()<CR>
-nno <silent> <C-n> :NERDTreeToggle<CR>
-nno <silent> <C-t> :TagbarToggle<CR>
-nno <silent> [a    :ALENextWrap<CR>
-nno <silent> ]a    :ALEPreviousWrap<CR>
+nno <silent> <C-b> :<C-u>Buffers<CR>
+" nno <silent> <C-f> :<C-u>call AgWord()<CR>
+nno <silent> <C-f> :<C-u>Ag<CR>
+vno <silent> <C-f> :<C-u>call VAgWord()<CR>
+nno <silent> <C-h> :<C-u>call Ranger()<CR>
+nno <silent> <C-n> :<C-u>NERDTreeToggle<CR>
+" nno <silent> <C-t> :<C-u>TagbarToggle<CR>
+nno <silent> <C-t> :<C-u>Vista!!<CR>
+nno <silent> [a    :<C-u>ALENextWrap<CR>
+nno <silent> ]a    :<C-u>ALEPreviousWrap<CR>
+" vim-lsp
+nno <silent> <C-]>     :<C-u>LspDefinition<CR>
+nno <silent> <leader>k :<C-u>LspHover<CR>
+nno <silent> <leader>r :<C-u>LspRename<CR>
+nno <silent> <leader>n :<C-u>LspReferences<CR>
+nno <silent> <leader>f :<C-u>LspDocumentDiagnostics<CR>
+nno <silent> <leader>s :<C-u>LspDocumentFormat<CR>
 " NOTE: プラグインのマッピングはnoremapではなくmapにすること
 imap <C-k>       <Plug>(neosnippet_expand_or_jump)
 smap <C-k>       <Plug>(neosnippet_expand_or_jump)
@@ -115,16 +123,16 @@ else
     ino <silent> <A-;>    <ESC>:Appendchar ;<CR>a
     no  <silent> <A-;>         :Appendchar ;<CR>
 endif
-nno <silent> ?          :SetHlSearch<CR>
-nno <silent> t          :SplitTerm<CR>i
-nno <silent> <leader>ma :Make<CR>
-nno <silent> <leader>mr :Make build run<CR>
-nno <silent> <leader>cm :CMake<CR>
-nno <silent> <leader>cr :CMake run<CR>
-nno <silent> <leader>sq :SQL<CR>i
-vno <silent> <leader>t  :Trans<CR>
+nno <silent> ?          :<C-u>SetHlSearch<CR>
+nno <silent> t          :<C-u>SplitTerm<CR>i
+nno <silent> <leader>ma :<C-u>Make<CR>
+nno <silent> <leader>mr :<C-u>Make build run<CR>
+nno <silent> <leader>cm :<C-u>CMake<CR>
+nno <silent> <leader>cr :<C-u>CMake run<CR>
+nno <silent> <leader>sq :<C-u>SQL<CR>i
+vno <silent> <leader>t  :<C-u>Trans<CR>
 
-nnoremap <leader>f :MyLineSearch<Space>
-nnoremap <leader>F :MyLineBackSearch<Space>
-nnoremap <leader>; :MyLineSameSearch<CR>
-nnoremap <leader>, :MyLineBackSameSearch<CR>
+" nnoremap <leader>f :MyLineSearch<Space>
+" nnoremap <leader>F :MyLineBackSearch<Space>
+" nnoremap <leader>; :MyLineSameSearch<CR>
+" nnoremap <leader>, :MyLineBackSameSearch<CR>

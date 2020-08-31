@@ -23,7 +23,14 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/async.vim' | Plug 'prabirshrestha/vim-lsp'
+Plug 'lighttiger2505/deoplete-vim-lsp' | Plug 'Shougo/deoplete.nvim'
+Plug 'mattn/vim-lsp-settings'
+" Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 " Plug 'zxqfl/tabnine-vim'
 Plug 'w0rp/ale'
 Plug 'bronson/vim-trailing-whitespace'
@@ -37,10 +44,13 @@ Plug 'rbgrouleff/bclose.vim'  " for ranger.vim
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 Plug 'Raimondi/delimitMate'
 Plug 'koron/codic-vim'
 Plug 'bfredl/nvim-miniyank'
 Plug 'szkny/SplitTerm'
+Plug 'liuchengxu/vista.vim'
+Plug 'lambdalisue/vim-quickrun-neovim-job' | Plug 'thinca/vim-quickrun'
 Plug 'glacambre/firenvim', { 'do': function('firenvim#install') }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
 Plug 'scrooloose/nerdtree',                     {'on': 'NERDTreeToggle'}
@@ -69,6 +79,7 @@ Plug 'xolox/vim-session'
 
 " color scheme
 Plug 'tomasr/molokai'
+" Plug 'morhetz/gruvbox'
 " Plug 'arcticicestudio/nord-vim'
 " Plug 'altercation/vim-colors-solarized'
 
@@ -81,11 +92,11 @@ Plug 'vim-scripts/c.vim',              {'for': ['c', 'cpp']}
 Plug 'davidhalter/jedi-vim',           {'for': 'python'}
 Plug 'zchee/deoplete-jedi',            {'for': 'python'}
 Plug 'tweekmonster/braceless.vim',     {'for': 'python'}
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'for': 'python',
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'for': 'python',
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
 Plug 'szkny/Ipython',                  {'for': 'python'}
 Plug 'szkny/IpdbDebugger',             {'for': 'python'}
 " Plug 'szkny/jupyter-vim',              {'for': 'python'}
@@ -114,10 +125,8 @@ Plug 'yaasita/ore_markdown',           {'for': 'markdown'}
 Plug 'lvht/tagbar-markdown',           {'for': 'markdown'}
 Plug 'vim-scripts/applescript.vim',    {'for': 'applescript'}
 
-" if has('mac')
-"     " icon
-"     Plug 'ryanoasis/vim-devicons'
-" endif
+" icon
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -196,8 +205,8 @@ if has('mac')
     let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/bin/python2')
     let g:python3_host_prog = expand('~/.pyenv/versions/3.6.5/bin/python3')
 elseif system('uname') ==# "Linux\n"
-    let g:python_host_prog = expand('~/.pyenv/versions/2.7.10/bin/python2')
-    let g:python3_host_prog = expand('~/.pyenv/versions/3.6.5/bin/python3')
+    let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/bin/python2')
+    let g:python3_host_prog = expand('~/.pyenv/versions/3.8.5/bin/python3')
 endif
 if findfile(g:python_host_prog) ==# ''
     let g:python_host_prog = split(system('which python2'), "\n")[0]
@@ -212,7 +221,7 @@ endif
 syntax on
 set ruler
 set number
-" set nowrap
+set nowrap
 
 " set ambiwidth=double
 let g:no_buffers_menu=1
@@ -248,6 +257,7 @@ set modelines=10
 
 set background=dark
 colorscheme molokai
+" colorscheme gruvbox
 
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
@@ -276,6 +286,7 @@ hi VertSplit guibg=#222222
 " hi Cursor gui=reverse
 " hi clear Visual
 " hi Visual gui=reverse
+
 
 "*****************************************************************************
 "" Abbreviations
@@ -357,21 +368,23 @@ aug END
 "" Custom configs
 "*****************************************************************************
 
-" c
+" c/cpp
 aug vimrc_c_cpp
     au!
     au FileType c,cpp setlocal tabstop=4 shiftwidth=4 expandtab
+aug END
+
+" javascript/typescript
+aug vimrc_js_ts
+    au!
+    au BufNewFile,BufRead *.tsx setfiletype typescript
+    au FileType javascript,typescript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 aug END
 
 " FixWhitespace
 aug FixWhitespace
     au!
     au FileType text if exists(':FixWhitespace') | FixWhitespace
-aug END
-
-" javascript
-aug vimrc_js
-    au BufNewFile,BufRead *.tsx setfiletype javascript
 aug END
 
 "*****************************************************************************

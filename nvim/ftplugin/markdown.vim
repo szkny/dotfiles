@@ -54,14 +54,14 @@ elseif system('uname') ==# "Linux\n"
     no  <silent><buffer> <A-;>      :Appendchar \ \ <CR>
 endif
 "" bold (強調表示)
-nno <silent><nowait> <leader>m :call <SID>surround('$')<CR>
-vno <silent><nowait> <leader>m :call <SID>vsurround('$')<CR>
-nno <silent><nowait> <leader>b :call <SID>surround('**')<CR>
-" nno <silent><nowait> <leader>b :call <SID>surround('\*\*')<CR>
-vno <silent><nowait> <leader>b :call <SID>vsurround('\*\*')<CR>
-"" line (打ち消し線)
-vno <silent><nowait> <leader>l :call <SID>vsurround('\~\~')<CR>
-"" under line (下線)
+" nno <silent><nowait> <leader>m :call <SID>surround('$')<CR>
+" vno <silent><nowait> <leader>m :call <SID>vsurround('$')<CR>
+" nno <silent><nowait> <leader>b :call <SID>surround('**')<CR>
+" " nno <silent><nowait> <leader>b :call <SID>surround('\*\*')<CR>
+" vno <silent><nowait> <leader>b :call <SID>vsurround('\*\*')<CR>
+" "" line (打ち消し線)
+" vno <silent><nowait> <leader>l :call <SID>vsurround('\~\~')<CR>
+" "" under line (下線)
 vno <silent><nowait> <leader>u :call <SID>vunderline()<CR>
 
 

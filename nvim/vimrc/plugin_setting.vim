@@ -3,25 +3,75 @@ scriptencoding utf-8
 "" Plugin Configuration
 "*****************************************************************************
 
-
 "" fzf.vim
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
-"" deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 0
-let g:deoplete#auto_complete_start_length = 1
-let g:deoplete#enable_camel_case = 0
-let g:deoplete#enable_ignore_case = 0
-let g:deoplete#enable_refresh_always = 0
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#file#enable_buffer_path = 1
-let g:deoplete#max_list = 1000
-highlight Pmenu ctermbg=8 guibg=#000000
-highlight PmenuSel ctermbg=1 guifg=#dddd00 guibg=#1f82cd
-highlight PmenuSbar ctermbg=0 guibg=#d6d6d6
+" vim-lsp
+let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_virtual_text_enabled = 0
+let g:lsp_highlights_enabled = 0
+let g:lsp_textprop_enabled = 0
+let g:lsp_signs_error = {'text': '✗'}
+let g:lsp_signs_warning = {'text': ''}
+let g:lsp_signs_information = {'text': 'i'}
+let g:lsp_signs_hint = {'text': '?'}
+" highlight link LspErrorText GruvboxRedSign  " requires gruvbox
+hi LspErrorText gui=bold guifg=#ff0000 guibg=#222222
+hi clear LspWarningLine
 
+" vim-quickrun
+let g:quickrun_no_default_key_mappings = 1
+let g:quickrun_config = {
+    \ '_' : {
+        \ 'outputter' : 'error',
+        \ 'outputter/error/success' : 'buffer',
+        \ 'outputter/error/error'   : 'quickfix',
+        \ 'outputter/buffer/split' : ':botright 8sp',
+    \ }
+\}
+if has('nvim')
+    let g:quickrun_config._.runner = 'neovim_job'
+elseif exists('*ch_close_in')
+    let g:quickrun_config._.runner = 'job'
+endif
+
+"" deoplete.nvim
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#auto_completion_delay = 0
+" let g:deoplete#auto_completion_start_length = 1
+" call deoplete#custom#option({
+"     \ 'max_list': 1000,
+"     \ 'camel_case': v:false,
+"     \ 'ignore_case': v:false,
+"     \ 'smart_case': v:true,
+"     \ })
+" call denite#custom#var('grep', 'command', ['ag'])
+
+let g:deoplete#enable_at_startup = 1
+inoremap <expr><C-h> deoplete#smart_close_popup()."<C-h>"
+inoremap <expr><BS> deoplete#smart_close_popup()."<C-h>"
+call deoplete#custom#option({
+    \ 'max_list': 100,
+    \ 'auto_complete': v:true,
+    \ 'min_pattern_length': 2,
+    \ 'auto_complete_delay': 0,
+    \ 'auto_refresh_delay': 20,
+    \ 'refresh_always': v:true,
+    \ 'smart_case': v:true,
+    \ 'camel_case': v:true,
+    \ })
+let s:use_lsp_sources = ['lsp', 'dictionary', 'file']
+call deoplete#custom#option('sources', {
+\ 'go': s:use_lsp_sources,
+\ 'python': s:use_lsp_sources,
+\ 'vim': ['vim', 'buffer', 'dictionary', 'file'],
+\})
+hi Pmenu ctermbg=8 guibg=#333333
+hi PmenuSel ctermbg=1 guifg=#dddd00 guibg=#1f82cd
+hi PmenuSbar ctermbg=0 guibg=#d6d6d6
 
 "" neosnippet
 let g:neosnippet#snippets_directory='~/.config/nvim/plugged/neosnippet-snippets/neosnippets'
@@ -40,6 +90,17 @@ let g:tagbar_autofocus = 1
 let g:tagbar_width = 40
 let g:tagbar_sort = 0
 
+""vista.vim
+let g:vista_echo_cursor = 0
+let g:vista_default_executive = 'ctags'
+let g:vista#renderer#enable_icon = 1
+let g:vista_executive_for = {
+    \ 'c': 'vim_lsp',
+    \ 'go': 'vim_lsp',
+    \ 'python': 'vim_lsp',
+    \ 'javascript': 'vim_lsp',
+    \ 'typescript': 'vim_lsp',
+    \ }
 
 "" tcomment_vim
 if !exists('g:tcomment_types')
@@ -72,8 +133,12 @@ if has('mac')
     let g:ale_sign_error = '✗'
     let g:ale_sign_warning = '⚠'
 elseif system('uname') ==# "Linux\n"
+    " let g:ale_sign_error = '❌'
+    " let g:ale_sign_warning = '⚠️'
     let g:ale_sign_error = '✗'
-    let g:ale_sign_warning = '⚠'
+    let g:ale_sign_warning = ''
+    " let g:ale_sign_warning = '△'
+    " let g:ale_sign_warning = '⚠'
 endif
 let g:ale_set_highlights = 1
 let g:ale_c_clang_executable = 'clang++'
@@ -118,10 +183,10 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#wordcount#enabled = 0
-let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
-let g:airline_section_b = '%{airline#extensions#ale#get_error()}  '
-let g:airline_section_b.= '%{airline#extensions#ale#get_warning()}'
+let g:airline#extensions#default#layout = [['a', 'b', 'c', 'd'], ['x', 'y', 'z']]
 let g:airline_section_c = '%t'
+let g:airline_section_d = '%{airline#extensions#ale#get_error()}  '
+let g:airline_section_d.= '%{airline#extensions#ale#get_warning()}'
 let g:airline_section_x = 'LOW:%3l/%L  COL:%3c'
 let g:airline_section_y = '%{&filetype}'
 if &fileformat ==# 'unix'
