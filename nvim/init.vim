@@ -124,6 +124,7 @@ Plug 'plasticboy/vim-markdown',        {'for': 'markdown'}
 Plug 'yaasita/ore_markdown',           {'for': 'markdown'}
 Plug 'lvht/tagbar-markdown',           {'for': 'markdown'}
 Plug 'vim-scripts/applescript.vim',    {'for': 'applescript'}
+Plug 'aklt/plantuml-syntax',           {'for': 'plantuml'}
 
 " icon
 Plug 'ryanoasis/vim-devicons'
