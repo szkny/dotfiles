@@ -124,8 +124,7 @@ else
     no  <silent> <A-;>         :Appendchar ;<CR>
 endif
 nno <silent> ?          :<C-u>SetHlSearch<CR>
-" nno <silent> t          :<C-u>SplitTerm<CR>i
-nno <silent> t          :<C-u>call splitterm#open_width(10)<CR>i
+nno <silent> t          :<C-u>12SplitTerm<CR>i
 nno <silent> <leader>ma :<C-u>Make<CR>
 nno <silent> <leader>mr :<C-u>Make build run<CR>
 nno <silent> <leader>cm :<C-u>CMake<CR>
