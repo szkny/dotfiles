@@ -283,8 +283,8 @@ hi VertSplit guibg=#222222
 " hi CursorLine gui=underline
 hi clear CursorLine
 " hi CursorColumn guibg=#0c1820
-" hi clear Cursor
-" hi Cursor gui=reverse
+hi clear Cursor
+hi Cursor gui=reverse
 " hi clear Visual
 " hi Visual gui=reverse
 
