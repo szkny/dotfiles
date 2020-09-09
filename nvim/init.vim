@@ -242,8 +242,21 @@ else
     let g:CSApprox_loaded = 1
 endif
 
-"" Disable the blinking cursor.
+"" Disable the blinking cursor
 set guicursor=a:blinkon0
+
+"" Change cursor by mode
+set guicursor=n-v-c:block-Cursor
+set guicursor+=i:ver100-iCursor
+set guicursor+=n-v-c:blinkon0
+set guicursor+=i:blinkwait10
+if &term =~ '^xterm'
+    " normal mode
+    let &t_EI .= "\<Esc>[0 q"
+    " insert mode
+    let &t_SI .= "\<Esc>[6 q"
+endif
+
 set scrolloff=3
 
 "" Status bar
