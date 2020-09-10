@@ -83,6 +83,7 @@ endif
 "" NERDTree
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeWinSize = 25
+let g:NERDTreeShowHidden=1
 
 
 "" Tagbar
