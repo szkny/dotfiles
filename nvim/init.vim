@@ -391,6 +391,7 @@ aug END
 " javascript/typescript
 aug vimrc_js_ts
     au!
+    au BufNewFile,BufRead *.cjs,*.mjs setfiletype javascript
     au BufNewFile,BufRead *.tsx setfiletype typescript
     au FileType javascript,typescript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 aug END
