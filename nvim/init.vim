@@ -165,6 +165,9 @@ set ignorecase
 set smartcase
 set inccommand=split
 
+"" completion
+set complete-=t
+
 "" Copy/Paste/Cut
 set clipboard+=unnamedplus
 
