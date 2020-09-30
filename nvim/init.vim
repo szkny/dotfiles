@@ -109,7 +109,7 @@ Plug 'fatih/vim-go',                   {'for': 'go'}
 Plug 'JuliaEditorSupport/julia-vim'
 
 " javascript
-Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'prettier/vim-prettier',  { 'for': ['javascript', 'typescript', 'css', 'json', 'markdown', 'vue', 'yaml', 'html'] }
 
 " nyaovim
 if exists('g:nyaovim_version')
