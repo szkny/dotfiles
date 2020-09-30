@@ -108,6 +108,9 @@ Plug 'fatih/vim-go',                   {'for': 'go'}
 " julia
 Plug 'JuliaEditorSupport/julia-vim'
 
+" javascript
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+
 " nyaovim
 if exists('g:nyaovim_version')
     Plug 'rhysd/nyaovim-mini-browser'
