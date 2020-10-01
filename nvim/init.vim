@@ -230,6 +230,8 @@ syntax on
 set ruler
 set number
 set nowrap
+set winblend=30
+set pumblend=30
 
 " set ambiwidth=double
 let g:no_buffers_menu=1
