@@ -40,7 +40,7 @@ colorlover==0.2.1
 colour==0.1.5
 configobj==5.0.6
 configparser==3.5.0
-cryptography==2.7
+cryptography==3.2
 cufflinks==0.14.6
 curtsies==0.3.0
 cvxopt==1.2.2
