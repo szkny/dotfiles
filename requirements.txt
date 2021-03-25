@@ -204,7 +204,7 @@ python-jsonrpc-server==0.0.2
 python-language-server==0.21.4
 python-slugify==3.0.2
 pytz==2018.4
-PyYAML==5.1.1
+PyYAML==5.4
 pyzmq==17.0.0
 qtconsole==4.4.1
 redis==3.3.8
