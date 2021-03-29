@@ -184,7 +184,7 @@ pydocstyle==2.1.1
 pyface==6.0.0
 pyflakes==1.6.0
 pyglet==1.4.2
-Pygments==2.2.0
+Pygments==2.7.4
 pygraphviz==1.5
 pyHSICLasso==1.4.2
 pylint==2.0.0
