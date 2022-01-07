@@ -43,7 +43,7 @@ configparser==3.5.0
 cryptography==2.7
 cufflinks==0.14.6
 curtsies==0.3.0
-cvxopt==1.2.2
+cvxopt==1.2.7
 cvxpy==1.0.14
 cycler==0.10.0
 Cython==0.29.10
