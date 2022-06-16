@@ -138,7 +138,7 @@ neovim==0.3.0
 networkx==2.2
 ngboost==0.1.3
 nose==1.3.7
-notebook==5.7.8
+notebook==6.4.12
 notify-run==0.0.12
 numba==0.39.0
 numdifftools==0.9.39
