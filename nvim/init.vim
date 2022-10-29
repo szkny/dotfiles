@@ -33,7 +33,7 @@ Plug 'mattn/vim-lsp-settings'
 " Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 " Plug 'zxqfl/tabnine-vim'
 Plug 'w0rp/ale'
-Plug 'bronson/vim-trailing-whitespace'
+" Plug 'bronson/vim-trailing-whitespace'
 Plug 'majutsushi/tagbar'
 " Plug 'hushicai/tagbar-javascript.vim'
 Plug 'tomtom/tcomment_vim'
@@ -230,6 +230,7 @@ syntax on
 set ruler
 set number
 set nowrap
+set pumblend=40
 
 " set ambiwidth=double
 let g:no_buffers_menu=1

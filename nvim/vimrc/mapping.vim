@@ -83,11 +83,11 @@ nno <silent> ｙｙ    yy
 
 "" for Plugins
 if has('mac')
-    nno <silent> _     :TComment<CR>
-    vno <silent> _     :TComment<CR>
+    nno <silent> <C-/>   :TComment<CR>
+    vno <silent> <C-/>   :TComment<CR>
 else
-    nno <silent> \     :TComment<CR>
-    vno <silent> \     :TComment<CR>
+    nno <silent> <C-/>   :TComment<CR>
+    vno <silent> <C-/>   :TComment<CR>
 endif
 map <silent> p     <Plug>(miniyank-autoput)
 map <silent> P     <Plug>(miniyank-autoPut)
