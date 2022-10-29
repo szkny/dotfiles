@@ -23,15 +23,9 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-" Plug 'prabirshrestha/async.vim'
-" Plug 'prabirshrestha/vim-lsp'
-" Plug 'prabirshrestha/asyncomplete.vim'
-" Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/async.vim' | Plug 'prabirshrestha/vim-lsp'
 Plug 'lighttiger2505/deoplete-vim-lsp' | Plug 'Shougo/deoplete.nvim'
 Plug 'mattn/vim-lsp-settings'
-" Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-" Plug 'zxqfl/tabnine-vim'
 Plug 'w0rp/ale'
 " Plug 'bronson/vim-trailing-whitespace'
 Plug 'majutsushi/tagbar'
@@ -56,6 +50,7 @@ Plug 'glacambre/firenvim', { 'do': function('firenvim#install') }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
 Plug 'scrooloose/nerdtree',                     {'on': 'NERDTreeToggle'}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': 'NERDTreeToggle'}
+Plug 'willelz/badapple.nvim'
 
 if isdirectory('/usr/local/opt/fzf')
     Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -231,6 +226,8 @@ set ruler
 set number
 set nowrap
 set pumblend=40
+set winblend=30
+set pumblend=30
 
 " set ambiwidth=double
 let g:no_buffers_menu=1
