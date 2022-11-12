@@ -614,11 +614,24 @@ endf
 
 fun! s:git(...) abort
     " gitコマンドを実行する関数
-    if a:1 ==# 'acp'
+    if a:0 == 0
+        echomsg 'not enough argument. USAGE: Git COMMAND [OPTIONS]'
+        return 1
+    endif
+    if a:1 ==# 'ac'
+        if a:0 >= 2
+            let l:cmd = 'git add -A && git commit -m "'.join(a:000[1:], ' ').'"'
+        else
+            echomsg 'not enough argument. USAGE: Git ac COMMIT_MESSAGE'
+            return 1
+        endif
+        call s:git_autocmd()
+    elseif a:1 ==# 'acp'
         if a:0 >= 2
             let l:cmd = 'git add -A && git commit -m "'.join(a:000[1:], ' ').'" && git push -u'
         else
-            let l:cmd = 'git add -A && git commit -m "`date`" && git push -u'
+            echomsg 'not enough argument. USAGE: Git acp COMMIT_MESSAGE'
+            return 1
         endif
         call s:git_autocmd()
     elseif a:1 ==# 'fpull'
@@ -639,7 +652,7 @@ fun! s:git(...) abort
     call win_gotoid(l:script_winid)
 endf
 fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)
-    return filter(['acp', 'pull', 'fpull',  'diff', 'reset', 'status', 'blame', 'show', 'push'], printf('v:val =~ "^%s"', a:ArgLead))
+    return filter(['ac', 'acp', 'pull', 'fpull',  'diff', 'reset', 'status', 'blame', 'show', 'push'], printf('v:val =~ "^%s"', a:ArgLead))
 endf
 command! -complete=customlist,s:CompletionGitCommands -nargs=* Git call s:git(<f-args>)
 
