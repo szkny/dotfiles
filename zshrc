@@ -11,7 +11,7 @@ precmd(){
   vcs_info
   local right="%{\e[38;5;32m%}${vcs_info_msg_0_}%{\e[m%}"
   # スペースの長さを計算
-  # テキストを装飾する場合、エスケープシーケンスをカウントしないようにします
+  # テキストを装飾する場合、エスケープシーケンスをカウントしない
   local invisible='%([BSUbfksu]|([FK]|){*})'
   local leftwidth=${#${(S%%)left//$~invisible/}}
   local rightwidth=${#${(S%%)right//$~invisible/}}
@@ -20,7 +20,7 @@ precmd(){
   print -P $left${(r:$padwidth:: :)}$right
 }
 # ユーザ名@ホスト名
-PROMPT='%F{green}%n@%m %#%f '
+PROMPT='%F{34}>%F{28}>%F{22}>%f '
 ## 現在時刻
 RPROMPT=$'%F{green}(%f%D{%m/%d %a, %T}%F{green})%f'
 # TMOUT=1
