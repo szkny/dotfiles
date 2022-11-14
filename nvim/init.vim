@@ -28,7 +28,7 @@ Plug 'lighttiger2505/deoplete-vim-lsp' | Plug 'Shougo/deoplete.nvim'
 Plug 'mattn/vim-lsp-settings'
 Plug 'w0rp/ale'
 " Plug 'bronson/vim-trailing-whitespace'
-Plug 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'
 " Plug 'hushicai/tagbar-javascript.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
@@ -44,7 +44,8 @@ Plug 'Raimondi/delimitMate'
 Plug 'koron/codic-vim'
 Plug 'bfredl/nvim-miniyank'
 Plug 'szkny/SplitTerm'
-Plug 'liuchengxu/vista.vim'
+" Plug 'liuchengxu/vista.vim'
+Plug 'wfxr/minimap.vim'
 Plug 'lambdalisue/vim-quickrun-neovim-job' | Plug 'thinca/vim-quickrun'
 Plug 'glacambre/firenvim', { 'do': function('firenvim#install') }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
@@ -121,7 +122,7 @@ Plug 'kannokanno/previm',              {'for': 'markdown'}
 Plug 'godlygeek/tabular',              {'for': 'markdown'}
 Plug 'plasticboy/vim-markdown',        {'for': 'markdown'}
 Plug 'yaasita/ore_markdown',           {'for': 'markdown'}
-Plug 'lvht/tagbar-markdown',           {'for': 'markdown'}
+" Plug 'lvht/tagbar-markdown',           {'for': 'markdown'}
 Plug 'vim-scripts/applescript.vim',    {'for': 'applescript'}
 Plug 'aklt/plantuml-syntax',           {'for': 'plantuml'}
 
