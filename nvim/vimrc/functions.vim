@@ -370,11 +370,11 @@ command! SetHlSearch call s:sethlsearch()
 
 
 fun! AgWord(...) abort
-    let l:file_dir = expand('%:p:h')
-    if l:file_dir[0] !=# '/'
-        let l:file_dir = getcwd()
-    endif
-    silent exe 'lcd '.l:file_dir
+    " let l:file_dir = expand('%:p:h')
+    " if l:file_dir[0] !=# '/'
+    "     let l:file_dir = getcwd()
+    " endif
+    " silent exe 'lcd '.l:file_dir
     if a:0 == 0
         let l:text = expand('<cword>')
     else
@@ -386,11 +386,11 @@ command! -nargs=* AgWord call AgWord(<f-args>)
 
 
 fun! VAgWord() abort range
-    let l:file_dir = expand('%:p:h')
-    if l:file_dir[0] !=# '/'
-        let l:file_dir = getcwd()
-    endif
-    silent exe 'lcd '.l:file_dir
+    " let l:file_dir = expand('%:p:h')
+    " if l:file_dir[0] !=# '/'
+    "     let l:file_dir = getcwd()
+    " endif
+    " silent exe 'lcd '.l:file_dir
     let @@ = ''
     exe 'silent normal gvy'
     if @@ !=# ''
