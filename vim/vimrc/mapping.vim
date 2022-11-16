@@ -6,25 +6,25 @@ let g:mapleader = "\<Space>"
 
 " general
 ino <silent> <C-s>   <ESC>:w<CR>a
-nno <silent> <C-s>   :w<CR>
-nno <silent> q       :CloseBufferTab<CR>
-nno <silent> <S-q>   :qall<CR>
+nno <silent> <C-s>   :<C-u>w<CR>
+nno <silent> q       :<C-u>CloseBufferTab<CR>
+nno <silent> <S-q>   :<C-u>qall<CR>
 ino <silent> <C-w>   <ESC><C-w>
 nno          /       /\v
 
 " for edit
 vno <silent> >       >gv
 vno <silent> <       <gv
-vno          <C-s>   :s/\v
+vno <leader>s        :s/\v
 
 " tab/window
-nno <silent> <Right> :ChangeBuffer next<CR>
-nno <silent> <Left>  :ChangeBuffer previous<CR>
-nno <silent> +       :ResizeWindow +1<CR>
-nno <silent> -       :ResizeWindow -1<CR>
-nno <silent> <Up>    :ResizeWindow +1<CR>
-nno <silent> <Down>  :ResizeWindow -1<CR>
-" nno <silent> <Tab>   :NewTabPage<CR>
+nno <silent> <Right> :<C-u>ChangeBuffer next<CR>
+nno <silent> <Left>  :<C-u>ChangeBuffer previous<CR>
+nno <silent> +       :<C-u>ResizeWindow +1<CR>
+nno <silent> -       :<C-u>ResizeWindow -1<CR>
+nno <silent> <Up>    :<C-u>ResizeWindow +1<CR>
+nno <silent> <Down>  :<C-u>ResizeWindow -1<CR>
+" nno <silent> <Tab>   :<C-u>NewTabPage<CR>
 
 " yank/delete/paste
 nno <silent> x       "_x
@@ -74,43 +74,43 @@ nno <silent> ｙｙ    yy
 
 "" Mapping for Plugins
 if has('mac')
-    nno <silent> _     :TComment<CR>
-    vno <silent> _     :TComment<CR>
+    nno <silent> _     :<C-u>TComment<CR>
+    vno <silent> _     :<C-u>TComment<CR>
 else
-    nno <silent> \     :TComment<CR>
-    vno <silent> \     :TComment<CR>
+    nno <silent> \     :<C-u>TComment<CR>
+    vno <silent> \     :<C-u>TComment<CR>
 endif
-nno <silent> <C-b> :Buffers<CR>
-nno <silent> <C-f> :Find<CR>
-nno <silent> <C-f> :call VimGrepWord()<CR>
-vno <silent> <C-f> :call VVimGrepWord()<CR>
-nno <silent> <C-g> :call AgWord()<CR>
-vno <silent> <C-g> :call VAgWord()<CR>
-nno <silent> <C-h> :call OpenRanger()<CR>
-nno <silent> <C-n> :NERDTreeToggle<CR>
-nno <silent> <C-t> :TagbarToggle<CR>
-nno <silent> [a    :ALENextWrap<CR>
-nno <silent> ]a    :ALEPreviousWrap<CR>
+nno <silent> <C-b> :<C-u>Buffers<CR>
+nno <silent> <C-f> :<C-u>Find<CR>
+nno <silent> <C-f> :<C-u>call VimGrepWord()<CR>
+vno <silent> <C-f> :<C-u>call VVimGrepWord()<CR>
+nno <silent> <C-g> :<C-u>call AgWord()<CR>
+vno <silent> <C-g> :<C-u>call VAgWord()<CR>
+nno <silent> <C-h> :<C-u>call OpenRanger()<CR>
+nno <silent> <C-n> :<C-u>NERDTreeToggle<CR>
+nno <silent> <C-t> :<C-u>TagbarToggle<CR>
+nno <silent> [a    :<C-u>ALENextWrap<CR>
+nno <silent> ]a    :<C-u>ALEPreviousWrap<CR>
 " NOTE: プラグインのマッピングはnoremapではなくmapにすること
 imap <C-k>       <Plug>(neosnippet_expand_or_jump)
 smap <C-k>       <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>       <Plug>(neosnippet_expand_target)
 smap <expr><TAB> neosnippet#expandable_or_jumpable()?
-                 \"\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+                 \"\<Plug>(neosnippet_expand_or_jump)" :<C-u> "\<TAB>"
 
 "" mapping for My Commands
 if has('mac')
-    ino <silent> …       <ESC>:Appendchar ;<CR>a
-    no  <silent> …            :Appendchar ;<CR>
+    ino <silent> …       <ESC>:<C-u>Appendchar ;<CR>a
+    no  <silent> …            :<C-u>Appendchar ;<CR>
 else
-    ino <silent> <A-;>    <ESC>:Appendchar ;<CR>a
-    no  <silent> <A-;>         :Appendchar ;<CR>
+    ino <silent> <A-;>    <ESC>:<C-u>Appendchar ;<CR>a
+    no  <silent> <A-;>         :<C-u>Appendchar ;<CR>
 endif
-nno <silent> ?          :SetHlSearch<CR>
-nno <silent> t          :terminal<CR>
-nno <silent> <leader>ma :Make<CR>
-nno <silent> <leader>mr :Make build run<CR>
-nno <silent> <leader>cm :CMake<CR>
-nno <silent> <leader>cr :CMake run<CR>
-nno <silent> <leader>sq :SQL<CR>i
-vno <silent> <leader>t  :Trans<CR>
+nno <silent> ?          :<C-u>SetHlSearch<CR>
+nno <silent> t          :<C-u>bo terminal ++rows=12<CR>
+" nno <silent> <leader>ma :<C-u>Make<CR>
+" nno <silent> <leader>mr :<C-u>Make build run<CR>
+" nno <silent> <leader>cm :<C-u>CMake<CR>
+" nno <silent> <leader>cr :<C-u>CMake run<CR>
+" nno <silent> <leader>sq :<C-u>SQL<CR>i
+" vno <silent> <leader>t  :<C-u>Trans<CR>

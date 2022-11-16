@@ -19,7 +19,7 @@ nno          /          /\v
 " for edit
 vno <silent> >       >gv
 vno <silent> <       <gv
-vno          <C-s>   :s/\v
+vno <leader>s        :s/\v
 
 " for tab/window
 nno <silent> <Right> :ChangeBuffer next<CR>
@@ -107,10 +107,10 @@ nno <silent> ]a    :<C-u>ALEPreviousWrap<CR>
 " vim-lsp
 nno <silent> <C-]>     :<C-u>LspDefinition<CR>
 nno <silent> <leader>k :<C-u>LspHover<CR>
-nno <silent> <leader>r :<C-u>LspRename<CR>
-nno <silent> <leader>n :<C-u>LspReferences<CR>
-nno <silent> <leader>f :<C-u>LspDocumentDiagnostics<CR>
-nno <silent> <leader>s :<C-u>LspDocumentFormat<CR>
+" nno <silent> <leader>n :<C-u>LspReferences<CR>
+" nno <silent> <leader>r :<C-u>LspRename<CR>
+" nno <silent> <leader>f :<C-u>LspDocumentDiagnostics<CR>
+" nno <silent> <leader>s :<C-u>LspDocumentFormat<CR>
 " NOTE: プラグインのマッピングはnoremapではなくmapにすること
 imap <C-k>       <Plug>(neosnippet_expand_or_jump)
 smap <C-k>       <Plug>(neosnippet_expand_or_jump)
@@ -128,12 +128,12 @@ else
 endif
 nno <silent> ?          :<C-u>SetHlSearch<CR>
 nno <silent> t          :<C-u>12SplitTerm<CR>i
-nno <silent> <leader>ma :<C-u>Make<CR>
-nno <silent> <leader>mr :<C-u>Make build run<CR>
-nno <silent> <leader>cm :<C-u>CMake<CR>
-nno <silent> <leader>cr :<C-u>CMake run<CR>
-nno <silent> <leader>sq :<C-u>SQL<CR>i
-vno <silent> <leader>t  :<C-u>Trans<CR>
+" nno <silent> <leader>ma :<C-u>Make<CR>
+" nno <silent> <leader>mr :<C-u>Make build run<CR>
+" nno <silent> <leader>cm :<C-u>CMake<CR>
+" nno <silent> <leader>cr :<C-u>CMake run<CR>
+" nno <silent> <leader>sq :<C-u>SQL<CR>i
+" vno <silent> <leader>t  :<C-u>Trans<CR>
 
 " nnoremap <leader>f :MyLineSearch<Space>
 " nnoremap <leader>F :MyLineBackSearch<Space>
