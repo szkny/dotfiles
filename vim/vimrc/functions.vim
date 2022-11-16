@@ -310,12 +310,45 @@ endf
 command! SetHlSearch call s:sethlsearch()
 
 
-fun! AgWord(...) abort
-    let l:file_dir = expand('%:p:h')
-    if l:file_dir[0] !=# '/'
-        let l:file_dir = getcwd()
+fun! VimGrepWord(...) abort
+    call system('git status')
+    if v:shell_error == 0
+        let l:target = '**'
+    else
+        let l:target = '`git ls-files`'
     endif
-    silent exe 'lcd '.l:file_dir
+    if a:0 == 0
+        let l:pattern = expand('<cword>')
+    else
+        let l:pattern = join(a:000)
+    endif
+    silent exe 'vimgrep /'.l:pattern.'/ '.l:target.' | cw'
+endf
+command! -nargs=* VimGrepWord call VimGrepWord(<f-args>)
+
+
+fun! VVimGrepWord() abort range
+    call system('git status')
+    if v:shell_error == 0
+        let l:target = '**'
+    else
+        let l:target = '`git ls-files`'
+    endif
+    let @@ = ''
+    exe 'silent normal gvy'
+    if @@ !=# ''
+        let l:pattern = join(split(@@,'\n'))
+        silent exe 'vimgrep /'.l:pattern.'/ '.l:target.' | cw'
+    endif
+endf
+
+
+fun! AgWord(...) abort
+    " let l:file_dir = expand('%:p:h')
+    " if l:file_dir[0] !=# '/'
+    "     let l:file_dir = getcwd()
+    " endif
+    " silent exe 'lcd '.l:file_dir
     if a:0 == 0
         let l:text = expand('<cword>')
     else
@@ -327,11 +360,11 @@ command! -nargs=* AgWord call AgWord(<f-args>)
 
 
 fun! VAgWord() abort range
-    let l:file_dir = expand('%:p:h')
-    if l:file_dir[0] !=# '/'
-        let l:file_dir = getcwd()
-    endif
-    silent exe 'lcd '.l:file_dir
+    " let l:file_dir = expand('%:p:h')
+    " if l:file_dir[0] !=# '/'
+    "     let l:file_dir = getcwd()
+    " endif
+    " silent exe 'lcd '.l:file_dir
     let @@ = ''
     exe 'silent normal gvy'
     if @@ !=# ''

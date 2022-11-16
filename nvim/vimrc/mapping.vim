@@ -31,6 +31,7 @@ nno <silent> <Down>  :ResizeWindow -1<CR>
 " for yank/delete/paste
 nno <silent> x       "_x
 vno <silent> x       "_x
+vno <silent> p       "_dP
 nno <silent> D       "_D
 nno <silent> de      "_de
 
@@ -89,8 +90,8 @@ else
     nno <silent> <C-/>   :TComment<CR>
     vno <silent> <C-/>   :TComment<CR>
 endif
-map <silent> p     <Plug>(miniyank-autoput)
-map <silent> P     <Plug>(miniyank-autoPut)
+" map <silent> p     <Plug>(miniyank-autoput)
+" map <silent> P     <Plug>(miniyank-autoPut)
 nno <silent> <C-b> :<C-u>Buffers<CR>
 nno <silent> <C-f> :<C-u>call AgWord()<CR>
 vno <silent> <C-f> :<C-u>call VAgWord()<CR>

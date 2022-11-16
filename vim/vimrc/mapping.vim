@@ -27,6 +27,7 @@ nno <silent><Tab>    :NewTabPage<CR>
 " yank/delete/paste
 nno <silent> x       "_x
 vno <silent> x       "_x
+vno <silent> p       "_dP
 nno <silent> D       "_D
 nno <silent> de      "_de
 
@@ -79,6 +80,8 @@ else
 endif
 nno <silent> <C-b> :Buffers<CR>
 nno <silent> <C-f> :Find<CR>
+nno <silent> <C-f> :call VimGrepWord()<CR>
+vno <silent> <C-f> :call VVimGrepWord()<CR>
 nno <silent> <C-g> :call AgWord()<CR>
 vno <silent> <C-g> :call VAgWord()<CR>
 nno <silent> <C-h> :call OpenRanger()<CR>
