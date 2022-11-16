@@ -14,10 +14,12 @@ nno <silent> q          :q<CR>
 nno <silent> <S-q>      :qall<CR>
 tno <silent> <C-w>      <C-\><C-n><C-w>
 ino <silent> <C-w>      <ESC><C-w>
+nno          /          /\v
 
 " for edit
 vno <silent> >       >gv
 vno <silent> <       <gv
+vno          <C-s>   :s/\v
 
 " for tab/window
 nno <silent> <Right> :ChangeBuffer next<CR>

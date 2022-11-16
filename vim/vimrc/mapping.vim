@@ -10,10 +10,12 @@ nno <silent> <C-s>   :w<CR>
 nno <silent> q       :CloseBufferTab<CR>
 nno <silent> <S-q>   :qall<CR>
 ino <silent> <C-w>   <ESC><C-w>
+nno          /       /\v
 
 " for edit
 vno <silent> >       >gv
 vno <silent> <       <gv
+vno          <C-s>   :s/\v
 
 " tab/window
 nno <silent> <Right> :ChangeBuffer next<CR>
@@ -22,7 +24,7 @@ nno <silent> +       :ResizeWindow +1<CR>
 nno <silent> -       :ResizeWindow -1<CR>
 nno <silent> <Up>    :ResizeWindow +1<CR>
 nno <silent> <Down>  :ResizeWindow -1<CR>
-nno <silent><Tab>    :NewTabPage<CR>
+" nno <silent> <Tab>   :NewTabPage<CR>
 
 " yank/delete/paste
 nno <silent> x       "_x
