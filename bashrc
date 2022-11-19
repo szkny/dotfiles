@@ -30,7 +30,8 @@ alias bash_profile='nvim --noplugin ~/.bash_profile;source ~/.bash_profile'
 # alias cpwd='pwd;pwd|pbcopy'
 
 ## binds
-bind '"\C-h":"ranger-cd\C-m"'
+# bind '"\C-h":"ranger-cd\C-m"'
+bind '"\C-h":"cd **\C-i"'
 
 ## functions
 function ggl(){

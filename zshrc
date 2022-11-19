@@ -32,8 +32,8 @@ TRAPALRM() {
 autoload -Uz compinit
 compinit
 
-## Emacs風キーバインド viがいいひとは -vで
-bindkey -v
+## Vim風キーバインド
+# bindkey -v
 
 ## cdとタイプしなくても、移動
 setopt AUTO_CD
@@ -61,9 +61,6 @@ alias od='od -x'
 alias rsync='rsync -auvrz'
 alias kill='kill -9'
 
-# alias for ssh
-alias raiden='ssh -Y raiden'
-
 # alias for edit by vim
 alias vimrc='nvim ~/dotfiles/nvim/init.vim ~/dotfiles/nvim/vimrc/*.vim'
 alias zshrc='nvim ~/.zshrc;source ~/.zshrc'
@@ -83,7 +80,8 @@ alias jupyterlab='\cd ~/Project/jupyterlab && jupyter lab'
 alias iipython='ipython --profile=iterm2 --no-confirm-exit'
 
 ## binds
-bindkey -s '^H' 'ranger\n'
+# bindkey -s '^H' 'ranger\n'
+bindkey -s '^H' 'cd **\t'
 
 ## functions
 function ggl(){
