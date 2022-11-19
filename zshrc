@@ -43,6 +43,7 @@ setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 
 ## command history
+setopt share_history
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
@@ -138,6 +139,23 @@ function jupyterlab-rm-checkpoints(){
 function openiterm(){
     osascript -e 'tell application "Iterm" to activate'
 }
+function IsExistCmd(){ type "$1" > /dev/null 2>&1; }
+function start-tmux(){
+  if ! IsExistCmd tmux; then
+    echo tmux not installed
+    return 1
+  fi
+  tmux_count=$(ps -ef | grep '[t]mux' | wc -l)
+  if [[ $SHLVL -eq 1 && $tmux_count -eq 0 ]]; then
+    tmux -u new-session
+  elif [[ $SHLVL -eq 1 && $tmux_count -gt 1 ]]; then
+    tmux -u attach
+  fi
+}
 
-
+# fzf setup
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# start tmux
+start-tmux
+

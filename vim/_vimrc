@@ -11,16 +11,17 @@ set background=dark
 
 set noswapfile
 set hlsearch
-" set incsearch
+set ignorecase
+set incsearch
 
 set number
 set whichwrap=b,s,h,l,<,>,[,]
 set backspace=indent,eol,start
 set virtualedit=onemore
 
-" set encoding=utf-8
-" set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
-" set fileformats=unix,dos,mac
+set encoding=utf-8
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileformats=unix,dos,mac
 
 set hidden
 set mouse=a
