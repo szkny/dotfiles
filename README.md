@@ -1,6 +1,7 @@
 # my dotfiles
 bashrc, vimrc, init.vim, etc  
 
+
 ## download  
 
 Execute "git clone" command.  
@@ -18,7 +19,7 @@ To create symbolic link, please execute following command.
 $ ~/dotfiles/dotfilesLink.sh
 ```
 
-If you use vim-plug, you can make development environment by following command in neovim.
+If I use vim-plug, I can make development environment by following command in neovim.
 ([Vim-plug](https://github.com/junegunn/vim-plug))
 ```
 :PlugInstall
