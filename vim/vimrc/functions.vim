@@ -312,10 +312,10 @@ command! SetHlSearch call s:sethlsearch()
 
 fun! VimGrepWord(...) abort
     call system('git status')
-    if v:shell_error == 0
-        let l:target = '**'
-    else
+    if v:shell_error ==# 0
         let l:target = '`git ls-files`'
+    else
+        let l:target = '**'
     endif
     if a:0 == 0
         let l:pattern = expand('<cword>')
@@ -329,10 +329,10 @@ command! -nargs=* VimGrepWord call VimGrepWord(<f-args>)
 
 fun! VVimGrepWord() abort range
     call system('git status')
-    if v:shell_error == 0
-        let l:target = '**'
-    else
+    if v:shell_error ==# 0
         let l:target = '`git ls-files`'
+    else
+        let l:target = '**'
     endif
     let @@ = ''
     exe 'silent normal gvy'

@@ -9,6 +9,7 @@ if has('mac')
 endif
 set background=dark
 
+set noswapfile
 set hlsearch
 " set incsearch
 
