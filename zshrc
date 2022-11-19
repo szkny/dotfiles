@@ -34,6 +34,7 @@ compinit
 
 ## Vim風キーバインド
 # bindkey -v
+bindkey -e
 
 ## cdとタイプしなくても、移動
 setopt AUTO_CD

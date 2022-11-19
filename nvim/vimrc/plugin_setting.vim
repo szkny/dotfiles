@@ -38,7 +38,7 @@ elseif exists('*ch_close_in')
     let g:quickrun_config._.runner = 'job'
 endif
 
-"" deoplete.nvim
+" " deoplete.nvim
 " let g:deoplete#enable_at_startup = 1
 " let g:deoplete#auto_completion_delay = 0
 " let g:deoplete#auto_completion_start_length = 1

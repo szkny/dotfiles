@@ -23,8 +23,10 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-Plug 'prabirshrestha/async.vim' | Plug 'prabirshrestha/vim-lsp'
-Plug 'lighttiger2505/deoplete-vim-lsp' | Plug 'Shougo/deoplete.nvim'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'lighttiger2505/deoplete-vim-lsp'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'mattn/vim-lsp-settings'
 Plug 'w0rp/ale'
 " Plug 'bronson/vim-trailing-whitespace'
@@ -203,21 +205,23 @@ let g:session_autosave = 'no'
 let g:session_command_aliases = 1
 
 "" Python Host Program
-let g:python_host_prog = ''
-let g:python3_host_prog = ''
-if has('mac')
-    let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/bin/python2')
-    let g:python3_host_prog = expand('~/.pyenv/versions/3.6.5/bin/python3')
-elseif system('uname') ==# "Linux\n"
-    let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/bin/python2')
-    let g:python3_host_prog = expand('~/.pyenv/versions/3.8.5/bin/python3')
-endif
-if findfile(g:python_host_prog) ==# ''
-    let g:python_host_prog = split(system('which python2'), "\n")[0]
-endif
-if findfile(g:python3_host_prog) ==# ''
-    let g:python3_host_prog = split(system('which python3'), "\n")[0]
-endif
+let g:python_host_prog  = expand('~/.pyenv/shims/python2')
+let g:python3_host_prog = expand('~/.pyenv/shims/python3')
+" let g:python_host_prog = ''
+" let g:python3_host_prog = ''
+" if has('mac')
+"     let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/bin/python2')
+"     let g:python3_host_prog = expand('~/.pyenv/versions/3.6.5/bin/python3')
+" elseif system('uname') ==# "Linux\n"
+"     let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/bin/python2')
+"     let g:python3_host_prog = expand('~/.pyenv/versions/3.8.5/bin/python3')
+" endif
+" if findfile(g:python_host_prog) ==# ''
+"     let g:python_host_prog = split(system('which python2'), "\n")[0]
+" endif
+" if findfile(g:python3_host_prog) ==# ''
+"     let g:python3_host_prog = split(system('which python3'), "\n")[0]
+" endif
 
 "*****************************************************************************
 "" Visual Settings
