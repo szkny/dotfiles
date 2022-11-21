@@ -25,8 +25,10 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
-Plug 'lighttiger2505/deoplete-vim-lsp'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+" Plug 'lighttiger2505/deoplete-vim-lsp'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'mattn/vim-lsp-settings'
 Plug 'w0rp/ale'
 " Plug 'bronson/vim-trailing-whitespace'
@@ -108,6 +110,9 @@ Plug 'JuliaEditorSupport/julia-vim'
 
 " javascript
 Plug 'prettier/vim-prettier',  { 'for': ['javascript', 'typescript', 'css', 'json', 'markdown', 'vue', 'yaml', 'html'] }
+
+" terraform
+Plug 'hashivim/vim-terraform'
 
 " nyaovim
 if exists('g:nyaovim_version')
