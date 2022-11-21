@@ -1,7 +1,6 @@
 # my dotfiles
 bashrc, vimrc, init.vim, etc  
 
-
 ## download  
 
 Execute "git clone" command.  
