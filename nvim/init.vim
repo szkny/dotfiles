@@ -178,12 +178,13 @@ set inccommand=split
 set complete-=t
 
 "" Copy/Paste/Cut
-set clipboard+=unnamedplus
 if has('wsl')
     augroup Yank
       au!
       autocmd TextYankPost * :call system('clip.exe', @")
     augroup END
+else
+    set clipboard+=unnamedplus
 endif
 
 "" Directories for swp files
