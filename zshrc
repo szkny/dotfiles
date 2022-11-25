@@ -29,8 +29,15 @@ TRAPALRM() {
 }
 
 ## 補完機能
-autoload -Uz compinit
-compinit
+setopt ALWAYS_TO_END 
+setopt AUTO_MENU
+setopt AUTO_PARAM_SLASH
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' complete-options true
+zstyle ':completion:*:options' auto-description '%d'
 
 ## Vim風キーバインド
 # bindkey -v
