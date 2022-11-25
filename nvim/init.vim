@@ -52,7 +52,9 @@ Plug 'szkny/SplitTerm'
 Plug 'wfxr/minimap.vim'
 Plug 'lambdalisue/vim-quickrun-neovim-job' | Plug 'thinca/vim-quickrun'
 Plug 'glacambre/firenvim', { 'do': function('firenvim#install') }
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
+if has('mac') == 0
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
+endif
 Plug 'scrooloose/nerdtree',                     {'on': 'NERDTreeToggle'}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': 'NERDTreeToggle'}
 Plug 'willelz/badapple.nvim'
