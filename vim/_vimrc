@@ -13,6 +13,7 @@ set noswapfile
 set hlsearch
 set ignorecase
 set incsearch
+set nowrap
 
 set number
 set whichwrap=b,s,h,l,<,>,[,]
