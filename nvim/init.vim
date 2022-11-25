@@ -132,6 +132,8 @@ Plug 'yaasita/ore_markdown',           {'for': 'markdown'}
 " Plug 'lvht/tagbar-markdown',           {'for': 'markdown'}
 Plug 'vim-scripts/applescript.vim',    {'for': 'applescript'}
 Plug 'aklt/plantuml-syntax',           {'for': 'plantuml'}
+Plug 'posva/vim-vue',                  {'for': 'vue'}
+Plug 'digitaltoad/vim-pug',            {'for': 'pug'}
 
 " icon
 Plug 'ryanoasis/vim-devicons'
