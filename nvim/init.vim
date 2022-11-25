@@ -179,6 +179,12 @@ set complete-=t
 
 "" Copy/Paste/Cut
 set clipboard+=unnamedplus
+if has('wsl')
+    augroup Yank
+      au!
+      autocmd TextYankPost * :call system('clip.exe', @")
+    augroup END
+endif
 
 "" Directories for swp files
 set nobackup
