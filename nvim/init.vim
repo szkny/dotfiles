@@ -204,6 +204,7 @@ else
 endif
 
 "" etc..
+set autoread
 set whichwrap=b,s,h,l,<,>,[,]
 set mouse=a
 set smartindent
@@ -380,8 +381,6 @@ aug vimrc_make_cmake
     au BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
 aug END
 
-set autoread
-
 " The Silver Searcher
 if executable('ag')
     let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
@@ -402,6 +401,19 @@ endif
 set noerrorbells visualbell t_vb=
 aug visualbell
     au GUIEnter * set visualbell t_vb=
+aug END
+
+" for CRLF
+fun! s:Applycrlfff() abort
+    try 
+        call execute("/\\v\r$")
+        edit ++ff=dos
+    catch
+    endtry
+endf
+aug applycrlffileformat
+    au!
+    au BufReadPost * call s:Applycrlfff()
 aug END
 
 "*****************************************************************************
