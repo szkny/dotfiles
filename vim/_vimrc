@@ -56,19 +56,6 @@ hi VertSplit guibg=#222222
 let g:python2_host_prog = '~/.pyenv/shims/python'
 let g:python3_host_prog = '~/.pyenv/shims/python3'
 
-" for CRLF
-fun! s:Applycrlfff() abort
-    try 
-        call execute("/\\v\r$")
-        edit ++ff=dos
-    catch
-    endtry
-endf
-aug applycrlffileformat
-    au!
-    au BufReadPost * call s:Applycrlfff()
-aug END
-
 " runtime of user vim settings (~/.vim/vimrc/*.vim)
 ru! vimrc/*.vim
 
