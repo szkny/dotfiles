@@ -1,0 +1,31 @@
+[user]
+    name = 
+    email = 
+[init]
+    defaultBranch = main
+[pull]
+    rebase = false
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[diff]
+    tool = nvimdiff
+[difftool]
+    prompt = false
+[mergetool]
+    prompt = false
+[difftool "nvimdiff"]
+    cmd = "nvim -R -d -c \"wincmd l\" -d \"$LOCAL\" \"$REMOTE\""
+[mergetool "nvimdiff"]
+    cmd = "nvim -d -c \"4wincmd w | wincmd J\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"  \"$MERGED\""
+[diff "jupyternotebook"]
+    command = git-nbdiffdriver diff
+[merge "jupyternotebook"]
+    driver = git-nbmergedriver merge %O %A %B %L %P
+    name = jupyter notebook merge driver
+[difftool "nbdime"]
+    cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\" \"$BASE\"
+[mergetool "nbdime"]
+    cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
