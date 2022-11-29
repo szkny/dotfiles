@@ -110,6 +110,7 @@ nno <silent> ]a    :<C-u>ALEPreviousWrap<CR>
 nno <silent> <C-]>     :<C-u>LspDefinition<CR>
 nno <silent> <leader>k :<C-u>LspHover<CR>
 nno <silent> <leader>n :<C-u>LspNextError<CR>
+nno <silent> <leader>p :<C-u>LspPreviousError<CR>
 " nno <silent> <leader>n :<C-u>LspReferences<CR>
 " nno <silent> <leader>r :<C-u>LspRename<CR>
 " nno <silent> <leader>f :<C-u>LspDocumentDiagnostics<CR>
