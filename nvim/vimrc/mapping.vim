@@ -97,7 +97,7 @@ endif
 " map <silent> P     <Plug>(miniyank-autoPut)
 nno <silent> <C-b> :<C-u>Buffers<CR>
 nno <silent> <C-p> :<C-u>Files<CR>
-nno <silent> <C-f> :<C-u>call AgWord()<CR>
+nno <silent> <C-f> :<C-u>Ag<CR>
 vno <silent> <C-f> :<C-u>call VAgWord()<CR>
 nno <silent> <C-h> :<C-u>call Ranger()<CR>
 nno <silent> <C-n> :<C-u>NERDTreeToggle<CR>
