@@ -11,12 +11,8 @@ let b:ale_fixers = ['prettier']
 
 " fomatter
 fun! s:prettier() abort
-    if exists('prettier')
-        let l:pos = getpos('.')
-        exe '%!prettier '.expand("%:p")
-        call setpos('.', l:pos)
-    else
-        echoerr 'prettier does not exist.'
-    endif
+    let l:pos = getpos('.')
+    exe '%!prettier '.expand("%:p")
+    call setpos('.', l:pos)
 endf
 command! Prettier call s:prettier()
