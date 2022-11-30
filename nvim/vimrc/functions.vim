@@ -400,6 +400,19 @@ fun! VAgWord() abort range
 endf
 
 
+fun! ReplaceWord(...) abort
+    let l:target = expand('<cword>')
+    if a:0 > 0
+        let l:text = join(a:000)
+    else
+        echoerr 'no argument.'
+        return
+    endif
+    exe '%s/'.l:target.'/'.l:text.'/gc'
+endf
+command! -nargs=* ReplaceWord call ReplaceWord(<f-args>)
+
+
 fun! s:googlesearchurl(...) abort
     " Google検索をするURLを返す関数
     let l:url = '"http://www.google.co.jp/'

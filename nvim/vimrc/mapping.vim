@@ -20,7 +20,7 @@ nno          /          /\v
 " for edit
 vno <silent> >       >gv
 vno <silent> <       <gv
-vno <leader>s        :s/\v
+nno          <C-d>   :<C-u>ReplaceWord 
 
 " for tab/window
 nno <silent> <Right> :ChangeBuffer next<CR>
