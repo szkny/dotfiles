@@ -21,6 +21,7 @@ nno          /          /\v
 vno <silent> >       >gv
 vno <silent> <       <gv
 nno          <C-d>   :<C-u>ReplaceWord 
+vno          <C-d>   :<C-u>VReplaceWord 
 
 " for tab/window
 nno <silent> <Right> :ChangeBuffer next<CR>

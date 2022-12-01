@@ -413,6 +413,23 @@ endf
 command! -nargs=* ReplaceWord call ReplaceWord(<f-args>)
 
 
+fun! VReplaceWord(...) abort range
+    if a:0 > 0
+        let l:text = join(a:000)
+    else
+        echoerr 'no argument.'
+        return
+    endif
+    let @@ = ''
+    exe 'silent normal gvy'
+    if @@ !=# ''
+        let l:target = join(split(@@,'\n'))
+        exe '%s/'.l:target.'/'.l:text.'/gc'
+    endif
+endf
+command! -range -nargs=* VReplaceWord call VReplaceWord(<f-args>)
+
+
 fun! s:googlesearchurl(...) abort
     " Google検索をするURLを返す関数
     let l:url = '"http://www.google.co.jp/'
