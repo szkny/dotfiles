@@ -88,8 +88,8 @@ alias jupyterlab='\cd ~/Project/jupyterlab && jupyter lab'
 alias iipython='ipython --profile=iterm2 --no-confirm-exit'
 
 ## binds
-# bindkey -s '^H' 'ranger\n'
-bindkey -s '^H' 'cd **\t'
+# bindkey -s '^H' '^uranger-cd\n'
+bindkey -s '^H' '^ucd **\t'
 
 ## functions
 function ggl(){
@@ -108,9 +108,9 @@ function pyhistio(){
     pyhist $@
     unset MPLBACKEND
 }
-function ranger(){
+function ranger-cd(){
     tempfile="$(mktemp -t tmp.XXXXXX)"
-    /usr/local/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
+    ranger --choosedir="$tempfile" "${@:-$(pwd)}"
     echo -en "\033[1A\033[2K\033[1A\033[2K"
     test -f "$tempfile" &&
     if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
