@@ -17,7 +17,8 @@ tno <silent> <ESC>   <C-\><C-n>
 " for edit
 vno <silent> >       >gv
 vno <silent> <       <gv
-vno <leader>s        :s/\v
+nno          <C-d>   :<C-u>ReplaceWord 
+vno          <C-d>   :<C-u>VReplaceWord 
 
 " tab/window
 nno <silent> <Right> :<C-u>ChangeBuffer next<CR>

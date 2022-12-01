@@ -310,6 +310,36 @@ endf
 command! SetHlSearch call s:sethlsearch()
 
 
+fun! ReplaceWord(...) abort
+    let l:target = expand('<cword>')
+    if a:0 > 0
+        let l:text = join(a:000)
+    else
+        echoerr 'no argument.'
+        return
+    endif
+    exe '%s/'.l:target.'/'.l:text.'/gc'
+endf
+command! -nargs=* ReplaceWord call ReplaceWord(<f-args>)
+
+
+fun! VReplaceWord(...) abort range
+    if a:0 > 0
+        let l:text = join(a:000)
+    else
+        echoerr 'no argument.'
+        return
+    endif
+    let @@ = ''
+    exe 'silent normal gvy'
+    if @@ !=# ''
+        let l:target = join(split(@@,'\n'))
+        exe '%s/'.l:target.'/'.l:text.'/gc'
+    endif
+endf
+command! -range -nargs=* VReplaceWord call VReplaceWord(<f-args>)
+
+
 fun! VimGrepWord(...) abort
     call system('git status')
     if v:shell_error ==# 0
