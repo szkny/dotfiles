@@ -68,6 +68,7 @@ alias mv='mv -i'
 alias od='od -x'
 alias rsync='rsync -auvrz'
 alias kill='kill -9'
+alias gcam='git commit -am'
 
 # alias for edit by vim
 alias vimrc='nvim ~/dotfiles/nvim/init.vim ~/dotfiles/nvim/vimrc/*.vim'
