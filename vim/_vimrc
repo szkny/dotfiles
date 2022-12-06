@@ -30,9 +30,13 @@ set mouse=a
 set laststatus=2
 
 set smartindent
-set tabstop=4
 set shiftwidth=4
 set scrolloff=3
+
+set tabstop=4
+set softtabstop=0
+set shiftwidth=4
+set expandtab
 
 set clipboard=unnamed
 
