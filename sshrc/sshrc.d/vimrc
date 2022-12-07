@@ -81,7 +81,6 @@ nno <silent> +       :<C-u>ResizeWindow +1<CR>
 nno <silent> -       :<C-u>ResizeWindow -1<CR>
 nno <silent> <Up>    :<C-u>ResizeWindow +1<CR>
 nno <silent> <Down>  :<C-u>ResizeWindow -1<CR>
-" nno <silent> <Tab>   :<C-u>NewTabPage<CR>
 
 " yank/delete/paste
 nno <silent> x       "_x
@@ -150,6 +149,7 @@ ino <silent> <A-;>    <ESC>:<C-u>Appendchar ;<CR>a
 no  <silent> <A-;>         :<C-u>Appendchar ;<CR>
 nno <silent> ?          :<C-u>SetHlSearch<CR>
 nno <silent> t          :<C-u>bo terminal ++rows=12<CR>
+nno <silent> <C-n>      :<C-u>Explore<CR>
 
 
 "*****************************************************************************
@@ -267,12 +267,6 @@ fun! s:deletebuffer() abort
     endtry
 endf
 
-
-fun! s:newtabpage() abort
-    tabnew
-    call Ranger()
-endf
-command! NewTabPage call s:newtabpage()
 
 fun! s:resizewindow(size) abort
     " 分割ウィンドウの高さと幅を調節する関数
