@@ -4,9 +4,6 @@ filetype on
 filetype plugin on
 
 syntax on
-if has('mac')
-    set termguicolors " for iTerm2
-endif
 set background=dark
 
 set noswapfile
@@ -55,13 +52,6 @@ set listchars=tab:¦\
 set fillchars=vert:\ 
 hi EndOfBuffer guifg=bg
 hi VertSplit guibg=#222222
-
-" setting of python for neovim
-" let g:python2_host_prog = '~/.pyenv/shims/python'
-" let g:python3_host_prog = '~/.pyenv/shims/python3'
-
-" runtime of user vim settings (~/.vim/vimrc/*.vim)
-" ru! vimrc/*.vim
 
 "*****************************************************************************
 "" Key-Mappings
@@ -399,72 +389,6 @@ endf
 command! -nargs=* -range Appendchar :<line1>,<line2>call s:appendchar(<f-args>)
 
 
-fun! s:sql() abort
-    " mysqlを起動する関数
-    let l:command = 'mysql'
-    if executable(l:command)
-        let l:args = ''
-        if &filetype ==# 'sql' || &filetype ==# 'mysql'
-            let l:args = ' < ' . expand('%')
-        endif
-        call term_start(l:command.' '.l:args)
-    else
-        echon 'SQL: [error] '.l:command.' command not found.'
-    endif
-endf
-command! SQL call s:sql()
-
-
-fun! s:sqlplot(...) abort
-    " sqlplot(自作シェルコマンド) を実行する関数
-    if (&filetype ==# 'sql' || &filetype ==# 'mysql') && executable('sqlplot')
-        let l:command = 'sqlplot'
-        let l:args = ' ' . expand('%')
-        call term_start(l:command.' '.l:args)
-    endif
-endf
-command! -nargs=* SQLplot call s:sqlplot(<f-args>)
-
-
-fun! s:pyplot(...) abort
-    " pyplot(自作シェルコマンド) を実行する関数
-    if &filetype ==# 'text' && executable('pyplot')
-        if a:0 == 0
-            let l:column = ' -u1'
-        elseif a:0 == 1
-            let l:column = ' -u'.a:1
-        elseif a:0 >= 2
-            let l:column = ' -n'.a:0
-            for l:i in a:000
-                let l:tmp  = ' -u'.l:i
-                let l:column .= l:tmp
-            endfor
-        endif
-        call system('pyplot %'.l:column)
-    endif
-endf
-command! -nargs=* Pyplot call s:pyplot(<f-args>)
-
-
-fun! s:gnuplot() abort
-    " gnuplotを実行する関数
-    if expand('%:e') ==# 'gp' || expand('%:e') ==# 'gpi'
-        let l:command = 'gnuplot'
-        let l:args = ' ' . expand('%')
-        call term_start(l:command.' '.l:args)
-        startinsert
-    else
-        echon 'Gnuplot: [error] invalid file type. this is "' . &filetype. '".'
-    endif
-endf
-command! -nargs=* Gnuplot call s:gnuplot(<f-args>)
-
-
-if executable('pdftotext')
-    command! -complete=file -nargs=1 Pdf :r !pdftotext -nopgbrk -layout <q-args> -
-endif
-
-
 fun! s:sethlsearch() abort
     " 検索結果のハイライトのオン/オフ切り替え
     if &hlsearch
@@ -504,6 +428,18 @@ fun! VReplaceWord(...) abort range
     endif
 endf
 command! -range -nargs=* VReplaceWord call VReplaceWord(<f-args>)
+
+
+fun! s:jqfmt() abort
+    if executable("jq")
+        let l:pos = getpos('.')
+        exe '%!jq . '.expand("%:p")
+        call setpos('.', l:pos)
+    else
+        echoerr "jq not found."
+    endif
+endf
+command! Jq call s:jqfmt()
 
 
 fun! VimGrepWord(...) abort

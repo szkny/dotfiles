@@ -340,6 +340,18 @@ endf
 command! -range -nargs=* VReplaceWord call VReplaceWord(<f-args>)
 
 
+fun! s:jqfmt() abort
+    if executable("jq")
+        let l:pos = getpos('.')
+        exe '%!jq . '.expand("%:p")
+        call setpos('.', l:pos)
+    else
+        echoerr "jq not found."
+    endif
+endf
+command! Jq call s:jqfmt()
+
+
 fun! VimGrepWord(...) abort
     call system('git status')
     if v:shell_error ==# 0

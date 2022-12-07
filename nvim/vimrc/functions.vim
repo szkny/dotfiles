@@ -369,6 +369,18 @@ endf
 command! SetHlSearch call s:sethlsearch()
 
 
+fun! s:jqfmt() abort
+    if executable("jq")
+        let l:pos = getpos('.')
+        exe '%!jq . '.expand("%:p")
+        call setpos('.', l:pos)
+    else
+        echoerr "jq not found."
+    endif
+endf
+command! Jq call s:jqfmt()
+
+
 fun! AgWord(...) abort
     " let l:file_dir = expand('%:p:h')
     " if l:file_dir[0] !=# '/'
