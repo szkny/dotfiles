@@ -59,6 +59,7 @@ SAVEHIST=1000000
 ## alias for commands
 alias vi='nvim'
 alias vin='nvim --noplugin'
+alias vimdiff='nvim -d'
 alias vide='nvim -S ~/.config/nvim/ide.vim'
 alias cd='cdls'
 alias ls='exa -G'

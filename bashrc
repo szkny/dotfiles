@@ -3,6 +3,7 @@ PS1="\[\033[36m\]\[\033[4m\]\W\[\033[0m\033[36m\]\n[\[\033[37m\]\t\[\033[39m\033
 ## alias for commands
 alias vi='nvim'
 alias vin='nvim --noplugin'
+alias vimdiff='nvim -d'
 alias vide='nvim -S ~/.config/nvim/ide.vim'
 alias cd='cdls'
 alias ls='ls -G'
