@@ -112,6 +112,21 @@ fun! s:deletebuffer() abort
 endf
 
 
+fun! s:CloseNetrw() abort
+  for bufn in range(1, bufnr('$'))
+    if bufexists(bufn) && getbufvar(bufn, '&filetype') ==# 'netrw'
+      silent! execute 'bwipeout ' . bufn
+      if getline(2) =~# '^" Netrw '
+        silent! bwipeout
+      endif
+      return
+    endif
+  endfor
+endf
+autocmd FileType netrw nnoremap <buffer><silent> <Esc> :call <SID>CloseNetrw()<CR>
+autocmd FileType netrw nnoremap <buffer><silent> q     :call <SID>CloseNetrw()<CR>
+
+
 fun! s:newtabpage() abort
     tabnew
     call Ranger()
