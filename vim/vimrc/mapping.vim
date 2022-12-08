@@ -84,7 +84,7 @@ else
     vno <silent> \     :<C-u>TComment<CR>
 endif
 nno <silent> <C-b> :<C-u>Buffers<CR>
-nno <silent> <C-f> :<C-u>Find<CR>
+nno <silent> <C-p> :<C-u>Files<CR>
 nno <silent> <C-f> :<C-u>call VimGrepWord()<CR>
 vno <silent> <C-f> :<C-u>call VVimGrepWord()<CR>
 nno <silent> <C-g> :<C-u>call AgWord()<CR>

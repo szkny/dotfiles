@@ -102,9 +102,9 @@ nno <silent> <C-f> :<C-u>Ag<CR>
 vno <silent> <C-f> :<C-u>call VAgWord()<CR>
 nno <silent> <C-h> :<C-u>call Ranger()<CR>
 nno <silent> <C-n> :<C-u>NERDTreeToggle<CR>
-" nno <silent> <C-t> :<C-u>TagbarToggle<CR>
+nno <silent> <C-t> :<C-u>TagbarToggle<CR>
 " nno <silent> <C-t> :<C-u>Vista!!<CR>
-nno <silent> <C-t> :<C-u>MinimapToggle<CR>
+" nno <silent> <C-t> :<C-u>MinimapToggle<CR>
 nno <silent> [a    :<C-u>ALENextWrap<CR>
 nno <silent> ]a    :<C-u>ALEPreviousWrap<CR>
 " vim-lsp
