@@ -287,6 +287,7 @@ fun! s:CloseNetrw() abort
 endf
 autocmd FileType netrw nnoremap <buffer><silent> <Esc> :call <SID>CloseNetrw()<CR>
 autocmd FileType netrw nnoremap <buffer><silent> q     :call <SID>CloseNetrw()<CR>
+autocmd FileType netrw nnoremap <buffer><silent> <C-n> :call <SID>CloseNetrw()<CR>
 
 
 fun! s:resizewindow(size) abort
