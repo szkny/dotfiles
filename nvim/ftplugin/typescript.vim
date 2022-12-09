@@ -10,9 +10,17 @@ let b:ale_fixers = ['prettier']
 " let g:ale_javascript_prettier_use_local_config = 1
 
 " fomatter
+" fun! s:prettier() abort
+"     let l:pos = getpos('.')
+"     exe '%!prettier '.expand("%:p")
+"     call setpos('.', l:pos)
+" endf
 fun! s:prettier() abort
+    let l:textall = join(getline(0,'$'), "\\n")
+    let l:command = "echo '".l:textall."' | prettier --stdin-filepath ".expand("%:p")
     let l:pos = getpos('.')
-    exe '%!prettier '.expand("%:p")
+    exe '%!'.l:command
+    " echo '%!'.l:command
     call setpos('.', l:pos)
 endf
 command! Prettier call s:prettier()

@@ -387,8 +387,10 @@ command! SetHlSearch call s:sethlsearch()
 
 fun! s:jqfmt() abort
     if executable("jq")
+        let l:textall = join(getline(0,'$'), "\n")
+        let l:command = "echo '".l:textall."' | jq -r ."
         let l:pos = getpos('.')
-        exe '%!jq . '.expand("%:p")
+        exe '%!'.l:command
         call setpos('.', l:pos)
     else
         echoerr "jq not found."

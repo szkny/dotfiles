@@ -16,8 +16,10 @@ endf
 command! Beautify call s:jsbeautify()
 
 fun! s:prettier() abort
+    let l:textall = join(getline(0,'$'), "\\n")
+    let l:command = "echo '".l:textall."' | prettier --stdin-filepath ".expand("%:p")
     let l:pos = getpos('.')
-    exe '%!prettier '.expand("%:p")
+    exe '%!'.l:command
     call setpos('.', l:pos)
 endf
 command! Prettier call s:prettier()
