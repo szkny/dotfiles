@@ -16,11 +16,8 @@ let b:ale_fixers = ['prettier']
 "     call setpos('.', l:pos)
 " endf
 fun! s:prettier() abort
-    let l:textall = join(getline(0,'$'), "\\n")
-    let l:command = "echo '".l:textall."' | prettier --stdin-filepath ".expand("%:p")
     let l:pos = getpos('.')
-    exe '%!'.l:command
-    " echo '%!'.l:command
+    silent exe "0, $!prettier --stdin-filepath ".expand("%")
     call setpos('.', l:pos)
 endf
 command! Prettier call s:prettier()
