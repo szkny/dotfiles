@@ -89,7 +89,7 @@ let g:NERDTreeShowHidden=1
 
 "" Tagbar
 let g:tagbar_autofocus = 1
-let g:tagbar_width = 40
+let g:tagbar_width = 25
 let g:tagbar_sort = 0
 
 ""vista.vim
