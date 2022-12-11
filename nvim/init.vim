@@ -174,7 +174,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-set inccommand=split
+set inccommand=nosplit
 
 "" completion
 set complete-=t

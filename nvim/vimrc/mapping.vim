@@ -20,7 +20,9 @@ nno          /          /\v
 " for edit
 vno <silent> >       >gv
 vno <silent> <       <gv
-nno          <C-d>   :<C-u>ReplaceWord 
+nno <expr>   <C-d>   ':%s/'.expand('<cword>').'//gc<Left><Left><Left>'
+" vno <expr>   <C-d>   ':<C-u>%s/'.join(split(@@,'\n')).'//gc<Left><Left><Left>'
+" nno          <C-d>   :<C-u>ReplaceWord 
 vno          <C-d>   :<C-u>VReplaceWord 
 
 " for tab/window
@@ -94,11 +96,9 @@ else
     nno <silent> <C-/>   :TComment<CR>
     vno <silent> <C-/>   :TComment<CR>
 endif
-" map <silent> p     <Plug>(miniyank-autoput)
-" map <silent> P     <Plug>(miniyank-autoPut)
-nno <silent> <C-b> :<C-u>Buffers<CR>
-nno <silent> <C-p> :<C-u>Files<CR>
-nno <silent> <C-f> :<C-u>Ag<CR>
+nno <silent> <C-b> :<C-u>Buffers!<CR>
+nno <silent> <C-p> :<C-u>Files!<CR>
+nno <silent> <C-f> :<C-u>Ag!<CR>
 vno <silent> <C-f> :<C-u>call VAgWord()<CR>
 nno <silent> <C-h> :<C-u>call Ranger()<CR>
 nno <silent> <C-n> :<C-u>NERDTreeToggle<CR>

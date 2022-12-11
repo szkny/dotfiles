@@ -163,6 +163,7 @@ function start-tmux(){
 
 # fzf setup
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS="--layout=reverse"
 
 # start tmux
 start-tmux

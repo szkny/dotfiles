@@ -6,6 +6,8 @@ scriptencoding utf-8
 "" fzf.vim
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+" let g:fzf_preview_window = ['hidden,right,50%,<70(down,40%)', 'ctrl-/']
+let g:fzf_preview_window = ['right,50%,<70(down,40%)', 'ctrl-/']
 
 " vim-lsp
 let g:lsp_signs_enabled = 1
@@ -162,9 +164,9 @@ hi ALEWarningSign gui=None guifg=#ffff00 guibg=#222222
 
 
 "" indent_guides
-let g:indent_guides_enable_on_vim_startup = 0
+let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['terminal', 'help', 'nerdtree', 'fzf']
-let g:indent_guides_guide_size = 2
+let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_auto_colors = 0
 au VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#303030 ctermbg=gray
