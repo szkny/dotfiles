@@ -167,7 +167,7 @@ hi ALEWarningSign gui=None guifg=#ffff00 guibg=#222222
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_exclude_filetypes = ['terminal', 'help', 'nerdtree', 'fzf']
 let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
+let g:indent_guides_start_level = 4
 let g:indent_guides_auto_colors = 0
 au VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#303030 ctermbg=gray
 au VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#222222 ctermbg=darkgray
