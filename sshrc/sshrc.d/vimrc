@@ -77,7 +77,8 @@ tno <silent> <ESC>   <C-\><C-n>
 " for edit
 vno <silent> >       >gv
 vno <silent> <       <gv
-nno          <C-d>   :<C-u>ReplaceWord 
+nno <expr>   <C-d>   ':%s/'.expand('<cword>').'//gc<Left><Left><Left>'
+" nno          <C-d>   :<C-u>ReplaceWord 
 vno          <C-d>   :<C-u>VReplaceWord 
 
 " tab/window
@@ -108,17 +109,10 @@ vno <silent> <S-h>   10h
 vno <silent> <S-j>   5gj
 vno <silent> <S-k>   5gk
 vno <silent> <S-l>   10l
-if has('mac')
-    ino <silent> ˙ <Left>
-    ino <silent> ∆ <Down>
-    ino <silent> ˚ <Up>
-    ino <silent> ¬ <Right>
-elseif system('uname') ==# "Linux\n"
-    ino <silent> <A-h> <Left>
-    ino <silent> <A-j> <Down>
-    ino <silent> <A-k> <Up>
-    ino <silent> <A-l> <Right>
-endif
+ino <silent> <A-h> <Left>
+ino <silent> <A-j> <Down>
+ino <silent> <A-k> <Up>
+ino <silent> <A-l> <Right>
 
 " for IME
 nno <silent> あ      a
@@ -135,20 +129,8 @@ nno <silent> ｄｄ    dd
 nno <silent> ｙｙ    yy
 
 "" Mapping for Plugins
-" nno <silent> <C-b> :<C-u>Buffers<CR>
-" nno <silent> <C-f> :<C-u>Find<CR>
 nno <silent> <C-f> :<C-u>call VimGrepWord()<CR>
 vno <silent> <C-f> :<C-u>call VVimGrepWord()<CR>
-" nno <silent> <C-n> :<C-u>NERDTreeToggle<CR>
-" nno <silent> <C-t> :<C-u>TagbarToggle<CR>
-" nno <silent> [a    :<C-u>ALENextWrap<CR>
-" nno <silent> ]a    :<C-u>ALEPreviousWrap<CR>
-" " NOTE: プラグインのマッピングはnoremapではなくmapにすること
-" imap <C-k>       <Plug>(neosnippet_expand_or_jump)
-" smap <C-k>       <Plug>(neosnippet_expand_or_jump)
-" xmap <C-k>       <Plug>(neosnippet_expand_target)
-" smap <expr><TAB> neosnippet#expandable_or_jumpable()?
-"                  \"\<Plug>(neosnippet_expand_or_jump)" :<C-u> "\<TAB>"
 
 "" mapping for My Commands
 ino <silent> <A-;>    <ESC>:<C-u>Appendchar ;<CR>a
@@ -328,38 +310,6 @@ endf
 command! -nargs=* Make call s:make(<f-args>)
 
 
-fun! s:cmake(...) abort
-    " cmakeコマンドを走らせる関数
-    let l:current_dir = expand('%:p:h')
-    let l:builddir = 'build'
-    let l:cmakelists_txt = 'CMakeLists.txt'
-    let l:command = 'cmake .. && make'
-    if a:0 > 0
-        if a:1 ==? 'run'
-            let l:exename = s:getprojectname(l:cmakelists_txt)
-            let l:command .= ' && ./'.l:exename
-        endif
-    endif
-    if findfile(l:cmakelists_txt,l:current_dir) !=# ''
-        if finddir(l:builddir,l:current_dir) ==# ''
-            call mkdir(l:builddir)
-        endif
-        let l:command = 'cd '.l:builddir.' && '.l:command
-        call term_start(l:command)
-    elseif findfile(l:cmakelists_txt,l:current_dir.'/../') !=# ''
-        let l:builddir = '../'.l:builddir
-        if finddir(l:builddir,l:current_dir) ==# ''
-            call mkdir(l:builddir)
-        endif
-        let l:command = 'cd '.l:builddir.' && '.l:command
-        call term_start(l:command)
-    else
-        echon 'not found: '.l:cmakelists_txt
-    endif
-endf
-command! -nargs=* CMake call s:cmake(<f-args>)
-
-
 fun! s:getprojectname(cmakelists_txt) abort
     " CMakeLists.txtからプロジェクト名を取得する関数
     "      CMake関数で利用している
@@ -448,10 +398,8 @@ command! -range -nargs=* VReplaceWord call VReplaceWord(<f-args>)
 
 fun! s:jqfmt() abort
     if executable("jq")
-        let l:textall = join(getline(0,'$'), "\n")
-        let l:command = "echo '".l:textall."' | jq -r ."
         let l:pos = getpos('.')
-        exe '%!'.l:command
+        silent exe "0, $!jq -r ."
         call setpos('.', l:pos)
     else
         echoerr "jq not found."
@@ -490,222 +438,6 @@ fun! VVimGrepWord() abort range
         let l:pattern = join(split(@@,'\n'))
         silent exe 'vimgrep /'.l:pattern.'/ '.l:target.' | cw'
     endif
-endf
-
-
-fun! AgWord(...) abort
-    " let l:file_dir = expand('%:p:h')
-    " if l:file_dir[0] !=# '/'
-    "     let l:file_dir = getcwd()
-    " endif
-    " silent exe 'lcd '.l:file_dir
-    if a:0 == 0
-        let l:text = expand('<cword>')
-    else
-        let l:text = join(a:000)
-    endif
-    silent exe 'Ag '.l:text
-endf
-command! -nargs=* AgWord call AgWord(<f-args>)
-
-
-fun! VAgWord() abort range
-    " let l:file_dir = expand('%:p:h')
-    " if l:file_dir[0] !=# '/'
-    "     let l:file_dir = getcwd()
-    " endif
-    " silent exe 'lcd '.l:file_dir
-    let @@ = ''
-    exe 'silent normal gvy'
-    if @@ !=# ''
-        let l:text = join(split(@@,'\n'))
-        silent exe 'Ag '.l:text
-    endif
-endf
-
-
-fun! s:googlesearchurl(...) abort
-    " Google検索をするURLを返す関数
-    let l:url = '"http://www.google.co.jp/'
-    let l:opt = 'search?num=100'
-    let l:wrd = ''
-    if a:0 >= 1
-        if a:0 == 1
-            if type(a:1) == 1
-                " case of a:1 == string
-                let l:arglist = split(a:1, ' ')
-                for l:i in l:arglist
-                    if l:i == l:arglist[0]
-                        let l:wrd = l:i
-                    else
-                        let l:wrd .= '+' . l:i
-                    endif
-                endfor
-            elseif type(a:1) == 3
-                " case of a:1 is list
-                let l:wrd = join(a:1, '+')
-            endif
-        else
-            let l:wrd = join(a:000, '+')
-        endif
-        let l:opt .= '&q=' . l:wrd
-        let l:url .= l:opt
-    endif
-    let l:url .= '"'
-    return l:url
-endf
-
-
-fun! s:chrome(...) abort range
-    " Google Chrome を開いて引数のキーワードを検索する関数
-    if has('mac')
-        let l:cmd = 'open -a Google\ Chrome '
-    elseif system('uname') ==# "Linux\n"
-        let l:cmd = 'chrome '
-    else
-        return
-    endif
-    let l:url = ''
-    if a:0 == 0
-        let @@ = ''
-        exe 'silent normal gvy'
-        if @@ !=# ''
-            let @@ = join(split(@@,'\n'))
-            let l:url = s:googlesearchurl(@@)
-        else
-            let l:url = s:googlesearchurl()
-        endif
-    else
-        let l:url = s:googlesearchurl(a:000)
-    endif
-    call system(l:cmd.l:url)
-endf
-command! -nargs=* -range Chrome call s:chrome(<f-args>)
-
-
-fun! s:w3m(...) abort range
-    " w3mで引数のキーワードを検索する関数
-    let l:cmd = 'w3m'
-    if executable(l:cmd)
-        if $HTTP_PROXY !=# ''
-            let l:cmd .= printf(' -o http_proxy="%s"', $HTTP_PROXY)
-        endif
-        let l:url = ''
-        if a:0 == 0
-            let @@ = ''
-            exe 'silent normal gvy'
-            if @@ !=# ''
-                let @@ = join(split(@@,'\n'))
-                let l:url = s:googlesearchurl(@@)
-            else
-                let l:url = s:googlesearchurl()
-            endif
-        else
-            let l:url = s:googlesearchurl(a:000)
-        endif
-        call term_start(l:cmd.' '.l:url)
-        startinsert
-    else
-        echon 'W3m: [error] w3m command not found.'
-    endif
-endf
-command! -range -nargs=* W3m call s:w3m(<f-args>)
-
-
-fun! s:nyaovim_browser(...) abort range
-    if exists('g:nyaovim_version')
-        let l:url = ''
-        if a:0 == 0
-            let @@ = ''
-            exe 'silent normal gvy'
-            if @@ !=# ''
-                let @@ = join(split(@@,'\n'))
-                let l:url = s:googlesearchurl(@@)
-            else
-                let l:url = s:googlesearchurl()
-            endif
-        else
-            let l:url = s:googlesearchurl(a:000)
-        endif
-        let l:url = split(l:url, '"')[0]
-        exe 'MiniBrowser '.l:url
-    endif
-endf
-command! -range -nargs=* Browse call s:nyaovim_browser(<f-args>)
-
-
-fun! s:trans(...) abort range
-    " transコマンド(Google翻訳)を利用してvisual選択中の文字列を日本語変換する関数
-    if executable('trans')
-        let l:text = ''
-        if a:0 ==0
-            let @@ = ''
-            exe 'silent normal gvy'
-            if @@ !=# ''
-                let l:text = join(split(@@,'\n'))
-            else
-                let l:text = expand('<cword>')
-            endif
-        else
-            let l:text = join(a:000)
-        endif
-        let l:text = substitute(l:text, '"', '\\"', 'g')
-        if len(l:text) < 900
-            call term_start('trans {en=ja} '.'"'.l:text.'"')
-        else
-            echo 'Trans: [error] text too long.'
-        endif
-    else
-        call s:install_trans()
-    endif
-endf
-command! -range -nargs=* Trans call s:trans(<f-args>)
-
-
-fun! s:transja(...) abort range
-    " transコマンド(Google翻訳)を利用してvisual選択中の日本語を英語に変換する関数
-    if executable('trans')
-        let l:text = ''
-        if a:0 ==0
-            let @@ = ''
-            exe 'silent normal gvy'
-            if @@ !=# ''
-                let l:text = join(split(@@,'\n'))
-            else
-                let l:text = expand('<cword>')
-            endif
-        else
-            let l:text = join(a:000)
-        endif
-        let l:text = substitute(l:text, '"', '\\"', 'g')
-        if len(l:text) < 900
-            call term_start('trans {ja=en} '.'"'.l:text.'"')
-        else
-            echo 'Trans: [error] text too long.'
-        endif
-    else
-        call s:install_trans()
-    endif
-endf
-command! -range -nargs=* Transja call s:transja(<f-args>)
-
-
-fun! s:install_trans() abort
-    if has('mac')
-        let l:install_cmd = 'brew install http://www.soimort.org/translate-shell/translate-shell.rb'
-    elseif system('uname') ==# "Linux\n"
-        let l:exe = '/usr/local/bin/trans'
-        let l:install_cmd = 'sudo wget git.io/trans -O '.l:exe
-        let l:install_cmd .= ' && sudo chmod +x '.l:exe
-    else
-        echon 'Trans: [error] trans command not found.'
-        return
-    endif
-    silent call term_start('echo "trans command not found. installing ..."'
-                             \.' && '.l:install_cmd
-                             \.' && echo " Success !!"'
-                             \.' && echo " you can do \":Trans [WORD]\"."')
-    startinsert
 endf
 
 
@@ -794,13 +526,4 @@ fun! s:git_close() abort
         aug END
     endif
 endf
-
-
-fun! s:open() abort
-    " openコマンドにより編集中ファイルを開く関数
-    if executable('open')
-        silent exe '!open '.expand('%:p')
-    endif
-endf
-command! Open call s:open()
 
