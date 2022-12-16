@@ -15,7 +15,7 @@ nno <silent> q          :q<CR>
 nno <silent> <S-q>      :qall<CR>
 tno <silent> <C-w>      <C-\><C-n><C-w>
 ino <silent> <C-w>      <ESC><C-w>
-nno          /          /\v
+" nno          /          /\v
 
 " for edit
 vno <silent> >       >gv
