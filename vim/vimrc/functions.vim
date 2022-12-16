@@ -334,7 +334,7 @@ fun! ReplaceWord(...) abort
         echoerr 'no argument.'
         return
     endif
-    exe '%s/'.l:target.'/'.l:text.'/gc'
+    exe line('.').',$s/'.l:target.'/'.l:text.'/gc'
 endf
 command! -nargs=* ReplaceWord call ReplaceWord(<f-args>)
 
@@ -350,7 +350,7 @@ fun! VReplaceWord(...) abort range
     exe 'silent normal gvy'
     if @@ !=# ''
         let l:target = join(split(@@,'\n'))
-        exe '%s/'.l:target.'/'.l:text.'/gc'
+        exe line('.').',$s/'.l:target.'/'.l:text.'/gc'
     endif
 endf
 command! -range -nargs=* VReplaceWord call VReplaceWord(<f-args>)

@@ -77,7 +77,7 @@ tno <silent> <ESC>   <C-\><C-n>
 " for edit
 vno <silent> >       >gv
 vno <silent> <       <gv
-nno <expr>   <C-d>   ':%s/'.expand('<cword>').'//gc<Left><Left><Left>'
+nno <expr>   <C-d>   ':'.line('.').',$s/'.expand('<cword>').'//gc<Left><Left><Left>'
 " nno          <C-d>   :<C-u>ReplaceWord 
 vno          <C-d>   :<C-u>VReplaceWord 
 
@@ -374,7 +374,7 @@ fun! ReplaceWord(...) abort
         echoerr 'no argument.'
         return
     endif
-    exe '%s/'.l:target.'/'.l:text.'/gc'
+    exe line('.').',$s/'.l:target.'/'.l:text.'/gc'
 endf
 command! -nargs=* ReplaceWord call ReplaceWord(<f-args>)
 
@@ -390,7 +390,7 @@ fun! VReplaceWord(...) abort range
     exe 'silent normal gvy'
     if @@ !=# ''
         let l:target = join(split(@@,'\n'))
-        exe '%s/'.l:target.'/'.l:text.'/gc'
+        exe line('.').',$s/'.l:target.'/'.l:text.'/gc'
     endif
 endf
 command! -range -nargs=* VReplaceWord call VReplaceWord(<f-args>)

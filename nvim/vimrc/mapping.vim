@@ -20,7 +20,7 @@ nno          /          /\v
 " for edit
 vno <silent> >       >gv
 vno <silent> <       <gv
-nno <expr>   <C-d>   ':%s/'.expand('<cword>').'//gc<Left><Left><Left>'
+nno <expr>   <C-d>   ':'.line('.').',$s/'.expand('<cword>').'//gc<Left><Left><Left>'
 " vno <expr>   <C-d>   ':<C-u>%s/'.join(split(@@,'\n')).'//gc<Left><Left><Left>'
 " nno          <C-d>   :<C-u>ReplaceWord 
 vno          <C-d>   :<C-u>VReplaceWord 
