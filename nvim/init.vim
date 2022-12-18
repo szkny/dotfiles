@@ -93,7 +93,7 @@ Plug 'vim-scripts/c.vim',              {'for': ['c', 'cpp']}
 
 " python
 Plug 'davidhalter/jedi-vim',           {'for': 'python'}
-Plug 'zchee/deoplete-jedi',            {'for': 'python'}
+" Plug 'zchee/deoplete-jedi',            {'for': 'python'}
 Plug 'tweekmonster/braceless.vim',     {'for': 'python'}
 " Plug 'autozimu/LanguageClient-neovim', {
 "     \ 'for': 'python',

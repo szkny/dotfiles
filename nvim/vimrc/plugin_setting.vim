@@ -14,15 +14,24 @@ let $FZF_DEFAULT_OPTS="--reverse --bind ctrl-j:preview-down,ctrl-k:preview-up"
 " vim-lsp
 let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_signs_enabled = 1
+let g:lsp_diagnostics_signs_insert_mode_enabled = 1
+let g:lsp_diagnostics_signs_delay = 1
 let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_document_code_action_signs_enabled = 1
 let g:lsp_virtual_text_enabled = 1
 let g:lsp_highlights_enabled = 1
 let g:lsp_textprop_enabled = 0
-let g:lsp_diagnostics_float_cursor = 1
-let g:lsp_signs_error = {'text': '✗'}
-let g:lsp_signs_warning = {'text': ''}
-let g:lsp_signs_information = {'text': 'i'}
-let g:lsp_signs_hint = {'text': '?'}
+" let g:lsp_signs_error = {'text': '✗'}
+" let g:lsp_signs_warning = {'text': ''}
+" let g:lsp_signs_information = {'text': 'i'}
+" let g:lsp_signs_hint = {'text': '?'}
+let g:lsp_diagnostics_signs_error = {'text': '✗'}
+let g:lsp_diagnostics_signs_warning = {'text': ''}
+let g:lsp_diagnostics_signs_information = {'text': 'i'}
+let g:lsp_diagnostics_signs_hint = {'text': '?'}
+let g:lsp_document_code_action_signs_hint = {'text': '*'}
 " highlight link LspErrorText GruvboxRedSign  " requires gruvbox
 hi LspErrorText gui=bold guifg=#ff0000 guibg=#222222
 hi clear LspWarningLine
