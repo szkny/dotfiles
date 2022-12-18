@@ -8,8 +8,8 @@ command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 let g:fzf_layout = { 'window': 'enew' }
 " let g:fzf_preview_window = ['hidden,right,50%,<70(down,40%)', 'ctrl-/']
-let g:fzf_preview_window = ['right,50%,<70(down,40%)', 'ctrl-/']
-let $FZF_DEFAULT_OPTS="--bind ctrl-j:preview-down,ctrl-k:preview-up"
+let g:fzf_preview_window = ['right,50%,<70(down,60%)', 'ctrl-/']
+let $FZF_DEFAULT_OPTS="--reverse --bind ctrl-j:preview-down,ctrl-k:preview-up"
 
 " vim-lsp
 let g:lsp_signs_enabled = 1
