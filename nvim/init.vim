@@ -24,14 +24,11 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "" Plug install packages
 "*****************************************************************************
 Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-" Plug 'lighttiger2505/deoplete-vim-lsp'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'w0rp/ale'
-" Plug 'bronson/vim-trailing-whitespace'
 Plug 'majutsushi/tagbar'
 Plug 'hushicai/tagbar-javascript.vim'
 Plug 'tomtom/tcomment_vim'
@@ -46,12 +43,12 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'Raimondi/delimitMate'
 Plug 'koron/codic-vim'
-" Plug 'bfredl/nvim-miniyank'
 Plug 'szkny/SplitTerm'
-" Plug 'liuchengxu/vista.vim'
+Plug 'liuchengxu/vista.vim'
 Plug 'wfxr/minimap.vim'
 Plug 'lambdalisue/vim-quickrun-neovim-job' | Plug 'thinca/vim-quickrun'
-Plug 'glacambre/firenvim', { 'do': function('firenvim#install') }
+" Plug 'glacambre/firenvim', { 'do': function('firenvim#install') }
+
 if has('mac') == 0
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
 endif
@@ -59,16 +56,26 @@ Plug 'scrooloose/nerdtree',                     {'on': 'NERDTreeToggle'}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': 'NERDTreeToggle'}
 Plug 'willelz/badapple.nvim'
 
+" fzf.vim
 if isdirectory('/usr/local/opt/fzf')
     Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
     Plug 'junegunn/fzf.vim'
 endif
-" fzf.vim
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 let $FZF_DEFAULT_COMMAND =  'find * -path "*/\.*" -prune -o -path "node_modules/**" -prune -o -path "target/**" -prune -o -path "dist/**" -prune -o  -type f -print -o -type l -print 2> /dev/null'
+
+" " for ddc settings
+" Plug 'Shougo/ddc.vim', {'tag': 'v1.0.0'}
+" Plug 'vim-denops/denops.vim'
+" Plug 'Shougo/pum.vim'
+" Plug 'Shougo/ddc-around'
+" Plug 'LumaKernel/ddc-file'
+" Plug 'Shougo/ddc-matcher_head'
+" Plug 'Shougo/ddc-sorter_rank'
+" Plug 'Shougo/ddc-converter_remove_overlap'
 
 let g:make = 'gmake'
 if exists('make')
@@ -93,7 +100,6 @@ Plug 'vim-scripts/c.vim',              {'for': ['c', 'cpp']}
 
 " python
 Plug 'davidhalter/jedi-vim',           {'for': 'python'}
-" Plug 'zchee/deoplete-jedi',            {'for': 'python'}
 Plug 'tweekmonster/braceless.vim',     {'for': 'python'}
 " Plug 'autozimu/LanguageClient-neovim', {
 "     \ 'for': 'python',

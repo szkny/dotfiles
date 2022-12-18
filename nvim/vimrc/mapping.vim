@@ -102,11 +102,14 @@ nno <silent> <C-f> :<C-u>Ag<CR>
 vno <silent> <C-f> :<C-u>call VAgWord()<CR>
 nno <silent> <C-h> :<C-u>call Ranger()<CR>
 nno <silent> <C-n> :<C-u>NERDTreeToggle<CR>
-nno <silent> <C-t> :<C-u>TagbarToggle<CR>
-" nno <silent> <C-t> :<C-u>Vista!!<CR>
-" nno <silent> <C-t> :<C-u>MinimapToggle<CR>
+" nno <silent> <C-t> :<C-u>TagbarToggle<CR>
+nno <silent> <C-t> :<C-u>Vista!!<CR>
+nno <silent> <C-k> :<C-u>MinimapToggle<CR>
 nno <silent> [a    :<C-u>ALENextWrap<CR>
 nno <silent> ]a    :<C-u>ALEPreviousWrap<CR>
+" " ddc.vim
+" ino <silent> <C-n> <Cmd>call pum#map#insert_relative(+1)<CR>
+" ino <silent> <C-p> <Cmd>call pum#map#insert_relative(-1)<CR>
 " vim-lsp
 nno <silent> <C-]>     :<C-u>LspDefinition<CR>
 nno <silent> <leader>k :<C-u>LspHover<CR>
