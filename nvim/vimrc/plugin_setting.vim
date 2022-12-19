@@ -36,22 +36,6 @@ let g:lsp_document_code_action_signs_hint = {'text': '*'}
 hi LspErrorText gui=bold guifg=#ff0000 guibg=#222222
 hi clear LspWarningLine
 
-" vim-quickrun
-let g:quickrun_no_default_key_mappings = 1
-let g:quickrun_config = {
-    \ '_' : {
-        \ 'outputter' : 'error',
-        \ 'outputter/error/success' : 'buffer',
-        \ 'outputter/error/error'   : 'quickfix',
-        \ 'outputter/buffer/split' : ':botright 8sp',
-    \ }
-\}
-if has('nvim')
-    let g:quickrun_config._.runner = 'neovim_job'
-elseif exists('*ch_close_in')
-    let g:quickrun_config._.runner = 'job'
-endif
-
 " " deoplete.nvim
 " let g:deoplete#enable_at_startup = 1
 " let g:deoplete#auto_completion_delay = 0

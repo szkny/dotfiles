@@ -46,15 +46,12 @@ Plug 'koron/codic-vim'
 Plug 'szkny/SplitTerm'
 Plug 'liuchengxu/vista.vim'
 Plug 'wfxr/minimap.vim'
-Plug 'lambdalisue/vim-quickrun-neovim-job' | Plug 'thinca/vim-quickrun'
-" Plug 'glacambre/firenvim', { 'do': function('firenvim#install') }
 
 if has('mac') == 0
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
 endif
 Plug 'scrooloose/nerdtree',                     {'on': 'NERDTreeToggle'}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': 'NERDTreeToggle'}
-Plug 'willelz/badapple.nvim'
 
 " fzf.vim
 if isdirectory('/usr/local/opt/fzf')
