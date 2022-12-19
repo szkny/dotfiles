@@ -83,8 +83,6 @@ let g:ipython_startup_command = [
             \'mgc = get_ipython().run_line_magic',
             \'mgc("load_ext", "autoreload")',
             \'mgc("autoreload", "2")',
-            \'from pylab import *',
-            \'ion()',
             \'import pandas as pd',
             \'pd.options.display.max_rows = 10',
             \'pd.options.display.max_columns = 10',

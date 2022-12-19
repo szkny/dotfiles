@@ -94,21 +94,8 @@ alias iipython='ipython --profile=iterm2 --no-confirm-exit'
 bindkey -s '^H' '^ucd **\t'
 
 ## functions
-function ggl(){
-    g++ -Wall -O2 -framework GLUT -framework OpenGL $@
-}
 function cdls(){
     \cd $@ && exa
-}
-function pyplotio(){
-    export MPLBACKEND="module://itermplot"
-    pyplot $@
-    unset MPLBACKEND
-}
-function pyhistio(){
-    export MPLBACKEND="module://itermplot"
-    pyhist $@
-    unset MPLBACKEND
 }
 function ranger-cd(){
     tempfile="$(mktemp -t tmp.XXXXXX)"
@@ -160,10 +147,35 @@ function start-tmux(){
     tmux -u attach
   fi
 }
+function fdghq(){
+  local selectedrepos=$(ghq list --full-path | fzf)
+  if [ -n "$selectedrepos" ]; then
+    cd $selectedrepos
+    echo
+    echo -n "run 'git pull'?(y/N): "
+    if read -q; then
+      echo
+      echo '> git pull'
+      git pull
+    fi
+  fi
+}
+
+# PATHs
+export PATH="$PATH:$HOME/Project/bin"
+export PATH="$PATH:$HOME/go/bin"
 
 # fzf setup
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS="--layout=reverse"
+
+# cargo setup
+[ -f ~/.cargo/env ] && source ~/.cargo/env
+
+# nvm setup
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # start tmux
 start-tmux
