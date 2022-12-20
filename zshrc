@@ -174,9 +174,9 @@ export FZF_DEFAULT_OPTS=$(cat <<"EOF"
   --preview '
       [ -f {} ] \
       && bat --color=always --style=numbers {} \
-      || exa -T {} | head -n 50
+      || exa -T {} | head -n 200
   '
-  --preview-window 'hidden,wrap,right,50%,<70(down,60%)'
+  --preview-window 'hidden,wrap,right,200%,<70(down,60%)'
   --bind 'ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up'
   --select-1
   --exit-0
@@ -186,7 +186,7 @@ export FZF_CTRL_T_OPTS=$(cat <<"EOF"
 --preview '
   [ -f {} ] \
   && bat --color=always --style=numbers {} \
-  || exa -T {} | head -n 50
+  || exa -T {} | head -n 200
 ' 
 --preview-window 'down,40%,wrap,nohidden'
 EOF
