@@ -167,7 +167,25 @@ export PATH="$PATH:$HOME/go/bin"
 
 # fzf setup
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_OPTS="--layout=reverse"
+export FZF_DEFAULT_OPTS=$(cat <<"EOF"
+    --multi
+    --layout=reverse
+    --preview 'bat  --color=always --style=plain {}'
+    --preview-window 'hidden:wrap'
+    --bind 'ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up'
+    --select-1
+    --exit-0
+EOF
+)
+export FZF_CTRL_R_OPTS=$(cat <<"EOF"
+--preview '
+  echo {} \
+  | awk "{ sub(/\s*[0-9]*?\s*/, \"\"); gsub(/\\\\n/, \"\\n\"); print }" \
+  | bat --color=always --language=sh --style=plain
+' 
+--preview-window 'down,40%,wrap'
+EOF
+)
 
 # cargo setup
 [ -f ~/.cargo/env ] && source ~/.cargo/env
