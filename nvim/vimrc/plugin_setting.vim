@@ -29,12 +29,15 @@ let g:lsp_textprop_enabled = 0
 " let g:lsp_signs_hint = {'text': '?'}
 let g:lsp_diagnostics_signs_error = {'text': '✗'}
 let g:lsp_diagnostics_signs_warning = {'text': ''}
-let g:lsp_diagnostics_signs_information = {'text': 'i'}
-let g:lsp_diagnostics_signs_hint = {'text': '?'}
+let g:lsp_diagnostics_signs_information = {'text': 'ｉ'}
+let g:lsp_diagnostics_signs_hint = {'text': '？'}
 let g:lsp_document_code_action_signs_hint = {'text': '*'}
 " highlight link LspErrorText GruvboxRedSign  " requires gruvbox
 hi LspErrorText gui=bold guifg=#ff0000 guibg=#222222
-hi clear LspWarningLine
+hi LspWarningText gui=bold guifg=#ffff00 guibg=#222222
+hi LspInformationText gui=bold guifg=#ffffff guibg=#222222
+hi LspHintText gui=bold guifg=#ffffff guibg=#222222
+" hi clear LspWarningLine
 
 " " deoplete.nvim
 " let g:deoplete#enable_at_startup = 1
