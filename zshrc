@@ -143,8 +143,8 @@ function start-tmux(){
   tmux_count=$(ps -ef | grep '[t]mux' | wc -l)
   if [[ $SHLVL -eq 1 && $tmux_count -eq 0 ]]; then
     tmux -u new-session
-  elif [[ $SHLVL -eq 1 && $tmux_count -gt 1 ]]; then
-    tmux -u attach
+  # elif [[ $SHLVL -eq 1 && $tmux_count -gt 1 ]]; then
+  #   tmux -u attach
   fi
 }
 function fdghq(){
