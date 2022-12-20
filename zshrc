@@ -171,7 +171,11 @@ export FZF_DEFAULT_OPTS=$(cat <<"EOF"
   --multi
   --height=100%
   --layout=reverse
-  --preview 'bat --color=always --style=numbers {}'
+  --preview '
+      [ -f {} ] \
+      && bat --color=always --style=numbers {} \
+      || exa -T {} | head -n 50
+  '
   --preview-window 'hidden,wrap,right,50%,<70(down,60%)'
   --bind 'ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up'
   --select-1
