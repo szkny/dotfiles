@@ -176,7 +176,7 @@ export FZF_DEFAULT_OPTS=$(cat <<"EOF"
       && bat --color=always --style=numbers {} \
       || exa -T {} | head -n 50
   '
-  --preview-window 'hidden,wrap,right,50%,<70(down,60%)'
+  --preview-window 'nohidden,nowrap,right,50%,<70(down,50%)'
   --bind 'ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up'
   --select-1
   --exit-0
@@ -188,7 +188,6 @@ export FZF_CTRL_T_OPTS=$(cat <<"EOF"
   && bat --color=always --style=numbers {} \
   || exa -T {} | head -n 50
 ' 
---preview-window 'down,40%,wrap,nohidden'
 EOF
 )
 export FZF_CTRL_R_OPTS=$(cat <<"EOF"
@@ -197,9 +196,10 @@ export FZF_CTRL_R_OPTS=$(cat <<"EOF"
     | awk "{ sub(/\s*[0-9]*?\s*/, \"\"); gsub(/\\\\n/, \"\\n\"); print }" \
     | bat --color=always --language=sh --style=plain
   ' 
-  --preview-window 'down,40%,wrap,nohidden'
+  --preview-window 'down,3,wrap,nohidden'
 EOF
 )
+export FZF_BASE=$HOME/.fzf
 
 # cargo setup
 [ -f ~/.cargo/env ] && source ~/.cargo/env
