@@ -20,10 +20,8 @@ ino <silent> <C-w>      <ESC><C-w>
 " for edit
 vno <silent> >       >gv
 vno <silent> <       <gv
-nno <expr>   <C-d>   ':'.line('.').',$s/'.expand('<cword>').'//gc<Left><Left><Left>'
-" vno <expr>   <C-d>   ':<C-u>%s/'.join(split(@@,'\n')).'//gc<Left><Left><Left>'
-" nno          <C-d>   :<C-u>ReplaceWord 
-vno          <C-d>   :<C-u>VReplaceWord 
+nno <expr>   <C-d>   ':<C-u>'.ReplaceWordText().'<Left><Left><Left>'
+vno <expr>   <C-d>   ':<C-u>'.VReplaceWordText().'<Left><Left><Left>'
 
 " for tab/window
 nno <silent> <Right> :ChangeBuffer next<CR>
