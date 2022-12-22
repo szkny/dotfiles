@@ -14,7 +14,7 @@ sudo apt install -y universal-ctags
 curl https://sh.rustup.rs -sSf | sh
 
 # install cargo libs
-. ~/.zshrc
+source ~/.zshrc
 cargo install exa bat rm-improved code-minimap
 
 # install fzf
@@ -26,14 +26,14 @@ go install github.com/x-motemen/ghq@latest
 
 # install python
 git clone https://github.com/yyuu/pyenv.git ~/.pyenv
-. ~/.zshrc
+source ~/.zshrc
 pyenv install 3.6.5
 pyenv install 2.7.15
 pyenv global 3.6.5 2.7.15
 
 # install node.js
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-. ~/.zshrc
+source ~/.zshrc
 nvm install 14.17.1
 
 # install neovim
