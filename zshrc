@@ -90,8 +90,9 @@ alias jupyterlab='\cd ~/Project/jupyterlab && jupyter lab'
 alias iipython='ipython --profile=iterm2 --no-confirm-exit'
 
 ## binds
-# bindkey -s '^H' '^uranger-cd\n'
-bindkey -s '^H' '^ucd **\t'
+bindkey -s '^H' '^uranger-cd\n'
+# bindkey -s '^H' '^ucd **\t'
+bindkey -s '^F' '^ufdghq\n'
 
 ## functions
 function cdls(){
@@ -200,6 +201,11 @@ export FZF_CTRL_R_OPTS=$(cat <<"EOF"
 EOF
 )
 export FZF_BASE=$HOME/.fzf
+
+# pyenv setup
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)" 
 
 # cargo setup
 [ -f ~/.cargo/env ] && source ~/.cargo/env
