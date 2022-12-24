@@ -100,7 +100,7 @@ nno <silent> <C-f> :<C-u>Ag<CR>
 vno <silent> <C-f> :<C-u>call VAgWord()<CR>
 nno <silent> <C-h> :<C-u>call Ranger()<CR>
 " nno <silent> <C-n> :<C-u>NERDTreeToggle<CR>
-nno <silent> <C-n> :<C-u>Fern . -drawer -toggle -width=30<CR>
+nno <silent> <C-n> :<C-u>Fern . -drawer -toggle -width=25<CR>
 " nno <silent> <C-t> :<C-u>TagbarToggle<CR>
 nno <silent> <C-t> :<C-u>Vista!!<CR>
 nno <silent> <C-k> :<C-u>MinimapToggle<CR>

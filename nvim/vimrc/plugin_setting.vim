@@ -276,18 +276,18 @@ let g:gitgutter_async = 1
 "" ranger
 let g:ranger_map_keys = 0
 let g:NERDTreeHijackNetrw = 0  " add this line if you use NERDTree
-aug ReplaceNetrwByRangerVim
-    " open ranger when vim open a director
-    au!
-    au VimEnter * silent! au! FileExplorer
-    au BufEnter * if isdirectory(expand("%"))
-               \|     call OpenRangerOnVimLoadDir('%')
-               \|     file ranger
-               \|     setlocal filetype=terminal
-               \|     setlocal nonumber
-               \|     setlocal nobuflisted
-               \| endif
-aug END
+" aug ReplaceNetrwByRangerVim
+"     " open ranger when vim open a director
+"     au!
+"     au VimEnter * silent! au! FileExplorer
+"     au BufEnter * if isdirectory(expand("%"))
+"                \|     call OpenRangerOnVimLoadDir('%')
+"                \|     file ranger
+"                \|     setlocal filetype=terminal
+"                \|     setlocal nonumber
+"                \|     setlocal nobuflisted
+"                \| endif
+" aug END
 
 
 "" open-browser

@@ -55,11 +55,12 @@ Plug 'scrooloose/nerdtree',                     {'on': 'NERDTreeToggle'}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': 'NERDTreeToggle'}
 
 " fern.vim
-Plug 'lambdalisue/fern.vim',                    {'on': 'Fern'}
-Plug 'lambdalisue/fern-git-status.vim',         {'on': 'Fern'}
-Plug 'lambdalisue/nerdfont.vim',                {'on': 'Fern'}
-Plug 'lambdalisue/fern-renderer-nerdfont.vim',  {'on': 'Fern'}
-Plug 'lambdalisue/glyph-palette.vim',           {'on': 'Fern'}  " アイコンに色をつける
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-git-status.vim'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/fern-hijack.vim'
+Plug 'lambdalisue/glyph-palette.vim'  " アイコンに色をつける
 aug my-glyph-palette
   au! *
   au FileType fern call glyph_palette#apply()
