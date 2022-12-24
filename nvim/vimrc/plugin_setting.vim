@@ -120,10 +120,16 @@ let g:NERDTreeWinSize = 25
 let g:NERDTreeShowHidden=1
 
 
+"" fern.vim
+let g:fern#renderer = 'nerdfont'
+let g:fern#disable_default_mappings = 0
+
+
 "" Tagbar
 let g:tagbar_autofocus = 1
 let g:tagbar_width = 25
 let g:tagbar_sort = 0
+
 
 ""vista.vim
 let g:vista_echo_cursor = 0
@@ -215,7 +221,8 @@ let g:indentLine_faster = 1
 
 
 "" vim-airline
-let g:airline_theme = 'kalisi'
+" let g:airline_theme = 'kalisi'
+let g:airline_theme = 'codedark'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_splits = 1

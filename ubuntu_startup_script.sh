@@ -6,10 +6,11 @@ sudo apt install -y build-essential libbz2-dev libdb-dev \
   libreadline-dev libffi-dev libgdbm-dev liblzma-dev \
   libncursesw5-dev libsqlite3-dev libssl-dev \
   zlib1g-dev uuid-dev tk-dev
-sudo apt install -y git curl zip unzip
+sudo apt install -y git curl zip unzip wget
 sudo apt install -y golang
 sudo apt install -y silversearcher-ag
 sudo apt install -y universal-ctags
+sudo apt install -y trash-cli
 
 # install rust / cargo
 echo 'install rust / cargo..'

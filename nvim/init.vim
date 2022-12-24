@@ -47,11 +47,24 @@ Plug 'szkny/SplitTerm'
 Plug 'liuchengxu/vista.vim'
 Plug 'wfxr/minimap.vim'
 
+" NERDTree
 if has('mac') == 0
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
 endif
 Plug 'scrooloose/nerdtree',                     {'on': 'NERDTreeToggle'}
 Plug 'jistr/vim-nerdtree-tabs',                 {'on': 'NERDTreeToggle'}
+
+" fern.vim
+Plug 'lambdalisue/fern.vim',                    {'on': 'Fern'}
+Plug 'lambdalisue/fern-git-status.vim',         {'on': 'Fern'}
+Plug 'lambdalisue/nerdfont.vim',                {'on': 'Fern'}
+Plug 'lambdalisue/fern-renderer-nerdfont.vim',  {'on': 'Fern'}
+Plug 'lambdalisue/glyph-palette.vim',           {'on': 'Fern'}  " アイコンに色をつける
+aug my-glyph-palette
+  au! *
+  au FileType fern call glyph_palette#apply()
+  au FileType nerdtree,startify call glyph_palette#apply()
+aug END
 
 " fzf.vim
 if isdirectory('/usr/local/opt/fzf')
@@ -85,8 +98,9 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
 " color scheme
-Plug 'tomasr/molokai'
-Plug 'morhetz/gruvbox'
+" Plug 'tomasr/molokai'
+" Plug 'morhetz/gruvbox'
+Plug 'tomasiser/vim-code-dark'
 " Plug 'arcticicestudio/nord-vim'
 " Plug 'altercation/vim-colors-solarized'
 
@@ -307,8 +321,9 @@ set modelines=10
 " set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 
 set background=dark
-colorscheme molokai
+" colorscheme molokai
 " colorscheme gruvbox
+colorscheme codedark
 
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
