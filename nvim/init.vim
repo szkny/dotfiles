@@ -23,11 +23,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
+" general plugins
 Plug 'w0rp/ale'
 Plug 'majutsushi/tagbar'
 Plug 'hushicai/tagbar-javascript.vim'
@@ -42,17 +38,9 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'Raimondi/delimitMate'
-Plug 'koron/codic-vim'
 Plug 'szkny/SplitTerm'
 Plug 'liuchengxu/vista.vim'
 Plug 'wfxr/minimap.vim'
-
-" NERDTree
-if has('mac') == 0
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': 'NERDTreeToggle'}
-endif
-Plug 'scrooloose/nerdtree',                     {'on': 'NERDTreeToggle'}
-Plug 'jistr/vim-nerdtree-tabs',                 {'on': 'NERDTreeToggle'}
 
 " fern.vim
 Plug 'lambdalisue/fern.vim'
@@ -78,21 +66,26 @@ set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 let $FZF_DEFAULT_COMMAND =  'find * -path "*/\.*" -prune -o -path "node_modules/**" -prune -o -path "target/**" -prune -o -path "dist/**" -prune -o  -type f -print -o -type l -print 2> /dev/null'
 
-" " for ddc settings
-" Plug 'Shougo/ddc.vim', {'tag': 'v1.0.0'}
-" Plug 'vim-denops/denops.vim'
-" Plug 'Shougo/pum.vim'
-" Plug 'Shougo/ddc-around'
-" Plug 'LumaKernel/ddc-file'
-" Plug 'Shougo/ddc-matcher_head'
-" Plug 'Shougo/ddc-sorter_rank'
-" Plug 'Shougo/ddc-converter_remove_overlap'
+" lsp plugins
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 
-let g:make = 'gmake'
-if exists('make')
-    let g:make = 'make'
-endif
-Plug 'Shougo/vimproc.vim', {'do': g:make}
+" for ddc settings
+Plug 'Shougo/ddc.vim'
+Plug 'vim-denops/denops.vim'
+" ddc UIs
+Plug 'Shougo/ddc-ui-native'
+Plug 'Shougo/pum.vim'
+" ddc sources
+Plug 'Shougo/ddc-source-around'
+" Plug 'Shougo/ddc-around'
+Plug 'LumaKernel/ddc-file'
+" ddc filters
+Plug 'Shougo/ddc-matcher_head'
+Plug 'Shougo/ddc-sorter_rank'
+Plug 'Shougo/ddc-converter_remove_overlap'
+" ddc others
+Plug 'shun/ddc-source-vim-lsp'
 
 "" Vim-Session
 Plug 'xolox/vim-misc'
@@ -108,16 +101,10 @@ Plug 'tomasiser/vim-code-dark'
 " c/c++
 Plug 'vim-jp/cpp-vim',                 {'for': 'cpp'}
 Plug 'vim-scripts/c.vim',              {'for': ['c', 'cpp']}
-" Plug 'ludwig/split-manpage.vim'
 
 " python
 Plug 'davidhalter/jedi-vim',           {'for': 'python'}
 Plug 'tweekmonster/braceless.vim',     {'for': 'python'}
-" Plug 'autozimu/LanguageClient-neovim', {
-"     \ 'for': 'python',
-"     \ 'branch': 'next',
-"     \ 'do': 'bash install.sh',
-"     \ }
 Plug 'szkny/Ipython',                  {'for': 'python'}
 Plug 'szkny/IpdbDebugger',             {'for': 'python'}
 " Plug 'szkny/jupyter-vim',              {'for': 'python'}
@@ -149,7 +136,6 @@ Plug 'kannokanno/previm',              {'for': 'markdown'}
 Plug 'godlygeek/tabular',              {'for': 'markdown'}
 Plug 'plasticboy/vim-markdown',        {'for': 'markdown'}
 Plug 'yaasita/ore_markdown',           {'for': 'markdown'}
-" Plug 'lvht/tagbar-markdown',           {'for': 'markdown'}
 Plug 'vim-scripts/applescript.vim',    {'for': 'applescript'}
 Plug 'aklt/plantuml-syntax',           {'for': 'plantuml'}
 Plug 'posva/vim-vue',                  {'for': 'vue'}

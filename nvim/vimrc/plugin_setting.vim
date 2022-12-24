@@ -36,76 +36,33 @@ hi LspInformationText gui=bold guifg=#ffffff guibg=#222222
 hi LspHintText gui=bold guifg=#ffffff guibg=#222222
 hi clear LspWarningLine
 
-" " deoplete.nvim
-" let g:deoplete#enable_at_startup = 1
-" let g:deoplete#auto_completion_delay = 0
-" let g:deoplete#auto_completion_start_length = 1
-" call deoplete#custom#option({
-"     \ 'max_list': 1000,
-"     \ 'camel_case': v:false,
-"     \ 'ignore_case': v:false,
-"     \ 'smart_case': v:true,
-"     \ })
-" call denite#custom#var('grep', 'command', ['ag'])
-
-" let g:deoplete#enable_at_startup = 1
-" inoremap <expr><C-h> deoplete#smart_close_popup()."<C-h>"
-" inoremap <expr><BS> deoplete#smart_close_popup()."<C-h>"
-" call deoplete#custom#option({
-"     \ 'max_list': 100,
-"     \ 'auto_complete': v:true,
-"     \ 'min_pattern_length': 2,
-"     \ 'auto_complete_delay': 0,
-"     \ 'auto_refresh_delay': 20,
-"     \ 'refresh_always': v:true,
-"     \ 'smart_case': v:true,
-"     \ 'camel_case': v:true,
-"     \ })
-" let s:use_lsp_sources = ['lsp', 'dictionary', 'file']
-" call deoplete#custom#option('sources', {
-" \ 'go': s:use_lsp_sources,
-" \ 'python': s:use_lsp_sources,
-" \ 'vim': ['vim', 'buffer', 'dictionary', 'file'],
-" \})
-" hi Pmenu ctermbg=8 guibg=#333333
-" hi PmenuSel ctermbg=1 guifg=#dddd00 guibg=#1f82cd
-" hi PmenuSbar ctermbg=0 guibg=#d6d6d6
-
 " ddc.vim
-" call plug#('Shougo/ddc.vim')
-" call plug#('vim-denops/denops.vim')
-" call plug#('Shougo/pum.vim')
-" call plug#('Shougo/ddc-around')
-" call plug#('LumaKernel/ddc-file')
-" call plug#('Shougo/ddc-matcher_head')
-" call plug#('Shougo/ddc-sorter_rank')
-" call plug#('Shougo/ddc-converter_remove_overlap')
-" call plug#('prabirshrestha/vim-lsp')
-" call plug#('mattn/vim-lsp-settings')
-" call ddc#custom#patch_global('completionMenu', 'pum.vim')
-" call ddc#custom#patch_global('sources', [
-"  \ 'around',
-"  \ 'vim-lsp',
-"  \ 'file'
-"  \ ])
-" call ddc#custom#patch_global('sourceOptions', {
-"  \ '_': {
-"  \   'matchers': ['matcher_head'],
-"  \   'sorters': ['sorter_rank'],
-"  \   'converters': ['converter_remove_overlap'],
-"  \ },
-"  \ 'around': {'mark': 'Around'},
-"  \ 'vim-lsp': {
-"  \   'mark': 'LSP', 
-"  \   'matchers': ['matcher_head'],
-"  \   'forceCompletionPattern': '\.|:|->|"\w+/*'
-"  \ },
-"  \ 'file': {
-"  \   'mark': 'file',
-"  \   'isVolatile': v:true, 
-"  \   'forceCompletionPattern': '\S/\S*'
-"  \ }})
-" call ddc#enable()
+call ddc#custom#patch_global('ui', 'native')
+call ddc#custom#patch_global('completionMenu', 'pum.vim')
+call ddc#custom#patch_global('sources', [
+ \ 'around',
+ \ 'vim-lsp',
+ \ 'file'
+ \ ])
+call ddc#custom#patch_global('sourceOptions', {
+ \ '_': {
+ \   'matchers': ['matcher_head'],
+ \   'sorters': ['sorter_rank'],
+ \   'converters': ['converter_remove_overlap'],
+ \ },
+ \ 'around': {'mark': 'Around'},
+ \ 'vim-lsp': {
+ \   'mark': 'lsp', 
+ \   'matchers': ['matcher_head'],
+ \   'forceCompletionPattern': '\.|:|->|"\w+/*'
+ \ },
+ \ 'file': {
+ \   'mark': 'file',
+ \   'isVolatile': v:true, 
+ \   'forceCompletionPattern': '\S/\S*'
+ \ }
+ \ })
+call ddc#enable()
 
 "" neosnippet
 let g:neosnippet#snippets_directory='~/.config/nvim/plugged/neosnippet-snippets/neosnippets'
