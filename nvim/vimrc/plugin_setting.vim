@@ -7,7 +7,6 @@ scriptencoding utf-8
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 let g:fzf_layout = { 'window': 'enew' }
-" let g:fzf_preview_window = ['hidden,right,50%,<70(down,40%)', 'ctrl-/']
 let g:fzf_preview_window = ['right,50%,<70(down,60%)', 'ctrl-/']
 let $FZF_DEFAULT_OPTS="--reverse --bind ctrl-j:preview-down,ctrl-k:preview-up"
 
@@ -28,8 +27,6 @@ let g:lsp_diagnostics_signs_warning = {'text': ''}
 let g:lsp_diagnostics_signs_information = {'text': 'ｉ'}
 let g:lsp_diagnostics_signs_hint = {'text': '？'}
 let g:lsp_document_code_action_signs_hint = {'text': ''}
-" hi link LspErrorText GruvboxRedSign  " requires gruvbox
-" hi PopupWindow ctermbg=lightblue guifg=#ff0000 guibg=lightblue
 hi LspErrorText gui=bold guifg=#ff0000 guibg=#222222
 hi LspWarningText gui=bold guifg=#ffff00 guibg=#222222
 hi LspInformationText gui=bold guifg=#ffffff guibg=#222222
@@ -91,7 +88,6 @@ let g:tagbar_sort = 0
 ""vista.vim
 let g:vista_echo_cursor = 0
 let g:vista_sidebar_width = 25
-" let g:vista_icon_indent = ['└ ', '├ ']
 let g:vista_icon_indent = ['└ ', '│ ']
 let g:vista_default_executive = 'ctags'
 let g:vista#renderer#enable_icon = 1
@@ -107,57 +103,6 @@ let g:vista_executive_for = {
 if !exists('g:tcomment_types')
     let g:tcomment_types = {}
 endif
-" let g:tcomment_types.SOME_LANG = '// %s'
-
-
-"" jedi-vim
-let g:jedi#auto_initialization = 0
-let g:jedi#popup_on_dot = 0
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#smart_auto_mappings = 0
-let g:jedi#completions_enabled = 1
-" let g:jedi#documentation_command = "K"
-" let g:jedi#usages_command = "<leader>n"
-" let g:jedi#rename_command = "<leader>r"
-" let g:jedi#show_call_signatures = "0"
-" let g:jedi#completions_command = "<C-Space>"
-
-
-"" ale (Asynchronous Lint Engine)
-let g:ale_linters_explicit = 1
-let g:ale_sign_column_always = 0
-let g:ale_change_sign_column_color = 0
-let g:ale_completion_enabled = 1
-if has('mac')
-    " let g:ale_sign_error = '❌'
-    " let g:ale_sign_warning = '⚠️'
-    let g:ale_sign_error = '✗'
-    let g:ale_sign_warning = '⚠'
-elseif system('uname') ==# "Linux\n"
-    " let g:ale_sign_error = '❌'
-    " let g:ale_sign_warning = '⚠️'
-    let g:ale_sign_error = '✗'
-    let g:ale_sign_warning = ''
-    " let g:ale_sign_warning = '△'
-    " let g:ale_sign_warning = '⚠'
-endif
-let g:ale_set_highlights = 1
-let g:ale_c_clang_executable = 'clang++'
-let g:ale_c_clang_options = '-std=c++11 -Wall'
-let g:ale_c_clangtidy_checks = ['*']
-let g:ale_c_clangtidy_executable = 'clang-tidy'
-let g:ale_c_clangtidy_options = '-I../include'
-let g:ale_c_cppcheck_executable = 'cppcheck'
-let g:ale_c_cppcheck_options = '--enable=style'
-let g:ale_c_gcc_executable = 'g++'
-let g:ale_c_gcc_options = '-std=c++11 -Wall'
-let g:ale_echo_msg_format = '[%linter%]%code: %%s'
-let g:ale_statusline_format = [g:ale_sign_error.'%d', g:ale_sign_warning.'%d', '⬥ ok']
-let g:ale_echo_msg_error_str = g:ale_sign_error
-let g:ale_echo_msg_warning_str = g:ale_sign_warning
-" let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-hi ALEErrorSign   gui=bold guifg=#ff0000 guibg=#222222
-hi ALEWarningSign gui=None guifg=#ffff00 guibg=#222222
 
 
 "" indent_guides
@@ -187,8 +132,10 @@ let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#default#layout = [['a', 'b', 'c', 'd'], ['x', 'y', 'z']]
 let g:airline_section_c = '%t'
-let g:airline_section_d = '%{airline#extensions#ale#get_error()}  '
-let g:airline_section_d.= '%{airline#extensions#ale#get_warning()}'
+let g:airline_section_d = '%{g:lsp_diagnostics_signs_error.text}:'
+let g:airline_section_d.= '%{lsp#get_buffer_diagnostics_counts().error}  '
+let g:airline_section_d.= '%{g:lsp_diagnostics_signs_warning.text}:'
+let g:airline_section_d.= '%{lsp#get_buffer_diagnostics_counts().warning}'
 let g:airline_section_x = 'LOW:%3l/%L  COL:%3c'
 let g:airline_section_y = '%{&filetype}'
 if &fileformat ==# 'unix'
@@ -196,8 +143,6 @@ if &fileformat ==# 'unix'
 else
     let g:airline_section_z = '%{&fileencodings}, %{&fileformat}'
 endif
-let g:airline#extensions#ale#error_symbol = g:ale_sign_error.'  '
-let g:airline#extensions#ale#warning_symbol = g:ale_sign_warning.'  '
 let g:airline#extensions#default#section_truncate_width = {}
 let g:airline#extensions#whitespace#enabled = 1
 "" vim-airline separator
@@ -245,29 +190,3 @@ let g:NERDTreeHijackNetrw = 0  " add this line if you use NERDTree
 "                \|     setlocal nobuflisted
 "                \| endif
 " aug END
-
-
-"" open-browser
-let g:netrw_nogx = 1
-nmap <leader>w <Plug>(openbrowser-smart-search)
-vmap <leader>w <Plug>(openbrowser-smart-search)
-
-
-"" vim-devicons
-" if has('mac')
-"     let g:webdevicons_conceal_nerdtree_brackets = 1
-"     let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
-"     "" dir-icons
-"     let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-"     let g:DevIconsEnableFoldersOpenClose = 1
-"     let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
-"     let g:DevIconsDefaultFolderOpenSymbol = ''
-"     "" file-icons
-"     let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
-"     let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = ''
-"     let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css'] = ''
-"     let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = ''
-"     let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['txt'] = ''
-"     "" installed-font
-"     set guifont=Ricty\ Discord\ Regular\ Nerd\ Font\ Plus\ Font\ Awesome\ Plus\ Octicons\ Plus\ Pomicons\ Plus\ Font\ Linux:h14
-" endif

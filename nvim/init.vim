@@ -24,7 +24,6 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "" Plug install packages
 "*****************************************************************************
 " general plugins
-Plug 'w0rp/ale'
 Plug 'majutsushi/tagbar'
 Plug 'hushicai/tagbar-javascript.vim'
 Plug 'tomtom/tcomment_vim'
@@ -93,17 +92,13 @@ Plug 'xolox/vim-session'
 
 " color scheme
 " Plug 'tomasr/molokai'
-" Plug 'morhetz/gruvbox'
 Plug 'tomasiser/vim-code-dark'
-" Plug 'arcticicestudio/nord-vim'
-" Plug 'altercation/vim-colors-solarized'
 
 " c/c++
 Plug 'vim-jp/cpp-vim',                 {'for': 'cpp'}
 Plug 'vim-scripts/c.vim',              {'for': ['c', 'cpp']}
 
 " python
-Plug 'davidhalter/jedi-vim',           {'for': 'python'}
 Plug 'tweekmonster/braceless.vim',     {'for': 'python'}
 Plug 'szkny/Ipython',                  {'for': 'python'}
 Plug 'szkny/IpdbDebugger',             {'for': 'python'}
@@ -131,7 +126,6 @@ endif
 " misc
 Plug 'raimon49/requirements.txt.vim',  {'for': 'requirements'}
 Plug 'cespare/vim-toml',               {'for': 'toml'}
-Plug 'tyru/open-browser.vim',          {'for': 'markdown'}
 Plug 'kannokanno/previm',              {'for': 'markdown'}
 Plug 'godlygeek/tabular',              {'for': 'markdown'}
 Plug 'plasticboy/vim-markdown',        {'for': 'markdown'}
@@ -309,7 +303,6 @@ set modelines=10
 
 set background=dark
 " colorscheme molokai
-" colorscheme gruvbox
 colorscheme codedark
 
 let g:enable_bold_font = 1
