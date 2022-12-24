@@ -253,8 +253,7 @@ set ruler
 set number
 set nowrap
 set pumblend=40
-set winblend=30
-set pumblend=30
+set winblend=40
 
 " set ambiwidth=double
 let g:no_buffers_menu=1
@@ -332,6 +331,7 @@ hi clear Cursor
 hi Cursor gui=reverse
 " hi clear Visual
 " hi Visual gui=reverse
+" hi Pmenu guibg=#111111
 
 
 "*****************************************************************************

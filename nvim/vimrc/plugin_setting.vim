@@ -34,6 +34,7 @@ hi LspHintText gui=bold guifg=#ffffff guibg=#222222
 hi clear LspWarningLine
 
 " ddc.vim
+hi PmenuSel guifg=#000000 guibg=#55ddff
 call ddc#custom#patch_global('ui', 'native')
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
 call ddc#custom#patch_global('sources', [
@@ -133,9 +134,11 @@ let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#default#layout = [['a', 'b', 'c', 'd'], ['x', 'y', 'z']]
 let g:airline_section_c = '%t'
 let g:airline_section_d = '%{g:lsp_diagnostics_signs_error.text}:'
-let g:airline_section_d.= '%{lsp#get_buffer_diagnostics_counts().error}  '
+let g:airline_section_d.= '%{lsp#get_buffer_diagnostics_counts().error} '
 let g:airline_section_d.= '%{g:lsp_diagnostics_signs_warning.text}:'
-let g:airline_section_d.= '%{lsp#get_buffer_diagnostics_counts().warning}'
+let g:airline_section_d.= '%{lsp#get_buffer_diagnostics_counts().warning} '
+let g:airline_section_d.= '?:'
+let g:airline_section_d.= '%{lsp#get_buffer_diagnostics_counts().hint}'
 let g:airline_section_x = 'LOW:%3l/%L  COL:%3c'
 let g:airline_section_y = '%{&filetype}'
 if &fileformat ==# 'unix'
