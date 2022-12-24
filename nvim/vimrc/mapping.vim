@@ -26,8 +26,6 @@ vno <expr>   <C-d>   ':<C-u>'.VReplaceWordText().'<Left><Left><Left>'
 " for tab/window
 nno <silent> <Right> :ChangeBuffer next<CR>
 nno <silent> <Left>  :ChangeBuffer previous<CR>
-" nno <silent> +       :ResizeWindow +1<CR>
-" nno <silent> -       :ResizeWindow -1<CR>
 nno <silent> <Up>    :ResizeWindow +1<CR>
 nno <silent> <Down>  :ResizeWindow -1<CR>
 " nno <silent><Tab>    :NewTabPage<CR>
@@ -99,7 +97,6 @@ nno <silent> <C-p> :<C-u>Files<CR>
 nno <silent> <C-f> :<C-u>Ag<CR>
 vno <silent> <C-f> :<C-u>call VAgWord()<CR>
 nno <silent> <C-h> :<C-u>call Ranger()<CR>
-" nno <silent> <C-n> :<C-u>NERDTreeToggle<CR>
 nno <silent> <C-n> :<C-u>Fern . -drawer -toggle -width=25<CR>
 " nno <silent> <C-t> :<C-u>TagbarToggle<CR>
 nno <silent> <C-t> :<C-u>Vista!!<CR>
@@ -136,14 +133,3 @@ else
 endif
 nno <silent> ?          :<C-u>SetHlSearch<CR>
 nno <silent> t          :<C-u>12SplitTerm<CR>i
-" nno <silent> <leader>ma :<C-u>Make<CR>
-" nno <silent> <leader>mr :<C-u>Make build run<CR>
-" nno <silent> <leader>cm :<C-u>CMake<CR>
-" nno <silent> <leader>cr :<C-u>CMake run<CR>
-" nno <silent> <leader>sq :<C-u>SQL<CR>i
-" vno <silent> <leader>t  :<C-u>Trans<CR>
-
-" nnoremap <leader>f :MyLineSearch<Space>
-" nnoremap <leader>F :MyLineBackSearch<Space>
-" nnoremap <leader>; :MyLineSameSearch<CR>
-" nnoremap <leader>, :MyLineBackSameSearch<CR>

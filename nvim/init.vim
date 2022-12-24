@@ -51,7 +51,6 @@ Plug 'lambdalisue/glyph-palette.vim'  " アイコンに色をつける
 aug my-glyph-palette
   au! *
   au FileType fern call glyph_palette#apply()
-  au FileType nerdtree,startify call glyph_palette#apply()
 aug END
 
 " fzf.vim
@@ -252,8 +251,8 @@ syntax on
 set ruler
 set number
 set nowrap
-set pumblend=40
-set winblend=40
+set pumblend=20
+set winblend=20
 
 " set ambiwidth=double
 let g:no_buffers_menu=1

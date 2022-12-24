@@ -25,7 +25,8 @@ let g:lsp_textprop_enabled = 0
 let g:lsp_diagnostics_signs_error = {'text': '✗'}
 let g:lsp_diagnostics_signs_warning = {'text': ''}
 let g:lsp_diagnostics_signs_information = {'text': 'ｉ'}
-let g:lsp_diagnostics_signs_hint = {'text': '？'}
+" let g:lsp_diagnostics_signs_hint = {'text': '？'}
+let g:lsp_diagnostics_signs_hint = {'text': ''}
 let g:lsp_document_code_action_signs_hint = {'text': ''}
 hi LspErrorText gui=bold guifg=#ff0000 guibg=#222222
 hi LspWarningText gui=bold guifg=#ffff00 guibg=#222222
@@ -67,12 +68,6 @@ let g:neosnippet#snippets_directory='~/.config/nvim/plugged/neosnippet-snippets/
 if finddir('dotfiles/nvim/snippets', $HOME) !=# ''
     let g:neosnippet#snippets_directory.=', ~/dotfiles/nvim/snippets'
 endif
-
-
-"" NERDTree
-let g:NERDTreeDirArrows = 1
-let g:NERDTreeWinSize = 25
-let g:NERDTreeShowHidden=1
 
 
 "" fern.vim
@@ -134,11 +129,11 @@ let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#default#layout = [['a', 'b', 'c', 'd'], ['x', 'y', 'z']]
 let g:airline_section_c = '%t'
 let g:airline_section_d = '%{g:lsp_diagnostics_signs_error.text}:'
-let g:airline_section_d.= '%{lsp#get_buffer_diagnostics_counts().error} '
+let g:airline_section_d.= '%{lsp#get_buffer_diagnostics_counts().error}  '
 let g:airline_section_d.= '%{g:lsp_diagnostics_signs_warning.text}:'
-let g:airline_section_d.= '%{lsp#get_buffer_diagnostics_counts().warning} '
-let g:airline_section_d.= '?:'
-let g:airline_section_d.= '%{lsp#get_buffer_diagnostics_counts().hint}'
+let g:airline_section_d.= '%{lsp#get_buffer_diagnostics_counts().warning}  '
+let g:airline_section_d.= '%{g:lsp_diagnostics_signs_hint.text}:'
+let g:airline_section_d.= '%{lsp#get_buffer_diagnostics_counts().hint}  '
 let g:airline_section_x = 'LOW:%3l/%L  COL:%3c'
 let g:airline_section_y = '%{&filetype}'
 if &fileformat ==# 'unix'
@@ -158,14 +153,6 @@ let g:airline_right_alt_sep = ''
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 
-"" vim-nerdtree-syntax-highlight
-let s:rspec_red = 'FE405F'
-let s:git_orange = 'F54D27'
-let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
-let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the color for .gitignore files
-let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
-let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets the color for files ending with _spec.rb
-
 
 "" fugitive
 if exists('*fugitive#statusline')
@@ -180,7 +167,6 @@ let g:gitgutter_async = 1
 
 "" ranger
 let g:ranger_map_keys = 0
-let g:NERDTreeHijackNetrw = 0  " add this line if you use NERDTree
 " aug ReplaceNetrwByRangerVim
 "     " open ranger when vim open a director
 "     au!
