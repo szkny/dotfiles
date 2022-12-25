@@ -1,5 +1,5 @@
 #!/usr/bin/zsh
-# install basic apt packages
+## install basic apt packages
 echo 'install basic apt packages..'
 sudo apt update -y
 sudo apt upgrade -y
@@ -14,50 +14,59 @@ sudo apt install -y silversearcher-ag
 sudo apt install -y universal-ctags
 sudo apt install -y trash-cli
 
-# install rust / cargo
+## install rust / cargo
 echo 'install rust / cargo..'
 curl https://sh.rustup.rs -sSf | sh
 . "$HOME/.cargo/env"
 
-# install cargo libs
+## install cargo libs
 echo 'install cargo packages..'
 . ~/.zshrc
 cargo install exa bat rm-improved code-minimap
-# cargo install deno
+## cargo install deno
 
-# install python
+## install python
 echo 'install python..'
 git clone https://github.com/yyuu/pyenv.git ~/.pyenv
 . ~/.zshrc
-pyenv install 3.6.5
-pyenv install 2.7.15
+pyenv install --verbose 3.6.5
+pyenv install --verbose 2.7.15
 pyenv global 3.6.5 2.7.15
 
-# install python packages
+## install python packages
 pip3 install -U pip
 pip2 install -U pip
 pip install pandas
 
-# install node.js
+## install node.js
 echo 'install node.js..'
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 . ~/.zshrc
 nvm install 14.17.1
 npm install -g prettier@2.8.0
 
-# install fzf
+## install fzf
 echo 'install cargo packages..'
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
-# install ghq
+## install ghq
 echo 'install cargo packages..'
 go install github.com/x-motemen/ghq@latest
+mkdir -p ~/ghq
 
-# install neovim
+## ranger-cli
+echo 'install ranger-cli..'
+sudo apt install -y python3-setuptools python3-distutils file
+mkdir -p ~/Project
+git clone https://github.com/ranger/ranger ~/Project/ranger
+cd ~/Project/ranger
+sudo make install
+cd ~
+
+## install neovim
 echo 'install neovim..'
-sudo apt install software-properties-common
-# sudo apt install python-software-properties
+sudo apt install -y software-properties-common
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
 sudo apt update -y
 sudo apt install -y neovim
@@ -69,6 +78,6 @@ mkdir -p ~/.config/nvim
 ln -s ~/dotfiles/nvim/* ~/.config/nvim/
 nvim --headless +PlugInstall +qall
 
-# synbolic link for tmux
+## synbolic link for tmux
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 
