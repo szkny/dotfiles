@@ -57,10 +57,6 @@ HISTSIZE=1000000
 SAVEHIST=1000000
 
 ## alias for commands
-alias vi='nvim'
-alias vin='nvim --noplugin'
-alias vimdiff='nvim -d'
-alias vide='nvim -S ~/.config/nvim/ide.vim'
 alias cd='cdls'
 alias ls='exa -G'
 alias ll='exa -lh'
@@ -71,10 +67,15 @@ alias rsync='rsync -auvrz'
 alias kill='kill -9'
 alias gcam='git commit -am'
 
-# alias for edit by vim
-alias vimrc='nvim ~/dotfiles/nvim/init.vim ~/dotfiles/nvim/vimrc/*.vim'
-alias zshrc='nvim ~/.zshrc;source ~/.zshrc'
-alias zprofile='nvim ~/.zprofile;source ~/.zprofile'
+# setup for vim
+export EDITOR='nvim'
+alias vi="$EDITOR"
+alias vin="$EDITOR --noplugin"
+alias vimdiff="$EDITOR -d"
+alias vide="$EDITOR -S ~/.config/nvim/ide.vim"
+alias vimrc="$EDITOR ~/dotfiles/nvim/init.vim ~/dotfiles/nvim/vimrc/*.vim"
+alias zshrc="$EDITOR ~/.zshrc;source ~/.zshrc"
+alias zprofile="$EDITOR ~/.zprofile;source ~/.zprofile"
 
 # alias for mac
 # alias mdfind='mdfind -onlyin'

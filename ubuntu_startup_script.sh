@@ -6,7 +6,7 @@ sudo apt install -y build-essential libbz2-dev libdb-dev \
   libreadline-dev libffi-dev libgdbm-dev liblzma-dev \
   libncursesw5-dev libsqlite3-dev libssl-dev \
   zlib1g-dev uuid-dev tk-dev
-sudo apt install -y git curl zip unzip wget
+sudo apt install -y git curl zip unzip wget bsdmainutils gawk
 sudo apt install -y golang
 sudo apt install -y silversearcher-ag
 sudo apt install -y universal-ctags
@@ -46,6 +46,10 @@ go install github.com/x-motemen/ghq@latest
 
 # install neovim
 echo 'install neovim..'
+sudo apt install software-properties-common
+# sudo apt install python-software-properties
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt update
 sudo apt install -y neovim
 sudo apt install -y python3-neovim
 pip2 install neovim
