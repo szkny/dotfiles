@@ -82,6 +82,35 @@ endif
 "" fern.vim
 let g:fern#renderer = 'nerdfont'
 let g:fern#disable_default_mappings = 0
+fun! s:init_fern() abort
+    setlocal filetype=fern
+    setlocal nonumber
+    setlocal signcolumn=no
+    setlocal bufhidden=wipe
+    setlocal nobuflisted
+    setlocal nocursorline
+    setlocal nocursorcolumn
+    setlocal noswapfile
+    setlocal nomodifiable
+    setlocal nolist
+    setlocal nospell
+    setlocal lazyredraw
+    nno <buffer> I         <Plug>(fern-action-hidden)
+    nno <buffer> r         <Plug>(fern-action-reload:all)
+    nno <buffer> h         <Plug>(fern-action-collapse)
+    nno <buffer> l         <Plug>(fern-action-open-or-expand)
+    nno <buffer> <CR>      <Plug>(fern-action-open-or-expand)
+    nno <buffer> <C-h>     <Plug>(fern-action-leave)
+    nno <buffer> <C-l>     <Plug>(fern-action-open-or-enter)
+    nno <buffer> -         <Plug>(fern-action-mark):setlocal signcolumn=yes<CR>
+    nno <buffer> <leader>p <Plug>(fern-action-preview:auto:toggle)
+    nno <buffer> <expr>    <Plug>(fern-quit-or-close-preview) fern_preview#smart_preview("\<Plug>(fern-action-preview:close)", ":q\<CR>")
+    nno <buffer> q         <Plug>(fern-quit-or-close-preview)
+endf
+aug fern-custom
+    au! *
+    au FileType fern call s:init_fern()
+aug END
 
 
 "" Tagbar

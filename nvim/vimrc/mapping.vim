@@ -99,6 +99,7 @@ nno <silent> <C-p> :<C-u>Files<CR>
 nno <silent> <C-f> :<C-u>Ag<CR>
 vno <silent> <C-f> :<C-u>call VAgWord()<CR>
 nno <silent> <C-h> :<C-u>call Ranger()<CR>
+"" fern.vim
 nno <silent> <C-n> :<C-u>Fern . -reveal=% -toggle -keep -drawer -width=25<CR>
 " nno <silent> <C-t> :<C-u>TagbarToggle<CR>
 nno <silent> <C-t> :<C-u>Vista!!<CR>
