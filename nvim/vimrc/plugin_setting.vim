@@ -25,8 +25,8 @@ let g:lsp_textprop_enabled = 0
 let g:lsp_diagnostics_signs_error = {'text': '✗'}
 let g:lsp_diagnostics_signs_warning = {'text': ''}
 let g:lsp_diagnostics_signs_information = {'text': 'ｉ'}
-" let g:lsp_diagnostics_signs_hint = {'text': '？'}
-let g:lsp_diagnostics_signs_hint = {'text': ''}
+let g:lsp_diagnostics_signs_hint = {'text': '？'}
+" let g:lsp_diagnostics_signs_hint = {'text': ''}
 let g:lsp_document_code_action_signs_hint = {'text': ''}
 hi LspErrorText gui=bold guifg=#ff0000 guibg=#222222
 hi LspWarningText gui=bold guifg=#ffff00 guibg=#222222
@@ -132,7 +132,8 @@ let g:airline_section_d = '%{g:lsp_diagnostics_signs_error.text}:'
 let g:airline_section_d.= '%{lsp#get_buffer_diagnostics_counts().error}  '
 let g:airline_section_d.= '%{g:lsp_diagnostics_signs_warning.text}:'
 let g:airline_section_d.= '%{lsp#get_buffer_diagnostics_counts().warning}  '
-let g:airline_section_d.= '%{g:lsp_diagnostics_signs_hint.text}:'
+" let g:airline_section_d.= '%{g:lsp_diagnostics_signs_hint.text}:'
+let g:airline_section_d.= '?:'
 let g:airline_section_d.= '%{lsp#get_buffer_diagnostics_counts().hint}  '
 let g:airline_section_x = 'LOW:%3l/%L  COL:%3c'
 let g:airline_section_y = '%{&filetype}'

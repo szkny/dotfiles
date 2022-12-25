@@ -108,12 +108,12 @@ ino <silent> <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
 ino <silent> <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
 "" vim-lsp
 nno <silent> <C-]>     :<C-u>LspDefinition<CR>
+nno <silent> <C-[>     :<C-u>LspReferences<CR>
 nno <silent> <leader>k :<C-u>LspHover<CR>
 nno <silent> <leader>n :<C-u>LspNextError<CR>
 nno <silent> <leader>p :<C-u>LspPreviousError<CR>
-" nno <silent> <leader>n :<C-u>LspReferences<CR>
 " nno <silent> <leader>r :<C-u>LspRename<CR>
-" nno <silent> <leader>f :<C-u>LspDocumentDiagnostics<CR>
+nno <silent> <leader>l :<C-u>LspDocumentDiagnostics<CR>
 " nno <silent> <leader>s :<C-u>LspDocumentFormat<CR>
 "" neosnippet
 " NOTE: プラグインのマッピングはnoremapではなくmapにすること
