@@ -312,6 +312,7 @@ set listchars=tab:¦\
 set fillchars=vert:\ 
 set cursorline
 " set cursorcolumn
+set signcolumn=yes
 
 hi EndOfBuffer guifg=bg
 " hi matchparen ctermbg=236

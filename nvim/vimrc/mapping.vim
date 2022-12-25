@@ -102,8 +102,10 @@ nno <silent> <C-n> :<C-u>Fern . -drawer -toggle -width=25<CR>
 " nno <silent> <C-t> :<C-u>TagbarToggle<CR>
 nno <silent> <C-t> :<C-u>Vista!!<CR>
 nno <silent> <C-k> :<C-u>MinimapToggle<CR>
-nno <silent> [a    :<C-u>ALENextWrap<CR>
-nno <silent> ]a    :<C-u>ALEPreviousWrap<CR>
+"" git-gutter
+nno <silent> <leader>gn :<C-u>GitGutterNextHunk<CR>
+nno <silent> <leader>gp :<C-u>GitGutterPrevHunk<CR>
+nno <silent> <leader>gh :<C-u>GitGutterLineHighlightsToggle<CR>
 "" ddc.vim (with pum.vim)
 ino <silent> <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
 ino <silent> <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
