@@ -787,6 +787,7 @@ command! Open call s:open()
 fun! s:init_fern() abort
     setlocal filetype=fern
     setlocal nonumber
+    setlocal signcolumn=no
     setlocal bufhidden=wipe
     setlocal nobuflisted
     setlocal nocursorline
@@ -798,8 +799,12 @@ fun! s:init_fern() abort
     setlocal lazyredraw
     nno <buffer> I       <Plug>(fern-action-hidden)
     nno <buffer> r       <Plug>(fern-action-reload:all)
+    nno <buffer> h       <Plug>(fern-action-collapse)
+    nno <buffer> l       <Plug>(fern-action-open-or-expand)
     nno <buffer> <CR>    <Plug>(fern-action-open-or-expand)
+    nno <buffer> <C-h>   <Plug>(fern-action-leave)
     nno <buffer> <C-l>   <Plug>(fern-action-open-or-enter)
+    nno <buffer> -       <Plug>(fern-action-mark):setlocal signcolumn=yes<CR>
 endf
 aug fern-custom
     au! *
