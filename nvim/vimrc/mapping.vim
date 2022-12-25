@@ -11,6 +11,7 @@ ino <silent> <C-s>      <ESC>:w<CR>a
 nno <silent> <C-s>      :w<CR>
 " nno <silent> q          :CloseBufferTab<CR>
 nno <silent> <leader>bq :Bclose<CR>
+nno <silent> <leader>q  :Bclose<CR>
 nno <silent> q          :q<CR>
 nno <silent> <S-q>      :qall<CR>
 tno <silent> <C-w>      <C-\><C-n><C-w>
@@ -115,6 +116,7 @@ nno <silent> <leader>p :<C-u>LspPreviousError<CR>
 " nno <silent> <leader>r :<C-u>LspRename<CR>
 nno <silent> <leader>l :<C-u>LspDocumentDiagnostics<CR>
 " nno <silent> <leader>s :<C-u>LspDocumentFormat<CR>
+nno <silent> <leader>h :<C-u>LspCodeAction<CR>
 "" neosnippet
 " NOTE: プラグインのマッピングはnoremapではなくmapにすること
 imap <C-k>       <Plug>(neosnippet_expand_or_jump)

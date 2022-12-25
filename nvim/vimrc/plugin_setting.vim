@@ -22,16 +22,22 @@ let g:lsp_document_code_action_signs_enabled = 1
 let g:lsp_virtual_text_enabled = 1
 let g:lsp_highlights_enabled = 1
 let g:lsp_textprop_enabled = 0
+let g:lsp_diagnostics_signs_delay = 250
+let g:lsp_diagnostics_signs_priority = 20
 let g:lsp_diagnostics_signs_error = {'text': '✗'}
 let g:lsp_diagnostics_signs_warning = {'text': ''}
-let g:lsp_diagnostics_signs_information = {'text': 'ｉ'}
 let g:lsp_diagnostics_signs_hint = {'text': '？'}
-" let g:lsp_diagnostics_signs_hint = {'text': ''}
+let g:lsp_diagnostics_signs_information = {'text': 'ｉ'}
 let g:lsp_document_code_action_signs_hint = {'text': ''}
-hi LspErrorText gui=bold guifg=#ff0000 guibg=#222222
-hi LspWarningText gui=bold guifg=#ffff00 guibg=#222222
-hi LspInformationText gui=bold guifg=#ffffff guibg=#222222
-hi LspHintText gui=bold guifg=#ffffff guibg=#222222
+" let g:lsp_diagnostics_signs_error = {'text': '❌'}
+" let g:lsp_diagnostics_signs_warning = {'text': '⚠️'}
+" let g:lsp_diagnostics_signs_hint = {'text': '💡'}
+" let g:lsp_diagnostics_signs_information = {'text': 'ｉ'}
+" let g:lsp_document_code_action_signs_hint = {'text': '💡'}
+hi LspErrorText gui=bold guifg=#ff0000 guibg=#1a1a1a
+hi LspWarningText gui=bold guifg=#ffff00 guibg=#1a1a1a
+hi LspInformationText gui=bold guifg=#ffffff guibg=#1a1a1a
+hi LspHintText gui=bold guifg=#ffffff guibg=#1a1a1a
 hi clear LspWarningLine
 
 " ddc.vim
@@ -126,15 +132,16 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#wordcount#enabled = 0
-let g:airline#extensions#default#layout = [['a', 'b', 'c', 'd'], ['x', 'y', 'z']]
+let g:airline#extensions#default#layout = [
+    \ ['a', 'b', 'c'],
+    \ ['lsp_info', 'x', 'y', 'z']]
 let g:airline_section_c = '%t'
-let g:airline_section_d = '%{g:lsp_diagnostics_signs_error.text}:'
-let g:airline_section_d.= '%{lsp#get_buffer_diagnostics_counts().error}  '
-let g:airline_section_d.= '%{g:lsp_diagnostics_signs_warning.text}:'
-let g:airline_section_d.= '%{lsp#get_buffer_diagnostics_counts().warning}  '
-" let g:airline_section_d.= '%{g:lsp_diagnostics_signs_hint.text}:'
-let g:airline_section_d.= '?:'
-let g:airline_section_d.= '%{lsp#get_buffer_diagnostics_counts().hint}  '
+let g:airline_section_lsp_info = '%{g:lsp_diagnostics_signs_error.text}:'
+let g:airline_section_lsp_info.= '%{lsp#get_buffer_diagnostics_counts().error}  '
+let g:airline_section_lsp_info.= '%{g:lsp_diagnostics_signs_warning.text}:'
+let g:airline_section_lsp_info.= '%{lsp#get_buffer_diagnostics_counts().warning}  '
+let g:airline_section_lsp_info.= '%{g:lsp_diagnostics_signs_hint.text}:'
+let g:airline_section_lsp_info.= '%{lsp#get_buffer_diagnostics_counts().hint}  '
 let g:airline_section_x = 'LOW:%3l/%L  COL:%3c'
 let g:airline_section_y = '%{&filetype}'
 if &fileformat ==# 'unix'
@@ -164,6 +171,7 @@ endif
 "" vim-gitgutter
 let g:gitgutter_enabled = 1
 let g:gitgutter_async = 1
+let g:gitgutter_sign_priority = 10
 
 
 "" ranger
