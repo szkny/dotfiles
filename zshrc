@@ -66,6 +66,7 @@ alias od='od -x'
 alias rsync='rsync -auvrz'
 alias kill='kill -9'
 alias gcam='git commit -am'
+alias dotfiles='cd ~/dotfiles'
 
 # setup for vim
 export EDITOR='nvim'
