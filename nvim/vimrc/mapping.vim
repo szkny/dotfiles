@@ -5,14 +5,14 @@ scriptencoding utf-8
 let g:mapleader = "\<Space>"
 
 " general
-nno <silent> <leader><leader> :<C-u>Reload<CR>:AirlineToggle<CR>:AirlineToggle<CR>
+nno <silent><nowait> <leader><leader> :<C-u>Reload<CR>:AirlineToggle<CR>:AirlineToggle<CR>
 tno <silent> <ESC>      <C-\><C-n>
 tno <silent> <C-[>      <C-\><C-n>
 ino <silent> <C-s>      <ESC>:w<CR>a
 nno <silent> <C-s>      :w<CR>
 " nno <silent> q          :CloseBufferTab<CR>
-nno <silent> <leader>bq :Bclose<CR>
-nno <silent> <leader>q  :Bclose<CR>
+nno <silent><nowait> <leader>q  :Bclose<CR>
+nno <silent><nowait> <leader>bq :Bclose<CR>
 nno <silent> q          :q<CR>
 nno <silent> <S-q>      :qall<CR>
 tno <silent> <C-w>      <C-\><C-n><C-w>
@@ -104,22 +104,22 @@ nno <silent> <C-n> :<C-u>Fern . -drawer -toggle -width=25<CR>
 nno <silent> <C-t> :<C-u>Vista!!<CR>
 nno <silent> <C-k> :<C-u>MinimapToggle<CR>
 "" git-gutter
-nno <silent> <leader>gn :<C-u>GitGutterNextHunk<CR>
-nno <silent> <leader>gp :<C-u>GitGutterPrevHunk<CR>
-nno <silent> <leader>gh :<C-u>GitGutterLineHighlightsToggle<CR>
+nno <silent><nowait> <leader>gn :<C-u>GitGutterNextHunk<CR>
+nno <silent><nowait> <leader>gp :<C-u>GitGutterPrevHunk<CR>
+nno <silent><nowait> <leader>gh :<C-u>GitGutterLineHighlightsToggle<CR>
 "" ddc.vim (with pum.vim)
 ino <silent> <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
 ino <silent> <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
 "" vim-lsp
 nno <silent> <C-]>     :<C-u>LspDefinition<CR>
 nno <silent> <C-[>     :<C-u>LspReferences<CR>
-nno <silent> <leader>k :<C-u>LspHover<CR>
-nno <silent> <leader>n :<C-u>LspNextDiagnostic<CR>
-nno <silent> <leader>p :<C-u>LspPreviousDiagnostic<CR>
-" nno <silent> <leader>r :<C-u>LspRename<CR>
-nno <silent> <leader>l :<C-u>LspDocumentDiagnostics<CR>
-" nno <silent> <leader>s :<C-u>LspDocumentFormat<CR>
-nno <silent> <leader>h :<C-u>LspCodeAction<CR>
+nno <silent><nowait> <leader>k :<C-u>LspHover<CR>
+nno <silent><nowait> <leader>n :<C-u>LspNextDiagnostic<CR>
+nno <silent><nowait> <leader>p :<C-u>LspPreviousDiagnostic<CR>
+" nno <silent><nowait> <leader>r :<C-u>LspRename<CR>
+nno <silent><nowait> <leader>l :<C-u>LspDocumentDiagnostics<CR>
+" nno <silent><nowait> <leader>s :<C-u>LspDocumentFormat<CR>
+nno <silent><nowait> <leader>h :<C-u>LspCodeAction<CR>
 "" neosnippet
 " NOTE: プラグインのマッピングはnoremapではなくmapにすること
 imap <C-k>       <Plug>(neosnippet_expand_or_jump)
