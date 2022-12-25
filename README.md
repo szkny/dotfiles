@@ -1,25 +1,13 @@
 # my dotfiles
 bashrc, vimrc, init.vim, etc  
 
-## download  
-
-Execute "git clone" command.  
+## install
+run "git clone" command.  
 
 ```bash
 $ git clone https://github.com/szkny/dotfiles.git ~/dotfiles
 ```
 
-## install  
-
-To create symbolic link, please execute following command.  
-[**NOTE**] the script *dotfilesLink.sh* remove some config files!  
-
 ```bash
-$ ~/dotfiles/dotfilesLink.sh
-```
-
-If I use vim-plug, I can make development environment by following command in neovim.
-([Vim-plug](https://github.com/junegunn/vim-plug))
-```
-:PlugInstall
+$ zsh ~/dotfiles/ubuntu_startup_script.zsh
 ```
