@@ -11,18 +11,21 @@ let g:fzf_preview_window = ['right,50%,<70(down,60%)', 'ctrl-/']
 let $FZF_DEFAULT_OPTS="--reverse --bind ctrl-j:preview-down,ctrl-k:preview-up"
 
 " vim-lsp
-let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_signs_enabled = 1
 let g:lsp_diagnostics_signs_insert_mode_enabled = 1
-let g:lsp_diagnostics_signs_delay = 1
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_diagnostics_highlights_enabled = 1
+let g:lsp_diagnostics_virtual_text_enabled = 0
 let g:lsp_document_code_action_signs_enabled = 1
-let g:lsp_virtual_text_enabled = 1
-let g:lsp_highlights_enabled = 1
-let g:lsp_textprop_enabled = 0
-let g:lsp_diagnostics_signs_delay = 250
+let g:lsp_inlay_hints_delay                = 0
+let g:lsp_diagnostics_echo_delay           = 0
+let g:lsp_diagnostics_signs_delay          = 0
+let g:lsp_diagnostics_float_delay          = 0
+let g:lsp_document_highlight_delay         = 0
+let g:lsp_diagnostics_virtual_text_delay   = 0
+let g:lsp_document_code_action_signs_delay = 0
 let g:lsp_diagnostics_signs_priority = 20
 let g:lsp_diagnostics_signs_error = {'text': '✗'}
 let g:lsp_diagnostics_signs_warning = {'text': ''}
@@ -33,12 +36,12 @@ let g:lsp_document_code_action_signs_hint = {'text': ''}
 " let g:lsp_diagnostics_signs_warning = {'text': '⚠️'}
 " let g:lsp_diagnostics_signs_hint = {'text': '💡'}
 " let g:lsp_diagnostics_signs_information = {'text': 'ｉ'}
-" let g:lsp_document_code_action_signs_hint = {'text': '💡'}
+let g:lsp_document_code_action_signs_hint = {'text': '💡'}
 hi LspErrorText gui=bold guifg=#ff0000 guibg=#1a1a1a
 hi LspWarningText gui=bold guifg=#ffff00 guibg=#1a1a1a
 hi LspInformationText gui=bold guifg=#ffffff guibg=#1a1a1a
 hi LspHintText gui=bold guifg=#ffffff guibg=#1a1a1a
-hi clear LspWarningLine
+" hi clear LspWarningLine
 
 " ddc.vim
 hi PmenuSel guifg=#000000 guibg=#55ddff

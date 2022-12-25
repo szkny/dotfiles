@@ -5,6 +5,7 @@ scriptencoding utf-8
 let g:mapleader = "\<Space>"
 
 " general
+nno <silent> <leader><leader> :<C-u>Reload<CR>:AirlineToggle<CR>:AirlineToggle<CR>
 tno <silent> <ESC>      <C-\><C-n>
 tno <silent> <C-[>      <C-\><C-n>
 ino <silent> <C-s>      <ESC>:w<CR>a
@@ -113,8 +114,8 @@ ino <silent> <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
 nno <silent> <C-]>     :<C-u>LspDefinition<CR>
 nno <silent> <C-[>     :<C-u>LspReferences<CR>
 nno <silent> <leader>k :<C-u>LspHover<CR>
-nno <silent> <leader>n :<C-u>LspNextError<CR>
-nno <silent> <leader>p :<C-u>LspPreviousError<CR>
+nno <silent> <leader>n :<C-u>LspNextDiagnostic<CR>
+nno <silent> <leader>p :<C-u>LspPreviousDiagnostic<CR>
 " nno <silent> <leader>r :<C-u>LspRename<CR>
 nno <silent> <leader>l :<C-u>LspDocumentDiagnostics<CR>
 " nno <silent> <leader>s :<C-u>LspDocumentFormat<CR>
