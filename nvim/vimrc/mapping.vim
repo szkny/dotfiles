@@ -112,8 +112,8 @@ nno <silent><nowait> <leader>gh :<C-u>GitGutterLineHighlightsToggle<CR>
 ino <silent> <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
 ino <silent> <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
 "" vim-lsp
-nno <silent> <C-]>     :<C-u>LspDefinition<CR>
-nno <silent> <C-[>     :<C-u>LspReferences<CR>
+nno <silent><nowait> <leader>] :<C-u>LspDefinition<CR>
+nno <silent><nowait> <leader>[ :<C-u>LspReferences<CR>
 nno <silent><nowait> <leader>k :<C-u>LspHover<CR>
 nno <silent><nowait> <leader>n :<C-u>LspNextDiagnostic<CR>
 nno <silent><nowait> <leader>p :<C-u>LspPreviousDiagnostic<CR>
