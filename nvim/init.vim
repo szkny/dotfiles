@@ -311,7 +311,7 @@ let g:cpp_class_scope_highlight = 1
 set list
 set listchars=tab:¦\ 
 set fillchars=vert:\ 
-set cursorline
+" set cursorline
 " set cursorcolumn
 set signcolumn=yes
 
@@ -324,15 +324,15 @@ hi EndOfBuffer guifg=bg
 " hi SpecialKey guifg=#555555
 " hi Visual guifg=#000000 guibg=#cceeff
 " hi LineNr guifg=#aabbcc guibg=#204056
-hi VertSplit guibg=#222222
+hi VertSplit guibg=#252525
 " hi CursorLine gui=underline
-hi clear CursorLine
+" hi CursorLine guibg=#2a2a2a
+" hi clear CursorLine
 " hi CursorColumn guibg=#0c1820
 hi clear Cursor
 hi Cursor gui=reverse
 " hi clear Visual
 " hi Visual gui=reverse
-" hi Pmenu guibg=#111111
 
 
 "*****************************************************************************

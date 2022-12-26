@@ -81,7 +81,9 @@ endif
 
 "" fern.vim
 let g:fern#renderer = 'nerdfont'
+let g:fern#hide_cursor = 0
 let g:fern#disable_default_mappings = 0
+let g:fern#disable_viewer_smart_cursor = 0
 fun! s:init_fern() abort
     setlocal filetype=fern
     setlocal nonumber
@@ -106,6 +108,8 @@ fun! s:init_fern() abort
     nno <buffer> <leader>p <Plug>(fern-action-preview:auto:toggle)
     nno <buffer> <expr>    <Plug>(fern-quit-or-close-preview) fern_preview#smart_preview("\<Plug>(fern-action-preview:close)", ":q\<CR>")
     nno <buffer> q         <Plug>(fern-quit-or-close-preview)
+    " hi CursorLine guibg=#333333
+    hi FernBranchText gui=bold guifg=#8888ff
 endf
 aug fern-custom
     au! *
