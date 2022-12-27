@@ -114,10 +114,10 @@ fun! s:init_fern() abort
     nno <silent><buffer> <C-h>     <Plug>(fern-action-leave)
     nno <silent><buffer> <C-l>     <Plug>(fern-action-enter)
     nno <silent><buffer> -         <Plug>(fern-action-mark):setlocal signcolumn=yes<CR>
-    nno <silent><buffer> p <Plug>(fern-action-preview:auto:toggle)
-    nno <silent><buffer> q         <Plug>(fern-quit-or-close-preview)
-    nno <silent><buffer> <expr>    <Plug>(fern-quit-or-close-preview)
-          \ fern_preview#smart_preview("\<Plug>(fern-action-preview:close)", ":q\<CR>")
+    nno <silent><buffer> p         <Plug>(fern-action-preview:auto:toggle)
+    " nno <silent><buffer> q         <Plug>(fern-quit-or-close-preview)
+    " nno <silent><buffer> <expr>    <Plug>(fern-quit-or-close-preview)
+    "       \ fern_preview#smart_preview("\<Plug>(fern-action-preview:close)", ":q\<CR>")
     hi FernBranchText guifg=#88ccff
 endf
 aug fern-custom
