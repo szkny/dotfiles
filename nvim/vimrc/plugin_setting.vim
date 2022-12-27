@@ -101,7 +101,14 @@ fun! s:init_fern() abort
     nno <buffer> r         <Plug>(fern-action-reload:all)
     nno <buffer> h         <Plug>(fern-action-collapse)
     nno <buffer> l         <Plug>(fern-action-open-or-expand)
-    nno <buffer> <CR>      <Plug>(fern-action-open-or-expand)
+    nno <buffer> o         <Plug>(fern-action-open-or-expand)
+    nno <buffer> <CR>      <Plug>(fern-action-open-or-expand-or-collapse)
+    nno <buffer><expr>     <Plug>(fern-action-open-or-expand-or-collapse)
+          \ fern#smart#leaf(
+          \   "<Plug>(fern-action-open)",
+          \   "<Plug>(fern-action-expand)",
+          \   "<Plug>(fern-action-collapse)",
+          \ )
     nno <buffer> <C-h>     <Plug>(fern-action-leave)
     nno <buffer> <C-l>     <Plug>(fern-action-enter)
     nno <buffer> -         <Plug>(fern-action-mark):setlocal signcolumn=yes<CR>
