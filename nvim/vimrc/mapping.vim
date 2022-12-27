@@ -101,8 +101,9 @@ vno <silent> <C-f> :<C-u>call VAgWord()<CR>
 nno <silent> <C-h> :<C-u>call Ranger()<CR>
 "" fern.vim
 nno <silent> <C-n> :<C-u>Fern . -reveal=% -toggle -keep -drawer -width=25<CR>
-" nno <silent> <C-t> :<C-u>TagbarToggle<CR>
+"" vista.vim
 nno <silent> <C-t> :<C-u>Vista!!<CR>
+nno <silent> <C-g> :<C-u>Vista finder<CR>
 nno <silent> <C-k> :<C-u>MinimapToggle<CR>
 "" git-gutter
 nno <silent><nowait> <leader>gn :<C-u>GitGutterNextHunk<CR>

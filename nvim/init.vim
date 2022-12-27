@@ -24,7 +24,6 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "" Plug install packages
 "*****************************************************************************
 " general plugins
-Plug 'majutsushi/tagbar'
 Plug 'hushicai/tagbar-javascript.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'

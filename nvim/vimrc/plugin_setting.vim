@@ -31,7 +31,7 @@ let g:lsp_diagnostics_signs_error = {'text': '✗'}
 let g:lsp_diagnostics_signs_warning = {'text': ''}
 let g:lsp_diagnostics_signs_hint = {'text': '？'}
 let g:lsp_diagnostics_signs_information = {'text': 'ｉ'}
-let g:lsp_document_code_action_signs_hint = {'text': ''}
+" let g:lsp_document_code_action_signs_hint = {'text': ''}
 " let g:lsp_diagnostics_signs_error = {'text': '❌'}
 " let g:lsp_diagnostics_signs_warning = {'text': '⚠️'}
 " let g:lsp_diagnostics_signs_hint = {'text': '💡'}
@@ -98,25 +98,26 @@ fun! s:init_fern() abort
     setlocal nolist
     setlocal nospell
     setlocal lazyredraw
-    nno <silent><buffer> I         <Plug>(fern-action-hidden)
-    nno <silent><buffer> <BS>      <Plug>(fern-action-hidden)
-    nno <silent><buffer> r         <Plug>(fern-action-reload:all)
-    nno <silent><buffer> h         <Plug>(fern-action-collapse)
-    nno <silent><buffer> l         <Plug>(fern-action-open-or-expand)
-    nno <silent><buffer> o         <Plug>(fern-action-open-or-expand)
-    nno <silent><buffer> <CR>      <Plug>(fern-action-open-or-expand-or-collapse)
-    nno <silent><buffer><expr>     <Plug>(fern-action-open-or-expand-or-collapse)
+    nno <silent><buffer> I             <Plug>(fern-action-hidden)
+    nno <silent><buffer> <BS>          <Plug>(fern-action-hidden)
+    nno <silent><buffer> r             <Plug>(fern-action-reload:all)
+    nno <silent><buffer> h             <Plug>(fern-action-collapse)
+    nno <silent><buffer> l             <Plug>(fern-action-open-or-expand)
+    nno <silent><buffer> o             <Plug>(fern-action-open-or-expand)
+    nno <silent><buffer> <CR>          <Plug>(fern-action-open-or-expand-or-collapse)
+    nno <silent><buffer> <2-LeftMouse> <Plug>(fern-action-open-or-expand-or-collapse)
+    nno <silent><buffer><expr>         <Plug>(fern-action-open-or-expand-or-collapse)
           \ fern#smart#leaf(
           \   "<Plug>(fern-action-open)",
           \   "<Plug>(fern-action-expand)",
           \   "<Plug>(fern-action-collapse)",
           \ )
-    nno <silent><buffer> <C-h>     <Plug>(fern-action-leave)
-    nno <silent><buffer> <C-l>     <Plug>(fern-action-enter)
-    nno <silent><buffer> -         <Plug>(fern-action-mark):setlocal signcolumn=yes<CR>
-    nno <silent><buffer> p         <Plug>(fern-action-preview:auto:toggle)
-    " nno <silent><buffer> q         <Plug>(fern-quit-or-close-preview)
-    " nno <silent><buffer> <expr>    <Plug>(fern-quit-or-close-preview)
+    nno <silent><buffer> <C-h>         <Plug>(fern-action-leave)
+    nno <silent><buffer> <C-l>         <Plug>(fern-action-enter)
+    nno <silent><buffer> -             <Plug>(fern-action-mark):setlocal signcolumn=yes<CR>
+    nno <silent><buffer> p             <Plug>(fern-action-preview:auto:toggle)
+    " nno <silent><buffer> q             <Plug>(fern-quit-or-close-preview)
+    " nno <silent><buffer> <expr>        <Plug>(fern-quit-or-close-preview)
     "       \ fern_preview#smart_preview("\<Plug>(fern-action-preview:close)", ":q\<CR>")
     hi FernBranchText guifg=#88ccff
 endf
@@ -133,11 +134,19 @@ let g:tagbar_sort = 0
 
 
 ""vista.vim
+let g:vista_no_mappings = 0
 let g:vista_echo_cursor = 0
+let g:vista_blink = [3, 200]
+let g:vista_top_level_blink = [3, 200]
+let g:vista_highlight_whole_line = 1
+let g:vista_update_on_text_changed = 1
 let g:vista_sidebar_width = 25
 let g:vista_icon_indent = ['└ ', '│ ']
 let g:vista_default_executive = 'ctags'
 let g:vista#renderer#enable_icon = 1
+let g:vista_fzf_preview = ['right,50%,<70(down,60%)']
+let g:vista_fzf_opt = ['--bind=ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up']
+let g:vista_default_executive = 'vim_lsp'
 let g:vista_executive_for = {
     \ 'c': 'vim_lsp',
     \ 'go': 'vim_lsp',
@@ -145,6 +154,9 @@ let g:vista_executive_for = {
     \ 'javascript': 'vim_lsp',
     \ 'typescript': 'vim_lsp',
     \ }
+fun! VistaNearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endf
 
 "" tcomment_vim
 if !exists('g:tcomment_types')
@@ -178,22 +190,19 @@ let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#default#layout = [
-    \ ['a', 'b', 'c'],
+    \ ['a', 'b', 'c', 'd'],
     \ ['lsp_info', 'x', 'y', 'z']]
 let g:airline_section_c = '%t'
+let g:airline_section_d = '%{VistaNearestMethodOrFunction()}'
 let g:airline_section_lsp_info = '%{g:lsp_diagnostics_signs_error.text}:'
 let g:airline_section_lsp_info.= '%{lsp#get_buffer_diagnostics_counts().error}  '
 let g:airline_section_lsp_info.= '%{g:lsp_diagnostics_signs_warning.text}:'
 let g:airline_section_lsp_info.= '%{lsp#get_buffer_diagnostics_counts().warning}  '
 let g:airline_section_lsp_info.= '%{g:lsp_diagnostics_signs_hint.text}:'
 let g:airline_section_lsp_info.= '%{lsp#get_buffer_diagnostics_counts().hint}  '
-let g:airline_section_x = 'LOW:%3l/%L  COL:%3c'
+let g:airline_section_x = 'l:%3l/%L c:%3c'
 let g:airline_section_y = '%{&filetype}'
-if &fileformat ==# 'unix'
-    let g:airline_section_z = '%{&fileencodings}, LN'
-else
-    let g:airline_section_z = '%{&fileencodings}, %{&fileformat}'
-endif
+let g:airline_section_z = '%{&fileencodings}, %{&fileformat}'
 let g:airline#extensions#default#section_truncate_width = {}
 let g:airline#extensions#whitespace#enabled = 1
 "" vim-airline separator
