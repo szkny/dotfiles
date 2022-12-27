@@ -44,7 +44,8 @@ hi LspHintText gui=bold guifg=#ffffff guibg=#1a1a1a
 " hi clear LspWarningLine
 
 " ddc.vim
-hi PmenuSel guifg=#000000 guibg=#55ddff
+set shortmess+=c
+hi PmenuSel gui=bold guifg=#000000 guibg=#55ddff
 call ddc#custom#patch_global('ui', 'native')
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
 call ddc#custom#patch_global('sources', [
@@ -58,14 +59,17 @@ call ddc#custom#patch_global('sourceOptions', {
  \   'sorters': ['sorter_rank'],
  \   'converters': ['converter_remove_overlap'],
  \ },
- \ 'around': {'mark': 'Around'},
+ \ 'around': {
+ \   'mark': '[AROUND]',
+ \   'maxSize': 1000
+ \ },
  \ 'vim-lsp': {
- \   'mark': 'lsp', 
+ \   'mark': '[LSP]', 
  \   'matchers': ['matcher_head'],
  \   'forceCompletionPattern': '\.|:|->|"\w+/*'
  \ },
  \ 'file': {
- \   'mark': 'file',
+ \   'mark': '[FILE]',
  \   'isVolatile': v:true, 
  \   'forceCompletionPattern': '\S/\S*'
  \ }

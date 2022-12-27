@@ -75,14 +75,12 @@ Plug 'Shougo/ddc-ui-native'
 Plug 'Shougo/pum.vim'
 " ddc sources
 Plug 'Shougo/ddc-source-around'
-" Plug 'Shougo/ddc-around'
-Plug 'LumaKernel/ddc-file'
+Plug 'shun/ddc-source-vim-lsp'
+Plug 'LumaKernel/ddc-source-file'
 " ddc filters
 Plug 'Shougo/ddc-matcher_head'
 Plug 'Shougo/ddc-sorter_rank'
 Plug 'Shougo/ddc-converter_remove_overlap'
-" ddc others
-Plug 'shun/ddc-source-vim-lsp'
 
 " color scheme
 " Plug 'tomasr/molokai'
