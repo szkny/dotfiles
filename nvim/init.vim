@@ -77,6 +77,8 @@ Plug 'Shougo/pum.vim'
 Plug 'Shougo/ddc-source-around'
 Plug 'shun/ddc-source-vim-lsp'
 Plug 'LumaKernel/ddc-source-file'
+Plug 'Shougo/ddc-source-cmdline-history'
+Plug 'Shougo/neco-vim'
 " ddc filters
 Plug 'Shougo/ddc-matcher_head'
 Plug 'Shougo/ddc-sorter_rank'

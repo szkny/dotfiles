@@ -39,17 +39,19 @@ hi LspErrorText gui=bold guifg=#ff0000 guibg=#1a1a1a
 hi LspWarningText gui=bold guifg=#ffff00 guibg=#1a1a1a
 hi LspInformationText gui=bold guifg=#ffffff guibg=#1a1a1a
 hi LspHintText gui=bold guifg=#ffffff guibg=#1a1a1a
-" hi clear LspWarningLine
 
-" ddc.vim
+" ddc.vim + pum.vim
 set shortmess+=c
+set wildoptions+=pum
 hi PmenuSel gui=bold guifg=#000000 guibg=#55ddff
+" call pum#set_option({'horizontal_menu': v:true})
 call ddc#custom#patch_global('ui', 'native')
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
 call ddc#custom#patch_global('sources', [
  \ 'around',
  \ 'vim-lsp',
  \ 'file',
+ \ 'cmdline-history',
  \ ])
 call ddc#custom#patch_global('sourceOptions', {
  \ '_': {
@@ -71,6 +73,9 @@ call ddc#custom#patch_global('sourceOptions', {
  \   'mark': '[FILE]',
  \   'isVolatile': v:true, 
  \   'forceCompletionPattern': '\S/\S*',
+ \ },
+ \ 'history': {
+ \   'mark': '[HISTORY]',
  \ },
  \ })
 call ddc#enable()
