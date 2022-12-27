@@ -103,13 +103,12 @@ fun! s:init_fern() abort
     nno <buffer> l         <Plug>(fern-action-open-or-expand)
     nno <buffer> <CR>      <Plug>(fern-action-open-or-expand)
     nno <buffer> <C-h>     <Plug>(fern-action-leave)
-    nno <buffer> <C-l>     <Plug>(fern-action-open-or-enter)
+    nno <buffer> <C-l>     <Plug>(fern-action-enter)
     nno <buffer> -         <Plug>(fern-action-mark):setlocal signcolumn=yes<CR>
     nno <buffer> <leader>p <Plug>(fern-action-preview:auto:toggle)
     nno <buffer> <expr>    <Plug>(fern-quit-or-close-preview) fern_preview#smart_preview("\<Plug>(fern-action-preview:close)", ":q\<CR>")
     nno <buffer> q         <Plug>(fern-quit-or-close-preview)
-    " hi CursorLine guibg=#333333
-    hi FernBranchText gui=bold guifg=#8888ff
+    hi FernBranchText guifg=#88ccff
 endf
 aug fern-custom
     au! *
