@@ -98,7 +98,7 @@ nno <silent> <C-b> :<C-u>Buffers<CR>
 nno <silent> <C-p> :<C-u>Files<CR>
 nno <silent> <C-f> :<C-u>Ag<CR>
 vno <silent> <C-f> :<C-u>call VAgWord()<CR>
-nno <silent> <C-h> :<C-u>call Ranger()<CR>
+nno <silent> <C-h> :<C-u>SelectByRanger<CR>
 "" fern.vim
 nno <silent> <C-n> :<C-u>Fern . -reveal=% -toggle -keep -drawer -width=25<CR>
 "" vista.vim

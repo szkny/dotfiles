@@ -24,7 +24,6 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "" Plug install packages
 "*****************************************************************************
 " general plugins
-Plug 'hushicai/tagbar-javascript.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -38,16 +37,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'Raimondi/delimitMate'
 Plug 'szkny/SplitTerm'
 Plug 'liuchengxu/vista.vim'
-Plug 'wfxr/minimap.vim'
+Plug 'wfxr/minimap.vim', {'on': 'MinimapToggle'}
 
 " fern.vim
-Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/fern-git-status.vim'
-Plug 'lambdalisue/nerdfont.vim'
-Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-Plug 'lambdalisue/fern-hijack.vim'
-Plug 'yuki-yano/fern-preview.vim'
-Plug 'lambdalisue/glyph-palette.vim'  " アイコンに色をつける
+Plug 'lambdalisue/fern.vim',                   {'on': 'Fern'}
+Plug 'lambdalisue/fern-git-status.vim',        {'on': 'Fern'}
+Plug 'lambdalisue/nerdfont.vim',               {'on': 'Fern'}
+Plug 'lambdalisue/fern-renderer-nerdfont.vim', {'on': 'Fern'}
+Plug 'lambdalisue/fern-hijack.vim',            {'on': 'Fern'}
+Plug 'yuki-yano/fern-preview.vim',             {'on': 'Fern'}
+Plug 'lambdalisue/glyph-palette.vim',          {'on': 'Fern'} " アイコンに色をつける
 aug my-glyph-palette
   au! *
   au FileType fern call glyph_palette#apply()
@@ -85,10 +84,6 @@ Plug 'Shougo/ddc-converter_remove_overlap'
 " ddc others
 Plug 'shun/ddc-source-vim-lsp'
 
-"" Vim-Session
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
-
 " color scheme
 " Plug 'tomasr/molokai'
 Plug 'tomasiser/vim-code-dark'
@@ -110,17 +105,10 @@ Plug 'fatih/vim-go',                   {'for': 'go'}
 Plug 'JuliaEditorSupport/julia-vim'
 
 " javascript
-Plug 'prettier/vim-prettier',  { 'for': ['javascript', 'typescript', 'css', 'json', 'markdown', 'vue', 'yaml', 'html'] }
+" Plug 'prettier/vim-prettier',  { 'for': ['javascript', 'typescript', 'css', 'json', 'markdown', 'vue', 'yaml', 'html'] }
 
 " terraform
-Plug 'hashivim/vim-terraform'
-
-" nyaovim
-if exists('g:nyaovim_version')
-    Plug 'rhysd/nyaovim-mini-browser'
-    Plug 'rhysd/nyaovim-popup-tooltip'
-    Plug 'rhysd/nyaovim-markdown-preview', {'for': 'markdown'}
-endif
+Plug 'hashivim/vim-terraform',  {'for': 'terraform'}
 
 " misc
 Plug 'raimon49/requirements.txt.vim',  {'for': 'requirements'}

@@ -135,7 +135,7 @@ endf
 command! NewTabPage call s:newtabpage()
 
 
-fun! Ranger() abort
+fun! SelectByRanger() abort
     " rangerコマンドでファイルを選択する関数
     "   (francoiscabrol/ranger.vimを利用)
     if &buflisted
@@ -146,6 +146,7 @@ fun! Ranger() abort
         setlocal nobuflisted
     endif
 endf
+command! SelectByRanger call SelectByRanger()
 
 
 fun! NewTerm(...) abort
