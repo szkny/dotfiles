@@ -30,12 +30,10 @@ let g:lsp_diagnostics_signs_priority = 20
 let g:lsp_diagnostics_signs_error = {'text': '✗'}
 let g:lsp_diagnostics_signs_warning = {'text': ''}
 let g:lsp_diagnostics_signs_hint = {'text': '？'}
-let g:lsp_diagnostics_signs_information = {'text': 'ｉ'}
-" let g:lsp_document_code_action_signs_hint = {'text': ''}
 " let g:lsp_diagnostics_signs_error = {'text': '❌'}
 " let g:lsp_diagnostics_signs_warning = {'text': '⚠️'}
 " let g:lsp_diagnostics_signs_hint = {'text': '💡'}
-" let g:lsp_diagnostics_signs_information = {'text': 'ｉ'}
+let g:lsp_diagnostics_signs_information = {'text': 'ｉ'}
 let g:lsp_document_code_action_signs_hint = {'text': '💡'}
 hi LspErrorText gui=bold guifg=#ff0000 guibg=#1a1a1a
 hi LspWarningText gui=bold guifg=#ffff00 guibg=#1a1a1a
@@ -51,28 +49,29 @@ call ddc#custom#patch_global('completionMenu', 'pum.vim')
 call ddc#custom#patch_global('sources', [
  \ 'around',
  \ 'vim-lsp',
- \ 'file'
+ \ 'file',
  \ ])
 call ddc#custom#patch_global('sourceOptions', {
  \ '_': {
  \   'matchers': ['matcher_head'],
  \   'sorters': ['sorter_rank'],
  \   'converters': ['converter_remove_overlap'],
+ \   'minAutoCompleteLength': 1,
  \ },
  \ 'around': {
  \   'mark': '[AROUND]',
- \   'maxSize': 1000
+ \   'maxSize': 1000,
  \ },
  \ 'vim-lsp': {
  \   'mark': '[LSP]', 
  \   'matchers': ['matcher_head'],
- \   'forceCompletionPattern': '\.|:|->|"\w+/*'
+ \   'forceCompletionPattern': '\.|:|->|"\w+/*',
  \ },
  \ 'file': {
  \   'mark': '[FILE]',
  \   'isVolatile': v:true, 
- \   'forceCompletionPattern': '\S/\S*'
- \ }
+ \   'forceCompletionPattern': '\S/\S*',
+ \ },
  \ })
 call ddc#enable()
 
