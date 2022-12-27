@@ -101,7 +101,7 @@ Plug 'vim-scripts/c.vim',              {'for': ['c', 'cpp']}
 " python
 Plug 'tweekmonster/braceless.vim',     {'for': 'python'}
 Plug 'szkny/Ipython',                  {'for': 'python'}
-Plug 'szkny/IpdbDebugger',             {'for': 'python'}
+" Plug 'szkny/IpdbDebugger',             {'for': 'python'}
 " Plug 'szkny/jupyter-vim',              {'for': 'python'}
 
 " golang

@@ -19,21 +19,21 @@ endif
 " mapping
 nno <silent> <leader><CR> :Ipython<CR>
 vno <silent> <leader><CR> :VIpython<CR>
-nno <silent> <leader>pd   :Ipdb<CR>
+" nno <silent> <leader>pd   :Ipdb<CR>
 
-nmap <silent> <leader>n <Plug>(ipdbdebug_next)
-nmap <silent> <leader>u <Plug>(ipdbdebug_until)
-nmap <silent> <leader>b <Plug>(ipdbdebug_break)
-nmap <silent> <leader>c <Plug>(ipdbdebug_continue)
-nmap <silent> <leader>p <Plug>(ipdbdebug_print)
-vmap <silent> <leader>p <Plug>(ipdbdebug_vprint)
-nmap <silent> <leader>q <Plug>(ipdbdebug_close)
-
-if exists('*jedi#goto')
-    " nno <silent> <leader>d :call jedi#goto()<CR>
-    nno <silent> <leader>a :<C-u>call jedi#goto_assignments()<CR>
-    nno <silent> <leader>d :<C-u>call jedi#goto_definitions()<CR>
-endif
+" nmap <silent> <leader>n <Plug>(ipdbdebug_next)
+" nmap <silent> <leader>u <Plug>(ipdbdebug_until)
+" nmap <silent> <leader>b <Plug>(ipdbdebug_break)
+" nmap <silent> <leader>c <Plug>(ipdbdebug_continue)
+" nmap <silent> <leader>p <Plug>(ipdbdebug_print)
+" vmap <silent> <leader>p <Plug>(ipdbdebug_vprint)
+" nmap <silent> <leader>q <Plug>(ipdbdebug_close)
+"
+" if exists('*jedi#goto')
+"     " nno <silent> <leader>d :call jedi#goto()<CR>
+"     nno <silent> <leader>a :<C-u>call jedi#goto_assignments()<CR>
+"     nno <silent> <leader>d :<C-u>call jedi#goto_definitions()<CR>
+" endif
 
 
 " auto command
@@ -71,8 +71,8 @@ let b:ale_linters = ['flake8']
 "" polyglot (Syntax highlight) Default highlight is better than polyglot
 let g:polyglot_disabled = ['python']
 let g:python_highlight_all = 1
-"" IpdbDebugger
-let g:ipdbdebug_map_enabled = 0
+" "" IpdbDebugger
+" let g:ipdbdebug_map_enabled = 0
 "" Ipython
 let g:ipython_startup_options = [
             \'--no-confirm-exit',
