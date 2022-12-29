@@ -59,9 +59,6 @@ else
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
     Plug 'junegunn/fzf.vim'
 endif
-set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
-let $FZF_DEFAULT_COMMAND =  'find * -path "*/\.*" -prune -o -path "node_modules/**" -prune -o -path "target/**" -prune -o -path "dist/**" -prune -o  -type f -print -o -type l -print 2> /dev/null'
 
 " lsp plugins
 Plug 'prabirshrestha/vim-lsp'
@@ -75,10 +72,11 @@ Plug 'Shougo/ddc-ui-native'
 Plug 'Shougo/pum.vim'
 " ddc sources
 Plug 'Shougo/ddc-source-around'
-Plug 'shun/ddc-source-vim-lsp'
-Plug 'LumaKernel/ddc-source-file'
+Plug 'Shougo/ddc-source-cmdline'
 Plug 'Shougo/ddc-source-cmdline-history'
 Plug 'Shougo/neco-vim'
+Plug 'shun/ddc-source-vim-lsp'
+Plug 'LumaKernel/ddc-source-file'
 " ddc filters
 Plug 'Shougo/ddc-matcher_head'
 Plug 'Shougo/ddc-sorter_rank'

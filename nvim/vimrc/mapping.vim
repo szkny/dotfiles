@@ -87,31 +87,40 @@ nno <silent> ｄｄ    dd
 nno <silent> ｙｙ    yy
 
 "" for Plugins
-if has('mac')
-    nno <silent> <C-/>   :TComment<CR>
-    vno <silent> <C-/>   :TComment<CR>
-else
-    nno <silent> <C-/>   :TComment<CR>
-    vno <silent> <C-/>   :TComment<CR>
-endif
+"" tcomment
+nno <silent> <C-/> :TComment<CR>
+vno <silent> <C-/> :TComment<CR>
+"" fzf.vim
 nno <silent> <C-b> :<C-u>Buffers<CR>
 nno <silent> <C-p> :<C-u>Files<CR>
 nno <silent> <C-f> :<C-u>Ag<CR>
 vno <silent> <C-f> :<C-u>call VAgWord()<CR>
+"" ranger.vim
 nno <silent> <C-h> :<C-u>SelectByRanger<CR>
 "" fern.vim
 nno <silent> <C-n> :<C-u>Fern . -reveal=% -toggle -keep -drawer -width=25<CR>
 "" vista.vim
 nno <silent> <C-t> :<C-u>Vista!!<CR>
 nno <silent> <C-g> :<C-u>Vista finder<CR>
+"" minimap.vim
 nno <silent> <C-k> :<C-u>MinimapToggle<CR>
 "" git-gutter
 nno <silent><nowait> <leader>gn :<C-u>GitGutterNextHunk<CR>
 nno <silent><nowait> <leader>gp :<C-u>GitGutterPrevHunk<CR>
 nno <silent><nowait> <leader>gh :<C-u>GitGutterLineHighlightsToggle<CR>
 "" ddc.vim (with pum.vim)
+inoremap <silent><expr> <TAB>
+      \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
+      \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+      \ '<TAB>' : ddc#map#manual_complete()
+inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
 ino <silent> <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
+" ino <silent><expr> <C-n>
+"   \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : ddc#manual_complete()
 ino <silent> <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
+ino <silent> <C-y> <Cmd>call pum#map#confirm()<CR>
+ino <silent> <C-e> <Cmd>call pum#map#cancel()<CR>
+nno          :     <Cmd>call DdcCommandlinePre()<CR>:
 "" vim-lsp
 nno <silent><nowait> <C-]>     :<C-u>LspDefinition<CR>
 nno <silent><nowait> <leader>] :<C-u>LspDefinition<CR>

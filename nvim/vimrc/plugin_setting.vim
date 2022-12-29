@@ -4,13 +4,17 @@ scriptencoding utf-8
 "*****************************************************************************
 
 "" fzf.vim
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
+let $FZF_DEFAULT_COMMAND =  'find * -path "*/\.*" -prune -o -path "node_modules/**" -prune -o -path "target/**" -prune -o -path "dist/**" -prune -o  -type f -print -o -type l -print 2> /dev/null'
+let $FZF_DEFAULT_OPTS="--reverse --bind ctrl-j:preview-down,ctrl-k:preview-up"
 let g:fzf_layout = { 'window': 'enew' }
 let g:fzf_preview_window = ['right,50%,<70(down,60%)', 'ctrl-/']
-let $FZF_DEFAULT_OPTS="--reverse --bind ctrl-j:preview-down,ctrl-k:preview-up"
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
-" vim-lsp
+
+"" vim-lsp
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_signs_enabled = 1
 let g:lsp_diagnostics_signs_insert_mode_enabled = 1
@@ -27,6 +31,12 @@ let g:lsp_document_highlight_delay         = 0
 let g:lsp_diagnostics_virtual_text_delay   = 0
 let g:lsp_document_code_action_signs_delay = 0
 let g:lsp_diagnostics_signs_priority = 20
+let g:lsp_diagnostics_signs_priority_map = {
+    \ 'LspError': 25,
+    \ 'LspWarning': 20,
+    \ 'LspHint': 15,
+    \ 'LspInformation': 10,
+    \ }
 let g:lsp_diagnostics_signs_error = {'text': '✗'}
 let g:lsp_diagnostics_signs_warning = {'text': ''}
 let g:lsp_diagnostics_signs_hint = {'text': '？'}
@@ -35,50 +45,106 @@ let g:lsp_diagnostics_signs_hint = {'text': '？'}
 " let g:lsp_diagnostics_signs_hint = {'text': '💡'}
 let g:lsp_diagnostics_signs_information = {'text': 'ｉ'}
 let g:lsp_document_code_action_signs_hint = {'text': '💡'}
-hi LspErrorText gui=bold guifg=#ff0000 guibg=#1a1a1a
-hi LspWarningText gui=bold guifg=#ffff00 guibg=#1a1a1a
-hi LspInformationText gui=bold guifg=#ffffff guibg=#1a1a1a
-hi LspHintText gui=bold guifg=#ffffff guibg=#1a1a1a
+hi LspErrorText       gui=bold guifg=#ff0000
+hi LspWarningText     gui=bold guifg=#ffff00
+hi LspInformationText gui=bold guifg=#ffffff
+hi LspHintText        gui=bold guifg=#ffffff
 
-" ddc.vim + pum.vim
+
+"" ddc.vim + pum.vim
 set shortmess+=c
 set wildoptions+=pum
 hi PmenuSel gui=bold guifg=#000000 guibg=#55ddff
 " call pum#set_option({'horizontal_menu': v:true})
 call ddc#custom#patch_global('ui', 'native')
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
+call ddc#custom#patch_global('autoCompleteEvents', [
+    \ 'InsertEnter', 'TextChangedI', 'TextChangedP',
+    \ 'CmdlineEnter', 'CmdlineChanged',
+    \ ])
 call ddc#custom#patch_global('sources', [
  \ 'around',
  \ 'vim-lsp',
  \ 'file',
- \ 'cmdline-history',
  \ ])
-call ddc#custom#patch_global('sourceOptions', {
- \ '_': {
- \   'matchers': ['matcher_head'],
- \   'sorters': ['sorter_rank'],
- \   'converters': ['converter_remove_overlap'],
- \   'minAutoCompleteLength': 1,
+call ddc#custom#patch_global('sourceOptions', #{
+ \ _: #{
+ \   matchers: ['matcher_head'],
+ \   sorters: ['sorter_rank'],
+ \   converters: ['converter_remove_overlap'],
+ \   minAutoCompleteLength: 1,
  \ },
- \ 'around': {
- \   'mark': '[AROUND]',
- \   'maxSize': 1000,
+ \ around: #{
+ \   mark: '[AROUND]',
+ \   maxSize: 1000,
  \ },
- \ 'vim-lsp': {
- \   'mark': '[LSP]', 
- \   'matchers': ['matcher_head'],
- \   'forceCompletionPattern': '\.|:|->|"\w+/*',
+ \ vim-lsp: #{
+ \   mark: '[LSP]', 
+ \   matchers: ['matcher_head'],
+ \   forceCompletionPattern: '\.|:|->|"\w+/*',
  \ },
- \ 'file': {
- \   'mark': '[FILE]',
- \   'isVolatile': v:true, 
- \   'forceCompletionPattern': '\S/\S*',
- \ },
- \ 'history': {
- \   'mark': '[HISTORY]',
+ \ file: #{
+ \   mark: '[FILE]',
+ \   isVolatile: v:true, 
+ \   forceCompletionPattern: '\S/\S*',
  \ },
  \ })
 call ddc#enable()
+"" ddc.vim extensions: cmdline, cmdline-history
+fun! DdcCommandlinePre() abort
+  " Note: It disables default command line completion!
+  cno <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
+  " cno <expr> <C-n>
+  "   \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : ddc#manual_complete()
+  cno <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
+  cno <C-y> <Cmd>call pum#map#confirm()<CR>
+  cno <C-e> <Cmd>call pum#map#cancel()<CR>
+  " Overwrite sources
+  if !exists('b:prev_buffer_config')
+    let b:prev_buffer_config = ddc#custom#get_buffer()
+  endif
+  call ddc#custom#patch_buffer('sources', [
+    \ 'cmdline',
+    \ 'cmdline-history',
+    \ 'necovim',
+    \ 'around',
+    \ ])
+  call ddc#custom#patch_buffer('sourceOptions', #{
+    \ cmdline: #{
+    \   mark: '[CMDLINE]',
+    \ },
+    \ cmdline-history: #{
+    \   mark: '[HISTORY]',
+    \ },
+    \ necovim: #{
+    \   mark: '[VIM]',
+    \ },
+    \ })
+
+  au User DDCCmdlineLeave ++once call DdcCommandlinePost()
+  au InsertEnter <buffer> ++once call DdcCommandlinePost()
+  " Enable command line completion
+  call ddc#enable_cmdline_completion()
+endf
+fun! DdcCommandlinePost() abort
+  cunmap <C-n>
+  cunmap <C-p>
+  cunmap <C-y>
+  cunmap <C-e>
+  " Restore sources
+  if exists('b:prev_buffer_config')
+    call ddc#custom#set_buffer(b:prev_buffer_config)
+    unlet b:prev_buffer_config
+  else
+    call ddc#custom#set_buffer({})
+  endif
+endf
+"" ddc.vim extensions: neco-vim
+if !exists('g:necovim#complete_functions')
+  let g:necovim#complete_functions = {}
+endif
+let g:necovim#complete_functions.Ref = 'ref#complete'
+
 
 "" neosnippet
 let g:neosnippet#snippets_directory='~/.config/nvim/plugged/neosnippet-snippets/neosnippets'
@@ -124,9 +190,6 @@ fun! s:init_fern() abort
     nno <silent><buffer> <C-l>         <Plug>(fern-action-enter)
     nno <silent><buffer> -             <Plug>(fern-action-mark):setlocal signcolumn=yes<CR>
     nno <silent><buffer> p             <Plug>(fern-action-preview:auto:toggle)
-    " nno <silent><buffer> q             <Plug>(fern-quit-or-close-preview)
-    " nno <silent><buffer> <expr>        <Plug>(fern-quit-or-close-preview)
-    "       \ fern_preview#smart_preview("\<Plug>(fern-action-preview:close)", ":q\<CR>")
     hi FernBranchText guifg=#88ccff
 endf
 aug fern-custom
@@ -166,6 +229,7 @@ fun! VistaNearestMethodOrFunction() abort
   return get(b:, 'vista_nearest_method_or_function', '')
 endf
 
+
 "" tcomment_vim
 if !exists('g:tcomment_types')
     let g:tcomment_types = {}
@@ -174,19 +238,12 @@ endif
 
 "" indent_guides
 let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_exclude_filetypes = ['terminal', 'help', 'nerdtree', 'fzf']
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 4
+let g:indent_guides_exclude_filetypes = ['terminal', 'help', 'fern', 'fzf', 'vista_kind']
+let g:indent_guides_guide_size = 2
+let g:indent_guides_start_level = 1
 let g:indent_guides_auto_colors = 0
-au VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#303030 ctermbg=gray
-au VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#222222 ctermbg=darkgray
-
-
-"" indentLine
-let g:indentLine_enabled = 0
-let g:indentLine_concealcursor = 0
-let g:indentLine_char = '┆'
-let g:indentLine_faster = 1
+au VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#252525
+au VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#303030
 
 
 "" vim-airline
@@ -234,6 +291,7 @@ endif
 let g:gitgutter_enabled = 1
 let g:gitgutter_async = 1
 let g:gitgutter_sign_priority = 10
+let g:gitgutter_map_keys = 0
 
 
 "" ranger
