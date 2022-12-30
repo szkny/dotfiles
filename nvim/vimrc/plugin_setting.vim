@@ -51,10 +51,10 @@ hi LspErrorText              gui=bold   guifg=#ff0000
 hi LspWarningText            gui=bold   guifg=#ffff00
 hi LspInformationText        gui=bold   guifg=#ffffff
 hi LspHintText               gui=bold   guifg=#ffffff
-hi LspErrorVirtualText       gui=italic guifg=#ff0000
-hi LspWarningVirtualText     gui=italic guifg=#ffff00
-hi LspInformationVirtualText gui=italic guifg=#ffffff
-hi LspHintVirtualText        gui=italic guifg=#ffffff
+hi LspErrorVirtualText       gui=bold,italic guifg=#ff0000
+hi LspWarningVirtualText     gui=bold,italic guifg=#ffff00
+hi LspInformationVirtualText gui=bold,italic guifg=#ffffff
+hi LspHintVirtualText        gui=bold,italic guifg=#ffffff
 
 
 "" ddc.vim + pum.vim
