@@ -21,7 +21,9 @@ let g:lsp_diagnostics_signs_insert_mode_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_diagnostics_float_cursor = 1
 let g:lsp_diagnostics_highlights_enabled = 1
-let g:lsp_diagnostics_virtual_text_enabled = 0
+let g:lsp_diagnostics_virtual_text_enabled = 1
+let g:lsp_diagnostics_virtual_text_insert_mode_enabled = 0
+let g:lsp_diagnostics_virtual_text_prefix = " -- "
 let g:lsp_document_code_action_signs_enabled = 1
 let g:lsp_inlay_hints_delay                = 0
 let g:lsp_diagnostics_echo_delay           = 0
@@ -45,10 +47,14 @@ let g:lsp_diagnostics_signs_hint = {'text': '？'}
 " let g:lsp_diagnostics_signs_hint = {'text': '💡'}
 let g:lsp_diagnostics_signs_information = {'text': 'ｉ'}
 let g:lsp_document_code_action_signs_hint = {'text': '💡'}
-hi LspErrorText       gui=bold guifg=#ff0000
-hi LspWarningText     gui=bold guifg=#ffff00
-hi LspInformationText gui=bold guifg=#ffffff
-hi LspHintText        gui=bold guifg=#ffffff
+hi LspErrorText              gui=bold   guifg=#ff0000
+hi LspWarningText            gui=bold   guifg=#ffff00
+hi LspInformationText        gui=bold   guifg=#ffffff
+hi LspHintText               gui=bold   guifg=#ffffff
+hi LspErrorVirtualText       gui=italic guifg=#ff0000
+hi LspWarningVirtualText     gui=italic guifg=#ffff00
+hi LspInformationVirtualText gui=italic guifg=#ffffff
+hi LspHintVirtualText        gui=italic guifg=#ffffff
 
 
 "" ddc.vim + pum.vim
@@ -91,59 +97,67 @@ call ddc#custom#patch_global('sourceOptions', #{
  \ })
 call ddc#enable()
 "" ddc.vim extensions: cmdline, cmdline-history
-fun! DdcCommandlinePre() abort
-  " Note: It disables default command line completion!
-  cno <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
-  " cno <expr> <C-n>
-  "   \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : ddc#manual_complete()
-  cno <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
-  cno <C-y> <Cmd>call pum#map#confirm()<CR>
-  cno <C-e> <Cmd>call pum#map#cancel()<CR>
-  " Overwrite sources
-  if !exists('b:prev_buffer_config')
-    let b:prev_buffer_config = ddc#custom#get_buffer()
-  endif
-  call ddc#custom#patch_buffer('sources', [
-    \ 'cmdline',
-    \ 'cmdline-history',
-    \ 'necovim',
-    \ 'around',
-    \ ])
-  call ddc#custom#patch_buffer('sourceOptions', #{
-    \ cmdline: #{
-    \   mark: '[CMDLINE]',
-    \ },
-    \ cmdline-history: #{
-    \   mark: '[HISTORY]',
-    \ },
-    \ necovim: #{
-    \   mark: '[VIM]',
-    \ },
-    \ })
-
-  au User DDCCmdlineLeave ++once call DdcCommandlinePost()
-  au InsertEnter <buffer> ++once call DdcCommandlinePost()
-  " Enable command line completion
-  call ddc#enable_cmdline_completion()
-endf
-fun! DdcCommandlinePost() abort
-  cunmap <C-n>
-  cunmap <C-p>
-  cunmap <C-y>
-  cunmap <C-e>
-  " Restore sources
-  if exists('b:prev_buffer_config')
-    call ddc#custom#set_buffer(b:prev_buffer_config)
-    unlet b:prev_buffer_config
-  else
-    call ddc#custom#set_buffer({})
-  endif
-endf
-"" ddc.vim extensions: neco-vim
-if !exists('g:necovim#complete_functions')
-  let g:necovim#complete_functions = {}
-endif
-let g:necovim#complete_functions.Ref = 'ref#complete'
+" call ddc#custom#patch_global('cmdlineSources', {
+"   \ ':': ['cmdline-history', 'cmdline', 'around'],
+"   \ '@': ['cmdline-history', 'input', 'file', 'around'],
+"   \ '>': ['cmdline-history', 'input', 'file', 'around'],
+"   \ '/': ['around', 'line'],
+"   \ '?': ['around', 'line'],
+"   \ '-': ['around', 'line'],
+"   \ '=': ['input'],
+"   \ })
+" fun! DdcCommandlinePre() abort
+"   " Note: It disables default command line completion!
+"   cno <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
+"   " cno <expr> <C-n>
+"   "   \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : ddc#manual_complete()
+"   cno <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
+"   cno <C-y> <Cmd>call pum#map#confirm()<CR>
+"   cno <C-e> <Cmd>call pum#map#cancel()<CR>
+"   " Overwrite sources
+"   if !exists('b:prev_buffer_config')
+"     let b:prev_buffer_config = ddc#custom#get_buffer()
+"   endif
+"   call ddc#custom#patch_buffer('sources', [
+"     \ 'cmdline',
+"     \ 'cmdline-history',
+"     \ 'necovim',
+"     \ 'around',
+"     \ ])
+"   call ddc#custom#patch_buffer('sourceOptions', #{
+"     \ cmdline: #{
+"     \   mark: '[CMDLINE]',
+"     \ },
+"     \ cmdline-history: #{
+"     \   mark: '[HISTORY]',
+"     \ },
+"     \ necovim: #{
+"     \   mark: '[VIM]',
+"     \ },
+"     \ })
+"   au User DDCCmdlineLeave ++once call DdcCommandlinePost()
+"   au InsertEnter <buffer> ++once call DdcCommandlinePost()
+"   " Enable command line completion
+"   call ddc#enable_cmdline_completion()
+" endf
+" fun! DdcCommandlinePost() abort
+"   cunmap <C-n>
+"   cunmap <C-p>
+"   cunmap <C-y>
+"   cunmap <C-e>
+"   " Restore sources
+"   if exists('b:prev_buffer_config')
+"     call ddc#custom#set_buffer(b:prev_buffer_config)
+"     unlet b:prev_buffer_config
+"   else
+"     call ddc#custom#set_buffer({})
+"   endif
+" endf
+" "" ddc.vim extensions: neco-vim
+" if !exists('g:necovim#complete_functions')
+"   let g:necovim#complete_functions = {}
+" endif
+" let g:necovim#complete_functions.Ref = 'ref#complete'
 
 
 "" neosnippet
@@ -260,16 +274,15 @@ let g:airline#extensions#default#layout = [
 let g:airline_section_c = '%t'
 let g:airline_section_d = '%{VistaNearestMethodOrFunction()}'
 let g:airline_section_lsp_info = '%{g:lsp_diagnostics_signs_error.text}:'
-let g:airline_section_lsp_info.= '%{lsp#get_buffer_diagnostics_counts().error}  '
+let g:airline_section_lsp_info.= '%{lsp#get_buffer_diagnostics_counts().error} '
 let g:airline_section_lsp_info.= '%{g:lsp_diagnostics_signs_warning.text}:'
-let g:airline_section_lsp_info.= '%{lsp#get_buffer_diagnostics_counts().warning}  '
+let g:airline_section_lsp_info.= '%{lsp#get_buffer_diagnostics_counts().warning} '
 let g:airline_section_lsp_info.= '%{g:lsp_diagnostics_signs_hint.text}:'
-let g:airline_section_lsp_info.= '%{lsp#get_buffer_diagnostics_counts().hint}  '
-let g:airline_section_x = 'l:%3l/%L c:%3c'
+let g:airline_section_lsp_info.= '%{lsp#get_buffer_diagnostics_counts().hint}'
+let g:airline_section_x = '%3l/%L :%2c'
 let g:airline_section_y = '%{&filetype}'
 let g:airline_section_z = '%{&fileencodings}, %{&fileformat}'
 let g:airline#extensions#default#section_truncate_width = {}
-let g:airline#extensions#whitespace#enabled = 1
 "" vim-airline separator
 let g:airline#extensions#tabline#right_sep = ' '
 let g:airline#extensions#tabline#left_sep  = ' '

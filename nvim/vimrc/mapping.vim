@@ -109,18 +109,9 @@ nno <silent><nowait> <leader>gn :<C-u>GitGutterNextHunk<CR>
 nno <silent><nowait> <leader>gp :<C-u>GitGutterPrevHunk<CR>
 nno <silent><nowait> <leader>gh :<C-u>GitGutterLineHighlightsToggle<CR>
 "" ddc.vim (with pum.vim)
-inoremap <silent><expr> <TAB>
-      \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' :
-      \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
-      \ '<TAB>' : ddc#map#manual_complete()
-inoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
 ino <silent> <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
-" ino <silent><expr> <C-n>
-"   \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : ddc#manual_complete()
 ino <silent> <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
-ino <silent> <C-y> <Cmd>call pum#map#confirm()<CR>
-ino <silent> <C-e> <Cmd>call pum#map#cancel()<CR>
-nno          :     <Cmd>call DdcCommandlinePre()<CR>:
+" nno          :     <Cmd>call DdcCommandlinePre()<CR>:
 "" vim-lsp
 nno <silent><nowait> <C-]>     :<C-u>LspDefinition<CR>
 nno <silent><nowait> <leader>] :<C-u>LspDefinition<CR>

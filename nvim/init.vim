@@ -46,7 +46,7 @@ Plug 'lambdalisue/nerdfont.vim',               {'on': 'Fern'}
 Plug 'lambdalisue/fern-renderer-nerdfont.vim', {'on': 'Fern'}
 Plug 'lambdalisue/fern-hijack.vim',            {'on': 'Fern'}
 Plug 'yuki-yano/fern-preview.vim',             {'on': 'Fern'}
-Plug 'lambdalisue/glyph-palette.vim',          {'on': 'Fern'} " アイコンに色をつける
+Plug 'lambdalisue/glyph-palette.vim',          {'on': 'Fern'} " for fern icon color
 aug my-glyph-palette
   au! *
   au FileType fern call glyph_palette#apply()
@@ -72,9 +72,9 @@ Plug 'Shougo/ddc-ui-native'
 Plug 'Shougo/pum.vim'
 " ddc sources
 Plug 'Shougo/ddc-source-around'
-Plug 'Shougo/ddc-source-cmdline'
-Plug 'Shougo/ddc-source-cmdline-history'
-Plug 'Shougo/neco-vim'
+" Plug 'Shougo/ddc-source-cmdline'
+" Plug 'Shougo/ddc-source-cmdline-history'
+" Plug 'Shougo/neco-vim'
 Plug 'shun/ddc-source-vim-lsp'
 Plug 'LumaKernel/ddc-source-file'
 " ddc filters
@@ -203,7 +203,6 @@ let g:netrw_liststyle=3
 let g:netrw_banner=0
 let g:netrw_sizestyle="H"
 let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
-" let g:netrw_preview=1
 
 "" Session Management
 let g:session_directory = '~/.config/nvim/session'
@@ -214,21 +213,6 @@ let g:session_command_aliases = 1
 "" Python Host Program
 let g:python_host_prog  = expand('~/.pyenv/shims/python2')
 let g:python3_host_prog = expand('~/.pyenv/shims/python3')
-" let g:python_host_prog = ''
-" let g:python3_host_prog = ''
-" if has('mac')
-"     let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/bin/python2')
-"     let g:python3_host_prog = expand('~/.pyenv/versions/3.6.5/bin/python3')
-" elseif system('uname') ==# "Linux\n"
-"     let g:python_host_prog = expand('~/.pyenv/versions/2.7.15/bin/python2')
-"     let g:python3_host_prog = expand('~/.pyenv/versions/3.8.5/bin/python3')
-" endif
-" if findfile(g:python_host_prog) ==# ''
-"     let g:python_host_prog = split(system('which python2'), "\n")[0]
-" endif
-" if findfile(g:python3_host_prog) ==# ''
-"     let g:python3_host_prog = split(system('which python3'), "\n")[0]
-" endif
 
 "*****************************************************************************
 "" Visual Settings
@@ -245,7 +229,7 @@ let g:no_buffers_menu=1
 
 set mousemodel=popup
 set t_Co=256
-set termguicolors " for iTerm2
+set termguicolors
 set guioptions=egmrti
 set guifont=Monospace\ 10
 
@@ -424,12 +408,6 @@ aug vimrc_js_ts
     au BufNewFile,BufRead *.cjs,*.mjs setfiletype javascript
     au BufNewFile,BufRead *.tsx setfiletype typescript
     au FileType javascript,typescript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
-aug END
-
-" FixWhitespace
-aug FixWhitespace
-    au!
-    au FileType text if exists(':FixWhitespace') | FixWhitespace
 aug END
 
 "*****************************************************************************
