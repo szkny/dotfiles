@@ -28,6 +28,8 @@ vno <expr>   <C-d>   ':<C-u>'.VReplaceWordText().'<Left><Left><Left>'
 " for tab/window
 nno <silent> <Right> :ChangeBuffer next<CR>
 nno <silent> <Left>  :ChangeBuffer previous<CR>
+nno <silent> <M-l>   :ChangeBuffer next<CR>
+nno <silent> <M-h>   :ChangeBuffer previous<CR>
 nno <silent> <Up>    :ResizeWindow +1<CR>
 nno <silent> <Down>  :ResizeWindow -1<CR>
 " nno <silent><Tab>    :NewTabPage<CR>
@@ -52,25 +54,14 @@ vno <silent> <S-h>   10h
 vno <silent> <S-j>   5gj
 vno <silent> <S-k>   5gk
 vno <silent> <S-l>   10l
-if has('mac')
-    ino <silent> ˙ <Left>
-    ino <silent> ∆ <Down>
-    ino <silent> ˚ <Up>
-    ino <silent> ¬ <Right>
-    tno <silent> ˙ <Left>
-    tno <silent> ∆ <Down>
-    tno <silent> ˚ <Up>
-    tno <silent> ¬ <Right>
-elseif system('uname') ==# "Linux\n"
-    ino <silent> <A-h> <Left>
-    ino <silent> <A-j> <Down>
-    ino <silent> <A-k> <Up>
-    ino <silent> <A-l> <Right>
-    tno <silent> <A-h> <Left>
-    tno <silent> <A-j> <Down>
-    tno <silent> <A-k> <Up>
-    tno <silent> <A-l> <Right>
-endif
+ino <silent> <M-h> <Left>
+ino <silent> <M-j> <Down>
+ino <silent> <M-k> <Up>
+ino <silent> <M-l> <Right>
+tno <silent> <M-h> <Left>
+tno <silent> <M-j> <Down>
+tno <silent> <M-k> <Up>
+tno <silent> <M-l> <Right>
 
 " for IME
 nno <silent> あ      a
@@ -87,6 +78,12 @@ nno <silent> ｄｄ    dd
 nno <silent> ｙｙ    yy
 
 "" for Plugins
+"" skkeleton
+ino <C-j> <Plug>(skkeleton-enable)
+cno <C-j> <Plug>(skkeleton-enable)
+nno <C-j> i<Plug>(skkeleton-enable)
+ino <C-l> <Plug>(skkeleton-disable)
+cno <C-l> <Plug>(skkeleton-disable)
 "" tcomment
 nno <silent> <C-/> :TComment<CR>
 vno <silent> <C-/> :TComment<CR>
@@ -132,12 +129,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable()?
                  \"\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 "" for My Commands
-if has('mac')
-    ino <silent> …       <ESC>:Appendchar ;<CR>a
-    no  <silent> …            :Appendchar ;<CR>
-else
-    ino <silent> <A-;>    <ESC>:Appendchar ;<CR>a
-    no  <silent> <A-;>         :Appendchar ;<CR>
-endif
+ino <silent> <M-;>    <ESC>:Appendchar ;<CR>a
+no  <silent> <M-;>         :Appendchar ;<CR>
 nno <silent> ?          :<C-u>SetHlSearch<CR>
 nno <silent> t          :<C-u>12SplitTerm<CR>i

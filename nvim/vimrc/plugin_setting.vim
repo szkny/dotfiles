@@ -61,7 +61,6 @@ hi LspHintVirtualText        gui=bold,italic guifg=#ffffff
 set shortmess+=c
 set wildoptions+=pum
 hi PmenuSel gui=bold guifg=#000000 guibg=#55ddff
-" call pum#set_option({'horizontal_menu': v:true})
 call ddc#custom#patch_global('ui', 'native')
 call ddc#custom#patch_global('completionMenu', 'pum.vim')
 call ddc#custom#patch_global('autoCompleteEvents', [
@@ -72,6 +71,7 @@ call ddc#custom#patch_global('sources', [
  \ 'around',
  \ 'vim-lsp',
  \ 'file',
+ \ 'skkeleton',
  \ ])
 call ddc#custom#patch_global('sourceOptions', #{
  \ _: #{
@@ -93,6 +93,13 @@ call ddc#custom#patch_global('sourceOptions', #{
  \   mark: '[FILE]',
  \   isVolatile: v:true, 
  \   forceCompletionPattern: '\S/\S*',
+ \ },
+ \ skkeleton: #{
+ \   mark: 'skkeleton',
+ \   matchers: ['skkeleton'],
+ \   sorters: [],
+ \   minAutoCompleteLength: 1,
+ \   isVolatile: v:true,
  \ },
  \ })
 call ddc#enable()
@@ -158,6 +165,64 @@ call ddc#enable()
 "   let g:necovim#complete_functions = {}
 " endif
 " let g:necovim#complete_functions.Ref = 'ref#complete'
+
+
+"" skkeleton
+fun! s:skkeleton_init() abort
+    call skkeleton#config(#{
+      \ globalJisyo: '~/.skk/SKK-JISYO.L',
+      \ kanaTable: 'rom',
+      \ eggLikeNewline: v:true,
+      \ usePopup: v:false,
+      \ registerConvertResult: v:true,
+      \ acceptIllegalResult: v:true,
+      \ keepState: v:false,
+      \ })
+    call skkeleton#register_kanatable('rom', {
+      \ "\<Space>": ["\u3000", ''],
+      \ })
+    call add(g:skkeleton#mapped_keys, '<C-h>')
+    call add(g:skkeleton#mapped_keys, '<F6>')
+    call add(g:skkeleton#mapped_keys, '<F7>')
+    call add(g:skkeleton#mapped_keys, '<F8>')
+    call add(g:skkeleton#mapped_keys, '<F9>')
+    call add(g:skkeleton#mapped_keys, '<F10>')
+    call add(g:skkeleton#mapped_keys, '<C-k>')
+    call add(g:skkeleton#mapped_keys, '<C-q>')
+    call add(g:skkeleton#mapped_keys, '<C-a>')
+    call skkeleton#register_keymap('input', '<C-h>', '')
+    call skkeleton#register_keymap('input', '<F6>',  'katakana')
+    call skkeleton#register_keymap('input', '<F7>',  'katakana')
+    call skkeleton#register_keymap('input', '<F8>',  'hankatakana')
+    call skkeleton#register_keymap('input', '<F9>',  'zenkaku')
+    call skkeleton#register_keymap('input', '<F10>', 'disable')
+    call skkeleton#register_keymap('input', '<C-k>', 'katakana')
+    call skkeleton#register_keymap('input', '<C-q>', 'hankatakana')
+    call skkeleton#register_keymap('input', '<C-a>', 'zenkaku')
+endf
+aug skkeleton-initialize-pre
+  au!
+  au User skkeleton-initialize-pre call s:skkeleton_init()
+aug END
+aug skkeleton-mode-changed
+  au!
+  au User skkeleton-mode-changed redrawstatus
+aug END
+fun! Airline_skkeleton_mode() abort
+    if skkeleton#is_enabled()
+        let l:mode_dict = #{
+          \ hira:    'あ',
+          \ kata:    'ア',
+          \ hankata: '_ｱ',
+          \ zenkaku: 'Ａ',
+          \ abbrev:  'abbr',
+          \ }
+        let l:mode = mode_dict[skkeleton#mode()]
+        return '  IME:'.l:mode
+    else
+        return ''
+    endif
+endf
 
 
 "" neosnippet
@@ -263,14 +328,49 @@ au VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#303030
 "" vim-airline
 " let g:airline_theme = 'kalisi'
 let g:airline_theme = 'codedark'
+let g:airline_mode_map = {
+  \ '__' : '------',
+  \ 'n' : 'NORMAL',
+  \ 'no' : 'OP PENDING',
+  \ 'nov' : 'OP PENDING CHAR',
+  \ 'noV' : 'OP PENDING LINE',
+  \ 'no' : 'OP PENDING BLOCK',
+  \ 'niI' : 'INSERT (NORMAL)',
+  \ 'niR' : 'REPLACE (NORMAL)',
+  \ 'niV' : 'V REPLACE (NORMAL)',
+  \ 'v' : 'VISUAL',
+  \ 'V' : 'V-LINE',
+  \ '' : 'V-BLOCK',
+  \ 's' : 'SELECT',
+  \ 'S' : 'S-LINE',
+  \ '' : 'S-BLOCK',
+  \ 'i' : 'INSERT',
+  \ 'ic' : 'INSERT',
+  \ 'ix' : 'INSERT',
+  \ 'R' : 'REPLACE',
+  \ 'Rc' : 'REPLACE C',
+  \ 'Rv' : 'V REPLACE',
+  \ 'Rx' : 'REPLACE X',
+  \ 'c'  : 'COMMAND',
+  \ 'cv'  : 'VIM EX',
+  \ 'ce'  : 'EX',
+  \ 'r'  : 'PROMPT',
+  \ 'rm'  : 'MORE PROMPT',
+  \ 'r?'  : 'CONFIRM',
+  \ '!'  : 'SHELL',
+  \ 't'  : 'TERMINAL',
+  \ 'multi' : 'MULTI',
+  \ }
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#wordcount#enabled = 0
 let g:airline#extensions#default#layout = [
     \ ['a', 'b', 'c', 'd'],
     \ ['lsp_info', 'x', 'y', 'z']]
+let g:airline_section_a = airline#section#create(['mode', '%{Airline_skkeleton_mode()}'])
 let g:airline_section_c = '%t'
 let g:airline_section_d = '%{VistaNearestMethodOrFunction()}'
 let g:airline_section_lsp_info = '%{g:lsp_diagnostics_signs_error.text}:'

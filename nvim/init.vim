@@ -39,12 +39,15 @@ Plug 'szkny/SplitTerm'
 Plug 'liuchengxu/vista.vim'
 Plug 'wfxr/minimap.vim', {'on': 'MinimapToggle'}
 
+" skkeleton
+Plug 'vim-skk/skkeleton'
+
 " fern.vim
 Plug 'lambdalisue/fern.vim',                   {'on': 'Fern'}
 Plug 'lambdalisue/fern-git-status.vim',        {'on': 'Fern'}
+Plug 'lambdalisue/fern-hijack.vim'
 Plug 'lambdalisue/nerdfont.vim',               {'on': 'Fern'}
 Plug 'lambdalisue/fern-renderer-nerdfont.vim', {'on': 'Fern'}
-Plug 'lambdalisue/fern-hijack.vim',            {'on': 'Fern'}
 Plug 'yuki-yano/fern-preview.vim',             {'on': 'Fern'}
 Plug 'lambdalisue/glyph-palette.vim',          {'on': 'Fern'} " for fern icon color
 aug my-glyph-palette
@@ -177,7 +180,7 @@ set nobackup
 set noswapfile
 
 "" Time (msec)
-set ttimeoutlen=1  " keyboard timeout
+set ttimeoutlen=0  " keyboard timeout
 set updatetime=250
 
 if exists('$SHELL')

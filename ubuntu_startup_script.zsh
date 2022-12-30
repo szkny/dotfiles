@@ -55,7 +55,7 @@ echo 'install cargo packages..'
 go install github.com/x-motemen/ghq@latest
 mkdir -p ~/ghq
 
-## ranger-cli
+## install ranger-cli
 echo 'install ranger-cli..'
 sudo apt install -y python3-setuptools python3-distutils file
 mkdir -p ~/Project
@@ -77,6 +77,11 @@ npm install -g neovim
 mkdir -p ~/.config/nvim
 ln -s ~/dotfiles/nvim/* ~/.config/nvim/
 nvim --headless +PlugInstall +qall
+
+## install skk
+mkdir -p ~/.skk && cd ~/.skk
+wget https://skk-dev.github.io/dict/SKK-JISYO.L.gz && gunzip SKK-JISYO.L.gz
+cd ~
 
 ## synbolic link for tmux
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
