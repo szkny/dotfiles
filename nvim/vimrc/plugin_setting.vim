@@ -23,7 +23,7 @@ let g:lsp_diagnostics_float_cursor = 1
 let g:lsp_diagnostics_highlights_enabled = 1
 let g:lsp_diagnostics_virtual_text_enabled = 1
 let g:lsp_diagnostics_virtual_text_insert_mode_enabled = 0
-let g:lsp_diagnostics_virtual_text_prefix = " -- "
+let g:lsp_diagnostics_virtual_text_prefix = " » "
 let g:lsp_document_code_action_signs_enabled = 1
 let g:lsp_inlay_hints_delay                = 0
 let g:lsp_diagnostics_echo_delay           = 0
@@ -34,23 +34,23 @@ let g:lsp_diagnostics_virtual_text_delay   = 0
 let g:lsp_document_code_action_signs_delay = 0
 let g:lsp_diagnostics_signs_priority = 20
 let g:lsp_diagnostics_signs_priority_map = {
-    \ 'LspError': 25,
-    \ 'LspWarning': 20,
-    \ 'LspHint': 15,
-    \ 'LspInformation': 10,
+    \ 'LspError': 20,
+    \ 'LspWarning': 15,
+    \ 'LspHint': 10,
+    \ 'LspInformation': 5,
     \ }
 let g:lsp_diagnostics_signs_error = {'text': '✗'}
 let g:lsp_diagnostics_signs_warning = {'text': ''}
-let g:lsp_diagnostics_signs_hint = {'text': '？'}
+let g:lsp_diagnostics_signs_hint = {'text': '?'}
 " let g:lsp_diagnostics_signs_error = {'text': '❌'}
 " let g:lsp_diagnostics_signs_warning = {'text': '⚠️'}
 " let g:lsp_diagnostics_signs_hint = {'text': '💡'}
-let g:lsp_diagnostics_signs_information = {'text': 'ｉ'}
+let g:lsp_diagnostics_signs_information = {'text': 'i'}
 let g:lsp_document_code_action_signs_hint = {'text': '💡'}
-hi LspErrorText              gui=bold   guifg=#ff0000
-hi LspWarningText            gui=bold   guifg=#ffff00
-hi LspInformationText        gui=bold   guifg=#ffffff
-hi LspHintText               gui=bold   guifg=#ffffff
+hi LspErrorText              gui=bold        guifg=#ff0000
+hi LspWarningText            gui=bold        guifg=#ffff00
+hi LspInformationText        gui=bold        guifg=#ffffff
+hi LspHintText               gui=bold        guifg=#ffffff
 hi LspErrorVirtualText       gui=bold,italic guifg=#ff0000
 hi LspWarningVirtualText     gui=bold,italic guifg=#ffff00
 hi LspInformationVirtualText gui=bold,italic guifg=#ffffff
@@ -303,7 +303,7 @@ endif
 "" vim-gitgutter
 let g:gitgutter_enabled = 1
 let g:gitgutter_async = 1
-let g:gitgutter_sign_priority = 10
+let g:gitgutter_sign_priority = 5
 let g:gitgutter_map_keys = 0
 
 
