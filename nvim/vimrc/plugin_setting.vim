@@ -209,7 +209,7 @@ aug skkeleton-mode-changed
   au User skkeleton-mode-changed redrawstatus
 aug END
 fun! Airline_skkeleton_mode() abort
-    if skkeleton#is_enabled()
+    if (mode()=='i' || mode()=='c') && skkeleton#is_enabled()
         let l:mode_dict = #{
           \ hira:    'あ',
           \ kata:    'ア',
