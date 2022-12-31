@@ -78,12 +78,6 @@ nno <silent> ｄｄ    dd
 nno <silent> ｙｙ    yy
 
 "" for Plugins
-"" skkeleton
-ino <C-j> <Plug>(skkeleton-enable)
-cno <C-j> <Plug>(skkeleton-enable)
-nno <C-j> i<Plug>(skkeleton-enable)
-ino <C-l> <Plug>(skkeleton-disable)
-cno <C-l> <Plug>(skkeleton-disable)
 "" tcomment
 nno <silent> <C-/> :TComment<CR>
 vno <silent> <C-/> :TComment<CR>
@@ -95,7 +89,11 @@ vno <silent> <C-f> :<C-u>call VAgWord()<CR>
 "" ranger.vim
 nno <silent> <C-h> :<C-u>SelectByRanger<CR>
 "" fern.vim
-nno <silent> <C-n> :<C-u>Fern . -reveal=% -toggle -keep -drawer -width=25<CR>
+let g:fern_opt = '-toggle -keep -drawer -width=25'
+nno <silent><expr> <C-n>
+  \ expand('%')!='' ?
+  \ '<Cmd>Fern . -reveal=% '.g:fern_opt.'<CR>' :
+  \ '<Cmd>Fern . '.g:fern_opt.'<CR>'
 "" vista.vim
 nno <silent> <C-t> :<C-u>Vista!!<CR>
 nno <silent> <C-g> :<C-u>Vista finder<CR>
@@ -109,6 +107,12 @@ nno <silent><nowait> <leader>gh :<C-u>GitGutterLineHighlightsToggle<CR>
 ino <silent> <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
 ino <silent> <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
 " nno          :     <Cmd>call DdcCommandlinePre()<CR>:
+"" skkeleton
+ino <C-j> <Plug>(skkeleton-enable)
+cno <C-j> <Plug>(skkeleton-enable)
+nno <C-j> i<Plug>(skkeleton-enable)
+ino <C-l> <Plug>(skkeleton-disable)
+cno <C-l> <Plug>(skkeleton-disable)
 "" vim-lsp
 nno <silent><nowait> <C-]>     :<C-u>LspDefinition<CR>
 nno <silent><nowait> <leader>] :<C-u>LspDefinition<CR>

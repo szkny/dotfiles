@@ -92,6 +92,7 @@ alias jupyterlab='\cd ~/Project/jupyterlab && jupyter lab'
 alias iipython='ipython --profile=iterm2 --no-confirm-exit'
 
 ## binds
+bindkey -s '^V' '^unvim\n'
 bindkey -s '^H' '^uranger-cd\n'
 # bindkey -s '^H' '^ucd **\t'
 bindkey -s '^F' '^ufdghq\n'
@@ -217,6 +218,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# start tmux
-start-tmux
+# # start tmux
+# start-tmux
 

@@ -28,6 +28,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'yggdroot/indentline'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'  " for ranger.vim
 Plug 'Shougo/neosnippet.vim'
@@ -38,6 +39,11 @@ Plug 'Raimondi/delimitMate'
 Plug 'szkny/SplitTerm'
 Plug 'liuchengxu/vista.vim'
 Plug 'wfxr/minimap.vim', {'on': 'MinimapToggle'}
+
+" " noice.nvim
+" Plug 'folke/noice.nvim'
+" Plug 'MunifTanjim/nui.nvim'
+" Plug 'rcarriga/nvim-notify'
 
 " skkeleton
 Plug 'vim-skk/skkeleton'
@@ -63,7 +69,7 @@ else
     Plug 'junegunn/fzf.vim'
 endif
 
-" lsp plugins
+" vim-lsp
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 
@@ -75,11 +81,11 @@ Plug 'Shougo/ddc-ui-native'
 Plug 'Shougo/pum.vim'
 " ddc sources
 Plug 'Shougo/ddc-source-around'
+Plug 'shun/ddc-source-vim-lsp'
+Plug 'LumaKernel/ddc-source-file'
 " Plug 'Shougo/ddc-source-cmdline'
 " Plug 'Shougo/ddc-source-cmdline-history'
 " Plug 'Shougo/neco-vim'
-Plug 'shun/ddc-source-vim-lsp'
-Plug 'LumaKernel/ddc-source-file'
 " ddc filters
 Plug 'Shougo/ddc-matcher_head'
 Plug 'Shougo/ddc-sorter_rank'
@@ -103,7 +109,7 @@ Plug 'szkny/Ipython',                  {'for': 'python'}
 Plug 'fatih/vim-go',                   {'for': 'go'}
 
 " julia
-Plug 'JuliaEditorSupport/julia-vim'
+Plug 'JuliaEditorSupport/julia-vim',   {'for': 'julia'}
 
 " javascript
 " Plug 'prettier/vim-prettier',  { 'for': ['javascript', 'typescript', 'css', 'json', 'markdown', 'vue', 'yaml', 'html'] }
@@ -281,19 +287,17 @@ let g:enable_italic_font = 1
 let g:cpp_class_scope_highlight = 1
 
 set list
-set listchars=tab:¦\ 
+set listchars=tab:¦\ ,trail:-,eol:↲
 set fillchars=vert:\ 
 set cursorline
 " set cursorcolumn
 set signcolumn=yes
 
-hi EndOfBuffer guifg=bg
+" hi EndOfBuffer guifg=bg
 " hi matchparen ctermbg=236
 " hi Normal ctermbg=NONE guibg=NONE
-" hi NonText ctermbg=NONE guibg=NONE
-" hi SpecialKey ctermbg=NONE guibg=NONE
-" hi EndOfBuffer ctermbg=NONE guibg=NONE
-" hi SpecialKey guifg=#555555
+hi NonText    guifg=#404040
+hi SpecialKey guifg=#404040
 " hi Visual guifg=#000000 guibg=#cceeff
 " hi LineNr guifg=#aabbcc guibg=#204056
 hi VertSplit guibg=#252525

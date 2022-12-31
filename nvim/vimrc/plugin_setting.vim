@@ -102,8 +102,7 @@ call ddc#custom#patch_global('sourceOptions', #{
  \   isVolatile: v:true,
  \ },
  \ })
-call ddc#enable()
-"" ddc.vim extensions: cmdline, cmdline-history
+" "" ddc.vim extensions: cmdline, cmdline-history
 " call ddc#custom#patch_global('cmdlineSources', {
 "   \ ':': ['cmdline-history', 'cmdline', 'around'],
 "   \ '@': ['cmdline-history', 'input', 'file', 'around'],
@@ -165,6 +164,7 @@ call ddc#enable()
 "   let g:necovim#complete_functions = {}
 " endif
 " let g:necovim#complete_functions.Ref = 'ref#complete'
+call ddc#enable()
 
 
 "" skkeleton
@@ -209,7 +209,8 @@ aug skkeleton-mode-changed
   au User skkeleton-mode-changed redrawstatus
 aug END
 fun! Airline_skkeleton_mode() abort
-    if (mode()=='i' || mode()=='c') && skkeleton#is_enabled()
+    let l:current_mode = mode()
+    if (l:current_mode=='i' || l:current_mode=='c') && skkeleton#is_enabled()
         let l:mode_dict = #{
           \ hira:    'あ',
           \ kata:    'ア',
@@ -277,12 +278,6 @@ aug fern-custom
 aug END
 
 
-"" Tagbar
-let g:tagbar_autofocus = 1
-let g:tagbar_width = 25
-let g:tagbar_sort = 0
-
-
 ""vista.vim
 let g:vista_no_mappings = 0
 let g:vista_echo_cursor = 0
@@ -315,8 +310,16 @@ if !exists('g:tcomment_types')
 endif
 
 
+"" indentline
+let g:indentLine_enabled = 1
+let g:indentLine_char_list = ['│']
+let g:indentLine_concealcursor = 'inc'
+let g:indentLine_conceallevel = 1
+let g:indentLine_fileTypeExclude = ['terminal', 'help', 'fern', 'fzf', 'vista_kind']
+
+
 "" indent_guides
-let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_enable_on_vim_startup = 0
 let g:indent_guides_exclude_filetypes = ['terminal', 'help', 'fern', 'fzf', 'vista_kind']
 let g:indent_guides_guide_size = 2
 let g:indent_guides_start_level = 1
