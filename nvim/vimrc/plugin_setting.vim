@@ -233,49 +233,122 @@ if finddir('dotfiles/nvim/snippets', $HOME) !=# ''
 endif
 
 
-"" fern.vim
-let g:fern#renderer = 'nerdfont'
-let g:fern#default_hidden = 1
-let g:fern#hide_cursor = 0
-let g:fern#disable_default_mappings = 0
-let g:fern#disable_viewer_smart_cursor = 0
-fun! s:init_fern() abort
-    setlocal filetype=fern
-    setlocal nonumber
-    setlocal signcolumn=no
-    setlocal bufhidden=wipe
-    setlocal nobuflisted
-    setlocal nocursorline
-    setlocal nocursorcolumn
-    setlocal noswapfile
-    setlocal nomodifiable
-    setlocal nolist
-    setlocal nospell
-    setlocal lazyredraw
-    nno <silent><buffer> I             <Plug>(fern-action-hidden)
-    nno <silent><buffer> <BS>          <Plug>(fern-action-hidden)
-    nno <silent><buffer> r             <Plug>(fern-action-reload:all)
-    nno <silent><buffer> h             <Plug>(fern-action-collapse)
-    nno <silent><buffer> l             <Plug>(fern-action-open-or-expand)
-    nno <silent><buffer> o             <Plug>(fern-action-open-or-expand)
-    nno <silent><buffer> <CR>          <Plug>(fern-action-open-or-expand-or-collapse)
-    nno <silent><buffer> <2-LeftMouse> <Plug>(fern-action-open-or-expand-or-collapse)
-    nno <silent><buffer><expr>         <Plug>(fern-action-open-or-expand-or-collapse)
-          \ fern#smart#leaf(
-          \   "<Plug>(fern-action-open)",
-          \   "<Plug>(fern-action-expand)",
-          \   "<Plug>(fern-action-collapse)",
-          \ )
-    nno <silent><buffer> <C-h>         <Plug>(fern-action-leave)
-    nno <silent><buffer> <C-l>         <Plug>(fern-action-enter)
-    nno <silent><buffer> -             <Plug>(fern-action-mark):setlocal signcolumn=yes<CR>
-    nno <silent><buffer> p             <Plug>(fern-action-preview:auto:toggle)
-    hi FernBranchText guifg=#88ccff
-endf
-aug fern-custom
-    au! *
-    au FileType fern call s:init_fern()
-aug END
+"" nvim-tree
+"" disable netrw at the very start of your init.lua (strongly advised)
+lua vim.g.loaded_netrw = 1
+lua vim.g.loaded_netrwPlugin = 1
+"" set termguicolors to enable highlight groups
+lua vim.opt.termguicolors = true
+"" setup with some options
+lua require("nvim-tree").setup({
+  \   auto_reload_on_write = true,
+  \   disable_netrw = true,
+  \   hijack_cursor = true,
+  \   hijack_netrw = true,
+  \   sort_by = "case_sensitive",
+  \   view = {
+  \     adaptive_size = false,
+  \     width = 25,
+  \     hide_root_folder = false,
+  \     signcolumn = "no",
+  \     mappings = {
+  \       custom_only = false,
+  \       list = {
+  \         { key = "<C-h>", action = "dir_up" },
+  \         { key = "<C-l>", action = "cd" },
+  \         { key = "?",     action = "toggle_help" },
+  \         { key = "I",     action = "toggle_dotfiles" },
+  \         { key = "<BS>",  action = "toggle_dotfiles" },
+  \         { key = "m",     action = "toggle_mark" },
+  \         { key = "o",     action = "expand" },
+  \         { key = "O",     action = "expand_all" },
+  \         { key = "w",     action = "collapse" },
+  \         { key = "W",     action = "collapse_all" },
+  \         { key = "<2-LeftMouse>", action = "edit" },
+  \       },
+  \     },
+  \   },
+  \   renderer = {
+  \     group_empty = true,
+  \     highlight_git = true,
+  \     full_name = false,
+  \     root_folder_label = ":t",
+  \     indent_width = 1,
+  \     indent_markers = {
+  \       enable = false,
+  \       inline_arrows = true,
+  \       icons = {
+  \         corner = "└",
+  \         edge = "│",
+  \         item = "│",
+  \         bottom = "─",
+  \         none = " ",
+  \       },
+  \     },
+  \     icons = {
+  \       git_placement = "before",
+  \       modified_placement = "before",
+  \       padding = " ",
+  \       symlink_arrow = " → ",
+  \       glyphs = {
+  \         default = "",
+  \         symlink = "",
+  \         bookmark = "",
+  \         modified = "●",
+  \         git = {
+  \           unstaged = "M",
+  \           staged = "✓",
+  \           unmerged = "N",
+  \           renamed = "R",
+  \           untracked = "U",
+  \           deleted = "D",
+  \           ignored = "◌",
+  \         },
+  \       },
+  \     },
+  \     special_files = { "Makefile", "README.md", "readme.md" },
+  \   },
+  \   update_focused_file = {
+  \     enable = true,
+  \   },
+  \   diagnostics = {
+  \     enable = true,
+  \     show_on_dirs = true,
+  \     show_on_open_dirs = false,
+  \     debounce_delay = 50,
+  \     severity = {
+  \       min = vim.diagnostic.severity.WARNING,
+  \       max = vim.diagnostic.severity.ERROR,
+  \     },
+  \     icons = {
+  \       hint = "?",
+  \       info = "i",
+  \       warning = "",
+  \       error = "✗",
+  \     },
+  \   },
+  \   filters = {
+  \     dotfiles = false,
+  \   },
+  \   git = {
+  \     enable = true,
+  \     ignore = false,
+  \     show_on_dirs = true,
+  \     show_on_open_dirs = false,
+  \   },
+  \   modified = {
+  \     enable = true,
+  \     show_on_dirs = true,
+  \     show_on_open_dirs = false,
+  \   },
+  \   trash = {
+  \     cmd = "rip",
+  \     require_confirm = true,
+  \   },
+  \ })
+hi NvimTreeRootFolder gui=bold guifg=#aaaacc
+hi NvimTreeSpecialFile gui=bold,underline guifg=#cccccc
+hi NvimTreeGitDirty gui=bold guifg=#cccc33
 
 
 ""vista.vim
@@ -309,7 +382,7 @@ let g:minimap_auto_start                        = 0
 let g:minimap_auto_start_win_enter              = 0
 let g:minimap_width                             = 10
 let g:minimap_window_width_override_for_scaling = 2147483647
-let g:minimap_block_filetypes                   = ['terminal', 'fern', 'fzf', 'vista_kind']
+let g:minimap_block_filetypes                   = ['terminal', 'fzf', 'vista_kind', 'NvimTree']
 " let g:minimap_close_buftypes                   = ['nofile', 'startify', 'netrw', 'vim-plug', 'terminal']
 let g:minimap_enable_highlight_colorgroup = 0
 let g:minimap_highlight_range             = 1
@@ -343,17 +416,7 @@ let g:indentLine_enabled = 1
 let g:indentLine_char_list = ['│']
 let g:indentLine_concealcursor = 'inc'
 let g:indentLine_conceallevel = 1
-let g:indentLine_fileTypeExclude = ['terminal', 'help', 'fern', 'fzf', 'vista_kind']
-
-
-"" indent_guides
-let g:indent_guides_enable_on_vim_startup = 0
-let g:indent_guides_exclude_filetypes = ['terminal', 'help', 'fern', 'fzf', 'vista_kind']
-let g:indent_guides_guide_size = 2
-let g:indent_guides_start_level = 1
-let g:indent_guides_auto_colors = 0
-au VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#252525
-au VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#303030
+let g:indentLine_fileTypeExclude = ['terminal', 'help', 'fzf', 'vista_kind', 'NvimTree']
 
 
 "" vim-airline

@@ -27,7 +27,6 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'yggdroot/indentline'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'  " for ranger.vim
@@ -49,18 +48,9 @@ Plug 'wfxr/minimap.vim',  {'on': 'MinimapToggle'}
 " skkeleton
 Plug 'vim-skk/skkeleton'
 
-" fern.vim
-Plug 'lambdalisue/fern.vim',                   {'on': 'Fern'}
-Plug 'lambdalisue/fern-git-status.vim',        {'on': 'Fern'}
-Plug 'lambdalisue/fern-hijack.vim'
-Plug 'lambdalisue/nerdfont.vim',               {'on': 'Fern'}
-Plug 'lambdalisue/fern-renderer-nerdfont.vim', {'on': 'Fern'}
-Plug 'yuki-yano/fern-preview.vim',             {'on': 'Fern'}
-Plug 'lambdalisue/glyph-palette.vim',          {'on': 'Fern'} " for fern icon color
-aug my-glyph-palette
-  au! *
-  au FileType fern call glyph_palette#apply()
-aug END
+" nvim-tree
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'nvim-tree/nvim-web-devicons'
 
 " fzf.vim
 if isdirectory('/usr/local/opt/fzf')
@@ -93,7 +83,7 @@ Plug 'Shougo/ddc-sorter_rank'
 Plug 'Shougo/ddc-converter_remove_overlap'
 
 " color scheme
-" Plug 'tomasr/molokai'
+Plug 'tomasr/molokai'
 Plug 'tomasiser/vim-code-dark'
 
 " c/c++

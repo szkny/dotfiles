@@ -90,12 +90,8 @@ nno <silent> <C-f> :<C-u>Ag<CR>
 vno <silent> <C-f> :<C-u>call VAgWord()<CR>
 "" ranger.vim
 nno <silent> <C-h> :<C-u>SelectByRanger<CR>
-"" fern.vim
-let g:fern_opt = '-toggle -keep -drawer -width=25'
-nno <silent><expr> <C-n>
-  \ expand('%')!='' ?
-  \ '<Cmd>Fern . -reveal=% '.g:fern_opt.'<CR>' :
-  \ '<Cmd>Fern . '.g:fern_opt.'<CR>'
+"" nvim-tree
+nno <silent> <C-n> :<C-u>NvimTreeToggle<CR>
 "" vista.vim
 nno <silent> <C-t> :<C-u>Vista!!<CR>
 nno <silent> <C-g> :<C-u>Vista finder<CR>
@@ -112,7 +108,6 @@ ino <silent> <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
 "" skkeleton
 ino <C-j> <Plug>(skkeleton-enable)
 cno <C-j> <Plug>(skkeleton-enable)
-nno <C-j> i<Plug>(skkeleton-enable)
 ino <C-l> <Plug>(skkeleton-disable)
 cno <C-l> <Plug>(skkeleton-disable)
 "" vim-lsp
@@ -137,7 +132,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable()?
 "" for My Commands
 ino <silent> <M-;>    <ESC>:Appendchar ;<CR>a
 no  <silent> <M-;>         :Appendchar ;<CR>
-" nno <silent> ?          :<C-u>SetHlSearch<CR>:MinimapRefresh<CR>
+" nno <silent> ?          :<C-u>SetHlSearch<CR>
 nno <silent><expr> ?
   \ exists(":MinimapRefresh") ? 
   \ ':<C-u>SetHlSearch<CR>:MinimapRefresh<CR>' :
