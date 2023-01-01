@@ -286,7 +286,7 @@ lua require("nvim-tree").setup({
   \     },
   \     icons = {
   \       git_placement = "before",
-  \       modified_placement = "before",
+  \       modified_placement = "after",
   \       padding = " ",
   \       symlink_arrow = " → ",
   \       glyphs = {
@@ -345,9 +345,10 @@ lua require("nvim-tree").setup({
   \     require_confirm = true,
   \   },
   \ })
-hi NvimTreeRootFolder gui=bold,underline guibg=#444444 guifg=#ffffff
+hi NvimTreeRootFolder gui=bold guibg=#444444 guifg=#ffffff
 hi NvimTreeSpecialFile gui=bold,underline guifg=#cccccc
 hi NvimTreeGitDirty gui=bold guifg=#cccc00
+hi NvimTreeModifiedFile gui=bold guifg=#5555ff
 
 
 ""vista.vim
