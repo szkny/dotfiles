@@ -262,7 +262,6 @@ lua require("nvim-tree").setup({
   \         { key = "m",     action = "toggle_mark" },
   \         { key = "o",     action = "expand" },
   \         { key = "O",     action = "expand_all" },
-  \         { key = "w",     action = "collapse" },
   \         { key = "W",     action = "collapse_all" },
   \         { key = "<2-LeftMouse>", action = "edit" },
   \       },
@@ -346,9 +345,9 @@ lua require("nvim-tree").setup({
   \     require_confirm = true,
   \   },
   \ })
-hi NvimTreeRootFolder gui=bold guifg=#aaaacc
+hi NvimTreeRootFolder gui=bold,underline guibg=#444444 guifg=#ffffff
 hi NvimTreeSpecialFile gui=bold,underline guifg=#cccccc
-hi NvimTreeGitDirty gui=bold guifg=#cccc33
+hi NvimTreeGitDirty gui=bold guifg=#cccc00
 
 
 ""vista.vim
@@ -486,6 +485,7 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
+let g:airline_exclude_filetypes = ['NvimTree', 'vista_kind', 'minimap']
 
 
 "" fugitive
