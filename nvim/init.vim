@@ -37,8 +37,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'Raimondi/delimitMate'
 Plug 'szkny/SplitTerm'
+Plug 'junegunn/vim-easy-align'
 Plug 'liuchengxu/vista.vim'
-Plug 'wfxr/minimap.vim', {'on': 'MinimapToggle'}
+Plug 'wfxr/minimap.vim',  {'on': 'MinimapToggle'}
 
 " " noice.nvim
 " Plug 'folke/noice.nvim'
@@ -293,7 +294,7 @@ set cursorline
 " set cursorcolumn
 set signcolumn=yes
 
-" hi EndOfBuffer guifg=bg
+hi EndOfBuffer guifg=bg
 " hi matchparen ctermbg=236
 " hi Normal ctermbg=NONE guibg=NONE
 hi NonText    guifg=#404040

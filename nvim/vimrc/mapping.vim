@@ -81,6 +81,8 @@ nno <silent> ｙｙ    yy
 "" tcomment
 nno <silent> <C-/> :TComment<CR>
 vno <silent> <C-/> :TComment<CR>
+"" vim-easy-align
+vno <silent> <leader>= :EasyAlign *=<CR>
 "" fzf.vim
 nno <silent> <C-b> :<C-u>Buffers<CR>
 nno <silent> <C-p> :<C-u>Files<CR>
@@ -98,7 +100,7 @@ nno <silent><expr> <C-n>
 nno <silent> <C-t> :<C-u>Vista!!<CR>
 nno <silent> <C-g> :<C-u>Vista finder<CR>
 "" minimap.vim
-nno <silent> <C-k> :<C-u>MinimapToggle<CR>
+nno <silent> <C-k> :<C-u>MinimapToggle<CR>:MinimapRefresh<CR>
 "" git-gutter
 nno <silent><nowait> <leader>gn :<C-u>GitGutterNextHunk<CR>
 nno <silent><nowait> <leader>gp :<C-u>GitGutterPrevHunk<CR>
@@ -135,5 +137,10 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable()?
 "" for My Commands
 ino <silent> <M-;>    <ESC>:Appendchar ;<CR>a
 no  <silent> <M-;>         :Appendchar ;<CR>
-nno <silent> ?          :<C-u>SetHlSearch<CR>
+" nno <silent> ?          :<C-u>SetHlSearch<CR>:MinimapRefresh<CR>
+nno <silent><expr> ?
+  \ exists(":MinimapRefresh") ? 
+  \ ':<C-u>SetHlSearch<CR>:MinimapRefresh<CR>' :
+  \ ':<C-u>SetHlSearch<CR>'
 nno <silent> t          :<C-u>12SplitTerm<CR>i
+vno <silent> <leader>t  :Trans<CR>

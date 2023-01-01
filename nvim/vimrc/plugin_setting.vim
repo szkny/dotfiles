@@ -304,6 +304,34 @@ fun! VistaNearestMethodOrFunction() abort
 endf
 
 
+"" minimap.vim
+let g:minimap_auto_start                        = 0
+let g:minimap_auto_start_win_enter              = 0
+let g:minimap_width                             = 10
+let g:minimap_window_width_override_for_scaling = 2147483647
+let g:minimap_block_filetypes                   = ['terminal', 'fern', 'fzf', 'vista_kind']
+" let g:minimap_close_buftypes                   = ['nofile', 'startify', 'netrw', 'vim-plug', 'terminal']
+let g:minimap_enable_highlight_colorgroup = 0
+let g:minimap_highlight_range             = 1
+let g:minimap_highlight_search            = 1
+let g:minimap_git_colors                  = 1
+let g:minimap_cursor_color_priority       = 110
+let g:minimap_search_color_priority       = 120
+let g:minimap_base_highlight   = 'Normal'
+let g:minimap_cursor_color     = 'MyMinimapCursor'
+let g:minimap_range_color      = 'MyMinimapRange'
+let g:minimap_search_color     = 'MyMinimapSearch'
+let g:minimap_diff_color       = 'MyMinimapDiffLine'
+let g:minimap_diffadd_color    = 'MyMinimapDiffAdded'
+let g:minimap_diffremove_color = 'MyMinimapDiffRemoved'
+hi MyMinimapCursor      guifg=#000000 guibg=#ffffff
+hi MyMinimapRange       guifg=#ffffff guibg=#555555
+hi MyMinimapSearch      guifg=#ffffff guibg=#aaaa00
+hi MyMinimapDiffLine    guifg=#ffff00
+hi MyMinimapDiffAdded   guifg=#00ff00
+hi MyMinimapDiffRemoved guifg=#ff0000
+
+
 "" tcomment_vim
 if !exists('g:tcomment_types')
     let g:tcomment_types = {}
