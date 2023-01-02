@@ -254,12 +254,14 @@ lua require("nvim-tree").setup({
   \     mappings = {
   \       custom_only = false,
   \       list = {
-  \         { key = "<C-h>", action = "dir_up" },
-  \         { key = "<C-l>", action = "cd" },
   \         { key = "?",     action = "toggle_help" },
   \         { key = "I",     action = "toggle_dotfiles" },
   \         { key = "<BS>",  action = "toggle_dotfiles" },
-  \         { key = "m",     action = "toggle_mark" },
+  \         { key = "<C-h>", action = "dir_up" },
+  \         { key = "<C-l>", action = "cd" },
+  \         { key = "<Tab>", action = "preview" },
+  \         { key = "<C-p>", action = "preview" },
+  \         { key = "<C-f>", action = "live_filter" },
   \         { key = "o",     action = "expand" },
   \         { key = "O",     action = "expand_all" },
   \         { key = "W",     action = "collapse_all" },
@@ -345,10 +347,11 @@ lua require("nvim-tree").setup({
   \     require_confirm = true,
   \   },
   \ })
-hi NvimTreeRootFolder gui=bold guibg=#444444 guifg=#ffffff
-hi NvimTreeSpecialFile gui=bold,underline guifg=#cccccc
-hi NvimTreeGitDirty gui=bold guifg=#cccc00
-hi NvimTreeModifiedFile gui=bold guifg=#5555ff
+hi NvimTreeRootFolder   gui=bold guibg=#444444 guifg=#ffffff
+hi NvimTreeSpecialFile  gui=bold,underline guifg=#cccccc
+hi NvimTreeGitDirty     gui=bold guifg=#ffaa00
+hi NvimTreeGitStaged    gui=bold guifg=#44cc44
+hi NvimTreeModifiedFile gui=bold guifg=#ffaa00
 
 
 ""vista.vim
