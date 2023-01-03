@@ -3,6 +3,44 @@ scriptencoding utf-8
 "" Plugin Configuration
 "*****************************************************************************
 
+" "" nvim-notify (neovim0.9.0-devではluajitのbitが使えないのでエラー)
+" lua require("notify").setup({
+"   \   stages = "fade_in_slide_out",
+"   \   on_open = nil,
+"   \   on_close = nil,
+"   \   render = "default",
+"   \   timeout = 3000,
+"   \   background_colour = "Normal",
+"   \   minimum_width = 50,
+"   \   icons = {
+"   \     ERROR = "",
+"   \     WARN = "",
+"   \     INFO = "",
+"   \     DEBUG = "",
+"   \     TRACE = "✎",
+"   \   },
+"   \ })
+
+
+" "" noice.nvim (neovim0.9.0-devではluajitのjitが使えないのでエラー)
+" lua  require("noice").setup({
+"   \   lsp = {
+"   \     override = {
+"   \       ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+"   \       ["vim.lsp.util.stylize_markdown"] = true,
+"   \       ["cmp.entry.get_documentation"] = true,
+"   \     },
+"   \   },
+"   \   presets = {
+"   \     bottom_search = true,
+"   \     command_palette = true,
+"   \     long_message_to_split = true,
+"   \     inc_rename = false,
+"   \     lsp_doc_border = false,
+"   \   },
+"   \ })
+
+
 "" fzf.vim
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
@@ -23,7 +61,8 @@ let g:lsp_diagnostics_float_cursor = 1
 let g:lsp_diagnostics_highlights_enabled = 1
 let g:lsp_diagnostics_virtual_text_enabled = 1
 let g:lsp_diagnostics_virtual_text_insert_mode_enabled = 0
-let g:lsp_diagnostics_virtual_text_prefix = " » "
+" let g:lsp_diagnostics_virtual_text_prefix = " » "
+let g:lsp_diagnostics_virtual_text_prefix = "■ "
 let g:lsp_document_code_action_signs_enabled = 1
 let g:lsp_inlay_hints_delay                = 0
 let g:lsp_diagnostics_echo_delay           = 0
@@ -44,17 +83,17 @@ let g:lsp_diagnostics_signs_warning = {'text': ''}
 let g:lsp_diagnostics_signs_hint = {'text': '?'}
 " let g:lsp_diagnostics_signs_error = {'text': '❌'}
 " let g:lsp_diagnostics_signs_warning = {'text': '⚠️'}
-" let g:lsp_diagnostics_signs_hint = {'text': '💡'}
+" let g:lsp_diagnostics_signs_hint = {'text': '？'}
 let g:lsp_diagnostics_signs_information = {'text': 'i'}
 let g:lsp_document_code_action_signs_hint = {'text': '💡'}
-hi LspErrorText              gui=bold        guifg=#ff0000
-hi LspWarningText            gui=bold        guifg=#ffff00
-hi LspInformationText        gui=bold        guifg=#ffffff
-hi LspHintText               gui=bold        guifg=#ffffff
-hi LspErrorVirtualText       gui=bold,italic guifg=#ff0000
-hi LspWarningVirtualText     gui=bold,italic guifg=#ffff00
-hi LspInformationVirtualText gui=bold,italic guifg=#ffffff
-hi LspHintVirtualText        gui=bold,italic guifg=#ffffff
+hi LspErrorText              gui=bold guifg=#ff0000
+hi LspWarningText            gui=bold guifg=#ffff00
+hi LspInformationText        gui=bold guifg=#ffffff
+hi LspHintText               gui=bold guifg=#00ff00
+hi LspErrorVirtualText       gui=bold,underline guifg=#ff0000
+hi LspWarningVirtualText     gui=bold,underline guifg=#ffff00
+hi LspInformationVirtualText gui=bold,underline guifg=#ffffff
+hi LspHintVirtualText        gui=bold,underline guifg=#00ff00
 
 
 "" ddc.vim + pum.vim
@@ -237,8 +276,6 @@ endif
 "" disable netrw at the very start of your init.lua (strongly advised)
 lua vim.g.loaded_netrw = 1
 lua vim.g.loaded_netrwPlugin = 1
-"" set termguicolors to enable highlight groups
-lua vim.opt.termguicolors = true
 "" setup with some options
 lua require("nvim-tree").setup({
   \   auto_reload_on_write = true,
@@ -273,7 +310,7 @@ lua require("nvim-tree").setup({
   \     group_empty = true,
   \     highlight_git = true,
   \     full_name = false,
-  \     root_folder_label = ":t",
+  \     root_folder_label = ":t:gs?\\l\\(\\w\\+\\)?\\U\\0?",
   \     indent_width = 1,
   \     indent_markers = {
   \       enable = false,
@@ -307,7 +344,7 @@ lua require("nvim-tree").setup({
   \         },
   \       },
   \     },
-  \     special_files = { "Makefile", "README.md", "readme.md" },
+  \     special_files = { "Makefile", "README.md" },
   \   },
   \   update_focused_file = {
   \     enable = true,
@@ -347,8 +384,8 @@ lua require("nvim-tree").setup({
   \     require_confirm = true,
   \   },
   \ })
-hi NvimTreeRootFolder   gui=bold guibg=#444444 guifg=#ffffff
-hi NvimTreeSpecialFile  gui=bold,underline guifg=#cccccc
+hi NvimTreeRootFolder   gui=bold,underline guifg=#cccccc
+hi NvimTreeSpecialFile  gui=underline guifg=#cccccc
 hi NvimTreeGitDirty     gui=bold guifg=#ffaa00
 hi NvimTreeGitStaged    gui=bold guifg=#44cc44
 hi NvimTreeModifiedFile gui=bold guifg=#ffaa00

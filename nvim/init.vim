@@ -40,10 +40,10 @@ Plug 'junegunn/vim-easy-align'
 Plug 'liuchengxu/vista.vim'
 Plug 'wfxr/minimap.vim',  {'on': 'MinimapToggle'}
 
-" " noice.nvim
+" " nvim-notify / noice.nvim
+" Plug 'rcarriga/nvim-notify'
 " Plug 'folke/noice.nvim'
 " Plug 'MunifTanjim/nui.nvim'
-" Plug 'rcarriga/nvim-notify'
 
 " skkeleton
 Plug 'vim-skk/skkeleton'
