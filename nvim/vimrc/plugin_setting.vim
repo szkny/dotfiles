@@ -100,109 +100,100 @@ hi LspHintVirtualText        gui=bold,underline guifg=#00ff00
 set shortmess+=c
 set wildoptions+=pum
 hi PmenuSel gui=bold guifg=#000000 guibg=#55ddff
-call ddc#custom#patch_global('ui', 'native')
-call ddc#custom#patch_global('completionMenu', 'pum.vim')
+call pum#set_option(#{
+  \   auto_select: v:true,
+  \   border: ['╭', '─', '╮', '│', '╯', '─', '╰', '│'],
+  \ })
+call ddc#custom#patch_global('ui', 'pum')
 call ddc#custom#patch_global('autoCompleteEvents', [
-    \ 'InsertEnter', 'TextChangedI', 'TextChangedP',
-    \ 'CmdlineEnter', 'CmdlineChanged',
-    \ ])
+  \ 'InsertEnter', 'TextChangedI', 'TextChangedP',
+  \ 'CmdlineEnter', 'CmdlineChanged',
+  \ ])
 call ddc#custom#patch_global('sources', [
- \ 'around',
- \ 'vim-lsp',
- \ 'file',
- \ 'skkeleton',
- \ ])
+  \ 'vim-lsp',
+  \ 'around',
+  \ 'file',
+  \ 'skkeleton',
+  \ ])
 call ddc#custom#patch_global('sourceOptions', #{
- \ _: #{
- \   matchers: ['matcher_head'],
- \   sorters: ['sorter_rank'],
- \   converters: ['converter_remove_overlap'],
- \   minAutoCompleteLength: 1,
- \ },
- \ around: #{
- \   mark: '[AROUND]',
- \   maxSize: 1000,
- \ },
- \ vim-lsp: #{
- \   mark: '[LSP]', 
- \   matchers: ['matcher_head'],
- \   forceCompletionPattern: '\.|:|->|"\w+/*',
- \ },
- \ file: #{
- \   mark: '[FILE]',
- \   isVolatile: v:true, 
- \   forceCompletionPattern: '\S/\S*',
- \ },
- \ skkeleton: #{
- \   mark: 'skkeleton',
- \   matchers: ['skkeleton'],
- \   sorters: [],
- \   minAutoCompleteLength: 1,
- \   isVolatile: v:true,
- \ },
- \ })
-" "" ddc.vim extensions: cmdline, cmdline-history
-" call ddc#custom#patch_global('cmdlineSources', {
-"   \ ':': ['cmdline-history', 'cmdline', 'around'],
-"   \ '@': ['cmdline-history', 'input', 'file', 'around'],
-"   \ '>': ['cmdline-history', 'input', 'file', 'around'],
-"   \ '/': ['around', 'line'],
-"   \ '?': ['around', 'line'],
-"   \ '-': ['around', 'line'],
-"   \ '=': ['input'],
-"   \ })
-" fun! DdcCommandlinePre() abort
-"   " Note: It disables default command line completion!
-"   cno <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
-"   " cno <expr> <C-n>
-"   "   \ pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : ddc#manual_complete()
-"   cno <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
-"   cno <C-y> <Cmd>call pum#map#confirm()<CR>
-"   cno <C-e> <Cmd>call pum#map#cancel()<CR>
-"   " Overwrite sources
-"   if !exists('b:prev_buffer_config')
-"     let b:prev_buffer_config = ddc#custom#get_buffer()
-"   endif
-"   call ddc#custom#patch_buffer('sources', [
-"     \ 'cmdline',
-"     \ 'cmdline-history',
-"     \ 'necovim',
-"     \ 'around',
-"     \ ])
-"   call ddc#custom#patch_buffer('sourceOptions', #{
-"     \ cmdline: #{
-"     \   mark: '[CMDLINE]',
-"     \ },
-"     \ cmdline-history: #{
-"     \   mark: '[HISTORY]',
-"     \ },
-"     \ necovim: #{
-"     \   mark: '[VIM]',
-"     \ },
-"     \ })
-"   au User DDCCmdlineLeave ++once call DdcCommandlinePost()
-"   au InsertEnter <buffer> ++once call DdcCommandlinePost()
-"   " Enable command line completion
-"   call ddc#enable_cmdline_completion()
-" endf
-" fun! DdcCommandlinePost() abort
-"   cunmap <C-n>
-"   cunmap <C-p>
-"   cunmap <C-y>
-"   cunmap <C-e>
-"   " Restore sources
-"   if exists('b:prev_buffer_config')
-"     call ddc#custom#set_buffer(b:prev_buffer_config)
-"     unlet b:prev_buffer_config
-"   else
-"     call ddc#custom#set_buffer({})
-"   endif
-" endf
-" "" ddc.vim extensions: neco-vim
-" if !exists('g:necovim#complete_functions')
-"   let g:necovim#complete_functions = {}
-" endif
-" let g:necovim#complete_functions.Ref = 'ref#complete'
+  \ _: #{
+  \   ignoreCase: v:true,
+  \   minAutoCompleteLength: 1,
+  \   isVolatile: v:true,
+  \   matchers: ['matcher_head'],
+  \   sorters: ['sorter_rank'],
+  \   converters: ['converter_remove_overlap'],
+  \ },
+  \ vim-lsp: #{
+  \   mark: '[LSP]', 
+  \   matchers: ['matcher_head'],
+  \   forceCompletionPattern: '\.|:|->|"\w+/*',
+  \ },
+  \ around: #{
+  \   mark: '[AROUND]',
+  \   maxSize: 200,
+  \ },
+  \ file: #{
+  \   mark: '[FILE]',
+  \   forceCompletionPattern: '\S/\S*',
+  \ },
+  \ skkeleton: #{
+  \   mark: '[SKK]',
+  \   matchers: ['skkeleton'],
+  \   sorters: [],
+  \   minAutoCompleteLength: 1,
+  \ },
+  \ })
+"" ddc.vim cmdline completion setup
+call ddc#custom#patch_global('cmdlineSources', {
+  \ ':': [
+  \   'cmdline',
+  \   'necovim',
+  \   'cmdline-history',
+  \   'file',
+  \   'skkeleton',
+  \ ],
+  \ '/': [
+  \   'around',
+  \   'file',
+  \   'skkeleton',
+  \ ],
+  \ })
+fun! DdcCommandlinePre() abort
+  " Note: It disables default command line completion!
+  " Overwrite sources
+  if !exists('b:prev_buffer_config')
+    let b:prev_buffer_config = ddc#custom#get_buffer()
+  endif
+  call ddc#custom#patch_buffer('sourceOptions', #{
+    \ cmdline: #{
+    \   mark: '[CMDLINE]',
+    \ },
+    \ cmdline-history: #{
+    \   mark: '[HISTORY]',
+    \ },
+    \ necovim: #{
+    \   mark: '[VIM]',
+    \ },
+    \ })
+  au User DDCCmdlineLeave ++once call DdcCommandlinePost()
+  au InsertEnter <buffer> ++once call DdcCommandlinePost()
+  " Enable command line completion
+  call ddc#enable_cmdline_completion()
+endf
+fun! DdcCommandlinePost() abort
+  " Restore sources
+  if exists('b:prev_buffer_config')
+    call ddc#custom#set_buffer(b:prev_buffer_config)
+    unlet b:prev_buffer_config
+  else
+    call ddc#custom#set_buffer({})
+  endif
+endf
+if !exists('g:necovim#complete_functions')
+  let g:necovim#complete_functions = {}
+endif
+let g:necovim#complete_functions.Ref = 'ref#complete'
 call ddc#enable()
 
 
