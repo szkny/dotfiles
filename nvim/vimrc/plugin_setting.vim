@@ -104,6 +104,7 @@ call pum#set_option(#{
   \   auto_select: v:true,
   \   border: ['╭', '─', '╮', '│', '╯', '─', '╰', '│'],
   \ })
+" call ddc#custom#patch_global('ui', 'native')
 call ddc#custom#patch_global('ui', 'pum')
 call ddc#custom#patch_global('autoCompleteEvents', [
   \ 'InsertEnter', 'TextChangedI', 'TextChangedP',
@@ -165,6 +166,7 @@ fun! DdcCommandlinePre() abort
   if !exists('b:prev_buffer_config')
     let b:prev_buffer_config = ddc#custom#get_buffer()
   endif
+  call ddc#custom#patch_buffer('ui', 'pum')
   call ddc#custom#patch_buffer('sourceOptions', #{
     \ cmdline: #{
     \   mark: '[CMDLINE]',
@@ -238,6 +240,17 @@ aug skkeleton-mode-changed
   au!
   au User skkeleton-mode-changed redrawstatus
 aug END
+" aug skkeleton-pum
+"   au!
+"   au User skkeleton-enable-pre call s:skkeleton_enable_pum()
+"   au User skkeleton-disable-pre call s:skkeleton_disnable_pum()
+" aug END
+" fun! s:skkeleton_enable_pum() abort
+"   call ddc#custom#patch_global('ui', 'pum')
+" endf
+" fun! s:skkeleton_disnable_pum() abort
+"   call ddc#custom#patch_global('ui', 'native')
+" endf
 fun! Airline_skkeleton_mode() abort
     let l:current_mode = mode()
     if (l:current_mode=='i' || l:current_mode=='c') && skkeleton#is_enabled()
