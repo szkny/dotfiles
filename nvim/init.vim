@@ -198,7 +198,7 @@ set splitbelow
 set splitright
 set virtualedit=onemore
 set foldmethod=manual
-set lazyredraw
+set nolazyredraw
 
 "" netrw
 let g:netrw_liststyle=3
