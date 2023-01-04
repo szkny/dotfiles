@@ -100,9 +100,13 @@ hi LspHintVirtualText        gui=bold,underline guifg=#00ff00
 set shortmess+=c
 set wildoptions+=pum
 hi PmenuSel gui=bold guifg=#000000 guibg=#55ddff
+hi PmenuSbar guibg=#cccccc
 call pum#set_option(#{
   \   auto_select: v:true,
-  \   border: ['╭', '─', '╮', '│', '╯', '─', '╰', '│'],
+  \   max_height: 8,
+  \   scrollbar_char: ' ',
+  \   padding: v:true,
+  \   border: 'shadow',
   \ })
 " call ddc#custom#patch_global('ui', 'native')
 call ddc#custom#patch_global('ui', 'pum')
