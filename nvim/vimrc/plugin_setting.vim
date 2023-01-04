@@ -99,14 +99,28 @@ hi LspHintVirtualText        gui=bold,underline guifg=#00ff00
 "" ddc.vim + pum.vim
 set shortmess+=c
 set wildoptions+=pum
-hi PmenuSel gui=bold guifg=#000000 guibg=#55ddff
-hi PmenuSbar guibg=#cccccc
+hi PumNormalMenu gui=none guifg=#dddddd guibg=#2a2a2a
+hi PumColumnKind gui=none guifg=#888888 guibg=#2a2a2a
+hi PumColumnMenu gui=none guifg=#888888 guibg=#2a2a2a
+hi PumSelected gui=bold guifg=#000000 guibg=#55ddff
+hi PumScrollBar guibg=#cccccc
+hi PumMatches guifg=#ffaa00
 call pum#set_option(#{
   \   auto_select: v:true,
   \   max_height: 8,
-  \   scrollbar_char: ' ',
-  \   padding: v:true,
-  \   border: 'shadow',
+  \   offset_row: 1,
+  \   scrollbar_char: '',
+  \   padding: v:false,
+  \   border: 'rounded',
+  \   highlight_normal_menu: 'PumNormalMenu',
+  \   highlight_matches: 'PumMatches',
+  \   highlight_scrollbar: 'PumScrollBar',
+  \   highlight_selected: 'PumSelected',
+  \   highlight_columns: #{
+  \     abbr: 'PumNormalMenu',
+  \     kind: 'PumColumnKind',
+  \     menu: 'PumColumnMenu',
+  \   },
   \ })
 " call ddc#custom#patch_global('ui', 'native')
 call ddc#custom#patch_global('ui', 'pum')
