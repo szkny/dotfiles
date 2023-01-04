@@ -463,6 +463,10 @@ let g:indentLine_conceallevel = 1
 let g:indentLine_fileTypeExclude = ['terminal', 'help', 'fzf', 'vista_kind', 'NvimTree']
 
 
+"" vim-hexokinase
+let g:Hexokinase_highlighters = [ 'virtual' ]
+
+
 "" vim-airline
 " let g:airline_theme = 'kalisi'
 let g:airline_theme = 'codedark'

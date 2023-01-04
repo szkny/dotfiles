@@ -715,7 +715,15 @@ fun! s:git(...) abort
         if a:0 >= 2
             let l:cmd = 'git add -A && git commit -m "'.join(a:000[1:], ' ').'"'
         else
-            echomsg 'not enough argument. USAGE: Git ac COMMIT_MESSAGE'
+            echomsg 'not enough argument. USAGE: Git am COMMIT_MESSAGE'
+            return 1
+        endif
+        call s:git_autocmd()
+    elseif a:1 ==# 'am'
+        if a:0 >= 2
+            let l:cmd = 'git commit -am "'.join(a:000[1:], ' ').'"'
+        else
+            echomsg 'not enough argument. USAGE: Git acp COMMIT_MESSAGE'
             return 1
         endif
         call s:git_autocmd()
@@ -748,6 +756,7 @@ fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)
     return filter(['ac', 'acp', 'pull', 'fpull',  'diff', 'reset', 'status', 'blame', 'show', 'push'], printf('v:val =~ "^%s"', a:ArgLead))
 endf
 command! -complete=customlist,s:CompletionGitCommands -nargs=* Git call s:git(<f-args>)
+command! -nargs=* Gcam call s:git('am', <f-args>)
 
 fun! s:git_autocmd() abort
     aug git_auto_command

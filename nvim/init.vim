@@ -39,6 +39,7 @@ Plug 'szkny/SplitTerm'
 Plug 'junegunn/vim-easy-align'
 Plug 'liuchengxu/vista.vim'
 Plug 'wfxr/minimap.vim',  {'on': 'MinimapToggle'}
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
 " " nvim-notify / noice.nvim
 " Plug 'rcarriga/nvim-notify'
