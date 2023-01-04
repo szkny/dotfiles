@@ -187,13 +187,15 @@ fun! DdcCommandlinePre() abort
   call ddc#custom#patch_buffer('ui', 'pum')
   call ddc#custom#patch_buffer('sourceOptions', #{
     \ cmdline: #{
-    \   mark: '[CMDLINE]',
+    \   mark: '[COMMAND]',
+    \   forceCompletionPattern: '\ |:|->|"\w+/*',
     \ },
     \ cmdline-history: #{
     \   mark: '[HISTORY]',
     \ },
     \ necovim: #{
-    \   mark: '[VIM]',
+    \   mark: '[ARGS]',
+    \   forceCompletionPattern: '\ |:|->|"\w+/*',
     \ },
     \ })
   au User DDCCmdlineLeave ++once call DdcCommandlinePost()
@@ -258,17 +260,6 @@ aug skkeleton-mode-changed
   au!
   au User skkeleton-mode-changed redrawstatus
 aug END
-" aug skkeleton-pum
-"   au!
-"   au User skkeleton-enable-pre call s:skkeleton_enable_pum()
-"   au User skkeleton-disable-pre call s:skkeleton_disnable_pum()
-" aug END
-" fun! s:skkeleton_enable_pum() abort
-"   call ddc#custom#patch_global('ui', 'pum')
-" endf
-" fun! s:skkeleton_disnable_pum() abort
-"   call ddc#custom#patch_global('ui', 'native')
-" endf
 fun! Airline_skkeleton_mode() abort
     let l:current_mode = mode()
     if (l:current_mode=='i' || l:current_mode=='c') && skkeleton#is_enabled()
@@ -406,7 +397,7 @@ lua require("nvim-tree").setup({
   \     require_confirm = true,
   \   },
   \ })
-hi NvimTreeRootFolder   gui=bold,underline guifg=#cccccc
+hi NvimTreeRootFolder   gui=bold,reverse guifg=#cccccc
 hi NvimTreeSpecialFile  gui=underline guifg=#cccccc
 hi NvimTreeGitDirty     gui=bold guifg=#ffaa00
 hi NvimTreeGitStaged    gui=bold guifg=#44cc44
