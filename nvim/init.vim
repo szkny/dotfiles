@@ -295,7 +295,7 @@ hi SpecialKey guifg=#404040
 hi VertSplit gui=none guifg=#444444
 hi clear CursorLine
 " hi CursorLine gui=underline
-hi CursorLine guibg=#202020
+hi CursorLine guibg=#2a2a2a
 " hi clear CursorLine
 " hi CursorColumn guibg=#0c1820
 hi clear Cursor

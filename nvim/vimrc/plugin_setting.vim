@@ -340,7 +340,7 @@ lua require("nvim-tree").setup({
   \         git = {
   \           unstaged = "M",
   \           staged = "✓",
-  \           unmerged = "N",
+  \           unmerged = "✗",
   \           renamed = "R",
   \           untracked = "U",
   \           deleted = "D",
