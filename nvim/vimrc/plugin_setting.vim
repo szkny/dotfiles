@@ -103,7 +103,7 @@ hi PumNormalMenu gui=none guifg=#dddddd guibg=#2a2a2a
 hi PumColumnKind gui=none guifg=#888888 guibg=#2a2a2a
 hi PumColumnMenu gui=none guifg=#888888 guibg=#2a2a2a
 hi PumSelected gui=bold guifg=#000000 guibg=#55ddff
-hi PumScrollBar guibg=#cccccc
+hi PumScrollBar guibg=#dddddd
 hi PumMatches guifg=#ffaa00
 call pum#set_option(#{
   \   auto_select: v:true,
@@ -327,7 +327,7 @@ lua require("nvim-tree").setup({
   \     group_empty = true,
   \     highlight_git = true,
   \     full_name = false,
-  \     root_folder_label = ":t:gs?\\l\\(\\w\\+\\)?\\U\\0?",
+  \     root_folder_label = ":t:gs?\\l?\\U\\0?",
   \     indent_width = 1,
   \     indent_markers = {
   \       enable = false,
@@ -401,7 +401,7 @@ lua require("nvim-tree").setup({
   \     require_confirm = true,
   \   },
   \ })
-hi NvimTreeRootFolder   gui=bold,reverse guifg=#cccccc
+hi NvimTreeRootFolder   gui=bold guifg=#999999
 hi NvimTreeSpecialFile  gui=underline guifg=#cccccc
 hi NvimTreeGitDirty     gui=bold guifg=#ffaa00
 hi NvimTreeGitStaged    gui=bold guifg=#44cc44
@@ -460,6 +460,15 @@ hi MyMinimapSearch      guifg=#ffffff guibg=#aaaa00
 hi MyMinimapDiffLine    guifg=#ffff00
 hi MyMinimapDiffAdded   guifg=#00ff00
 hi MyMinimapDiffRemoved guifg=#ff0000
+
+
+"" visual-multi
+let g:VM_default_mappings = 0
+let g:VM_maps = {}
+let g:VM_maps['Find Under']         = '<C-d>'      " replace C-n
+let g:VM_maps['Find Subword Under'] = '<C-d>'      " replace visual C-n
+let g:VM_maps["Select Cursor Down"] = '<M-C-Down>' " start selecting down
+let g:VM_maps["Select Cursor Up"]   = '<M-C-Up>'   " start selecting up
 
 
 "" tcomment_vim
