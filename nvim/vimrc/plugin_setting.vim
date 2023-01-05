@@ -231,7 +231,7 @@ fun! s:skkeleton_init() abort
       \ keepState: v:false,
       \ })
     call skkeleton#register_kanatable('rom', {
-      \ "\<Space>": ["\u3000", ''],
+      \ "z\<Space>": ["\u3000", ''],
       \ })
     call add(g:skkeleton#mapped_keys, '<C-h>')
     call add(g:skkeleton#mapped_keys, '<F6>')
