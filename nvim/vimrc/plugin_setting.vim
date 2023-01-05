@@ -261,20 +261,24 @@ aug skkeleton-mode-changed
   au User skkeleton-mode-changed redrawstatus
 aug END
 fun! Airline_skkeleton_mode() abort
-    let l:current_mode = mode()
-    if (l:current_mode=='i' || l:current_mode=='c') && skkeleton#is_enabled()
-        let l:mode_dict = #{
-          \ hira:    'あ',
-          \ kata:    'ア',
-          \ hankata: '_ｱ',
-          \ zenkaku: 'Ａ',
-          \ abbrev:  'abbr',
-          \ }
-        let l:mode = mode_dict[skkeleton#mode()]
-        return '  IME:'.l:mode
-    else
+    try
+        let l:current_mode = mode()
+        if (l:current_mode=='i' || l:current_mode=='c') && skkeleton#is_enabled()
+            let l:mode_dict = #{
+              \ hira:    'あ',
+              \ kata:    'ア',
+              \ hankata: '_ｱ',
+              \ zenkaku: 'Ａ',
+              \ abbrev:  'abbr',
+              \ }
+            let l:mode = mode_dict[skkeleton#mode()]
+            return '  IME:'.l:mode
+        else
+            return ''
+        endif
+    catch
         return ''
-    endif
+    endtry
 endf
 
 
