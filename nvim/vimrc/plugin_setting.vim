@@ -111,6 +111,7 @@ call pum#set_option(#{
   \   offset_row: 1,
   \   scrollbar_char: '',
   \   padding: v:false,
+  \   use_complete: v:false,
   \   border: 'rounded',
   \   highlight_normal_menu: 'PumNormalMenu',
   \   highlight_matches: 'PumMatches',
@@ -160,7 +161,6 @@ call ddc#custom#patch_global('sourceOptions', #{
   \   mark: '[SKK]',
   \   matchers: ['skkeleton'],
   \   sorters: [],
-  \   minAutoCompleteLength: 1,
   \ },
   \ })
 "" ddc.vim cmdline completion setup

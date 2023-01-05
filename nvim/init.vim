@@ -90,7 +90,6 @@ Plug 'tomasiser/vim-code-dark'
 
 " c/c++
 Plug 'vim-jp/cpp-vim',                 {'for': 'cpp'}
-Plug 'vim-scripts/c.vim',              {'for': ['c', 'cpp']}
 
 " python
 Plug 'tweekmonster/braceless.vim',     {'for': 'python'}
