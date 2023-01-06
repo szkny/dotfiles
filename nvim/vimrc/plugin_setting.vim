@@ -88,11 +88,11 @@ let g:lsp_document_code_action_signs_hint = {'text': '💡'}
 hi LspErrorText              gui=bold guifg=#ff0000
 hi LspWarningText            gui=bold guifg=#ffff00
 hi LspInformationText        gui=bold guifg=#ffffff
-hi LspHintText               gui=bold guifg=#00ff00
+hi LspHintText               gui=bold guifg=#ffffff
 hi LspErrorVirtualText       gui=bold,underline guifg=#ff0000
 hi LspWarningVirtualText     gui=bold,underline guifg=#ffff00
 hi LspInformationVirtualText gui=bold,underline guifg=#ffffff
-hi LspHintVirtualText        gui=bold,underline guifg=#00ff00
+hi LspHintVirtualText        gui=bold,underline guifg=#ffffff
 
 
 "" ddc.vim + pum.vim
