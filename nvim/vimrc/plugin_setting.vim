@@ -78,13 +78,12 @@ let g:lsp_diagnostics_signs_priority_map = {
     \ 'LspHint': 10,
     \ 'LspInformation': 5,
     \ }
-let g:lsp_diagnostics_signs_error = {'text': '✗'}
-let g:lsp_diagnostics_signs_warning = {'text': ''}
-let g:lsp_diagnostics_signs_hint = {'text': '?'}
+" let g:lsp_diagnostics_signs_error = {'text': '✗'}
 " let g:lsp_diagnostics_signs_error = {'text': '❌'}
-" let g:lsp_diagnostics_signs_warning = {'text': '⚠️'}
-" let g:lsp_diagnostics_signs_hint = {'text': '？'}
-let g:lsp_diagnostics_signs_information = {'text': 'i'}
+let g:lsp_diagnostics_signs_error = {'text': ''}
+let g:lsp_diagnostics_signs_warning = {'text': ''}
+let g:lsp_diagnostics_signs_hint = {'text': ''}
+let g:lsp_diagnostics_signs_information = {'text': ''}
 let g:lsp_document_code_action_signs_hint = {'text': '💡'}
 hi LspErrorText              gui=bold guifg=#ff0000
 hi LspWarningText            gui=bold guifg=#ffff00
@@ -352,8 +351,8 @@ lua require("nvim-tree").setup({
   \         modified = "●",
   \         git = {
   \           unstaged = "M",
-  \           staged = "✓",
-  \           unmerged = "✗",
+  \           staged = "✓ ",
+  \           unmerged = "✗ ",
   \           renamed = "R",
   \           untracked = "U",
   \           deleted = "D",
@@ -537,11 +536,11 @@ let g:airline#extensions#default#layout = [
 let g:airline_section_a = airline#section#create(['mode', '%{Airline_skkeleton_mode()}'])
 let g:airline_section_c = '%t'
 let g:airline_section_d = '%{VistaNearestMethodOrFunction()}'
-let g:airline_section_lsp_info = '%{g:lsp_diagnostics_signs_error.text}:'
+let g:airline_section_lsp_info = '%{g:lsp_diagnostics_signs_error.text} :'
 let g:airline_section_lsp_info.= '%{lsp#get_buffer_diagnostics_counts().error} '
-let g:airline_section_lsp_info.= '%{g:lsp_diagnostics_signs_warning.text}:'
+let g:airline_section_lsp_info.= '%{g:lsp_diagnostics_signs_warning.text} :'
 let g:airline_section_lsp_info.= '%{lsp#get_buffer_diagnostics_counts().warning} '
-let g:airline_section_lsp_info.= '%{g:lsp_diagnostics_signs_hint.text}:'
+let g:airline_section_lsp_info.= '%{g:lsp_diagnostics_signs_hint.text} :'
 let g:airline_section_lsp_info.= '%{lsp#get_buffer_diagnostics_counts().hint}'
 let g:airline_section_x = '%3l/%L :%2c'
 let g:airline_section_y = '%{&filetype}'
@@ -563,6 +562,7 @@ let g:airline_exclude_filetypes = ['NvimTree', 'vista_kind', 'minimap']
 if exists('*fugitive#statusline')
     set statusline+=%{fugitive#statusline()}
 endif
+au User Fugitive GitGutterAll
 
 
 "" vim-gitgutter
