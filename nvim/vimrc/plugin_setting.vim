@@ -327,9 +327,9 @@ lua require("nvim-tree").setup({
   \     highlight_git = true,
   \     full_name = false,
   \     root_folder_label = ":t:gs?\\l?\\U\\0?",
-  \     indent_width = 1,
+  \     indent_width = 2,
   \     indent_markers = {
-  \       enable = false,
+  \       enable = true,
   \       inline_arrows = true,
   \       icons = {
   \         corner = "└",
