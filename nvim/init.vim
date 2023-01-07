@@ -71,7 +71,6 @@ Plug 'Shougo/ddc.vim'
 Plug 'vim-denops/denops.vim'
 " ddc UIs
 Plug 'Shougo/pum.vim'
-Plug 'Shougo/ddc-ui-native'
 Plug 'Shougo/ddc-ui-pum'
 " ddc sources
 Plug 'Shougo/ddc-source-around'
@@ -84,6 +83,7 @@ Plug 'Shougo/neco-vim'
 Plug 'Shougo/ddc-matcher_head'
 Plug 'Shougo/ddc-sorter_rank'
 Plug 'Shougo/ddc-converter_remove_overlap'
+" Plug 'tani/ddc-fuzzy'
 
 " color scheme
 Plug 'tomasr/molokai'

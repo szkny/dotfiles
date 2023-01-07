@@ -123,7 +123,6 @@ call pum#set_option(#{
   \     menu: 'PumColumnMenu',
   \   },
   \ })
-" call ddc#custom#patch_global('ui', 'native')
 call ddc#custom#patch_global('ui', 'pum')
 call ddc#custom#patch_global('autoCompleteEvents', [
   \ 'InsertEnter', 'TextChangedI', 'TextChangedP',
@@ -135,6 +134,9 @@ call ddc#custom#patch_global('sources', [
   \ 'file',
   \ 'skkeleton',
   \ ])
+  " \   matchers: ['matcher_fuzzy'],
+  " \   sorters: ['sorter_fuzzy'],
+  " \   converters: ['converter_fuzzy']
 call ddc#custom#patch_global('sourceOptions', #{
   \ _: #{
   \   ignoreCase: v:true,
@@ -146,7 +148,6 @@ call ddc#custom#patch_global('sourceOptions', #{
   \ },
   \ vim-lsp: #{
   \   mark: '[LSP]', 
-  \   matchers: ['matcher_head'],
   \   forceCompletionPattern: '\.|:|->|"\w+/*',
   \ },
   \ around: #{
@@ -163,6 +164,14 @@ call ddc#custom#patch_global('sourceOptions', #{
   \   sorters: [],
   \ },
   \ })
+" call ddc#custom#patch_global('filterParams', #{
+"   \   matcher_fuzzy: #{
+"   \     splitMode: 'charactor'
+"   \   },
+"   \   converter_fuzzy: #{
+"   \     hlGroup: 'PumMatches'
+"   \   }
+"   \ })
 "" ddc.vim cmdline completion setup
 call ddc#custom#patch_global('cmdlineSources', {
   \ ':': [
@@ -184,7 +193,6 @@ fun! DdcCommandlinePre() abort
   if !exists('b:prev_buffer_config')
     let b:prev_buffer_config = ddc#custom#get_buffer()
   endif
-  call ddc#custom#patch_buffer('ui', 'pum')
   call ddc#custom#patch_buffer('sourceOptions', #{
     \ cmdline: #{
     \   mark: '[COMMAND]',
