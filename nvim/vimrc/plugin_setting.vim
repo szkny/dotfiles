@@ -114,7 +114,7 @@ call pum#set_option(#{
   \   use_complete: v:false,
   \   border: 'none',
   \   highlight_normal_menu: 'PumNormalMenu',
-  \   highlight_matches: 'PumMatches',
+  \   highlight_matches: '',
   \   highlight_scrollbar: 'PumScrollBar',
   \   highlight_selected: 'PumSelected',
   \   highlight_columns: #{
@@ -134,17 +134,23 @@ call ddc#custom#patch_global('sources', [
   \ 'file',
   \ 'skkeleton',
   \ ])
+  " \   matchers: ['matcher_head'],
+  " \   sorters: ['sorter_rank'],
+  " \   converters: ['converter_remove_overlap'],
   " \   matchers: ['matcher_fuzzy'],
   " \   sorters: ['sorter_fuzzy'],
   " \   converters: ['converter_fuzzy']
+  " \   matchers: ['matcher_head', 'matcher_fuzzy'],
+  " \   sorters: ['sorter_rank', 'sorter_fuzzy'],
+  " \   converters: ['converter_remove_overlap', 'converter_fuzzy'],
 call ddc#custom#patch_global('sourceOptions', #{
   \ _: #{
+  \   matchers: ['matcher_fuzzy'],
+  \   sorters: ['sorter_fuzzy'],
+  \   converters: ['converter_fuzzy', 'converter_remove_overlap'],
   \   ignoreCase: v:true,
   \   minAutoCompleteLength: 1,
   \   isVolatile: v:true,
-  \   matchers: ['matcher_head'],
-  \   sorters: ['sorter_rank'],
-  \   converters: ['converter_remove_overlap'],
   \ },
   \ vim-lsp: #{
   \   mark: '[LSP]', 
@@ -164,14 +170,14 @@ call ddc#custom#patch_global('sourceOptions', #{
   \   sorters: [],
   \ },
   \ })
-" call ddc#custom#patch_global('filterParams', #{
-"   \   matcher_fuzzy: #{
-"   \     splitMode: 'charactor'
-"   \   },
-"   \   converter_fuzzy: #{
-"   \     hlGroup: 'PumMatches'
-"   \   }
-"   \ })
+call ddc#custom#patch_global('filterParams', #{
+  \   matcher_fuzzy: #{
+  \     splitMode: 'word'
+  \   },
+  \   converter_fuzzy: #{
+  \     hlGroup: 'PumMatches'
+  \   }
+  \ })
 "" ddc.vim cmdline completion setup
 call ddc#custom#patch_global('cmdlineSources', {
   \ ':': [
@@ -194,6 +200,9 @@ fun! DdcCommandlinePre() abort
     let b:prev_buffer_config = ddc#custom#get_buffer()
   endif
   call ddc#custom#patch_buffer('sourceOptions', #{
+    \ _: #{
+    \   matchers: ['matcher_head'],
+    \ },
     \ cmdline: #{
     \   mark: '[COMMAND]',
     \   forceCompletionPattern: '\ |:|->|"\w+/*',

@@ -111,13 +111,13 @@ ino <expr> <C-e>
 ino <expr> <TAB>
   \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<TAB>'
 ino <expr> <S-TAB>
-  \ pum#visible() ? '<Cmd>call  pum#map#select_relative(-1)<CR>' : '<S-TAB>'
+  \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<S-TAB>'
 ino <expr> <S-TAB>
-  \ pum#visible() ? '<Cmd>call  pum#map#select_relative(-1)<CR>' : '<S-TAB>'
+  \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<S-TAB>'
 ino <expr> <DOWN>
   \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
 ino <expr> <UP>
-  \ pum#visible() ? '<Cmd>call  pum#map#select_relative(-1)<CR>' : '<UP>'
+  \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
 nno          :     <Cmd>call DdcCommandlinePre()<CR>:
 nno          /     <Cmd>call DdcCommandlinePre()<CR>/
 cno <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
@@ -133,7 +133,7 @@ cno <expr> <S-TAB>
 cno <expr> <DOWN>
   \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
 cno <expr> <UP>
-  \ pum#visible() ? '<Cmd>call  pum#map#select_relative(-1)<CR>' : '<UP>'
+  \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
 "" skkeleton
 ino <C-j> <Plug>(skkeleton-enable)
 cno <C-j> <Plug>(skkeleton-enable)

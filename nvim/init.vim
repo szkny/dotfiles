@@ -83,7 +83,7 @@ Plug 'Shougo/neco-vim'
 Plug 'Shougo/ddc-matcher_head'
 Plug 'Shougo/ddc-sorter_rank'
 Plug 'Shougo/ddc-converter_remove_overlap'
-" Plug 'tani/ddc-fuzzy'
+Plug 'tani/ddc-fuzzy'
 
 " color scheme
 Plug 'tomasr/molokai'
