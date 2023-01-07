@@ -98,20 +98,21 @@ hi LspHintVirtualText        gui=bold,underline guifg=#ffffff
 "" ddc.vim + pum.vim
 set shortmess+=c
 set wildoptions+=pum
-hi PumNormalMenu gui=none guifg=#dddddd guibg=#2a2a2a
-hi PumColumnKind gui=none guifg=#888888 guibg=#2a2a2a
-hi PumColumnMenu gui=none guifg=#888888 guibg=#2a2a2a
+hi PumNormalMenu gui=none guifg=#dddddd guibg=#353535
+hi PumColumnKind gui=none guifg=#888888 guibg=#353535
+hi PumColumnMenu gui=none guifg=#888888 guibg=#353535
 hi PumSelected gui=bold guifg=#000000 guibg=#55ddff
-hi PumScrollBar guibg=#dddddd
-hi PumMatches guifg=#ffaa00
+" hi PumScrollBar guibg=#cccccc
+hi PmenuSBar    guibg=#cccccc
+hi PumMatches   guifg=#ffaa00
 call pum#set_option(#{
   \   auto_select: v:true,
   \   max_height: 8,
   \   offset_row: 1,
-  \   scrollbar_char: '',
-  \   padding: v:false,
+  \   scrollbar_char: ' ',
+  \   padding: v:true,
   \   use_complete: v:false,
-  \   border: 'rounded',
+  \   border: 'none',
   \   highlight_normal_menu: 'PumNormalMenu',
   \   highlight_matches: 'PumMatches',
   \   highlight_scrollbar: 'PumScrollBar',
