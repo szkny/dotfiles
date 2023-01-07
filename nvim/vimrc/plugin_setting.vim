@@ -88,11 +88,11 @@ let g:lsp_document_code_action_signs_hint = {'text': '💡'}
 hi LspErrorText              gui=bold guifg=#ff0000
 hi LspWarningText            gui=bold guifg=#ffff00
 hi LspInformationText        gui=bold guifg=#ffffff
-hi LspHintText               gui=bold guifg=#ffffff
-hi LspErrorVirtualText       gui=bold,underline guifg=#ff0000
-hi LspWarningVirtualText     gui=bold,underline guifg=#ffff00
-hi LspInformationVirtualText gui=bold,underline guifg=#ffffff
-hi LspHintVirtualText        gui=bold,underline guifg=#ffffff
+hi LspHintText               gui=bold guifg=#5599dd
+hi LspErrorVirtualText       gui=bold guifg=#ff0000
+hi LspWarningVirtualText     gui=bold guifg=#ffff00
+hi LspInformationVirtualText gui=bold guifg=#ffffff
+hi LspHintVirtualText        gui=bold guifg=#5599dd
 
 
 "" ddc.vim + pum.vim
@@ -134,15 +134,6 @@ call ddc#custom#patch_global('sources', [
   \ 'file',
   \ 'skkeleton',
   \ ])
-  " \   matchers: ['matcher_head'],
-  " \   sorters: ['sorter_rank'],
-  " \   converters: ['converter_remove_overlap'],
-  " \   matchers: ['matcher_fuzzy'],
-  " \   sorters: ['sorter_fuzzy'],
-  " \   converters: ['converter_fuzzy']
-  " \   matchers: ['matcher_head', 'matcher_fuzzy'],
-  " \   sorters: ['sorter_rank', 'sorter_fuzzy'],
-  " \   converters: ['converter_remove_overlap', 'converter_fuzzy'],
 call ddc#custom#patch_global('sourceOptions', #{
   \ _: #{
   \   matchers: ['matcher_fuzzy'],
@@ -349,13 +340,6 @@ lua require("nvim-tree").setup({
   \     indent_markers = {
   \       enable = true,
   \       inline_arrows = true,
-  \       icons = {
-  \         corner = "└",
-  \         edge = "│",
-  \         item = "│",
-  \         bottom = "─",
-  \         none = " ",
-  \       },
   \     },
   \     icons = {
   \       git_placement = "before",
@@ -363,10 +347,6 @@ lua require("nvim-tree").setup({
   \       padding = " ",
   \       symlink_arrow = " → ",
   \       glyphs = {
-  \         default = "",
-  \         symlink = "",
-  \         bookmark = "",
-  \         modified = "●",
   \         git = {
   \           unstaged = "M",
   \           staged = "✓ ",
@@ -393,10 +373,10 @@ lua require("nvim-tree").setup({
   \       max = vim.diagnostic.severity.ERROR,
   \     },
   \     icons = {
-  \       hint = "?",
-  \       info = "i",
+  \       hint = "",
+  \       info = "",
   \       warning = "",
-  \       error = "✗",
+  \       error = "",
   \     },
   \   },
   \   filters = {
@@ -503,7 +483,8 @@ let g:indentLine_fileTypeExclude = ['terminal', 'help', 'fzf', 'vista_kind', 'Nv
 
 
 "" vim-hexokinase
-let g:Hexokinase_highlighters = [ 'virtual' ]
+" let g:Hexokinase_highlighters = [ 'virtual' ]
+let g:Hexokinase_highlighters = [ 'backgroundfull' ]
 
 
 "" vim-airline

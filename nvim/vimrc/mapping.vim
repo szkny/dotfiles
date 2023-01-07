@@ -112,8 +112,6 @@ ino <expr> <TAB>
   \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<TAB>'
 ino <expr> <S-TAB>
   \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<S-TAB>'
-ino <expr> <S-TAB>
-  \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<S-TAB>'
 ino <expr> <DOWN>
   \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
 ino <expr> <UP>

@@ -81,7 +81,7 @@ Plug 'Shougo/ddc-source-cmdline-history'
 Plug 'Shougo/neco-vim'
 " ddc filters
 Plug 'Shougo/ddc-matcher_head'
-Plug 'Shougo/ddc-sorter_rank'
+" Plug 'Shougo/ddc-sorter_rank'
 Plug 'Shougo/ddc-converter_remove_overlap'
 Plug 'tani/ddc-fuzzy'
 
