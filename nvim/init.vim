@@ -70,6 +70,7 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'Shougo/ddc.vim'
 Plug 'vim-denops/denops.vim'
 " ddc UIs
+Plug 'Shougo/ddc-ui-native'
 Plug 'Shougo/pum.vim'
 Plug 'Shougo/ddc-ui-pum'
 " ddc sources

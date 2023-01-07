@@ -122,6 +122,7 @@ call pum#set_option(#{
   \     menu: 'PumColumnMenu',
   \   },
   \ })
+" call ddc#custom#patch_global('ui', 'native')
 call ddc#custom#patch_global('ui', 'pum')
 call ddc#custom#patch_global('autoCompleteEvents', [
   \ 'InsertEnter', 'TextChangedI', 'TextChangedP',
@@ -189,6 +190,7 @@ fun! DdcCommandlinePre() abort
   if !exists('b:prev_buffer_config')
     let b:prev_buffer_config = ddc#custom#get_buffer()
   endif
+  call ddc#custom#patch_buffer('ui', 'pum')
   call ddc#custom#patch_buffer('sourceOptions', #{
     \ _: #{
     \   matchers: ['matcher_head'],
