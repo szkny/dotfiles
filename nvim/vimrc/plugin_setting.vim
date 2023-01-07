@@ -101,10 +101,9 @@ set wildoptions+=pum
 hi PumNormalMenu gui=none guifg=#dddddd guibg=#353535
 hi PumColumnKind gui=none guifg=#888888 guibg=#353535
 hi PumColumnMenu gui=none guifg=#888888 guibg=#353535
-hi PumSelected gui=bold guifg=#000000 guibg=#55ddff
-" hi PumScrollBar guibg=#cccccc
+hi PumSelected gui=bold guibg=#3388bb
 hi PmenuSBar    guibg=#cccccc
-hi PumMatches   guifg=#ffaa00
+hi PumMatches   guifg=#ff8800
 call pum#set_option(#{
   \   auto_select: v:true,
   \   max_height: 8,
@@ -115,7 +114,7 @@ call pum#set_option(#{
   \   border: 'none',
   \   highlight_normal_menu: 'PumNormalMenu',
   \   highlight_matches: '',
-  \   highlight_scrollbar: 'PumScrollBar',
+  \   highlight_scrollbar: 'PmenuSBar',
   \   highlight_selected: 'PumSelected',
   \   highlight_columns: #{
   \     abbr: 'PumNormalMenu',
