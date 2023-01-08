@@ -797,7 +797,7 @@ command! Open call s:open()
 
 
 " get syntax information under cursor
-function! s:get_syn_info()
+fun! s:get_syn_info()
   let baseSyn = s:get_syn_attr(s:get_syn_id(0))
   echo "name: " . baseSyn.name .
         \ " ctermfg: " . baseSyn.ctermfg .
@@ -811,18 +811,18 @@ function! s:get_syn_info()
         \ " ctermbg: " . linkedSyn.ctermbg .
         \ " guifg: " . linkedSyn.guifg .
         \ " guibg: " . linkedSyn.guibg
-endfunction
+endf
 command! SyntaxInfo call s:get_syn_info()
 
-function! s:get_syn_id(transparent)
+fun! s:get_syn_id(transparent)
   let synid = synID(line("."), col("."), 1)
   if a:transparent
     return synIDtrans(synid)
   else
     return synid
   endif
-endfunction
-function! s:get_syn_attr(synid)
+endf
+fun! s:get_syn_attr(synid)
   let name = synIDattr(a:synid, "name")
   let ctermfg = synIDattr(a:synid, "fg", "cterm")
   let ctermbg = synIDattr(a:synid, "bg", "cterm")
@@ -834,7 +834,7 @@ function! s:get_syn_attr(synid)
         \ "ctermbg": ctermbg,
         \ "guifg": guifg,
         \ "guibg": guibg}
-endfunction
+endf
 
 " 縦方向fコマンド
 command! -nargs=1 MyLineSearch let @m=<q-args> | call search('^\s*'. @m)

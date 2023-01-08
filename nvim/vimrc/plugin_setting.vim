@@ -53,25 +53,25 @@ command! -bang -nargs=? -complete=dir Files
 
 
 "" vim-lsp
-let g:lsp_diagnostics_enabled = 1
-let g:lsp_diagnostics_signs_enabled = 1
-let g:lsp_diagnostics_signs_insert_mode_enabled = 1
-let g:lsp_diagnostics_echo_cursor = 1
-let g:lsp_diagnostics_float_cursor = 1
-let g:lsp_diagnostics_highlights_enabled = 1
-let g:lsp_diagnostics_virtual_text_enabled = 1
+let g:lsp_diagnostics_enabled                          = 1
+let g:lsp_diagnostics_signs_enabled                    = 1
+let g:lsp_diagnostics_signs_insert_mode_enabled        = 1
+let g:lsp_diagnostics_echo_cursor                      = 1
+let g:lsp_diagnostics_float_cursor                     = 1
+let g:lsp_diagnostics_highlights_enabled               = 1
+let g:lsp_diagnostics_virtual_text_enabled             = 1
 let g:lsp_diagnostics_virtual_text_insert_mode_enabled = 0
-" let g:lsp_diagnostics_virtual_text_prefix = " » "
-let g:lsp_diagnostics_virtual_text_prefix = "   ■ "
-let g:lsp_document_code_action_signs_enabled = 1
-let g:lsp_inlay_hints_delay                = 0
-let g:lsp_diagnostics_echo_delay           = 0
-let g:lsp_diagnostics_signs_delay          = 0
-let g:lsp_diagnostics_float_delay          = 0
-let g:lsp_document_highlight_delay         = 0
-let g:lsp_diagnostics_virtual_text_delay   = 0
-let g:lsp_document_code_action_signs_delay = 0
-let g:lsp_diagnostics_signs_priority = 20
+" let g:lsp_diagnostics_virtual_text_prefix              = " » "
+let g:lsp_diagnostics_virtual_text_prefix              = "   ■ "
+let g:lsp_document_code_action_signs_enabled           = 1
+let g:lsp_inlay_hints_delay                            = 0
+let g:lsp_diagnostics_echo_delay                       = 0
+let g:lsp_diagnostics_signs_delay                      = 0
+let g:lsp_diagnostics_float_delay                      = 0
+let g:lsp_document_highlight_delay                     = 0
+let g:lsp_diagnostics_virtual_text_delay               = 0
+let g:lsp_document_code_action_signs_delay             = 0
+let g:lsp_diagnostics_signs_priority                   = 20
 let g:lsp_diagnostics_signs_priority_map = {
     \ 'LspError': 20,
     \ 'LspWarning': 15,
@@ -252,6 +252,8 @@ fun! s:skkeleton_init() abort
     call add(g:skkeleton#mapped_keys, '<C-q>')
     call add(g:skkeleton#mapped_keys, '<C-a>')
     call skkeleton#register_keymap('input', '<C-h>', '')
+    call skkeleton#register_keymap('input', '<Up>', '')
+    call skkeleton#register_keymap('input', '<Down>', '')
     call skkeleton#register_keymap('input', '<F6>',  'katakana')
     call skkeleton#register_keymap('input', '<F7>',  'katakana')
     call skkeleton#register_keymap('input', '<F8>',  'hankatakana')
@@ -408,7 +410,8 @@ hi NvimTreeModifiedFile gui=bold guifg=#ffaa00
 
 ""vista.vim
 let g:vista_no_mappings = 0
-let g:vista_echo_cursor = 0
+let g:vista_echo_cursor = 1
+let g:vista_echo_cursor_strategy = 'scroll'
 let g:vista_blink = [3, 200]
 let g:vista_top_level_blink = [3, 200]
 let g:vista_highlight_whole_line = 1
@@ -418,18 +421,27 @@ let g:vista_icon_indent = ['└ ', '│ ']
 let g:vista#renderer#enable_icon = 1
 let g:vista_fzf_preview = ['right,50%,<70(down,60%)']
 let g:vista_fzf_opt = ['--bind=ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up']
-let g:vista_default_executive = 'vim_lsp'
-let g:vista_executive_for = {
-    \ 'c': 'vim_lsp',
-    \ 'go': 'vim_lsp',
-    \ 'python': 'vim_lsp',
-    \ 'javascript': 'vim_lsp',
-    \ 'typescript': 'vim_lsp',
-    \ }
+"" TODO: vim-lspを使った時にもvistaウィンドウでハイライトさせる
+" let g:vista_default_executive = 'vim_lsp'
+" let g:vista_executive_for = {
+"     \ 'c': 'vim_lsp',
+"     \ 'go': 'vim_lsp',
+"     \ 'python': 'vim_lsp',
+"     \ 'javascript': 'vim_lsp',
+"     \ 'typescript': 'vim_lsp',
+"     \ }
 fun! VistaNearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
+  let l:funcname_text = get(b:, 'vista_nearest_method_or_function', '')
+  if l:funcname_text == ''
+    return ''
+  endif
+  return ' '.l:funcname_text
 endf
-"" TODO: vistaウィンドウでハイライトさせる
+hi link VistaFloat Pmenu
+" hi VistaKind   guifg=
+" hi VistaTag    guifg=#5566dd
+" hi VistaPublic guifg=
+hi VistaLineNr guifg=#777777
 
 
 "" minimap.vim
@@ -523,30 +535,36 @@ let g:airline_mode_map = {
   \ 't'  : 'TERMINAL',
   \ 'multi' : 'MULTI',
   \ }
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled          = 1
+let g:airline#extensions#tabline#enabled         = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#show_splits = 1
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#wordcount#enabled = 0
-" let g:airline#extensions#default#layout = [
-"     \ ['a', 'b', 'c', 'vista_info'],
-"     \ ['lsp_info', 'x', 'y', 'z']]
+let g:airline#extensions#tabline#show_splits     = 1
+let g:airline#extensions#tabline#show_buffers    = 1
+let g:airline#extensions#wordcount#enabled       = 0
+let g:airline#extensions#vista#enabled           = 0
 let g:airline#extensions#default#layout = [
-    \ ['a', 'b', 'c'],
-    \ ['lsp_info', 'x', 'y', 'z']]
+    \ ['a', 'b', 'c', 'vista_info'],
+    \ ['lsp_err', 'lsp_warn', 'lsp_hint', 'x', 'y', 'z']]
+fun! ALtextapprove()
+  let l:min_width = 100
+  if winwidth(0) >= l:min_width
+    return v:true
+  endif
+  return v:false
+endf
 let g:airline_section_a = airline#section#create(['mode', '%{Airline_skkeleton_mode()}'])
 let g:airline_section_c = '%t'
-let g:airline_section_vista_info = '%{VistaNearestMethodOrFunction()}'
-let g:airline_section_lsp_info = '%{g:lsp_diagnostics_signs_error.text} '
-let g:airline_section_lsp_info.= '%{lsp#get_buffer_diagnostics_counts().error} '
-let g:airline_section_lsp_info.= '%{g:lsp_diagnostics_signs_warning.text} '
-let g:airline_section_lsp_info.= '%{lsp#get_buffer_diagnostics_counts().warning} '
-let g:airline_section_lsp_info.= '%{g:lsp_diagnostics_signs_hint.text} '
-let g:airline_section_lsp_info.= '%{lsp#get_buffer_diagnostics_counts().hint}'
-let g:airline_section_x = '%3l/%L :%2c'
-let g:airline_section_y = '%{&filetype}'
-let g:airline_section_z = '%{&fileencodings}, %{&fileformat}'
+let g:airline_section_vista_info = '%{ALtextapprove() ? VistaNearestMethodOrFunction():""}'
+let g:airline_section_lsp_err  = '%{lsp#get_buffer_diagnostics_counts().error>0 ?'
+            \ .'g:lsp_diagnostics_signs_error.text." ".lsp#get_buffer_diagnostics_counts().error : ""}'
+let g:airline_section_lsp_warn = '%{lsp#get_buffer_diagnostics_counts().warning>0 ?'
+            \ .'g:lsp_diagnostics_signs_warning.text." ".lsp#get_buffer_diagnostics_counts().warning : ""}'
+let g:airline_section_lsp_hint = '%{lsp#get_buffer_diagnostics_counts().hint>0 ?'
+            \ .'g:lsp_diagnostics_signs_hint.text." ".lsp#get_buffer_diagnostics_counts().hint : ""}'
+let g:airline_section_x = ''
+" let g:airline_section_y = '%{&filetype}'
+" let g:airline_section_z = '%{&fileencodings}, %{&fileformat}'
+let g:airline_section_z = '%3l/%L:%2c'
 let g:airline#extensions#default#section_truncate_width = {}
 "" vim-airline separator
 let g:airline#extensions#tabline#right_sep = '  '
@@ -558,8 +576,10 @@ let g:airline_right_alt_sep = ''
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_exclude_filetypes = ['NvimTree', 'vista_kind', 'minimap']
-" TODO: 幅が狭いときに左のモード表示を優先的に表示させる
-" TODO: LSPのエラー・ワーニング・ヒントを色づけする
+hi airline_vista_info guifg=#55cc55
+hi airline_lsp_err    guifg=#ff0000
+hi airline_lsp_warn   guifg=#ffff00
+hi airline_lsp_hint   guifg=#5599dd
 
 
 "" fugitive
