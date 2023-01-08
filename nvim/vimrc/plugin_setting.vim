@@ -582,6 +582,17 @@ hi airline_lsp_warn   guifg=#ffff00
 hi airline_lsp_hint   guifg=#5599dd
 
 
+"" delimitmate
+let g:delimitMate_autoclose            = 1
+let g:delimitMate_matchpairs           = "(:),[:],{:},<:>"
+let g:delimitMate_jump_expansion       = 1
+let g:delimitMate_expand_space         = 1
+let g:delimitMate_expand_cr            = 2
+let g:delimitMate_expand_inside_quotes = 1
+let g:delimitMate_balance_matchpairs   = 1
+ino {<CR> {<CR>} <C-o>O
+
+
 "" fugitive
 if exists('*fugitive#statusline')
     set statusline+=%{fugitive#statusline()}
