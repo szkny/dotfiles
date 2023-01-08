@@ -65,6 +65,7 @@ endif
 " vim-lsp
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
+Plug 'matsui54/denops-signature_help'
 
 " for ddc settings
 Plug 'Shougo/ddc.vim'
@@ -73,6 +74,7 @@ Plug 'vim-denops/denops.vim'
 Plug 'Shougo/ddc-ui-native'
 Plug 'Shougo/pum.vim'
 Plug 'Shougo/ddc-ui-pum'
+Plug 'matsui54/denops-popup-preview.vim'
 " ddc sources
 Plug 'Shougo/ddc-source-around'
 Plug 'shun/ddc-source-vim-lsp'

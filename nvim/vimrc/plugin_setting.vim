@@ -95,6 +95,11 @@ hi LspInformationVirtualText gui=bold guifg=#ffffff
 hi LspHintVirtualText        gui=bold guifg=#5599dd
 
 
+"" signature_help (for vim-lsp)
+call signature_help#enable()
+let g:lsp_signature_help_enabled = 0  " disable vim-lsp's signature help
+
+
 "" ddc.vim + pum.vim
 set shortmess+=c
 set wildoptions+=pum
@@ -104,6 +109,7 @@ hi PumColumnMenu gui=none guifg=#888888 guibg=#353535
 hi PumSelected gui=bold guibg=#3388bb
 hi PmenuSBar    guibg=#cccccc
 hi PumMatches   guifg=#ff8800
+call popup_preview#enable()  " enable 'matsui54/denops-popup-preview.vim'
 call pum#set_option(#{
   \   auto_select: v:true,
   \   max_height: 8,
