@@ -62,7 +62,7 @@ let g:lsp_diagnostics_highlights_enabled = 1
 let g:lsp_diagnostics_virtual_text_enabled = 1
 let g:lsp_diagnostics_virtual_text_insert_mode_enabled = 0
 " let g:lsp_diagnostics_virtual_text_prefix = " » "
-let g:lsp_diagnostics_virtual_text_prefix = "■ "
+let g:lsp_diagnostics_virtual_text_prefix = "   ■ "
 let g:lsp_document_code_action_signs_enabled = 1
 let g:lsp_inlay_hints_delay                = 0
 let g:lsp_diagnostics_echo_delay           = 0
@@ -144,7 +144,7 @@ call ddc#custom#patch_global('sourceOptions', #{
   \   isVolatile: v:true,
   \ },
   \ vim-lsp: #{
-  \   mark: '[LSP]', 
+  \   mark: '[LSP]',
   \   forceCompletionPattern: '\.|:|->|"\w+/*',
   \ },
   \ around: #{
@@ -415,7 +415,6 @@ let g:vista_highlight_whole_line = 1
 let g:vista_update_on_text_changed = 1
 let g:vista_sidebar_width = 25
 let g:vista_icon_indent = ['└ ', '│ ']
-let g:vista_default_executive = 'ctags'
 let g:vista#renderer#enable_icon = 1
 let g:vista_fzf_preview = ['right,50%,<70(down,60%)']
 let g:vista_fzf_opt = ['--bind=ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up']
@@ -430,6 +429,7 @@ let g:vista_executive_for = {
 fun! VistaNearestMethodOrFunction() abort
   return get(b:, 'vista_nearest_method_or_function', '')
 endf
+"" TODO: vistaウィンドウでハイライトさせる
 
 
 "" minimap.vim
@@ -454,10 +454,10 @@ let g:minimap_diffadd_color    = 'MyMinimapDiffAdded'
 let g:minimap_diffremove_color = 'MyMinimapDiffRemoved'
 hi MyMinimapCursor      guifg=#000000 guibg=#ffffff
 hi MyMinimapRange       guifg=#ffffff guibg=#555555
-hi MyMinimapSearch      guifg=#ffffff guibg=#aaaa00
-hi MyMinimapDiffLine    guifg=#ffff00
-hi MyMinimapDiffAdded   guifg=#00ff00
-hi MyMinimapDiffRemoved guifg=#ff0000
+hi MyMinimapSearch      guifg=#ffffff guibg=#bbbb00
+hi MyMinimapDiffLine    guifg=#bbbb00
+hi MyMinimapDiffAdded   guifg=#00aa77
+hi MyMinimapDiffRemoved guifg=#bb0000
 
 
 "" visual-multi
@@ -484,7 +484,6 @@ let g:indentLine_fileTypeExclude = ['terminal', 'help', 'fzf', 'vista_kind', 'Nv
 
 
 "" vim-hexokinase
-" let g:Hexokinase_highlighters = [ 'virtual' ]
 let g:Hexokinase_highlighters = [ 'backgroundfull' ]
 
 
@@ -530,12 +529,15 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#wordcount#enabled = 0
+" let g:airline#extensions#default#layout = [
+"     \ ['a', 'b', 'c', 'vista_info'],
+"     \ ['lsp_info', 'x', 'y', 'z']]
 let g:airline#extensions#default#layout = [
-    \ ['a', 'b', 'c', 'd'],
+    \ ['a', 'b', 'c'],
     \ ['lsp_info', 'x', 'y', 'z']]
 let g:airline_section_a = airline#section#create(['mode', '%{Airline_skkeleton_mode()}'])
 let g:airline_section_c = '%t'
-let g:airline_section_d = '%{VistaNearestMethodOrFunction()}'
+let g:airline_section_vista_info = '%{VistaNearestMethodOrFunction()}'
 let g:airline_section_lsp_info = '%{g:lsp_diagnostics_signs_error.text} '
 let g:airline_section_lsp_info.= '%{lsp#get_buffer_diagnostics_counts().error} '
 let g:airline_section_lsp_info.= '%{g:lsp_diagnostics_signs_warning.text} '
@@ -547,8 +549,8 @@ let g:airline_section_y = '%{&filetype}'
 let g:airline_section_z = '%{&fileencodings}, %{&fileformat}'
 let g:airline#extensions#default#section_truncate_width = {}
 "" vim-airline separator
-let g:airline#extensions#tabline#right_sep = ' '
-let g:airline#extensions#tabline#left_sep  = ' '
+let g:airline#extensions#tabline#right_sep = '  '
+let g:airline#extensions#tabline#left_sep  = '  '
 let g:airline#extensions#tabline#right_alt_sep = '│'
 let g:airline#extensions#tabline#left_alt_sep  = '│'
 let g:airline_right_sep = ''
@@ -556,6 +558,8 @@ let g:airline_right_alt_sep = ''
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_exclude_filetypes = ['NvimTree', 'vista_kind', 'minimap']
+" TODO: 幅が狭いときに左のモード表示を優先的に表示させる
+" TODO: LSPのエラー・ワーニング・ヒントを色づけする
 
 
 "" fugitive
@@ -570,6 +574,7 @@ let g:gitgutter_enabled = 1
 let g:gitgutter_async = 1
 let g:gitgutter_sign_priority = 5
 let g:gitgutter_map_keys = 0
+" TODO: アイコン表示を+-~から色付きの縦棒|に変更する
 
 
 "" ranger

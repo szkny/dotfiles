@@ -161,7 +161,7 @@ ino <silent> <M-;>    <ESC>:Appendchar ;<CR>a
 no  <silent> <M-;>         :Appendchar ;<CR>
 " nno <silent> ?          :<C-u>SetHlSearch<CR>
 nno <silent><expr> ?
-  \ exists(":MinimapRefresh") ? 
+  \ exists(":MinimapRefresh") ?
   \ ':<C-u>SetHlSearch<CR>:MinimapRefresh<CR>' :
   \ ':<C-u>SetHlSearch<CR>'
 nno <silent> t          :<C-u>12SplitTerm<CR>i

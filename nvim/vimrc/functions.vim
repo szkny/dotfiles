@@ -798,7 +798,7 @@ command! Open call s:open()
 
 " get syntax information under cursor
 function! s:get_syn_info()
-  let baseSyn = s:get_syn_attr(s:get_syn_id(0)) 
+  let baseSyn = s:get_syn_attr(s:get_syn_id(0))
   echo "name: " . baseSyn.name .
         \ " ctermfg: " . baseSyn.ctermfg .
         \ " ctermbg: " . baseSyn.ctermbg .
@@ -814,10 +814,10 @@ function! s:get_syn_info()
 endfunction
 command! SyntaxInfo call s:get_syn_info()
 
-function! s:get_syn_id(transparent)     
+function! s:get_syn_id(transparent)
   let synid = synID(line("."), col("."), 1)
   if a:transparent
-    return synIDtrans(synid)            
+    return synIDtrans(synid)
   else
     return synid
   endif

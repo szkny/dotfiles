@@ -382,7 +382,7 @@ aug END
 
 " for CRLF
 fun! s:Applycrlfff() abort
-    try 
+    try
         call execute("/\\v\r$")
         edit ++ff=dos
     catch
