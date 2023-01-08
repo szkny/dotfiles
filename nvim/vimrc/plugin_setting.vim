@@ -98,6 +98,26 @@ hi LspHintVirtualText        gui=bold guifg=#5599dd
 "" signature_help (for vim-lsp)
 call signature_help#enable()
 let g:lsp_signature_help_enabled = 0  " disable vim-lsp's signature help
+let g:signature_help_config = #{
+  \ maxWidth: 80,
+  \ maxHeight: 30,
+  \ border: v:true,
+  \ winblend: 'winblend',
+  \ viewStyle: 'floating',
+  \ }
+
+
+"" popup_preview (for vim-lsp, pum.vim)
+call popup_preview#enable()  " enable 'matsui54/denops-popup-preview.vim'
+let g:popup_preview_config = #{
+  \ maxWidth: 80,
+  \ maxHeight: 30,
+  \ border: v:true,
+  \ delay: 0,
+  \ winblend: 'winblend',
+  \ supportVsnip: v:false,
+  \ supportUltisnips: v:false,
+  \ }
 
 
 "" ddc.vim + pum.vim
@@ -109,7 +129,6 @@ hi PumColumnMenu gui=none guifg=#888888 guibg=#353535
 hi PumSelected gui=bold guibg=#3388bb
 hi PmenuSBar    guibg=#cccccc
 hi PumMatches   guifg=#ff8800
-call popup_preview#enable()  " enable 'matsui54/denops-popup-preview.vim'
 call pum#set_option(#{
   \   auto_select: v:true,
   \   max_height: 8,
@@ -128,7 +147,6 @@ call pum#set_option(#{
   \     menu: 'PumColumnMenu',
   \   },
   \ })
-" call ddc#custom#patch_global('ui', 'native')
 call ddc#custom#patch_global('ui', 'pum')
 call ddc#custom#patch_global('autoCompleteEvents', [
   \ 'InsertEnter', 'TextChangedI', 'TextChangedP',

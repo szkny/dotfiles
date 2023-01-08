@@ -104,17 +104,17 @@ nno <silent><nowait> <leader>gh :<C-u>GitGutterLineHighlightsToggle<CR>
 "" ddc.vim (with pum.vim)
 ino <silent> <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
 ino <silent> <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
-ino <expr> <CR>
+ino <silent> <expr> <CR>
   \ pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<CR>'
-ino <expr> <C-e>
+ino <silent> <expr> <C-e>
   \ pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' : '<C-e>'
-ino <expr> <TAB>
+ino <silent> <expr> <TAB>
   \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<TAB>'
-ino <expr> <S-TAB>
+ino <silent> <expr> <S-TAB>
   \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<S-TAB>'
-ino <expr> <DOWN>
+ino <silent> <expr> <DOWN>
   \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
-ino <expr> <UP>
+ino <silent> <expr> <UP>
   \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
 nno          :     <Cmd>call DdcCommandlinePre()<CR>:
 nno          /     <Cmd>call DdcCommandlinePre()<CR>/
