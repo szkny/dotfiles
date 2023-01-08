@@ -14,10 +14,27 @@ let b:ale_fixers = ['prettier']
 "     let l:pos = getpos('.')
 "     exe '%!prettier '.expand("%:p")
 "     call setpos('.', l:pos)
+"     if v:shell_error != 0
+"         undo
+"         echoerr '[ERROR] prettier failed.'
+"     endif
 " endf
+let g:prettier_on_save = 1
 fun! s:prettier() abort
-    let l:pos = getpos('.')
-    silent exe "0, $!prettier --stdin-filepath ".expand("%")
-    call setpos('.', l:pos)
+    if get(g:, 'prettier_on_save')
+        let l:pos = getpos('.')
+        silent exe "0, $!prettier --stdin-filepath ".expand("%")
+        call setpos('.', l:pos)
+        if v:shell_error != 0
+            undo
+            echoerr '[ERROR] prettier failed.'
+            echoerr ''
+        endif
+    endif
 endf
 command! Prettier call s:prettier()
+
+aug PrettierSettings
+    au!
+    au BufWritePre *.{ts*} call s:prettier()
+aug END
