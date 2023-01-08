@@ -601,11 +601,16 @@ au User Fugitive GitGutterAll
 
 
 "" vim-gitgutter
-let g:gitgutter_enabled = 1
-let g:gitgutter_async = 1
-let g:gitgutter_sign_priority = 5
-let g:gitgutter_map_keys = 0
-" TODO: アイコン表示を+-~から色付きの縦棒|に変更する
+let g:gitgutter_enabled                      = 1
+let g:gitgutter_async                        = 1
+let g:gitgutter_sign_priority                = 5
+let g:gitgutter_map_keys                     = 0
+let g:gitgutter_sign_added                   = '│'
+let g:gitgutter_sign_modified                = '│'
+let g:gitgutter_sign_removed                 = '_'
+let g:gitgutter_sign_removed_first_line      = '‾'
+let g:gitgutter_sign_removed_above_and_below = '_¯'
+let g:gitgutter_sign_modified_removed        = '│'
 
 
 "" ranger
