@@ -95,6 +95,15 @@ hi LspInformationVirtualText gui=bold guifg=#ffffff
 hi LspHintVirtualText        gui=bold guifg=#5599dd
 
 
+" "" lsp_signature (for vim-lsp)
+" lua require "lsp_signature".setup({
+"   \   bind = true,
+"   \   handler_opts = {
+"   \     border = "rounded"
+"   \   }
+"   \ })
+
+
 "" signature_help (for vim-lsp)
 call signature_help#enable()
 let g:lsp_signature_help_enabled = 0  " disable vim-lsp's signature help
@@ -132,6 +141,7 @@ hi PumMatches   guifg=#ff8800
 call pum#set_option(#{
   \   auto_select: v:true,
   \   max_height: 8,
+  \   max_width: 0,
   \   offset_row: 1,
   \   scrollbar_char: ' ',
   \   padding: v:true,
