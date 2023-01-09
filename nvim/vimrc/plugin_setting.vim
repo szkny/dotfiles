@@ -395,7 +395,7 @@ lua require("nvim-tree").setup({
   \         },
   \       },
   \     },
-  \     special_files = { "Makefile", "README.md" },
+  \     special_files = { "Makefile", "README.md", "package.json" },
   \   },
   \   update_focused_file = {
   \     enable = true,
@@ -464,13 +464,17 @@ let g:vista_fzf_opt = ['--bind=ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:
 "     \ 'javascript': 'vim_lsp',
 "     \ 'typescript': 'vim_lsp',
 "     \ }
+"" TODO: 起動時にAirline表示
 fun! VistaNearestMethodOrFunction() abort
-  let l:funcname_text = get(b:, 'vista_nearest_method_or_function', '')
-  if l:funcname_text == ''
-    return ''
-  endif
-  return ' '.l:funcname_text
+  try
+    let l:funcname_text = get(b:, 'vista_nearest_method_or_function', '')
+    if l:funcname_text == ''
+      return ''
+    endif
+    return ' '.l:funcname_text
+  endtry
 endf
+au VimEnter * call vista#RunForNearestMethodOrFunction()
 hi link VistaFloat Pmenu
 " hi VistaKind   guifg=
 " hi VistaTag    guifg=#5566dd
