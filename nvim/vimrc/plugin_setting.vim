@@ -114,6 +114,8 @@ let g:signature_help_config = #{
   \ winblend: 'winblend',
   \ viewStyle: 'floating',
   \ }
+hi link SignatureHelpDocument PumNormalMenu
+hi link SignatureHelpBorder   FloatBorder
 
 
 "" denops-popup-preview (for vim-lsp, pum.vim)
@@ -122,31 +124,33 @@ let g:popup_preview_config = #{
   \ maxWidth: 80,
   \ maxHeight: 30,
   \ border: v:true,
-  \ delay: 0,
   \ winblend: 'winblend',
   \ supportVsnip: v:false,
   \ supportUltisnips: v:false,
   \ }
+hi link PopupPreviewDocument PumNormalMenu
+hi link PopupPreviewBorder   FloatBorder
 
 
 "" ddc.vim + pum.vim
 set shortmess+=c
 set wildoptions+=pum
-hi PumNormalMenu gui=none guifg=#dddddd guibg=#353535
-hi PumColumnKind gui=none guifg=#888888 guibg=#353535
-hi PumColumnMenu gui=none guifg=#888888 guibg=#353535
-hi PumSelected gui=bold guibg=#3388bb
-hi PmenuSBar    guibg=#cccccc
+hi PumNormalMenu gui=none guifg=#dddddd guibg=#202020
+hi PumColumnKind gui=none guifg=#888888 guibg=#202020
+hi PumColumnMenu gui=none guifg=#888888 guibg=#202020
+hi PumSelected  gui=bold guibg=#3388bb
 hi PumMatches   guifg=#ff8800
+hi PmenuSBar    guibg=#888888
+hi FloatBorder  gui=bold guibg=#202020
 call pum#set_option(#{
   \   auto_select: v:true,
   \   max_height: 8,
   \   max_width: 0,
   \   offset_row: 1,
   \   scrollbar_char: ' ',
-  \   padding: v:true,
+  \   padding: v:false,
   \   use_complete: v:false,
-  \   border: 'none',
+  \   border: 'rounded',
   \   highlight_normal_menu: 'PumNormalMenu',
   \   highlight_matches: '',
   \   highlight_scrollbar: 'PmenuSBar',
@@ -373,10 +377,17 @@ lua require("nvim-tree").setup({
   \     highlight_git = true,
   \     full_name = false,
   \     root_folder_label = ":t:gs?\\l?\\U\\0?",
-  \     indent_width = 2,
+  \     indent_width = 1,
   \     indent_markers = {
   \       enable = true,
   \       inline_arrows = true,
+  \       icons = {
+  \         corner = "└",
+  \         edge = "│",
+  \         item = "├",
+  \         bottom = "─",
+  \         none = " ",
+  \       },
   \     },
   \     icons = {
   \       git_placement = "before",
