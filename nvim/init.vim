@@ -65,17 +65,17 @@ endif
 " vim-lsp
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
+Plug 'matsui54/denops-popup-preview.vim'
 Plug 'matsui54/denops-signature_help'
-" Plug 'ray-x/lsp_signature.nvim'
 
 " for ddc settings
+" ddc core
 Plug 'Shougo/ddc.vim'
 Plug 'vim-denops/denops.vim'
 " ddc UIs
 Plug 'Shougo/ddc-ui-native'
 Plug 'Shougo/pum.vim'
 Plug 'Shougo/ddc-ui-pum'
-Plug 'matsui54/denops-popup-preview.vim'
 " ddc sources
 Plug 'Shougo/ddc-source-around'
 Plug 'shun/ddc-source-vim-lsp'
@@ -85,9 +85,11 @@ Plug 'Shougo/ddc-source-cmdline-history'
 Plug 'Shougo/neco-vim'
 " ddc filters
 Plug 'Shougo/ddc-matcher_head'
-" Plug 'Shougo/ddc-sorter_rank'
 Plug 'Shougo/ddc-converter_remove_overlap'
 Plug 'tani/ddc-fuzzy'
+" " ddc etc.
+" Plug 'hrsh7th/vim-vsnip'
+" Plug 'hrsh7th/vim-vsnip-integ'
 
 " color scheme
 Plug 'tomasr/molokai'

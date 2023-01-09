@@ -93,6 +93,7 @@ hi LspErrorVirtualText       gui=bold guifg=#ff0000
 hi LspWarningVirtualText     gui=bold guifg=#ffff00
 hi LspInformationVirtualText gui=bold guifg=#ffffff
 hi LspHintVirtualText        gui=bold guifg=#5599dd
+hi link NormalFloat PumNormalMenu
 
 
 " "" lsp_signature (for vim-lsp)
@@ -111,7 +112,7 @@ let g:signature_help_config = #{
   \ maxWidth: 80,
   \ maxHeight: 30,
   \ border: v:true,
-  \ winblend: 'winblend',
+  \ winblend: 'pumblend',
   \ viewStyle: 'floating',
   \ }
 hi link SignatureHelpDocument PumNormalMenu
@@ -124,7 +125,7 @@ let g:popup_preview_config = #{
   \ maxWidth: 80,
   \ maxHeight: 30,
   \ border: v:true,
-  \ winblend: 'winblend',
+  \ winblend: 'pumblend',
   \ supportVsnip: v:false,
   \ supportUltisnips: v:false,
   \ }
@@ -264,6 +265,8 @@ if !exists('g:necovim#complete_functions')
 endif
 let g:necovim#complete_functions.Ref = 'ref#complete'
 call ddc#enable()
+" vsnip for ddc.vim
+" au User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
 
 
 "" skkeleton
