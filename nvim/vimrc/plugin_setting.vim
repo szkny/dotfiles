@@ -447,7 +447,7 @@ lua require("nvim-tree").setup({
   \   },
   \ })
 hi NvimTreeRootFolder   gui=bold guifg=#999999
-hi NvimTreeSpecialFile  gui=underline guifg=#cccccc
+hi NvimTreeSpecialFile  gui=bold,underline guifg=#cccc55
 hi NvimTreeGitDirty     gui=bold guifg=#ffaa00
 hi NvimTreeGitStaged    gui=bold guifg=#44cc44
 hi NvimTreeModifiedFile gui=bold guifg=#ffaa00
