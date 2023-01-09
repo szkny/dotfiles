@@ -67,6 +67,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'matsui54/denops-popup-preview.vim'
 Plug 'matsui54/denops-signature_help'
+" Plug 'ray-x/lsp_signature.nvim'
 
 " for ddc settings
 " ddc core

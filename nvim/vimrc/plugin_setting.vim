@@ -97,7 +97,7 @@ hi link NormalFloat PumNormalMenu
 
 
 " "" lsp_signature (for vim-lsp)
-" lua require "lsp_signature".setup({
+" lua require("lsp_signature").setup({
 "   \   bind = true,
 "   \   handler_opts = {
 "   \     border = "rounded"
@@ -112,11 +112,17 @@ let g:signature_help_config = #{
   \ maxWidth: 80,
   \ maxHeight: 30,
   \ border: v:true,
+  \ fallbackToBelow: v:true,
   \ winblend: 'pumblend',
+  \ contentsStyle: 'labels',
   \ viewStyle: 'floating',
   \ }
+  " \ contentsStyle: 'remainingLabels',
+  " \ viewStyle: 'virtual',
 hi link SignatureHelpDocument PumNormalMenu
 hi link SignatureHelpBorder   FloatBorder
+hi SignatureHelpVirtual   gui=bold,underline,reverse guifg=#aaddff
+hi SignatureHelpGhostText guifg=#88bbff guibg=#303030
 
 
 "" denops-popup-preview (for vim-lsp, pum.vim)
