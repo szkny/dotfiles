@@ -82,7 +82,7 @@ let g:lsp_diagnostics_signs_priority_map = {
 " let g:lsp_diagnostics_signs_error = {'text': '❌'}
 let g:lsp_diagnostics_signs_error = {'text': ''}
 let g:lsp_diagnostics_signs_warning = {'text': ''}
-let g:lsp_diagnostics_signs_hint = {'text': ''}
+let g:lsp_diagnostics_signs_hint = {'text': ''}
 let g:lsp_diagnostics_signs_information = {'text': ''}
 let g:lsp_document_code_action_signs_hint = {'text': '💡'}
 hi LspErrorText              gui=bold guifg=#ff0000
@@ -116,8 +116,8 @@ let g:signature_help_config = #{
   \ }
 
 
-"" popup_preview (for vim-lsp, pum.vim)
-call popup_preview#enable()  " enable 'matsui54/denops-popup-preview.vim'
+"" denops-popup-preview (for vim-lsp, pum.vim)
+call popup_preview#enable()
 let g:popup_preview_config = #{
   \ maxWidth: 80,
   \ maxHeight: 30,
