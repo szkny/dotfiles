@@ -225,7 +225,6 @@ call ddc#custom#patch_global('cmdlineSources', {
   \ })
 fun! DdcCommandlinePre() abort
   " Note: It disables default command line completion!
-  " Overwrite sources
   if !exists('b:prev_buffer_config')
     let b:prev_buffer_config = ddc#custom#get_buffer()
   endif
@@ -248,7 +247,6 @@ fun! DdcCommandlinePre() abort
     \ })
   au User DDCCmdlineLeave ++once call DdcCommandlinePost()
   au InsertEnter <buffer> ++once call DdcCommandlinePost()
-  " Enable command line completion
   call ddc#enable_cmdline_completion()
 endf
 fun! DdcCommandlinePost() abort
@@ -265,7 +263,7 @@ if !exists('g:necovim#complete_functions')
 endif
 let g:necovim#complete_functions.Ref = 'ref#complete'
 call ddc#enable()
-" vsnip for ddc.vim
+" " vsnip for ddc.vim
 " au User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
 
 
@@ -491,7 +489,7 @@ endf
 au VimEnter * call vista#RunForNearestMethodOrFunction()
 hi link VistaFloat Pmenu
 " hi VistaKind   guifg=
-" hi VistaTag    guifg=#5566dd
+" hi VistaTag    guifg=
 " hi VistaPublic guifg=
 hi VistaLineNr guifg=#777777
 

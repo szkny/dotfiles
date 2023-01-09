@@ -146,7 +146,6 @@ nno <silent><nowait> <leader>n :<C-u>LspNextDiagnostic<CR>
 nno <silent><nowait> <leader>p :<C-u>LspPreviousDiagnostic<CR>
 " nno <silent><nowait> <leader>r :<C-u>LspRename<CR>
 nno <silent><nowait> <leader>l :<C-u>LspDocumentDiagnostics<CR>
-" nno <silent><nowait> <leader>s :<C-u>LspDocumentFormat<CR>
 nno <silent><nowait> <leader>h :<C-u>LspCodeAction<CR>
 "" neosnippet
 " NOTE: プラグインのマッピングはnoremapではなくmapにすること
