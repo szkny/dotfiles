@@ -357,7 +357,7 @@ lua require("nvim-tree").setup({
   \   hijack_netrw = true,
   \   sort_by = "case_sensitive",
   \   view = {
-  \     adaptive_size = false,
+  \     adaptive_size = true,
   \     width = 25,
   \     hide_root_folder = false,
   \     signcolumn = "no",
