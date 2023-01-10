@@ -97,6 +97,8 @@ nno <silent> <C-t> :<C-u>Vista!!<CR>
 nno <silent> <C-g> :<C-u>Vista finder<CR>
 "" minimap.vim
 nno <silent> <C-k> :<C-u>MinimapToggle<CR>:MinimapRefresh<CR>
+"" fugitive
+nno <silent><nowait> <leader>gg :<C-u>Git<CR>
 "" git-gutter
 nno <silent><nowait> <leader>gn :<C-u>GitGutterNextHunk<CR>
 nno <silent><nowait> <leader>gp :<C-u>GitGutterPrevHunk<CR>
@@ -118,8 +120,10 @@ ino <silent> <expr> <UP>
   \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
 nno          :     <Cmd>call DdcCommandlinePre()<CR>:
 nno          /     <Cmd>call DdcCommandlinePre()<CR>/
-cno <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
-cno <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
+cno <expr> <C-n>
+  \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
+cno <expr> <C-p>
+  \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
 cno <expr> <CR>
   \ pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<CR>'
 cno <expr> <C-e>

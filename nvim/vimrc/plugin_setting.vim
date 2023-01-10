@@ -361,6 +361,7 @@ lua require("nvim-tree").setup({
   \     width = 25,
   \     hide_root_folder = false,
   \     signcolumn = "no",
+  \     preserve_window_proportions = true,
   \     mappings = {
   \       custom_only = false,
   \       list = {
@@ -435,7 +436,7 @@ lua require("nvim-tree").setup({
   \     },
   \   },
   \   filters = {
-  \     dotfiles = false,
+  \     dotfiles = true,
   \   },
   \   git = {
   \     enable = true,
@@ -653,7 +654,17 @@ ino {<CR> {<CR>} <C-o>O
 if exists('*fugitive#statusline')
     set statusline+=%{fugitive#statusline()}
 endif
+fun! s:fugitive_init() abort
+    setlocal nonumber
+    setlocal bufhidden=wipe
+    setlocal nobuflisted
+    setlocal nolist
+    setlocal nospell
+    setlocal noequalalways
+    resize 10
+endf
 au User Fugitive GitGutterAll
+au FileType fugitive call s:fugitive_init()
 
 
 "" vim-gitgutter
