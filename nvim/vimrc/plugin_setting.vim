@@ -139,7 +139,6 @@ hi link PopupPreviewDocument PumNormalMenu
 hi link PopupPreviewBorder   FloatBorder
 
 
-
 "" ddc.vim + pum.vim
 set shortmess+=c
 set wildoptions+=pum
