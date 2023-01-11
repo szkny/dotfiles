@@ -678,6 +678,39 @@ fun! s:install_trans() abort
 endf
 
 
+fun! VimGrepWord(...) abort
+    call system('git status')
+    if v:shell_error ==# 0
+        let l:target = '`git ls-files`'
+    else
+        let l:target = '**'
+    endif
+    if a:0 == 0
+        let l:pattern = expand('<cword>')
+    else
+        let l:pattern = join(a:000)
+    endif
+    silent exe 'vimgrep /'.l:pattern.'/ '.l:target.' | cw'
+endf
+command! -nargs=* VimGrepWord call VimGrepWord(<f-args>)
+
+
+fun! VVimGrepWord() abort range
+    call system('git status')
+    if v:shell_error ==# 0
+        let l:target = '`git ls-files`'
+    else
+        let l:target = '**'
+    endif
+    let @@ = ''
+    exe 'silent normal gvy'
+    if @@ !=# ''
+        let l:pattern = join(split(@@,'\n'))
+        silent exe 'vimgrep /'.l:pattern.'/ '.l:target.' | cw'
+    endif
+endf
+
+
 fun! GetNow() abort
     " 現在時刻を取得する関数
     let l:day = printf('%d', strftime('%d'))
