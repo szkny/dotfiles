@@ -877,6 +877,10 @@ fun! AIquery() range
         echoerr 'g:openai_executable_path must be set'
         return
     endif
+    if exists(l:exe) == 0
+        echoerr 'execute file:'.l:exe.' does not exist'
+        return
+    endif
     let @@ = ''
     exe 'silent normal gvy'
     if @@ !=# ''
