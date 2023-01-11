@@ -47,9 +47,6 @@ Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 " Plug 'folke/noice.nvim'
 " Plug 'MunifTanjim/nui.nvim'
 
-" skkeleton
-Plug 'vim-skk/skkeleton'
-
 " nvim-tree
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'nvim-tree/nvim-web-devicons'
@@ -89,6 +86,7 @@ Plug 'Shougo/ddc-matcher_head'
 Plug 'Shougo/ddc-converter_remove_overlap'
 Plug 'tani/ddc-fuzzy'
 " " ddc etc.
+Plug 'vim-skk/skkeleton'
 " Plug 'hrsh7th/vim-vsnip'
 " Plug 'hrsh7th/vim-vsnip-integ'
 
@@ -114,9 +112,6 @@ Plug 'JuliaEditorSupport/julia-vim',   {'for': 'julia'}
 " javascript
 " Plug 'prettier/vim-prettier',  { 'for': ['javascript', 'typescript', 'css', 'json', 'markdown', 'vue', 'yaml', 'html'] }
 
-" terraform
-Plug 'hashivim/vim-terraform',  {'for': 'terraform'}
-
 " misc
 Plug 'elzr/vim-json',                  {'for': 'json'}
 Plug 'raimon49/requirements.txt.vim',  {'for': 'requirements'}
@@ -129,6 +124,7 @@ Plug 'vim-scripts/applescript.vim',    {'for': 'applescript'}
 Plug 'aklt/plantuml-syntax',           {'for': 'plantuml'}
 Plug 'posva/vim-vue',                  {'for': 'vue'}
 Plug 'digitaltoad/vim-pug',            {'for': 'pug'}
+Plug 'hashivim/vim-terraform',         {'for': 'terraform'}
 
 " icon
 Plug 'ryanoasis/vim-devicons'
