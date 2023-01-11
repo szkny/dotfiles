@@ -871,10 +871,18 @@ endf
 
 " ChatGPT
 let g:openai_executable_path = '$HOME/dotfiles/openai/openai.mjs'
+let g:openai_filetype_dict = {
+  \ 'vim':'vimscript',
+  \ } 
 fun! AIquery() range
     let l:exe = get(g:, 'openai_executable_path', '')
+    let l:ft_dict = get(g:, 'openai_filetype_dict', {})
     if l:exe == ''
         echoerr 'g:openai_executable_path must be set'
+        return
+    endif
+    if l:ft_dict == {}
+        echoerr 'g:openai_filetype_dict must be set'
         return
     endif
     if exists(l:exe) == 0
@@ -885,7 +893,15 @@ fun! AIquery() range
     exe 'silent normal gvy'
     if @@ !=# ''
         let l:query = join(split(@@,'\n'))
-        let l:query_text = l:query.' in '.&ft
+        if &ft != ''
+            if has_key(l:ft_dict, &ft)
+                let l:query_text = l:query.' in '.l:ft_dict[&ft]
+            else
+                let l:query_text = l:query.' in '.&ft
+            endif
+        else
+            let l:query_text = l:query
+        endif
         echomsg 'AI query: ' . l:query_text
         let l:result = systemlist(l:exe, l:query_text)
         call append(a:lastline, l:result)
