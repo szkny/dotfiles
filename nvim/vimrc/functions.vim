@@ -869,6 +869,26 @@ fun! s:get_syn_attr(synid)
         \ "guibg": guibg}
 endf
 
+" ChatGPT
+let g:openai_executable_path = '$HOME/dotfiles/openai/openai.mjs'
+fun! AIquery() range
+    let l:exe = get(g:, 'openai_executable_path', '')
+    if l:exe == ''
+        echoerr 'g:openai_executable_path must be set'
+        return
+    endif
+    let @@ = ''
+    exe 'silent normal gvy'
+    if @@ !=# ''
+        let l:query = join(split(@@,'\n'))
+        let l:query_text = l:query.' in '.&ft
+        echomsg 'AI query: ' . l:query_text
+        let l:result = systemlist(l:exe, l:query_text)
+        call append(a:lastline, l:result)
+    endif
+endf
+command! -nargs=0 -range AI call AIquery()
+
 " 縦方向fコマンド
 command! -nargs=1 MyLineSearch let @m=<q-args> | call search('^\s*'. @m)
 command! -nargs=1 MyLineBackSearch let @m=<q-args> | call search('^\s*'. @m, 'b')
