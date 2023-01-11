@@ -118,6 +118,7 @@ Plug 'JuliaEditorSupport/julia-vim',   {'for': 'julia'}
 Plug 'hashivim/vim-terraform',  {'for': 'terraform'}
 
 " misc
+Plug 'elzr/vim-json',                  {'for': 'json'}
 Plug 'raimon49/requirements.txt.vim',  {'for': 'requirements'}
 Plug 'cespare/vim-toml',               {'for': 'toml'}
 Plug 'kannokanno/previm',              {'for': 'markdown'}

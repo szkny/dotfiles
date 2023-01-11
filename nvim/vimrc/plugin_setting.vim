@@ -555,7 +555,7 @@ let g:indentLine_enabled = 1
 let g:indentLine_char_list = ['│']
 let g:indentLine_concealcursor = 'inc'
 let g:indentLine_conceallevel = 1
-let g:indentLine_fileTypeExclude = ['json', 'terminal', 'help', 'fzf', 'vista_kind', 'NvimTree']
+let g:indentLine_fileTypeExclude = ['terminal', 'help', 'fzf', 'vista_kind', 'NvimTree']
 
 
 "" vim-hexokinase
