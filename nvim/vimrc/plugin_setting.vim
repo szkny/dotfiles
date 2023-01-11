@@ -483,8 +483,7 @@ let g:vista_fzf_opt = ['--bind=ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:
 "     \ 'javascript': 'vim_lsp',
 "     \ 'typescript': 'vim_lsp',
 "     \ }
-"" TODO: 起動時にAirline表示
-fun! VistaNearestMethodOrFunction() abort
+fun! AirlineVistaNearestMethodOrFunction() abort
   try
     let l:funcname_text = get(b:, 'vista_nearest_method_or_function', '')
     if l:funcname_text == ''
@@ -493,7 +492,14 @@ fun! VistaNearestMethodOrFunction() abort
     return ' '.l:funcname_text
   endtry
 endf
-au VimEnter * call vista#RunForNearestMethodOrFunction()
+fun! VistaInit() abort
+  try
+    if &filetype != ''
+      call vista#RunForNearestMethodOrFunction()
+    endif
+  endtry
+endf
+au VimEnter * call VistaInit()
 hi link VistaFloat Pmenu
 " hi VistaKind   guifg=
 " hi VistaTag    guifg=
@@ -611,7 +617,7 @@ fun! ALtextapprove()
 endf
 let g:airline_section_a = airline#section#create(['mode', '%{Airline_skkeleton_mode()}'])
 let g:airline_section_c = '%t'
-let g:airline_section_vista_info = '%{ALtextapprove() ? VistaNearestMethodOrFunction():""}'
+let g:airline_section_vista_info = '%{ALtextapprove() ? AirlineVistaNearestMethodOrFunction():""}'
 let g:airline_section_lsp_err  = '%{lsp#get_buffer_diagnostics_counts().error>0 ?'
             \ .'g:lsp_diagnostics_signs_error.text." ".lsp#get_buffer_diagnostics_counts().error : ""}'
 let g:airline_section_lsp_warn = '%{lsp#get_buffer_diagnostics_counts().warning>0 ?'
