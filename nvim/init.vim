@@ -39,6 +39,7 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'wfxr/minimap.vim',  {'on': 'MinimapToggle'}
 
 " visual plugins
+Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'yggdroot/indentline'
@@ -72,7 +73,6 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'matsui54/denops-popup-preview.vim'
 Plug 'matsui54/denops-signature_help'
-" Plug 'ray-x/lsp_signature.nvim'
 
 " for ddc settings
 " ddc core
@@ -99,39 +99,36 @@ Plug 'vim-skk/skkeleton'
 " Plug 'hrsh7th/vim-vsnip-integ'
 
 " c/c++
-Plug 'vim-jp/cpp-vim',                 {'for': 'cpp'}
-
+" Plug 'vim-jp/cpp-vim',                 {'for': 'cpp'}
+"
 " python
-Plug 'tweekmonster/braceless.vim',     {'for': 'python'}
+" Plug 'tweekmonster/braceless.vim',     {'for': 'python'}
 Plug 'szkny/Ipython',                  {'for': 'python'}
 " Plug 'szkny/IpdbDebugger',             {'for': 'python'}
 " Plug 'szkny/jupyter-vim',              {'for': 'python'}
-
-" golang
-Plug 'fatih/vim-go',                   {'for': 'go'}
-
-" julia
-Plug 'JuliaEditorSupport/julia-vim',   {'for': 'julia'}
-
-" javascript
-" Plug 'prettier/vim-prettier',  { 'for': ['javascript', 'typescript', 'css', 'json', 'markdown', 'vue', 'yaml', 'html'] }
-
-" misc
-Plug 'elzr/vim-json',                  {'for': 'json'}
-Plug 'raimon49/requirements.txt.vim',  {'for': 'requirements'}
-Plug 'cespare/vim-toml',               {'for': 'toml'}
-Plug 'kannokanno/previm',              {'for': 'markdown'}
-Plug 'godlygeek/tabular',              {'for': 'markdown'}
-Plug 'plasticboy/vim-markdown',        {'for': 'markdown'}
-Plug 'yaasita/ore_markdown',           {'for': 'markdown'}
-Plug 'vim-scripts/applescript.vim',    {'for': 'applescript'}
-Plug 'aklt/plantuml-syntax',           {'for': 'plantuml'}
-Plug 'posva/vim-vue',                  {'for': 'vue'}
-Plug 'digitaltoad/vim-pug',            {'for': 'pug'}
-Plug 'hashivim/vim-terraform',         {'for': 'terraform'}
-
-" icon
-Plug 'ryanoasis/vim-devicons'
+"
+" " golang
+" Plug 'fatih/vim-go',                   {'for': 'go'}
+"
+" " julia
+" Plug 'JuliaEditorSupport/julia-vim',   {'for': 'julia'}
+"
+" " javascript
+" " Plug 'prettier/vim-prettier',  { 'for': ['javascript', 'typescript', 'css', 'json', 'markdown', 'vue', 'yaml', 'html'] }
+"
+" " misc
+" Plug 'elzr/vim-json',                  {'for': 'json'}
+" Plug 'raimon49/requirements.txt.vim',  {'for': 'requirements'}
+" Plug 'cespare/vim-toml',               {'for': 'toml'}
+" Plug 'kannokanno/previm',              {'for': 'markdown'}
+" Plug 'godlygeek/tabular',              {'for': 'markdown'}
+" Plug 'plasticboy/vim-markdown',        {'for': 'markdown'}
+" Plug 'yaasita/ore_markdown',           {'for': 'markdown'}
+" Plug 'vim-scripts/applescript.vim',    {'for': 'applescript'}
+" Plug 'aklt/plantuml-syntax',           {'for': 'plantuml'}
+" Plug 'posva/vim-vue',                  {'for': 'vue'}
+" Plug 'digitaltoad/vim-pug',            {'for': 'pug'}
+" Plug 'hashivim/vim-terraform',         {'for': 'terraform'}
 
 call plug#end()
 
@@ -228,6 +225,10 @@ let g:python3_host_prog = expand('~/.pyenv/shims/python3')
 "" Visual Settings
 "*****************************************************************************
 syntax on
+set background=dark
+" colorscheme molokai
+colorscheme codedark
+
 set ruler
 set number
 set nowrap
@@ -278,10 +279,6 @@ set noshowmode
 set modeline
 set modelines=10
 " set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
-
-set background=dark
-" colorscheme molokai
-colorscheme codedark
 
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1

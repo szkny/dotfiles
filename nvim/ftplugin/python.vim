@@ -52,12 +52,22 @@ aug delimitMate
         au FileType python   let b:delimitMate_nesting_quotes = ['"',"'"]
     endif
 aug END
-aug Braceless
-    if exists(':BracelessEnable') == 2
-        au FileType python BracelessEnable +indent +fold "+highlight
-        hi BracelessIndent guifg=#555555
+let g:pyform_on_save = 1
+fun! s:pyform_on_save()
+    if get(g:, 'pyform_on_save')
+        call s:pyform()
     endif
+endf
+aug pyformSettings
+    au!
+    au BufWritePre *.py call s:pyform_on_save()
 aug END
+" aug Braceless
+"     if exists(':BracelessEnable') == 2
+"         au FileType python BracelessEnable +indent +fold "+highlight
+"         hi BracelessIndent guifg=#555555
+"     endif
+" aug END
 
 
 " plugin setting
