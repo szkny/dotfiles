@@ -25,9 +25,6 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 " general plugins
 Plug 'tomtom/tcomment_vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'yggdroot/indentline'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'  " for ranger.vim
 Plug 'Shougo/neosnippet.vim'
@@ -40,7 +37,18 @@ Plug 'junegunn/vim-easy-align'
 Plug 'liuchengxu/vista.vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'wfxr/minimap.vim',  {'on': 'MinimapToggle'}
+
+" visual plugins
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'yggdroot/indentline'
+" Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" color scheme
+Plug 'tomasr/molokai'
+Plug 'tomasiser/vim-code-dark'
 
 " " nvim-notify / noice.nvim
 " Plug 'rcarriga/nvim-notify'
@@ -89,10 +97,6 @@ Plug 'tani/ddc-fuzzy'
 Plug 'vim-skk/skkeleton'
 " Plug 'hrsh7th/vim-vsnip'
 " Plug 'hrsh7th/vim-vsnip-integ'
-
-" color scheme
-Plug 'tomasr/molokai'
-Plug 'tomasiser/vim-code-dark'
 
 " c/c++
 Plug 'vim-jp/cpp-vim',                 {'for': 'cpp'}

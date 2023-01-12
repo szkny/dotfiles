@@ -555,12 +555,33 @@ if !exists('g:tcomment_types')
 endif
 
 
+"" nvim-treesitter
+lua require'nvim-treesitter.configs'.setup {
+    \   ensure_installed = { "c", "lua", "vim", "help" },
+    \   sync_install = false,
+    \   auto_install = true,
+    \   ignore_install = { "javascript" },
+    \   highlight = {
+    \     enable = true,
+    \     disable = { "c", "rust" },
+    \     additional_vim_regex_highlighting = false,
+    \   },
+    \ }
+
+
 "" indentline
 let g:indentLine_enabled = 1
 let g:indentLine_char_list = ['│']
 let g:indentLine_concealcursor = 'inc'
 let g:indentLine_conceallevel = 1
 let g:indentLine_fileTypeExclude = ['terminal', 'help', 'fzf', 'vista_kind', 'NvimTree']
+
+
+" "" indent-blankline.nvim
+" lua require("indent_blankline").setup {
+"     \   show_current_context = true,
+"     \   show_current_context_start = true,
+"     \ }
 
 
 "" vim-hexokinase
