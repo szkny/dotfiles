@@ -454,6 +454,8 @@ lua require("nvim-tree").setup({
   \     require_confirm = true,
   \   },
   \ })
+" hi NvimTreeNormal             gui=none guibg=#202020
+" hi NvimTreeEndOfBuffer        gui=none guifg=#202020 guibg=#202020
 hi NvimTreeRootFolder         gui=bold guifg=#999999
 hi NvimTreeFolderName         gui=bold guifg=#77aadd
 hi NvimTreeOpenedFolderName   gui=bold guifg=#77aadd
@@ -566,8 +568,11 @@ let g:Hexokinase_highlighters = [ 'backgroundfull' ]
 
 
 "" vim-airline
-let g:airline_theme = 'kalisi'
-" let g:airline_theme = 'codedark'
+if g:colors_name == 'codedark'
+    let g:airline_theme = 'codedark'
+else
+    let g:airline_theme = 'kalisi'
+endif
 let g:airline_mode_map = {
   \ '__' : '------',
   \ 'n' : 'NORMAL',
