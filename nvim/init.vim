@@ -286,21 +286,22 @@ let g:cpp_class_scope_highlight = 1
 set list
 set listchars=tab:¦\ ,trail:-,eol:↲
 set fillchars=vert:│
-set cursorline
-" set cursorcolumn
 set signcolumn=yes
+" set cursorcolumn
+set nocursorline
+au WinEnter * setl nocursorline
+au WinLeave * setl cursorline
 
 hi EndOfBuffer guifg=bg
 " hi matchparen ctermbg=236
 " hi Normal ctermbg=NONE guibg=NONE
 hi NonText    guifg=#404040
 hi SpecialKey guifg=#404040
-" hi Visual guifg=#000000 guibg=#cceeff
-" hi LineNr guifg=#aabbcc guibg=#204056
-hi VertSplit gui=none guifg=#444444
+hi LineNr guifg=#555555 guibg=#202020
+hi SignColumn guibg=#202020
+hi VertSplit gui=none guifg=#444444 guibg=#202020
 hi clear CursorLine
-" hi CursorLine gui=underline
-hi CursorLine guibg=#2a2a2a
+hi CursorLine guibg=#303030
 " hi clear CursorLine
 " hi CursorColumn guibg=#0c1820
 hi clear Cursor

@@ -85,10 +85,10 @@ let g:lsp_diagnostics_signs_warning = {'text': ''}
 let g:lsp_diagnostics_signs_hint = {'text': ''}
 let g:lsp_diagnostics_signs_information = {'text': ''}
 let g:lsp_document_code_action_signs_hint = {'text': '💡'}
-hi LspErrorText              gui=bold guifg=#ff0000
-hi LspWarningText            gui=bold guifg=#ffff00
-hi LspInformationText        gui=bold guifg=#ffffff
-hi LspHintText               gui=bold guifg=#5599dd
+hi LspErrorText              gui=bold guifg=#ff0000 guibg=#202020
+hi LspWarningText            gui=bold guifg=#ffff00 guibg=#202020
+hi LspInformationText        gui=bold guifg=#ffffff guibg=#202020
+hi LspHintText               gui=bold guifg=#5599dd guibg=#202020
 hi LspErrorVirtualText       gui=bold guifg=#ff0000
 hi LspWarningVirtualText     gui=bold guifg=#ffff00
 hi LspInformationVirtualText gui=bold guifg=#ffffff
@@ -454,12 +454,14 @@ lua require("nvim-tree").setup({
   \     require_confirm = true,
   \   },
   \ })
-hi NvimTreeRootFolder   gui=bold guifg=#999999
-hi NvimTreeSpecialFile  gui=bold,underline guifg=#cccc55
-hi NvimTreeGitDirty     gui=bold guifg=#ffaa00
-hi NvimTreeGitStaged    gui=bold guifg=#44cc44
-hi NvimTreeGitNew       gui=bold guifg=#44cc44
-hi NvimTreeModifiedFile gui=bold guifg=#ffaa00
+hi NvimTreeRootFolder         gui=bold guifg=#999999
+hi NvimTreeFolderName         gui=bold guifg=#77aadd
+hi NvimTreeOpenedFolderName   gui=bold guifg=#77aadd
+hi NvimTreeSpecialFile        gui=bold,underline guifg=#cccc55
+hi NvimTreeGitDirty           gui=bold guifg=#ffaa00
+hi NvimTreeGitStaged          gui=bold guifg=#44cc44
+hi NvimTreeGitNew             gui=bold guifg=#44cc44
+hi NvimTreeModifiedFile       gui=bold guifg=#ffaa00
 
 
 ""vista.vim
@@ -564,8 +566,8 @@ let g:Hexokinase_highlighters = [ 'backgroundfull' ]
 
 
 "" vim-airline
-" let g:airline_theme = 'kalisi'
-let g:airline_theme = 'codedark'
+let g:airline_theme = 'kalisi'
+" let g:airline_theme = 'codedark'
 let g:airline_mode_map = {
   \ '__' : '------',
   \ 'n' : 'NORMAL',
@@ -685,6 +687,9 @@ let g:gitgutter_sign_removed                 = '_'
 let g:gitgutter_sign_removed_first_line      = '‾'
 let g:gitgutter_sign_removed_above_and_below = '_¯'
 let g:gitgutter_sign_modified_removed        = '│'
+hi GitGutterAdd    gui=bold guifg=#00bb00
+hi GitGutterChange gui=bold guifg=#cccc00
+hi GitGutterDelete gui=bold guifg=#ff2222
 
 
 "" ranger
