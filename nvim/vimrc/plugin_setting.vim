@@ -591,33 +591,35 @@ lua require('nvim-treesitter.configs').setup {
 " set nofoldenable  " Disable folding at startup.
 
 
-"" indentline
-let g:indentLine_enabled = 1
-let g:indentLine_char_list = ['│']
-let g:indentLine_concealcursor = 'inc'
-let g:indentLine_conceallevel = 1
-let g:indentLine_fileTypeExclude = ['terminal', 'help', 'fzf', 'vista_kind', 'NvimTree']
+" "" indentline
+" let g:indentLine_enabled = 1
+" let g:indentLine_char_list = ['│']
+" let g:indentLine_concealcursor = 'inc'
+" let g:indentLine_conceallevel = 1
+" let g:indentLine_fileTypeExclude = ['terminal', 'help', 'fzf', 'vista_kind', 'NvimTree']
 
 
 "" indent-blankline.nvim
-" let g:indent_blankline_char                    = '│'
-" let g:indent_blankline_context_char            = '┃'
-" let g:indent_blankline_space_char_blankline    = ' '
-" let g:indent_blankline_use_treesitter          = v:true
-" let g:indent_blankline_indent_level            = 10
-" " let g:indent_blankline_max_indent_increase    = 1
-" let g:indent_blankline_max_indent_increase     = g:indent_blankline_indent_level
-" let g:indent_blankline_show_first_indent_level = v:true
-" let g:indent_blankline_filetype_exclude        = ['terminal', 'help', 'fzf', 'vista_kind', 'NvimTree']
-" let g:indent_blankline_bufname_exclude         = ['README.md']
-" let g:indent_blankline_disable_with_nolist     = v:true
-" lua require("indent_blankline").setup {
-"     \   show_current_context = true,
-"     \   show_current_context_start = true,
-"     \ }
-" hi IndentBlanklineChar               guifg=#00FF00 gui=nocombine
-" hi IndentBlanklineSpaceChar          guifg=#00FF00 gui=nocombine
-" hi IndentBlanklineSpaceCharBlankline guifg=#00FF00 gui=nocombine
+let g:indent_blankline_char                       = '│'
+let g:indent_blankline_context_char               = '┃'
+let g:indent_blankline_space_char_blankline       = ' '
+let g:indent_blankline_use_treesitter             = v:true
+let g:indent_blankline_indent_level               = 10
+let g:indent_blankline_max_indent_increase        = g:indent_blankline_indent_level
+let g:indent_blankline_show_first_indent_level    = v:true
+let g:indent_blankline_show_current_context_start = v:true
+let g:indent_blankline_filetype_exclude           = ['terminal', 'help', 'fzf', 'vista_kind', 'NvimTree']
+let g:indent_blankline_bufname_exclude            = ['README.md']
+let g:indent_blankline_disable_with_nolist        = v:true
+lua require("indent_blankline").setup {
+    \   show_current_context = true,
+    \   show_current_context_start = true,
+    \ }
+hi IndentBlanklineChar               gui=none guifg=#444444
+hi IndentBlanklineContextChar        gui=bold guifg=#555555
+" hi IndentBlanklineContextStart       gui=bold guifg=none
+hi IndentBlanklineSpaceChar          gui=none guifg=#444444
+hi IndentBlanklineSpaceCharBlankline gui=none guifg=#444444
 
 
 "" vim-hexokinase

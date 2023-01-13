@@ -42,8 +42,8 @@ Plug 'wfxr/minimap.vim',  {'on': 'MinimapToggle'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'yggdroot/indentline'
-" Plug 'lukas-reineke/indent-blankline.nvim'
+" Plug 'yggdroot/indentline'
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
