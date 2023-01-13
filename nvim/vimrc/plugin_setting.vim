@@ -692,8 +692,8 @@ let g:airline_section_lsp_warn = '%{lsp#get_buffer_diagnostics_counts().warning>
 let g:airline_section_lsp_hint = '%{lsp#get_buffer_diagnostics_counts().hint>0 ?'
             \ .'g:lsp_diagnostics_signs_hint.text." ".lsp#get_buffer_diagnostics_counts().hint : ""}'
 let g:airline_section_x = ''
-" let g:airline_section_y = '%{&filetype}'
-" let g:airline_section_z = '%{&fileencodings}, %{&fileformat}'
+let g:airline_section_y = '%{&filetype}, %{&fileencodings}'
+" let g:airline_section_y = '%{&fileencodings}, %{&fileformat}'
 let g:airline_section_z = '%3l/%L,%2c'
 let g:airline#extensions#default#section_truncate_width = {}
 "" vim-airline separator
