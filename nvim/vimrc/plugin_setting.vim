@@ -615,11 +615,11 @@ lua require("indent_blankline").setup {
     \   show_current_context = true,
     \   show_current_context_start = true,
     \ }
-hi IndentBlanklineChar               gui=none guifg=#444444
-hi IndentBlanklineContextChar        gui=bold guifg=#555555
-" hi IndentBlanklineContextStart       gui=bold guifg=none
-hi IndentBlanklineSpaceChar          gui=none guifg=#444444
-hi IndentBlanklineSpaceCharBlankline gui=none guifg=#444444
+hi IndentBlanklineChar               gui=nocombine guifg=#3a3a3a
+hi IndentBlanklineContextChar        gui=bold      guifg=#606060
+" hi IndentBlanklineContextStart       gui=bold
+hi IndentBlanklineSpaceChar          gui=nocombine guifg=#3a3a3a
+hi IndentBlanklineSpaceCharBlankline gui=nocombine guifg=#3a3a3a
 
 
 "" vim-hexokinase
