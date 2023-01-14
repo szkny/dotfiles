@@ -42,8 +42,8 @@ Plug 'wfxr/minimap.vim',  {'on': 'MinimapToggle'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Plug 'yggdroot/indentline'
-Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'yggdroot/indentline'
+" Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
@@ -117,13 +117,13 @@ Plug 'szkny/Ipython',                  {'for': 'python'}
 " " Plug 'prettier/vim-prettier',  { 'for': ['javascript', 'typescript', 'css', 'json', 'markdown', 'vue', 'yaml', 'html'] }
 "
 " " misc
-" Plug 'elzr/vim-json',                  {'for': 'json'}
-" Plug 'raimon49/requirements.txt.vim',  {'for': 'requirements'}
-" Plug 'cespare/vim-toml',               {'for': 'toml'}
-" Plug 'kannokanno/previm',              {'for': 'markdown'}
-" Plug 'godlygeek/tabular',              {'for': 'markdown'}
-" Plug 'plasticboy/vim-markdown',        {'for': 'markdown'}
-" Plug 'yaasita/ore_markdown',           {'for': 'markdown'}
+Plug 'elzr/vim-json',                  {'for': 'json'}
+Plug 'raimon49/requirements.txt.vim',  {'for': 'requirements'}
+Plug 'cespare/vim-toml',               {'for': 'toml'}
+Plug 'kannokanno/previm',              {'for': 'markdown'}
+Plug 'godlygeek/tabular',              {'for': 'markdown'}
+Plug 'plasticboy/vim-markdown',        {'for': 'markdown'}
+Plug 'yaasita/ore_markdown',           {'for': 'markdown'}
 " Plug 'vim-scripts/applescript.vim',    {'for': 'applescript'}
 " Plug 'aklt/plantuml-syntax',           {'for': 'plantuml'}
 " Plug 'posva/vim-vue',                  {'for': 'vue'}
