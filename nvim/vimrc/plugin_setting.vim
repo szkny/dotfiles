@@ -383,6 +383,7 @@ lua require("nvim-tree").setup({
   \   renderer = {
   \     group_empty = true,
   \     highlight_git = true,
+  \     highlight_modified = "name",
   \     full_name = false,
   \     root_folder_label = ":t:gs?\\l?\\U\\0?",
   \     indent_width = 1,
@@ -459,8 +460,8 @@ lua require("nvim-tree").setup({
 hi NvimTreeRootFolder         gui=bold guifg=#999999
 hi NvimTreeFolderName         gui=bold guifg=#77aadd
 hi NvimTreeOpenedFolderName   gui=bold guifg=#77aadd
-hi NvimTreeSpecialFile        gui=bold,underline guifg=#cccc55
-hi NvimTreeGitDirty           gui=bold guifg=#ffaa00
+hi NvimTreeSpecialFile        gui=bold,underline guifg=#aaaa00
+hi NvimTreeGitDirty           gui=bold guifg=#ccaa55
 hi NvimTreeGitStaged          gui=bold guifg=#44cc44
 hi NvimTreeGitNew             gui=bold guifg=#44cc44
 hi NvimTreeModifiedFile       gui=bold guifg=#ffaa00
@@ -693,7 +694,7 @@ let g:airline_section_lsp_warn = '%{lsp#get_buffer_diagnostics_counts().warning>
 let g:airline_section_lsp_hint = '%{lsp#get_buffer_diagnostics_counts().hint>0 ?'
             \ .'g:lsp_diagnostics_signs_hint.text." ".lsp#get_buffer_diagnostics_counts().hint : ""}'
 let g:airline_section_x = ''
-let g:airline_section_y = '%{&filetype}, %{&fileencodings}'
+let g:airline_section_y = '%{&filetype} %{&fileencodings}'
 " let g:airline_section_y = '%{&fileencodings}, %{&fileformat}'
 let g:airline_section_z = '%3l/%L,%2c'
 let g:airline#extensions#default#section_truncate_width = {}
