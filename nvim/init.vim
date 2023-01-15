@@ -42,13 +42,13 @@ Plug 'wfxr/minimap.vim',  {'on': 'MinimapToggle'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 if has('wsl')
     Plug 'lukas-reineke/indent-blankline.nvim'
 else
     Plug 'yggdroot/indentline'
 endif
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " color scheme
 Plug 'tomasr/molokai'
@@ -60,8 +60,8 @@ Plug 'tomasiser/vim-code-dark'
 " Plug 'MunifTanjim/nui.nvim'
 
 " nvim-tree
-Plug 'nvim-tree/nvim-tree.lua'
-Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua',     {'on': 'NvimTreeToggle'}
+Plug 'nvim-tree/nvim-web-devicons', {'on': 'NvimTreeToggle'}
 
 " fzf.vim
 if isdirectory('/usr/local/opt/fzf')
