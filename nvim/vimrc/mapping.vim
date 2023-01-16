@@ -22,8 +22,8 @@ ino <silent> <C-w>      <ESC><C-w>
 " for edit
 vno <silent> >       >gv
 vno <silent> <       <gv
-" nno <expr>   <C-d>   ':<C-u>'.ReplaceWordText().'<Left><Left><Left>'
-" vno <expr>   <C-d>   ':<C-u>'.VReplaceWordText().'<Left><Left><Left>'
+nno <expr>   <C-d>   ':<C-u>'.ReplaceWordText().'<Left><Left><Left>'
+vno <expr>   <C-d>   ':<C-u>'.VReplaceWordText().'<Left><Left><Left>'
 
 " for tab/window
 nno <silent> <Right> :ChangeBuffer next<CR>

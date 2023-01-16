@@ -35,7 +35,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'szkny/SplitTerm'
 Plug 'junegunn/vim-easy-align'
 Plug 'liuchengxu/vista.vim'
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'wfxr/minimap.vim',  {'on': 'MinimapToggle'}
 
 " visual plugins
