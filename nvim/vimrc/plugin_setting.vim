@@ -632,6 +632,8 @@ let g:Hexokinase_highlighters = [ 'backgroundfull' ]
 "" vim-airline
 if g:colors_name == 'codedark'
     let g:airline_theme = 'codedark'
+elseif g:colors_name == 'tender'
+    let g:airline_theme = 'tender'
 else
     let g:airline_theme = 'kalisi'
 endif

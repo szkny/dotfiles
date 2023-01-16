@@ -51,8 +51,9 @@ else
 endif
 
 " color scheme
-Plug 'tomasr/molokai'
+" Plug 'tomasr/molokai'
 Plug 'tomasiser/vim-code-dark'
+" Plug 'jacoborus/tender.vim'
 
 " " nvim-notify / noice.nvim
 " Plug 'rcarriga/nvim-notify'
@@ -231,6 +232,7 @@ syntax on
 set background=dark
 " colorscheme molokai
 colorscheme codedark
+" colorscheme tender
 
 set ruler
 set number
