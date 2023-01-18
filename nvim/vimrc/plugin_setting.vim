@@ -147,14 +147,14 @@ hi PumColumnKind gui=none guifg=#888888 guibg=#202020
 hi PumColumnMenu gui=none guifg=#888888 guibg=#202020
 hi PumSelected  gui=bold guibg=#3388bb
 hi PumMatches   guifg=#ff8800
-hi PmenuSBar    guifg=#666666 guibg=#888888
+hi PmenuSBar    guifg=#666666 guibg=#cccccc
 hi FloatBorder  gui=bold guibg=#202020
 call pum#set_option(#{
   \   auto_select: v:true,
   \   max_height: 8,
   \   max_width: 0,
   \   offset_row: 1,
-  \   scrollbar_char: '|',
+  \   scrollbar_char: ' ',
   \   padding: v:true,
   \   use_complete: v:false,
   \   border: 'rounded',
@@ -186,7 +186,6 @@ call ddc#custom#patch_global('sourceOptions', #{
   \   converters: ['converter_fuzzy', 'converter_remove_overlap'],
   \   ignoreCase: v:true,
   \   minAutoCompleteLength: 1,
-  \   isVolatile: v:true,
   \ },
   \ vim-lsp: #{
   \   mark: '[LSP]',
@@ -204,6 +203,7 @@ call ddc#custom#patch_global('sourceOptions', #{
   \   mark: '[SKK]',
   \   matchers: ['skkeleton'],
   \   sorters: [],
+  \   isVolatile: v:true,
   \ },
   \ })
 call ddc#custom#patch_global('filterParams', #{
