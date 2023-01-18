@@ -106,7 +106,7 @@ Plug 'Shougo/ddc.vim'
 Plug 'vim-denops/denops.vim'
 " ddc UIs
 Plug 'Shougo/ddc-ui-native'
-Plug 'Shougo/pum.vim'
+Plug 'szkny/pum.vim'
 Plug 'Shougo/ddc-ui-pum'
 " ddc sources
 Plug 'Shougo/ddc-source-around'
