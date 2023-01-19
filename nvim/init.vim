@@ -316,9 +316,9 @@ set listchars=tab:¦\ ,trail:-,eol:↲
 set fillchars=vert:│
 set signcolumn=yes
 " set cursorcolumn
-set nocursorline
-au WinEnter * setl nocursorline
-au WinLeave * setl cursorline
+set cursorline
+" au WinEnter * setl nocursorline
+" au WinLeave * setl cursorline
 
 hi EndOfBuffer guifg=bg
 " hi matchparen ctermbg=236
