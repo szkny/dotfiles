@@ -154,7 +154,7 @@ Plug 'yaasita/ore_markdown',           {'for': 'markdown'}
 " Plug 'aklt/plantuml-syntax',           {'for': 'plantuml'}
 " Plug 'posva/vim-vue',                  {'for': 'vue'}
 " Plug 'digitaltoad/vim-pug',            {'for': 'pug'}
-" Plug 'hashivim/vim-terraform',         {'for': 'terraform'}
+Plug 'hashivim/vim-terraform',         {'for': 'terraform'}
 
 call plug#end()
 
