@@ -39,7 +39,9 @@ nno <silent> x       "_x
 vno <silent> x       "_x
 vno <silent> p       "_dP
 nno <silent> D       "_D
+nno <silent> dd      "_dd
 nno <silent> de      "_de
+nno <silent> dw      b"_de
 
 " for cursor move
 nno <silent> j       gj
