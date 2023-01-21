@@ -105,9 +105,9 @@ Plug 'matsui54/denops-signature_help'
 Plug 'Shougo/ddc.vim'
 Plug 'vim-denops/denops.vim'
 " ddc UIs
-Plug 'Shougo/ddc-ui-native'
 Plug 'szkny/pum.vim'
 Plug 'Shougo/ddc-ui-pum'
+" Plug 'Shougo/ddc-ui-native'
 " ddc sources
 Plug 'Shougo/ddc-source-around'
 Plug 'shun/ddc-source-vim-lsp'
