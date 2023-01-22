@@ -60,6 +60,7 @@ SAVEHIST=1000000
 alias cd='cdls'
 alias ls='exa -G'
 alias ll='exa -lh'
+alias g='git'
 alias tree='exa -T'
 alias mv='mv -i'
 alias od='od -x'
