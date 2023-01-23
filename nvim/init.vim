@@ -120,7 +120,7 @@ Plug 'Shougo/ddc-matcher_head'
 Plug 'Shougo/ddc-converter_remove_overlap'
 Plug 'tani/ddc-fuzzy'
 " " ddc etc.
-Plug 'vim-skk/skkeleton'
+Plug 'vim-skk/skkeleton', { 'frozen': 1 }
 " Plug 'hrsh7th/vim-vsnip'
 " Plug 'hrsh7th/vim-vsnip-integ'
 

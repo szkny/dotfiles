@@ -218,8 +218,8 @@ call ddc#custom#patch_global('filterParams', #{
 call ddc#custom#patch_global('cmdlineSources', {
   \ ':': [
   \   'cmdline',
-  \   'necovim',
   \   'cmdline-history',
+  \   'necovim',
   \   'file',
   \   'skkeleton',
   \ ],
