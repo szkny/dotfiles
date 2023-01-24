@@ -140,7 +140,7 @@ if get(g:, 'use_coc_nvim', 0) == 0
     hi link PopupPreviewBorder   FloatBorder
 
 
-    "" ddc.vim + pum.vim
+    "" pum.vim
     set shortmess+=c
     set wildoptions+=pum
     hi PumNormalMenu gui=none guifg=#dddddd guibg=#202020
@@ -157,7 +157,7 @@ if get(g:, 'use_coc_nvim', 0) == 0
       \   offset_row: 1,
       \   scrollbar_char: ' ',
       \   padding: v:true,
-      \   use_complete: v:false,
+      \   use_complete: v:true,
       \   border: 'rounded',
       \   highlight_normal_menu: 'PumNormalMenu',
       \   highlight_matches: '',
@@ -169,6 +169,9 @@ if get(g:, 'use_coc_nvim', 0) == 0
       \     menu: 'PumColumnMenu',
       \   },
       \ })
+
+
+    "" ddc.vim
     call ddc#custom#patch_global('ui', 'pum')
     call ddc#custom#patch_global('autoCompleteEvents', [
       \ 'InsertEnter', 'TextChangedI', 'TextChangedP',
