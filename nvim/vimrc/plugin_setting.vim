@@ -52,290 +52,292 @@ command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 
-"" vim-lsp
-let g:lsp_diagnostics_enabled                          = 1
-let g:lsp_diagnostics_signs_enabled                    = 1
-let g:lsp_diagnostics_signs_insert_mode_enabled        = 1
-let g:lsp_diagnostics_echo_cursor                      = 1
-let g:lsp_diagnostics_float_cursor                     = 1
-let g:lsp_diagnostics_highlights_enabled               = 1
-let g:lsp_diagnostics_virtual_text_enabled             = 1
-let g:lsp_diagnostics_virtual_text_insert_mode_enabled = 0
-" let g:lsp_diagnostics_virtual_text_prefix              = "   ■ "
-let g:lsp_diagnostics_virtual_text_prefix              = "    "
-let g:lsp_document_code_action_signs_enabled           = 1
-let g:lsp_inlay_hints_delay                            = 0
-let g:lsp_diagnostics_echo_delay                       = 0
-let g:lsp_diagnostics_signs_delay                      = 0
-let g:lsp_diagnostics_float_delay                      = 0
-let g:lsp_document_highlight_delay                     = 0
-let g:lsp_diagnostics_virtual_text_delay               = 0
-let g:lsp_document_code_action_signs_delay             = 0
-let g:lsp_diagnostics_signs_priority                   = 20
-let g:lsp_diagnostics_signs_priority_map = {
-    \ 'LspError': 20,
-    \ 'LspWarning': 15,
-    \ 'LspHint': 10,
-    \ 'LspInformation': 5,
-    \ }
-" let g:lsp_diagnostics_signs_error = {'text': '✗'}
-" let g:lsp_diagnostics_signs_error = {'text': '❌'}
-let g:lsp_diagnostics_signs_error = {'text': ''}
-let g:lsp_diagnostics_signs_warning = {'text': ''}
-let g:lsp_diagnostics_signs_hint = {'text': ''}
-let g:lsp_diagnostics_signs_information = {'text': ''}
-let g:lsp_document_code_action_signs_hint = {'text': '💡'}
-hi LspErrorText              gui=bold guifg=#ff0000 guibg=#202020
-hi LspWarningText            gui=bold guifg=#ffff00 guibg=#202020
-hi LspInformationText        gui=bold guifg=#ffffff guibg=#202020
-hi LspHintText               gui=bold guifg=#5599dd guibg=#202020
-hi LspErrorVirtualText       gui=bold guifg=#ff0000
-hi LspWarningVirtualText     gui=bold guifg=#ffff00
-hi LspInformationVirtualText gui=bold guifg=#ffffff
-hi LspHintVirtualText        gui=bold guifg=#5599dd
-hi link NormalFloat PumNormalMenu
+if get(g:, 'use_coc_nvim', 0) == 0
+    "" vim-lsp
+    let g:lsp_diagnostics_enabled                          = 1
+    let g:lsp_diagnostics_signs_enabled                    = 1
+    let g:lsp_diagnostics_signs_insert_mode_enabled        = 1
+    let g:lsp_diagnostics_echo_cursor                      = 1
+    let g:lsp_diagnostics_float_cursor                     = 1
+    let g:lsp_diagnostics_highlights_enabled               = 1
+    let g:lsp_diagnostics_virtual_text_enabled             = 1
+    let g:lsp_diagnostics_virtual_text_insert_mode_enabled = 0
+    " let g:lsp_diagnostics_virtual_text_prefix              = "   ■ "
+    let g:lsp_diagnostics_virtual_text_prefix              = "    "
+    let g:lsp_document_code_action_signs_enabled           = 1
+    let g:lsp_inlay_hints_delay                            = 0
+    let g:lsp_diagnostics_echo_delay                       = 0
+    let g:lsp_diagnostics_signs_delay                      = 0
+    let g:lsp_diagnostics_float_delay                      = 0
+    let g:lsp_document_highlight_delay                     = 0
+    let g:lsp_diagnostics_virtual_text_delay               = 0
+    let g:lsp_document_code_action_signs_delay             = 0
+    let g:lsp_diagnostics_signs_priority                   = 20
+    let g:lsp_diagnostics_signs_priority_map = {
+        \ 'LspError': 20,
+        \ 'LspWarning': 15,
+        \ 'LspHint': 10,
+        \ 'LspInformation': 5,
+        \ }
+    " let g:lsp_diagnostics_signs_error = {'text': '✗'}
+    " let g:lsp_diagnostics_signs_error = {'text': '❌'}
+    let g:lsp_diagnostics_signs_error = {'text': ''}
+    let g:lsp_diagnostics_signs_warning = {'text': ''}
+    let g:lsp_diagnostics_signs_hint = {'text': ''}
+    let g:lsp_diagnostics_signs_information = {'text': ''}
+    let g:lsp_document_code_action_signs_hint = {'text': '💡'}
+    hi LspErrorText              gui=bold guifg=#ff0000 guibg=#202020
+    hi LspWarningText            gui=bold guifg=#ffff00 guibg=#202020
+    hi LspInformationText        gui=bold guifg=#ffffff guibg=#202020
+    hi LspHintText               gui=bold guifg=#5599dd guibg=#202020
+    hi LspErrorVirtualText       gui=bold guifg=#ff0000
+    hi LspWarningVirtualText     gui=bold guifg=#ffff00
+    hi LspInformationVirtualText gui=bold guifg=#ffffff
+    hi LspHintVirtualText        gui=bold guifg=#5599dd
+    hi link NormalFloat PumNormalMenu
 
 
-" "" lsp_signature (for vim-lsp)
-" lua require("lsp_signature").setup({
-"   \   bind = true,
-"   \   handler_opts = {
-"   \     border = "rounded"
-"   \   }
-"   \ })
+    " "" lsp_signature (for vim-lsp)
+    " lua require("lsp_signature").setup({
+    "   \   bind = true,
+    "   \   handler_opts = {
+    "   \     border = "rounded"
+    "   \   }
+    "   \ })
 
 
-"" signature_help (for vim-lsp)
-call signature_help#enable()
-let g:lsp_signature_help_enabled = 0  " disable vim-lsp's signature help
-let g:signature_help_config = #{
-  \ maxWidth: 80,
-  \ maxHeight: 30,
-  \ border: v:true,
-  \ fallbackToBelow: v:true,
-  \ winblend: 'pumblend',
-  \ contentsStyle: 'labels',
-  \ viewStyle: 'floating',
-  \ }
-  " \ contentsStyle: 'remainingLabels',
-  " \ viewStyle: 'virtual',
-hi link SignatureHelpDocument PumNormalMenu
-hi link SignatureHelpBorder   FloatBorder
-hi SignatureHelpVirtual   gui=bold,underline,reverse guifg=#aaddff
-hi SignatureHelpGhostText guifg=#88bbff guibg=#303030
+    "" signature_help (for vim-lsp)
+    call signature_help#enable()
+    let g:lsp_signature_help_enabled = 0  " disable vim-lsp's signature help
+    let g:signature_help_config = #{
+      \ maxWidth: 80,
+      \ maxHeight: 30,
+      \ border: v:true,
+      \ fallbackToBelow: v:true,
+      \ winblend: 'pumblend',
+      \ contentsStyle: 'labels',
+      \ viewStyle: 'floating',
+      \ }
+      " \ contentsStyle: 'remainingLabels',
+      " \ viewStyle: 'virtual',
+    hi link SignatureHelpDocument PumNormalMenu
+    hi link SignatureHelpBorder   FloatBorder
+    hi SignatureHelpVirtual   gui=bold,underline,reverse guifg=#aaddff
+    hi SignatureHelpGhostText guifg=#88bbff guibg=#303030
 
 
-"" denops-popup-preview (for vim-lsp, pum.vim)
-call popup_preview#enable()
-let g:popup_preview_config = #{
-  \ maxWidth: 80,
-  \ maxHeight: 30,
-  \ border: v:true,
-  \ winblend: 'pumblend',
-  \ supportVsnip: v:false,
-  \ supportUltisnips: v:false,
-  \ }
-hi link PopupPreviewDocument PumNormalMenu
-hi link PopupPreviewBorder   FloatBorder
+    "" denops-popup-preview (for vim-lsp, pum.vim)
+    call popup_preview#enable()
+    let g:popup_preview_config = #{
+      \ maxWidth: 80,
+      \ maxHeight: 30,
+      \ border: v:true,
+      \ winblend: 'pumblend',
+      \ supportVsnip: v:false,
+      \ supportUltisnips: v:false,
+      \ }
+    hi link PopupPreviewDocument PumNormalMenu
+    hi link PopupPreviewBorder   FloatBorder
 
 
-"" ddc.vim + pum.vim
-set shortmess+=c
-set wildoptions+=pum
-hi PumNormalMenu gui=none guifg=#dddddd guibg=#202020
-hi PumColumnKind gui=none guifg=#888888 guibg=#202020
-hi PumColumnMenu gui=none guifg=#888888 guibg=#202020
-hi PumSelected  gui=bold guibg=#3388bb
-hi PumMatches   guifg=#ff8800
-hi PmenuSBar    guifg=#666666 guibg=#cccccc
-hi FloatBorder  gui=bold guibg=#202020
-call pum#set_option(#{
-  \   auto_select: v:true,
-  \   max_height: 8,
-  \   max_width: 0,
-  \   offset_row: 1,
-  \   scrollbar_char: ' ',
-  \   padding: v:true,
-  \   use_complete: v:false,
-  \   border: 'rounded',
-  \   highlight_normal_menu: 'PumNormalMenu',
-  \   highlight_matches: '',
-  \   highlight_scrollbar: 'PmenuSBar',
-  \   highlight_selected: 'PumSelected',
-  \   highlight_columns: #{
-  \     abbr: 'PumNormalMenu',
-  \     kind: 'PumColumnKind',
-  \     menu: 'PumColumnMenu',
-  \   },
-  \ })
-call ddc#custom#patch_global('ui', 'pum')
-call ddc#custom#patch_global('autoCompleteEvents', [
-  \ 'InsertEnter', 'TextChangedI', 'TextChangedP',
-  \ 'CmdlineEnter', 'CmdlineChanged',
-  \ ])
-call ddc#custom#patch_global('sources', [
-  \ 'vim-lsp',
-  \ 'around',
-  \ 'file',
-  \ 'skkeleton',
-  \ ])
-call ddc#custom#patch_global('sourceOptions', #{
-  \ _: #{
-  \   matchers: ['matcher_fuzzy'],
-  \   sorters: ['sorter_fuzzy'],
-  \   converters: ['converter_fuzzy', 'converter_remove_overlap'],
-  \   ignoreCase: v:true,
-  \   minAutoCompleteLength: 1,
-  \ },
-  \ vim-lsp: #{
-  \   mark: '[LSP]',
-  \   forceCompletionPattern: '\.|:|->|"\w+/*',
-  \ },
-  \ around: #{
-  \   mark: '[AROUND]',
-  \   maxSize: 200,
-  \ },
-  \ file: #{
-  \   mark: '[FILE]',
-  \   forceCompletionPattern: '\S/\S*',
-  \ },
-  \ skkeleton: #{
-  \   mark: '[SKK]',
-  \   matchers: ['skkeleton'],
-  \   sorters: [],
-  \   isVolatile: v:true,
-  \ },
-  \ })
-call ddc#custom#patch_global('filterParams', #{
-  \   matcher_fuzzy: #{
-  \     splitMode: 'word'
-  \   },
-  \   converter_fuzzy: #{
-  \     hlGroup: 'PumMatches'
-  \   }
-  \ })
-"" ddc.vim cmdline completion setup
-call ddc#custom#patch_global('cmdlineSources', {
-  \ ':': [
-  \   'cmdline',
-  \   'cmdline-history',
-  \   'necovim',
-  \   'file',
-  \   'skkeleton',
-  \ ],
-  \ '/': [
-  \   'around',
-  \   'file',
-  \   'skkeleton',
-  \ ],
-  \ })
-fun! DdcCommandlinePre() abort
-  " Note: It disables default command line completion!
-  if !exists('b:prev_buffer_config')
-    let b:prev_buffer_config = ddc#custom#get_buffer()
-  endif
-  call ddc#custom#patch_buffer('ui', 'pum')
-  call ddc#custom#patch_buffer('sourceOptions', #{
-    \ _: #{
-    \   matchers: ['matcher_head'],
-    \ },
-    \ cmdline: #{
-    \   mark: '[COMMAND]',
-    \   forceCompletionPattern: '\ |:|->|"\w+/*',
-    \ },
-    \ cmdline-history: #{
-    \   mark: '[HISTORY]',
-    \ },
-    \ necovim: #{
-    \   mark: '[ARGS]',
-    \   forceCompletionPattern: '\ |:|->|"\w+/*',
-    \ },
-    \ })
-  au User DDCCmdlineLeave ++once call DdcCommandlinePost()
-  au InsertEnter <buffer> ++once call DdcCommandlinePost()
-  call ddc#enable_cmdline_completion()
-endf
-fun! DdcCommandlinePost() abort
-  " Restore sources
-  if exists('b:prev_buffer_config')
-    call ddc#custom#set_buffer(b:prev_buffer_config)
-    unlet b:prev_buffer_config
-  else
-    call ddc#custom#set_buffer({})
-  endif
-endf
-if !exists('g:necovim#complete_functions')
-  let g:necovim#complete_functions = {}
-endif
-let g:necovim#complete_functions.Ref = 'ref#complete'
-call ddc#enable()
-" " vsnip for ddc.vim
-" au User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
-
-
-"" skkeleton
-fun! s:skkeleton_init() abort
-    call skkeleton#config(#{
-      \ globalJisyo: '~/.skk/SKK-JISYO.L',
-      \ kanaTable: 'rom',
-      \ eggLikeNewline: v:true,
-      \ usePopup: v:false,
-      \ registerConvertResult: v:true,
-      \ acceptIllegalResult: v:true,
-      \ keepState: v:false,
+    "" ddc.vim + pum.vim
+    set shortmess+=c
+    set wildoptions+=pum
+    hi PumNormalMenu gui=none guifg=#dddddd guibg=#202020
+    hi PumColumnKind gui=none guifg=#888888 guibg=#202020
+    hi PumColumnMenu gui=none guifg=#888888 guibg=#202020
+    hi PumSelected  gui=bold guibg=#3388bb
+    hi PumMatches   guifg=#ff8800
+    hi PmenuSBar    guifg=#666666 guibg=#cccccc
+    hi FloatBorder  gui=bold guibg=#202020
+    call pum#set_option(#{
+      \   auto_select: v:true,
+      \   max_height: 8,
+      \   max_width: 0,
+      \   offset_row: 1,
+      \   scrollbar_char: ' ',
+      \   padding: v:true,
+      \   use_complete: v:false,
+      \   border: 'rounded',
+      \   highlight_normal_menu: 'PumNormalMenu',
+      \   highlight_matches: '',
+      \   highlight_scrollbar: 'PmenuSBar',
+      \   highlight_selected: 'PumSelected',
+      \   highlight_columns: #{
+      \     abbr: 'PumNormalMenu',
+      \     kind: 'PumColumnKind',
+      \     menu: 'PumColumnMenu',
+      \   },
       \ })
-    call skkeleton#register_kanatable('rom', {
-      \ "z\<Space>": ["\u3000", ''],
+    call ddc#custom#patch_global('ui', 'pum')
+    call ddc#custom#patch_global('autoCompleteEvents', [
+      \ 'InsertEnter', 'TextChangedI', 'TextChangedP',
+      \ 'CmdlineEnter', 'CmdlineChanged',
+      \ ])
+    call ddc#custom#patch_global('sources', [
+      \ 'vim-lsp',
+      \ 'around',
+      \ 'file',
+      \ 'skkeleton',
+      \ ])
+    call ddc#custom#patch_global('sourceOptions', #{
+      \ _: #{
+      \   matchers: ['matcher_fuzzy'],
+      \   sorters: ['sorter_fuzzy'],
+      \   converters: ['converter_fuzzy', 'converter_remove_overlap'],
+      \   ignoreCase: v:true,
+      \   minAutoCompleteLength: 1,
+      \ },
+      \ vim-lsp: #{
+      \   mark: '[LSP]',
+      \   forceCompletionPattern: '\.|:|->|"\w+/*',
+      \ },
+      \ around: #{
+      \   mark: '[AROUND]',
+      \   maxSize: 200,
+      \ },
+      \ file: #{
+      \   mark: '[FILE]',
+      \   forceCompletionPattern: '\S/\S*',
+      \ },
+      \ skkeleton: #{
+      \   mark: '[SKK]',
+      \   matchers: ['skkeleton'],
+      \   sorters: [],
+      \   isVolatile: v:true,
+      \ },
       \ })
-    call add(g:skkeleton#mapped_keys, '<C-h>')
-    call add(g:skkeleton#mapped_keys, '<F6>')
-    call add(g:skkeleton#mapped_keys, '<F7>')
-    call add(g:skkeleton#mapped_keys, '<F8>')
-    call add(g:skkeleton#mapped_keys, '<F9>')
-    call add(g:skkeleton#mapped_keys, '<F10>')
-    call add(g:skkeleton#mapped_keys, '<C-k>')
-    call add(g:skkeleton#mapped_keys, '<C-q>')
-    call add(g:skkeleton#mapped_keys, '<C-a>')
-    call skkeleton#register_keymap('input', '<C-h>', '')
-    call skkeleton#register_keymap('input', '<Up>', '')
-    call skkeleton#register_keymap('input', '<Down>', '')
-    call skkeleton#register_keymap('input', '<F6>',  'katakana')
-    call skkeleton#register_keymap('input', '<F7>',  'katakana')
-    call skkeleton#register_keymap('input', '<F8>',  'hankatakana')
-    call skkeleton#register_keymap('input', '<F9>',  'zenkaku')
-    call skkeleton#register_keymap('input', '<F10>', 'disable')
-    call skkeleton#register_keymap('input', '<C-k>', 'katakana')
-    call skkeleton#register_keymap('input', '<C-q>', 'hankatakana')
-    call skkeleton#register_keymap('input', '<C-a>', 'zenkaku')
-endf
-aug skkeleton-initialize-pre
-  au!
-  au User skkeleton-initialize-pre call s:skkeleton_init()
-aug END
-aug skkeleton-mode-changed
-  au!
-  au User skkeleton-mode-changed redrawstatus
-aug END
-fun! Airline_skkeleton_mode() abort
-    try
-        let l:current_mode = mode()
-        if (l:current_mode=='i' || l:current_mode=='c') && skkeleton#is_enabled()
-            let l:mode_dict = #{
-              \ hira:    'あ',
-              \ kata:    'ア',
-              \ hankata: '_ｱ',
-              \ zenkaku: 'Ａ',
-              \ abbrev:  'abbr',
-              \ }
-            let l:mode = mode_dict[skkeleton#mode()]
-            return '  IME:'.l:mode
-        else
+    call ddc#custom#patch_global('filterParams', #{
+      \   matcher_fuzzy: #{
+      \     splitMode: 'word'
+      \   },
+      \   converter_fuzzy: #{
+      \     hlGroup: 'PumMatches'
+      \   }
+      \ })
+    "" ddc.vim cmdline completion setup
+    call ddc#custom#patch_global('cmdlineSources', {
+      \ ':': [
+      \   'cmdline',
+      \   'cmdline-history',
+      \   'necovim',
+      \   'file',
+      \   'skkeleton',
+      \ ],
+      \ '/': [
+      \   'around',
+      \   'file',
+      \   'skkeleton',
+      \ ],
+      \ })
+    fun! DdcCommandlinePre() abort
+      " Note: It disables default command line completion!
+      if !exists('b:prev_buffer_config')
+        let b:prev_buffer_config = ddc#custom#get_buffer()
+      endif
+      call ddc#custom#patch_buffer('ui', 'pum')
+      call ddc#custom#patch_buffer('sourceOptions', #{
+        \ _: #{
+        \   matchers: ['matcher_head'],
+        \ },
+        \ cmdline: #{
+        \   mark: '[COMMAND]',
+        \   forceCompletionPattern: '\ |:|->|"\w+/*',
+        \ },
+        \ cmdline-history: #{
+        \   mark: '[HISTORY]',
+        \ },
+        \ necovim: #{
+        \   mark: '[ARGS]',
+        \   forceCompletionPattern: '\ |:|->|"\w+/*',
+        \ },
+        \ })
+      au User DDCCmdlineLeave ++once call DdcCommandlinePost()
+      au InsertEnter <buffer> ++once call DdcCommandlinePost()
+      call ddc#enable_cmdline_completion()
+    endf
+    fun! DdcCommandlinePost() abort
+      " Restore sources
+      if exists('b:prev_buffer_config')
+        call ddc#custom#set_buffer(b:prev_buffer_config)
+        unlet b:prev_buffer_config
+      else
+        call ddc#custom#set_buffer({})
+      endif
+    endf
+    if !exists('g:necovim#complete_functions')
+      let g:necovim#complete_functions = {}
+    endif
+    let g:necovim#complete_functions.Ref = 'ref#complete'
+    call ddc#enable()
+    " " vsnip for ddc.vim
+    " au User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
+
+
+    "" skkeleton
+    fun! s:skkeleton_init() abort
+        call skkeleton#config(#{
+          \ globalJisyo: '~/.skk/SKK-JISYO.L',
+          \ kanaTable: 'rom',
+          \ eggLikeNewline: v:true,
+          \ usePopup: v:false,
+          \ registerConvertResult: v:true,
+          \ acceptIllegalResult: v:true,
+          \ keepState: v:false,
+          \ })
+        call skkeleton#register_kanatable('rom', {
+          \ "z\<Space>": ["\u3000", ''],
+          \ })
+        call add(g:skkeleton#mapped_keys, '<C-h>')
+        call add(g:skkeleton#mapped_keys, '<F6>')
+        call add(g:skkeleton#mapped_keys, '<F7>')
+        call add(g:skkeleton#mapped_keys, '<F8>')
+        call add(g:skkeleton#mapped_keys, '<F9>')
+        call add(g:skkeleton#mapped_keys, '<F10>')
+        call add(g:skkeleton#mapped_keys, '<C-k>')
+        call add(g:skkeleton#mapped_keys, '<C-q>')
+        call add(g:skkeleton#mapped_keys, '<C-a>')
+        call skkeleton#register_keymap('input', '<C-h>', '')
+        call skkeleton#register_keymap('input', '<Up>', '')
+        call skkeleton#register_keymap('input', '<Down>', '')
+        call skkeleton#register_keymap('input', '<F6>',  'katakana')
+        call skkeleton#register_keymap('input', '<F7>',  'katakana')
+        call skkeleton#register_keymap('input', '<F8>',  'hankatakana')
+        call skkeleton#register_keymap('input', '<F9>',  'zenkaku')
+        call skkeleton#register_keymap('input', '<F10>', 'disable')
+        call skkeleton#register_keymap('input', '<C-k>', 'katakana')
+        call skkeleton#register_keymap('input', '<C-q>', 'hankatakana')
+        call skkeleton#register_keymap('input', '<C-a>', 'zenkaku')
+    endf
+    aug skkeleton-initialize-pre
+      au!
+      au User skkeleton-initialize-pre call s:skkeleton_init()
+    aug END
+    aug skkeleton-mode-changed
+      au!
+      au User skkeleton-mode-changed redrawstatus
+    aug END
+    fun! Airline_skkeleton_mode() abort
+        try
+            let l:current_mode = mode()
+            if (l:current_mode=='i' || l:current_mode=='c') && skkeleton#is_enabled()
+                let l:mode_dict = #{
+                  \ hira:    'あ',
+                  \ kata:    'ア',
+                  \ hankata: '_ｱ',
+                  \ zenkaku: 'Ａ',
+                  \ abbrev:  'abbr',
+                  \ }
+                let l:mode = mode_dict[skkeleton#mode()]
+                return '  IME:'.l:mode
+            else
+                return ''
+            endif
+        catch
             return ''
-        endif
-    catch
-        return ''
-    endtry
-endf
+        endtry
+    endf
+endif
 
 
 "" neosnippet
@@ -678,9 +680,6 @@ let g:airline#extensions#tabline#show_splits     = 1
 let g:airline#extensions#tabline#show_buffers    = 1
 let g:airline#extensions#wordcount#enabled       = 0
 let g:airline#extensions#vista#enabled           = 0
-let g:airline#extensions#default#layout = [
-    \ ['a', 'b', 'c', 'vista_info'],
-    \ ['lsp_err', 'lsp_warn', 'lsp_hint', 'x', 'y', 'z']]
 fun! ALtextapprove()
   let l:min_width = 100
   if winwidth(0) >= l:min_width
@@ -688,19 +687,32 @@ fun! ALtextapprove()
   endif
   return v:false
 endf
-let g:airline_section_a = airline#section#create(['mode', '%{Airline_skkeleton_mode()}'])
-let g:airline_section_c = '%t'
-let g:airline_section_vista_info = '%{ALtextapprove() ? AirlineVistaNearestMethodOrFunction():""}'
-let g:airline_section_lsp_err  = '%{lsp#get_buffer_diagnostics_counts().error>0 ?'
-            \ .'g:lsp_diagnostics_signs_error.text." ".lsp#get_buffer_diagnostics_counts().error : ""}'
-let g:airline_section_lsp_warn = '%{lsp#get_buffer_diagnostics_counts().warning>0 ?'
-            \ .'g:lsp_diagnostics_signs_warning.text." ".lsp#get_buffer_diagnostics_counts().warning : ""}'
-let g:airline_section_lsp_hint = '%{lsp#get_buffer_diagnostics_counts().hint>0 ?'
-            \ .'g:lsp_diagnostics_signs_hint.text." ".lsp#get_buffer_diagnostics_counts().hint : ""}'
-let g:airline_section_x = ''
-let g:airline_section_y = '%{&filetype} %{&fileencodings}'
-" let g:airline_section_y = '%{&fileencodings}, %{&fileformat}'
-let g:airline_section_z = '%3l/%L,%2c'
+if g:use_coc_nvim == 0
+    let g:airline#extensions#default#layout = [
+        \ ['a', 'b', 'c', 'vista_info'],
+        \ ['lsp_err', 'lsp_warn', 'lsp_hint', 'x', 'y', 'z']]
+    let g:airline_section_a = airline#section#create(['mode', '%{Airline_skkeleton_mode()}'])
+    let g:airline_section_c = '%t'
+    let g:airline_section_vista_info = '%{ALtextapprove() ? AirlineVistaNearestMethodOrFunction():""}'
+    let g:airline_section_lsp_err  = '%{lsp#get_buffer_diagnostics_counts().error>0 ?'
+                \ .'g:lsp_diagnostics_signs_error.text." ".lsp#get_buffer_diagnostics_counts().error : ""}'
+    let g:airline_section_lsp_warn = '%{lsp#get_buffer_diagnostics_counts().warning>0 ?'
+                \ .'g:lsp_diagnostics_signs_warning.text." ".lsp#get_buffer_diagnostics_counts().warning : ""}'
+    let g:airline_section_lsp_hint = '%{lsp#get_buffer_diagnostics_counts().hint>0 ?'
+                \ .'g:lsp_diagnostics_signs_hint.text." ".lsp#get_buffer_diagnostics_counts().hint : ""}'
+    let g:airline_section_x = ''
+    let g:airline_section_y = '%{&filetype} %{&fileencodings}'
+    let g:airline_section_z = '%3l/%L,%2c'
+else
+    let g:airline#extensions#default#layout = [
+        \ ['a', 'b', 'c', 'vista_info'],
+        \ ['x', 'y', 'z']]
+    let g:airline_section_c = '%t'
+    let g:airline_section_vista_info = '%{ALtextapprove() ? AirlineVistaNearestMethodOrFunction():""}'
+    let g:airline_section_x = ''
+    let g:airline_section_y = '%{&filetype} %{&fileencodings}'
+    let g:airline_section_z = '%3l/%L,%2c'
+endif
 let g:airline#extensions#default#section_truncate_width = {}
 "" vim-airline separator
 let g:airline#extensions#tabline#right_sep = '  '

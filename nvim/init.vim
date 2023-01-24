@@ -94,35 +94,41 @@ else
     Plug 'junegunn/fzf.vim'
 endif
 
-" vim-lsp
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'matsui54/denops-popup-preview.vim'
-Plug 'matsui54/denops-signature_help'
+" coc.nvim
+let g:use_coc_nvim = 1
+if get(g:, 'use_coc_nvim', 0) == 1
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+else
+    " vim-lsp
+    Plug 'prabirshrestha/vim-lsp'
+    Plug 'mattn/vim-lsp-settings'
+    Plug 'matsui54/denops-popup-preview.vim'
+    Plug 'matsui54/denops-signature_help'
 
-" for ddc settings
-" ddc core
-Plug 'Shougo/ddc.vim'
-Plug 'vim-denops/denops.vim'
-" ddc UIs
-Plug 'szkny/pum.vim'
-Plug 'Shougo/ddc-ui-pum'
-" Plug 'Shougo/ddc-ui-native'
-" ddc sources
-Plug 'Shougo/ddc-source-around'
-Plug 'shun/ddc-source-vim-lsp'
-Plug 'LumaKernel/ddc-source-file'
-Plug 'Shougo/ddc-source-cmdline'
-Plug 'Shougo/ddc-source-cmdline-history'
-Plug 'Shougo/neco-vim'
-" ddc filters
-Plug 'Shougo/ddc-matcher_head'
-Plug 'Shougo/ddc-converter_remove_overlap'
-Plug 'tani/ddc-fuzzy'
-" " ddc etc.
-Plug 'vim-skk/skkeleton', { 'frozen': 1 }
-" Plug 'hrsh7th/vim-vsnip'
-" Plug 'hrsh7th/vim-vsnip-integ'
+    " for ddc settings
+    " ddc core
+    Plug 'Shougo/ddc.vim'
+    Plug 'vim-denops/denops.vim'
+    " ddc UIs
+    Plug 'szkny/pum.vim'
+    Plug 'Shougo/ddc-ui-pum'
+    " Plug 'Shougo/ddc-ui-native'
+    " ddc sources
+    Plug 'Shougo/ddc-source-around'
+    Plug 'shun/ddc-source-vim-lsp'
+    Plug 'LumaKernel/ddc-source-file'
+    Plug 'Shougo/ddc-source-cmdline'
+    Plug 'Shougo/ddc-source-cmdline-history'
+    Plug 'Shougo/neco-vim'
+    " ddc filters
+    Plug 'Shougo/ddc-matcher_head'
+    Plug 'Shougo/ddc-converter_remove_overlap'
+    Plug 'tani/ddc-fuzzy'
+    " " ddc etc.
+    Plug 'vim-skk/skkeleton', { 'frozen': 1 }
+    " Plug 'hrsh7th/vim-vsnip'
+    " Plug 'hrsh7th/vim-vsnip-integ'
+endif
 
 " c/c++
 " Plug 'vim-jp/cpp-vim',                 {'for': 'cpp'}
