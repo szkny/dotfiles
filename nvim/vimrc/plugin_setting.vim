@@ -605,7 +605,7 @@ if has('wsl')
     let g:indent_blankline_context_char               = '┃'
     let g:indent_blankline_space_char_blankline       = ' '
     let g:indent_blankline_use_treesitter             = v:true
-    let g:indent_blankline_indent_level               = 10
+    let g:indent_blankline_indent_level               = 30
     let g:indent_blankline_max_indent_increase        = g:indent_blankline_indent_level
     let g:indent_blankline_show_first_indent_level    = v:true
     let g:indent_blankline_show_current_context_start = v:true
