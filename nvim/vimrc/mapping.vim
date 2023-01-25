@@ -102,6 +102,7 @@ nno <silent> <C-g> :<C-u>Vista finder<CR>
 nno <silent> <C-k> :<C-u>MinimapToggle<CR>:MinimapRefresh<CR>
 "" fugitive
 nno <silent><nowait> <leader>gg :<C-u>G<CR>
+nno <silent><nowait> <leader>gd :<C-u>Gvdiffsplit<CR>
 "" git-gutter
 nno <silent><nowait> <leader>gn :<C-u>GitGutterNextHunk<CR>
 nno <silent><nowait> <leader>gp :<C-u>GitGutterPrevHunk<CR>
