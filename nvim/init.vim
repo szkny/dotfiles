@@ -96,8 +96,13 @@ endif
 
 " coc.nvim
 let g:use_coc_nvim = 0
+let g:use_mason_nvim = 0
 if get(g:, 'use_coc_nvim', 0) == 1
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+elseif get(g:, 'use_mason_nvim', 0) == 1
+    Plug 'williamboman/mason.nvim'
+    Plug 'williamboman/mason-lspconfig.nvim'
+    Plug 'neovim/nvim-lspconfig'
 else
     " vim-lsp
     Plug 'prabirshrestha/vim-lsp'

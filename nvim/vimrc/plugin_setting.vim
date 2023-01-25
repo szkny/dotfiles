@@ -52,7 +52,40 @@ command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 
-if get(g:, 'use_coc_nvim', 0) == 0
+"" mason.nvim
+if get(g:, 'use_mason_nvim', 0) == 1
+    " lua require("mason").setup()
+    " lua require("mason-lspconfig").setup()
+    lua local on_attach = function(client, bufnr)
+      \  client.server_capabilities.documentFormattingProvider = false
+      \  local set = vim.keymap.set
+      \   set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+      \   set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
+      \   set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+      \   set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+      \   set('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>')
+      \   set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+      \   set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+      \   set('n', 'gx', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
+      \   set('n', 'g[', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
+      \   set('n', 'g]', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
+      \   set('n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+      \   end
+      \ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+      \ vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
+      \ require("mason").setup()
+      \ require("mason-lspconfig").setup()
+      \ require("mason-lspconfig").setup_handlers {
+      \   function(server_name)
+      \     require("lspconfig")[server_name].setup {
+      \       on_attach = on_attach,
+      \     }
+      \   end
+      \ }
+endif
+
+
+if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
     "" vim-lsp
     let g:lsp_diagnostics_enabled                          = 1
     let g:lsp_diagnostics_signs_enabled                    = 1
@@ -96,7 +129,6 @@ if get(g:, 'use_coc_nvim', 0) == 0
     hi LspHintVirtualText        gui=bold guifg=#5599dd
     hi link NormalFloat PumNormalMenu
 
-
     " "" lsp_signature (for vim-lsp)
     " lua require("lsp_signature").setup({
     "   \   bind = true,
@@ -104,7 +136,6 @@ if get(g:, 'use_coc_nvim', 0) == 0
     "   \     border = "rounded"
     "   \   }
     "   \ })
-
 
     "" signature_help (for vim-lsp)
     call signature_help#enable()
@@ -125,7 +156,6 @@ if get(g:, 'use_coc_nvim', 0) == 0
     hi SignatureHelpVirtual   gui=bold,underline,reverse guifg=#aaddff
     hi SignatureHelpGhostText guifg=#88bbff guibg=#303030
 
-
     "" denops-popup-preview (for vim-lsp, pum.vim)
     call popup_preview#enable()
     let g:popup_preview_config = #{
@@ -138,7 +168,6 @@ if get(g:, 'use_coc_nvim', 0) == 0
       \ }
     hi link PopupPreviewDocument PumNormalMenu
     hi link PopupPreviewBorder   FloatBorder
-
 
     "" pum.vim
     set shortmess+=c
@@ -169,7 +198,6 @@ if get(g:, 'use_coc_nvim', 0) == 0
       \     menu: 'PumColumnMenu',
       \   },
       \ })
-
 
     "" ddc.vim
     call ddc#custom#patch_global('ui', 'pum')
@@ -275,7 +303,6 @@ if get(g:, 'use_coc_nvim', 0) == 0
     call ddc#enable()
     " " vsnip for ddc.vim
     " au User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
-
 
     "" skkeleton
     fun! s:skkeleton_init() abort
@@ -609,7 +636,7 @@ if has('wsl')
     let g:indent_blankline_max_indent_increase        = g:indent_blankline_indent_level
     let g:indent_blankline_show_first_indent_level    = v:true
     let g:indent_blankline_show_current_context_start = v:true
-    let g:indent_blankline_filetype_exclude           = ['terminal', 'help', 'fzf', 'vista_kind', 'NvimTree']
+    let g:indent_blankline_filetype_exclude           = ['terminal', 'help', 'fzf', 'vista_kind', 'NvimTree', 'mason']
     let g:indent_blankline_bufname_exclude            = ['README.md']
     let g:indent_blankline_disable_with_nolist        = v:true
     lua require("indent_blankline").setup {
@@ -627,7 +654,7 @@ else
     let g:indentLine_char            = '│'
     let g:indentLine_concealcursor   = 'inc'
     let g:indentLine_conceallevel    = 2
-    let g:indentLine_fileTypeExclude = ['json', 'terminal', 'help', 'fzf', 'vista_kind', 'NvimTree']
+    let g:indentLine_fileTypeExclude = ['json', 'terminal', 'help', 'fzf', 'vista_kind', 'NvimTree', 'mason']
 endif
 
 
@@ -690,7 +717,7 @@ fun! ALtextapprove()
   endif
   return v:false
 endf
-if g:use_coc_nvim == 0
+if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
     let g:airline#extensions#default#layout = [
         \ ['a', 'b', 'c', 'vista_info'],
         \ ['lsp_err', 'lsp_warn', 'lsp_hint', 'x', 'y', 'z']]

@@ -107,7 +107,7 @@ nno <silent><nowait> <leader>gn :<C-u>GitGutterNextHunk<CR>
 nno <silent><nowait> <leader>gp :<C-u>GitGutterPrevHunk<CR>
 nno <silent><nowait> <leader>gh :<C-u>GitGutterLineHighlightsToggle<CR>
 
-if get(g:, 'use_coc_nvim', 0) == 0
+if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
     "" ddc.vim (with pum.vim)
     ino <silent> <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
     ino <silent> <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
