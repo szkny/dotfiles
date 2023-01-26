@@ -111,8 +111,6 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
         \ 'LspHint': 10,
         \ 'LspInformation': 5,
         \ }
-    " let g:lsp_diagnostics_signs_error = {'text': '✗'}
-    " let g:lsp_diagnostics_signs_error = {'text': '❌'}
     let g:lsp_diagnostics_signs_error = {'text': ''}
     let g:lsp_diagnostics_signs_warning = {'text': ''}
     let g:lsp_diagnostics_signs_hint = {'text': ''}
@@ -173,6 +171,7 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
     hi link PopupPreviewBorder   FloatBorder
 
     "" pum.vim
+    set pumblend=20
     set shortmess+=c
     set wildoptions+=pum
     hi PumNormalMenu gui=none guifg=#dddddd guibg=#202020
