@@ -338,7 +338,7 @@ aug transparencyBG
     au Colorscheme * hi Normal                                 guibg=none
 	au Colorscheme * hi NonText                                guibg=none
     au ColorScheme * hi EndOfBuffer              guifg=#252525 guibg=none
-	au Colorscheme * hi LineNr                                 guibg=none
+	au Colorscheme * hi LineNr                   guifg=#666666 guibg=none
 	au Colorscheme * hi SignColumn                             guibg=none
 	au Colorscheme * hi Folded                                 guibg=none
 	au Colorscheme * hi EndOfBuffer                            guibg=none
