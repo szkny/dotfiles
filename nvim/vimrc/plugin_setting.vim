@@ -95,7 +95,6 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
     let g:lsp_diagnostics_highlights_enabled               = 1
     let g:lsp_diagnostics_virtual_text_enabled             = 1
     let g:lsp_diagnostics_virtual_text_insert_mode_enabled = 0
-    " let g:lsp_diagnostics_virtual_text_prefix              = "   ■ "
     let g:lsp_diagnostics_virtual_text_prefix              = "    "
     let g:lsp_document_code_action_signs_enabled           = 1
     let g:lsp_inlay_hints_delay                            = 0
@@ -119,10 +118,14 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
     let g:lsp_diagnostics_signs_hint = {'text': ''}
     let g:lsp_diagnostics_signs_information = {'text': ''}
     let g:lsp_document_code_action_signs_hint = {'text': '💡'}
-    hi LspErrorText              gui=bold guifg=#ff0000 guibg=#202020
-    hi LspWarningText            gui=bold guifg=#ffff00 guibg=#202020
-    hi LspInformationText        gui=bold guifg=#ffffff guibg=#202020
-    hi LspHintText               gui=bold guifg=#5599dd guibg=#202020
+    hi link LspErrorText       SignColumn
+    hi link LspWarningText     SignColumn
+    hi link LspInformationText SignColumn
+    hi link LspHintText        SignColumn
+    hi LspErrorText              gui=bold guifg=#ff0000
+    hi LspWarningText            gui=bold guifg=#ffff00
+    hi LspInformationText        gui=bold guifg=#ffffff
+    hi LspHintText               gui=bold guifg=#5599dd
     hi LspErrorVirtualText       gui=bold guifg=#ff0000
     hi LspWarningVirtualText     gui=bold guifg=#ffff00
     hi LspInformationVirtualText gui=bold guifg=#ffffff

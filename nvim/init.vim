@@ -263,9 +263,6 @@ let g:python3_host_prog = expand('~/.pyenv/shims/python3')
 "*****************************************************************************
 syntax on
 set background=dark
-" colorscheme molokai
-colorscheme codedark
-" colorscheme tender
 
 set ruler
 set number
@@ -326,27 +323,34 @@ set list
 set listchars=tab:¦\ ,trail:-,eol:↲
 set fillchars=vert:│
 set signcolumn=yes
-" set cursorcolumn
+set nocursorcolumn
 set cursorline
-" au WinEnter * setl nocursorline
-" au WinLeave * setl cursorline
 
-hi EndOfBuffer guifg=bg
-" hi matchparen ctermbg=236
-" hi Normal ctermbg=NONE guibg=NONE
-hi NonText    guifg=#404040
-hi SpecialKey guifg=#404040
-hi LineNr guifg=#555555 guibg=#202020
-hi SignColumn guibg=#202020
-hi VertSplit gui=none guifg=#444444 guibg=#202020
-hi clear CursorLine
-hi CursorLine guibg=#303030
-" hi clear CursorLine
-" hi CursorColumn guibg=#0c1820
-hi clear Cursor
-hi Cursor gui=reverse
-" hi clear Visual
-" hi Visual gui=reverse
+aug transparencyBG
+    au!
+    " au ColorScheme * hi EndOfBuffer              guifg=bg
+    " au ColorScheme * hi NonText                  guifg=#404040
+    " au ColorScheme * hi SpecialKey               guifg=#404040
+    " au ColorScheme * hi LineNr                   guifg=#555555 guibg=#202020
+    " au ColorScheme * hi SignColumn                             guibg=#202020
+    " au ColorScheme * hi VertSplit   gui=none     guifg=#444444 guibg=#202020
+
+    au Colorscheme * hi Normal                                 guibg=none
+	au Colorscheme * hi NonText                                guibg=none
+    au ColorScheme * hi EndOfBuffer              guifg=#252525 guibg=none
+	au Colorscheme * hi LineNr                                 guibg=none
+	au Colorscheme * hi SignColumn                             guibg=none
+	au Colorscheme * hi Folded                                 guibg=none
+	au Colorscheme * hi EndOfBuffer                            guibg=none
+    au ColorScheme * hi VertSplit                guifg=#444444 guibg=none
+
+    au ColorScheme * hi CursorLine                             guibg=#303030
+    au ColorScheme * hi Cursor      gui=reverse
+aug END
+
+colorscheme codedark
+" colorscheme molokai
+" colorscheme tender
 
 
 "*****************************************************************************
