@@ -73,8 +73,8 @@ else
 endif
 
 " color scheme
-" Plug 'tomasr/molokai'
 Plug 'tomasiser/vim-code-dark'
+" Plug 'tomasr/molokai'
 " Plug 'jacoborus/tender.vim'
 
 " " nvim-notify / noice.nvim
@@ -94,12 +94,14 @@ else
     Plug 'junegunn/fzf.vim'
 endif
 
-" coc.nvim
+" LSP
 let g:use_coc_nvim = 0
 let g:use_mason_nvim = 0
 if get(g:, 'use_coc_nvim', 0) == 1
+    " coc.nvim
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 elseif get(g:, 'use_mason_nvim', 0) == 1
+    " mason.nvim
     Plug 'williamboman/mason.nvim'
     Plug 'williamboman/mason-lspconfig.nvim'
     Plug 'neovim/nvim-lspconfig'
