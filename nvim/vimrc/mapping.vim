@@ -67,6 +67,8 @@ tno <silent> <M-k> <Up>
 tno <silent> <M-l> <Right>
 nno <silent> <M-u> <PageUp>
 nno <silent> <M-d> <PageDown>
+cno          <C-a> <Home>
+cno          <C-e> <End>
 
 " for IME
 nno <silent> あ      a

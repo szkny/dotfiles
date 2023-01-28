@@ -465,8 +465,13 @@ aug END
 "*****************************************************************************
 "" Include user's local vim config
 "*****************************************************************************
-" set path+=**
 set runtimepath+=~/.config/nvim
 ru! vimrc/*.vim
 command! Vimrc silent e ~/dotfiles/nvim
 command! Reload silent source ~/.config/nvim/init.vim
+
+"*****************************************************************************
+"" for denops testbench
+"*****************************************************************************
+" set runtimepath^=~/.config/nvim/tmp
+" let g:denops#debug = 1
