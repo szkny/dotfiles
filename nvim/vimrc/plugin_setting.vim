@@ -202,51 +202,56 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
       \ })
 
     "" ddc.vim
-    call ddc#custom#patch_global('ui', 'pum')
-    call ddc#custom#patch_global('autoCompleteEvents', [
-      \ 'InsertEnter', 'TextChangedI', 'TextChangedP',
-      \ 'CmdlineEnter', 'CmdlineChanged',
-      \ ])
-    call ddc#custom#patch_global('sources', [
-      \ 'vim-lsp',
-      \ 'around',
-      \ 'file',
-      \ 'skkeleton',
-      \ ])
-    call ddc#custom#patch_global('sourceOptions', #{
-      \ _: #{
-      \   matchers: ['matcher_fuzzy'],
-      \   sorters: ['sorter_fuzzy'],
-      \   converters: ['converter_fuzzy', 'converter_remove_overlap'],
-      \   ignoreCase: v:true,
-      \   minAutoCompleteLength: 1,
-      \ },
-      \ vim-lsp: #{
-      \   mark: '[LSP]',
-      \   forceCompletionPattern: '\.|:|->|"\w+/*',
-      \ },
-      \ around: #{
-      \   mark: '[AROUND]',
-      \   maxSize: 200,
-      \ },
-      \ file: #{
-      \   mark: '[FILE]',
-      \   forceCompletionPattern: '\S/\S*',
-      \ },
-      \ skkeleton: #{
-      \   mark: '[SKK]',
-      \   matchers: ['skkeleton'],
-      \   sorters: [],
-      \   isVolatile: v:true,
-      \ },
+    call ddc#custom#patch_global(#{
+      \   ui: 'pum',
+      \   autoCompleteEvents: [
+      \     'InsertEnter', 'TextChangedI', 'TextChangedP',
+      \     'CmdlineEnter', 'CmdlineChanged',
+      \   ],
+      \   backspaceCompletion: v:true,
       \ })
-    call ddc#custom#patch_global('filterParams', #{
-      \   matcher_fuzzy: #{
-      \     splitMode: 'word'
+    call ddc#custom#patch_global(#{
+      \   sources: [
+      \     'vim-lsp',
+      \     'around',
+      \     'file',
+      \     'skkeleton',
+      \   ],
+      \   sourceOptions: #{
+      \     _: #{
+      \       matchers: ['matcher_fuzzy'],
+      \       sorters: ['sorter_fuzzy'],
+      \       converters: ['converter_fuzzy', 'converter_remove_overlap'],
+      \       ignoreCase: v:true,
+      \       minAutoCompleteLength: 1,
+      \     },
+      \     vim-lsp: #{
+      \       mark: '[LSP]',
+      \       forceCompletionPattern: '\.|:|->|"\w+/*',
+      \     },
+      \     around: #{
+      \       mark: '[AROUND]',
+      \       maxSize: 200,
+      \     },
+      \     file: #{
+      \       mark: '[FILE]',
+      \       forceCompletionPattern: '\S/\S*',
+      \     },
+      \     skkeleton: #{
+      \       mark: '[SKK]',
+      \       matchers: ['skkeleton'],
+      \       sorters: [],
+      \       isVolatile: v:true,
+      \     },
       \   },
-      \   converter_fuzzy: #{
-      \     hlGroup: 'PumMatches'
-      \   }
+      \   filterParams: #{
+      \     matcher_fuzzy: #{
+      \       splitMode: 'word'
+      \     },
+      \     converter_fuzzy: #{
+      \       hlGroup: 'PumMatches'
+      \     }
+      \   }, 
       \ })
     "" ddc.vim cmdline completion setup
     call ddc#custom#patch_global('cmdlineSources', {
