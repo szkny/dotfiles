@@ -106,6 +106,9 @@ elseif get(g:, 'use_mason_nvim', 0) == 1
     Plug 'williamboman/mason-lspconfig.nvim'
     Plug 'neovim/nvim-lspconfig'
 else
+    " denops
+    Plug 'vim-denops/denops.vim'
+
     " vim-lsp
     Plug 'prabirshrestha/vim-lsp'
     Plug 'mattn/vim-lsp-settings'
@@ -115,7 +118,6 @@ else
     " for ddc settings
     " ddc core
     Plug 'Shougo/ddc.vim'
-    Plug 'vim-denops/denops.vim'
     " ddc UIs
     Plug 'szkny/pum.vim'
     Plug 'Shougo/ddc-ui-pum'
