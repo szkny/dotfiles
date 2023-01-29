@@ -86,3 +86,6 @@ cd ~
 ## synbolic link for tmux
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 
+## starship prompt
+curl -sS https://starship.rs/install.sh | sh
+

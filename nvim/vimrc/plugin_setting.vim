@@ -445,8 +445,8 @@ lua require("nvim-tree").setup({
   \       glyphs = {
   \         git = {
   \           unstaged = "M",
-  \           staged = "✓ ",
-  \           unmerged = "✗ ",
+  \           staged = "✓",
+  \           unmerged = "✗",
   \           renamed = "R",
   \           untracked = "U",
   \           deleted = "D",
