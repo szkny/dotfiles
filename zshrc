@@ -1,32 +1,32 @@
-# プロンプト設定
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' formats '[%b]'
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
-precmd(){
-  # 1行あける
-  print
-  # カレントディレクトリ
-  local left=' %F{green}[%f%U%C%u%F{green}]%f'
-  # バージョン管理されてた場合、ブランチ名
-  vcs_info
-  local right="%{\e[38;5;32m%}${vcs_info_msg_0_}%{\e[m%}"
-  # スペースの長さを計算
-  # テキストを装飾する場合、エスケープシーケンスをカウントしない
-  local invisible='%([BSUbfksu]|([FK]|){*})'
-  local leftwidth=${#${(S%%)left//$~invisible/}}
-  local rightwidth=${#${(S%%)right//$~invisible/}}
-  local padwidth=$(($COLUMNS - ($leftwidth + $rightwidth) % $COLUMNS))
-
-  print -P $left${(r:$padwidth:: :)}$right
-}
-# ユーザ名@ホスト名
-PROMPT='%F{34}>%F{28}>%F{22}>%f '
-## 現在時刻
-RPROMPT=$'%F{green}(%f%D{%m/%d %a, %T}%F{green})%f'
-# TMOUT=1
-TRAPALRM() {
-  zle reset-prompt
-}
+# # プロンプト設定
+# autoload -Uz vcs_info
+# zstyle ':vcs_info:*' formats '[%b]'
+# zstyle ':vcs_info:*' actionformats '[%b|%a]'
+# precmd(){
+#   # 1行あける
+#   print
+#   # カレントディレクトリ
+#   local left=' %F{green}[%f%U%C%u%F{green}]%f'
+#   # バージョン管理されてた場合、ブランチ名
+#   vcs_info
+#   local right="%{\e[38;5;32m%}${vcs_info_msg_0_}%{\e[m%}"
+#   # スペースの長さを計算
+#   # テキストを装飾する場合、エスケープシーケンスをカウントしない
+#   local invisible='%([BSUbfksu]|([FK]|){*})'
+#   local leftwidth=${#${(S%%)left//$~invisible/}}
+#   local rightwidth=${#${(S%%)right//$~invisible/}}
+#   local padwidth=$(($COLUMNS - ($leftwidth + $rightwidth) % $COLUMNS))
+#
+#   print -P $left${(r:$padwidth:: :)}$right
+# }
+# # ユーザ名@ホスト名
+# PROMPT='%F{34}>%F{28}>%F{22}>%f '
+# ## 現在時刻
+# RPROMPT=$'%F{green}(%f%D{%m/%d %a, %T}%F{green})%f'
+# # TMOUT=1
+# TRAPALRM() {
+#   zle reset-prompt
+# }
 
 ## 補完機能
 setopt ALWAYS_TO_END 
@@ -218,6 +218,9 @@ eval "$(pyenv init -)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# starship setup
+eval "$(starship init zsh)"
 
 # ChatGPT
 source "$HOME/.openai_key.zsh"

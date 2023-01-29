@@ -5,8 +5,11 @@
 add_newline = true
 
 # Timeout
-scan_timeout = 30
+scan_timeout = 10
 command_timeout = 3000
+
+format = "$all$character"
+right_format = "$time"
 
 # Replace the '➜' symbol in the prompt with '❯'
 [character] # The name of the module we are configuring is 'character'
@@ -17,8 +20,18 @@ error_symbol = '[❯](bold red)'
 [package]
 disabled = false
 
+# Show current time
+[time]
+disabled = false
+format = '[\[$time\]]($style) '
+style = 'bold green'
+time_format = '%T'
+utc_time_offset = '+9'
+time_range = '00:00:00-23:59:59'
+
 # AWS
 [aws]
+disabled = false
 format = 'on [$symbol($profile )(\($region\) )]($style)'
 style = 'bold blue'
 symbol = '☁️ '
