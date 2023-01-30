@@ -23,7 +23,7 @@ disabled = false
 # Show current time
 [time]
 disabled = false
-format = '[\[$time\]]($style) '
+format = '🕙[\[$time\]]($style) '
 style = 'bold blue'
 time_format = '%T'
 utc_time_offset = '+9'
