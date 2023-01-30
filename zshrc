@@ -28,6 +28,20 @@
 #   zle reset-prompt
 # }
 
+# zplug
+source ~/.zplug/init.zsh
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
+zplug "chrissicool/zsh-256color"
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+  printf "Install? [y/N]: "
+  if read -q; then
+    echo; zplug install
+  fi
+fi
+zplug load
+
 ## 補完機能
 setopt ALWAYS_TO_END 
 setopt AUTO_MENU

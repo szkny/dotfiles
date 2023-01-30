@@ -86,6 +86,9 @@ cd ~
 ## synbolic link for tmux
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 
+## zplug
+curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+
 ## starship prompt
 curl -sS https://starship.rs/install.sh | sh
 ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
