@@ -21,9 +21,9 @@ error_symbol = '[❯](bold red)'
 disabled = false
 format = '[$path]($style)[$read_only]($read_only_style) '
 style = 'bold white'
-truncation_length = 5
+truncation_length = 100
 truncation_symbol = ''
-truncate_to_repo = true
+truncate_to_repo = false
 read_only_style = 'red'
 read_only = '🔒'
 
