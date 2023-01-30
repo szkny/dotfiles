@@ -48,7 +48,7 @@ time_range = '00:00:00-23:59:59'
 disabled = false
 format = 'took [$duration](bold yellow) '
 min_time = 2000
-show_milliseconds = true
+show_milliseconds = false
 
 # Package module
 [package]
