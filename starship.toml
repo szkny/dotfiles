@@ -20,7 +20,7 @@ error_symbol = '[❯](bold red)'
 [directory]
 disabled = false
 format = '[$path]($style)[$read_only]($read_only_style) '
-style = 'underline bold green'
+style = 'underline white'
 truncation_length = 100
 truncation_symbol = ''
 truncate_to_repo = false
@@ -42,6 +42,13 @@ style = 'underline bold white'
 time_format = '%T'
 utc_time_offset = '+9'
 time_range = '00:00:00-23:59:59'
+
+# Command duration time
+[cmd_duration]
+disabled = false
+format = 'took [$duration](bold yellow)'
+min_time = 2000
+show_milliseconds = true
 
 # Package module
 [package]
