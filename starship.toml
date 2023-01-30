@@ -1,5 +1,5 @@
 # Get editor completions based on the config schema
-"$schema" = 'https://starship.rs/config-schema.json'
+'$schema' = 'https://starship.rs/config-schema.json'
 
 # Inserts a blank line between shell prompts
 add_newline = true
@@ -8,26 +8,52 @@ add_newline = true
 scan_timeout = 10
 command_timeout = 3000
 
-format = "$all$character"
-right_format = "$time"
+format = '$all$character'
+right_format = '$time'
 
-# Replace the '➜' symbol in the prompt with '❯'
-[character] # The name of the module we are configuring is 'character'
-success_symbol = '[❯](bold green)'
+# Prompt character
+[character]
+success_symbol = '[❯](bold white)'
 error_symbol = '[❯](bold red)'
 
-# Disable the package module, hiding it from the prompt completely
-[package]
+# Direcotry
+[directory]
 disabled = false
+format = '[$path]($style)[$read_only]($read_only_style) '
+style = 'bold white'
+truncation_length = 5
+truncation_symbol = ''
+truncate_to_repo = true
+read_only_style = 'red'
+read_only = '🔒'
 
-# Show current time
+# Git branch
+[git_branch]
+format = 'on [$symbol$branch(:$remote_branch)]($style) '
+style = 'bold purple'
+symbol = " "
+ignore_branches = []
+
+# Current time
 [time]
 disabled = false
-format = '🕙[\[$time\]]($style) '
-style = 'bold blue'
+format = '🕙 [$time]($style) '
+style = 'bold white'
 time_format = '%T'
 utc_time_offset = '+9'
 time_range = '00:00:00-23:59:59'
+
+# Package module
+[package]
+disabled = false
+format = 'is [$symbol$version]($style) '
+symbol = '📦 '
+style = 'bold 208'
+
+# Node.js
+[nodejs]
+disabled = false
+format = 'via [ $version](bold green) '
 
 # AWS
 [aws]
