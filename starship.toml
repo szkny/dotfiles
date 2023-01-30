@@ -11,7 +11,7 @@ command_timeout = 3000
 #  or 
 format = """
 [░▒▓](#a3aed2)\
-[ ](bg:#a3aed2 fg:#090c0c)\
+[  ](bg:#a3aed2 fg:#090c0c)\
 [](bg:#769ff0 fg:#a3aed2)\
 $directory\
 [](fg:#769ff0 bg:#394260)\
@@ -59,16 +59,6 @@ symbol = '[✗](bold #ee3333)'
 success_symbol = ''
 map_symbol = true
 
-# # Current time
-# [time]
-# disabled = false
-# format = '[$time ]($style) '
-# style = '#33aaff'
-# time_format = '%R'
-# # time_format = '%m/%d %a %T'
-# utc_time_offset = '+9'
-# time_range = '00:00:00-23:59:59'
-
 # Command duration time
 [cmd_duration]
 disabled = false
@@ -100,7 +90,7 @@ show_milliseconds = false
 [directory]
 style = "fg:#e3e5e5 bg:#769ff0"
 format = "[ $path ]($style)"
-truncation_length = 4
+truncation_length = 3
 truncation_symbol = "…/"
 truncate_to_repo = true
 
