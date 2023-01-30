@@ -13,14 +13,14 @@ right_format = '$time'
 
 # Prompt character
 [character]
-success_symbol = '[❯](bold white)'
+success_symbol = '[❯](bold green)'
 error_symbol = '[❯](bold red)'
 
 # Direcotry
 [directory]
 disabled = false
 format = '[$path]($style)[$read_only]($read_only_style) '
-style = 'bold white'
+style = 'underline bold green'
 truncation_length = 100
 truncation_symbol = ''
 truncate_to_repo = false
@@ -38,7 +38,7 @@ ignore_branches = []
 [time]
 disabled = false
 format = '🕙 [$time]($style) '
-style = 'bold white'
+style = 'underline bold white'
 time_format = '%T'
 utc_time_offset = '+9'
 time_range = '00:00:00-23:59:59'
@@ -48,12 +48,12 @@ time_range = '00:00:00-23:59:59'
 disabled = false
 format = 'is [$symbol$version]($style) '
 symbol = '📦 '
-style = 'bold 208'
+style = '208'
 
 # Node.js
 [nodejs]
 disabled = false
-format = 'via [ $version](bold green) '
+format = 'via [ $version](green) '
 
 # AWS
 [aws]
