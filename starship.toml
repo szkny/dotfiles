@@ -12,9 +12,9 @@ command_timeout = 3000
 format = """
 [░▒▓](#a3aed2)\
 [  ](bg:#a3aed2 fg:#090c0c)\
-[](bg:#769ff0 fg:#a3aed2)\
+[](bg:#5588dd fg:#a3aed2)\
 $directory\
-[](fg:#769ff0 bg:#394260)\
+[](fg:#5588dd bg:#394260)\
 $git_branch\
 $git_status\
 [](fg:#394260 bg:#212736)\
@@ -88,7 +88,7 @@ show_milliseconds = false
 # symbol = '☁️ '
 
 [directory]
-style = "fg:#e3e5e5 bg:#769ff0"
+style = "fg:#e3e5e5 bg:#5588dd"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -103,25 +103,25 @@ truncate_to_repo = true
 [git_branch]
 symbol = ""
 style = "bg:#394260"
-format = '[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'
+format = '[[ $symbol $branch ](fg:#5588dd bg:#394260)]($style)'
 
 [git_status]
 style = "bg:#394260"
-format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
+format = '[[($all_status$ahead_behind )](fg:#5588dd bg:#394260)]($style)'
 
 [nodejs]
 symbol = ""
 style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+format = '[[ $symbol ($version) ](fg:#5588dd bg:#212736)]($style)'
 
 [python]
 symbol = ""
 style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+format = '[[ $symbol ($version) ](fg:#5588dd bg:#212736)]($style)'
 
 [terraform]
 style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+format = '[[ $symbol ($version) ](fg:#5588dd bg:#212736)]($style)'
 
 [aws]
 symbol = '  '
