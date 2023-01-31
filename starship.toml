@@ -119,8 +119,12 @@ symbol = ""
 style = "bg:#212736"
 format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
 
+[terraform]
+style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+
 [aws]
-symbol = ' '
+symbol = '  '
 style = 'bg:#1d2230'
 # format = 'on [$symbol$profile]($style) '
 format = '[[ $symbol$profile ](fg:#a0a9cb bg:#1d2230)]($style)'
