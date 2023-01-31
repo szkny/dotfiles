@@ -25,30 +25,12 @@ $terraform\
 $aws\
 [ ](fg:#1d2230)\
 \n$character"""
-# format = '$all$character'
 right_format = '$status$cmd_duration$time'
 
 # Prompt character
 [character]
-success_symbol = '[❯](bold #33bb33)'
+success_symbol = '[❯](bold #5588dd)'
 error_symbol = '[❯](bold #ee3333)'
-
-# # Direcotry
-# [directory]
-# disabled = false
-# format = '[$path]($style)[$read_only]($read_only_style) '
-# style = 'bold #77c8ff'
-# truncation_length = 100
-# truncation_symbol = "…/"
-# truncate_to_repo = true
-# read_only = '🔒'
-#
-# # Git branch
-# [git_branch]
-# format = 'on [$symbol$branch(:$remote_branch)]($style) '
-# style = 'bold #dd88cc'
-# symbol = " "
-# ignore_branches = []
 
 [status]
 disabled = false
@@ -67,32 +49,13 @@ style = "#ffff33"
 min_time = 2000
 show_milliseconds = false
 
-# # Package module
-# [package]
-# disabled = false
-# format = 'is [$symbol$version]($style) '
-# symbol = '📦 '
-# style = '#eeaa44'
-#
-# # Node.js
-# [nodejs]
-# disabled = false
-# format = 'via [$symbol$version](#33bb33) '
-# symbol = " "
-#
-# # AWS
-# [aws]
-# disabled = false
-# format = 'on [$symbol$profile \($region\)]($style) '
-# style = 'bold #33aaff'
-# symbol = '☁️ '
-
 [directory]
 style = "fg:#e3e5e5 bg:#5588dd"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 truncate_to_repo = true
+read_only = '🔒'
 
 [directory.substitutions]
 "Documents" = " "
