@@ -44,7 +44,7 @@ map_symbol = true
 # Command duration time
 [cmd_duration]
 disabled = false
-format = '[⏳ $duration]($style) '
+format = '[⏳$duration]($style) '
 style = "#ffff33"
 min_time = 2000
 show_milliseconds = false
@@ -96,5 +96,5 @@ format = '[[ $symbol$profile ](fg:#a0a9cb bg:#1d2230)]($style)'
 disabled = false
 time_format = "%R" # Hour:Minute Format
 style = "bg:#1d2230"
-format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
+format = '[[  $time](fg:#a0a9cb bg:#1d2230)]($style)'
 
