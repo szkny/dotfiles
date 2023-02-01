@@ -100,7 +100,7 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
     let g:lsp_inlay_hints_delay                            = 0
     let g:lsp_diagnostics_echo_delay                       = 0
     let g:lsp_diagnostics_signs_delay                      = 0
-    let g:lsp_diagnostics_float_delay                      = 0
+    let g:lsp_diagnostics_float_delay                      = 400
     let g:lsp_document_highlight_delay                     = 0
     let g:lsp_diagnostics_virtual_text_delay               = 0
     let g:lsp_document_code_action_signs_delay             = 0
