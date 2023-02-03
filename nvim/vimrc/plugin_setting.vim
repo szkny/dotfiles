@@ -231,7 +231,6 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
       \     },
       \     around: #{
       \       mark: '[AROUND]',
-      \       maxSize: 200,
       \     },
       \     file: #{
       \       mark: '[FILE]',
