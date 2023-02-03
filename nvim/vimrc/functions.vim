@@ -607,7 +607,7 @@ fun! s:trans(...) abort range
     " transコマンド(Google翻訳)を利用してvisual選択中の文字列を日本語変換する関数
     if executable('trans')
         let l:text = ''
-        if a:0 ==0
+        if a:0 == 0
             let @@ = ''
             exe 'silent normal gvy'
             if @@ !=# ''
@@ -635,7 +635,7 @@ fun! s:transja(...) abort range
     " transコマンド(Google翻訳)を利用してvisual選択中の日本語を英語に変換する関数
     if executable('trans')
         let l:text = ''
-        if a:0 ==0
+        if a:0 == 0
             let @@ = ''
             exe 'silent normal gvy'
             if @@ !=# ''
@@ -874,7 +874,7 @@ let g:openai_executable_path = '$HOME/dotfiles/openai/openai.mjs'
 let g:openai_filetype_dict = {
   \ 'vim':'vimscript',
   \ } 
-fun! AIquery() range
+fun! AIquery(...) range
     let l:exe = get(g:, 'openai_executable_path', '')
     let l:ft_dict = get(g:, 'openai_filetype_dict', {})
     if l:exe == ''
@@ -889,25 +889,32 @@ fun! AIquery() range
         echoerr 'execute file:'.l:exe.' does not exist'
         return
     endif
-    let @@ = ''
-    exe 'silent normal gvy'
-    if @@ !=# ''
-        let l:query = join(split(@@,'\n'))
-        if &ft != ''
-            if has_key(l:ft_dict, &ft)
-                let l:query_text = l:query.' in '.l:ft_dict[&ft]
+    if a:0 == 0
+        let @@ = ''
+        exe 'silent normal gvy'
+        if @@ !=# ''
+            let l:query = join(split(@@,'\n'))
+            if &ft != ''
+                if has_key(l:ft_dict, &ft)
+                    let l:query_text = l:query.' in '.l:ft_dict[&ft]
+                else
+                    let l:query_text = l:query.' in '.&ft
+                endif
             else
-                let l:query_text = l:query.' in '.&ft
+                let l:query_text = l:query
             endif
-        else
-            let l:query_text = l:query
+            echomsg 'AI query: ' . l:query_text
+            let l:result = systemlist(l:exe, l:query_text)
+            call append(a:lastline, l:result)
         endif
+    else
+        let l:query_text = join(a:000)
         echomsg 'AI query: ' . l:query_text
         let l:result = systemlist(l:exe, l:query_text)
         call append(a:lastline, l:result)
     endif
 endf
-command! -nargs=0 -range AI call AIquery()
+command! -nargs=* -range AI call AIquery(<f-args>)
 
 " 縦方向fコマンド
 command! -nargs=1 MyLineSearch let @m=<q-args> | call search('^\s*'. @m)
