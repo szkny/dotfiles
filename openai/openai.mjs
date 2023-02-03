@@ -7,10 +7,10 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 const postai = async (input) => {
   const res = await openai.createCompletion({
-    model: "text-davinci-002",
+    model: "text-davinci-003",
     prompt: input,
     temperature: 0,
-    max_tokens: 1000,
+    max_tokens: 500,
   });
   console.log(res.data.choices[0].text);
 };
