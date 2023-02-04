@@ -10,7 +10,7 @@ command_timeout = 3000
 
 #  or  or 
 format = """
-[░▒▓](#a3aed2)\
+[](fg:#a3aed2)\
 [  ](bg:#a3aed2 fg:#090c0c)\
 [](bg:#5588dd fg:#a3aed2)\
 $directory\
@@ -29,72 +29,73 @@ right_format = '$status$cmd_duration$time'
 
 # Prompt character
 [character]
-success_symbol = '[❯](bold #5588dd)'
-error_symbol = '[❯](bold #ee3333)'
+success_symbol    = '[❯](bold #5588dd)'
+error_symbol      = '[❯](bold #ee3333)'
 
 [status]
-disabled = false
-format = '[$symbol]($style) '
-style = ''
-symbol = '[✗](bold #ee3333)'
-# success_symbol = '[✓](bold #33bb33)'
-success_symbol = ''
-map_symbol = true
+disabled          = false
+format            = '[$symbol]($style) '
+style             = ''
+symbol            = '[✗](bold #ee3333)'
+# success_symbol   = '[✓](bold #33bb33)'
+success_symbol    = ''
+map_symbol        = true
 
 # Command duration time
 [cmd_duration]
-disabled = false
-format = '[⏳$duration]($style) '
-style = "#ffff33"
-min_time = 2000
+disabled          = false
+format            = '[⏳$duration]($style) '
+style             = "#ffff33"
+min_time          = 2000
 show_milliseconds = false
 
 [directory]
-style = "fg:#e3e5e5 bg:#5588dd"
-format = "[ $path ]($style)"
-truncation_length = 3
+style             = "fg:#e3e5e5 bg:#5588dd"
+format            = "[ $path ]($style)"
+home_symbol       = "~"
 truncation_symbol = "…/"
-truncate_to_repo = true
-read_only = '🔒'
+truncation_length = 3
+truncate_to_repo  = true
+read_only         = '🔒'
 
 [directory.substitutions]
-"Documents" = " "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
+"Documents"       = " "
+"Downloads"       = " "
+"Music"           = " "
+"Pictures"        = " "
 
 [git_branch]
-symbol = ""
-style = "bg:#394260"
-format = '[[ $symbol $branch ](fg:#5588dd bg:#394260)]($style)'
+symbol            = ""
+style             = "bg:#394260"
+format            = '[[ $symbol $branch ](fg:#5588dd bg:#394260)]($style)'
 
 [git_status]
-style = "bg:#394260"
-format = '[[($all_status$ahead_behind )](fg:#5588dd bg:#394260)]($style)'
+style             = "bg:#394260"
+format            = '[[($all_status$ahead_behind )](fg:#5588dd bg:#394260)]($style)'
 
 [nodejs]
-symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#5588dd bg:#212736)]($style)'
+symbol      = ""
+style       = "bg:#212736"
+format      = '[[ $symbol ($version) ](fg:#5588dd bg:#212736)]($style)'
 
 [python]
-symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#5588dd bg:#212736)]($style)'
+symbol      = ""
+style       = "bg:#212736"
+format      = '[[ $symbol ($version) ](fg:#5588dd bg:#212736)]($style)'
 
 [terraform]
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#5588dd bg:#212736)]($style)'
+style       = "bg:#212736"
+format      = '[[ $symbol ($version) ](fg:#5588dd bg:#212736)]($style)'
 
 [aws]
-symbol = '  '
-style = 'bg:#1d2230'
-# format = 'on [$symbol$profile]($style) '
-format = '[[ $symbol$profile ](fg:#a0a9cb bg:#1d2230)]($style)'
+symbol      = '  '
+style       = 'bg:#1d2230'
+# format    = 'on [$symbol$profile]($style) '
+format      = '[[ $symbol$profile ](fg:#a0a9cb bg:#1d2230)]($style)'
 
 [time]
-disabled = false
+disabled    = false
 time_format = "%R" # Hour:Minute Format
-style = "bg:#1d2230"
-format = '[[  $time](fg:#a0a9cb bg:#1d2230)]($style)'
+style       = "bg:#1d2230"
+format      = '[[  $time](fg:#a0a9cb bg:#1d2230)]($style)'
 
