@@ -25,7 +25,7 @@ $terraform\
 $aws\
 [ ](fg:#1d2230)\
 \n$character"""
-right_format = '$status$cmd_duration$time'
+right_format = """$status$cmd_duration$time"""
 
 # Prompt character
 [character]
