@@ -139,9 +139,9 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
     cno <expr> <C-e>
       \ pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' : '<C-e>'
     cno <expr> <TAB>
-      \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<TAB>'
+      \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : ''
     cno <expr> <S-TAB>
-      \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<S-TAB>'
+      \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : ''
     cno <expr> <DOWN>
       \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
     cno <expr> <UP>
