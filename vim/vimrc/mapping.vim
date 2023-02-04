@@ -29,12 +29,21 @@ nno <silent> <Up>    :<C-u>ResizeWindow +1<CR>
 nno <silent> <Down>  :<C-u>ResizeWindow -1<CR>
 " nno <silent> <Tab>   :<C-u>NewTabPage<CR>
 
-" yank/delete/paste
+" for yank/delete/paste
+nno <silent> c       "_c
+vno <silent> c       "_c
+nno <silent> C       "_C
+vno <silent> C       "_C
+nno <silent> s       "_s
+vno <silent> s       "_s
+nno <silent> S       "_S
+vno <silent> S       "_S
 nno <silent> x       "_x
 vno <silent> x       "_x
 vno <silent> p       "_dP
 nno <silent> D       "_D
 nno <silent> de      "_de
+nno <silent> dw      b"_de
 
 " cursor move
 nno <silent> j       gj
@@ -60,6 +69,8 @@ elseif system('uname') ==# "Linux\n"
     ino <silent> <A-k> <Up>
     ino <silent> <A-l> <Right>
 endif
+cno          <C-a> <Home>
+cno          <C-e> <End>
 
 " for IME
 nno <silent> あ      a

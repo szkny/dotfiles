@@ -73,6 +73,7 @@ ino <silent> <C-w>   <ESC><C-w>
 " nno          /       /\v
 tno <silent> <C-[>   <C-\><C-n>
 tno <silent> <ESC>   <C-\><C-n>
+nno <silent> *          *N
 
 " for edit
 vno <silent> >       >gv
@@ -88,14 +89,23 @@ nno <silent> -       :<C-u>ResizeWindow -1<CR>
 nno <silent> <Up>    :<C-u>ResizeWindow +1<CR>
 nno <silent> <Down>  :<C-u>ResizeWindow -1<CR>
 
-" yank/delete/paste
+" for yank/delete/paste
+nno <silent> c       "_c
+vno <silent> c       "_c
+nno <silent> C       "_C
+vno <silent> C       "_C
+nno <silent> s       "_s
+vno <silent> s       "_s
+nno <silent> S       "_S
+vno <silent> S       "_S
 nno <silent> x       "_x
 vno <silent> x       "_x
 vno <silent> p       "_dP
 nno <silent> D       "_D
 nno <silent> de      "_de
+nno <silent> dw      b"_de
 
-" cursor move
+" for cursor move
 nno <silent> j       gj
 nno <silent> k       gk
 ino <silent> <C-h>   <Left>
@@ -108,10 +118,18 @@ vno <silent> <S-h>   10h
 vno <silent> <S-j>   5gj
 vno <silent> <S-k>   5gk
 vno <silent> <S-l>   10l
-ino <silent> <A-h> <Left>
-ino <silent> <A-j> <Down>
-ino <silent> <A-k> <Up>
-ino <silent> <A-l> <Right>
+ino <silent> <M-h> <Left>
+ino <silent> <M-j> <Down>
+ino <silent> <M-k> <Up>
+ino <silent> <M-l> <Right>
+tno <silent> <M-h> <Left>
+tno <silent> <M-j> <Down>
+tno <silent> <M-k> <Up>
+tno <silent> <M-l> <Right>
+nno <silent> <M-u> <PageUp>
+nno <silent> <M-d> <PageDown>
+cno          <C-a> <Home>
+cno          <C-e> <End>
 
 " for IME
 nno <silent> あ      a

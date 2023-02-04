@@ -37,6 +37,14 @@ nno <silent> <Down>  :ResizeWindow -1<CR>
 " nno <silent><Tab>    :NewTabPage<CR>
 
 " for yank/delete/paste
+nno <silent> c       "_c
+vno <silent> c       "_c
+nno <silent> C       "_C
+vno <silent> C       "_C
+nno <silent> s       "_s
+vno <silent> s       "_s
+nno <silent> S       "_S
+vno <silent> S       "_S
 nno <silent> x       "_x
 vno <silent> x       "_x
 vno <silent> p       "_dP

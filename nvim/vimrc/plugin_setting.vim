@@ -183,7 +183,7 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
     hi FloatBorder  gui=bold guibg=#202020
     call pum#set_option(#{
       \   auto_select: v:true,
-      \   max_height: 8,
+      \   max_height: 15,
       \   max_width: 0,
       \   offset_row: 1,
       \   scrollbar_char: ' ',
@@ -495,7 +495,7 @@ lua require("nvim-tree").setup({
   \ })
 " hi NvimTreeNormal             gui=none guibg=#202020
 " hi NvimTreeEndOfBuffer        gui=none guifg=#202020 guibg=#202020
-hi NvimTreeRootFolder         gui=bold guifg=#999999
+hi NvimTreeRootFolder         gui=bold guifg=#bbbbbb
 hi NvimTreeFolderName         gui=bold guifg=#77aadd
 hi NvimTreeOpenedFolderName   gui=bold guifg=#77aadd
 hi NvimTreeSpecialFile        gui=bold,underline guifg=#aaaa00
