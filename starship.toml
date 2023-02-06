@@ -57,6 +57,12 @@ style             = "#ffff33"
 min_time          = 2000
 show_milliseconds = false
 
+[time]
+disabled    = false
+time_format = "%R" # Hour:Minute Format
+style       = "bg:#1d2230"
+format      = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
+
 [directory]
 style             = "fg:#e3e5e5 bg:#5588dd"
 format            = "[ $path ]($style)"
@@ -100,10 +106,4 @@ symbol      = '  '
 style       = 'bg:#1d2230'
 # format    = 'on [$symbol$profile]($style) '
 format      = '[[ $symbol$profile ](fg:#a0a9cb bg:#1d2230)]($style)'
-
-[time]
-disabled    = false
-time_format = "%R" # Hour:Minute Format
-style       = "bg:#1d2230"
-format      = '[[  $time](fg:#a0a9cb bg:#1d2230)]($style)'
 
