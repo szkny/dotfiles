@@ -9,8 +9,10 @@ scan_timeout = 10
 command_timeout = 3000
 
 #  or  or 
+# ░▒▓ or 
+#  or 
 format = """
-[](fg:#a3aed2)\
+[░▒▓](fg:#a3aed2)\
 [  ](bg:#a3aed2 fg:#090c0c)\
 [](bg:#5588dd fg:#a3aed2)\
 $directory\
