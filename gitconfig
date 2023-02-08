@@ -15,8 +15,13 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+[core]
+    pager = delta
 [diff]
     tool = nvimdiff
+    colorMoved = default
+[merge]
+    conflictstyle = diff3
 [difftool]
     prompt = false
 [mergetool]
@@ -34,3 +39,10 @@
     cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\" \"$BASE\"
 [mergetool "nbdime"]
     cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true
+    light = false
+    side-by-side = true
+    line-numbers = true
