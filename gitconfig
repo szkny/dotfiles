@@ -1,5 +1,6 @@
 [user]
     name = 
+    email = 
 [ghq]
 	root = 
 [url "github:"]
@@ -51,4 +52,3 @@
     light = false
     side-by-side = true
     line-numbers = true
-    email = 
