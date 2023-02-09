@@ -17,8 +17,8 @@ tno <silent> <ESC>   <C-\><C-n>
 " for edit
 vno <silent> >       >gv
 vno <silent> <       <gv
-nno <expr>   <C-d>   ':<C-u>'.ReplaceWordText().'<Left><Left><Left>'
-vno <expr>   <C-d>   ':<C-u>'.VReplaceWordText().'<Left><Left><Left>'
+nno <expr>   <C-d>   ReplaceWordText()  !=# '' ? ':<C-u>'. ReplaceWordText().'<Left><Left><Left>' : '<ESC>'
+vno <expr>   <C-d>   VReplaceWordText() !=# '' ? ':<C-u>'.VReplaceWordText().'<Left><Left><Left>' : '<ESC>'
 
 " tab/window
 nno <silent> <Right> :<C-u>ChangeBuffer next<CR>
