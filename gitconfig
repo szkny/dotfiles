@@ -1,6 +1,9 @@
 [user]
     name = 
-    email = 
+[ghq]
+	root = 
+[url "github:"]
+    pushInsteadOf = https://github.com/
 [init]
     defaultBranch = main
 [alias]
@@ -9,7 +12,7 @@
     st = status
     graph = log --graph --date=format:'%Y/%m/%d %H:%M:%S' --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
 [pull]
-    rebase = false
+	ff = only
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
@@ -17,10 +20,12 @@
     required = true
 [core]
     pager = delta
+	autocrlf = input
 [diff]
     tool = nvimdiff
     colorMoved = default
 [merge]
+	ff = false
     conflictstyle = diff3
 [difftool]
     prompt = false
@@ -46,3 +51,4 @@
     light = false
     side-by-side = true
     line-numbers = true
+    email = 
