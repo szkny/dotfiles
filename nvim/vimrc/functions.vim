@@ -461,13 +461,21 @@ command! -range -nargs=* VReplaceWord call VReplaceWord(<f-args>)
 
 fun! ReplaceWordText() abort
     let l:target = expand('<cword>')
-    return line('.').',$s/'.l:target.'//gc'
+    if l:target !=# ''
+        return line('.').',$s/'.l:target.'//gc'
+    else
+        return ''
+    endif
 endf
 
 
 fun! VReplaceWordText() abort range
     let l:target = s:get_vselect_txt()
-    return line('.').',$s/'.l:target.'//gc'
+    if l:target !=# ''
+        return line('.').',$s/'.l:target.'//gc'
+    else
+        return ''
+    endif
 endf
 
 
