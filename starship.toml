@@ -98,6 +98,7 @@ style       = "bg:#212736"
 format      = '[[ $symbol ($version) ](fg:#5588dd bg:#212736)]($style)'
 
 [terraform]
+symbol      = "💠"
 style       = "bg:#212736"
 format      = '[[ $symbol ($version) ](fg:#5588dd bg:#212736)]($style)'
 
