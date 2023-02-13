@@ -88,19 +88,19 @@ style             = "bg:#394260"
 format            = '[[($all_status$ahead_behind )](fg:#5588dd bg:#394260)]($style)'
 
 [nodejs]
-symbol      = ""
+symbol      = " "
 style       = "bg:#212736"
-format      = '[[ $symbol ($version) ](fg:#5588dd bg:#212736)]($style)'
+format      = '[[ $symbol($version) ](fg:#5588dd bg:#212736)]($style)'
 
 [python]
-symbol      = ""
+symbol      = " "
 style       = "bg:#212736"
-format      = '[[ $symbol ($version) ](fg:#5588dd bg:#212736)]($style)'
+format      = '[[ $symbol($version) ](fg:#5588dd bg:#212736)]($style)'
 
 [terraform]
-symbol      = "💠"
+symbol      = "💠 "
 style       = "bg:#212736"
-format      = '[[ $symbol ($version) ](fg:#5588dd bg:#212736)]($style)'
+format      = '[[ $symbol($version) ](fg:#5588dd bg:#212736)]($style)'
 
 [aws]
 symbol      = '  '
