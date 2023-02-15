@@ -610,6 +610,7 @@ lua require('nvim-treesitter.configs').setup {
     \     "javascript",
     \     "typescript",
     \     "vue",
+    \     "css",
     \   },
     \   sync_install = false,
     \   auto_install = true,
