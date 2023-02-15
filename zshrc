@@ -74,6 +74,7 @@ SAVEHIST=1000000
 alias cd='cdls'
 alias ls='exa -G --icons'
 alias ll='exa -lh --icons'
+alias c='clear'
 alias g='git'
 alias tree='exa -T --icons'
 alias mv='mv -i'
