@@ -128,27 +128,6 @@ autocmd FileType netrw nnoremap <buffer><silent> q     :call <SID>CloseNetrw()<C
 autocmd FileType netrw nnoremap <buffer><silent> <C-n> :call <SID>CloseNetrw()<CR>
 
 
-fun! s:newtabpage() abort
-    tabnew
-    call Ranger()
-endf
-command! NewTabPage call s:newtabpage()
-
-
-fun! SelectByRanger() abort
-    " rangerコマンドでファイルを選択する関数
-    "   (francoiscabrol/ranger.vimを利用)
-    if &buflisted
-        silent call OpenRanger()
-        silent call s:setnewbufname('ranger')
-        setlocal nonumber
-        setlocal filetype=terminal
-        setlocal nobuflisted
-    endif
-endf
-command! SelectByRanger call SelectByRanger()
-
-
 fun! NewTerm(...) abort
     " 新規バッファでターミナルモードを開始する関数
     "      :NewTerm [Command] で任意のシェルコマンドを実行

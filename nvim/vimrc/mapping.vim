@@ -104,7 +104,7 @@ nno <silent> <C-p> :<C-u>Files<CR>
 nno <silent> <C-f> :<C-u>Ag<CR>
 vno <silent> <C-f> :<C-u>call VAgWord()<CR>
 "" ranger.vim
-nno <silent> <C-h> :<C-u>SelectByRanger<CR>
+nno <silent> <C-h> :<C-u>RnvimrToggle<CR>
 "" nvim-tree
 nno <silent> <C-n> :<C-u>NvimTreeToggle<CR>
 "" vista.vim

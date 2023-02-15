@@ -47,8 +47,7 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 " general plugins
 Plug 'tomtom/tcomment_vim'
-Plug 'francoiscabrol/ranger.vim'
-Plug 'rbgrouleff/bclose.vim'  " for ranger.vim
+Plug 'kevinhwang91/rnvimr'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'airblade/vim-gitgutter'
