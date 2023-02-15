@@ -558,7 +558,7 @@ let g:minimap_auto_start                        = 0
 let g:minimap_auto_start_win_enter              = 0
 let g:minimap_width                             = 10
 let g:minimap_window_width_override_for_scaling = 2147483647
-let g:minimap_block_filetypes                   = ['terminal', 'fzf', 'vista_kind', 'NvimTree']
+let g:minimap_block_filetypes                   = ['terminal', 'fzf', 'vista_kind', 'NvimTree', 'rnvimr']
 " let g:minimap_close_buftypes                   = ['nofile', 'startify', 'netrw', 'vim-plug', 'terminal']
 let g:minimap_enable_highlight_colorgroup = 0
 let g:minimap_highlight_range             = 1
@@ -644,7 +644,7 @@ if has('wsl')
     let g:indent_blankline_max_indent_increase        = g:indent_blankline_indent_level
     let g:indent_blankline_show_first_indent_level    = v:true
     let g:indent_blankline_show_current_context_start = v:true
-    let g:indent_blankline_filetype_exclude           = ['terminal', 'help', 'fzf', 'vista_kind', 'NvimTree', 'mason']
+    let g:indent_blankline_filetype_exclude           = ['terminal', 'help', 'fzf', 'vista_kind', 'NvimTree', 'mason', 'rnvimr']
     let g:indent_blankline_bufname_exclude            = ['README.md']
     let g:indent_blankline_disable_with_nolist        = v:true
     lua require("indent_blankline").setup {
@@ -662,7 +662,7 @@ else
     let g:indentLine_char            = '│'
     let g:indentLine_concealcursor   = 'inc'
     let g:indentLine_conceallevel    = 2
-    let g:indentLine_fileTypeExclude = ['json', 'terminal', 'help', 'fzf', 'vista_kind', 'NvimTree', 'mason']
+    let g:indentLine_fileTypeExclude = ['json', 'terminal', 'help', 'fzf', 'vista_kind', 'NvimTree', 'mason', 'rnvimr']
 endif
 
 
