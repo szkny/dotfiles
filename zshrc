@@ -72,10 +72,10 @@ SAVEHIST=1000000
 
 ## alias for commands
 alias cd='cdls'
-alias ls='exa -G'
-alias ll='exa -lh'
+alias ls='exa -G --icons'
+alias ll='exa -lh --icons'
 alias g='git'
-alias tree='exa -T'
+alias tree='exa -T --icons'
 alias mv='mv -i'
 alias od='od -x'
 alias rsync='rsync -auvrz'
@@ -114,7 +114,7 @@ bindkey -s '^F' '^ufdghq\n'
 
 ## functions
 function cdls(){
-    \cd $@ && exa
+    \cd $@ && exa -G --icons
 }
 function ranger-cd(){
     tempfile="$(mktemp -t tmp.XXXXXX)"

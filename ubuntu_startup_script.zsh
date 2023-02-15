@@ -62,6 +62,7 @@ mkdir -p ~/Project
 git clone https://github.com/ranger/ranger ~/Project/ranger
 cd ~/Project/ranger
 sudo make install
+git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 cd ~
 
 ## install neovim
