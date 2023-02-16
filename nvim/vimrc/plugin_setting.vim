@@ -399,7 +399,7 @@ lua require("nvim-tree").setup({
   \   view = {
   \     adaptive_size = true,
   \     width = 25,
-  \     hide_root_folder = false,
+  \     hide_root_folder = true,
   \     signcolumn = "no",
   \     preserve_window_proportions = true,
   \     mappings = {
@@ -828,9 +828,7 @@ lua require('lualine').setup {
   \     lualine_y = {},
   \     lualine_z = {}
   \   },
-  \   tabline = {
-  \     lualine_a = {'buffers'},
-  \   },
+  \   tabline = {},
   \   winbar = {},
   \   inactive_winbar = {},
   \   extensions = {}
@@ -839,6 +837,136 @@ hi lualine_lsp_err    guifg=#ff0000
 hi lualine_lsp_warn   guifg=#ffff00
 hi lualine_lsp_hint   guifg=#5599dd
 hi lualine_lsp_info   guifg=#5599dd
+
+
+"" bufferline.nvim
+lua require('bufferline').setup {
+  \   options = {
+  \     mode = "buffers",
+  \     numbers = "none",
+  \     close_command = "bdelete! %d",
+  \     right_mouse_command = "bdelete! %d",
+  \     left_mouse_command = "buffer %d",
+  \     middle_mouse_command = nil,
+  \     indicator = {
+  \       icon = '▎',
+  \       style = 'icon'
+  \     },
+  \     max_name_length = 18,
+  \     max_prefix_length = 15,
+  \     truncate_names = true,
+  \     tab_size = 18,
+  \     diagnostics = false,
+  \     offsets = {
+  \       {
+  \         filetype = "NvimTree",
+  \         text = function()
+  \           return vim.fn.fnamemodify(vim.fn.getcwd(), ':t:gs?\\l?\\U\\0?')
+  \         end,
+  \         text_align = "center",
+  \         separator = true,
+  \         highlight = "NvimTreeRootFolder",
+  \       }
+  \     },
+  \     color_icons = true,
+  \     show_buffer_icons = true,
+  \     show_buffer_close_icons = true,
+  \     show_buffer_default_icon = true,
+  \     show_close_icon = true,
+  \     show_tab_indicators = true,
+  \     show_duplicate_prefix = true,
+  \     persist_buffer_sort = true,
+  \     separator_style = {"|", "|"},
+  \     enforce_regular_tabs = false,
+  \     always_show_bufferline = true,
+  \     hover = {
+  \       enabled = true,
+  \       delay = 200,
+  \       reveal = {'close'}
+  \     },
+  \   },
+  \   highlights = {
+  \     fill = {
+  \       fg = '#555555',
+  \       bg = separator_background_color,
+  \     },
+  \     background = {
+  \       fg = '#aaaaaa',
+  \       bg = separator_background_color,
+  \     },
+  \     buffer_selected = {
+  \       fg = '#ffffff',
+  \       bg = '#333333',
+  \       italic = false,
+  \       bold = true,
+  \     },
+  \     buffer_visible = {
+  \       fg = '#ffffff',
+  \       bg = separator_background_color,
+  \       italic = false,
+  \       bold = true,
+  \     },
+  \     duplicate_selected = {
+  \       fg = '#ffffff',
+  \       bg = '#333333',
+  \     },
+  \     duplicate_visible = {
+  \       fg = '#ffffff',
+  \       bg = separator_background_color,
+  \     },
+  \     duplicate = {
+  \       fg = "#aaaaaa",
+  \       bg = separator_background_color
+  \     },
+  \     indicator_selected = {
+  \       fg = '#ffcc88',
+  \       bg = '#333333',
+  \     },
+  \     close_button = {
+  \       fg = '#aaaaaa',
+  \       bg = '#333333',
+  \     },
+  \     close_button_visible = {
+  \       fg = '#aaaaaa',
+  \       bg = '#333333',
+  \     },
+  \     close_button_selected = {
+  \       fg = '#aaaaaa',
+  \       bg = '#333333',
+  \     },
+  \     numbers_selected = {
+  \       fg = '#ffffff',
+  \       bg = '#333333',
+  \       italic = false,
+  \     },
+  \     modified = {
+  \       fg = '#ffaa00',
+  \       bg = separator_background_color,
+  \       bold = true,
+  \     },
+  \     modified_selected = {
+  \       fg = '#ffaa00',
+  \       bg = '#333333',
+  \       bold = true,
+  \     },
+  \     separator_selected = {
+  \       fg = "#000000",
+  \       bg = '#333333',
+  \     },
+  \     separator_visible = {
+  \       fg = "#000000",
+  \       bg = '#333333',
+  \     },
+  \     separator = {
+  \       fg = '#555555',
+  \       bg = separator_background_color,
+  \     },
+  \     offset_separator = {
+  \       fg = win_separator_fg,
+  \       bg = separator_background_color,
+  \     },
+  \   }
+  \ }
 
 
 "" delimitmate

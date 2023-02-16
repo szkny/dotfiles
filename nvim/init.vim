@@ -65,6 +65,7 @@ Plug 'wfxr/minimap.vim',  {'on': 'MinimapToggle'}
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 if has('wsl')
