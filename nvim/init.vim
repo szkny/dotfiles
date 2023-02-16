@@ -60,9 +60,11 @@ Plug 'liuchengxu/vista.vim'
 Plug 'wfxr/minimap.vim',  {'on': 'MinimapToggle'}
 
 " visual plugins
-Plug 'ryanoasis/vim-devicons'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'ryanoasis/vim-devicons'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 if has('wsl')
@@ -70,6 +72,10 @@ if has('wsl')
 else
     Plug 'yggdroot/indentline'
 endif
+
+" nvim-tree
+Plug 'nvim-tree/nvim-tree.lua',     {'on': 'NvimTreeToggle'}
+" Plug 'nvim-tree/nvim-web-devicons', {'on': 'NvimTreeToggle'}
 
 " color scheme
 Plug 'tomasiser/vim-code-dark'
@@ -80,10 +86,6 @@ Plug 'tomasiser/vim-code-dark'
 " Plug 'rcarriga/nvim-notify'
 " Plug 'folke/noice.nvim'
 " Plug 'MunifTanjim/nui.nvim'
-
-" nvim-tree
-Plug 'nvim-tree/nvim-tree.lua',     {'on': 'NvimTreeToggle'}
-Plug 'nvim-tree/nvim-web-devicons', {'on': 'NvimTreeToggle'}
 
 " fzf.vim
 if isdirectory('/usr/local/opt/fzf')

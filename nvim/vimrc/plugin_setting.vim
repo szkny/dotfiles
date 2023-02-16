@@ -673,101 +673,172 @@ let g:Hexokinase_highlighters = [ 'backgroundfull' ]
 
 
 "" vim-airline
-if g:colors_name == 'codedark'
-    let g:airline_theme = 'codedark'
-elseif g:colors_name == 'tender'
-    let g:airline_theme = 'tender'
-else
-    let g:airline_theme = 'kalisi'
-endif
-let g:airline_mode_map = {
-  \ '__' : '------',
-  \ 'n' : 'NORMAL',
-  \ 'no' : 'OP PENDING',
-  \ 'nov' : 'OP PENDING CHAR',
-  \ 'noV' : 'OP PENDING LINE',
-  \ 'no' : 'OP PENDING BLOCK',
-  \ 'niI' : 'INSERT (NORMAL)',
-  \ 'niR' : 'REPLACE (NORMAL)',
-  \ 'niV' : 'V REPLACE (NORMAL)',
-  \ 'v' : 'VISUAL',
-  \ 'V' : 'V-LINE',
-  \ '' : 'V-BLOCK',
-  \ 's' : 'SELECT',
-  \ 'S' : 'S-LINE',
-  \ '' : 'S-BLOCK',
-  \ 'i' : 'INSERT',
-  \ 'ic' : 'INSERT',
-  \ 'ix' : 'INSERT',
-  \ 'R' : 'REPLACE',
-  \ 'Rc' : 'REPLACE C',
-  \ 'Rv' : 'V REPLACE',
-  \ 'Rx' : 'REPLACE X',
-  \ 'c'  : 'COMMAND',
-  \ 'cv'  : 'VIM EX',
-  \ 'ce'  : 'EX',
-  \ 'r'  : 'PROMPT',
-  \ 'rm'  : 'MORE PROMPT',
-  \ 'r?'  : 'CONFIRM',
-  \ '!'  : 'SHELL',
-  \ 't'  : 'TERMINAL',
-  \ 'multi' : 'MULTI',
+" if g:colors_name == 'codedark'
+"     let g:airline_theme = 'codedark'
+" elseif g:colors_name == 'tender'
+"     let g:airline_theme = 'tender'
+" else
+"     let g:airline_theme = 'kalisi'
+" endif
+" let g:airline_mode_map = {
+"   \ '__' : '------',
+"   \ 'n' : 'NORMAL',
+"   \ 'no' : 'OP PENDING',
+"   \ 'nov' : 'OP PENDING CHAR',
+"   \ 'noV' : 'OP PENDING LINE',
+"   \ 'no' : 'OP PENDING BLOCK',
+"   \ 'niI' : 'INSERT (NORMAL)',
+"   \ 'niR' : 'REPLACE (NORMAL)',
+"   \ 'niV' : 'V REPLACE (NORMAL)',
+"   \ 'v' : 'VISUAL',
+"   \ 'V' : 'V-LINE',
+"   \ '' : 'V-BLOCK',
+"   \ 's' : 'SELECT',
+"   \ 'S' : 'S-LINE',
+"   \ '' : 'S-BLOCK',
+"   \ 'i' : 'INSERT',
+"   \ 'ic' : 'INSERT',
+"   \ 'ix' : 'INSERT',
+"   \ 'R' : 'REPLACE',
+"   \ 'Rc' : 'REPLACE C',
+"   \ 'Rv' : 'V REPLACE',
+"   \ 'Rx' : 'REPLACE X',
+"   \ 'c'  : 'COMMAND',
+"   \ 'cv'  : 'VIM EX',
+"   \ 'ce'  : 'EX',
+"   \ 'r'  : 'PROMPT',
+"   \ 'rm'  : 'MORE PROMPT',
+"   \ 'r?'  : 'CONFIRM',
+"   \ '!'  : 'SHELL',
+"   \ 't'  : 'TERMINAL',
+"   \ 'multi' : 'MULTI',
+"   \ }
+" let g:airline#extensions#branch#enabled          = 1
+" let g:airline#extensions#tabline#enabled         = 1
+" let g:airline#extensions#tabline#buffer_idx_mode = 1
+" let g:airline#extensions#tabline#show_splits     = 1
+" let g:airline#extensions#tabline#show_buffers    = 1
+" let g:airline#extensions#wordcount#enabled       = 0
+" let g:airline#extensions#vista#enabled           = 0
+" fun! ALtextapprove()
+"   let l:min_width = 100
+"   if winwidth(0) >= l:min_width
+"     return v:true
+"   endif
+"   return v:false
+" endf
+" if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
+"     let g:airline#extensions#default#layout = [
+"         \ ['a', 'b', 'c', 'vista_info'],
+"         \ ['lsp_err', 'lsp_warn', 'lsp_hint', 'x', 'y', 'z']]
+"     let g:airline_section_a = airline#section#create(['mode', '%{Airline_skkeleton_mode()}'])
+"     let g:airline_section_c = '%t'
+"     let g:airline_section_vista_info = '%{ALtextapprove() ? AirlineVistaNearestMethodOrFunction():""}'
+"     let g:airline_section_lsp_err  = '%{lsp#get_buffer_diagnostics_counts().error>0 ?'
+"                 \ .'g:lsp_diagnostics_signs_error.text." ".lsp#get_buffer_diagnostics_counts().error : ""}'
+"     let g:airline_section_lsp_warn = '%{lsp#get_buffer_diagnostics_counts().warning>0 ?'
+"                 \ .'g:lsp_diagnostics_signs_warning.text." ".lsp#get_buffer_diagnostics_counts().warning : ""}'
+"     let g:airline_section_lsp_hint = '%{lsp#get_buffer_diagnostics_counts().hint>0 ?'
+"                 \ .'g:lsp_diagnostics_signs_hint.text." ".lsp#get_buffer_diagnostics_counts().hint : ""}'
+"     let g:airline_section_x = ''
+"     let g:airline_section_y = '%{&filetype} %{&fileencodings}'
+"     let g:airline_section_z = '%3l/%L,%2c'
+" else
+"     let g:airline#extensions#default#layout = [
+"         \ ['a', 'b', 'c', 'vista_info'],
+"         \ ['x', 'y', 'z']]
+"     let g:airline_section_c = '%t'
+"     let g:airline_section_vista_info = '%{ALtextapprove() ? AirlineVistaNearestMethodOrFunction():""}'
+"     let g:airline_section_x = ''
+"     let g:airline_section_y = '%{&filetype} %{&fileencodings}'
+"     let g:airline_section_z = '%3l/%L,%2c'
+" endif
+" let g:airline#extensions#default#section_truncate_width = {}
+" "" vim-airline separator
+" let g:airline#extensions#tabline#right_sep = '  '
+" let g:airline#extensions#tabline#left_sep  = '  '
+" let g:airline#extensions#tabline#right_alt_sep = '│'
+" let g:airline#extensions#tabline#left_alt_sep  = '│'
+" let g:airline_right_sep = ''
+" let g:airline_right_alt_sep = ''
+" let g:airline_left_sep = ''
+" let g:airline_left_alt_sep = ''
+" let g:airline_exclude_filetypes = ['NvimTree', 'vista_kind', 'minimap']
+" hi airline_vista_info guifg=#55cc55
+" hi airline_lsp_err    guifg=#ff0000
+" hi airline_lsp_warn   guifg=#ffff00
+" hi airline_lsp_hint   guifg=#5599dd
+
+"
+"" lualine.nvim
+lua require('lualine').setup {
+  \   options = {
+  \     icons_enabled = true,
+  \     theme = 'auto',
+  \     component_separators = { left = ' ', right = ' ' },
+  \     section_separators = { left = '', right = ''},
+  \     disabled_filetypes = {
+  \       statusline = {'NvimTree', 'vista', 'minimap'},
+  \       winbar = {},
+  \     },
+  \     ignore_focus = {},
+  \     always_divide_middle = true,
+  \     globalstatus = false,
+  \     refresh = {
+  \       statusline = 1000,
+  \       tabline = 1000,
+  \       winbar = 1000,
+  \     }
+  \   },
+  \   sections = {
+  \     lualine_a = {'mode'},
+  \     lualine_b = {'branch', 'diff'},
+  \     lualine_c = {'filename'
+  \     },
+  \     lualine_x = {
+  \       {
+  \         'diagnostics',
+  \         sources = { 'vim_lsp' },
+  \         sections = { 'error', 'warn', 'info', 'hint' },
+  \         diagnostics_color = {
+  \           error = 'lualine_lsp_err',
+  \           warn  = 'LspWarningText',
+  \           info  = 'LspInformationText',
+  \           hint  = 'LspHintText',
+  \         },
+  \         symbols = {
+  \           error = '%{g:lsp_diagnostics_signs_error.text} ',
+  \           warn  = '%{g:lsp_diagnostics_signs_warning.text} ',
+  \           info  = '%{g:lsp_diagnostics_signs_information.text} ',
+  \           hint  = '%{g:lsp_diagnostics_signs_hint.text} '
+  \         },
+  \         colored = true,
+  \         update_in_insert = true,
+  \         always_visible = false,
+  \       },
+  \       'encoding', 'fileformat', 'filetype' },
+  \     lualine_y = {'progress'},
+  \     lualine_z = {'location'}
+  \   },
+  \   inactive_sections = {
+  \     lualine_a = {},
+  \     lualine_b = {},
+  \     lualine_c = {'filename'},
+  \     lualine_x = {'location'},
+  \     lualine_y = {},
+  \     lualine_z = {}
+  \   },
+  \   tabline = {
+  \     lualine_a = {'buffers'},
+  \   },
+  \   winbar = {},
+  \   inactive_winbar = {},
+  \   extensions = {}
   \ }
-let g:airline#extensions#branch#enabled          = 1
-let g:airline#extensions#tabline#enabled         = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#show_splits     = 1
-let g:airline#extensions#tabline#show_buffers    = 1
-let g:airline#extensions#wordcount#enabled       = 0
-let g:airline#extensions#vista#enabled           = 0
-fun! ALtextapprove()
-  let l:min_width = 100
-  if winwidth(0) >= l:min_width
-    return v:true
-  endif
-  return v:false
-endf
-if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
-    let g:airline#extensions#default#layout = [
-        \ ['a', 'b', 'c', 'vista_info'],
-        \ ['lsp_err', 'lsp_warn', 'lsp_hint', 'x', 'y', 'z']]
-    let g:airline_section_a = airline#section#create(['mode', '%{Airline_skkeleton_mode()}'])
-    let g:airline_section_c = '%t'
-    let g:airline_section_vista_info = '%{ALtextapprove() ? AirlineVistaNearestMethodOrFunction():""}'
-    let g:airline_section_lsp_err  = '%{lsp#get_buffer_diagnostics_counts().error>0 ?'
-                \ .'g:lsp_diagnostics_signs_error.text." ".lsp#get_buffer_diagnostics_counts().error : ""}'
-    let g:airline_section_lsp_warn = '%{lsp#get_buffer_diagnostics_counts().warning>0 ?'
-                \ .'g:lsp_diagnostics_signs_warning.text." ".lsp#get_buffer_diagnostics_counts().warning : ""}'
-    let g:airline_section_lsp_hint = '%{lsp#get_buffer_diagnostics_counts().hint>0 ?'
-                \ .'g:lsp_diagnostics_signs_hint.text." ".lsp#get_buffer_diagnostics_counts().hint : ""}'
-    let g:airline_section_x = ''
-    let g:airline_section_y = '%{&filetype} %{&fileencodings}'
-    let g:airline_section_z = '%3l/%L,%2c'
-else
-    let g:airline#extensions#default#layout = [
-        \ ['a', 'b', 'c', 'vista_info'],
-        \ ['x', 'y', 'z']]
-    let g:airline_section_c = '%t'
-    let g:airline_section_vista_info = '%{ALtextapprove() ? AirlineVistaNearestMethodOrFunction():""}'
-    let g:airline_section_x = ''
-    let g:airline_section_y = '%{&filetype} %{&fileencodings}'
-    let g:airline_section_z = '%3l/%L,%2c'
-endif
-let g:airline#extensions#default#section_truncate_width = {}
-"" vim-airline separator
-let g:airline#extensions#tabline#right_sep = '  '
-let g:airline#extensions#tabline#left_sep  = '  '
-let g:airline#extensions#tabline#right_alt_sep = '│'
-let g:airline#extensions#tabline#left_alt_sep  = '│'
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_exclude_filetypes = ['NvimTree', 'vista_kind', 'minimap']
-hi airline_vista_info guifg=#55cc55
-hi airline_lsp_err    guifg=#ff0000
-hi airline_lsp_warn   guifg=#ffff00
-hi airline_lsp_hint   guifg=#5599dd
+hi lualine_lsp_err    guifg=#ff0000
+hi lualine_lsp_warn   guifg=#ffff00
+hi lualine_lsp_hint   guifg=#5599dd
+hi lualine_lsp_info   guifg=#5599dd
 
 
 "" delimitmate

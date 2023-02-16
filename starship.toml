@@ -9,7 +9,7 @@ scan_timeout = 10
 command_timeout = 3000
 
 #  or  or 
-# ░▒▓ or 
+# ░▒▓ or  or 
 #  or 
 format = """
 [░▒▓](fg:#a3aed2)\
