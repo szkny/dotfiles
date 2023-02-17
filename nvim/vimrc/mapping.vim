@@ -5,7 +5,7 @@ scriptencoding utf-8
 let g:mapleader = "\<Space>"
 
 " general
-nno <silent><nowait> <leader><leader> :<C-u>Reload<CR>:AirlineToggle<CR>:AirlineToggle<CR>
+nno <silent><nowait> <leader><leader> :<C-u>Reload<CR>
 tno <silent> <ESC>      <C-\><C-n>
 tno <silent> <C-[>      <C-\><C-n>
 ino <silent> <C-s>      <ESC>:w<CR>a

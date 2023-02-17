@@ -771,10 +771,45 @@ let g:Hexokinase_highlighters = [ 'backgroundfull' ]
 
 "
 "" lualine.nvim
-lua require('lualine').setup {
+lua local my_custom_theme = {
+  \   normal = {
+  \     a = { fg = '#212736', bg = '#5588dd' , gui = 'bold' },
+  \     b = { fg = '#b3bee2', bg = '#394260' },
+  \     c = { fg = '#b3bee2', bg = '#212736' },
+  \   },
+  \   insert  = { a = { fg = '#394260', bg = '#b3bee2', gui = 'bold' } },
+  \   visual  = { a = { fg = '#394260', bg = '#aa66dd', gui = 'bold' } },
+  \   replace = { a = { fg = '#394260', bg = '#dd6666', gui = 'bold' } },
+  \   inactive = {
+  \     a = { fg = '#b3bee2', bg = '#212736' },
+  \     b = { fg = '#b3bee2', bg = '#212736' },
+  \     c = { fg = '#b3bee2', bg = '#212736' },
+  \   },
+  \ }
+  \ local vim_lsp = {
+  \   'diagnostics',
+  \   sources = { 'vim_lsp' },
+  \   sections = { 'error', 'warn', 'info', 'hint' },
+  \   diagnostics_color = {
+  \     error = 'lualine_lsp_err',
+  \     warn  = 'lualine_lsp_warn',
+  \     info  = 'lualine_lsp_info',
+  \     hint  = 'lualine_lsp_hint',
+  \   },
+  \   symbols = {
+  \     error = '%{g:lsp_diagnostics_signs_error.text} ',
+  \     warn  = '%{g:lsp_diagnostics_signs_warning.text} ',
+  \     info  = '%{g:lsp_diagnostics_signs_information.text} ',
+  \     hint  = '%{g:lsp_diagnostics_signs_hint.text} '
+  \   },
+  \   colored = true,
+  \   update_in_insert = true,
+  \   always_visible = false,
+  \ }
+  \ require('lualine').setup {
   \   options = {
   \     icons_enabled = true,
-  \     theme = 'auto',
+  \     theme = my_custom_theme,
   \     component_separators = { left = ' ', right = ' ' },
   \     section_separators = { left = '', right = ''},
   \     disabled_filetypes = {
@@ -791,34 +826,14 @@ lua require('lualine').setup {
   \     }
   \   },
   \   sections = {
-  \     lualine_a = {'mode'},
-  \     lualine_b = {'branch', 'diff'},
-  \     lualine_c = {'filename'
+  \     lualine_a = { {'mode', separator = { left = '', right = '' } } },
+  \     lualine_b = { 'diff', 'branch' },
+  \     lualine_c = { 'filename'
   \     },
   \     lualine_x = {
-  \       {
-  \         'diagnostics',
-  \         sources = { 'vim_lsp' },
-  \         sections = { 'error', 'warn', 'info', 'hint' },
-  \         diagnostics_color = {
-  \           error = 'lualine_lsp_err',
-  \           warn  = 'LspWarningText',
-  \           info  = 'LspInformationText',
-  \           hint  = 'LspHintText',
-  \         },
-  \         symbols = {
-  \           error = '%{g:lsp_diagnostics_signs_error.text} ',
-  \           warn  = '%{g:lsp_diagnostics_signs_warning.text} ',
-  \           info  = '%{g:lsp_diagnostics_signs_information.text} ',
-  \           hint  = '%{g:lsp_diagnostics_signs_hint.text} '
-  \         },
-  \         colored = true,
-  \         update_in_insert = true,
-  \         always_visible = false,
-  \       },
-  \       'encoding', 'fileformat', 'filetype' },
+  \       vim_lsp, 'filetype', 'encoding', 'fileformat' },
   \     lualine_y = {'progress'},
-  \     lualine_z = {'location'}
+  \     lualine_z = { {'location', separator = { left = '', right = '' } } },
   \   },
   \   inactive_sections = {
   \     lualine_a = {},
@@ -833,10 +848,10 @@ lua require('lualine').setup {
   \   inactive_winbar = {},
   \   extensions = {}
   \ }
-hi lualine_lsp_err    guifg=#ff0000
-hi lualine_lsp_warn   guifg=#ffff00
-hi lualine_lsp_hint   guifg=#5599dd
-hi lualine_lsp_info   guifg=#5599dd
+hi lualine_lsp_err  guibg=#212736 guifg=#ff0000
+hi lualine_lsp_warn guibg=#212736 guifg=#ffff00
+hi lualine_lsp_hint guibg=#212736 guifg=#5599dd
+hi lualine_lsp_info guibg=#212736 guifg=#5599dd
 
 
 "" bufferline.nvim
