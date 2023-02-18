@@ -58,6 +58,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'liuchengxu/vista.vim'
 " Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'wfxr/minimap.vim',  {'on': 'MinimapToggle'}
+Plug 'nvim-tree/nvim-tree.lua',     {'on': 'NvimTreeToggle'}
+Plug 'dstein64/vim-startuptime'
 
 " visual plugins
 " Plug 'ryanoasis/vim-devicons'
@@ -73,10 +75,6 @@ if has('wsl')
 else
     Plug 'yggdroot/indentline'
 endif
-
-" nvim-tree
-Plug 'nvim-tree/nvim-tree.lua',     {'on': 'NvimTreeToggle'}
-" Plug 'nvim-tree/nvim-web-devicons', {'on': 'NvimTreeToggle'}
 
 " color scheme
 Plug 'tomasiser/vim-code-dark'
