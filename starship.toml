@@ -19,6 +19,7 @@ $directory\
 [](fg:#5588dd bg:#394260)\
 $git_branch\
 $git_status\
+$git_metrics\
 [](fg:#394260 bg:#212736)\
 $nodejs\
 $python\
@@ -79,13 +80,20 @@ read_only         = '🔒'
 "Pictures"        = " "
 
 [git_branch]
-symbol            = ""
+symbol            = " "
 style             = "bg:#394260"
-format            = '[[ $symbol $branch ](fg:#5588dd bg:#394260)]($style)'
+format            = '[[ $symbol$branch ](fg:#5588dd bg:#394260)]($style)'
 
 [git_status]
 style             = "bg:#394260"
 format            = '[[($all_status$ahead_behind )](fg:#5588dd bg:#394260)]($style)'
+
+[git_metrics]
+disabled = false
+added_style = "bold fg:#559955 bg:#394260"
+deleted_style = "bold fg:#aa5555 bg:#394260"
+only_nonzero_diffs = true
+format            = '([+$added ]($added_style))([-$deleted]($deleted_style))'
 
 [nodejs]
 symbol      = " "
