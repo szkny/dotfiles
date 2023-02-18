@@ -934,7 +934,7 @@ lua require('bufferline').setup {
   \       bg = separator_background_color
   \     },
   \     indicator_selected = {
-  \       fg = '#ffcc88',
+  \       fg = '#88ccff',
   \       bg = '#333333',
   \     },
   \     close_button = {
