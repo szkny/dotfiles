@@ -46,7 +46,8 @@ set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 let $FZF_DEFAULT_COMMAND =  'find * -path "*/\.*" -prune -o -path "node_modules/**" -prune -o -path "target/**" -prune -o -path "dist/**" -prune -o  -type f -print -o -type l -print 2> /dev/null'
 let $FZF_DEFAULT_OPTS="--reverse --bind ctrl-j:preview-down,ctrl-k:preview-up"
-let g:fzf_layout = { 'window': 'enew' }
+" let g:fzf_layout = { 'window': 'enew' }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 let g:fzf_preview_window = ['right,50%,<70(down,60%)', 'ctrl-/']
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
@@ -180,7 +181,7 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
     hi PumColumnKind gui=none guifg=#888888 guibg=#202020
     hi PumColumnMenu gui=none guifg=#888888 guibg=#202020
     hi PumSelected  gui=bold guibg=#3388bb
-    hi PumMatches   guifg=#88ddaa
+    hi PumMatches   guifg=#99ddaa
     hi PmenuSBar    guifg=#666666 guibg=#cccccc
     hi FloatBorder  gui=bold guibg=#202020
     call pum#set_option(#{
@@ -211,8 +212,6 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
       \     'CmdlineEnter', 'CmdlineChanged',
       \   ],
       \   backspaceCompletion: v:true,
-      \ })
-    call ddc#custom#patch_global(#{
       \   sources: [
       \     'vim-lsp',
       \     'around',
@@ -905,13 +904,9 @@ lua require('bufferline').setup {
   \       fg = '#555555',
   \       bg = separator_background_color,
   \     },
-  \     background = {
-  \       fg = '#aaaaaa',
-  \       bg = separator_background_color,
-  \     },
   \     buffer_selected = {
   \       fg = '#ffffff',
-  \       bg = '#333333',
+  \       bg = separator_background_color,
   \       italic = false,
   \       bold = true,
   \     },
@@ -923,58 +918,67 @@ lua require('bufferline').setup {
   \     },
   \     duplicate_selected = {
   \       fg = '#ffffff',
-  \       bg = '#333333',
+  \       bg = separator_background_color,
+  \       italic = false,
+  \       bold = true,
   \     },
   \     duplicate_visible = {
   \       fg = '#ffffff',
   \       bg = separator_background_color,
-  \     },
-  \     duplicate = {
-  \       fg = "#aaaaaa",
-  \       bg = separator_background_color
+  \       italic = false,
   \     },
   \     indicator_selected = {
   \       fg = '#88ccff',
-  \       bg = '#333333',
+  \       bg = separator_background_color,
   \     },
   \     close_button = {
-  \       fg = '#aaaaaa',
-  \       bg = '#333333',
+  \       fg = '#888888',
+  \       bg = separator_background_color,
   \     },
   \     close_button_visible = {
-  \       fg = '#aaaaaa',
-  \       bg = '#333333',
+  \       fg = '#888888',
+  \       bg = separator_background_color,
   \     },
   \     close_button_selected = {
   \       fg = '#aaaaaa',
-  \       bg = '#333333',
+  \       bg = separator_background_color,
+  \       bold = true,
   \     },
   \     numbers_selected = {
   \       fg = '#ffffff',
-  \       bg = '#333333',
-  \       italic = false,
-  \     },
-  \     modified = {
-  \       fg = '#ffaa00',
   \       bg = separator_background_color,
-  \       bold = true,
+  \       italic = false,
   \     },
   \     modified_selected = {
   \       fg = '#ffaa00',
-  \       bg = '#333333',
+  \       bg = separator_background_color,
+  \       bold = true,
+  \     },
+  \     background = {
+  \       fg = '#888888',
+  \       bg = '#1a1a1a',
+  \     },
+  \     duplicate = {
+  \       fg = "#888888",
+  \       bg = '#1a1a1a',
+  \       italic = false,
+  \     },
+  \     modified = {
+  \       fg = '#bb7700',
+  \       bg = "#1a1a1a",
   \       bold = true,
   \     },
   \     separator_selected = {
-  \       fg = "#000000",
-  \       bg = '#333333',
+  \       fg = "#1a1a1a",
+  \       bg = "#1a1a1a",
   \     },
   \     separator_visible = {
-  \       fg = "#000000",
-  \       bg = '#333333',
+  \       fg = "#1a1a1a",
+  \       bg = "#1a1a1a",
   \     },
   \     separator = {
-  \       fg = '#555555',
-  \       bg = separator_background_color,
+  \       fg = '#303030',
+  \       bg = "#1a1a1a",
   \     },
   \     offset_separator = {
   \       fg = win_separator_fg,
@@ -1023,9 +1027,13 @@ let g:gitgutter_sign_removed                 = '_'
 let g:gitgutter_sign_removed_first_line      = '‾'
 let g:gitgutter_sign_removed_above_and_below = '_¯'
 let g:gitgutter_sign_modified_removed        = '│'
-hi GitGutterAdd    gui=bold guifg=#00bb00
-hi GitGutterChange gui=bold guifg=#cccc00
-hi GitGutterDelete gui=bold guifg=#ff2222
+hi GitGutterAdd        gui=bold guifg=#00bb00
+hi GitGutterChange     gui=bold guifg=#cccc00
+hi GitGutterDelete     gui=bold guifg=#ff2222
+hi DiffAdd             gui=none guifg=#dddddd guibg=#004400
+hi DiffChange          gui=none guifg=#dddddd guibg=#555500
+hi Difftext            gui=none guifg=#151515 guibg=#cccc00
+hi DiffDelete          gui=none guifg=#dddddd guibg=#550000
 
 
 "" Rnvimr
