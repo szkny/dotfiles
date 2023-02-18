@@ -778,7 +778,7 @@ endf
 fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)
     return filter(['ac', 'acp', 'pull', 'fpull',  'diff', 'reset', 'status', 'blame', 'show', 'push'], printf('v:val =~ "^%s"', a:ArgLead))
 endf
-command! -complete=customlist,s:CompletionGitCommands -nargs=* Git call s:git(<f-args>)
+command! -complete=customlist,s:CompletionGitCommands -nargs=* MyGit call s:git(<f-args>)
 command! -nargs=* Gcam call s:git('am', <f-args>)
 
 fun! s:git_autocmd() abort
