@@ -773,17 +773,17 @@ let g:Hexokinase_highlighters = [ 'backgroundfull' ]
 "" lualine.nvim
 lua local my_custom_theme = {
   \   normal = {
-  \     a = { fg = '#212736', bg = '#5588dd' , gui = 'bold' },
-  \     b = { fg = '#b3bee2', bg = '#394260' },
-  \     c = { fg = '#b3bee2', bg = '#212736' },
+  \     a = { fg = '#ddddee', bg = '#5588dd' , gui = 'bold' },
+  \     b = { fg = '#5588dd', bg = '#394260' },
+  \     c = { fg = '#5588dd', bg = '#212736' },
   \   },
-  \   insert  = { a = { fg = '#394260', bg = '#b3bee2', gui = 'bold' } },
-  \   visual  = { a = { fg = '#394260', bg = '#aa66dd', gui = 'bold' } },
-  \   replace = { a = { fg = '#394260', bg = '#dd6666', gui = 'bold' } },
+  \   insert  = { a = { fg = '#394260', bg = '#ddddee', gui = 'bold' } },
+  \   visual  = { a = { fg = '#394260', bg = '#55bbcc', gui = 'bold' } },
+  \   replace = { a = { fg = '#394260', bg = '#bb77cc', gui = 'bold' } },
   \   inactive = {
-  \     a = { fg = '#b3bee2', bg = '#212736' },
-  \     b = { fg = '#b3bee2', bg = '#212736' },
-  \     c = { fg = '#b3bee2', bg = '#212736' },
+  \     a = { fg = '#ddddee', bg = '#212736' },
+  \     b = { fg = '#ddddee', bg = '#212736' },
+  \     c = { fg = '#ddddee', bg = '#212736' },
   \   },
   \ }
   \ local vim_lsp = {
