@@ -1032,7 +1032,7 @@ hi GitGutterChange     gui=bold guifg=#cccc00
 hi GitGutterDelete     gui=bold guifg=#ff2222
 hi DiffAdd             gui=none guifg=#dddddd guibg=#004400
 hi DiffChange          gui=none guifg=#dddddd guibg=#555500
-hi Difftext            gui=none guifg=#151515 guibg=#cccc00
+hi Difftext            gui=none guifg=#151515 guibg=#dddd00
 hi DiffDelete          gui=none guifg=#dddddd guibg=#550000
 
 

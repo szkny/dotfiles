@@ -340,12 +340,11 @@ aug transparencyBG
     " au ColorScheme * hi VertSplit   gui=none     guifg=#444444 guibg=#202020
 
     au Colorscheme * hi Normal                                 guibg=none
-	au Colorscheme * hi NonText                                guibg=none
+    au Colorscheme * hi NonText                                guibg=none
     au ColorScheme * hi EndOfBuffer              guifg=#252525 guibg=none
-	au Colorscheme * hi LineNr                   guifg=#666666 guibg=none
-	au Colorscheme * hi SignColumn                             guibg=none
-	au Colorscheme * hi Folded                                 guibg=none
-	au Colorscheme * hi EndOfBuffer                            guibg=none
+    au Colorscheme * hi LineNr                   guifg=#666666 guibg=none
+    au Colorscheme * hi SignColumn                             guibg=none
+    au Colorscheme * hi Folded                                 guibg=none
     au ColorScheme * hi VertSplit                guifg=#444444 guibg=none
 
     au ColorScheme * hi CursorLine                             guibg=#303030
