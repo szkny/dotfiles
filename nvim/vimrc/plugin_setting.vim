@@ -180,8 +180,8 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
     hi PumNormalMenu gui=none guifg=#dddddd guibg=#202020
     hi PumColumnKind gui=none guifg=#888888 guibg=#202020
     hi PumColumnMenu gui=none guifg=#888888 guibg=#202020
-    hi PumSelected  gui=bold guibg=#3388bb
-    hi PumMatches   guifg=#99ddaa
+    hi PumSelected  gui=bold guibg=#226688
+    hi PumMatches   guifg=#88cc99
     hi PmenuSBar    guifg=#666666 guibg=#cccccc
     hi FloatBorder  gui=bold guibg=#202020
     call pum#set_option(#{
