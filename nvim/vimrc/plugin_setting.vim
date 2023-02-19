@@ -854,6 +854,7 @@ hi lualine_lsp_info guibg=#212736 guifg=#5599dd
 
 
 "" bufferline.nvim
+  " \     separator_style = 'slant',
 lua require('bufferline').setup {
   \   options = {
   \     mode = "buffers",
@@ -969,11 +970,11 @@ lua require('bufferline').setup {
   \       bold = true,
   \     },
   \     separator_selected = {
-  \       fg = "#1a1a1a",
+  \       fg = "#303030",
   \       bg = "#1a1a1a",
   \     },
   \     separator_visible = {
-  \       fg = "#1a1a1a",
+  \       fg = "#303030",
   \       bg = "#1a1a1a",
   \     },
   \     separator = {
