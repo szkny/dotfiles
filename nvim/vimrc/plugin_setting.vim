@@ -891,7 +891,7 @@ lua require('bufferline').setup {
   \     show_tab_indicators = true,
   \     show_duplicate_prefix = true,
   \     persist_buffer_sort = true,
-  \     separator_style = {"|", "|"},
+  \     separator_style = {"│", "│"},
   \     enforce_regular_tabs = false,
   \     always_show_bufferline = true,
   \     hover = {
@@ -978,7 +978,7 @@ lua require('bufferline').setup {
   \       bg = "#1a1a1a",
   \     },
   \     separator = {
-  \       fg = '#303030',
+  \       fg = "#444444",
   \       bg = "#1a1a1a",
   \     },
   \     offset_separator = {
