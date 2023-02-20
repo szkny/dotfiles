@@ -867,7 +867,7 @@ lua require('bufferline').setup {
   \       icon = '▎',
   \       style = 'icon'
   \     },
-  \     max_name_length = 18,
+  \     max_name_length = 36,
   \     max_prefix_length = 6,
   \     truncate_names = true,
   \     tab_size = 18,
