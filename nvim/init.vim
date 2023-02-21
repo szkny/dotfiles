@@ -62,9 +62,6 @@ Plug 'nvim-tree/nvim-tree.lua',     {'on': 'NvimTreeToggle'}
 Plug 'dstein64/vim-startuptime'
 
 " visual plugins
-" Plug 'ryanoasis/vim-devicons'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }

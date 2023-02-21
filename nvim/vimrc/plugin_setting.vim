@@ -317,6 +317,7 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
           \ globalJisyo: '~/.skk/SKK-JISYO.L',
           \ kanaTable: 'rom',
           \ eggLikeNewline: v:true,
+          \ showCandidatesCount: 10,
           \ usePopup: v:false,
           \ registerConvertResult: v:true,
           \ acceptIllegalResult: v:true,
@@ -354,7 +355,7 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
       au!
       au User skkeleton-mode-changed redrawstatus
     aug END
-    fun! Airline_skkeleton_mode() abort
+    fun! Lualine_skkeleton_mode() abort
         try
             let l:current_mode = mode()
             if (l:current_mode=='i' || l:current_mode=='c') && skkeleton#is_enabled()
@@ -366,7 +367,7 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
                   \ abbrev:  'abbr',
                   \ }
                 let l:mode = mode_dict[skkeleton#mode()]
-                return '  IME:'.l:mode
+                return 'IME:'.l:mode
             else
                 return ''
             endif
@@ -777,7 +778,7 @@ lua local my_custom_theme = {
   \     c = { fg = '#5588dd', bg = '#212736' },
   \   },
   \   insert  = { a = { fg = '#394260', bg = '#ddddee', gui = 'bold' } },
-  \   visual  = { a = { fg = '#394260', bg = '#55bbcc', gui = 'bold' } },
+  \   visual  = { a = { fg = '#394260', bg = '#77bb99', gui = 'bold' } },
   \   replace = { a = { fg = '#394260', bg = '#bb77cc', gui = 'bold' } },
   \   inactive = {
   \     a = { fg = '#ddddee', bg = '#212736' },
@@ -825,7 +826,7 @@ lua local my_custom_theme = {
   \     }
   \   },
   \   sections = {
-  \     lualine_a = { {'mode', separator = { left = '', right = '' } } },
+  \     lualine_a = { { 'mode', separator = { left = '', right = '' } }, { 'Lualine_skkeleton_mode' } },
   \     lualine_b = { 'diff', 'branch' },
   \     lualine_c = { 'filename'
   \     },
