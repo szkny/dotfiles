@@ -91,6 +91,10 @@ else
     Plug 'junegunn/fzf.vim'
 endif
 
+" denops plugins
+Plug 'vim-denops/denops.vim'
+Plug 'vim-skk/skkeleton', { 'frozen': 1 }
+
 " LSP
 let g:use_coc_nvim = 0
 let g:use_mason_nvim = 0
@@ -103,9 +107,6 @@ elseif get(g:, 'use_mason_nvim', 0) == 1
     Plug 'williamboman/mason-lspconfig.nvim'
     Plug 'neovim/nvim-lspconfig'
 else
-    " denops
-    Plug 'vim-denops/denops.vim'
-
     " vim-lsp
     Plug 'prabirshrestha/vim-lsp'
     Plug 'mattn/vim-lsp-settings'
@@ -131,7 +132,6 @@ else
     Plug 'Shougo/ddc-converter_remove_overlap'
     Plug 'tani/ddc-fuzzy'
     " " ddc etc.
-    Plug 'vim-skk/skkeleton', { 'frozen': 1 }
     " Plug 'hrsh7th/vim-vsnip'
     " Plug 'hrsh7th/vim-vsnip-integ'
 endif

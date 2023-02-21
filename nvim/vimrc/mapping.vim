@@ -153,11 +153,6 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
       \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
     cno <expr> <UP>
       \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
-    "" skkeleton
-    ino <C-j> <Plug>(skkeleton-enable)
-    cno <C-j> <Plug>(skkeleton-enable)
-    ino <C-l> <Plug>(skkeleton-disable)
-    cno <C-l> <Plug>(skkeleton-disable)
     "" vim-lsp
     nno <silent><nowait> <C-]>     :<C-u>LspDefinition<CR>
     nno <silent><nowait> <leader>] :<C-u>LspDefinition<CR>
@@ -169,6 +164,12 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
     nno <silent><nowait> <leader>l :<C-u>LspDocumentDiagnostics<CR>
     nno <silent><nowait> <leader>h :<C-u>LspCodeAction<CR>
 endif
+
+"" skkeleton
+ino <C-j> <Plug>(skkeleton-enable)
+cno <C-j> <Plug>(skkeleton-enable)
+ino <C-l> <Plug>(skkeleton-disable)
+cno <C-l> <Plug>(skkeleton-disable)
 
 "" neosnippet
 " NOTE: プラグインのマッピングはnoremapではなくmapにすること
