@@ -3,34 +3,42 @@ scriptencoding utf-8
 "" Plugin Configuration
 "*****************************************************************************
 
-" "" nvim-notify
-" lua require("notify").setup({
-"   \   stages = "fade",
-"   \   on_open = nil,
-"   \   on_close = nil,
-"   \   render = "compact",
-"   \   timeout = 5000,
-"   \   background_colour = "#888888",
-"   \   minimum_width = 50,
-"   \   fps = 30,
-"   \   icons = {
-"   \     ERROR = "",
-"   \     WARN = "",
-"   \     INFO = "",
-"   \     DEBUG = "",
-"   \     TRACE = "✎",
-"   \   },
-"   \ })
-"
-"
-" "" noice.nvim
-" lua  require("noice").setup({
-"   \   presets = {
-"   \     bottom_search = false,
-"   \     command_palette = false,
-"   \     long_message_to_split = true,
-"   \   },
-"   \ })
+"" nvim-notify
+lua require("notify").setup({
+  \   stages = "fade",
+  \   on_open = nil,
+  \   on_close = nil,
+  \   render = "compact",
+  \   timeout = 6000,
+  \   background_colour = "#888888",
+  \   minimum_width = 50,
+  \   fps = 10,
+  \   icons = {
+  \     ERROR = "",
+  \     WARN = "",
+  \     INFO = "",
+  \     DEBUG = "",
+  \     TRACE = "✎",
+  \   },
+  \ })
+
+
+"" noice.nvim
+lua  require("noice").setup({
+  \   messages = {
+  \     enabled = true,
+  \     view = "notify",
+  \     view_error = "notify",
+  \     view_warn = "notify",
+  \     view_history = "messages",
+  \     view_search = "mini",
+  \   },
+  \   presets = {
+  \     bottom_search = false,
+  \     command_palette = true,
+  \     long_message_to_split = true,
+  \   },
+  \ })
 
 
 "" fzf.vim

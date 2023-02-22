@@ -78,10 +78,10 @@ Plug 'tomasiser/vim-code-dark'
 " Plug 'tomasr/molokai'
 " Plug 'jacoborus/tender.vim'
 
-" " nvim-notify / noice.nvim
-" Plug 'MunifTanjim/nui.nvim'
-" Plug 'rcarriga/nvim-notify'
-" Plug 'folke/noice.nvim'
+" nvim-notify / noice.nvim
+Plug 'MunifTanjim/nui.nvim'
+Plug 'rcarriga/nvim-notify'
+Plug 'folke/noice.nvim'
 
 " fzf.vim
 if isdirectory('/usr/local/opt/fzf')

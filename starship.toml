@@ -29,7 +29,6 @@ $aws\
 [ ](fg:#1d2230)\
 $fill$status$cmd_duration$time
 $line_break$character"""
-# right_format = """$status$cmd_duration$time"""
 
 # Prompt propaties
 [character]
