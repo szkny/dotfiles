@@ -3,15 +3,16 @@ scriptencoding utf-8
 "" Plugin Configuration
 "*****************************************************************************
 
-" "" nvim-notify (neovim0.9.0-devではluajitのbitが使えないのでエラー)
+" "" nvim-notify
 " lua require("notify").setup({
-"   \   stages = "fade_in_slide_out",
+"   \   stages = "fade",
 "   \   on_open = nil,
 "   \   on_close = nil,
-"   \   render = "default",
-"   \   timeout = 3000,
-"   \   background_colour = "Normal",
+"   \   render = "compact",
+"   \   timeout = 5000,
+"   \   background_colour = "#888888",
 "   \   minimum_width = 50,
+"   \   fps = 30,
 "   \   icons = {
 "   \     ERROR = "",
 "   \     WARN = "",
@@ -20,23 +21,14 @@ scriptencoding utf-8
 "   \     TRACE = "✎",
 "   \   },
 "   \ })
-
-
-" "" noice.nvim (neovim0.9.0-devではluajitのjitが使えないのでエラー)
+"
+"
+" "" noice.nvim
 " lua  require("noice").setup({
-"   \   lsp = {
-"   \     override = {
-"   \       ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-"   \       ["vim.lsp.util.stylize_markdown"] = true,
-"   \       ["cmp.entry.get_documentation"] = true,
-"   \     },
-"   \   },
 "   \   presets = {
-"   \     bottom_search = true,
-"   \     command_palette = true,
+"   \     bottom_search = false,
+"   \     command_palette = false,
 "   \     long_message_to_split = true,
-"   \     inc_rename = false,
-"   \     lsp_doc_border = false,
 "   \   },
 "   \ })
 
