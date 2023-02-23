@@ -33,6 +33,18 @@ lua  require("noice").setup({
   \     view_history = "messages",
   \     view_search = "mini",
   \   },
+  \   cmdline = {
+  \     enabled = true,
+  \     view = "cmdline_popup",
+  \     format = {
+  \       cmdline = { pattern = "^:", icon = "", lang = "vim" },
+  \       search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
+  \       search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
+  \       filter = { pattern = "^:%s*!", icon = "$", lang = "zsh" },
+  \       lua = { pattern = "^:%s*lua%s+", icon = "", lang = "lua" },
+  \       help = { pattern = "^:%s*he?l?p?%s+", icon = "" },
+  \     },
+  \   },
   \   presets = {
   \     bottom_search = false,
   \     command_palette = true,
