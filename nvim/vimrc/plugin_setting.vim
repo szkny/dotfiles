@@ -834,87 +834,87 @@ lua require('bufferline').setup {
   \   highlights = {
   \     fill = {
   \       fg = '#555555',
-  \       bg = separator_background_color,
+  \       bg = '#202020',
   \     },
   \     buffer_selected = {
   \       fg = '#ffffff',
-  \       bg = separator_background_color,
+  \       bg = '#202020',
   \       italic = false,
   \       bold = true,
   \     },
   \     buffer_visible = {
   \       fg = '#ffffff',
-  \       bg = separator_background_color,
+  \       bg = '#202020',
   \       italic = false,
   \       bold = true,
   \     },
   \     duplicate_selected = {
   \       fg = '#ffffff',
-  \       bg = separator_background_color,
+  \       bg = '#202020',
   \       italic = false,
   \       bold = true,
   \     },
   \     duplicate_visible = {
   \       fg = '#ffffff',
-  \       bg = separator_background_color,
+  \       bg = '#202020',
   \       italic = false,
   \     },
   \     indicator_selected = {
   \       fg = '#88ccff',
-  \       bg = separator_background_color,
+  \       bg = '#202020',
   \     },
   \     close_button = {
   \       fg = '#888888',
-  \       bg = separator_background_color,
+  \       bg = '#202020',
   \     },
   \     close_button_visible = {
   \       fg = '#888888',
-  \       bg = separator_background_color,
+  \       bg = '#202020',
   \     },
   \     close_button_selected = {
   \       fg = '#aaaaaa',
-  \       bg = separator_background_color,
+  \       bg = '#202020',
   \       bold = true,
   \     },
   \     numbers_selected = {
   \       fg = '#ffffff',
-  \       bg = separator_background_color,
+  \       bg = '#202020',
   \       italic = false,
   \     },
   \     modified_selected = {
   \       fg = '#ffaa00',
-  \       bg = separator_background_color,
+  \       bg = '#202020',
   \       bold = true,
   \     },
   \     background = {
   \       fg = '#888888',
-  \       bg = '#1a1a1a',
+  \       bg = '#181818',
   \     },
   \     duplicate = {
   \       fg = "#888888",
-  \       bg = '#1a1a1a',
+  \       bg = '#181818',
   \       italic = false,
   \     },
   \     modified = {
   \       fg = '#bb7700',
-  \       bg = "#1a1a1a",
+  \       bg = "#181818",
   \       bold = true,
   \     },
   \     separator_selected = {
   \       fg = "#303030",
-  \       bg = "#1a1a1a",
+  \       bg = "#181818",
   \     },
   \     separator_visible = {
   \       fg = "#303030",
-  \       bg = "#1a1a1a",
+  \       bg = "#181818",
   \     },
   \     separator = {
   \       fg = "#444444",
-  \       bg = "#1a1a1a",
+  \       bg = "#181818",
   \     },
   \     offset_separator = {
   \       fg = win_separator_fg,
-  \       bg = separator_background_color,
+  \       bg = '#202020',
   \     },
   \   }
   \ }
