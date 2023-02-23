@@ -4,13 +4,15 @@ scriptencoding utf-8
 "*****************************************************************************
 
 "" nvim-notify
+  " \   stages = "fade_in_slide_out",
+  " \   render = "compact",
 lua require("notify").setup({
   \   stages = "fade",
   \   on_open = nil,
   \   on_close = nil,
-  \   render = "compact",
+  \   render = "default",
   \   timeout = 6000,
-  \   background_colour = "#888888",
+  \   background_colour = "#202020",
   \   minimum_width = 50,
   \   fps = 10,
   \   icons = {
