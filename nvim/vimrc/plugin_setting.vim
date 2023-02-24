@@ -16,11 +16,11 @@ lua require("notify").setup({
   \   minimum_width = 50,
   \   fps = 10,
   \   icons = {
-  \     ERROR = "",
-  \     WARN = "",
-  \     INFO = "",
-  \     DEBUG = "",
-  \     TRACE = "✎",
+  \     ERROR = " ",
+  \     WARN = " ",
+  \     INFO = " ",
+  \     DEBUG = " ",
+  \     TRACE = "✎ ",
   \   },
   \ })
 
