@@ -1,33 +1,3 @@
-# # プロンプト設定
-# autoload -Uz vcs_info
-# zstyle ':vcs_info:*' formats '[%b]'
-# zstyle ':vcs_info:*' actionformats '[%b|%a]'
-# precmd(){
-#   # 1行あける
-#   print
-#   # カレントディレクトリ
-#   local left=' %F{green}[%f%U%C%u%F{green}]%f'
-#   # バージョン管理されてた場合、ブランチ名
-#   vcs_info
-#   local right="%{\e[38;5;32m%}${vcs_info_msg_0_}%{\e[m%}"
-#   # スペースの長さを計算
-#   # テキストを装飾する場合、エスケープシーケンスをカウントしない
-#   local invisible='%([BSUbfksu]|([FK]|){*})'
-#   local leftwidth=${#${(S%%)left//$~invisible/}}
-#   local rightwidth=${#${(S%%)right//$~invisible/}}
-#   local padwidth=$(($COLUMNS - ($leftwidth + $rightwidth) % $COLUMNS))
-#
-#   print -P $left${(r:$padwidth:: :)}$right
-# }
-# # ユーザ名@ホスト名
-# PROMPT='%F{34}>%F{28}>%F{22}>%f '
-# ## 現在時刻
-# RPROMPT=$'%F{green}(%f%D{%m/%d %a, %T}%F{green})%f'
-# # TMOUT=1
-# TRAPALRM() {
-#   zle reset-prompt
-# }
-
 # zplug
 source ~/.zplug/init.zsh
 zplug "zsh-users/zsh-autosuggestions"
@@ -108,7 +78,7 @@ alias jupyterlab='\cd ~/Project/jupyterlab && jupyter lab'
 alias iipython='ipython --profile=iterm2 --no-confirm-exit'
 
 ## binds
-bindkey -s '^V' '^unvim\n'
+bindkey -s '^V' '^uvi\n'
 bindkey -s '^H' '^uranger-cd\n'
 # bindkey -s '^H' '^ucd **\t'
 bindkey -s '^F' '^ufdghq\n'
@@ -194,7 +164,7 @@ export FZF_DEFAULT_OPTS=$(cat <<"EOF"
   --preview '
       [ -f {} ] \
       && bat --color=always --style=numbers {} \
-      || exa -T {} | head -n 50
+      || exa -T {} -I node_modules
   '
   --preview-window 'nohidden,nowrap,right,50%,<70(down,50%)'
   --bind 'ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up'
@@ -206,7 +176,7 @@ export FZF_CTRL_T_OPTS=$(cat <<"EOF"
 --preview '
   [ -f {} ] \
   && bat --color=always --style=numbers {} \
-  || exa -T {} | head -n 50
+  || exa -T {} -I node_modules
 ' 
 EOF
 )
