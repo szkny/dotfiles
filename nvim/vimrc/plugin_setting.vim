@@ -4,17 +4,15 @@ scriptencoding utf-8
 "*****************************************************************************
 
 "" nvim-notify
-  " \   stages = "fade_in_slide_out",
-  " \   render = "compact",
 lua require("notify").setup({
   \   stages = "fade",
   \   on_open = nil,
   \   on_close = nil,
   \   render = "default",
-  \   timeout = 6000,
+  \   timeout = 5000,
   \   background_colour = "#202020",
   \   minimum_width = 50,
-  \   fps = 10,
+  \   fps = 30,
   \   icons = {
   \     ERROR = " ",
   \     WARN = " ",
@@ -53,6 +51,7 @@ lua  require("noice").setup({
   \     long_message_to_split = true,
   \   },
   \ })
+hi NoiceMini guifg=#ffbb00 guibg=#000000
 
 
 "" fzf.vim

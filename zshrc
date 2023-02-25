@@ -159,14 +159,14 @@ export PATH="$PATH:$HOME/go/bin"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS=$(cat <<"EOF"
   --multi
-  --height=100%
+  --height=99%
   --layout=reverse
   --preview '
       [ -f {} ] \
       && bat --color=always --style=numbers {} \
       || exa -T {} -I node_modules
   '
-  --preview-window 'nohidden,nowrap,right,50%,<70(down,50%)'
+  --preview-window 'hidden,wrap,right,99%'
   --bind 'ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up'
   --select-1
   --exit-0
@@ -186,10 +186,9 @@ export FZF_CTRL_R_OPTS=$(cat <<"EOF"
     | awk "{ sub(/\s*[0-9]*?\s*/, \"\"); gsub(/\\\\n/, \"\\n\"); print }" \
     | bat --color=always --language=sh --style=plain
   ' 
-  --preview-window 'down,3,wrap,nohidden'
+  --preview-window 'hidden,wrap,down,3'
 EOF
 )
-export FZF_BASE=$HOME/.fzf
 
 # pyenv setup
 export PYENV_ROOT="$HOME/.pyenv"
