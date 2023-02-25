@@ -159,14 +159,14 @@ export PATH="$PATH:$HOME/go/bin"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS=$(cat <<"EOF"
   --multi
-  --height=99%
+  --height=90%
   --layout=reverse
   --preview '
       [ -f {} ] \
       && bat --color=always --style=numbers {} \
       || exa -T {} -I node_modules
   '
-  --preview-window 'hidden,wrap,right,99%'
+  --preview-window 'hidden,wrap,right,90%'
   --bind 'ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up'
   --select-1
   --exit-0
