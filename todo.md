@@ -2,8 +2,10 @@
 
 - neovim
   - init.vim → init.lua
-    - ddc.vim
-      - snippet
-    - coc.nvim
-    - mason.nvim
+    - vim-plug → packer.nvim
+    - LSP
+      - tweak ddc.vim
+        - snippet
+      - basic setup for coc.nvim
+      - basic setup for mason.nvim
 - 
