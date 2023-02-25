@@ -540,7 +540,7 @@ hi VistaLineNr guifg=#777777
 "" minimap.vim
 let g:minimap_auto_start                        = 0
 let g:minimap_auto_start_win_enter              = 0
-let g:minimap_width                             = 10
+let g:minimap_width                             = 4
 let g:minimap_window_width_override_for_scaling = 2147483647
 let g:minimap_block_filetypes                   = ['terminal', 'fzf', 'vista_kind', 'NvimTree', 'rnvimr']
 " let g:minimap_close_buftypes                   = ['nofile', 'startify', 'netrw', 'vim-plug', 'terminal']
@@ -652,8 +652,23 @@ else
 endif
 
 
-"" vim-hexokinase
-let g:Hexokinase_highlighters = [ 'backgroundfull' ]
+"" nvim-colorizer.lua
+lua require('colorizer').setup(
+  \   {
+  \     '*';
+  \   },
+  \   {
+  \     RGB      = true;
+  \     RRGGBB   = true;
+  \     names    = false;
+  \     RRGGBBAA = true;
+  \     rgb_fn   = true;
+  \     hsl_fn   = true;
+  \     css      = true;
+  \     css_fn   = true;
+  \     mode     = 'background';
+  \   }
+  \ )
 
 
 "" lualine.nvim
