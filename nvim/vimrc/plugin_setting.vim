@@ -253,8 +253,8 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
       \     },
       \     mocword: #{
       \       mark: '[MOCWORD]',
-      \       forceCompletionPattern: '\ |->|"\w+/*',
-      \       minAutoCompleteLength: 3,
+      \       forceCompletionPattern: '\ ',
+      \       minAutoCompleteLength: 2,
       \       isVolatile: v:true,
       \     },
       \     skkeleton: #{
@@ -301,14 +301,14 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
         \ },
         \ cmdline: #{
         \   mark: '[COMMAND]',
-        \   forceCompletionPattern: '\ |:|->|"\w+/*',
+        \   forceCompletionPattern: '\ |:|-|"\w+/*',
         \ },
         \ cmdline-history: #{
         \   mark: '[HISTORY]',
         \ },
         \ necovim: #{
         \   mark: '[ARGS]',
-        \   forceCompletionPattern: '\ |:|->|"\w+/*',
+        \   forceCompletionPattern: '\ |:|-|"\w+/*',
         \ },
         \ file: #{
         \   mark: '[FILE]',
@@ -316,8 +316,8 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
         \ },
         \ mocword: #{
         \   mark: '[MOCWORD]',
-        \   forceCompletionPattern: '\ |->|"\w+/*',
-        \   minAutoCompleteLength: 3,
+        \   forceCompletionPattern: '\ ',
+        \   minAutoCompleteLength: 2,
         \   isVolatile: v:true,
         \ },
         \ skkeleton: #{
