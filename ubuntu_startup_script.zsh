@@ -25,6 +25,13 @@ echo 'install cargo packages..'
 cargo install exa bat rm-improved code-minimap git-delta
 ## cargo install deno
 
+## mocword
+cargo install mocword
+mkdir -p ~/.mocword
+cd ~/.mocword
+curl -LO https://github.com/high-moctane/mocword-data/releases/download/eng20200217/mocword.sqlite.gz
+gzip -d mocword.sqlite.gz
+
 ## install python
 echo 'install python..'
 git clone https://github.com/yyuu/pyenv.git ~/.pyenv

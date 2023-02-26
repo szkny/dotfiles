@@ -206,6 +206,9 @@ export NVM_DIR="$HOME/.nvm"
 # starship setup
 eval "$(starship init zsh)"
 
+# mocword
+export MOCWORD_DATA=~/.mocword/mocword.sqlite
+
 # ChatGPT
 source "$HOME/.openai_key.zsh"
 
