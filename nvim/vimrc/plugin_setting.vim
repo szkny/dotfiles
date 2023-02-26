@@ -198,7 +198,7 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
     hi PmenuSBar    guifg=#666666 guibg=#cccccc
     hi FloatBorder  gui=bold guibg=#202020
     call pum#set_option(#{
-      \   auto_select: v:true,
+      \   auto_select: v:false,
       \   max_height: 15,
       \   max_width: 0,
       \   offset_row: 1,
@@ -229,6 +229,7 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
       \     'vim-lsp',
       \     'around',
       \     'file',
+      \     'mocword',
       \     'skkeleton',
       \   ],
       \   sourceOptions: #{
@@ -249,6 +250,12 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
       \     file: #{
       \       mark: '[FILE]',
       \       forceCompletionPattern: '\S/\S*',
+      \     },
+      \     mocword: #{
+      \       mark: '[MOCWORD]',
+      \       forceCompletionPattern: '\ |->|"\w+/*',
+      \       minAutoCompleteLength: 3,
+      \       isVolatile: v:true,
       \     },
       \     skkeleton: #{
       \       mark: '[SKK]',
@@ -273,6 +280,7 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
       \   'cmdline-history',
       \   'necovim',
       \   'file',
+      \   'mocword',
       \   'skkeleton',
       \ ],
       \ '/': [
@@ -301,6 +309,22 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
         \ necovim: #{
         \   mark: '[ARGS]',
         \   forceCompletionPattern: '\ |:|->|"\w+/*',
+        \ },
+        \ file: #{
+        \   mark: '[FILE]',
+        \   forceCompletionPattern: '\S/\S*',
+        \ },
+        \ mocword: #{
+        \   mark: '[MOCWORD]',
+        \   forceCompletionPattern: '\ |->|"\w+/*',
+        \   minAutoCompleteLength: 3,
+        \   isVolatile: v:true,
+        \ },
+        \ skkeleton: #{
+        \   mark: '[SKK]',
+        \   matchers: ['skkeleton'],
+        \   sorters: [],
+        \   isVolatile: v:true,
         \ },
         \ })
       au User DDCCmdlineLeave ++once call DdcCommandlinePost()

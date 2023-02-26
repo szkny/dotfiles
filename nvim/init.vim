@@ -124,6 +124,7 @@ else
     Plug 'Shougo/ddc-source-around'
     Plug 'shun/ddc-source-vim-lsp'
     Plug 'LumaKernel/ddc-source-file'
+    Plug 'Shougo/ddc-source-mocword'
     Plug 'Shougo/ddc-source-cmdline'
     Plug 'Shougo/ddc-source-cmdline-history'
     Plug 'Shougo/neco-vim'
