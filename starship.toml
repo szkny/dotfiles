@@ -69,7 +69,7 @@ format            = "[ $path ]($style)"
 home_symbol       = "~"
 truncation_symbol = "…/"
 truncation_length = 3
-truncate_to_repo  = true
+truncate_to_repo  = false
 read_only         = '🔒'
 
 [directory.substitutions]
