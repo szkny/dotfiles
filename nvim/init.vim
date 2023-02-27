@@ -168,7 +168,7 @@ Plug 'yaasita/ore_markdown',           {'for': 'markdown'}
 Plug 'posva/vim-vue',                  {'for': 'vue'}
 " Plug 'digitaltoad/vim-pug',            {'for': 'pug'}
 Plug 'hashivim/vim-terraform',         {'for': 'terraform'}
-Plug 'mechatroner/rainbow_csv',        {'for': ['csv', 'tsv']}
+" Plug 'mechatroner/rainbow_csv',        {'for': ['csv', 'tsv']}
 
 call plug#end()
 
