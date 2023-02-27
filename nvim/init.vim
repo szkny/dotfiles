@@ -161,7 +161,7 @@ Plug 'raimon49/requirements.txt.vim',  {'for': 'requirements'}
 Plug 'cespare/vim-toml',               {'for': 'toml'}
 Plug 'kannokanno/previm',              {'for': 'markdown'}
 Plug 'godlygeek/tabular',              {'for': 'markdown'}
-Plug 'plasticboy/vim-markdown',        {'for': 'markdown'}
+Plug 'preservim/vim-markdown',         {'for': 'markdown'}
 Plug 'yaasita/ore_markdown',           {'for': 'markdown'}
 " Plug 'vim-scripts/applescript.vim',    {'for': 'applescript'}
 " Plug 'aklt/plantuml-syntax',           {'for': 'plantuml'}
