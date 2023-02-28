@@ -935,6 +935,16 @@ lua require('bufferline').setup {
   \       bg = '#181818',
   \       italic = false,
   \     },
+  \     numbers = {
+  \       fg = '#888888',
+  \       bg = '#181818',
+  \       italic = false,
+  \     },
+  \     numbers_visible = {
+  \       fg = '#888888',
+  \       bg = '#181818',
+  \       italic = false,
+  \     },
   \     modified = {
   \       fg = '#bb7700',
   \       bg = "#181818",
