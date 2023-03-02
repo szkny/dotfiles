@@ -11,7 +11,7 @@ lua require("notify").setup({
   \   on_open = nil,
   \   on_close = nil,
   \   render = "default",
-  \   timeout = 5000,
+  \   timeout = 2000,
   \   background_colour = "#202020",
   \   minimum_width = 50,
   \   fps = 30,
