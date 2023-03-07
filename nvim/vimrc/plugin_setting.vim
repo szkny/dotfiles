@@ -610,6 +610,7 @@ endif
 lua require('nvim-treesitter.configs').setup {
     \   ensure_installed = {
     \     "vim",
+    \     "regex",
     \     "help",
     \     "json",
     \     "markdown",
