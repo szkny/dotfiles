@@ -875,7 +875,7 @@ lua require('bufferline').setup {
   \   highlights = {
   \     fill = {
   \       fg = '#555555',
-  \       bg = '#202020',
+  \       bg = '#151515',
   \     },
   \     buffer_selected = {
   \       fg = '#ffffff',
@@ -929,39 +929,39 @@ lua require('bufferline').setup {
   \     },
   \     background = {
   \       fg = '#888888',
-  \       bg = '#181818',
+  \       bg = '#151515',
   \     },
   \     duplicate = {
   \       fg = "#888888",
-  \       bg = '#181818',
+  \       bg = '#151515',
   \       italic = false,
   \     },
   \     numbers = {
   \       fg = '#888888',
-  \       bg = '#181818',
+  \       bg = '#151515',
   \       italic = false,
   \     },
   \     numbers_visible = {
   \       fg = '#888888',
-  \       bg = '#181818',
+  \       bg = '#151515',
   \       italic = false,
   \     },
   \     modified = {
   \       fg = '#bb7700',
-  \       bg = "#181818",
+  \       bg = "#151515",
   \       bold = true,
   \     },
   \     separator_selected = {
   \       fg = "#303030",
-  \       bg = "#181818",
+  \       bg = "#151515",
   \     },
   \     separator_visible = {
   \       fg = "#303030",
-  \       bg = "#181818",
+  \       bg = "#151515",
   \     },
   \     separator = {
   \       fg = "#444444",
-  \       bg = "#181818",
+  \       bg = "#151515",
   \     },
   \     offset_separator = {
   \       fg = win_separator_fg,
