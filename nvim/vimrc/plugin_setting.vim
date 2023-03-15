@@ -679,23 +679,34 @@ else
 endif
 
 
-"" nvim-colorizer.lua
-lua require('colorizer').setup(
-  \   {
-  \     '*';
-  \   },
-  \   {
-  \     RGB      = true;
-  \     RRGGBB   = true;
-  \     names    = false;
-  \     RRGGBBAA = true;
-  \     rgb_fn   = true;
-  \     hsl_fn   = true;
-  \     css      = true;
-  \     css_fn   = true;
-  \     mode     = 'background';
-  \   }
-  \ )
+" "" nvim-colorizer.lua
+" lua require('colorizer').setup(
+"   \   {
+"   \     '*';
+"   \   },
+"   \   {
+"   \     RGB      = true;
+"   \     RRGGBB   = true;
+"   \     names    = false;
+"   \     RRGGBBAA = true;
+"   \     rgb_fn   = true;
+"   \     hsl_fn   = true;
+"   \     css      = true;
+"   \     css_fn   = true;
+"   \     mode     = 'background';
+"   \   }
+"   \ )
+
+"" vim-hexokinase
+let g:Hexokinase_highlighters = [ 'backgroundfull' ]
+let g:Hexokinase_optInPatterns = [
+\     'full_hex',
+\     'triple_hex',
+\     'rgb',
+\     'rgba',
+\     'hsl',
+\     'hsla',
+\ ]
 
 
 "" lualine.nvim
