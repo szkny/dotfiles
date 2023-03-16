@@ -591,6 +591,15 @@ hi MyMinimapDiffAdded   guifg=#00aa77
 hi MyMinimapDiffRemoved guifg=#bb0000
 
 
+"" nvim-scrollbar
+lua require("scrollbar").setup()
+hi ScrollbarHandle       guifg=#333333 guibg=#444444
+hi ScrollbarCursorHandle guifg=#ffffff guibg=#444444
+hi ScrollbarCursor       guifg=#333333 guibg=#444444
+hi ScrollbarSearchHandle guifg=#ff3333 guibg=#ff3333
+hi ScrollbarSearch       guifg=#ffff33 guibg=#ffff44
+
+
 " "" visual-multi
 " let g:VM_default_mappings = 0
 " let g:VM_maps = {}

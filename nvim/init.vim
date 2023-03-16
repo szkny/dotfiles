@@ -57,13 +57,14 @@ Plug 'szkny/SplitTerm'
 Plug 'junegunn/vim-easy-align'
 Plug 'liuchengxu/vista.vim'
 " Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'wfxr/minimap.vim',  {'on': 'MinimapToggle'}
 Plug 'nvim-tree/nvim-tree.lua',     {'on': 'NvimTreeToggle'}
 Plug 'dstein64/vim-startuptime'
 
 " visual plugins
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'wfxr/minimap.vim',  {'on': 'MinimapToggle'}
+Plug 'petertriho/nvim-scrollbar'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
 " Plug 'norcalli/nvim-colorizer.lua'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
