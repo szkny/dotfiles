@@ -516,7 +516,7 @@ lua require("nvim-tree").setup({
   \ })
 " hi NvimTreeNormal             gui=none guibg=#202020
 " hi NvimTreeEndOfBuffer        gui=none guifg=#202020 guibg=#202020
-hi NvimTreeRootFolder         gui=bold guifg=#bbbbbb
+hi NvimTreeRootFolder         gui=bold guifg=#bbbbbb guibg=#2e2e2e
 hi NvimTreeFolderName         gui=bold guifg=#77aadd
 hi NvimTreeOpenedFolderName   gui=bold guifg=#77aadd
 hi NvimTreeSpecialFile        gui=bold,underline guifg=#aaaa00
@@ -985,7 +985,7 @@ lua require('bufferline').setup {
   \     },
   \     offset_separator = {
   \       fg = win_separator_fg,
-  \       bg = '#202020',
+  \       bg = '#2e2e2e',
   \     },
   \   }
   \ }
