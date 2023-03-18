@@ -516,7 +516,7 @@ lua require("nvim-tree").setup({
   \ })
 " hi NvimTreeNormal             gui=none guibg=#202020
 " hi NvimTreeEndOfBuffer        gui=none guifg=#202020 guibg=#202020
-hi NvimTreeRootFolder         gui=bold guifg=#bbbbbb guibg=#2e2e2e
+hi NvimTreeRootFolder         gui=bold guifg=#bbbbbb guibg=#2e2e35
 hi NvimTreeFolderName         gui=bold guifg=#77aadd
 hi NvimTreeOpenedFolderName   gui=bold guifg=#77aadd
 hi NvimTreeSpecialFile        gui=bold,underline guifg=#aaaa00
@@ -591,30 +591,6 @@ hi MyMinimapDiffAdded   guifg=#00aa77
 hi MyMinimapDiffRemoved guifg=#bb0000
 
 
-"" nvim-scrollbar
-lua require("scrollbar").setup()
-hi ScrollbarHandle       guifg=#333333 guibg=#444444
-hi ScrollbarCursorHandle guifg=#ffffff guibg=#444444
-hi ScrollbarCursor       guifg=#333333 guibg=#444444
-hi ScrollbarSearchHandle guifg=#ff3333 guibg=#ff3333
-hi ScrollbarSearch       guifg=#ffff33 guibg=#ffff44
-
-
-" "" visual-multi
-" let g:VM_default_mappings = 0
-" let g:VM_maps = {}
-" let g:VM_maps['Find Under']         = '<C-d>'      " replace C-n
-" let g:VM_maps['Find Subword Under'] = '<C-d>'      " replace visual C-n
-" let g:VM_maps["Select Cursor Down"] = '<M-C-Down>' " start selecting down
-" let g:VM_maps["Select Cursor Up"]   = '<M-C-Up>'   " start selecting up
-
-
-"" tcomment_vim
-if !exists('g:tcomment_types')
-    let g:tcomment_types = {}
-endif
-
-
 "" nvim-treesitter
 lua require('nvim-treesitter.configs').setup {
     \   ensure_installed = {
@@ -686,36 +662,6 @@ else
     let g:indentLine_conceallevel    = 2
     let g:indentLine_fileTypeExclude = ['json', 'terminal', 'help', 'fzf', 'vista_kind', 'NvimTree', 'mason', 'rnvimr']
 endif
-
-
-" "" nvim-colorizer.lua
-" lua require('colorizer').setup(
-"   \   {
-"   \     '*';
-"   \   },
-"   \   {
-"   \     RGB      = true;
-"   \     RRGGBB   = true;
-"   \     names    = false;
-"   \     RRGGBBAA = true;
-"   \     rgb_fn   = true;
-"   \     hsl_fn   = true;
-"   \     css      = true;
-"   \     css_fn   = true;
-"   \     mode     = 'background';
-"   \   }
-"   \ )
-
-"" vim-hexokinase
-let g:Hexokinase_highlighters = [ 'backgroundfull' ]
-let g:Hexokinase_optInPatterns = [
-\     'full_hex',
-\     'triple_hex',
-\     'rgb',
-\     'rgba',
-\     'hsl',
-\     'hsla',
-\ ]
 
 
 "" lualine.nvim
@@ -895,7 +841,7 @@ lua require('bufferline').setup {
   \   highlights = {
   \     fill = {
   \       fg = '#555555',
-  \       bg = '#2e2e2e',
+  \       bg = '#2e2e35',
   \     },
   \     buffer_selected = {
   \       fg = '#ffffff',
@@ -949,46 +895,123 @@ lua require('bufferline').setup {
   \     },
   \     background = {
   \       fg = '#888888',
-  \       bg = '#2e2e2e',
+  \       bg = '#2e2e35',
   \     },
   \     duplicate = {
   \       fg = "#888888",
-  \       bg = '#2e2e2e',
+  \       bg = '#2e2e35',
   \       italic = false,
   \     },
   \     numbers = {
   \       fg = '#888888',
-  \       bg = '#2e2e2e',
+  \       bg = '#2e2e35',
   \       italic = false,
   \     },
   \     numbers_visible = {
   \       fg = '#888888',
-  \       bg = '#2e2e2e',
+  \       bg = '#2e2e35',
   \       italic = false,
   \     },
   \     modified = {
   \       fg = '#bb7700',
-  \       bg = "#2e2e2e",
+  \       bg = "#2e2e35",
   \       bold = true,
   \     },
   \     separator_selected = {
   \       fg = "#303030",
-  \       bg = "#2e2e2e",
+  \       bg = "#2e2e35",
   \     },
   \     separator_visible = {
   \       fg = "#303030",
-  \       bg = "#2e2e2e",
+  \       bg = "#2e2e35",
   \     },
   \     separator = {
-  \       fg = "#444444",
-  \       bg = "#2e2e2e",
+  \       fg = "#444450",
+  \       bg = "#2e2e35",
   \     },
   \     offset_separator = {
   \       fg = win_separator_fg,
-  \       bg = '#2e2e2e',
+  \       bg = '#2e2e35',
   \     },
   \   }
   \ }
+
+
+"" nvim-scrollbar  " TODO
+lua require("scrollbar").setup({
+  \   show_in_active_only = true,
+  \   handlers = {
+  \     diagnostic = true,
+  \     search = true,
+  \   },
+  \ })
+hi ScrollbarHandle       guifg=#333333 guibg=#444444
+hi ScrollbarCursorHandle guifg=#ffffff guibg=#444444
+hi ScrollbarCursor       guifg=#333333 guibg=#444444
+hi ScrollbarSearchHandle guifg=#ff3333 guibg=#ff3333
+hi ScrollbarSearch       guifg=#ffff33 guibg=#ffff44
+
+
+" "" visual-multi
+" let g:VM_default_mappings = 0
+" let g:VM_maps = {}
+" let g:VM_maps['Find Under']         = '<C-d>'      " replace C-n
+" let g:VM_maps['Find Subword Under'] = '<C-d>'      " replace visual C-n
+" let g:VM_maps["Select Cursor Down"] = '<M-C-Down>' " start selecting down
+" let g:VM_maps["Select Cursor Up"]   = '<M-C-Up>'   " start selecting up
+
+
+"" tcomment_vim
+if !exists('g:tcomment_types')
+    let g:tcomment_types = {}
+endif
+
+
+" "" nvim-colorizer.lua  " TODO
+" lua require('colorizer').setup(
+"   \   {
+"   \     '*';
+"   \   },
+"   \   {
+"   \     RGB      = true;
+"   \     RRGGBB   = true;
+"   \     names    = false;
+"   \     RRGGBBAA = true;
+"   \     rgb_fn   = true;
+"   \     hsl_fn   = true;
+"   \     css      = true;
+"   \     css_fn   = true;
+"   \     mode     = 'background';
+"   \   }
+"   \ )
+
+"" vim-hexokinase
+let g:Hexokinase_highlighters = [ 'backgroundfull' ]
+let g:Hexokinase_optInPatterns = [
+\   'full_hex',
+\   'triple_hex',
+\   'rgb',
+\   'rgba',
+\   'hsl',
+\   'hsla',
+\ ]
+
+
+" "" vscode.nvim  " TODO
+" lua local c = require('vscode.colors').get_colors()
+"   \ require('vscode').setup({
+"   \   style = 'dark',
+"   \   transparent = true,
+"   \   italic_comments = true,
+"   \   disable_nvimtree_bg = false,
+"   \   color_overrides = {
+"   \     vscLineNumber = '#FFFFFF',
+"   \   },
+"   \   group_overrides = {
+"   \     Cursor = { fg=c.vscDarkBlue, bg=c.vscLightGreen, bold=true },
+"   \   }
+"   \ })
+"   \ require('vscode').load()
 
 
 "" delimitmate
