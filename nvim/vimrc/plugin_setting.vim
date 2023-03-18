@@ -941,8 +941,8 @@ lua require('bufferline').setup {
 lua require("scrollbar").setup({
   \   show_in_active_only = true,
   \   handlers = {
-  \     diagnostic = true,
-  \     search = true,
+  \     diagnostic = false,
+  \     search = false,
   \   },
   \ })
 hi ScrollbarHandle       guifg=#333333 guibg=#444444
@@ -952,7 +952,7 @@ hi ScrollbarSearchHandle guifg=#ff3333 guibg=#ff3333
 hi ScrollbarSearch       guifg=#ffff33 guibg=#ffff44
 
 
-" "" visual-multi
+" "" visual-multi  " TODO
 " let g:VM_default_mappings = 0
 " let g:VM_maps = {}
 " let g:VM_maps['Find Under']         = '<C-d>'      " replace C-n
@@ -1011,7 +1011,7 @@ let g:Hexokinase_optInPatterns = [
 "   \     Cursor = { fg=c.vscDarkBlue, bg=c.vscLightGreen, bold=true },
 "   \   }
 "   \ })
-"   \ require('vscode').load()
+"   \ require('vscode').load('dark')
 
 
 "" delimitmate
