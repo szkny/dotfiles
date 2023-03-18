@@ -797,9 +797,9 @@ lua local my_custom_theme = {
   \       statusline = {'NvimTree', 'vista', 'minimap'},
   \       winbar = {},
   \     },
-  \     ignore_focus = {},
+  \     ignore_focus = {'NvimTree', 'vista', 'minimap'},
   \     always_divide_middle = true,
-  \     globalstatus = false,
+  \     globalstatus = true,
   \     refresh = {
   \       statusline = 1000,
   \       tabline = 1000,
