@@ -939,16 +939,66 @@ lua require('bufferline').setup {
 
 "" nvim-scrollbar  " TODO
 lua require("scrollbar").setup({
+  \   show = true,
   \   show_in_active_only = true,
+  \   set_highlights = true,
+  \   max_lines = false,
+  \   hide_if_all_visible = true,
+  \   handle = {
+  \     text = " ",
+  \     highlight = "CursorColumn",
+  \     hide_if_all_visible = true,
+  \   },
+  \   marks = {
+  \     Cursor = {
+  \       text = "•",
+  \       priority = 0,
+  \       highlight = "Normal",
+  \     },
+  \     Search = {
+  \       text = { "-", "=" },
+  \       priority = 1,
+  \       highlight = "Search",
+  \     },
+  \   },
+  \   excluded_buftypes = {
+  \     "terminal",
+  \   },
+  \   excluded_filetypes = {
+  \     "prompt",
+  \     "minimap",
+  \     "NvimTree",
+  \     "noice",
+  \   },
+  \   autocmd = {
+  \     render = {
+  \       "BufWinEnter",
+  \       "TabEnter",
+  \       "TermEnter",
+  \       "WinEnter",
+  \       "CmdwinLeave",
+  \       "TextChanged",
+  \       "VimResized",
+  \       "WinScrolled",
+  \     },
+  \     clear = {
+  \       "BufWinLeave",
+  \       "TabLeave",
+  \       "TermLeave",
+  \       "WinLeave",
+  \     },
+  \   },
   \   handlers = {
-  \     diagnostic = false,
-  \     search = false,
+  \       cursor = true,
+  \       handle = true,
+  \       diagnostic = true,
+  \       gitsigns = false,
+  \       search = false,
   \   },
   \ })
-hi ScrollbarHandle       guifg=#333333 guibg=#444444
-hi ScrollbarCursorHandle guifg=#ffffff guibg=#444444
-hi ScrollbarCursor       guifg=#333333 guibg=#444444
-hi ScrollbarSearchHandle guifg=#ff3333 guibg=#ff3333
+hi ScrollbarHandle       guifg=#333333 guibg=#555555
+hi ScrollbarCursorHandle guifg=#ffffff guibg=#555555
+hi ScrollbarCursor       guifg=#333333 guibg=#555555
 hi ScrollbarSearch       guifg=#ffff33 guibg=#ffff44
 
 
