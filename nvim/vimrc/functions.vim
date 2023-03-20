@@ -388,7 +388,7 @@ fun! AgWord(...) abort
     else
         let l:text = join(a:000)
     endif
-    silent exe 'Ag! '.l:text
+    silent exe 'Ag '.l:text
 endf
 command! -nargs=* AgWord call AgWord(<f-args>)
 
@@ -403,7 +403,7 @@ fun! VAgWord() abort range
     exe 'silent normal gvy'
     if @@ !=# ''
         let l:text = join(split(@@,'\n'))
-        silent exe 'Ag! '.l:text
+        silent exe 'Ag '.l:text
     endif
 endf
 
