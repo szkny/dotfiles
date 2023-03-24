@@ -34,7 +34,6 @@ let g:coc_global_extensions = [
   \  'coc-pairs', 
   \  'coc-prettier', 
   \  'coc-snippets', 
-  \  'coc-tslint-plugin', 
   \  'coc-tsserver', 
   \  'coc-ultisnips', 
   \  'coc-yaml',
