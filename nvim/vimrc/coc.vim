@@ -24,7 +24,6 @@ let g:coc_global_extensions = [
   \  'coc-dictionary', 
   \  'coc-eslint', 
   \  'coc-floaterm', 
-  \  'coc-git', 
   \  'coc-highlight',
   \  'coc-jedi', 
   \  'coc-json', 
