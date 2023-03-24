@@ -281,7 +281,6 @@ else
     call ddc#custom#patch_global(#{
        \   ui: 'pum',
        \   autoCompleteEvents: [
-       \     'InsertEnter', 'TextChangedI', 'TextChangedP',
        \     'CmdlineEnter', 'CmdlineChanged',
        \   ],
        \   backspaceCompletion: v:true,
@@ -709,6 +708,11 @@ fun! LualineVistaNearestMethodOrFunction() abort
     return ''
   endtry
 endf
+if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
+    let g:lualine_diagnostics_source = 'vim_lsp'
+else
+    let g:lualine_diagnostics_source = 'coc'
+endif
 lua local my_custom_theme = {
   \   normal = {
   \     a = { fg = '#ddddee', bg = '#5588dd' , gui = 'bold' },
@@ -724,9 +728,9 @@ lua local my_custom_theme = {
   \     c = { fg = '#ddddee', bg = '#212736' },
   \   },
   \ }
-  \ local vim_lsp = {
+  \ local diagnostics = {
   \   'diagnostics',
-  \   sources = { 'vim_lsp' },
+  \   sources = { vim.g.lualine_diagnostics_source },
   \   sections = { 'error', 'warn', 'info', 'hint' },
   \   diagnostics_color = {
   \     error = 'lualine_lsp_err',
@@ -735,10 +739,10 @@ lua local my_custom_theme = {
   \     hint  = 'lualine_lsp_hint',
   \   },
   \   symbols = {
-  \     error = '%{g:lsp_diagnostics_signs_error.text} ',
-  \     warn  = '%{g:lsp_diagnostics_signs_warning.text} ',
-  \     info  = '%{g:lsp_diagnostics_signs_information.text} ',
-  \     hint  = '%{g:lsp_diagnostics_signs_hint.text} '
+  \     error = ' ',
+  \     warn  = ' ',
+  \     info  = ' ',
+  \     hint  = ' '
   \   },
   \   colored = true,
   \   update_in_insert = true,
@@ -774,7 +778,7 @@ lua local my_custom_theme = {
   \       { 'LualineVistaNearestMethodOrFunction' },
   \     },
   \     lualine_x = {
-  \       vim_lsp, 'filetype', 'encoding', 'fileformat' },
+  \       diagnostics, 'filetype', 'encoding', 'fileformat' },
   \     lualine_y = { 'progress' },
   \     lualine_z = { {'location', separator = { left = '', right = '' } } },
   \   },
