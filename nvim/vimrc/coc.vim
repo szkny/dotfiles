@@ -17,6 +17,32 @@ set updatetime=300
 " diagnostics appear/become resolved
 set signcolumn=yes
 
+let g:coc_global_extensions = [
+  \  'coc-actions',
+  \  'coc-cspell-dicts', 
+  \  'coc-deno', 
+  \  'coc-diagnostic', 
+  \  'coc-dictionary', 
+  \  'coc-eslint', 
+  \  'coc-floaterm', 
+  \  'coc-git', 
+  \  'coc-highlight',
+  \  'coc-jedi', 
+  \  'coc-json', 
+  \  'coc-lists', 
+  \  'coc-markdownlint', 
+  \  'coc-metals', 
+  \  'coc-pairs', 
+  \  'coc-prettier', 
+  \  'coc-snippets', 
+  \  'coc-spell-checker', 
+  \  'coc-tslint-plugin', 
+  \  'coc-tsserver', 
+  \  'coc-ultisnips', 
+  \  'coc-yaml',
+  \  'coc-vetur',
+  \ ]
+
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
 " no select by `"suggest.noselect": true` in your configuration file
