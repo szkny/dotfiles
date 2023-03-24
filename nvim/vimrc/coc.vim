@@ -8,6 +8,8 @@ endif
 
 set nobackup
 set nowritebackup
+set pumheight=15
+" set pumwidth=50
 
 " Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
 " delays and poor user experience
@@ -103,6 +105,11 @@ hi CocInfoVirtualText     gui=bold guifg=#ffffff
 hi CocHintVirtualText     gui=bold guifg=#5599dd
 hi CocFadeOut             gui=bold guifg=#888888
 hi CocDeprecatedHighlight gui=bold guifg=#66aa66
+hi CocFloating            gui=none guifg=#dddddd guibg=#202020
+hi CocPumSearch           gui=bold guifg=#44aabb
+hi CocMenuSel             gui=bold               guibg=#226688
+hi CocFloatSbar           gui=bold guifg=none    guibg=#333333
+hi CocFloatThumb          gui=bold guifg=none    guibg=#cccccc
 
 " " Symbol renaming
 " nmap <leader>rn <Plug>(coc-rename)

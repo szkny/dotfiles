@@ -4,17 +4,17 @@ scriptencoding utf-8
 "*****************************************************************************
 
 "" nvim-notify
-  " \   stages = "fade",
+  " \   stages = "fade_in_slide_out",
   " \   render = "minimal",
 lua require("notify").setup({
-  \   stages = "fade_in_slide_out",
+  \   stages = "fade",
   \   on_open = nil,
   \   on_close = nil,
   \   render = "default",
   \   timeout = 3000,
   \   background_colour = "#202020",
   \   minimum_width = 50,
-  \   fps = 60,
+  \   fps = 30,
   \   icons = {
   \     ERROR = " ",
   \     WARN = " ",
@@ -197,7 +197,7 @@ hi PumNormalMenu gui=none guifg=#dddddd guibg=#202020
 hi PumColumnKind gui=none guifg=#888888 guibg=#202020
 hi PumColumnMenu gui=none guifg=#888888 guibg=#202020
 hi PumSelected  gui=bold guibg=#226688
-hi PumMatches   guifg=#88cc99
+hi PumMatches   guifg=#44aabb
 hi PmenuSBar    guifg=#666666 guibg=#cccccc
 hi FloatBorder  gui=bold guibg=#202020
 call pum#set_option(#{
@@ -538,7 +538,7 @@ hi NvimTreeModifiedFile       gui=bold guifg=#ffaa00
 ""vista.vim
 let g:vista_no_mappings = 0
 let g:vista_echo_cursor = 1
-let g:vista_echo_cursor_strategy = 'scroll'
+let g:vista_echo_cursor_strategy = 'floating_win'
 let g:vista_blink = [3, 200]
 let g:vista_top_level_blink = [3, 200]
 let g:vista_highlight_whole_line = 1
@@ -980,6 +980,7 @@ lua require("scrollbar").setup({
   \   },
   \   excluded_buftypes = {
   \     "terminal",
+  \     "nofile",
   \   },
   \   excluded_filetypes = {
   \     "prompt",

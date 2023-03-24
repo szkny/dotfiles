@@ -19,13 +19,21 @@
     "diagnostic.refreshOnInsertMode": false,
     "codeLens.enable": true,
 
-    // dialog
-    "dialog.confirmkey": "<cr>",
-    "dialog.floatBorderHighlight": "FloatBorder",
-    "dialog.maxHeight": 15,
-    "dialog.maxWidth": 80,
-
-    // suggest signs
+    // suggest config
+    "suggest.floatConfig": {
+        "border": true,
+        "rounded": true,
+        "highlight": "CocFloating",
+        "borderhighlight": "CocFloating",
+        "winblend": 20,
+    },
+    "suggest.autoTrigger": "always",
+    "suggest.formatItems": [
+        "abbr",
+        "menu",
+        "kind",
+        "shortcut",
+    ],
     "suggest.completionItemKindLabels": {
         "function": "\uf794 Function",
         "method":"\uf6a6 Method",
@@ -38,8 +46,8 @@
         "enum": "\uf435 Enum",
         "enumMember": "\uf02b EnumMember",
         "color": "\ue22b Color",
-        "property": "\ufab6 Property",
-        "field": "\uf93d Field",
+        "property": "\uf0ad Property",
+        "field": "\uf192 Field",
         "unit": "\uf475 Unit",
         "file": "\uf471 File",
         "value": "\uf8a3 Value",
@@ -47,7 +55,7 @@
         "folder": "\uf115 Folder",
         "keyword": "\uf893 Keyword",
         "snippet": "\uf64d Snippet",
-        "operator": "\uf915 Operator",
+        "operator": "\uf055 Operator",
         "reference": "\uf87a Reference",
         "typeParameter": "\uf278 TypeParameter",
         "default": "\uf29c Default"
@@ -63,6 +71,7 @@
     "javascript.preferences.quoteStyle": "double",
 
     // eslint
+    "eslint.enable": false,
     "eslint.filetypes": [
         "vue"
     ]
