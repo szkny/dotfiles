@@ -19,7 +19,6 @@ set signcolumn=yes
 
 let g:coc_global_extensions = [
   \  'coc-actions',
-  \  'coc-cspell-dicts', 
   \  'coc-deno', 
   \  'coc-diagnostic', 
   \  'coc-dictionary', 
@@ -35,7 +34,6 @@ let g:coc_global_extensions = [
   \  'coc-pairs', 
   \  'coc-prettier', 
   \  'coc-snippets', 
-  \  'coc-spell-checker', 
   \  'coc-tslint-plugin', 
   \  'coc-tsserver', 
   \  'coc-ultisnips', 
