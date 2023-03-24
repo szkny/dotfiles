@@ -99,7 +99,7 @@ Plug 'vim-denops/denops.vim'
 Plug 'vim-skk/skkeleton', { 'frozen': 1 }
 
 " LSP
-let g:use_coc_nvim = 1
+let g:use_coc_nvim = 0
 let g:use_mason_nvim = 0
 if get(g:, 'use_coc_nvim', 0) == 1
     " coc.nvim
