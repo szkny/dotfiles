@@ -135,24 +135,6 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
       \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
     ino <silent> <expr> <UP>
       \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
-    nno          :     <Cmd>call DdcCommandlinePre()<CR>:
-    nno          /     <Cmd>call DdcCommandlinePre()<CR>/
-    cno <expr> <C-n>
-      \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
-    cno <expr> <C-p>
-      \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
-    cno <expr> <CR>
-      \ pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<CR>'
-    cno <expr> <C-e>
-      \ pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' : '<C-e>'
-    cno <expr> <TAB>
-      \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : ''
-    cno <expr> <S-TAB>
-      \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : ''
-    cno <expr> <DOWN>
-      \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
-    cno <expr> <UP>
-      \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
     "" vim-lsp
     nno <silent><nowait> <C-]>     :<C-u>LspDefinition<CR>
     nno <silent><nowait> <leader>] :<C-u>LspDefinition<CR>
@@ -164,6 +146,24 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
     nno <silent><nowait> <leader>l :<C-u>LspDocumentDiagnostics<CR>
     nno <silent><nowait> <leader>h :<C-u>LspCodeAction<CR>
 endif
+nno          :     <Cmd>call DdcCommandlinePre()<CR>:
+nno          /     <Cmd>call DdcCommandlinePre()<CR>/
+cno <expr> <C-n>
+  \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
+cno <expr> <C-p>
+  \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
+cno <expr> <CR>
+  \ pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<CR>'
+cno <expr> <C-e>
+  \ pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' : '<C-e>'
+cno <expr> <TAB>
+  \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : ''
+cno <expr> <S-TAB>
+  \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : ''
+cno <expr> <DOWN>
+  \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
+cno <expr> <UP>
+  \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
 
 "" skkeleton
 ino <C-j> <Plug>(skkeleton-enable)

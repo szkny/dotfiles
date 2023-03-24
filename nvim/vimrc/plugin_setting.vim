@@ -187,169 +187,180 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
       \ }
     hi link PopupPreviewDocument PumNormalMenu
     hi link PopupPreviewBorder   FloatBorder
-
-    "" pum.vim
-    set pumblend=20
-    set shortmess+=c
-    set wildoptions+=pum
-    hi PumNormalMenu gui=none guifg=#dddddd guibg=#202020
-    hi PumColumnKind gui=none guifg=#888888 guibg=#202020
-    hi PumColumnMenu gui=none guifg=#888888 guibg=#202020
-    hi PumSelected  gui=bold guibg=#226688
-    hi PumMatches   guifg=#88cc99
-    hi PmenuSBar    guifg=#666666 guibg=#cccccc
-    hi FloatBorder  gui=bold guibg=#202020
-    call pum#set_option(#{
-      \   auto_select: v:false,
-      \   max_height: 15,
-      \   max_width: 0,
-      \   offset_row: 1,
-      \   scrollbar_char: ' ',
-      \   padding: v:true,
-      \   use_complete: v:true,
-      \   border: 'rounded',
-      \   highlight_normal_menu: 'PumNormalMenu',
-      \   highlight_matches: '',
-      \   highlight_scrollbar: 'PmenuSBar',
-      \   highlight_selected: 'PumSelected',
-      \   highlight_columns: #{
-      \     abbr: 'PumNormalMenu',
-      \     kind: 'PumColumnKind',
-      \     menu: 'PumColumnMenu',
-      \   },
-      \ })
-
-    "" ddc.vim
-    call ddc#custom#patch_global(#{
-      \   ui: 'pum',
-      \   autoCompleteEvents: [
-      \     'InsertEnter', 'TextChangedI', 'TextChangedP',
-      \     'CmdlineEnter', 'CmdlineChanged',
-      \   ],
-      \   backspaceCompletion: v:true,
-      \   sources: [
-      \     'vim-lsp',
-      \     'around',
-      \     'file',
-      \     'mocword',
-      \     'skkeleton',
-      \   ],
-      \   sourceOptions: #{
-      \     _: #{
-      \       matchers: ['matcher_fuzzy'],
-      \       sorters: ['sorter_fuzzy'],
-      \       converters: ['converter_fuzzy', 'converter_remove_overlap'],
-      \       ignoreCase: v:true,
-      \       minAutoCompleteLength: 1,
-      \     },
-      \     vim-lsp: #{
-      \       mark: '[LSP]',
-      \       forceCompletionPattern: '\.|:|->|"\w+/*',
-      \     },
-      \     around: #{
-      \       mark: '[AROUND]',
-      \     },
-      \     file: #{
-      \       mark: '[FILE]',
-      \       forceCompletionPattern: '\S/\S*',
-      \     },
-      \     mocword: #{
-      \       mark: '[MOCWORD]',
-      \       forceCompletionPattern: '\ ',
-      \       minAutoCompleteLength: 2,
-      \       isVolatile: v:true,
-      \     },
-      \     skkeleton: #{
-      \       mark: '[SKK]',
-      \       matchers: ['skkeleton'],
-      \       sorters: [],
-      \       isVolatile: v:true,
-      \     },
-      \   },
-      \   filterParams: #{
-      \     matcher_fuzzy: #{
-      \       splitMode: 'word'
-      \     },
-      \     converter_fuzzy: #{
-      \       hlGroup: 'PumMatches'
-      \     }
-      \   }, 
-      \ })
-    "" ddc.vim cmdline completion setup
-    call ddc#custom#patch_global('cmdlineSources', {
-      \ ':': [
-      \   'cmdline',
-      \   'cmdline-history',
-      \   'necovim',
-      \   'file',
-      \   'mocword',
-      \   'skkeleton',
-      \ ],
-      \ '/': [
-      \   'around',
-      \   'file',
-      \   'skkeleton',
-      \ ],
-      \ })
-    fun! DdcCommandlinePre() abort
-      " Note: It disables default command line completion!
-      if !exists('b:prev_buffer_config')
-        let b:prev_buffer_config = ddc#custom#get_buffer()
-      endif
-      call ddc#custom#patch_buffer('ui', 'pum')
-      call ddc#custom#patch_buffer('sourceOptions', #{
-        \ _: #{
-        \   matchers: ['matcher_head'],
-        \ },
-        \ cmdline: #{
-        \   mark: '[COMMAND]',
-        \   forceCompletionPattern: '\ |:|-|"\w+/*',
-        \ },
-        \ cmdline-history: #{
-        \   mark: '[HISTORY]',
-        \ },
-        \ necovim: #{
-        \   mark: '[ARGS]',
-        \   forceCompletionPattern: '\ |:|-|"\w+/*',
-        \ },
-        \ file: #{
-        \   mark: '[FILE]',
-        \   forceCompletionPattern: '\S/\S*',
-        \ },
-        \ mocword: #{
-        \   mark: '[MOCWORD]',
-        \   forceCompletionPattern: '\ ',
-        \   minAutoCompleteLength: 2,
-        \   isVolatile: v:true,
-        \ },
-        \ skkeleton: #{
-        \   mark: '[SKK]',
-        \   matchers: ['skkeleton'],
-        \   sorters: [],
-        \   isVolatile: v:true,
-        \ },
-        \ })
-      au User DDCCmdlineLeave ++once call DdcCommandlinePost()
-      au InsertEnter <buffer> ++once call DdcCommandlinePost()
-      call ddc#enable_cmdline_completion()
-    endf
-    fun! DdcCommandlinePost() abort
-      " Restore sources
-      if exists('b:prev_buffer_config')
-        call ddc#custom#set_buffer(b:prev_buffer_config)
-        unlet b:prev_buffer_config
-      else
-        call ddc#custom#set_buffer({})
-      endif
-    endf
-    if !exists('g:necovim#complete_functions')
-      let g:necovim#complete_functions = {}
-    endif
-    let g:necovim#complete_functions.Ref = 'ref#complete'
-    call ddc#enable()
-    " " vsnip for ddc.vim
-    " au User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
 endif
+
+"" pum.vim
+set pumblend=20
+set shortmess+=c
+set wildoptions+=pum
+hi PumNormalMenu gui=none guifg=#dddddd guibg=#202020
+hi PumColumnKind gui=none guifg=#888888 guibg=#202020
+hi PumColumnMenu gui=none guifg=#888888 guibg=#202020
+hi PumSelected  gui=bold guibg=#226688
+hi PumMatches   guifg=#88cc99
+hi PmenuSBar    guifg=#666666 guibg=#cccccc
+hi FloatBorder  gui=bold guibg=#202020
+call pum#set_option(#{
+  \   auto_select: v:false,
+  \   max_height: 15,
+  \   max_width: 0,
+  \   offset_row: 1,
+  \   scrollbar_char: ' ',
+  \   padding: v:true,
+  \   use_complete: v:true,
+  \   border: 'rounded',
+  \   highlight_normal_menu: 'PumNormalMenu',
+  \   highlight_matches: '',
+  \   highlight_scrollbar: 'PmenuSBar',
+  \   highlight_selected: 'PumSelected',
+  \   highlight_columns: #{
+  \     abbr: 'PumNormalMenu',
+  \     kind: 'PumColumnKind',
+  \     menu: 'PumColumnMenu',
+  \   },
+  \ })
+
+"" ddc.vim
+if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
+    call ddc#custom#patch_global(#{
+       \   ui: 'pum',
+       \   autoCompleteEvents: [
+       \     'InsertEnter', 'TextChangedI', 'TextChangedP',
+       \     'CmdlineEnter', 'CmdlineChanged',
+       \   ],
+       \   backspaceCompletion: v:true,
+       \   sources: [
+       \     'vim-lsp',
+       \     'around',
+       \     'file',
+       \     'mocword',
+       \     'skkeleton',
+       \   ],
+       \   sourceOptions: #{
+       \     _: #{
+       \       matchers: ['matcher_fuzzy'],
+       \       sorters: ['sorter_fuzzy'],
+       \       converters: ['converter_fuzzy', 'converter_remove_overlap'],
+       \       ignoreCase: v:true,
+       \       minAutoCompleteLength: 1,
+       \     },
+       \     vim-lsp: #{
+       \       mark: '[LSP]',
+       \       forceCompletionPattern: '\.|:|->|"\w+/*',
+       \     },
+       \     around: #{
+       \       mark: '[AROUND]',
+       \     },
+       \     file: #{
+       \       mark: '[FILE]',
+       \       forceCompletionPattern: '\S/\S*',
+       \     },
+       \     mocword: #{
+       \       mark: '[MOCWORD]',
+       \       forceCompletionPattern: '\ ',
+       \       minAutoCompleteLength: 2,
+       \       isVolatile: v:true,
+       \     },
+       \     skkeleton: #{
+       \       mark: '[SKK]',
+       \       matchers: ['skkeleton'],
+       \       sorters: [],
+       \       isVolatile: v:true,
+       \     },
+       \   },
+       \   filterParams: #{
+       \     matcher_fuzzy: #{
+       \       splitMode: 'word'
+       \     },
+       \     converter_fuzzy: #{
+       \       hlGroup: 'PumMatches'
+       \     }
+       \   }, 
+       \ })
+else
+    call ddc#custom#patch_global(#{
+       \   ui: 'pum',
+       \   autoCompleteEvents: [
+       \     'InsertEnter', 'TextChangedI', 'TextChangedP',
+       \     'CmdlineEnter', 'CmdlineChanged',
+       \   ],
+       \   backspaceCompletion: v:true,
+       \   sources: []
+       \  })
+endif
+
+"" ddc.vim cmdline completion setup
+call ddc#custom#patch_global('cmdlineSources', {
+  \ ':': [
+  \   'cmdline',
+  \   'cmdline-history',
+  \   'necovim',
+  \   'file',
+  \   'mocword',
+  \   'skkeleton',
+  \ ],
+  \ '/': [
+  \   'around',
+  \   'file',
+  \   'skkeleton',
+  \ ],
+  \ })
+fun! DdcCommandlinePre() abort
+  " Note: It disables default command line completion!
+  if !exists('b:prev_buffer_config')
+    let b:prev_buffer_config = ddc#custom#get_buffer()
+  endif
+  call ddc#custom#patch_buffer('ui', 'pum')
+  call ddc#custom#patch_buffer('sourceOptions', #{
+    \ _: #{
+    \   matchers: ['matcher_head'],
+    \ },
+    \ cmdline: #{
+    \   mark: '[COMMAND]',
+    \   forceCompletionPattern: '\ |:|-|"\w+/*',
+    \ },
+    \ cmdline-history: #{
+    \   mark: '[HISTORY]',
+    \ },
+    \ necovim: #{
+    \   mark: '[ARGS]',
+    \   forceCompletionPattern: '\ |:|-|"\w+/*',
+    \ },
+    \ file: #{
+    \   mark: '[FILE]',
+    \   forceCompletionPattern: '\S/\S*',
+    \ },
+    \ mocword: #{
+    \   mark: '[MOCWORD]',
+    \   forceCompletionPattern: '\ ',
+    \   minAutoCompleteLength: 2,
+    \   isVolatile: v:true,
+    \ },
+    \ skkeleton: #{
+    \   mark: '[SKK]',
+    \   matchers: ['skkeleton'],
+    \   sorters: [],
+    \   isVolatile: v:true,
+    \ },
+    \ })
+  au User DDCCmdlineLeave ++once call DdcCommandlinePost()
+  au InsertEnter <buffer> ++once call DdcCommandlinePost()
+  call ddc#enable_cmdline_completion()
+endf
+fun! DdcCommandlinePost() abort
+  " Restore sources
+  if exists('b:prev_buffer_config')
+    call ddc#custom#set_buffer(b:prev_buffer_config)
+    unlet b:prev_buffer_config
+  else
+    call ddc#custom#set_buffer({})
+  endif
+endf
+if !exists('g:necovim#complete_functions')
+  let g:necovim#complete_functions = {}
+endif
+let g:necovim#complete_functions.Ref = 'ref#complete'
+call ddc#enable()
 
 "" skkeleton
 fun! s:skkeleton_init() abort

@@ -115,30 +115,30 @@ else
     Plug 'mattn/vim-lsp-settings'
     Plug 'matsui54/denops-popup-preview.vim'
     Plug 'matsui54/denops-signature_help'
-
-    " for ddc settings
-    " ddc core
-    Plug 'Shougo/ddc.vim'
-    " ddc UIs
-    Plug 'szkny/pum.vim'
-    Plug 'Shougo/ddc-ui-pum'
-    " Plug 'Shougo/ddc-ui-native'
-    " ddc sources
-    Plug 'Shougo/ddc-source-around'
-    Plug 'shun/ddc-source-vim-lsp'
-    Plug 'LumaKernel/ddc-source-file'
-    Plug 'Shougo/ddc-source-mocword'
-    Plug 'Shougo/ddc-source-cmdline'
-    Plug 'Shougo/ddc-source-cmdline-history'
-    Plug 'Shougo/neco-vim'
-    " ddc filters
-    Plug 'Shougo/ddc-matcher_head'
-    Plug 'Shougo/ddc-converter_remove_overlap'
-    Plug 'tani/ddc-fuzzy'
-    " " ddc etc.
-    " Plug 'hrsh7th/vim-vsnip'
-    " Plug 'hrsh7th/vim-vsnip-integ'
 endif
+
+" for ddc settings
+" ddc core
+Plug 'Shougo/ddc.vim'
+" ddc UIs
+Plug 'szkny/pum.vim'
+Plug 'Shougo/ddc-ui-pum'
+" Plug 'Shougo/ddc-ui-native'
+" ddc sources
+Plug 'Shougo/ddc-source-around'
+Plug 'shun/ddc-source-vim-lsp'
+Plug 'LumaKernel/ddc-source-file'
+Plug 'Shougo/ddc-source-mocword'
+Plug 'Shougo/ddc-source-cmdline'
+Plug 'Shougo/ddc-source-cmdline-history'
+Plug 'Shougo/neco-vim'
+" ddc filters
+Plug 'Shougo/ddc-matcher_head'
+Plug 'Shougo/ddc-converter_remove_overlap'
+Plug 'tani/ddc-fuzzy'
+" " ddc etc.
+" Plug 'hrsh7th/vim-vsnip'
+" Plug 'hrsh7th/vim-vsnip-integ'
 
 " c/c++
 " Plug 'vim-jp/cpp-vim',                 {'for': 'cpp'}
