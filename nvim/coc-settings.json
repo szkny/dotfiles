@@ -60,5 +60,10 @@
     "typescript.check.npmIsInstalled": true,
     "typescript.preferences.quoteStyle": "double",
     "tsserver.disableAutomaticTypeAcquisition": false,
-    "javascript.preferences.quoteStyle": "double"
+    "javascript.preferences.quoteStyle": "double",
+
+    // eslint
+    "eslint.filetypes": [
+        "vue"
+    ]
 }

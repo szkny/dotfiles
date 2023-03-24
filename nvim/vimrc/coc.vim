@@ -20,23 +20,24 @@ set signcolumn=yes
 " Extentions list
 let g:coc_global_extensions = [
   \  'coc-actions',
-  \  'coc-deno', 
   \  'coc-diagnostic', 
   \  'coc-dictionary', 
-  \  'coc-eslint', 
-  \  'coc-floaterm', 
-  \  'coc-jedi', 
-  \  'coc-json', 
   \  'coc-lists', 
-  \  'coc-markdownlint', 
-  \  'coc-metals', 
   \  'coc-pairs', 
-  \  'coc-prettier', 
   \  'coc-snippets', 
+  \  'coc-vimlsp',
+  \  'coc-markdownlint', 
+  \  'coc-prettier', 
   \  'coc-tsserver', 
+  \  'coc-deno', 
+  \  'coc-json', 
   \  'coc-yaml',
-  \  'coc-clangd',
+  \  'coc-html',
+  \  'coc-css',
   \  'coc-vetur',
+  \  'coc-eslint',
+  \  'coc-jedi', 
+  \  'coc-clangd',
   \ ]
 
 " Use tab for trigger completion with characters ahead and navigate
@@ -91,6 +92,17 @@ endfunction
 
 " Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
+hi CocErrorSign           gui=bold guifg=#ff0000
+hi CocWarningSign         gui=bold guifg=#ffff00
+hi CocInfoSign            gui=bold guifg=#ffffff
+hi CocHintSign            gui=bold guifg=#5599dd
+hi CocErrorVirtualText    gui=bold guifg=#ff0000
+hi CocWarningVirtualText  gui=bold guifg=#ffff00
+hi CocInfoVirtualText     gui=bold guifg=#ffffff
+hi CocHintVirtualText     gui=bold guifg=#5599dd
+hi CocFadeOut             gui=bold guifg=#888888
+hi CocDeprecatedHighlight gui=bold guifg=#66aa66
 
 " " Symbol renaming
 " nmap <leader>rn <Plug>(coc-rename)

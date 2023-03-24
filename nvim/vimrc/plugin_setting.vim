@@ -221,14 +221,33 @@ call pum#set_option(#{
   \ })
 
 "" ddc.vim
+call ddc#custom#patch_global(#{
+   \   ui: 'pum',
+   \   autoCompleteEvents: [
+   \     'CmdlineEnter', 'CmdlineChanged',
+   \   ],
+   \   backspaceCompletion: v:true,
+   \   sources: [],
+   \   sourceOptions: #{
+   \     _: #{
+   \       matchers: ['matcher_fuzzy'],
+   \       sorters: ['sorter_fuzzy'],
+   \       converters: ['converter_fuzzy', 'converter_remove_overlap'],
+   \       ignoreCase: v:true,
+   \       minAutoCompleteLength: 1,
+   \     },
+   \   },
+   \   filterParams: #{
+   \     matcher_fuzzy: #{
+   \       splitMode: 'word'
+   \     },
+   \     converter_fuzzy: #{
+   \       hlGroup: 'PumMatches'
+   \     }
+   \   },
+   \ })
 if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
     call ddc#custom#patch_global(#{
-       \   ui: 'pum',
-       \   autoCompleteEvents: [
-       \     'InsertEnter', 'TextChangedI', 'TextChangedP',
-       \     'CmdlineEnter', 'CmdlineChanged',
-       \   ],
-       \   backspaceCompletion: v:true,
        \   sources: [
        \     'vim-lsp',
        \     'around',
@@ -268,24 +287,7 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
        \       isVolatile: v:true,
        \     },
        \   },
-       \   filterParams: #{
-       \     matcher_fuzzy: #{
-       \       splitMode: 'word'
-       \     },
-       \     converter_fuzzy: #{
-       \       hlGroup: 'PumMatches'
-       \     }
-       \   }, 
        \ })
-else
-    call ddc#custom#patch_global(#{
-       \   ui: 'pum',
-       \   autoCompleteEvents: [
-       \     'CmdlineEnter', 'CmdlineChanged',
-       \   ],
-       \   backspaceCompletion: v:true,
-       \   sources: []
-       \  })
 endif
 
 "" ddc.vim cmdline completion setup
@@ -311,9 +313,6 @@ fun! DdcCommandlinePre() abort
   endif
   call ddc#custom#patch_buffer('ui', 'pum')
   call ddc#custom#patch_buffer('sourceOptions', #{
-    \ _: #{
-    \   matchers: ['matcher_head'],
-    \ },
     \ cmdline: #{
     \   mark: '[COMMAND]',
     \   forceCompletionPattern: '\ |:|-|"\w+/*',
@@ -549,6 +548,9 @@ let g:vista_icon_indent = ['└ ', '│ ']
 let g:vista#renderer#enable_icon = 1
 let g:vista_fzf_preview = ['right,50%,<70(down,60%)']
 let g:vista_fzf_opt = ['--bind=ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up']
+if get(g:, 'use_coc_nvim', 0) == 1
+    let g:vista_default_executive = 'coc'
+endif
 "" TODO: vim-lspを使った時にもvistaウィンドウでハイライトさせる
 " let g:vista_default_executive = 'vim_lsp'
 " let g:vista_executive_for = {
