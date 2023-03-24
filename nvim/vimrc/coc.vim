@@ -17,6 +17,7 @@ set updatetime=300
 " diagnostics appear/become resolved
 set signcolumn=yes
 
+" Extentions list
 let g:coc_global_extensions = [
   \  'coc-actions',
   \  'coc-deno', 
@@ -24,7 +25,6 @@ let g:coc_global_extensions = [
   \  'coc-dictionary', 
   \  'coc-eslint', 
   \  'coc-floaterm', 
-  \  'coc-highlight',
   \  'coc-jedi', 
   \  'coc-json', 
   \  'coc-lists', 
@@ -34,8 +34,8 @@ let g:coc_global_extensions = [
   \  'coc-prettier', 
   \  'coc-snippets', 
   \  'coc-tsserver', 
-  \  'coc-ultisnips', 
   \  'coc-yaml',
+  \  'coc-clangd',
   \  'coc-vetur',
   \ ]
 
@@ -162,10 +162,10 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
-" Add (Neo)Vim's native statusline support
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" " Add (Neo)Vim's native statusline support
+" " NOTE: Please see `:h coc-status` for integrations with external plugins that
+" " provide custom statusline: lightline.vim, vim-airline
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " " Mappings for CoCList
 " " Show all diagnostics

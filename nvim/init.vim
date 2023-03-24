@@ -48,8 +48,8 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 " general plugins
 Plug 'tomtom/tcomment_vim'
 Plug 'kevinhwang91/rnvimr'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
+" Plug 'Shougo/neosnippet.vim'
+" Plug 'Shougo/neosnippet-snippets'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'Raimondi/delimitMate'

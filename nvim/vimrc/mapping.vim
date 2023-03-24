@@ -171,14 +171,6 @@ cno <C-j> <Plug>(skkeleton-enable)
 ino <C-l> <Plug>(skkeleton-disable)
 cno <C-l> <Plug>(skkeleton-disable)
 
-"" neosnippet
-" NOTE: プラグインのマッピングはnoremapではなくmapにすること
-imap <C-k>       <Plug>(neosnippet_expand_or_jump)
-smap <C-k>       <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>       <Plug>(neosnippet_expand_target)
-smap <expr><TAB> neosnippet#expandable_or_jumpable()?
-                 \"\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
 "" for My Commands
 ino <silent> <M-;>    <ESC>:Appendchar ;<CR>a
 no  <silent> <M-;>         :Appendchar ;<CR>
