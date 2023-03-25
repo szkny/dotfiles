@@ -11,7 +11,7 @@ lua require("notify").setup({
   \   on_open = nil,
   \   on_close = nil,
   \   render = "compact",
-  \   background_colour = "#888888",
+  \   background_colour = "#333333",
   \   timeout = 3000,
   \   minimum_width = 50,
   \   fps = 30,
@@ -74,6 +74,7 @@ lua  require("noice").setup({
   \   },
   \ })
 hi NoiceMini guifg=#ffbb00 guibg=#000000
+hi NoiceCmdlinePopup guibg=#333333
 
 
 "" fzf.vim
@@ -86,6 +87,11 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 let g:fzf_preview_window = ['right,50%,<70(down,60%)', 'ctrl-/']
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'FzfNormal'],
+\   'bg':      ['bg', 'FzfNormal']}
+hi link FzfNormal Normal
+hi FzfNormal guibg=#333333 
 
 
 "" mason.nvim
@@ -1161,3 +1167,4 @@ let g:rnvimr_layout = {
             \ 'row':    float2nr(round(0.05 * &lines)),
             \ 'style': 'minimal'
             \ }
+hi RnvimrCurses guibg=#333333
