@@ -5,14 +5,14 @@ scriptencoding utf-8
 
 "" nvim-notify
   " \   stages = "fade_in_slide_out",
-  " \   render = "minimal",
+  " \   render = "compact",
 lua require("notify").setup({
   \   stages = "fade",
   \   on_open = nil,
   \   on_close = nil,
-  \   render = "default",
+  \   render = "compact",
+  \   background_colour = "#888888",
   \   timeout = 3000,
-  \   background_colour = "#202020",
   \   minimum_width = 50,
   \   fps = 30,
   \   icons = {
@@ -23,6 +23,26 @@ lua require("notify").setup({
   \     TRACE = "✎ ",
   \   },
   \ })
+hi NotifyERRORBorder guifg=#8A1F1F guibg=none
+hi NotifyWARNBorder  guifg=#79491D guibg=none
+hi NotifyINFOBorder  guifg=#4F6752 guibg=none
+hi NotifyDEBUGBorder guifg=#8B8B8B guibg=none
+hi NotifyTRACEBorder guifg=#4F3552 guibg=none
+hi NotifyERRORIcon   guifg=#F70067 guibg=none
+hi NotifyWARNIcon    guifg=#F79000 guibg=none
+hi NotifyINFOIcon    guifg=#A9FF68 guibg=none
+hi NotifyDEBUGIcon   guifg=#8B8B8B guibg=none
+hi NotifyTRACEIcon   guifg=#D484FF guibg=none
+hi NotifyERRORTitle  guifg=#F70067 guibg=none
+hi NotifyWARNTitle   guifg=#F79000 guibg=none
+hi NotifyINFOTitle   guifg=#A9FF68 guibg=none
+hi NotifyDEBUGTitle  guifg=#8B8B8B guibg=none
+hi NotifyTRACETitle  guifg=#D484FF guibg=none
+hi NotifyERRORBody   guibg=none
+hi NotifyWARNBody    guibg=none
+hi NotifyINFOBody    guibg=none
+hi NotifyDEBUGBody   guibg=none
+hi NotifyTRACEBody   guibg=none
 
 
 "" noice.nvim
