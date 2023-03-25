@@ -105,9 +105,10 @@ hi CocInfoVirtualText     gui=bold guifg=#ffffff
 hi CocHintVirtualText     gui=bold guifg=#5599dd
 hi CocFadeOut             gui=bold guifg=#888888
 hi CocDeprecatedHighlight gui=bold guifg=#66aa66
-hi CocFloating            gui=none guifg=#dddddd guibg=#202020
+hi CocFloating            gui=none guifg=#dddddd guibg=#333333
+hi CocMenuSel             gui=none               guibg=#226688
 hi CocPumSearch           gui=bold guifg=#44aabb
-hi CocMenuSel             gui=bold               guibg=#226688
+hi CocPumDetail           gui=none
 hi CocFloatSbar           gui=bold guifg=none    guibg=#333333
 hi CocFloatThumb          gui=bold guifg=none    guibg=#cccccc
 

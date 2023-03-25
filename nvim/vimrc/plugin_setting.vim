@@ -213,13 +213,13 @@ endif
 set pumblend=20
 set shortmess+=c
 set wildoptions+=pum
-hi PumNormalMenu gui=none guifg=#dddddd guibg=#202020
-hi PumColumnKind gui=none guifg=#888888 guibg=#202020
-hi PumColumnMenu gui=none guifg=#888888 guibg=#202020
+hi PumNormalMenu gui=none guifg=#dddddd guibg=#333333
+hi PumColumnKind gui=none guifg=#888888 guibg=#333333
+hi PumColumnMenu gui=none guifg=#888888 guibg=#333333
 hi PumSelected  gui=bold guibg=#226688
 hi PumMatches   guifg=#44aabb
 hi PmenuSBar    guifg=#666666 guibg=#cccccc
-hi FloatBorder  gui=bold guibg=#202020
+hi FloatBorder  gui=bold guibg=#282828
 call pum#set_option(#{
   \   auto_select: v:false,
   \   max_height: 15,
