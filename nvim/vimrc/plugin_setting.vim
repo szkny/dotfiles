@@ -986,7 +986,7 @@ lua require("scrollbar").setup({
   \   show_in_active_only = true,
   \   set_highlights = true,
   \   max_lines = false,
-  \   hide_if_all_visible = true,
+  \   hide_if_all_visible = false,
   \   handle = {
   \     text = " ",
   \     highlight = "CursorColumn",
@@ -1033,17 +1033,24 @@ lua require("scrollbar").setup({
   \     },
   \   },
   \   handlers = {
-  \       cursor = true,
+  \       cursor = false,
   \       handle = true,
   \       diagnostic = true,
   \       gitsigns = false,
   \       search = false,
   \   },
   \ })
-hi ScrollbarHandle       guifg=#333333 guibg=#555555
-hi ScrollbarCursorHandle guifg=#ffffff guibg=#555555
-hi ScrollbarCursor       guifg=#333333 guibg=#555555
-hi ScrollbarSearch       guifg=#ffff33 guibg=#ffff44
+hi ScrollbarHandle       gui=none guifg=#333333 guibg=#555555
+hi ScrollbarCursor       gui=none guifg=#333333 guibg=#555555
+hi ScrollbarCursorHandle gui=none guifg=#ffffff guibg=#555555
+hi ScrollbarSearch       gui=bold guifg=#ffaa77
+hi ScrollbarSearchHandle gui=bold guifg=#ffaa77 guibg=#555555
+hi ScrollbarError        gui=bold guifg=#ff0000
+hi ScrollbarErrorHandle  gui=bold guifg=#ff0000 guibg=#555555
+hi ScrollbarWarn         gui=bold guifg=#ffff00
+hi ScrollbarWarnHandle   gui=bold guifg=#ffff00 guibg=#555555
+hi ScrollbarHint         gui=bold guifg=#5599dd
+hi ScrollbarHintHandle   gui=bold guifg=#5599dd guibg=#555555
 
 
 " "" visual-multi  " TODO
