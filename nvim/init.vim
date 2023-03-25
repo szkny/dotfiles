@@ -1,28 +1,6 @@
 scriptencoding utf-8
 
 "*****************************************************************************
-"" Ignore default plugins
-"*****************************************************************************
-let g:did_install_default_menus = 1
-let g:did_install_syntax_menu   = 1
-let g:did_indent_on             = 1
-let g:did_load_filetypes        = 1
-let g:did_load_ftplugin         = 1
-let g:loaded_2html_plugin       = 1
-let g:loaded_gzip               = 1
-let g:loaded_man                = 1
-let g:loaded_matchit            = 1
-let g:loaded_matchparen         = 1
-let g:loaded_netrwPlugin        = 1
-let g:loaded_remote_plugins     = 1
-let g:loaded_shada_plugin       = 1
-let g:loaded_spellfile_plugin   = 1
-let g:loaded_tarPlugin          = 1
-let g:loaded_tutor_mode_plugin  = 1
-let g:loaded_zipPlugin          = 1
-let g:skip_loading_mswin        = 1
-
-"*****************************************************************************
 "" Vim-PLug core
 "*****************************************************************************
 let g:vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
@@ -177,6 +155,28 @@ call plug#end()
 
 " Required: ftpluginディレクトリをロードする
 filetype plugin indent on
+
+"*****************************************************************************
+"" Ignore default plugins
+"*****************************************************************************
+let g:did_install_default_menus = 1
+let g:did_install_syntax_menu   = 1
+let g:did_indent_on             = 1
+let g:did_load_filetypes        = 1
+let g:did_load_ftplugin         = 1
+let g:loaded_2html_plugin       = 1
+let g:loaded_gzip               = 1
+let g:loaded_man                = 1
+let g:loaded_matchit            = 1
+let g:loaded_matchparen         = 1
+let g:loaded_netrwPlugin        = 1
+let g:loaded_remote_plugins     = 1
+let g:loaded_shada_plugin       = 1
+let g:loaded_spellfile_plugin   = 1
+let g:loaded_tarPlugin          = 1
+let g:loaded_tutor_mode_plugin  = 1
+let g:loaded_zipPlugin          = 1
+let g:skip_loading_mswin        = 1
 
 "*****************************************************************************
 "" Basic Setup
@@ -334,20 +334,20 @@ set cursorline
 
 aug transparencyBG
     au!
-    au ColorScheme * hi EndOfBuffer              guifg=bg
-    au ColorScheme * hi NonText                  guifg=#404040
-    au ColorScheme * hi SpecialKey               guifg=#404040
-    au ColorScheme * hi LineNr                   guifg=#555555 guibg=#202020
-    au ColorScheme * hi SignColumn                             guibg=#202020
-    au ColorScheme * hi VertSplit   gui=none     guifg=#444444 guibg=#202020
+    " au ColorScheme * hi EndOfBuffer              guifg=bg
+    " au ColorScheme * hi NonText                  guifg=#404040
+    " au ColorScheme * hi SpecialKey               guifg=#404040
+    " au ColorScheme * hi LineNr                   guifg=#555555 guibg=#202020
+    " au ColorScheme * hi SignColumn                             guibg=#202020
+    " au ColorScheme * hi VertSplit   gui=none     guifg=#444444 guibg=#202020
 
-    " au Colorscheme * hi Normal                                 guibg=none
-    " au Colorscheme * hi NonText                                guibg=none
-    " au ColorScheme * hi EndOfBuffer              guifg=#252525 guibg=none
-    " au Colorscheme * hi LineNr                   guifg=#666666 guibg=none
-    " au Colorscheme * hi SignColumn                             guibg=none
-    " au Colorscheme * hi Folded                                 guibg=none
-    " au ColorScheme * hi VertSplit                guifg=#444444 guibg=none
+    au Colorscheme * hi Normal                                 guibg=none
+    au Colorscheme * hi NonText                                guibg=none
+    au ColorScheme * hi EndOfBuffer              guifg=#252525 guibg=none
+    au Colorscheme * hi LineNr                   guifg=#666666 guibg=none
+    au Colorscheme * hi SignColumn                             guibg=none
+    au Colorscheme * hi Folded                                 guibg=none
+    au ColorScheme * hi VertSplit                guifg=#444444 guibg=none
 
     au ColorScheme * hi CursorLine                             guibg=#303030
     au ColorScheme * hi Cursor      gui=reverse

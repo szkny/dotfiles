@@ -6,6 +6,5 @@
     - LSP
       - tweak ddc.vim
         - snippet
-      - basic setup for coc.nvim
+      - basic setup for coc.nvim : DONE
       - basic setup for mason.nvim
-- 
