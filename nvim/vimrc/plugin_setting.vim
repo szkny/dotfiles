@@ -559,10 +559,10 @@ hi NvimTreeGitDirty                  gui=bold guifg=#ccaa55
 hi NvimTreeGitStaged                 gui=bold guifg=#44cc44
 hi NvimTreeGitNew                    gui=bold guifg=#44cc44
 hi NvimTreeModifiedFile              gui=bold guifg=#ffaa00
-hi NvimTreeLspDiagnosticsError       gui=bold guifg=#ff0000
-hi NvimTreeLspDiagnosticsWarning     gui=bold guifg=#ffff00
-hi NvimTreeLspDiagnosticsInformation gui=bold guifg=#ffffff
-hi NvimTreeLspDiagnosticsHint        gui=bold guifg=#5588dd
+hi NvimTreeLspDiagnosticsError       gui=none guifg=#ff0000
+hi NvimTreeLspDiagnosticsWarning     gui=none guifg=#ffff00
+hi NvimTreeLspDiagnosticsInformation gui=none guifg=#ffffff
+hi NvimTreeLspDiagnosticsHint        gui=none guifg=#5588dd
 
 
 ""vista.vim
