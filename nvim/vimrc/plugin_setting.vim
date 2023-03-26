@@ -1213,17 +1213,17 @@ lua require("scrollbar").setup({
   \       search = true,
   \   },
   \ })
-hi ScrollbarHandle       gui=none guifg=#333333 guibg=#555555
-hi ScrollbarCursor       gui=none guifg=#333333 guibg=#555555
-hi ScrollbarCursorHandle gui=none guifg=#ffffff guibg=#555555
+hi ScrollbarHandle       gui=none guifg=#333333 guibg=#777777
+hi ScrollbarCursor       gui=none guifg=#333333 guibg=#777777
+hi ScrollbarCursorHandle gui=none guifg=#ffffff guibg=#777777
 hi ScrollbarSearch       gui=bold guifg=#ffaa77
-hi ScrollbarSearchHandle gui=bold guifg=#ffaa77 guibg=#555555
+hi ScrollbarSearchHandle gui=bold guifg=#ffaa77 guibg=#777777
 hi ScrollbarError        gui=bold guifg=#ff0000
-hi ScrollbarErrorHandle  gui=bold guifg=#ff0000 guibg=#555555
+hi ScrollbarErrorHandle  gui=bold guifg=#ff0000 guibg=#777777
 hi ScrollbarWarn         gui=bold guifg=#ffff00
-hi ScrollbarWarnHandle   gui=bold guifg=#ffff00 guibg=#555555
+hi ScrollbarWarnHandle   gui=bold guifg=#ffff00 guibg=#777777
 hi ScrollbarHint         gui=bold guifg=#5599dd
-hi ScrollbarHintHandle   gui=bold guifg=#5599dd guibg=#555555
+hi ScrollbarHintHandle   gui=bold guifg=#5599dd guibg=#777777
 
 
 "" nvim-hlslens
