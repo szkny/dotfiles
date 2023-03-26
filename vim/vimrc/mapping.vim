@@ -9,7 +9,7 @@ ino <silent> <C-s>   <ESC>:w<CR>a
 nno <silent> <C-s>   :<C-u>w<CR>
 nno <silent> q       :<C-u>CloseBufferTab<CR>
 nno <silent> <S-q>   :<C-u>qall<CR>
-ino <silent> <C-w>   <ESC><C-w>
+" ino <silent> <C-w>   <ESC><C-w>
 " nno          /       /\v
 tno <silent> <C-[>   <C-\><C-n>
 tno <silent> <ESC>   <C-\><C-n>

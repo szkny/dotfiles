@@ -10,11 +10,12 @@ lua require("notify").setup({
   \   stages = "fade",
   \   on_open = nil,
   \   on_close = nil,
+  \   keep = nil,
   \   render = "compact",
   \   background_colour = "#333333",
   \   timeout = 3000,
   \   minimum_width = 50,
-  \   fps = 30,
+  \   fps = 60,
   \   icons = {
   \     ERROR = " ",
   \     WARN = " ",
@@ -73,8 +74,9 @@ lua  require("noice").setup({
   \     long_message_to_split = true,
   \   },
   \ })
-hi NoiceMini guifg=#ffbb00 guibg=#000000
-hi NoiceCmdlinePopup guibg=#202020
+hi NoiceMini         guifg=#ffbb00 guibg=#000000
+hi NoiceCmdlinePopup               guibg=#202020
+hi NoiceConfirm                    guibg=#202020
 
 
 "" fzf.vim
@@ -219,9 +221,9 @@ endif
 set pumblend=20
 set shortmess+=c
 set wildoptions+=pum
-hi PumNormalMenu gui=none guifg=#dddddd guibg=#333333
-hi PumColumnKind gui=none guifg=#888888 guibg=#333333
-hi PumColumnMenu gui=none guifg=#888888 guibg=#333333
+hi PumNormalMenu gui=none guifg=#dddddd guibg=#202020
+hi PumColumnKind gui=none guifg=#888888 guibg=#202020
+hi PumColumnMenu gui=none guifg=#888888 guibg=#202020
 hi PumSelected  gui=bold guibg=#226688
 hi PumMatches   guifg=#44aabb
 hi PmenuSBar    guifg=#666666 guibg=#cccccc

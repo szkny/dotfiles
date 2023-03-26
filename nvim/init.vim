@@ -327,7 +327,7 @@ let g:cpp_class_scope_highlight = 1
 
 set list
 set listchars=tab:¦\ ,trail:-,eol:↲
-set fillchars=vert:│
+set fillchars=vert:│,eob:\ 
 set signcolumn=yes
 set nocursorcolumn
 set cursorline

@@ -15,8 +15,8 @@ nno <silent><nowait> <leader>q  :bdelete<CR>
 nno <silent><nowait> <leader>bq :bdelete<CR>
 nno <silent> q          :q<CR>
 nno <silent> <S-q>      :qall<CR>
-tno <silent> <C-w>      <C-\><C-n><C-w>
-ino <silent> <C-w>      <ESC><C-w>
+" tno <silent> <C-w>      <C-\><C-n><C-w>
+" ino <silent> <C-w>      <ESC><C-w>
 " nno          /          /\v
 
 " for edit
