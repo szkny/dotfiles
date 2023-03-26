@@ -553,7 +553,8 @@ lua require("nvim-tree").setup({
   \ })
 " hi NvimTreeNormal                    gui=none guibg=#202020
 " hi NvimTreeEndOfBuffer               gui=none guifg=#202020 guibg=#202020
-hi NvimTreeRootFolder                gui=bold guifg=#bbbbbb guibg=#2e2e35
+" hi NvimTreeRootFolder                gui=bold guifg=#bbbbbb guibg=#2e2e35
+hi NvimTreeRootFolder                gui=bold guifg=#bbbbbb
 hi NvimTreeFolderName                gui=bold guifg=#77aadd
 hi NvimTreeOpenedFolderName          gui=bold guifg=#77aadd
 hi NvimTreeSpecialFile               gui=bold,underline guifg=#aaaa00
@@ -860,7 +861,7 @@ lua require('bufferline').setup {
   \         local icon = level:match("error") and ""
   \                    or level:match("warning") and ""
   \                    or level:match("hint") and "" or ""
-  \         return "" .. icon .. " " .. count
+  \         return icon .. " " .. count
   \     end,
   \     custom_filter = function(buf_number, buf_numbers)
   \         if vim.bo[buf_number].filetype ~= "qf" then
@@ -896,10 +897,6 @@ lua require('bufferline').setup {
   \     },
   \   },
   \   highlights = {
-  \     fill = {
-  \       fg = '#555555',
-  \       bg = '#2e2e35',
-  \     },
   \     buffer_selected = {
   \       fg = '#ffffff',
   \       bg = 'none',
@@ -934,49 +931,49 @@ lua require('bufferline').setup {
   \         italic = false,
   \     },
   \     error_selected = {
-  \         fg = '#cc0000',
+  \         fg = '#ff0000',
   \         bg = 'none',
   \         bold = true,
   \         italic = false,
   \     },
   \     error_visible = {
-  \         fg = '#cc0000',
+  \         fg = '#ff0000',
   \         bg = 'none',
   \         bold = true,
   \         italic = false,
   \     },
   \     error_diagnostic_selected = {
-  \         fg = '#cc0000',
+  \         fg = '#ff0000',
   \         bg = 'none',
   \         bold = true,
   \         italic = false,
   \     },
   \     error_diagnostic_visible = {
-  \         fg = '#cc0000',
+  \         fg = '#ff0000',
   \         bg = 'none',
   \         bold = true,
   \         italic = false,
   \     },
   \     warning_selected = {
-  \         fg = '#cccc00',
+  \         fg = '#ffff00',
   \         bg = 'none',
   \         bold = true,
   \         italic = false,
   \     },
   \     warning_visible = {
-  \         fg = '#cccc00',
+  \         fg = '#ffff00',
   \         bg = 'none',
   \         bold = true,
   \         italic = false,
   \     },
   \     warning_diagnostic_selected = {
-  \         fg = '#cccc00',
+  \         fg = '#ffff00',
   \         bg = 'none',
   \         bold = true,
   \         italic = false,
   \     },
   \     warning_diagnostic_visible = {
-  \         fg = '#cccc00',
+  \         fg = '#ffff00',
   \         bg = 'none',
   \         bold = true,
   \         italic = false,
@@ -1006,13 +1003,13 @@ lua require('bufferline').setup {
   \         italic = false,
   \     },
   \     hint_selected = {
-  \         fg = '#5588dd',
+  \         fg = '#ffffff',
   \         bg = 'none',
   \         bold = true,
   \         italic = false,
   \     },
   \     hint_visible = {
-  \         fg = '#5588dd',
+  \         fg = '#ffffff',
   \         bg = 'none',
   \         bold = true,
   \         italic = false,
@@ -1055,6 +1052,10 @@ lua require('bufferline').setup {
   \       fg = '#ffaa00',
   \       bg = 'none',
   \       bold = true,
+  \     },
+  \     fill = {
+  \       fg = '#555555',
+  \       bg = 'none',
   \     },
   \     background = {
   \       fg = '#888888',
@@ -1108,7 +1109,7 @@ lua require('bufferline').setup {
   \         italic = false,
   \     },
   \     hint = {
-  \         fg = '#4466aa',
+  \         fg = '#888888',
   \         bg = '#2e2e35',
   \         bold = true,
   \         italic = false,
@@ -1148,7 +1149,7 @@ lua require('bufferline').setup {
   \     },
   \     offset_separator = {
   \       fg = win_separator_fg,
-  \       bg = '#2e2e35',
+  \       bg = 'none',
   \     },
   \   }
   \ }
