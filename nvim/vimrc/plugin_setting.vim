@@ -454,7 +454,7 @@ lua require("nvim-tree").setup({
   \     adaptive_size = true,
   \     width = 25,
   \     hide_root_folder = true,
-  \     signcolumn = "no",
+  \     signcolumn = "yes",
   \     preserve_window_proportions = true,
   \     mappings = {
   \       custom_only = false,
@@ -520,7 +520,7 @@ lua require("nvim-tree").setup({
   \     show_on_open_dirs = false,
   \     debounce_delay = 50,
   \     severity = {
-  \       min = vim.diagnostic.severity.WARNING,
+  \       min = vim.diagnostic.severity.HINT,
   \       max = vim.diagnostic.severity.ERROR,
   \     },
   \     icons = {
@@ -549,16 +549,20 @@ lua require("nvim-tree").setup({
   \     require_confirm = true,
   \   },
   \ })
-" hi NvimTreeNormal             gui=none guibg=#202020
-" hi NvimTreeEndOfBuffer        gui=none guifg=#202020 guibg=#202020
-hi NvimTreeRootFolder         gui=bold guifg=#bbbbbb guibg=#2e2e35
-hi NvimTreeFolderName         gui=bold guifg=#77aadd
-hi NvimTreeOpenedFolderName   gui=bold guifg=#77aadd
-hi NvimTreeSpecialFile        gui=bold,underline guifg=#aaaa00
-hi NvimTreeGitDirty           gui=bold guifg=#ccaa55
-hi NvimTreeGitStaged          gui=bold guifg=#44cc44
-hi NvimTreeGitNew             gui=bold guifg=#44cc44
-hi NvimTreeModifiedFile       gui=bold guifg=#ffaa00
+" hi NvimTreeNormal                    gui=none guibg=#202020
+" hi NvimTreeEndOfBuffer               gui=none guifg=#202020 guibg=#202020
+hi NvimTreeRootFolder                gui=bold guifg=#bbbbbb guibg=#2e2e35
+hi NvimTreeFolderName                gui=bold guifg=#77aadd
+hi NvimTreeOpenedFolderName          gui=bold guifg=#77aadd
+hi NvimTreeSpecialFile               gui=bold,underline guifg=#aaaa00
+hi NvimTreeGitDirty                  gui=bold guifg=#ccaa55
+hi NvimTreeGitStaged                 gui=bold guifg=#44cc44
+hi NvimTreeGitNew                    gui=bold guifg=#44cc44
+hi NvimTreeModifiedFile              gui=bold guifg=#ffaa00
+hi NvimTreeLspDiagnosticsError       gui=bold guifg=#ff0000
+hi NvimTreeLspDiagnosticsWarning     gui=bold guifg=#ffff00
+hi NvimTreeLspDiagnosticsInformation gui=bold guifg=#ffffff
+hi NvimTreeLspDiagnosticsHint        gui=bold guifg=#5588dd
 
 
 ""vista.vim
