@@ -74,7 +74,7 @@ lua  require("noice").setup({
   \   },
   \ })
 hi NoiceMini guifg=#ffbb00 guibg=#000000
-hi NoiceCmdlinePopup guibg=#333333
+hi NoiceCmdlinePopup guibg=#202020
 
 
 "" fzf.vim
@@ -91,7 +91,7 @@ let g:fzf_colors =
 \ { 'fg':      ['fg', 'FzfNormal'],
 \   'bg':      ['bg', 'FzfNormal']}
 hi link FzfNormal Normal
-hi FzfNormal guibg=#333333 
+hi FzfNormal guibg=#202020 
 
 
 "" mason.nvim
@@ -227,7 +227,7 @@ hi PumMatches   guifg=#44aabb
 hi PmenuSBar    guifg=#666666 guibg=#cccccc
 hi FloatBorder  gui=bold guibg=#282828
 call pum#set_option(#{
-  \   auto_select: v:false,
+  \   auto_select: v:true,
   \   max_height: 15,
   \   max_width: 0,
   \   offset_row: 1,
@@ -566,18 +566,19 @@ hi NvimTreeLspDiagnosticsHint        gui=none guifg=#5588dd
 
 
 ""vista.vim
-let g:vista_no_mappings = 0
-let g:vista_echo_cursor = 1
-let g:vista_echo_cursor_strategy = 'floating_win'
-let g:vista_blink = [3, 200]
-let g:vista_top_level_blink = [3, 200]
-let g:vista_highlight_whole_line = 1
+let g:vista_no_mappings            = 0
+let g:vista_echo_cursor            = 1
+let g:vista_echo_cursor_strategy   = 'floating_win'
+let g:vista_blink                  = [3, 200]
+let g:vista_top_level_blink        = [3, 200]
+let g:vista_highlight_whole_line   = 1
 let g:vista_update_on_text_changed = 1
-let g:vista_sidebar_width = 25
-let g:vista_icon_indent = ['└ ', '│ ']
-let g:vista#renderer#enable_icon = 1
-let g:vista_fzf_preview = ['right,50%,<70(down,60%)']
-let g:vista_fzf_opt = ['--bind=ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up']
+let g:vista_sidebar_width          = 25
+let g:vista_icon_indent            = ['└ ', '│ ']
+let g:vista#renderer#enable_icon   = 1
+let g:vista_fzf_preview            = ['right,50%,<70(down,60%)']
+let g:vista_keep_fzf_colors        = 1
+let g:vista_fzf_opt                = ['--bind=ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up']
 if get(g:, 'use_coc_nvim', 0) == 1
     let g:vista_default_executive = 'coc'
 endif
@@ -1345,4 +1346,4 @@ let g:rnvimr_layout = {
             \ 'row':    float2nr(round(0.05 * &lines)),
             \ 'style': 'minimal'
             \ }
-hi RnvimrCurses guibg=#333333
+hi RnvimrCurses guibg=#202020
