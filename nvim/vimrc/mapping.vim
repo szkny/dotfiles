@@ -30,7 +30,7 @@ nno <silent> <Right> :ChangeBuffer next<CR>
 nno <silent> <Left>  :ChangeBuffer previous<CR>
 nno <silent> <M-l>   :ChangeBuffer next<CR>
 nno <silent> <M-h>   :ChangeBuffer previous<CR>
-nno <silent> <C-TAB> :buffer#<CR>
+nno <silent> <TAB>   :buffer#<CR>
 nno <silent> <Up>    :ResizeWindow +1<CR>
 nno <silent> <Down>  :ResizeWindow -1<CR>
 " nno <silent><Tab>    :NewTabPage<CR>
