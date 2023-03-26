@@ -354,17 +354,6 @@ if executable('pdftotext')
 endif
 
 
-fun! s:sethlsearch() abort
-    " 検索結果のハイライトのオン/オフ切り替え
-    if &hlsearch
-        set nohlsearch
-    else
-        set hlsearch
-    endif
-endf
-command! SetHlSearch call s:sethlsearch()
-
-
 fun! s:jqfmt() abort
     if executable("jq")
         let l:pos = getpos('.')

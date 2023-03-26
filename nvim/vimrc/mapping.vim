@@ -174,10 +174,10 @@ cno <C-l> <Plug>(skkeleton-disable)
 "" for My Commands
 ino <silent> <M-;>    <ESC>:Appendchar ;<CR>a
 no  <silent> <M-;>         :Appendchar ;<CR>
-" nno <silent> ?          :<C-u>SetHlSearch<CR>
-nno <silent><expr> ?
+" nno <silent> <leader>l     :<C-u>set hlsearch!<CR>
+nno <silent><expr> <leader>l
   \ exists(":MinimapRefresh") ?
-  \ ':<C-u>SetHlSearch<CR>:MinimapRefresh<CR>' :
-  \ ':<C-u>SetHlSearch<CR>'
+  \ ':<C-u>set hlsearch!<CR>:MinimapRefresh<CR>' :
+  \ ':<C-u>set hlsearch!<CR>'
 nno <silent> t          :<C-u>12SplitTerm<CR>i
 vno <silent> <leader>t  :Trans<CR>

@@ -1160,7 +1160,7 @@ lua require("scrollbar").setup({
   \   show_in_active_only = true,
   \   set_highlights = true,
   \   max_lines = false,
-  \   hide_if_all_visible = false,
+  \   hide_if_all_visible = true,
   \   handle = {
   \     text = " ",
   \     highlight = "CursorColumn",
@@ -1200,18 +1200,17 @@ lua require("scrollbar").setup({
   \       "WinScrolled",
   \     },
   \     clear = {
-  \       "BufWinLeave",
   \       "TabLeave",
   \       "TermLeave",
   \       "WinLeave",
   \     },
   \   },
   \   handlers = {
-  \       cursor = false,
+  \       cursor = true,
   \       handle = true,
   \       diagnostic = true,
   \       gitsigns = false,
-  \       search = false,
+  \       search = true,
   \   },
   \ })
 hi ScrollbarHandle       gui=none guifg=#333333 guibg=#555555
@@ -1225,6 +1224,32 @@ hi ScrollbarWarn         gui=bold guifg=#ffff00
 hi ScrollbarWarnHandle   gui=bold guifg=#ffff00 guibg=#555555
 hi ScrollbarHint         gui=bold guifg=#5599dd
 hi ScrollbarHintHandle   gui=bold guifg=#5599dd guibg=#555555
+
+
+"" nvim-hlslens
+lua require('hlslens').setup( {
+  \   calm_down = true,
+  \   nearest_only = true,
+  \   nearest_float_when = 'always',
+  \   build_position_cb = function(plist, _, _, _)
+  \     require("scrollbar.handlers.search").handler.show(plist.start_pos)
+  \   end,
+  \ })
+lua local kopts = {noremap = true, silent = true}
+  \ vim.api.nvim_set_keymap('n', 'n',
+  \     [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+  \     kopts)
+  \ vim.api.nvim_set_keymap('n', 'N',
+  \     [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+  \     kopts)
+  \ vim.api.nvim_set_keymap('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+  \ vim.api.nvim_set_keymap('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+hi Search    guibg=#6f6600
+hi IncSearch guibg=#6f6600
+hi WildMenu  guibg=#6f6600
+hi default link HlSearchNear IncSearch
+hi default link HlSearchLens WildMenu
+hi default link HlSearchLensNear IncSearch
 
 
 " "" visual-multi  " TODO
@@ -1272,23 +1297,6 @@ let g:Hexokinase_optInPatterns = [
 \ ]
 
 
-" "" vscode.nvim  " TODO
-" lua local c = require('vscode.colors').get_colors()
-"   \ require('vscode').setup({
-"   \   style = 'dark',
-"   \   transparent = true,
-"   \   italic_comments = true,
-"   \   disable_nvimtree_bg = false,
-"   \   color_overrides = {
-"   \     vscLineNumber = '#FFFFFF',
-"   \   },
-"   \   group_overrides = {
-"   \     Cursor = { fg=c.vscDarkBlue, bg=c.vscLightGreen, bold=true },
-"   \   }
-"   \ })
-"   \ require('vscode').load('dark')
-
-
 "" delimitmate
 let g:delimitMate_autoclose            = 1
 let g:delimitMate_matchpairs           = "(:),[:],{:}"
@@ -1331,10 +1339,10 @@ let g:gitgutter_sign_modified_removed        = '│'
 hi GitGutterAdd        gui=bold guifg=#00bb00
 hi GitGutterChange     gui=bold guifg=#cccc00
 hi GitGutterDelete     gui=bold guifg=#ff2222
-hi DiffAdd             gui=none guifg=#dddddd guibg=#004400
-hi DiffChange          gui=none guifg=#dddddd guibg=#555500
-hi Difftext            gui=none guifg=#151515 guibg=#dddd00
-hi DiffDelete          gui=none guifg=#dddddd guibg=#550000
+hi DiffAdd             gui=none guifg=none    guibg=#003300
+hi DiffChange          gui=none guifg=none    guibg=#333300
+hi Difftext            gui=none guifg=none    guibg=#666600
+hi DiffDelete          gui=none guifg=none    guibg=#330000
 
 
 "" Rnvimr

@@ -1,7 +1,7 @@
 scriptencoding utf-8
 
 "*****************************************************************************
-"" Vim-PLug core
+"" Vim-Plug core
 "*****************************************************************************
 let g:vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
 
@@ -26,13 +26,12 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 " general plugins
 Plug 'tomtom/tcomment_vim'
 Plug 'kevinhwang91/rnvimr'
-" Plug 'Shougo/neosnippet.vim'
-" Plug 'Shougo/neosnippet-snippets'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'Raimondi/delimitMate'
 Plug 'szkny/SplitTerm'
 Plug 'junegunn/vim-easy-align'
+Plug 'kevinhwang91/nvim-hlslens'
 Plug 'liuchengxu/vista.vim'
 " Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'nvim-tree/nvim-tree.lua',     {'on': 'NvimTreeToggle'}
@@ -44,7 +43,6 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'wfxr/minimap.vim',  {'on': 'MinimapToggle'}
 Plug 'petertriho/nvim-scrollbar'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
-" Plug 'norcalli/nvim-colorizer.lua'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 if has('wsl')
@@ -55,7 +53,6 @@ endif
 
 " color scheme
 Plug 'tomasiser/vim-code-dark'
-" Plug 'Mofiqul/vscode.nvim'  " TODO
 " Plug 'tomasr/molokai'
 " Plug 'jacoborus/tender.vim'
 
