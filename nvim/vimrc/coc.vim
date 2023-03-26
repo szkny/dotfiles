@@ -95,10 +95,10 @@ endfunction
 " Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-hi CocErrorSign           gui=bold guifg=#ff0000
-hi CocWarningSign         gui=bold guifg=#ffff00
-hi CocInfoSign            gui=bold guifg=#ffffff
-hi CocHintSign            gui=bold guifg=#5599dd
+hi CocErrorSign           gui=none guifg=#ff0000
+hi CocWarningSign         gui=none guifg=#ffff00
+hi CocInfoSign            gui=none guifg=#ffffff
+hi CocHintSign            gui=none guifg=#5599dd
 hi CocErrorVirtualText    gui=bold guifg=#ff0000
 hi CocWarningVirtualText  gui=bold guifg=#ffff00
 hi CocInfoVirtualText     gui=bold guifg=#ffffff
