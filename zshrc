@@ -213,5 +213,6 @@ export MOCWORD_DATA=~/.mocword/mocword.sqlite
 source "$HOME/.openai_key.zsh"
 
 # # start tmux
+# export TERM="screen-256color"
 # start-tmux
 
