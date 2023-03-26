@@ -1,10 +1,7 @@
 {
-    // show inline errors
-    "diagnostic.virtualText": true,
-    "diagnostic.autoRefresh": true,
-
     // show diagnostics
     "diagnostic.enable": true,
+    "diagnostic.autoRefresh": true,
     "diagnostic.enableHighlightLineNumber": false,
     "diagnostic.enableSign": true, 
     "diagnostic.infoSign": "",
@@ -61,18 +58,46 @@
         "default": "\uf29c Default"
     },
 
+    // signature config
+    "signature.enable": true,
+    "signature.floatConfig": {
+        "border": true,
+        "rounded": true,
+        "highlight": "CocFloating",
+        "borderhighlight": "CocFloating",
+        "winblend": 20,
+    },
+
+    // hover config
+    "hover.floatConfig": {
+        "border": true,
+        "rounded": true,
+        "highlight": "CocFloating",
+        "borderhighlight": "CocFloating",
+        "winblend": 20,
+    },
+
     // show color
     "colors.enable": true,
 
     // coc-tsserver
     "typescript.check.npmIsInstalled": true,
     "typescript.preferences.quoteStyle": "double",
-    "tsserver.disableAutomaticTypeAcquisition": false,
     "javascript.preferences.quoteStyle": "double",
+    "typescript.suggest.autoImports": true,
+    "javascript.suggest.autoImports": true,
+    "tsserver.disableAutomaticTypeAcquisition": false,
 
     // eslint
     "eslint.enable": false,
     "eslint.filetypes": [
         "vue"
-    ]
+    ],
+
+    // jedi
+    "jedi": {
+        "enable": true,
+        "startupMessage": false,
+        "executable.command": "~/.pyenv/shims/jedi-language-server"
+    },
 }

@@ -103,6 +103,13 @@ hi CocErrorVirtualText    gui=bold guifg=#ff0000
 hi CocWarningVirtualText  gui=bold guifg=#ffff00
 hi CocInfoVirtualText     gui=bold guifg=#ffffff
 hi CocHintVirtualText     gui=bold guifg=#5599dd
+hi CocErrorHighlight      gui=bold,underline guifg=none
+hi CocWarningHighlight    gui=bold,underline guifg=none
+hi CocInfoHighlight       gui=bold,underline guifg=none
+hi CocHintHighlight       gui=bold,underline guifg=none
+hi CocErrorFloat          gui=none guifg=#ff0000
+hi CocHintFloat           gui=none guifg=#5599dd
+hi CocNotificationError   gui=none guibg=#ff0000
 hi CocFadeOut             gui=bold guifg=#888888
 hi CocDeprecatedHighlight gui=bold guifg=#66aa66
 hi CocFloating            gui=none guifg=#dddddd guibg=#333333
