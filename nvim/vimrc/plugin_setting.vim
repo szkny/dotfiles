@@ -17,7 +17,7 @@ lua require("notify").setup({
   \   fps = 30,
   \   icons = {
   \     ERROR = " ",
-  \     WARN = " ",
+  \     WARN = " ",
   \     INFO = " ",
   \     DEBUG = " ",
   \     TRACE = "✎ ",
@@ -847,7 +847,14 @@ lua require('bufferline').setup {
   \     max_prefix_length = 6,
   \     truncate_names = true,
   \     tab_size = 18,
-  \     diagnostics = false,
+  \     diagnostics = "coc",
+  \     diagnostics_update_in_insert = true,
+  \     diagnostics_indicator = function(count, level, diagnostics_dict, context)
+  \         local icon = level:match("error") and ""
+  \                    or level:match("warning") and ""
+  \                    or level:match("hint") and "" or ""
+  \         return "" .. icon .. " " .. count
+  \     end,
   \     custom_filter = function(buf_number, buf_numbers)
   \         if vim.bo[buf_number].filetype ~= "qf" then
   \             return true
@@ -888,52 +895,158 @@ lua require('bufferline').setup {
   \     },
   \     buffer_selected = {
   \       fg = '#ffffff',
-  \       bg = '#202020',
+  \       bg = 'none',
   \       italic = false,
   \       bold = true,
   \     },
   \     buffer_visible = {
   \       fg = '#ffffff',
-  \       bg = '#202020',
+  \       bg = 'none',
   \       italic = false,
   \       bold = true,
   \     },
   \     duplicate_selected = {
   \       fg = '#ffffff',
-  \       bg = '#202020',
+  \       bg = 'none',
   \       italic = false,
   \       bold = true,
   \     },
   \     duplicate_visible = {
   \       fg = '#ffffff',
-  \       bg = '#202020',
+  \       bg = 'none',
   \       italic = false,
+  \     },
+  \     diagnostic_selected = {
+  \         bg = 'none',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     diagnostic_visible = {
+  \         bg = 'none',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     error_selected = {
+  \         fg = '#cc0000',
+  \         bg = 'none',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     error_visible = {
+  \         fg = '#cc0000',
+  \         bg = 'none',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     error_diagnostic_selected = {
+  \         fg = '#cc0000',
+  \         bg = 'none',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     error_diagnostic_visible = {
+  \         fg = '#cc0000',
+  \         bg = 'none',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     warning_selected = {
+  \         fg = '#cccc00',
+  \         bg = 'none',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     warning_visible = {
+  \         fg = '#cccc00',
+  \         bg = 'none',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     warning_diagnostic_selected = {
+  \         fg = '#cccc00',
+  \         bg = 'none',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     warning_diagnostic_visible = {
+  \         fg = '#cccc00',
+  \         bg = 'none',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     info_selected = {
+  \         fg = '#ffffff',
+  \         bg = 'none',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     info_visible = {
+  \         fg = '#ffffff',
+  \         bg = 'none',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     info_diagnostic_selected = {
+  \         fg = '#ffffff',
+  \         bg = 'none',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     info_diagnostic_visible = {
+  \         fg = '#ffffff',
+  \         bg = 'none',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     hint_selected = {
+  \         fg = '#5588dd',
+  \         bg = 'none',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     hint_visible = {
+  \         fg = '#5588dd',
+  \         bg = 'none',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     hint_diagnostic_selected = {
+  \         fg = '#5588dd',
+  \         bg = 'none',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     hint_diagnostic_visible = {
+  \         fg = '#5588dd',
+  \         bg = 'none',
+  \         bold = true,
+  \         italic = false,
   \     },
   \     indicator_selected = {
   \       fg = '#88ccff',
-  \       bg = '#202020',
+  \       bg = 'none',
   \     },
   \     close_button = {
   \       fg = '#888888',
-  \       bg = '#202020',
+  \       bg = 'none',
   \     },
   \     close_button_visible = {
   \       fg = '#888888',
-  \       bg = '#202020',
+  \       bg = 'none',
   \     },
   \     close_button_selected = {
   \       fg = '#aaaaaa',
-  \       bg = '#202020',
+  \       bg = 'none',
   \       bold = true,
   \     },
   \     numbers_selected = {
   \       fg = '#ffffff',
-  \       bg = '#202020',
+  \       bg = 'none',
   \       italic = false,
   \     },
   \     modified_selected = {
   \       fg = '#ffaa00',
-  \       bg = '#202020',
+  \       bg = 'none',
   \       bold = true,
   \     },
   \     background = {
@@ -944,6 +1057,60 @@ lua require('bufferline').setup {
   \       fg = "#888888",
   \       bg = '#2e2e35',
   \       italic = false,
+  \     },
+  \     diagnostic = {
+  \         fg = '#888888',
+  \         bg = '#2e2e35',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     error = {
+  \         fg = '#aa0000',
+  \         bg = '#2e2e35',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     error_diagnostic = {
+  \         fg = '#aa0000',
+  \         bg = '#2e2e35',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     warning = {
+  \         fg = '#aaaa00',
+  \         bg = '#2e2e35',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     warning_diagnostic = {
+  \         fg = '#aaaa00',
+  \         bg = '#2e2e35',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     info = {
+  \         fg = '#888888',
+  \         bg = '#2e2e35',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     info_diagnostic = {
+  \         fg = '#888888',
+  \         bg = '#2e2e35',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     hint = {
+  \         fg = '#4466aa',
+  \         bg = '#2e2e35',
+  \         bold = true,
+  \         italic = false,
+  \     },
+  \     hint_diagnostic = {
+  \         fg = '#4466aa',
+  \         bg = '#2e2e35',
+  \         bold = true,
+  \         italic = false,
   \     },
   \     numbers = {
   \       fg = '#888888',
