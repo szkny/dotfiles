@@ -94,11 +94,16 @@
         "vue"
     ],
 
-    // jedi
+    // coc-jedi
     "jedi": {
         "enable": true,
         "startupMessage": false,
         "executable.command": "~/.pyenv/shims/jedi-language-server"
+    },
+
+    // coc-sh
+    "sh": {
+        "enable": false,
     },
 
     // terraform-ls

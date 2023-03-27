@@ -39,6 +39,7 @@ let g:coc_global_extensions = [
   \  'coc-vetur',
   \  'coc-eslint',
   \  'coc-jedi', 
+  \  'coc-sh', 
   \  'coc-clangd',
   \ ]
 

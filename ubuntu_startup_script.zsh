@@ -86,6 +86,9 @@ mkdir -p ~/.config/nvim
 ln -s ~/dotfiles/nvim/* ~/.config/nvim/
 nvim --headless +PlugInstall +qall
 
+## for coc-nvim
+sudo apt install terraform-ls
+
 ## install skk
 mkdir -p ~/.skk && cd ~/.skk
 wget https://skk-dev.github.io/dict/SKK-JISYO.L.gz && gunzip SKK-JISYO.L.gz
