@@ -100,4 +100,18 @@
         "startupMessage": false,
         "executable.command": "~/.pyenv/shims/jedi-language-server"
     },
+
+    // terraform-ls
+    "languageserver": {
+		"terraform": {
+			"command": "terraform-ls",
+			"args": ["serve"],
+			"filetypes": [
+				"terraform",
+				"tf"
+			],
+			"initializationOptions": {},
+			"settings": {}
+		}
+	},
 }
