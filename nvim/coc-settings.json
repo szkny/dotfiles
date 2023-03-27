@@ -89,10 +89,18 @@
     "tsserver.disableAutomaticTypeAcquisition": false,
 
     // eslint
-    "eslint.enable": false,
-    "eslint.filetypes": [
-        "vue"
-    ],
+    "eslint": {
+        "eslint.enable": false,
+        "eslint.filetypes": [
+            "vue"
+        ],
+    },
+
+    // coc-json
+    "json": {
+        "enable": true,
+        "enableDefaultSchemas": false
+    },
 
     // coc-jedi
     "jedi": {
