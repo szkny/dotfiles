@@ -1340,13 +1340,14 @@ let g:gitgutter_sign_modified_removed        = '│'
 hi GitGutterAdd        gui=bold guifg=#00bb00
 hi GitGutterChange     gui=bold guifg=#cccc00
 hi GitGutterDelete     gui=bold guifg=#ff2222
-hi DiffAdd             gui=none guifg=none    guibg=#003300
-hi DiffChange          gui=none guifg=none    guibg=#333300
-hi Difftext            gui=none guifg=none    guibg=#666600
-hi DiffDelete          gui=none guifg=none    guibg=#330000
+hi DiffAdd             gui=none guifg=none    guibg=#004400
+hi DiffChange          gui=none guifg=none    guibg=#444400
+hi Difftext            gui=none guifg=none    guibg=#777700
+hi DiffDelete          gui=none guifg=none    guibg=#440000
 
 
-"" Rnvimr
+
+
 let g:rnvimr_enable_picker = 1
 let g:rnvimr_draw_border = 1
 let g:rnvimr_layout = {
