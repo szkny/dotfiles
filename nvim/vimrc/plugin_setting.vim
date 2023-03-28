@@ -12,7 +12,7 @@ lua require("notify").setup({
   \   on_close = nil,
   \   keep = nil,
   \   render = "compact",
-  \   background_colour = "#333333",
+  \   background_colour = "#3e3e3e",
   \   timeout = 3000,
   \   minimum_width = 50,
   \   fps = 60,
@@ -75,8 +75,8 @@ lua  require("noice").setup({
   \   },
   \ })
 hi NoiceMini         guifg=#ffbb00 guibg=#000000
-hi NoiceCmdlinePopup               guibg=#202020
-hi NoiceConfirm                    guibg=#202020
+hi NoiceCmdlinePopup               guibg=#3e3e3e
+hi NoiceConfirm                    guibg=#3e3e3e
 
 
 "" fzf.vim
@@ -511,7 +511,7 @@ lua require("nvim-tree").setup({
   \         },
   \       },
   \     },
-  \     special_files = { "Makefile", "README.md", "package.json" },
+  \     special_files = { "Makefile", "README.md" },
   \   },
   \   update_focused_file = {
   \     enable = true,
@@ -1214,8 +1214,8 @@ lua require("scrollbar").setup({
   \       search = true,
   \   },
   \ })
-hi ScrollbarHandle       gui=none guifg=#333333 guibg=#777777
-hi ScrollbarCursor       gui=none guifg=#333333 guibg=#777777
+hi ScrollbarHandle       gui=none guifg=#3e3e3e guibg=#777777
+hi ScrollbarCursor       gui=none guifg=#3e3e3e guibg=#777777
 hi ScrollbarCursorHandle gui=none guifg=#ffffff guibg=#777777
 hi ScrollbarSearch       gui=bold guifg=#ffaa77
 hi ScrollbarSearchHandle gui=bold guifg=#ffaa77 guibg=#777777
