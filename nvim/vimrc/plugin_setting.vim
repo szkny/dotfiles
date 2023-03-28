@@ -75,8 +75,8 @@ lua  require("noice").setup({
   \   },
   \ })
 hi NoiceMini         guifg=#ffbb00 guibg=#000000
-hi NoiceCmdlinePopup               guibg=#3e3e3e
-hi NoiceConfirm                    guibg=#3e3e3e
+hi NoiceCmdlinePopup               guibg=#2e2e2e
+hi NoiceConfirm                    guibg=#2e2e2e
 
 
 "" fzf.vim
@@ -93,7 +93,7 @@ let g:fzf_colors =
 \ { 'fg':      ['fg', 'FzfNormal'],
 \   'bg':      ['bg', 'FzfNormal']}
 hi link FzfNormal Normal
-hi FzfNormal guibg=#202020 
+hi FzfNormal guibg=#2e2e2e 
 
 
 "" mason.nvim
@@ -221,9 +221,9 @@ endif
 set pumblend=20
 set shortmess+=c
 set wildoptions+=pum
-hi PumNormalMenu gui=none guifg=#dddddd guibg=#202020
-hi PumColumnKind gui=none guifg=#888888 guibg=#202020
-hi PumColumnMenu gui=none guifg=#888888 guibg=#202020
+hi PumNormalMenu gui=none guifg=#dddddd guibg=#2e2e2e
+hi PumColumnKind gui=none guifg=#888888 guibg=#2e2e2e
+hi PumColumnMenu gui=none guifg=#888888 guibg=#2e2e2e
 hi PumSelected  gui=bold guibg=#226688
 hi PumMatches   guifg=#44aabb
 hi PmenuSBar    guifg=#666666 guibg=#cccccc
@@ -1214,8 +1214,8 @@ lua require("scrollbar").setup({
   \       search = true,
   \   },
   \ })
-hi ScrollbarHandle       gui=none guifg=#3e3e3e guibg=#777777
-hi ScrollbarCursor       gui=none guifg=#3e3e3e guibg=#777777
+hi ScrollbarHandle       gui=none guifg=#333333 guibg=#777777
+hi ScrollbarCursor       gui=none guifg=#333333 guibg=#777777
 hi ScrollbarCursorHandle gui=none guifg=#ffffff guibg=#777777
 hi ScrollbarSearch       gui=bold guifg=#ffaa77
 hi ScrollbarSearchHandle gui=bold guifg=#ffaa77 guibg=#777777
@@ -1358,4 +1358,4 @@ let g:rnvimr_layout = {
             \ 'row':    float2nr(round(0.05 * &lines)),
             \ 'style': 'minimal'
             \ }
-hi RnvimrCurses guibg=#202020
+hi RnvimrCurses guibg=#2e2e2e

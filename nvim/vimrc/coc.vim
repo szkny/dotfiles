@@ -113,11 +113,11 @@ hi CocHintFloat           gui=none guifg=#5599dd
 hi CocNotificationError   gui=none guibg=#ff0000
 hi CocFadeOut             gui=bold guifg=#888888
 hi CocDeprecatedHighlight gui=bold guifg=#66aa66
-hi CocFloating            gui=none guifg=#dddddd guibg=#3e3e3e
+hi CocFloating            gui=none guifg=#dddddd guibg=#333333
 hi CocMenuSel             gui=none               guibg=#226688
 hi CocPumSearch           gui=bold guifg=#44aabb
 hi CocPumDetail           gui=none
-hi CocFloatSbar           gui=bold guifg=none    guibg=#3e3e3e
+hi CocFloatSbar           gui=bold guifg=none    guibg=#333333
 hi CocFloatThumb          gui=bold guifg=none    guibg=#cccccc
 
 " " Symbol renaming
