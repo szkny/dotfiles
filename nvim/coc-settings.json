@@ -102,6 +102,11 @@
         "enableDefaultSchemas": false
     },
 
+    // coc-yaml
+    "yaml": {
+        "enable": true,
+    },
+
     // coc-jedi
     "jedi": {
         "enable": true,
