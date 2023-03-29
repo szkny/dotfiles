@@ -1346,8 +1346,7 @@ hi Difftext            gui=none guifg=none    guibg=#777700
 hi DiffDelete          gui=none guifg=none    guibg=#440000
 
 
-
-
+"" rnvimr
 let g:rnvimr_enable_picker = 1
 let g:rnvimr_draw_border = 1
 let g:rnvimr_layout = {
