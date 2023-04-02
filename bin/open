@@ -13,3 +13,4 @@ to_winpath(){
 }
 # echo open: `to_winpath $@`
 /mnt/c/Windows/explorer.exe `to_winpath $@`
+exit 0
