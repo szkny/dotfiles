@@ -212,7 +212,10 @@ export MOCWORD_DATA=~/.mocword/mocword.sqlite
 # ChatGPT
 source "$HOME/.openai_key.zsh"
 
-# # start tmux
-# export TERM="screen-256color"
-# start-tmux
+# X11
+export DISPLAY=$(ipconfig.exe | grep -a "IPv4" | tail -1 | awk '{print $NF}' | awk 'sub(/\r$/,"")'):0.0
+
+# start tmux
+export TERM="screen-256color"
+start-tmux
 
