@@ -90,10 +90,16 @@ let g:fzf_preview_window = ['right,50%,<70(down,60%)', 'ctrl-/']
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'FzfNormal'],
-\   'bg':      ['bg', 'FzfNormal']}
+\ { 'fg':         ['fg', 'FzfNormal'],
+\   'bg':         ['bg', 'FzfNormal'],
+\   'fg+':        ['fg', 'FzfCursorLine'],
+\   'bg+':        ['bg', 'FzfCursorLine'],
+\   'preview-fg': ['fg', 'FzfPreview'],
+\   'preview-bg': ['bg', 'FzfPreview']}
 hi link FzfNormal Normal
-hi FzfNormal guibg=#383838 
+hi FzfNormal                   guibg=#383838 
+hi FzfCursorLine guifg=#ffffff guibg=#505050 
+hi FzfPreview                  guibg=none 
 
 
 "" mason.nvim
@@ -229,7 +235,7 @@ hi PumMatches   guifg=#44aabb
 hi PmenuSBar    guifg=#666666 guibg=#cccccc
 hi FloatBorder  gui=bold guibg=#282828
 call pum#set_option(#{
-  \   auto_select: v:true,
+  \   auto_select: v:false,
   \   max_height: 15,
   \   max_width: 0,
   \   offset_row: 1,
@@ -601,7 +607,7 @@ fun! VistaInit() abort
     endif
   endtry
 endf
-au VimEnter * call VistaInit()
+au BufEnter * call VistaInit()
 hi link VistaFloat Pmenu
 " hi VistaKind   guifg=
 " hi VistaTag    guifg=
@@ -1178,6 +1184,26 @@ lua require("scrollbar").setup({
   \       priority = 1,
   \       highlight = "Search",
   \     },
+  \   },
+  \   Error = {
+  \       text = { "-", "=" },
+  \       priority = 2,
+  \       highlight = "DiagnosticVirtualTextError",
+  \   },
+  \   Warn = {
+  \       text = { "-", "=" },
+  \       priority = 3,
+  \       highlight = "DiagnosticVirtualTextWarn",
+  \   },
+  \   Info = {
+  \       text = { "-", "=" },
+  \       priority = 4,
+  \       highlight = "DiagnosticVirtualTextInfo",
+  \   },
+  \   Hint = {
+  \       text = { "-", "=" },
+  \       priority = 5,
+  \       highlight = "DiagnosticVirtualTextHint",
   \   },
   \   excluded_buftypes = {
   \     "terminal",
