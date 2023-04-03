@@ -98,7 +98,7 @@ let g:fzf_colors =
 \   'preview-bg': ['bg', 'FzfPreview']}
 hi link FzfNormal Normal
 hi FzfNormal                   guibg=#383838 
-hi FzfCursorLine guifg=#ffffff guibg=#505050 
+hi FzfCursorLine guifg=#ffffff guibg=#5e5e5e 
 hi FzfPreview                  guibg=none 
 
 
