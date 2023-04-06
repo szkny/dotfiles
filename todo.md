@@ -8,3 +8,5 @@
         - snippet
       - basic setup for coc.nvim : DONE
       - basic setup for mason.nvim
+  - hlslens.nvim
+    - \* command
