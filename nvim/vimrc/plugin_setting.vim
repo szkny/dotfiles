@@ -618,7 +618,7 @@ hi VistaLineNr guifg=#777777
 "" minimap.vim
 let g:minimap_auto_start                        = 0
 let g:minimap_auto_start_win_enter              = 0
-let g:minimap_width                             = 4
+let g:minimap_width                             = 12
 let g:minimap_window_width_override_for_scaling = 2147483647
 let g:minimap_block_filetypes                   = ['terminal', 'fzf', 'vista_kind', 'NvimTree', 'rnvimr']
 " let g:minimap_close_buftypes                   = ['nofile', 'startify', 'netrw', 'vim-plug', 'terminal']
