@@ -105,6 +105,10 @@
     // coc-yaml
     "yaml": {
         "enable": true,
+        "schemas": {
+            "url": "globPattern",
+            "Kubernetes": "globPattern"
+        }
     },
 
     // coc-jedi
