@@ -1367,8 +1367,8 @@ hi GitGutterAdd        gui=bold guifg=#00bb00
 hi GitGutterChange     gui=bold guifg=#cccc00
 hi GitGutterDelete     gui=bold guifg=#ff2222
 hi DiffAdd             gui=none guifg=none    guibg=#004400
-hi DiffChange          gui=none guifg=none    guibg=#444400
-hi Difftext            gui=none guifg=none    guibg=#777700
+hi DiffChange          gui=none guifg=none    guibg=#3f3f00
+hi Difftext            gui=none guifg=none    guibg=#6a6a00
 hi DiffDelete          gui=none guifg=none    guibg=#440000
 
 
