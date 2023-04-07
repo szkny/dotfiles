@@ -85,8 +85,8 @@ npm install -g neovim
 mkdir -p ~/.config/nvim
 ln -s ~/dotfiles/nvim/* ~/.config/nvim/
 nvim --headless +PlugInstall +qall
-### for coc-nvim
-sudo apt install terraform-ls
+# ### for coc-nvim
+# sudo apt install terraform-ls
 ### for treesitter
 cargo install tree-sitter-cli
 

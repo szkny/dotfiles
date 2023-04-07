@@ -40,8 +40,14 @@ let g:coc_global_extensions = [
   \  'coc-jedi', 
   \  'coc-sh', 
   \  'coc-clangd',
+  \  '@yaegassy/coc-ansible',
   \ ]
   " \  'coc-eslint',
+
+" for ansible yaml
+let g:coc_filetype_map = {
+  \ 'yaml.ansible': 'ansible',
+  \ }
 
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
