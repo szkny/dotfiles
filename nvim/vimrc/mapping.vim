@@ -13,7 +13,7 @@ nno <silent> <C-s>      :w<CR>
 " nno <silent> q          :CloseBufferTab<CR>
 nno <silent><nowait> <leader>q  :bdelete<CR>
 nno <silent><nowait> <leader>bq :bdelete<CR>
-nno <silent><nowait> <leader>pq :bdelete#<CR>
+nno <silent><nowait> <leader>pq :bdelete#<CR>:redraw!<CR>
 nno <silent> q          :q<CR>
 nno <silent> <S-q>      :qall<CR>
 " tno <silent> <C-w>      <C-\><C-n><C-w>
