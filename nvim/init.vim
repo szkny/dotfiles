@@ -346,7 +346,7 @@ aug transparencyBG
     au Colorscheme * hi LineNr                   guifg=#666666 guibg=none
     au Colorscheme * hi SignColumn                             guibg=none
     au Colorscheme * hi Folded                                 guibg=none
-    au ColorScheme * hi VertSplit                guifg=#444444 guibg=none
+    au ColorScheme * hi VertSplit                guifg=#4e4e4e guibg=none
 
     au ColorScheme * hi CursorLine                             guibg=#303030
     au ColorScheme * hi Cursor      gui=reverse
