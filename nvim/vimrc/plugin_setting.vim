@@ -761,9 +761,10 @@ lua local my_custom_theme = {
   \     b = { fg = '#5588dd', bg = '#394260' },
   \     c = { fg = '#5588dd', bg = '#212736' },
   \   },
-  \   insert  = { a = { fg = '#394260', bg = '#a3aed2', gui = 'bold' } },
-  \   visual  = { a = { fg = '#394260', bg = '#77bbbb', gui = 'bold' } },
-  \   replace = { a = { fg = '#394260', bg = '#bb77cc', gui = 'bold' } },
+  \   insert   = { a = { fg = '#394260', bg = '#a3aed2', gui = 'bold' } },
+  \   terminal = { a = { fg = '#394260', bg = '#a3aed2', gui = 'bold' } },
+  \   visual   = { a = { fg = '#394260', bg = '#77bbbb', gui = 'bold' } },
+  \   replace  = { a = { fg = '#394260', bg = '#bb77cc', gui = 'bold' } },
   \   inactive = {
   \     a = { fg = '#ddddee', bg = '#212736' },
   \     b = { fg = '#ddddee', bg = '#212736' },
