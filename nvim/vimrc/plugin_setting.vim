@@ -280,50 +280,54 @@ call ddc#custom#patch_global(#{
    \     }
    \   },
    \ })
-" call ddc#custom#patch_global(#{
-"    \   sources: [
-"    \     'skkeleton',
-"    \   ],
-"    \   sourceOptions: #{
-"    \     _: #{
-"    \       matchers: ['matcher_fuzzy'],
-"    \       sorters: ['sorter_fuzzy'],
-"    \       converters: ['converter_fuzzy', 'converter_remove_overlap'],
-"    \       ignoreCase: v:true,
-"    \       minAutoCompleteLength: 1,
-"    \     },
-"    \     skkeleton: #{
-"    \       mark: '[SKK]',
-"    \       matchers: ['skkeleton'],
-"    \       sorters: [],
-"    \       isVolatile: v:true,
-"    \     },
-"    \   },
-"    \ })
-" fun s:enable_ddc() abort
-"     let l:current_mode = mode()
-"     if (l:current_mode=='i')
-"         let b:coc_suggest_disable = v:true
-"         call ddc#custom#patch_global('autoCompleteEvents',
-"         \ ['TextChangedI', 'TextChangedP', 'CmdlineChanged'])
-"     endif
-" endf
-"
-" fun s:disable_ddc() abort
-"     if (l:current_mode=='i')
-"         let b:coc_suggest_disable = v:false
-"         call ddc#custom#patch_global('autoCompleteEvents', [])
-"     endif
-" endf
-"
-" " initialize
-" call <sid>disable_ddc()
-"
-" aug toggleSkkeleton
-"     au!
-"     au User skkeleton-enable-pre  call <sid>enable_ddc()
-"     au User skkeleton-disable-pre call <sid>disable_ddc()
-" aug END
+
+call ddc#custom#patch_global(#{
+   \   sources: [
+   \     'skkeleton',
+   \   ],
+   \   sourceOptions: #{
+   \     _: #{
+   \       matchers: ['matcher_fuzzy'],
+   \       sorters: ['sorter_fuzzy'],
+   \       converters: ['converter_fuzzy', 'converter_remove_overlap'],
+   \       ignoreCase: v:true,
+   \       minAutoCompleteLength: 1,
+   \     },
+   \     skkeleton: #{
+   \       mark: '[SKK]',
+   \       matchers: ['skkeleton'],
+   \       sorters: [],
+   \       isVolatile: v:true,
+   \     },
+   \   },
+   \ })
+
+fun s:enable_ddc() abort
+    let l:current_mode = mode()
+    if (l:current_mode=='i')
+        let b:coc_suggest_disable = v:true
+        call ddc#custom#patch_global('autoCompleteEvents',
+        \ ['TextChangedI', 'TextChangedP', 'CmdlineChanged', 'CmdlineEnter'])
+        call DdcMapping()
+    endif
+endf
+
+fun s:disable_ddc() abort
+    let l:current_mode = mode()
+    if (l:current_mode=='i')
+        let b:coc_suggest_disable = v:false
+        call ddc#custom#patch_global('autoCompleteEvents', ['CmdlineChanged', 'CmdlineEnter'])
+        call CocMapping()
+    endif
+endf
+
+call <sid>disable_ddc()
+
+aug toggleSkkeleton
+    au!
+    au User skkeleton-enable-pre  call <sid>enable_ddc()
+    au User skkeleton-disable-pre call <sid>disable_ddc()
+aug END
 
 if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
     call ddc#custom#patch_global(#{

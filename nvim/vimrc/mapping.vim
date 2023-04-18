@@ -120,7 +120,7 @@ nno <silent><nowait> <leader>gn :<C-u>GitGutterNextHunk<CR>
 nno <silent><nowait> <leader>gp :<C-u>GitGutterPrevHunk<CR>
 nno <silent><nowait> <leader>gh :<C-u>GitGutterLineHighlightsToggle<CR>
 
-if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
+fun DdcMapping() abort
     "" ddc.vim (with pum.vim)
     ino <silent> <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
     ino <silent> <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
@@ -136,16 +136,21 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
       \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
     ino <silent> <expr> <UP>
       \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
-    "" vim-lsp
-    nno <silent><nowait> <C-]>     :<C-u>LspDefinition<CR>
-    nno <silent><nowait> <leader>] :<C-u>LspDefinition<CR>
-    nno <silent><nowait> <leader>[ :<C-u>LspReferences<CR>
-    nno <silent><nowait> <leader>k :<C-u>LspHover<CR>
-    nno <silent><nowait> <leader>n :<C-u>LspNextDiagnostic<CR>
-    nno <silent><nowait> <leader>p :<C-u>LspPreviousDiagnostic<CR>
-    " nno <silent><nowait> <leader>r :<C-u>LspRename<CR>
-    nno <silent><nowait> <leader>l :<C-u>LspDocumentDiagnostics<CR>
-    nno <silent><nowait> <leader>h :<C-u>LspCodeAction<CR>
+    if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
+        "" vim-lsp
+        nno <silent><nowait> <C-]>     :<C-u>LspDefinition<CR>
+        nno <silent><nowait> <leader>] :<C-u>LspDefinition<CR>
+        nno <silent><nowait> <leader>[ :<C-u>LspReferences<CR>
+        nno <silent><nowait> <leader>k :<C-u>LspHover<CR>
+        nno <silent><nowait> <leader>n :<C-u>LspNextDiagnostic<CR>
+        nno <silent><nowait> <leader>p :<C-u>LspPreviousDiagnostic<CR>
+        " nno <silent><nowait> <leader>r :<C-u>LspRename<CR>
+        nno <silent><nowait> <leader>l :<C-u>LspDocumentDiagnostics<CR>
+        nno <silent><nowait> <leader>h :<C-u>LspCodeAction<CR>
+    endif
+endf
+if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
+    call DdcMapping()
 endif
 nno          :     <Cmd>call DdcCommandlinePre()<CR>:
 nno          /     <Cmd>call DdcCommandlinePre()<CR>/
