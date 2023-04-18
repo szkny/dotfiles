@@ -98,8 +98,12 @@ cd ~
 ## synbolic link for tmux
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 
-## zplug
-curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+# ## zplug
+# curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+
+## sheldon
+cargo install sheldon --locked
+ln -s ~/dotfiles/sheldon ~/.config/
 
 ## starship prompt
 curl -sS https://starship.rs/install.sh | sh

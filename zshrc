@@ -1,16 +1,10 @@
-# zplug
-source ~/.zplug/init.zsh
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-completions"
-zplug "chrissicool/zsh-256color"
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-  printf "Install? [y/N]: "
-  if read -q; then
-    echo; zplug install
-  fi
-fi
-zplug load
+# sheldon
+[ -f ~/.local/share/sheldon/repos/github.com/romkatv/zsh-defer/zsh-defer.plugin.zsh ] && \
+    source ~/.local/share/sheldon/repos/github.com/romkatv/zsh-defer/zsh-defer.plugin.zsh
+eval "$(sheldon source)"
+
+# starship
+eval "$(starship init zsh)"
 
 ## 補完機能
 setopt ALWAYS_TO_END 
@@ -202,9 +196,6 @@ eval "$(pyenv init -)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# starship setup
-eval "$(starship init zsh)"
 
 # mocword
 export MOCWORD_DATA=~/.mocword/mocword.sqlite
