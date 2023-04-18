@@ -89,6 +89,7 @@ else
     " vim-lsp
     Plug 'prabirshrestha/vim-lsp'
     Plug 'mattn/vim-lsp-settings'
+    Plug 'shun/ddc-source-vim-lsp'
     Plug 'matsui54/denops-popup-preview.vim'
     Plug 'matsui54/denops-signature_help'
 endif
@@ -102,7 +103,6 @@ Plug 'Shougo/ddc-ui-pum'
 " Plug 'Shougo/ddc-ui-native'
 " ddc sources
 Plug 'Shougo/ddc-source-around'
-Plug 'shun/ddc-source-vim-lsp'
 Plug 'LumaKernel/ddc-source-file'
 Plug 'Shougo/ddc-source-mocword'
 Plug 'Shougo/ddc-source-cmdline'
