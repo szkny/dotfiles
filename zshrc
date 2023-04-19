@@ -1,17 +1,20 @@
-# sheldon
+## measure zshrc startup time
+# zmodload zsh/zprof
+
+## sheldon
 [ -f ~/.local/share/sheldon/repos/github.com/romkatv/zsh-defer/zsh-defer.plugin.zsh ] && \
     source ~/.local/share/sheldon/repos/github.com/romkatv/zsh-defer/zsh-defer.plugin.zsh
 eval "$(sheldon source)"
 
-# starship
+## starship
 eval "$(starship init zsh)"
 
 ## 補完機能
 setopt ALWAYS_TO_END 
 setopt AUTO_MENU
 setopt AUTO_PARAM_SLASH
-autoload bashcompinit && bashcompinit
-autoload -Uz compinit && compinit
+# autoload bashcompinit && bashcompinit
+# autoload -Uz compinit && compinit
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' complete-options true
@@ -48,7 +51,7 @@ alias kill='kill -9'
 alias gcam='git commit -am'
 alias dotfiles='cd ~/dotfiles'
 
-# setup for vim
+## setup for vim
 export EDITOR='nvim'
 alias vi="$EDITOR"
 alias vin="$EDITOR --noplugin"
@@ -58,13 +61,13 @@ alias vimrc="$EDITOR ~/dotfiles/nvim/init.vim ~/dotfiles/nvim/vimrc/*.vim"
 alias zshrc="$EDITOR ~/.zshrc;source ~/.zshrc"
 alias zprofile="$EDITOR ~/.zprofile;source ~/.zprofile"
 
-# alias for mac
+## alias for mac
 # alias mdfind='mdfind -onlyin'
 # alias updatedb='sudo /usr/libexec/locate.updatedb'
 alias ql='qlmanage -p "$@" >& /dev/null'
 # alias cpwd='pwd;pwd|pbcopy'
 
-# misc
+## misc
 alias trans='trans -brief'
 alias trans_ja='trans -brief -from=ja -to=en'
 alias trans_en='trans -brief -from=en -to=ja'
@@ -145,11 +148,11 @@ function fdghq(){
   fi
 }
 
-# PATHs
+## PATHs
 export PATH="$PATH:$HOME/Project/bin"
 export PATH="$PATH:$HOME/go/bin"
 
-# fzf setup
+## fzf setup
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS=$(cat <<"EOF"
   --multi
@@ -184,29 +187,31 @@ export FZF_CTRL_R_OPTS=$(cat <<"EOF"
 EOF
 )
 
-# pyenv setup
+## pyenv setup
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)" 
 
-# cargo setup
+## cargo setup
 [ -f ~/.cargo/env ] && source ~/.cargo/env
 
-# nvm setup
+## nvm setup
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# mocword
+## mocword
 export MOCWORD_DATA=~/.mocword/mocword.sqlite
 
-# ChatGPT
+## ChatGPT
 source "$HOME/.openai_key.zsh"
 
-# X11
+## X11
 export DISPLAY=$(ipconfig.exe | grep -a "IPv4" | tail -1 | awk '{print $NF}' | awk 'sub(/\r$/,"")'):0.0
 
-# start tmux
+## start tmux
 export TERM="screen-256color"
 start-tmux
 
+## measure zshrc startup time
+# zprof
