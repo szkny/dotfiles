@@ -14,7 +14,9 @@ lua require("notify").setup({
   \   render = "compact",
   \   background_colour = "#3e3e3e",
   \   timeout = 3000,
+  \   max_width = 50,
   \   minimum_width = 50,
+  \   top_down = false,
   \   fps = 60,
   \   icons = {
   \     ERROR = " ",
