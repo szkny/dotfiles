@@ -13,8 +13,8 @@ eval "$(starship init zsh)"
 setopt ALWAYS_TO_END 
 setopt AUTO_MENU
 setopt AUTO_PARAM_SLASH
-# autoload bashcompinit && bashcompinit
-# autoload -Uz compinit && compinit
+zsh-defer autoload -Uz bashcompinit
+zsh-defer autoload -Uz compinit
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' complete-options true
@@ -211,7 +211,7 @@ export DISPLAY=$(ipconfig.exe | grep -a "IPv4" | tail -1 | awk '{print $NF}' | a
 
 ## start tmux
 export TERM="screen-256color"
-start-tmux
+zsh-defer start-tmux
 
 ## measure zshrc startup time
 # zprof
