@@ -1323,9 +1323,9 @@ lua local kopts = {noremap = true, silent = true}
   \     kopts)
   \ vim.api.nvim_set_keymap('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
   \ vim.api.nvim_set_keymap('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
-hi Search    guibg=#6f6600
-hi IncSearch guibg=#6f6600
-hi WildMenu  guibg=#6f6600
+hi Search    guibg=#334f7a
+hi IncSearch guibg=#334f7a
+hi WildMenu  guibg=#334f7a
 hi default link HlSearchNear IncSearch
 hi default link HlSearchLens WildMenu
 hi default link HlSearchLensNear IncSearch
