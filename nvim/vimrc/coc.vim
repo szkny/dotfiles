@@ -106,6 +106,7 @@ command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.org
 
 " Mappings
 fun CocMapping() abort
+    let g:mapleader = "\<Space>"
     ino <silent><expr> <C-n>  coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
     ino <silent><expr> <C-p>  coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
     ino <silent><expr> <DOWN> coc#pum#visible() ? coc#pum#next(1) : "\<DOWN>"
