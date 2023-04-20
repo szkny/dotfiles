@@ -13,8 +13,7 @@ eval "$(starship init zsh)"
 setopt ALWAYS_TO_END 
 setopt AUTO_MENU
 setopt AUTO_PARAM_SLASH
-zsh-defer autoload -Uz bashcompinit
-zsh-defer autoload -Uz compinit
+_compinit() { autoload -Uz bashcompinit && bashcompinit && autoload -Uz compinit && compinit } && zsh-defer -t 1 _compinit
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' complete-options true
@@ -187,10 +186,19 @@ export FZF_CTRL_R_OPTS=$(cat <<"EOF"
 EOF
 )
 
+## aws-cli setup
+_autocomplete_aws_cli () { complete -C '/usr/local/bin/aws_completer' aws } && zsh-defer -t 1 _autocomplete_aws_cli
+
+## terraform setup
+export PATH=$PATH:$HOME/.tfenv/bin
+
+## go setup
+export PATH=$PATH:$HOME/go/bin
+
 ## pyenv setup
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)" 
+_pyenv_init () { eval "$(pyenv init -)" } && zsh-defer -t 1 _pyenv_init
 
 ## cargo setup
 [ -f ~/.cargo/env ] && source ~/.cargo/env
