@@ -133,6 +133,14 @@ function start-tmux(){
   #   tmux -u attach
   fi
 }
+
+## fzf function
+function fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
 function fdghq(){
   local selectedrepos=$(ghq list --full-path | fzf)
   if [ -n "$selectedrepos" ]; then
@@ -145,6 +153,21 @@ function fdghq(){
       git pull
     fi
   fi
+}
+function fbr() {
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
+  branch=$(echo "$branches" | fzf) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+function fshow() {
+  git log --graph --color=always --date=format:'%Y/%m/%d %H:%M' --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s' |
+  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+      --bind "ctrl-m:execute:
+                (grep -o '[a-f0-9]\{7\}' | head -1 |
+                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+                {}
+FZF-EOF"
 }
 
 ## PATHs
