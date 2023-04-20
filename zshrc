@@ -2,8 +2,6 @@
 # zmodload zsh/zprof
 
 ## sheldon
-[ -f ~/.local/share/sheldon/repos/github.com/romkatv/zsh-defer/zsh-defer.plugin.zsh ] && \
-    source ~/.local/share/sheldon/repos/github.com/romkatv/zsh-defer/zsh-defer.plugin.zsh
 eval "$(sheldon source)"
 
 ## starship
@@ -13,7 +11,6 @@ eval "$(starship init zsh)"
 setopt ALWAYS_TO_END 
 setopt AUTO_MENU
 setopt AUTO_PARAM_SLASH
-_compinit() { autoload -Uz bashcompinit && bashcompinit && autoload -Uz compinit && compinit } && zsh-defer -t 1 _compinit
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' complete-options true
@@ -210,7 +207,7 @@ EOF
 )
 
 ## aws-cli setup
-_autocomplete_aws_cli () { complete -C '/usr/local/bin/aws_completer' aws } && zsh-defer -t 1 _autocomplete_aws_cli
+_autocomplete_aws_cli () { complete -C '/usr/local/bin/aws_completer' aws } && zsh-defer _autocomplete_aws_cli
 
 ## terraform setup
 export PATH=$PATH:$HOME/.tfenv/bin
@@ -221,7 +218,7 @@ export PATH=$PATH:$HOME/go/bin
 ## pyenv setup
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-_pyenv_init () { eval "$(pyenv init -)" } && zsh-defer -t 1 _pyenv_init
+_pyenv_init () { eval "$(pyenv init -)" } && zsh-defer _pyenv_init
 
 ## cargo setup
 [ -f ~/.cargo/env ] && source ~/.cargo/env
