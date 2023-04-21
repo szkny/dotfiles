@@ -7,6 +7,14 @@ eval "$(sheldon source)"
 ## starship
 eval "$(starship init zsh)"
 
+## zsh-defer
+### tmux
+zsh-defer start-tmux
+### pyenv
+_pyenv_init () { eval "$(pyenv init -)" } && zsh-defer _pyenv_init
+### aws-cli
+_autocomplete_aws_cli () { complete -C '/usr/local/bin/aws_completer' aws } && zsh-defer _autocomplete_aws_cli
+
 ## 補完機能
 setopt ALWAYS_TO_END 
 setopt AUTO_MENU
@@ -206,9 +214,6 @@ export FZF_CTRL_R_OPTS=$(cat <<"EOF"
 EOF
 )
 
-## aws-cli setup
-_autocomplete_aws_cli () { complete -C '/usr/local/bin/aws_completer' aws } && zsh-defer _autocomplete_aws_cli
-
 ## terraform setup
 export PATH=$PATH:$HOME/.tfenv/bin
 
@@ -218,7 +223,6 @@ export PATH=$PATH:$HOME/go/bin
 ## pyenv setup
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-_pyenv_init () { eval "$(pyenv init -)" } && zsh-defer _pyenv_init
 
 ## cargo setup
 [ -f ~/.cargo/env ] && source ~/.cargo/env
@@ -239,7 +243,6 @@ export DISPLAY=$(ipconfig.exe | grep -a "IPv4" | tail -1 | awk '{print $NF}' | a
 
 ## start tmux
 export TERM="screen-256color"
-zsh-defer start-tmux
 
 ## measure zshrc startup time
 # zprof
