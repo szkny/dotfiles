@@ -26,8 +26,8 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 " general plugins
 Plug 'tomtom/tcomment_vim'
 Plug 'kevinhwang91/rnvimr'
-Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'rbong/vim-flog'
 Plug 'Raimondi/delimitMate'
 Plug 'szkny/SplitTerm'

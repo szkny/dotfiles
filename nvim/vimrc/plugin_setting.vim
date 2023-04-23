@@ -1406,24 +1406,62 @@ au User Fugitive GitGutterAll
 au FileType fugitive call s:fugitive_init()
 
 
-"" vim-gitgutter
-let g:gitgutter_enabled                      = 1
-let g:gitgutter_async                        = 1
-let g:gitgutter_sign_priority                = 5
-let g:gitgutter_map_keys                     = 0
-let g:gitgutter_sign_added                   = '│'
-let g:gitgutter_sign_modified                = '│'
-let g:gitgutter_sign_removed                 = '_'
-let g:gitgutter_sign_removed_first_line      = '‾'
-let g:gitgutter_sign_removed_above_and_below = '_¯'
-let g:gitgutter_sign_modified_removed        = '│'
-hi GitGutterAdd        gui=bold guifg=#00bb00
-hi GitGutterChange     gui=bold guifg=#cccc00
-hi GitGutterDelete     gui=bold guifg=#ff2222
-hi DiffAdd             gui=none guifg=none    guibg=#004400
-hi DiffChange          gui=none guifg=none    guibg=#3f3f00
-hi Difftext            gui=none guifg=none    guibg=#6a6a00
-hi DiffDelete          gui=none guifg=none    guibg=#440000
+"" gitsigns.nvim
+lua require('gitsigns').setup {
+  \   signs = {
+  \     add          = { text = '│' },
+  \     change       = { text = '│' },
+  \     delete       = { text = '_' },
+  \     topdelete    = { text = '‾' },
+  \     changedelete = { text = '~' },
+  \     untracked    = { text = '┆' },
+  \   },
+  \   signcolumn = true,
+  \   numhl      = false,
+  \   linehl     = false,
+  \   word_diff  = false,
+  \   watch_gitdir = {
+  \     interval = 1000,
+  \     follow_files = true
+  \   },
+  \   attach_to_untracked = true,
+  \   current_line_blame = true,
+  \   current_line_blame_opts = {
+  \     virt_text = true,
+  \     virt_text_pos = 'eol',
+  \     delay = 0,
+  \     ignore_whitespace = false,
+  \   },
+  \   current_line_blame_formatter = '  <author>, <author_time:%Y-%m-%d> - <summary>',
+  \   sign_priority = 5,
+  \   update_debounce = 100,
+  \   on_attach = function(bufnr)
+  \     local gs = package.loaded.gitsigns
+  \     local function map(mode, l, r, opts)
+  \       opts = opts or {}
+  \       opts.buffer = bufnr
+  \       vim.keymap.set(mode, l, r, opts)
+  \     end
+  \     map('n', '<leader>gn', function()
+  \       if vim.wo.diff then return '' end
+  \       vim.schedule(function() gs.next_hunk() end)
+  \       return '<Ignore>'
+  \     end, {expr=true})
+  \     map('n', '<leader>gp', function()
+  \       if vim.wo.diff then return '' end
+  \       vim.schedule(function() gs.prev_hunk() end)
+  \       return '<Ignore>'
+  \     end, {expr=true})
+  \   end
+  \ }
+hi GitSignsAdd    gui=bold guifg=#00bb00
+hi GitSignsChange gui=bold guifg=#cccc00
+hi GitSignsDelete gui=bold guifg=#ff2222
+hi GitSignsCurrentLineBlame gui=none guifg=#888888
+hi DiffAdd    gui=none guifg=none guibg=#004400
+hi DiffChange gui=none guifg=none guibg=#3f3f00
+hi Difftext   gui=none guifg=none guibg=#606000
+hi DiffDelete gui=none guifg=none guibg=#440000
 
 
 "" rnvimr
