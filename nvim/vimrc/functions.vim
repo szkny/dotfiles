@@ -759,9 +759,6 @@ fun! s:git(...) abort
     endif
     let l:script_winid = win_getid()
     let s:git_wininfo = splitterm#open(l:cmd)
-    if exists("GitGutterAll")
-        exe 'GitGutterAll'
-    endif
     call win_gotoid(l:script_winid)
 endf
 fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)

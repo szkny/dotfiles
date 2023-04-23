@@ -1402,7 +1402,6 @@ fun! s:fugitive_init() abort
     setlocal noequalalways
     resize 10
 endf
-au User Fugitive GitGutterAll
 au FileType fugitive call s:fugitive_init()
 
 
