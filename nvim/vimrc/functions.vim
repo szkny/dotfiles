@@ -766,6 +766,7 @@ fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)
 endf
 command! -complete=customlist,s:CompletionGitCommands -nargs=* MyGit call s:git(<f-args>)
 command! -nargs=* Gcam call s:git('am', <f-args>)
+command! Fshow call splitterm#open("zsh -i -c fshow")
 
 fun! s:git_autocmd() abort
     aug git_auto_command
