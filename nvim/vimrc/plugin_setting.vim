@@ -1456,7 +1456,7 @@ lua require('gitsigns').setup {
 hi GitSignsAdd    gui=bold guifg=#00bb00
 hi GitSignsChange gui=bold guifg=#cccc00
 hi GitSignsDelete gui=bold guifg=#ff2222
-hi GitSignsCurrentLineBlame gui=none guifg=#888888
+hi GitSignsCurrentLineBlame gui=none guifg=#4e4e4e
 hi DiffAdd    gui=none guifg=none guibg=#004400
 hi DiffChange gui=none guifg=none guibg=#3f3f00
 hi Difftext   gui=none guifg=none guibg=#606000
