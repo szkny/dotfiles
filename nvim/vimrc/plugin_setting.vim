@@ -9,7 +9,7 @@ scriptencoding utf-8
   " \   render = "default",
   " \   render = "compact",
 lua require("notify").setup({
-  \   stages = "fade_in_slide_out",
+  \   stages = "fade",
   \   on_open = nil,
   \   on_close = nil,
   \   keep = nil,
