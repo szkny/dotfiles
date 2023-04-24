@@ -106,6 +106,9 @@ hi FzfCursorLine guifg=#ffffff guibg=#5e5e5e
 hi FzfPreview                  guibg=none 
 
 
+"" vim-easy-align
+let g:easy_align_ignore_groups = ['String']
+
 "" mason.nvim
 if get(g:, 'use_mason_nvim', 0) == 1
     " lua require("mason").setup()

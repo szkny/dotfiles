@@ -98,6 +98,7 @@ nno <silent> <C-/> :TComment<CR>
 vno <silent> <C-/> :TComment<CR>
 "" vim-easy-align
 vno <silent> <leader>= :EasyAlign *=<CR>
+vno          <Enter>   <Plug>(EasyAlign)
 "" fzf.vim
 nno <silent> <C-b> :<C-u>Buffers<CR>
 nno <silent> <C-p> :<C-u>Files<CR>
