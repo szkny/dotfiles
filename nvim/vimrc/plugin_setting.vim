@@ -504,9 +504,26 @@ endif
 "" disable netrw at the very start of your init.lua (strongly advised)
 lua vim.g.loaded_netrw = 1
 lua vim.g.loaded_netrwPlugin = 1
-"" setup with some options
-  " \     hide_root_folder = true,
-lua require("nvim-tree").setup({
+lua local nvim_tree_on_attach = function(bufnr)
+  \     local api = require('nvim-tree.api')
+  \     local opts = function(desc)
+  \       return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  \     end
+  \     api.config.mappings.default_on_attach(bufnr)
+  \     vim.keymap.set('n', '?',             api.tree.toggle_help,           opts('Help'))
+  \     vim.keymap.set('n', 'H',             api.tree.toggle_hidden_filter,  opts('Toggle Dotfiles'))
+  \     vim.keymap.set('n', 'I',             api.tree.toggle_hidden_filter,  opts('Toggle Ignore'))
+  \     vim.keymap.set('n', '<BS>',          api.tree.toggle_hidden_filter,  opts('Toggle Dotfiles'))
+  \     vim.keymap.set('n', '<C-h>',         api.tree.change_root_to_parent, opts('Up'))
+  \     vim.keymap.set('n', '<C-l>',         api.tree.change_root_to_node,   opts('Cd'))
+  \     vim.keymap.set('n', '<Tab>',         api.node.open.preview,          opts('Open Preview'))
+  \     vim.keymap.set('n', '<C-f>',         api.live_filter.start,          opts('Filter'))
+  \     vim.keymap.set('n', 'o',             api.node.open.edit,             opts('Open'))
+  \     vim.keymap.set('n', 'O',             api.tree.expand_all,            opts('Expand All'))
+  \     vim.keymap.set('n', 'W',             api.tree.collapse_all,          opts('Collapse'))
+  \     vim.keymap.set('n', '<2-LeftMouse>', api.node.open.edit,             opts('Open'))
+  \ end
+  \ require("nvim-tree").setup({
   \   auto_reload_on_write = true,
   \   disable_netrw = true,
   \   hijack_cursor = true,
@@ -594,30 +611,6 @@ lua require("nvim-tree").setup({
   \   },
   \   on_attach = nvim_tree_on_attach,
   \ })
-  \ local nvim_tree_on_attach = function(bufnr)
-  \     local api = require('nvim-tree.api')
-  \     local opts = function(desc)
-  \       return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-  \     end
-  \     api.config.mappings.default_on_attach({bufnr})
-  \     vim.keymap.set('n', '?', '', { buffer = bufnr })
-  \     vim.keymap.set('n', '?', { buffer = bufnr })
-  \     vim.keymap.set('n', '?',             api.tree.toggle_help,           opts('Help'))
-  \     vim.keymap.set('n', 'H',             api.tree.toggle_hidden_filter,  opts('Toggle Dotfiles'))
-  \     vim.keymap.set('n', 'I',             api.tree.toggle_hidden_filter,  opts('Toggle Ignore'))
-  \     vim.keymap.set('n', '<BS>',          api.tree.toggle_hidden_filter,  opts('Toggle Dotfiles'))
-  \     vim.keymap.set('n', '-',             api.tree.change_root_to_parent, opts('Up'))
-  \     vim.keymap.set('n', '<C-h>',         api.tree.change_root_to_parent, opts('Up'))
-  \     vim.keymap.set('n', '<C-]>',         api.tree.change_root_to_node,   opts('Cd'))
-  \     vim.keymap.set('n', '<C-l>',         api.tree.change_root_to_node,   opts('Cd'))
-  \     vim.keymap.set('n', '<Tab>',         api.node.open.preview,          opts('Open Preview'))
-  \     vim.keymap.set('n', '<C-p>',         api.node.open.preview,          opts('Open Preview'))
-  \     vim.keymap.set('n', '<C-f>',         api.live_filter.start,          opts('Filter'))
-  \     vim.keymap.set('n', 'o',             api.tree.expand,                opts('Expand'))
-  \     vim.keymap.set('n', 'O',             api.tree.expand_all,            opts('Expand All'))
-  \     vim.keymap.set('n', 'W',             api.tree.collapse_all,          opts('Collapse'))
-  \     vim.keymap.set('n', '<2-LeftMouse>', api.node.open.edit,             opts('Open'))
-  \ end
 " hi NvimTreeNormal                    gui=none guibg=#202020
 " hi NvimTreeEndOfBuffer               gui=none guifg=#202020 guibg=#202020
 " hi NvimTreeRootFolder                gui=bold guifg=#bbbbbb guibg=#2e2e35
