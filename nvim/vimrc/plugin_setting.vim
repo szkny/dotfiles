@@ -16,8 +16,8 @@ lua require("notify").setup({
   \   render = "default",
   \   background_colour = "#3e3e3e",
   \   timeout = 3000,
-  \   max_width = 50,
-  \   minimum_width = 50,
+  \   max_width = 80,
+  \   minimum_width = 80,
   \   top_down = false,
   \   fps = 60,
   \   icons = {
@@ -505,6 +505,7 @@ endif
 lua vim.g.loaded_netrw = 1
 lua vim.g.loaded_netrwPlugin = 1
 "" setup with some options
+  " \     hide_root_folder = true,
 lua require("nvim-tree").setup({
   \   auto_reload_on_write = true,
   \   disable_netrw = true,
@@ -514,33 +515,15 @@ lua require("nvim-tree").setup({
   \   view = {
   \     adaptive_size = true,
   \     width = 25,
-  \     hide_root_folder = true,
   \     signcolumn = "yes",
   \     preserve_window_proportions = true,
-  \     mappings = {
-  \       custom_only = false,
-  \       list = {
-  \         { key = "?",     action = "toggle_help" },
-  \         { key = "I",     action = "toggle_dotfiles" },
-  \         { key = "<BS>",  action = "toggle_dotfiles" },
-  \         { key = "<C-h>", action = "dir_up" },
-  \         { key = "<C-l>", action = "cd" },
-  \         { key = "<Tab>", action = "preview" },
-  \         { key = "<C-p>", action = "preview" },
-  \         { key = "<C-f>", action = "live_filter" },
-  \         { key = "o",     action = "expand" },
-  \         { key = "O",     action = "expand_all" },
-  \         { key = "W",     action = "collapse_all" },
-  \         { key = "<2-LeftMouse>", action = "edit" },
-  \       },
-  \     },
   \   },
   \   renderer = {
   \     group_empty = true,
   \     highlight_git = true,
   \     highlight_modified = "name",
   \     full_name = false,
-  \     root_folder_label = ":t:gs?\\l?\\U\\0?",
+  \     root_folder_label = false,
   \     indent_width = 2,
   \     indent_markers = {
   \       enable = true,
@@ -609,7 +592,29 @@ lua require("nvim-tree").setup({
   \     cmd = "rip",
   \     require_confirm = true,
   \   },
+  \   on_attach = nvim_tree_on_attach,
   \ })
+  \ local nvim_tree_on_attach = function(bufnr)
+  \     local api = require('nvim-tree.api')
+  \     local opts = function(desc)
+  \       return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  \     end
+  \     api.config.mappings.default_on_attach({bufnr})
+  \     vim.keymap.set('n', '?', '', { buffer = bufnr })
+  \     vim.keymap.set('n', '?', { buffer = bufnr })
+  \     vim.keymap.set('n', '?',             api.tree.toggle_help,           opts('Help'))
+  \     vim.keymap.set('n', 'I',             api.tree.toggle_hidden_filter,  opts('Toggle Dotfiles'))
+  \     vim.keymap.set('n', '<BS>',          api.tree.toggle_hidden_filter,  opts('Toggle Dotfiles'))
+  \     vim.keymap.set('n', '<C-h>',         api.tree.change_root_to_parent, opts('Up'))
+  \     vim.keymap.set('n', '<C-l>',         api.tree.change_root_to_node,   opts('CD'))
+  \     vim.keymap.set('n', '<Tab>',         api.node.open.preview,          opts('Open Preview'))
+  \     vim.keymap.set('n', '<C-p>',         api.node.open.preview,          opts('Open Preview'))
+  \     vim.keymap.set('n', '<C-f>',         api.live_filter.start,          opts('Filter'))
+  \     vim.keymap.set('n', 'o',             api.tree.expand,                opts('Expand'))
+  \     vim.keymap.set('n', 'O',             api.tree.expand_all,            opts('Expand All'))
+  \     vim.keymap.set('n', 'W',             api.tree.collapse_all,          opts('Collapse'))
+  \     vim.keymap.set('n', '<2-LeftMouse>', api.node.open.edit,             opts('Open'))
+  \ end
 " hi NvimTreeNormal                    gui=none guibg=#202020
 " hi NvimTreeEndOfBuffer               gui=none guifg=#202020 guibg=#202020
 " hi NvimTreeRootFolder                gui=bold guifg=#bbbbbb guibg=#2e2e35
@@ -906,7 +911,9 @@ lua require('bufferline').setup {
   \     close_command = "bdelete! %d",
   \     right_mouse_command = "bdelete! %d",
   \     left_mouse_command = "buffer %d",
-  \     middle_mouse_command = nil,
+  \     buffer_close_icon = '',
+  \     modified_icon = '●',
+  \     close_icon = '',
   \     indicator = {
   \       icon = '▎',
   \       style = 'icon'
@@ -1309,23 +1316,23 @@ lua require("scrollbar").setup({
   \       search = true,
   \   },
   \ })
-hi ScrollbarHandle          gui=none guifg=#333333 guibg=#444444
-hi ScrollbarCursor          gui=none guifg=#333333 guibg=#444444
-hi ScrollbarCursorHandle    gui=none guifg=#ffffff guibg=#444444
+hi ScrollbarHandle          gui=none guifg=#333333 guibg=#888888
+hi ScrollbarCursor          gui=none guifg=#333333 guibg=#888888
+hi ScrollbarCursorHandle    gui=none guifg=#ffffff guibg=#888888
 hi ScrollbarSearch          gui=bold guifg=#ffaa77
-hi ScrollbarSearchHandle    gui=bold guifg=#ffaa77 guibg=#444444
+hi ScrollbarSearchHandle    gui=bold guifg=#ffaa77 guibg=#888888
 hi ScrollbarError           gui=bold guifg=#ff0000
-hi ScrollbarErrorHandle     gui=bold guifg=#ff0000 guibg=#444444
+hi ScrollbarErrorHandle     gui=bold guifg=#ff0000 guibg=#888888
 hi ScrollbarWarn            gui=bold guifg=#ffff00
-hi ScrollbarWarnHandle      gui=bold guifg=#ffff00 guibg=#444444
+hi ScrollbarWarnHandle      gui=bold guifg=#ffff00 guibg=#888888
 hi ScrollbarHint            gui=bold guifg=#5599dd
-hi ScrollbarHintHandle      gui=bold guifg=#5599dd guibg=#444444
+hi ScrollbarHintHandle      gui=bold guifg=#5599dd guibg=#888888
 hi ScrollbarGitAdd          gui=none guifg=#00bb00
-hi ScrollbarGitAddHandle    gui=none guifg=#00bb00 guibg=#444444
+hi ScrollbarGitAddHandle    gui=none guifg=#00bb00 guibg=#888888
 hi ScrollbarGitChange       gui=none guifg=#cccc00
-hi ScrollbarGitChangeHandle gui=none guifg=#cccc00 guibg=#444444
+hi ScrollbarGitChangeHandle gui=none guifg=#cccc00 guibg=#888888
 hi ScrollbarGitDelete       gui=none guifg=#ff2222
-hi ScrollbarGitDeleteHandle gui=none guifg=#ff2222 guibg=#444444
+hi ScrollbarGitDeleteHandle gui=none guifg=#ff2222 guibg=#888888
 
 
 "" nvim-hlslens
