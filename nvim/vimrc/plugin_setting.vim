@@ -1259,6 +1259,21 @@ lua require("scrollbar").setup({
   \       priority = 5,
   \       highlight = "DiagnosticVirtualTextHint",
   \   },
+  \   GitAdd = {
+  \       text = "│",
+  \       priority = 7,
+  \       highlight = "GitSignsAdd",
+  \   },
+  \   GitChange = {
+  \       text = "│",
+  \       priority = 7,
+  \       highlight = "GitSignsChange",
+  \   },
+  \   GitDelete = {
+  \       text = "▁",
+  \       priority = 7,
+  \       highlight = "GitSignsDelete",
+  \   },
   \   excluded_buftypes = {
   \     "terminal",
   \     "nofile",
@@ -1290,21 +1305,27 @@ lua require("scrollbar").setup({
   \       cursor = true,
   \       handle = true,
   \       diagnostic = true,
-  \       gitsigns = false,
+  \       gitsigns = true,
   \       search = true,
   \   },
   \ })
-hi ScrollbarHandle       gui=none guifg=#333333 guibg=#777777
-hi ScrollbarCursor       gui=none guifg=#333333 guibg=#777777
-hi ScrollbarCursorHandle gui=none guifg=#ffffff guibg=#777777
-hi ScrollbarSearch       gui=bold guifg=#ffaa77
-hi ScrollbarSearchHandle gui=bold guifg=#ffaa77 guibg=#777777
-hi ScrollbarError        gui=bold guifg=#ff0000
-hi ScrollbarErrorHandle  gui=bold guifg=#ff0000 guibg=#777777
-hi ScrollbarWarn         gui=bold guifg=#ffff00
-hi ScrollbarWarnHandle   gui=bold guifg=#ffff00 guibg=#777777
-hi ScrollbarHint         gui=bold guifg=#5599dd
-hi ScrollbarHintHandle   gui=bold guifg=#5599dd guibg=#777777
+hi ScrollbarHandle          gui=none guifg=#333333 guibg=#444444
+hi ScrollbarCursor          gui=none guifg=#333333 guibg=#444444
+hi ScrollbarCursorHandle    gui=none guifg=#ffffff guibg=#444444
+hi ScrollbarSearch          gui=bold guifg=#ffaa77
+hi ScrollbarSearchHandle    gui=bold guifg=#ffaa77 guibg=#444444
+hi ScrollbarError           gui=bold guifg=#ff0000
+hi ScrollbarErrorHandle     gui=bold guifg=#ff0000 guibg=#444444
+hi ScrollbarWarn            gui=bold guifg=#ffff00
+hi ScrollbarWarnHandle      gui=bold guifg=#ffff00 guibg=#444444
+hi ScrollbarHint            gui=bold guifg=#5599dd
+hi ScrollbarHintHandle      gui=bold guifg=#5599dd guibg=#444444
+hi ScrollbarGitAdd          gui=none guifg=#00bb00
+hi ScrollbarGitAddHandle    gui=none guifg=#00bb00 guibg=#444444
+hi ScrollbarGitChange       gui=none guifg=#cccc00
+hi ScrollbarGitChangeHandle gui=none guifg=#cccc00 guibg=#444444
+hi ScrollbarGitDelete       gui=none guifg=#ff2222
+hi ScrollbarGitDeleteHandle gui=none guifg=#ff2222 guibg=#444444
 
 
 "" nvim-hlslens
@@ -1406,6 +1427,7 @@ au FileType fugitive call s:fugitive_init()
 
 
 "" gitsigns.nvim
+lua require("scrollbar.handlers.gitsigns").setup()
 lua require('gitsigns').setup {
   \   signs = {
   \     add          = { text = '│' },
