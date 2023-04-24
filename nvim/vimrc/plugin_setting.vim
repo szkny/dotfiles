@@ -603,10 +603,13 @@ lua require("nvim-tree").setup({
   \     vim.keymap.set('n', '?', '', { buffer = bufnr })
   \     vim.keymap.set('n', '?', { buffer = bufnr })
   \     vim.keymap.set('n', '?',             api.tree.toggle_help,           opts('Help'))
-  \     vim.keymap.set('n', 'I',             api.tree.toggle_hidden_filter,  opts('Toggle Dotfiles'))
+  \     vim.keymap.set('n', 'H',             api.tree.toggle_hidden_filter,  opts('Toggle Dotfiles'))
+  \     vim.keymap.set('n', 'I',             api.tree.toggle_hidden_filter,  opts('Toggle Ignore'))
   \     vim.keymap.set('n', '<BS>',          api.tree.toggle_hidden_filter,  opts('Toggle Dotfiles'))
+  \     vim.keymap.set('n', '-',             api.tree.change_root_to_parent, opts('Up'))
   \     vim.keymap.set('n', '<C-h>',         api.tree.change_root_to_parent, opts('Up'))
-  \     vim.keymap.set('n', '<C-l>',         api.tree.change_root_to_node,   opts('CD'))
+  \     vim.keymap.set('n', '<C-]>',         api.tree.change_root_to_node,   opts('Cd'))
+  \     vim.keymap.set('n', '<C-l>',         api.tree.change_root_to_node,   opts('Cd'))
   \     vim.keymap.set('n', '<Tab>',         api.node.open.preview,          opts('Open Preview'))
   \     vim.keymap.set('n', '<C-p>',         api.node.open.preview,          opts('Open Preview'))
   \     vim.keymap.set('n', '<C-f>',         api.live_filter.start,          opts('Filter'))
@@ -1485,7 +1488,7 @@ lua require('gitsigns').setup {
 hi GitSignsAdd    gui=bold guifg=#00bb00
 hi GitSignsChange gui=bold guifg=#cccc00
 hi GitSignsDelete gui=bold guifg=#ff2222
-hi GitSignsCurrentLineBlame gui=none guifg=#4e4e4e
+hi GitSignsCurrentLineBlame gui=none guifg=#5e5e5e
 hi DiffAdd    gui=none guifg=none guibg=#004400
 hi DiffChange gui=none guifg=none guibg=#3f3f00
 hi Difftext   gui=none guifg=none guibg=#606000
