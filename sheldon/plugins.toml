@@ -30,3 +30,7 @@ apply = ["defer"]
 github = "chrissicool/zsh-256color"
 apply = ["defer"]
 
+[plugins.zsh-better-npm-completion]
+github = "lukechilds/zsh-better-npm-completion"
+apply = ["defer"]
+
