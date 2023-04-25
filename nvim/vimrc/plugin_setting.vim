@@ -1460,8 +1460,8 @@ lua require('gitsigns').setup {
   \     ignore_whitespace = false,
   \   },
   \   current_line_blame_formatter = '  <author>, <author_time:%Y-%m-%d> - <summary>',
-  \   sign_priority = 5,
-  \   update_debounce = 100,
+  \   sign_priority = 6,
+  \   update_debounce = 500,
   \   on_attach = function(bufnr)
   \     local gs = package.loaded.gitsigns
   \     local function map(mode, l, r, opts)
