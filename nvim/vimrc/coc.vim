@@ -11,9 +11,10 @@ set nowritebackup
 set pumheight=15
 " set pumwidth=50
 
-" Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
-" delays and poor user experience
-set updatetime=300
+" Disable file with size > 1MB
+au BufAdd * if getfsize(expand('<afile>')) > 1024*1024 |
+               \ let b:coc_enabled=0 |
+               \ endif
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved
