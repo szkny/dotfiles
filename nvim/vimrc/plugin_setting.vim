@@ -231,7 +231,6 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
 endif
 
 "" pum.vim
-set pumblend=20
 set shortmess+=c
 set wildoptions+=pum
 hi PumNormalMenu gui=none guifg=#dddddd guibg=#383838

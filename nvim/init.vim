@@ -273,7 +273,7 @@ set ruler
 set number
 set nowrap
 set pumblend=20
-set winblend=20
+set winblend=30
 
 " set ambiwidth=double
 let g:no_buffers_menu=1
