@@ -180,11 +180,11 @@ if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
     hi link LspInformationText SignColumn
     hi link LspHintText        SignColumn
     hi LspErrorText              gui=bold guifg=#ff0000
-    hi LspWarningText            gui=bold guifg=#ffff00
+    hi LspWarningText            gui=bold guifg=#dddd00
     hi LspInformationText        gui=bold guifg=#ffffff
     hi LspHintText               gui=bold guifg=#5599dd
     hi LspErrorVirtualText       gui=bold guifg=#ff0000
-    hi LspWarningVirtualText     gui=bold guifg=#ffff00
+    hi LspWarningVirtualText     gui=bold guifg=#dddd00
     hi LspInformationVirtualText gui=bold guifg=#ffffff
     hi LspHintVirtualText        gui=bold guifg=#5599dd
     hi link NormalFloat PumNormalMenu
@@ -625,7 +625,7 @@ hi NvimTreeGitStaged                 gui=bold guifg=#44cc44
 hi NvimTreeGitNew                    gui=bold guifg=#44cc44
 hi NvimTreeModifiedFile              gui=bold guifg=#ffaa00
 hi NvimTreeLspDiagnosticsError       gui=none guifg=#ff0000
-hi NvimTreeLspDiagnosticsWarning     gui=none guifg=#ffff00
+hi NvimTreeLspDiagnosticsWarning     gui=none guifg=#dddd00
 hi NvimTreeLspDiagnosticsInformation gui=none guifg=#ffffff
 hi NvimTreeLspDiagnosticsHint        gui=none guifg=#5588dd
 
@@ -895,7 +895,7 @@ lua local my_custom_theme = {
   \   extensions = {}
   \ }
 hi lualine_lsp_err  guibg=#212736 guifg=#ff0000
-hi lualine_lsp_warn guibg=#212736 guifg=#ffff00
+hi lualine_lsp_warn guibg=#212736 guifg=#dddd00
 hi lualine_lsp_hint guibg=#212736 guifg=#5599dd
 hi lualine_lsp_info guibg=#212736 guifg=#5599dd
 
@@ -1020,25 +1020,25 @@ lua require('bufferline').setup {
   \         italic = false,
   \     },
   \     warning_selected = {
-  \         fg = '#ffff00',
+  \         fg = '#dddd00',
   \         bg = 'none',
   \         bold = true,
   \         italic = false,
   \     },
   \     warning_visible = {
-  \         fg = '#ffff00',
+  \         fg = '#dddd00',
   \         bg = 'none',
   \         bold = true,
   \         italic = false,
   \     },
   \     warning_diagnostic_selected = {
-  \         fg = '#ffff00',
+  \         fg = '#dddd00',
   \         bg = 'none',
   \         bold = true,
   \         italic = false,
   \     },
   \     warning_diagnostic_visible = {
-  \         fg = '#ffff00',
+  \         fg = '#dddd00',
   \         bg = 'none',
   \         bold = true,
   \         italic = false,
@@ -1321,8 +1321,8 @@ hi ScrollbarSearch          gui=bold guifg=#ffaa77
 hi ScrollbarSearchHandle    gui=bold guifg=#ffaa77 guibg=#888888
 hi ScrollbarError           gui=bold guifg=#ff0000
 hi ScrollbarErrorHandle     gui=bold guifg=#ff0000 guibg=#888888
-hi ScrollbarWarn            gui=bold guifg=#ffff00
-hi ScrollbarWarnHandle      gui=bold guifg=#ffff00 guibg=#888888
+hi ScrollbarWarn            gui=bold guifg=#dddd00
+hi ScrollbarWarnHandle      gui=bold guifg=#dddd00 guibg=#888888
 hi ScrollbarHint            gui=bold guifg=#5599dd
 hi ScrollbarHintHandle      gui=bold guifg=#5599dd guibg=#888888
 hi ScrollbarGitAdd          gui=none guifg=#00bb00

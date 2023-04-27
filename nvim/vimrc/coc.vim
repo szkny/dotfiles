@@ -67,11 +67,11 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 hi CocErrorSign           gui=none guifg=#ff0000
-hi CocWarningSign         gui=none guifg=#ffff00
+hi CocWarningSign         gui=none guifg=#dddd00
 hi CocInfoSign            gui=none guifg=#ffffff
 hi CocHintSign            gui=none guifg=#5599dd
 hi CocErrorVirtualText    gui=bold guifg=#ff0000
-hi CocWarningVirtualText  gui=bold guifg=#ffff00
+hi CocWarningVirtualText  gui=bold guifg=#dddd00
 hi CocInfoVirtualText     gui=bold guifg=#ffffff
 hi CocHintVirtualText     gui=bold guifg=#5599dd
 hi CocErrorHighlight      gui=bold,undercurl guifg=none
