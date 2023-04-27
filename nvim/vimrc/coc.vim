@@ -29,7 +29,6 @@ let g:coc_global_extensions = [
   \  'coc-pairs', 
   \  'coc-snippets', 
   \  'coc-vimlsp',
-  \  'coc-markdownlint', 
   \  'coc-prettier', 
   \  'coc-tsserver', 
   \  'coc-deno', 
