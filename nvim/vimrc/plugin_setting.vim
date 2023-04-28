@@ -83,6 +83,10 @@ hi NoiceCmdlinePopup               guibg=#383838
 hi NoiceConfirm                    guibg=#383838
 
 
+"" SplitTerm
+let g:splitterm_auto_close_window = 1
+
+
 "" fzf.vim
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__

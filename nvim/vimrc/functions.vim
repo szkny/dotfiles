@@ -196,7 +196,7 @@ command! -nargs=1 ResizeWindow call s:resizewindow(<f-args>)
 fun! s:make(...) abort
     " makeコマンドを走らせる関数
     let l:current_dir = expand('%:p:h')
-    let l:command = 'make '.join(a:000)
+    let l:command = 'make '.join(a:000).' ; read -q'
     if findfile('GNUmakefile',l:current_dir) !=# ''
        \|| findfile('Makefile',l:current_dir) !=# ''
         call splitterm#open(l:command)
@@ -216,7 +216,7 @@ fun! s:cmake(...) abort
     let l:current_dir = expand('%:p:h')
     let l:builddir = 'build'
     let l:cmakelists_txt = 'CMakeLists.txt'
-    let l:command = 'cmake .. && make'
+    let l:command = '(cmake .. && make) ; read -q'
     if a:0 > 0
         if a:1 ==? 'run'
             let l:exename = s:getprojectname(l:cmakelists_txt)
@@ -290,7 +290,7 @@ command! -nargs=* -range Appendchar :<line1>,<line2>call s:appendchar(<f-args>)
 
 fun! s:sql() abort
     " mysqlを起動する関数
-    let l:command = 'mysql'
+    let l:command = 'mysql ; read -q'
     if executable(l:command)
         let l:args = ''
         if &filetype ==# 'sql' || &filetype ==# 'mysql'
@@ -596,7 +596,7 @@ fun! s:trans(...) abort range
         endif
         let l:text = substitute(l:text, '"', '\\"', 'g')
         if len(l:text) < 900
-            call splitterm#open('trans', '{en=ja}', '"'.l:text.'"')
+            call splitterm#open('trans', '{en=ja}', '"'.l:text.'"', ' ; read -q')
         else
             echo 'Trans: [error] text too long.'
         endif
@@ -624,7 +624,7 @@ fun! s:transja(...) abort range
         endif
         let l:text = substitute(l:text, '"', '\\"', 'g')
         if len(l:text) < 900
-            call splitterm#open('trans', '{ja=en}', '"'.l:text.'"')
+            call splitterm#open('trans', '{ja=en}', '"'.l:text.'"', ' ; read -q')
         else
             echo 'Trans: [error] text too long.'
         endif
@@ -646,10 +646,11 @@ fun! s:install_trans() abort
         echon 'Trans: [error] trans command not found.'
         return
     endif
-    silent call splitterm#open('echo "trans command not found. installing ..."'
+    silent call splitterm#open('(echo "trans command not found. installing ..."'
                              \.' && '.l:install_cmd
                              \.' && echo " Success !!"'
-                             \.' && echo " you can do \":Trans [WORD]\"."')
+                             \.' && echo " you can do \":Trans [WORD]\".")'
+                             \.' ; read -q')
     startinsert
 endf
 
@@ -758,7 +759,7 @@ fun! s:git(...) abort
         let l:cmd = 'git '.join(a:000)
     endif
     let l:script_winid = win_getid()
-    let s:git_wininfo = splitterm#open(l:cmd)
+    let s:git_wininfo = splitterm#open(l:cmd.' ; read -q')
     call win_gotoid(l:script_winid)
 endf
 fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)
@@ -766,7 +767,7 @@ fun! s:CompletionGitCommands(ArgLead, CmdLine, CusorPos)
 endf
 command! -complete=customlist,s:CompletionGitCommands -nargs=* MyGit call s:git(<f-args>)
 command! -nargs=* Gcam call s:git('am', <f-args>)
-command! Fshow call splitterm#open("zsh -i -c fshow")
+command! Fshow exe "SplitTerm zsh -i -c fshow" | startinsert
 
 fun! s:git_autocmd() abort
     aug git_auto_command
