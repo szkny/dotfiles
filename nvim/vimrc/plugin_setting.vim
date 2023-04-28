@@ -921,7 +921,7 @@ lua require('bufferline').setup {
   \     truncate_names = true,
   \     tab_size = 18,
   \     diagnostics = "coc",
-  \     diagnostics_update_in_insert = true,
+  \     diagnostics_update_in_insert = false,
   \     diagnostics_indicator = function(count, level, diagnostics_dict, context)
   \         local icon = level:match("error") and ""
   \                    or level:match("warning") and ""
