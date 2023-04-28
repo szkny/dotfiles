@@ -193,3 +193,4 @@ nno <silent><expr> <leader>l
   \ ':<C-u>set hlsearch!<CR>'
 nno <silent> t          :<C-u>12SplitTerm<CR>i
 vno <silent> <leader>t  :Trans<CR>
+vno <silent> <leader>gf :Fshow<CR>
