@@ -21,8 +21,9 @@ au BufAdd * if getfsize(expand('<afile>')) > 1024*1024 |
 set signcolumn=yes
 
 " for coc-fzf
-let g:coc_fzf_preview = ''
-let g:coc_fzf_opts = []
+let g:coc_fzf_preview = 'right,50%,<70(down,60%)'
+let g:coc_fzf_preview_toggle_key = 'ctrl-/'
+let g:coc_fzf_opts = ['--layout=reverse']
 
 " Extentions list
 let g:coc_global_extensions = [
@@ -101,12 +102,6 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
-
-" " Add (Neo)Vim's native statusline support
-" " NOTE: Please see `:h coc-status` for integrations with external plugins that
-" " provide custom statusline: lightline.vim, vim-airline
-" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
 
 " Mappings
 fun CocMapping() abort
@@ -222,9 +217,17 @@ fun CocMapping() abort
     " " Resume latest coc list
     " nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-    " " Mappings for CocFzfList
-    nno <silent><nowait> <leader>c :<C-u>CocFzfList<CR>
-    nno <silent><nowait> <leader>a :<C-u>CocFzfList diagnostics<CR>
+    " Mappings for CocFzfList
+    " nno <silent><nowait> <leader>c :<C-u>CocFzfList<CR>
+    " nno <silent><nowait> <leader>a :<C-u>CocFzfList diagnostics<CR>
+    nno <silent><nowait> <leader>a <CMD>call <SID>cocfzflist_wrap("diagnostics")<CR>
+    nno <silent><nowait> <leader>c <CMD>call <SID>cocfzflist_wrap()<CR>
+    fun s:cocfzflist_wrap(...) abort
+        try
+            exe 'CocFzfList '.join(a:000)
+        catch
+        endtry
+    endf
 endf
 
 call CocMapping()
