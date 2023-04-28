@@ -10,7 +10,7 @@ nno <silent> <C-s>   :<C-u>w<CR>
 nno <silent> q       :<C-u>CloseBufferTab<CR>
 nno <silent> <S-q>   :<C-u>qall<CR>
 fun s:myBdelete() abort
-    bprevious
+    bnext
     try
         bdelete #
     catch

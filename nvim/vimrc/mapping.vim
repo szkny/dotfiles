@@ -12,7 +12,7 @@ ino <silent> <C-s>      <ESC>:w<CR>a
 nno <silent> <C-s>      :w<CR>
 " nno <silent> q          :CloseBufferTab<CR>
 fun s:myBdelete() abort
-    bprevious
+    bnext
     try
         bdelete #
     catch
