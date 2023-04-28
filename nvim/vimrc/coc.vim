@@ -20,6 +20,10 @@ au BufAdd * if getfsize(expand('<afile>')) > 1024*1024 |
 " diagnostics appear/become resolved
 set signcolumn=yes
 
+" for coc-fzf
+let g:coc_fzf_preview = ''
+let g:coc_fzf_opts = []
+
 " Extentions list
 let g:coc_global_extensions = [
   \  'coc-actions',
@@ -217,6 +221,10 @@ fun CocMapping() abort
     " nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
     " " Resume latest coc list
     " nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+    " " Mappings for CocFzfList
+    nno <silent><nowait> <leader>c :<C-u>CocFzfList<CR>
+    nno <silent><nowait> <leader>a :<C-u>CocFzfList diagnostics<CR>
 endf
 
 call CocMapping()
