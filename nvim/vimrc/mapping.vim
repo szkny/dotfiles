@@ -11,8 +11,17 @@ tno <silent> <C-[>      <C-\><C-n>
 ino <silent> <C-s>      <ESC>:w<CR>a
 nno <silent> <C-s>      :w<CR>
 " nno <silent> q          :CloseBufferTab<CR>
-nno <silent><nowait> <leader>q  :bdelete<CR>
-nno <silent><nowait> <leader>bq :bdelete<CR>
+fun s:myBdelete() abort
+    bprevious
+    try
+        bdelete #
+    catch
+        bdelete
+    endtry
+    redraw!
+endf
+nno <silent><nowait> <leader>q  <CMD>call <SID>myBdelete()<CR>
+nno <silent><nowait> <leader>bq <CMD>call <SID>myBdelete()<CR>
 nno <silent><nowait> <leader>pq :bdelete#<CR>:redraw!<CR>
 nno <silent> q          :q<CR>
 nno <silent> <S-q>      :qall<CR>
