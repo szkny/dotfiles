@@ -13,11 +13,11 @@ lua require("notify").setup({
   \   on_open = nil,
   \   on_close = nil,
   \   keep = nil,
-  \   render = "default",
+  \   render = "compact",
   \   background_colour = "#3e3e3e",
   \   timeout = 3000,
   \   max_width = 80,
-  \   minimum_width = 80,
+  \   minimum_width = 50,
   \   top_down = false,
   \   fps = 60,
   \   icons = {
