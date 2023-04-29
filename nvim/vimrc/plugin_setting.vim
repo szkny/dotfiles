@@ -823,15 +823,15 @@ lua local my_custom_theme = {
   \   },
   \   insert   = { a = { fg = '#394260', bg = '#a3aed2', gui = 'bold' } },
   \   terminal = { a = { fg = '#394260', bg = '#a3aed2', gui = 'bold' } },
-  \   visual   = { a = { fg = '#394260', bg = '#77bbbb', gui = 'bold' } },
-  \   replace  = { a = { fg = '#394260', bg = '#bb77cc', gui = 'bold' } },
+  \   visual   = { a = { fg = '#394260', bg = '#88b4c4', gui = 'bold' } },
+  \   replace  = { a = { fg = '#394260', bg = '#9988dd', gui = 'bold' } },
   \   inactive = {
   \     a = { fg = '#ddddee', bg = '#212736' },
   \     b = { fg = '#ddddee', bg = '#212736' },
   \     c = { fg = '#ddddee', bg = '#212736' },
   \   },
   \ }
-  \ local diagnostics = {
+  \ local lualine_diagnostics = {
   \   'diagnostics',
   \   sources = { vim.g.lualine_diagnostics_source },
   \   sections = { 'error', 'warn', 'info', 'hint' },
@@ -850,6 +850,16 @@ lua local my_custom_theme = {
   \   colored = true,
   \   update_in_insert = true,
   \   always_visible = false,
+  \ }
+  \ local lualine_diff = {
+  \   'diff',
+  \   colored = true,
+  \   diff_color = {
+  \     added    = 'lualine_diff_add',
+  \     modified = 'lualine_diff_change',
+  \     removed  = 'lualine_diff_delete',
+  \   },
+  \   symbols = {added = '+', modified = '~', removed = '-'},
   \ }
   \ require('lualine').setup {
   \   options = {
@@ -875,20 +885,19 @@ lua local my_custom_theme = {
   \       { 'mode', separator = { left = '', right = '' } },
   \       { 'LualineSkkeletonMode' }
   \     },
-  \     lualine_b = { 'diff', 'branch' },
+  \     lualine_b = { 'branch', lualine_diff },
   \     lualine_c = {
-  \       'filename',
   \       { 'LualineVistaNearestMethodOrFunction' },
   \     },
   \     lualine_x = {
-  \       diagnostics, 'filetype', 'encoding', 'fileformat' },
+  \       lualine_diagnostics, 'filetype', 'encoding', 'fileformat' },
   \     lualine_y = { 'progress' },
   \     lualine_z = { {'location', separator = { left = '', right = '' } } },
   \   },
   \   inactive_sections = {
   \     lualine_a = {},
   \     lualine_b = {},
-  \     lualine_c = { 'filename' },
+  \     lualine_c = {},
   \     lualine_x = { 'location' },
   \     lualine_y = {},
   \     lualine_z = {}
@@ -898,10 +907,13 @@ lua local my_custom_theme = {
   \   inactive_winbar = {},
   \   extensions = {}
   \ }
-hi lualine_lsp_err  guibg=#212736 guifg=#ff0000
-hi lualine_lsp_warn guibg=#212736 guifg=#dddd00
-hi lualine_lsp_hint guibg=#212736 guifg=#5599dd
-hi lualine_lsp_info guibg=#212736 guifg=#5599dd
+hi lualine_lsp_err     guibg=#212736 guifg=#ff0000
+hi lualine_lsp_warn    guibg=#212736 guifg=#dddd00
+hi lualine_lsp_hint    guibg=#212736 guifg=#5599dd
+hi lualine_lsp_info    guibg=#212736 guifg=#5599dd
+hi lualine_diff_add    guibg=#394260 guifg=#66aa88
+hi lualine_diff_change guibg=#394260 guifg=#bbbb88
+hi lualine_diff_delete guibg=#394260 guifg=#aa6666
 
 
 "" bufferline.nvim
