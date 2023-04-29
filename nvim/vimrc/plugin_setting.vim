@@ -943,7 +943,7 @@ lua require('bufferline').setup {
   \         text = function()
   \           return vim.fn.fnamemodify(vim.fn.getcwd(), ':t:gs?\\l?\\U\\0?')
   \         end,
-  \         text_align = "center",
+  \         text_align = "left",
   \         separator = true,
   \         highlight = "NvimTreeRootFolder",
   \       }
@@ -956,7 +956,7 @@ lua require('bufferline').setup {
   \     show_tab_indicators = true,
   \     show_duplicate_prefix = true,
   \     persist_buffer_sort = true,
-  \     separator_style = {"│", "│"},
+  \     separator_style = "thin",
   \     enforce_regular_tabs = false,
   \     always_show_bufferline = true,
   \     hover = {
