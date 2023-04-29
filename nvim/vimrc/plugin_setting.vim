@@ -1459,12 +1459,12 @@ lua require('gitsigns').setup {
   \   current_line_blame_opts = {
   \     virt_text = true,
   \     virt_text_pos = 'eol',
-  \     delay = 0,
+  \     delay = 1000,
   \     ignore_whitespace = false,
   \   },
   \   current_line_blame_formatter = '  <author>, <author_time:%Y-%m-%d> - <summary>',
   \   sign_priority = 6,
-  \   update_debounce = 500,
+  \   update_debounce = 100,
   \   on_attach = function(bufnr)
   \     local gs = package.loaded.gitsigns
   \     local function map(mode, l, r, opts)
@@ -1487,7 +1487,7 @@ lua require('gitsigns').setup {
 hi GitSignsAdd    gui=bold guifg=#00bb00
 hi GitSignsChange gui=bold guifg=#cccc00
 hi GitSignsDelete gui=bold guifg=#ff2222
-hi GitSignsCurrentLineBlame gui=none guifg=#5e5e5e
+hi GitSignsCurrentLineBlame gui=none guifg=#777777
 hi DiffAdd    gui=none guifg=none guibg=#004400
 hi DiffChange gui=none guifg=none guibg=#3f3f00
 hi Difftext   gui=none guifg=none guibg=#606000
