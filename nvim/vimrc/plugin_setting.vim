@@ -910,7 +910,7 @@ lua require('bufferline').setup {
   \   options = {
   \     mode = "buffers",
   \     numbers = "none",
-  \     close_command = "bdelete! %d",
+  \     close_command = "bn|sp|bp|bd! %d",
   \     right_mouse_command = "bdelete! %d",
   \     left_mouse_command = "buffer %d",
   \     buffer_close_icon = '',
