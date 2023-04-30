@@ -867,7 +867,7 @@ lua local my_custom_theme = {
   \   newfile_status = false,
   \   symbols = {
   \     modified = '●',
-  \     readonly = '🔒',
+  \     readonly = '',
   \     unnamed = '[No Name]',
   \     newfile = '[New]',
   \   }
