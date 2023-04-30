@@ -74,7 +74,7 @@ lua  require("noice").setup({
   \   },
   \   presets = {
   \     bottom_search = false,
-  \     command_palette = true,
+  \     command_palette = false,
   \     long_message_to_split = true,
   \   },
   \ })
@@ -861,6 +861,27 @@ lua local my_custom_theme = {
   \   },
   \   symbols = {added = '+', modified = '~', removed = '-'},
   \ }
+  \ local lualine_noice = {
+  \   {
+  \     require("noice").api.status.message.get_hl,
+  \     cond = require("noice").api.status.message.has,
+  \   },
+  \   {
+  \     require("noice").api.status.command.get,
+  \     cond = require("noice").api.status.command.has,
+  \     color = { fg = "#ff9e64" },
+  \   },
+  \   {
+  \     require("noice").api.status.mode.get,
+  \     cond = require("noice").api.status.mode.has,
+  \     color = { fg = "#ff9e64" },
+  \   },
+  \   {
+  \     require("noice").api.status.search.get,
+  \     cond = require("noice").api.status.search.has,
+  \     color = { fg = "#ff9e64" },
+  \   },
+  \ }
   \ require('lualine').setup {
   \   options = {
   \     icons_enabled = true,
@@ -887,10 +908,12 @@ lua local my_custom_theme = {
   \     },
   \     lualine_b = { 'branch', lualine_diff },
   \     lualine_c = {
+  \       'filename',
   \       { 'LualineVistaNearestMethodOrFunction' },
   \     },
   \     lualine_x = {
-  \       lualine_diagnostics, 'filetype', 'encoding', 'fileformat' },
+  \       lualine_diagnostics, 'filetype', 'encoding', 'fileformat',
+  \     },
   \     lualine_y = { 'progress' },
   \     lualine_z = { {'location', separator = { left = '', right = '' } } },
   \   },
@@ -907,6 +930,7 @@ lua local my_custom_theme = {
   \   inactive_winbar = {},
   \   extensions = {}
   \ }
+  " \       unpack(lualine_noice), lualine_diagnostics, 'filetype', 'encoding', 'fileformat',
 hi lualine_lsp_err     guibg=#212736 guifg=#ff0000
 hi lualine_lsp_warn    guibg=#212736 guifg=#dddd00
 hi lualine_lsp_hint    guibg=#212736 guifg=#5599dd
