@@ -139,10 +139,10 @@ Plug 'szkny/Ipython',                  {'for': 'python'}
 Plug 'elzr/vim-json',                  {'for': 'json'}
 Plug 'raimon49/requirements.txt.vim',  {'for': 'requirements'}
 Plug 'cespare/vim-toml',               {'for': 'toml'}
-Plug 'kannokanno/previm',              {'for': 'markdown'}
-Plug 'godlygeek/tabular',              {'for': 'markdown'}
-Plug 'preservim/vim-markdown',         {'for': 'markdown'}
-Plug 'yaasita/ore_markdown',           {'for': 'markdown'}
+" Plug 'kannokanno/previm',              {'for': 'markdown'}
+" Plug 'godlygeek/tabular',              {'for': 'markdown'}
+" Plug 'preservim/vim-markdown',         {'for': 'markdown'}
+" Plug 'yaasita/ore_markdown',           {'for': 'markdown'}
 " Plug 'vim-scripts/applescript.vim',    {'for': 'applescript'}
 " Plug 'aklt/plantuml-syntax',           {'for': 'plantuml'}
 Plug 'posva/vim-vue',                  {'for': 'vue'}
