@@ -636,7 +636,7 @@ hi NvimTreeLspDiagnosticsHint        gui=none guifg=#5588dd
 
 ""vista.vim
 let g:vista_no_mappings            = 0
-let g:vista_echo_cursor            = 1
+let g:vista_echo_cursor            = 0
 let g:vista_echo_cursor_strategy   = 'floating_win'
 let g:vista_blink                  = [3, 200]
 let g:vista_top_level_blink        = [3, 200]
