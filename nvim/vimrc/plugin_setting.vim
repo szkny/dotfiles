@@ -861,6 +861,17 @@ lua local my_custom_theme = {
   \   },
   \   symbols = {added = '+', modified = '~', removed = '-'},
   \ }
+  \ local lualine_filename =     {
+  \   'filename',
+  \   file_status = true,
+  \   newfile_status = false,
+  \   symbols = {
+  \     modified = '●',
+  \     readonly = '🔒',
+  \     unnamed = '[No Name]',
+  \     newfile = '[New]',
+  \   }
+  \ }
   \ local lualine_noice = {
   \   {
   \     require("noice").api.status.message.get_hl,
@@ -908,7 +919,7 @@ lua local my_custom_theme = {
   \     },
   \     lualine_b = { 'branch', lualine_diff },
   \     lualine_c = {
-  \       'filename',
+  \       lualine_filename,
   \       { 'LualineVistaNearestMethodOrFunction' },
   \     },
   \     lualine_x = {
