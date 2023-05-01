@@ -21,19 +21,19 @@ aug delimitMate
     endif
 aug END
 
-"" previm
-let g:previm_show_header = 0
-let g:previm_enable_realtime = 1
-if has('mac')
-    let g:previm_open_cmd = 'open -a Google\ Chrome'
-elseif system('uname') ==# 'Linux\n'
-    let g:previm_open_cmd = 'open'
-endif
-aug PrevimSettings
-    au!
-    au BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-    au BufWritePost *.{md,mdwn,mkd,mkdn,mark*} call previm#refresh()
-aug END
+" "" previm
+" let g:previm_show_header = 0
+" let g:previm_enable_realtime = 1
+" if has('mac')
+"     let g:previm_open_cmd = 'open -a Google\ Chrome'
+" elseif system('uname') ==# 'Linux\n'
+"     let g:previm_open_cmd = 'open'
+" endif
+" aug PrevimSettings
+"     au!
+"     au BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+"     au BufWritePost *.{md,mdwn,mkd,mkdn,mark*} call previm#refresh()
+" aug END
 
 "" nyaovim-popup-tooltip
 
