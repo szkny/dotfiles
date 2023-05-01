@@ -145,14 +145,18 @@ function get-active-ec2-instances() {
     if [ $# -eq 1 ]; then
         AWS_PROFILE="$1"
     fi
-    aws ec2 describe-instances | \
-    jq -r '.Reservations[].Instances[]     |
-             select(.State.Name=="running") |
-             [
-                 (.Tags[] | select(.Key=="Name") | .Value),
-                 .InstanceId,
-                 .PrivateIpAddress
-             ]'
+    (
+        echo "Name InstanceId PrivateIP LaunchTime"
+        echo "---------- ---------- ---------- ----------"
+        aws ec2 describe-instances | \
+        jq -r '.[][].Instances[] | select(.State.Name=="running") |
+            [
+                (.Tags[] | select(.Key=="Name").Value),
+                .InstanceId,
+                .PrivateIpAddress,
+                .LaunchTime
+            ] | @tsv'
+    ) | column -t
     AWS_PROFILE=$TMP_AWS_PROFILE
 }
 
