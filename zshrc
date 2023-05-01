@@ -139,6 +139,23 @@ function start-tmux(){
   fi
 }
 
+## aws cli utility functions
+function get-active-ec2-instances() {
+    local TMP_AWS_PROFILE=$AWS_PROFILE
+    if [ $# -eq 1 ]; then
+        AWS_PROFILE="$1"
+    fi
+    aws ec2 describe-instances | \
+    jq -r '.Reservations[].Instances[]     |
+             select(.State.Name=="running") |
+             [
+                 (.Tags[] | select(.Key=="Name") | .Value),
+                 .InstanceId,
+                 .PrivateIpAddress
+             ]'
+    AWS_PROFILE=$TMP_AWS_PROFILE
+}
+
 ## fzf function
 function fd() {
   local dir
