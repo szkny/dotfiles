@@ -159,6 +159,15 @@ function get-active-ec2-instances() {
     ) | column -t
     AWS_PROFILE=$TMP_AWS_PROFILE
 }
+function ssh-active-ec2-instances() {
+    local ACTIVE_INSTANCES=`get-active-ec2-instances $1`
+    local SELECTED_INSTANCE=`echo $ACTIVE_INSTANCES | fzf`
+    local SSH_TARGET=`echo $SELECTED_INSTANCE | awk '{print $2}'`
+    if [ ${#SSH_TARGET} -gt 1 ]; then
+        echo " $ sshrc $SSH_TARGET"
+        sshrc $SSH_TARGET
+    fi
+}
 
 ## fzf function
 function fd() {
