@@ -175,6 +175,7 @@ function fd() {
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -print 2> /dev/null | fzf +m) &&
   cd "$dir"
+  return 0
 }
 function fdghq(){
   local selectedrepos=$(ghq list --full-path | fzf)
@@ -188,12 +189,14 @@ function fdghq(){
       git pull
     fi
   fi
+  return 0
 }
 function fbr() {
   local branches branch
   branches=$(git branch --all | grep -v HEAD) &&
   branch=$(echo "$branches" | fzf) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+  return 0
 }
 function fshow() {
   git log --graph --color=always --date=format:'%Y/%m/%d %H:%M' --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s' |
@@ -207,6 +210,7 @@ function fshow() {
           echo {} | grep -o '[a-f0-9]\{7\}' | head -1 |
           xargs -I % sh -c 'git show --color=always %'
       "
+  return 0
 }
 
 ## PATHs
