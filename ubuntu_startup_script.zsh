@@ -11,6 +11,7 @@ sudo apt install -y git curl zip unzip wget bsdmainutils gawk
 sudo apt install -y tmux
 sudo apt install -y golang
 sudo apt install -y silversearcher-ag
+sudo apt install -y ripgrep
 sudo apt install -y universal-ctags
 sudo apt install -y trash-cli
 

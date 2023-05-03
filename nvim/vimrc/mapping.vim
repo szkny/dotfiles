@@ -109,10 +109,11 @@ vno <silent> <C-/> :TComment<CR>
 vno <silent> <leader>= :EasyAlign *=<CR>
 vno <silent> <Enter>   <Plug>(EasyAlign)<C-x>
 "" fzf.vim
-nno <silent> <C-b> :<C-u>Buffers<CR>
-nno <silent> <C-p> :<C-u>Files<CR>
-nno <silent> <C-f> :<C-u>Ag<CR>
-vno <silent> <C-f> :<C-u>call VAgWord()<CR>
+nno <silent> <C-b>     :<C-u>Buffers<CR>
+nno <silent> <C-p>     :<C-u>Files<CR>
+nno <silent> <leader>f :<C-u>Lines<CR>
+nno <silent> <C-f>     :<C-u>Rg<CR>
+vno <silent> <C-f>     :<C-u>call VRgWord()<CR>
 "" ranger.vim
 nno <silent> <C-h> :<C-u>RnvimrToggle<CR>
 "" nvim-tree

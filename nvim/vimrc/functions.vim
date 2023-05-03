@@ -367,11 +367,6 @@ command! Jq call s:jqfmt()
 
 
 fun! AgWord(...) abort
-    " let l:file_dir = expand('%:p:h')
-    " if l:file_dir[0] !=# '/'
-    "     let l:file_dir = getcwd()
-    " endif
-    " silent exe 'lcd '.l:file_dir
     if a:0 == 0
         let l:text = expand('<cword>')
     else
@@ -383,16 +378,32 @@ command! -nargs=* AgWord call AgWord(<f-args>)
 
 
 fun! VAgWord() abort range
-    " let l:file_dir = expand('%:p:h')
-    " if l:file_dir[0] !=# '/'
-    "     let l:file_dir = getcwd()
-    " endif
-    " silent exe 'lcd '.l:file_dir
     let @@ = ''
     exe 'silent normal gvy'
     if @@ !=# ''
         let l:text = join(split(@@,'\n'))
         silent exe 'Ag '.l:text
+    endif
+endf
+
+
+fun! RgWord(...) abort
+    if a:0 == 0
+        let l:text = expand('<cword>')
+    else
+        let l:text = join(a:000)
+    endif
+    silent exe 'Rg '.l:text
+endf
+command! -nargs=* RgWord call RgWord(<f-args>)
+
+
+fun! VRgWord() abort range
+    let @@ = ''
+    exe 'silent normal gvy'
+    if @@ !=# ''
+        let l:text = join(split(@@,'\n'))
+        silent exe 'Rg '.l:text
     endif
 endf
 
