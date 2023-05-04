@@ -1,157 +1,150 @@
 scriptencoding utf-8
 
 "*****************************************************************************
-"" Vim-Plug core
+"" Vim-Jetpack core
 "*****************************************************************************
-let g:vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
-
-if !filereadable(g:vimplug_exists)
-    if !executable('curl')
-        echoerr 'You have to install curl or first install vim-plug yourself!'
-        execute 'q!'
-    endif
-    echo 'Installing Vim-Plug...'
-    echo ''
-    silent !\curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    let g:not_finish_vimplug = 'yes'
+"neovim + vim
+let s:jetpackfile = stdpath('data') .. '/site/pack/jetpack/opt/vim-jetpack/plugin/jetpack.vim'
+let s:jetpackurl = "https://raw.githubusercontent.com/tani/vim-jetpack/master/plugin/jetpack.vim"
+if !filereadable(s:jetpackfile)
+  call system(printf('curl -fsSLo %s --create-dirs %s', s:jetpackfile, s:jetpackurl))
 endif
-
-" Required:
-call plug#begin(expand('~/.config/nvim/plugged'))
+packadd vim-jetpack
 
 "*****************************************************************************
-"" Plug install packages
+"" Jetpack install packages
 "*****************************************************************************
+call jetpack#begin()
+Jetpack 'tani/vim-jetpack', {'opt': 1}
+
 " general plugins
-Plug 'tomtom/tcomment_vim'
-Plug 'kevinhwang91/rnvimr'
-Plug 'tpope/vim-fugitive'
-Plug 'lewis6991/gitsigns.nvim'
-Plug 'rbong/vim-flog'
-Plug 'Raimondi/delimitMate'
-Plug 'szkny/SplitTerm'
-Plug 'junegunn/vim-easy-align'
-Plug 'kevinhwang91/nvim-hlslens'
-Plug 'liuchengxu/vista.vim'
-" Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'nvim-tree/nvim-tree.lua',     {'on': 'NvimTreeToggle'}
-Plug 'dstein64/vim-startuptime'
+Jetpack 'tomtom/tcomment_vim'
+Jetpack 'kevinhwang91/rnvimr'
+Jetpack 'tpope/vim-fugitive'
+Jetpack 'lewis6991/gitsigns.nvim'
+Jetpack 'rbong/vim-flog'
+Jetpack 'Raimondi/delimitMate'
+Jetpack 'szkny/SplitTerm'
+Jetpack 'junegunn/vim-easy-align'
+Jetpack 'kevinhwang91/nvim-hlslens'
+Jetpack 'liuchengxu/vista.vim'
+" Jetpack 'mg979/vim-visual-multi', {'branch': 'master'}
+Jetpack 'nvim-tree/nvim-tree.lua'
+Jetpack 'dstein64/vim-startuptime'
 
 " visual plugins
-Plug 'nvim-tree/nvim-web-devicons'
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'wfxr/minimap.vim',  {'on': 'MinimapToggle'}
-Plug 'petertriho/nvim-scrollbar'
-Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Jetpack 'nvim-tree/nvim-web-devicons'
+Jetpack 'nvim-lualine/lualine.nvim'
+Jetpack 'wfxr/minimap.vim',  {'on': 'MinimapToggle'}
+Jetpack 'petertriho/nvim-scrollbar'
+Jetpack 'akinsho/bufferline.nvim'
+Jetpack 'rrethy/vim-hexokinase', {'do': 'make hexokinase'}
+Jetpack 'nvim-treesitter/nvim-treesitter', {'do': 'TSInstall'}
 if has('wsl')
-    Plug 'lukas-reineke/indent-blankline.nvim'
+    Jetpack 'lukas-reineke/indent-blankline.nvim'
 else
-    Plug 'yggdroot/indentline'
+    Jetpack 'yggdroot/indentline'
 endif
 
 " color scheme
-Plug 'tomasiser/vim-code-dark'
-" Plug 'tomasr/molokai'
-" Plug 'jacoborus/tender.vim'
+Jetpack 'tomasiser/vim-code-dark'
+" Jetpack 'tomasr/molokai'
+" Jetpack 'jacoborus/tender.vim'
 
 " nvim-notify / noice.nvim
-Plug 'MunifTanjim/nui.nvim'
-Plug 'rcarriga/nvim-notify'
-Plug 'folke/noice.nvim'
+Jetpack 'MunifTanjim/nui.nvim'
+Jetpack 'rcarriga/nvim-notify'
+Jetpack 'folke/noice.nvim'
 
 " fzf.vim
 if isdirectory('/usr/local/opt/fzf')
-    Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+    Jetpack '/usr/local/opt/fzf' | Jetpack 'junegunn/fzf.vim'
 else
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-    Plug 'junegunn/fzf.vim'
+    Jetpack 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+    Jetpack 'junegunn/fzf.vim'
 endif
 
 " denops plugins
-Plug 'vim-denops/denops.vim'
-Plug 'vim-skk/skkeleton', { 'frozen': 1 }
+Jetpack 'vim-denops/denops.vim'
+Jetpack 'vim-skk/skkeleton', { 'frozen': 1 }
 
 " LSP
 let g:use_coc_nvim = 1
 let g:use_mason_nvim = 0
 if get(g:, 'use_coc_nvim', 0) == 1
     " coc.nvim
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
+    Jetpack 'neoclide/coc.nvim', {'branch': 'release'}
+    Jetpack 'antoinemadec/coc-fzf', {'branch': 'release'}
 elseif get(g:, 'use_mason_nvim', 0) == 1
     " mason.nvim
-    Plug 'williamboman/mason.nvim'
-    Plug 'williamboman/mason-lspconfig.nvim'
-    Plug 'neovim/nvim-lspconfig'
+    Jetpack 'williamboman/mason.nvim'
+    Jetpack 'williamboman/mason-lspconfig.nvim'
+    Jetpack 'neovim/nvim-lspconfig'
 else
     " vim-lsp
-    Plug 'prabirshrestha/vim-lsp'
-    Plug 'mattn/vim-lsp-settings'
-    Plug 'shun/ddc-source-vim-lsp'
-    Plug 'matsui54/denops-popup-preview.vim'
-    Plug 'matsui54/denops-signature_help'
+    Jetpack 'prabirshrestha/vim-lsp'
+    Jetpack 'mattn/vim-lsp-settings'
+    Jetpack 'shun/ddc-source-vim-lsp'
+    Jetpack 'matsui54/denops-popup-preview.vim'
+    Jetpack 'matsui54/denops-signature_help'
 endif
 
 " for ddc settings
 " ddc core
-Plug 'Shougo/ddc.vim'
+Jetpack 'Shougo/ddc.vim'
 " ddc UIs
-Plug 'szkny/pum.vim'
-Plug 'Shougo/ddc-ui-pum'
-" Plug 'Shougo/ddc-ui-native'
+Jetpack 'szkny/pum.vim'
+Jetpack 'Shougo/ddc-ui-pum'
+" Jetpack 'Shougo/ddc-ui-native'
 " ddc sources
-Plug 'Shougo/ddc-source-around'
-Plug 'LumaKernel/ddc-source-file'
-Plug 'Shougo/ddc-source-mocword'
-Plug 'Shougo/ddc-source-cmdline'
-Plug 'Shougo/ddc-source-cmdline-history'
-Plug 'Shougo/neco-vim'
+Jetpack 'Shougo/ddc-source-around'
+Jetpack 'LumaKernel/ddc-source-file'
+Jetpack 'Shougo/ddc-source-mocword'
+Jetpack 'Shougo/ddc-source-cmdline'
+Jetpack 'Shougo/ddc-source-cmdline-history'
+Jetpack 'Shougo/neco-vim'
 " ddc filters
-Plug 'Shougo/ddc-matcher_head'
-Plug 'Shougo/ddc-converter_remove_overlap'
-Plug 'tani/ddc-fuzzy'
+Jetpack 'Shougo/ddc-matcher_head'
+Jetpack 'Shougo/ddc-converter_remove_overlap'
+Jetpack 'tani/ddc-fuzzy'
 " " ddc etc.
-" Plug 'hrsh7th/vim-vsnip'
-" Plug 'hrsh7th/vim-vsnip-integ'
+" Jetpack 'hrsh7th/vim-vsnip'
+" Jetpack 'hrsh7th/vim-vsnip-integ'
 
 " c/c++
-" Plug 'vim-jp/cpp-vim',                 {'for': 'cpp'}
+" Jetpack 'vim-jp/cpp-vim',                 {'for': 'cpp'}
 "
 " python
-" Plug 'tweekmonster/braceless.vim',     {'for': 'python'}
-Plug 'szkny/Ipython',                  {'for': 'python'}
-" Plug 'szkny/IpdbDebugger',             {'for': 'python'}
-" Plug 'szkny/jupyter-vim',              {'for': 'python'}
+" Jetpack 'tweekmonster/braceless.vim',     {'for': 'python'}
+Jetpack 'szkny/Ipython',                  {'for': 'python'}
+" Jetpack 'szkny/IpdbDebugger',             {'for': 'python'}
+" Jetpack 'szkny/jupyter-vim',              {'for': 'python'}
 "
 " " golang
-" Plug 'fatih/vim-go',                   {'for': 'go'}
+" Jetpack 'fatih/vim-go',                   {'for': 'go'}
 "
 " " julia
-" Plug 'JuliaEditorSupport/julia-vim',   {'for': 'julia'}
+" Jetpack 'JuliaEditorSupport/julia-vim',   {'for': 'julia'}
 "
 " " javascript
-" " Plug 'prettier/vim-prettier',  { 'for': ['javascript', 'typescript', 'css', 'json', 'markdown', 'vue', 'yaml', 'html'] }
+" " Jetpack 'prettier/vim-prettier',  { 'for': ['javascript', 'typescript', 'css', 'json', 'markdown', 'vue', 'yaml', 'html'] }
 "
 " " misc
-Plug 'elzr/vim-json',                  {'for': 'json'}
-Plug 'raimon49/requirements.txt.vim',  {'for': 'requirements'}
-Plug 'cespare/vim-toml',               {'for': 'toml'}
-" Plug 'kannokanno/previm',              {'for': 'markdown'}
-" Plug 'godlygeek/tabular',              {'for': 'markdown'}
-" Plug 'preservim/vim-markdown',         {'for': 'markdown'}
-" Plug 'yaasita/ore_markdown',           {'for': 'markdown'}
-" Plug 'vim-scripts/applescript.vim',    {'for': 'applescript'}
-" Plug 'aklt/plantuml-syntax',           {'for': 'plantuml'}
-Plug 'posva/vim-vue',                  {'for': 'vue'}
-" Plug 'digitaltoad/vim-pug',            {'for': 'pug'}
-Plug 'hashivim/vim-terraform',         {'for': 'terraform'}
-Plug 'pearofducks/ansible-vim'
-" Plug 'mechatroner/rainbow_csv',        {'for': ['csv', 'tsv']}
-
-call plug#end()
+Jetpack 'elzr/vim-json',                  {'for': 'json'}
+Jetpack 'raimon49/requirements.txt.vim',  {'for': 'requirements'}
+Jetpack 'cespare/vim-toml',               {'for': 'toml'}
+" Jetpack 'kannokanno/previm',              {'for': 'markdown'}
+" Jetpack 'godlygeek/tabular',              {'for': 'markdown'}
+" Jetpack 'preservim/vim-markdown',         {'for': 'markdown'}
+" Jetpack 'yaasita/ore_markdown',           {'for': 'markdown'}
+" Jetpack 'vim-scripts/applescript.vim',    {'for': 'applescript'}
+" Jetpack 'aklt/plantuml-syntax',           {'for': 'plantuml'}
+Jetpack 'posva/vim-vue',                  {'for': 'vue'}
+" Jetpack 'digitaltoad/vim-pug',            {'for': 'pug'}
+Jetpack 'hashivim/vim-terraform',         {'for': 'terraform'}
+Jetpack 'pearofducks/ansible-vim'
+" Jetpack 'mechatroner/rainbow_csv',        {'for': ['csv', 'tsv']}
+call jetpack#end()
 
 " Required: ftpluginディレクトリをロードする
 filetype plugin indent on

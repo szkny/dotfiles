@@ -708,7 +708,6 @@ lua require('nvim-treesitter.configs').setup {
     \   ensure_installed = {
     \     "vim",
     \     "regex",
-    \     "help",
     \     "json",
     \     "markdown",
     \     "c",
@@ -998,7 +997,6 @@ lua require('bufferline').setup {
   \     color_icons = true,
   \     show_buffer_icons = true,
   \     show_buffer_close_icons = true,
-  \     show_buffer_default_icon = true,
   \     show_close_icon = true,
   \     show_tab_indicators = true,
   \     show_duplicate_prefix = true,
