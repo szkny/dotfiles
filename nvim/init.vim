@@ -35,11 +35,11 @@ Jetpack 'dstein64/vim-startuptime'
 " visual plugins
 Jetpack 'nvim-tree/nvim-web-devicons'
 Jetpack 'nvim-lualine/lualine.nvim'
-Jetpack 'wfxr/minimap.vim',  {'on': 'MinimapToggle'}
+Jetpack 'wfxr/minimap.vim'
 Jetpack 'petertriho/nvim-scrollbar'
 Jetpack 'akinsho/bufferline.nvim'
-Jetpack 'rrethy/vim-hexokinase', {'do': 'make hexokinase'}
-Jetpack 'nvim-treesitter/nvim-treesitter', {'do': 'TSInstall'}
+Jetpack 'rrethy/vim-hexokinase'
+Jetpack 'nvim-treesitter/nvim-treesitter'
 if has('wsl')
     Jetpack 'lukas-reineke/indent-blankline.nvim'
 else
@@ -60,21 +60,22 @@ Jetpack 'folke/noice.nvim'
 if isdirectory('/usr/local/opt/fzf')
     Jetpack '/usr/local/opt/fzf' | Jetpack 'junegunn/fzf.vim'
 else
-    Jetpack 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+    " Jetpack 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+    Jetpack 'junegunn/fzf'
     Jetpack 'junegunn/fzf.vim'
 endif
 
 " denops plugins
 Jetpack 'vim-denops/denops.vim'
-Jetpack 'vim-skk/skkeleton', { 'frozen': 1 }
+Jetpack 'vim-skk/skkeleton'
 
 " LSP
 let g:use_coc_nvim = 1
 let g:use_mason_nvim = 0
 if get(g:, 'use_coc_nvim', 0) == 1
     " coc.nvim
-    Jetpack 'neoclide/coc.nvim', {'branch': 'release'}
-    Jetpack 'antoinemadec/coc-fzf', {'branch': 'release'}
+    Jetpack 'neoclide/coc.nvim'
+    Jetpack 'antoinemadec/coc-fzf'
 elseif get(g:, 'use_mason_nvim', 0) == 1
     " mason.nvim
     Jetpack 'williamboman/mason.nvim'
@@ -116,7 +117,7 @@ Jetpack 'tani/ddc-fuzzy'
 "
 " python
 " Jetpack 'tweekmonster/braceless.vim',     {'for': 'python'}
-Jetpack 'szkny/Ipython',                  {'for': 'python'}
+Jetpack 'szkny/Ipython'
 " Jetpack 'szkny/IpdbDebugger',             {'for': 'python'}
 " Jetpack 'szkny/jupyter-vim',              {'for': 'python'}
 "
@@ -130,18 +131,18 @@ Jetpack 'szkny/Ipython',                  {'for': 'python'}
 " " Jetpack 'prettier/vim-prettier',  { 'for': ['javascript', 'typescript', 'css', 'json', 'markdown', 'vue', 'yaml', 'html'] }
 "
 " " misc
-Jetpack 'elzr/vim-json',                  {'for': 'json'}
-Jetpack 'raimon49/requirements.txt.vim',  {'for': 'requirements'}
-Jetpack 'cespare/vim-toml',               {'for': 'toml'}
+Jetpack 'elzr/vim-json'
+Jetpack 'raimon49/requirements.txt.vim'
+Jetpack 'cespare/vim-toml'
 " Jetpack 'kannokanno/previm',              {'for': 'markdown'}
 " Jetpack 'godlygeek/tabular',              {'for': 'markdown'}
 " Jetpack 'preservim/vim-markdown',         {'for': 'markdown'}
 " Jetpack 'yaasita/ore_markdown',           {'for': 'markdown'}
 " Jetpack 'vim-scripts/applescript.vim',    {'for': 'applescript'}
 " Jetpack 'aklt/plantuml-syntax',           {'for': 'plantuml'}
-Jetpack 'posva/vim-vue',                  {'for': 'vue'}
+Jetpack 'posva/vim-vue'
 " Jetpack 'digitaltoad/vim-pug',            {'for': 'pug'}
-Jetpack 'hashivim/vim-terraform',         {'for': 'terraform'}
+Jetpack 'hashivim/vim-terraform'
 Jetpack 'pearofducks/ansible-vim'
 " Jetpack 'mechatroner/rainbow_csv',        {'for': ['csv', 'tsv']}
 call jetpack#end()
