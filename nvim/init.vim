@@ -182,155 +182,128 @@ let g:skip_loading_mswin        = 1
 "" Basic Setup
 "*****************************************************************************"
 "" Encoding
-" set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8
-" set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
-set fileformats=unix,dos,mac
-set bomb
-set binary
+lua vim.opt.fileencoding = 'utf-8'
+lua vim.opt.fileencodings = 'utf-8'
+lua vim.opt.fileformats = 'unix,dos,mac'
+lua vim.opt.bomb = true
+lua vim.opt.binary = true
 
 "" Fix backspace indent
-set backspace=indent,eol,start
+" lua vim.opt.backspace = 'indent', 'eol', 'start'
+lua vim.opt.backspace = 'indent,eol,start'
 
 "" Tabs. May be overriten by autocmd rules
-set tabstop=4
-set softtabstop=0
-set shiftwidth=4
-set expandtab
+lua vim.opt.tabstop = 4
+lua vim.opt.softtabstop = 0
+lua vim.opt.shiftwidth = 4
+lua vim.opt.expandtab = true
 
 "" Enable hidden buffers
-set hidden
+lua vim.opt.hidden = true
 
 "" Searching
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-set inccommand=nosplit
+lua vim.opt.hlsearch = ture
+lua vim.opt.incsearch = ture
+lua vim.opt.ignorecase = ture
+lua vim.opt.smartcase = ture
+lua vim.opt.inccommand = 'nosplit'
 
 "" completion
-set complete-=t
+lua vim.opt.complete:remove('t')
 
 "" Copy/Paste/Cut
-if has('wsl')
-    augroup Yank
-      au!
-      autocmd TextYankPost * :call system('clip.exe', @")
-    augroup END
-else
-    set clipboard+=unnamedplus
-endif
+lua if vim.fn.has('wsl') == 1 then
+  \     vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
+  \       pattern = '*',
+  \       command = ":call system('clip.exe', @\")",
+  \     })
+  \ else
+  \     vim.opt.clipboard:append({unnamedplus = true})
+  \ end
 
 "" Directories for swp files
-set nobackup
-set noswapfile
+lua vim.opt.backup = false
+lua vim.opt.swapfile = false
 
 "" Time (msec)
-set ttimeoutlen=0  " keyboard timeout
-set updatetime=250
-
-if exists('$SHELL')
-    set shell=$SHELL
-else
-    set shell=/bin/sh
-endif
+lua vim.opt.ttimeoutlen = 0
+lua vim.opt.updatetime = 500
 
 "" etc..
-set autoread
-set whichwrap=b,s,h,l,<,>,[,]
-set mouse=a
-set smartindent
-set wildmenu
-set splitbelow
-set splitright
-set virtualedit=onemore
-set foldmethod=manual
-set nolazyredraw
+lua vim.opt.shell = os.getenv('SHELL') or '/bin/sh'
+lua vim.opt.autoread = true
+lua vim.opt.whichwrap = 'b,s,h,l,<,>,[,]'
+lua vim.opt.mouse = 'a'
+lua vim.opt.smartindent = true
+lua vim.opt.wildmenu = true
+lua vim.opt.splitbelow = true
+lua vim.opt.splitright = true
+lua vim.opt.virtualedit = 'onemore'
+lua vim.opt.foldmethod = 'manual'
+lua vim.opt.lazyredraw = false
 
 "" netrw
-let g:netrw_liststyle=3
-let g:netrw_banner=0
-let g:netrw_sizestyle="H"
-let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
+lua vim.api.nvim_set_var('netrw_liststyle' , 3)
+lua vim.api.nvim_set_var('netrw_banner'    , 0)
+lua vim.api.nvim_set_var('netrw_sizestyle' , 'H')
+lua vim.api.nvim_set_var('netrw_timefmt'   , '%Y/%m/%d(%a) %H:%M:%S')
 
 "" Session Management
-let g:session_directory = '~/.config/nvim/session'
-let g:session_autoload = 'no'
-let g:session_autosave = 'no'
-let g:session_command_aliases = 1
+lua vim.api.nvim_set_var('session_directory'       , '~/.config/nvim/session')
+lua vim.api.nvim_set_var('session_autoload'        , 'no')
+lua vim.api.nvim_set_var('session_autosave'        , 'no')
+lua vim.api.nvim_set_var('session_command_aliases' , 1)
 
 "" Python Host Program
-let g:python_host_prog  = expand('~/.pyenv/shims/python2')
-let g:python3_host_prog = expand('~/.pyenv/shims/python3')
+lua vim.api.nvim_set_var('python_host_prog'  , '~/.pyenv/shims/python2')
+lua vim.api.nvim_set_var('python3_host_prog' , '~/.pyenv/shims/python3')
 
 "*****************************************************************************
 "" Visual Settings
 "*****************************************************************************
-syntax on
-set background=dark
+lua vim.opt.ruler = true
+lua vim.opt.number = true
+lua vim.opt.wrap = false
+lua vim.opt.pumblend = 20
+lua vim.opt.winblend = 20
 
-set ruler
-set number
-set nowrap
-set pumblend=20
-set winblend=20
+lua vim.api.nvim_set_var('no_buffers_menu', 1)
 
-" set ambiwidth=double
-let g:no_buffers_menu=1
-
-set mousemodel=popup
-set t_Co=256
-set termguicolors
-set guioptions=egmrti
-set guifont=Monospace\ 10
-
-if has('gui_running')
-    if has('gui_mac') || has('gui_macvim')
-        set guifont=Menlo:h12
-        set transparency=7
-    endif
-else
-    let g:CSApprox_loaded = 1
-endif
-
-"" Disable the blinking cursor
-set guicursor=a:blinkon0
+lua vim.opt.mousemodel = 'popup'
+" set t_Co=256
+lua vim.opt.termguicolors = true
+lua vim.opt.background = 'dark'
 
 "" Change cursor by mode
-set guicursor=n-v-c:block-Cursor
-set guicursor+=i:ver100-iCursor
-set guicursor+=n-v-c:blinkon0
-set guicursor+=i:blinkwait10
-if &term =~ '^xterm'
-    " normal mode
-    let &t_EI .= "\<Esc>[0 q"
-    " insert mode
-    let &t_SI .= "\<Esc>[6 q"
-endif
+lua vim.opt.guicursor = 'n-v-c:block-Cursor,i:ver100-iCursor,n-v-c:blinkon0,i:blinkwait10'
+" if &term =~ '^xterm'
+"     " normal mode
+"     let &t_EI .= "\<Esc>[0 q"
+"     " insert mode
+"     let &t_SI .= "\<Esc>[6 q"
+" endif
 
-set scrolloff=3
+lua vim.opt.scrolloff = 3
 
 "" Status bar
-set laststatus=2
-set showtabline=1
-set noshowmode
+lua vim.opt.laststatus = 2
+lua vim.opt.showtabline = 1
+lua vim.opt.showmode = false
 
 "" Use modeline overrides
-set modeline
-set modelines=10
-" set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
+lua vim.opt.modeline = true
+lua vim.opt.modelines = 10
 
-let g:enable_bold_font = 1
-let g:enable_italic_font = 1
-let g:cpp_class_scope_highlight = 1
+lua vim.api.nvim_set_var('enable_bold_font' , 1)
+lua vim.api.nvim_set_var('enable_italic_font' , 1)
+lua vim.api.nvim_set_var('cpp_class_scope_highlight' , 1)
 
-set list
-set listchars=tab:¦\ ,trail:-,eol:↲
-set fillchars=vert:│,eob:\ 
-set signcolumn=yes
-set nocursorcolumn
-set cursorline
+lua vim.opt.list = true
+lua vim.opt.listchars = 'tab:¦ ,trail:-,eol:↲'
+lua vim.opt.fillchars = 'vert:│,eob: '
+lua vim.opt.signcolumn = 'yes'
+lua vim.opt.cursorcolumn = false
+lua vim.opt.cursorline = true
 
 aug transparencyBG
     au!
@@ -341,21 +314,41 @@ aug transparencyBG
     " au ColorScheme * hi SignColumn                             guibg=#202020
     " au ColorScheme * hi VertSplit   gui=none     guifg=#444444 guibg=#202020
 
-    au Colorscheme * hi Normal                                 guibg=none
-    au Colorscheme * hi NonText                                guibg=none
+    au ColorScheme * hi Normal                                 guibg=none
+    au ColorScheme * hi NonText                                guibg=none
     au ColorScheme * hi EndOfBuffer              guifg=#252525 guibg=none
-    au Colorscheme * hi LineNr                   guifg=#666666 guibg=none
-    au Colorscheme * hi SignColumn                             guibg=none
-    au Colorscheme * hi Folded                                 guibg=none
+    au ColorScheme * hi LineNr                   guifg=#666666 guibg=none
+    au ColorScheme * hi SignColumn                             guibg=none
+    au ColorScheme * hi Folded                                 guibg=none
     au ColorScheme * hi VertSplit                guifg=#555555 guibg=none
 
     au ColorScheme * hi CursorLine                             guibg=#303030
     au ColorScheme * hi Cursor      gui=reverse
 aug END
+" lua vim.cmd([[
+"   \     augroup transparencyBG
+"   \         autocmd!
+"   \         " autocmd ColorScheme * hi EndOfBuffer              guifg=bg
+"   \         " autocmd ColorScheme * hi NonText                  guifg=#404040
+"   \         " autocmd ColorScheme * hi SpecialKey               guifg=#404040
+"   \         " autocmd ColorScheme * hi LineNr                   guifg=#555555 guibg=#202020
+"   \         " autocmd ColorScheme * hi SignColumn                             guibg=#202020
+"   \         " autocmd ColorScheme * hi VertSplit   gui=none     guifg=#444444 guibg=#202020
+"   \
+"   \         autocmd ColorScheme * hi Normal                                 guibg=none
+"   \         autocmd ColorScheme * hi NonText                                guibg=none
+"   \         autocmd ColorScheme * hi EndOfBuffer              guifg=#252525 guibg=none
+"   \         autocmd ColorScheme * hi LineNr                   guifg=#666666 guibg=none
+"   \         autocmd ColorScheme * hi SignColumn                             guibg=none
+"   \         autocmd ColorScheme * hi Folded                                 guibg=none
+"   \         autocmd ColorScheme * hi VertSplit                guifg=#555555 guibg=none
+"   \
+"   \         autocmd ColorScheme * hi CursorLine                             guibg=#303030
+"   \         autocmd ColorScheme * hi Cursor      gui=reverse
+"   \     aug END
+"   \ ]])
 
-colorscheme codedark
-" colorscheme molokai
-" colorscheme tender
+lua vim.cmd('colorscheme codedark')
 
 
 "*****************************************************************************

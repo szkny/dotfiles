@@ -1271,7 +1271,7 @@ lua require('bufferline').setup {
   \ }
 
 
-"" nvim-scrollbar  " TODO
+"" nvim-scrollbar
 lua require("scrollbar").setup({
   \   show = true,
   \   show_in_active_only = true,
