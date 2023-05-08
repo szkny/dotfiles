@@ -115,11 +115,14 @@ vim.cmd([[
 vim.cmd([[
     aug vimrc_python
         au!
-        au FileType python setlocal tabstop=4 shiftwidth=4 expandtab
         au FileType python call s:init_python()
     aug END
 
     fun s:init_python ()
+        setlocal tabstop=4
+        setlocal shiftwidth=4
+        setlocal expandtab
+
         " initial script
         if getline(0, '$') == ['']
             call append(0,'#!/usr/bin/env python')

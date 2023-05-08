@@ -87,7 +87,7 @@ vim.cmd([[
 
 
 -- SplitTerm
-vim.api.nvim_set_var("splitterm_auto_close_window", 0)
+vim.api.nvim_set_var("splitterm_auto_close_window", 1)
 
 
 -- fzf.vim
@@ -1321,18 +1321,23 @@ vim.cmd([[
 ]])
 
 
--- vim-hexokinase
-vim.cmd([[
-    let g:Hexokinase_highlighters = [ 'backgroundfull' ]
-    let g:Hexokinase_optInPatterns = [
-    \   'full_hex',
-    \   'triple_hex',
-    \   'rgb',
-    \   'rgba',
-    \   'hsl',
-    \   'hsla',
-    \ ]
-]])
+-- vim-colorizer.lua
+require('colorizer').setup(
+  {
+    '*';
+  },
+  {
+    RGB      = true,
+    RRGGBB   = true,
+    names    = false,
+    RRGGBBAA = true,
+    rgb_fn   = true,
+    hsl_fn   = true,
+    css      = true,
+    css_fn   = true,
+    mode     = 'background',
+  }
+)
 
 
 -- delimitmate
