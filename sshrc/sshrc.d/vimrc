@@ -56,8 +56,20 @@ let g:enable_italic_font = 1
 set list
 set listchars=tab:¦\ 
 set fillchars=vert:\ 
-hi EndOfBuffer guifg=bg
-hi VertSplit guibg=#222222
+
+aug transparencyBG
+    au!
+    au ColorScheme * hi EndOfBuffer              guifg=bg
+    au ColorScheme * hi NonText                  guifg=#404040
+    au ColorScheme * hi SpecialKey               guifg=#404040
+    au ColorScheme * hi LineNr                   guifg=#555555 guibg=#202020
+    au ColorScheme * hi SignColumn                             guibg=#202020
+    au ColorScheme * hi VertSplit   gui=none     guifg=#444444 guibg=#202020
+
+    au ColorScheme * hi CursorLine                             guibg=#303030
+    au ColorScheme * hi Cursor      gui=reverse
+aug END
+colorscheme desert
 
 "*****************************************************************************
 "" Key-Mappings
