@@ -4,7 +4,7 @@
 vim.api.nvim_set_var('did_install_default_menus' , 1)
 vim.api.nvim_set_var('did_install_syntax_menu'   , 1)
 vim.api.nvim_set_var('did_indent_on'             , 1)
-vim.api.nvim_set_var('did_load_filetypes'        , 1)
+-- vim.api.nvim_set_var('did_load_filetypes'        , 1)
 vim.api.nvim_set_var('did_load_ftplugin'         , 1)
 vim.api.nvim_set_var('loaded_2html_plugin'       , 1)
 vim.api.nvim_set_var('loaded_gzip'               , 1)
@@ -32,6 +32,10 @@ vim.opt.binary = true
 
 -- Fix backspace indent
 vim.opt.backspace = 'indent,eol,start'
+
+-- filetype detection
+vim.cmd('filetype plugin indent on')
+vim.cmd('syntax on')
 
 -- Tabs. May be overriten by autocmd rules
 vim.opt.tabstop = 4

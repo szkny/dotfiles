@@ -190,66 +190,66 @@ keymap("n", "<C-h>",      ":<C-u>RnvimrToggle<CR>",   opts)
 -- -- nvim-tree
 keymap("n", "<C-n>",      ":<C-u>NvimTreeToggle<CR>", opts)
 -- -- vista.vim
-keymap("n", "<C-t>",      ":<C-u>Vista!!",            opts)
-keymap("n", "<C-g>",      ":<C-u>Vista finder",       opts)
+keymap("n", "<C-t>",      ":<C-u>Vista!!<CR>",        opts)
+keymap("n", "<C-g>",      ":<C-u>Vista finder<CR>",   opts)
 -- -- minimap.vim
 keymap("n", "<C-k>",      ":<C-u>MinimapToggle<CR>:MinimapRefresh<CR>", opts)
 -- -- fugitive
 keymap("n", "<Leader>gg", ":<C-u>G<CR>",              opts)
 keymap("n", "<Leader>gd", ":<C-u>Gvdiffsplit<CR>",    opts)
 
--- vim.cmd([[
--- fun DdcMapping() abort
---     "" ddc.vim (with pum.vim)
---     ino <silent> <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
---     ino <silent> <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
---     ino <silent> <expr> <CR>
---       \ pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<CR>'
---     ino <silent> <expr> <C-e>
---       \ pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' : '<C-e>'
---     ino <silent> <expr> <TAB>
---       \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<TAB>'
---     ino <silent> <expr> <S-TAB>
---       \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<S-TAB>'
---     ino <silent> <expr> <DOWN>
---       \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
---     ino <silent> <expr> <UP>
---       \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
---     if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
---         "" vim-lsp
---         nno <silent><nowait> <C-]>     :<C-u>LspDefinition<CR>
---         nno <silent><nowait> <leader>] :<C-u>LspDefinition<CR>
---         nno <silent><nowait> <leader>[ :<C-u>LspReferences<CR>
---         nno <silent><nowait> <leader>k :<C-u>LspHover<CR>
---         nno <silent><nowait> <leader>n :<C-u>LspNextDiagnostic<CR>
---         nno <silent><nowait> <leader>p :<C-u>LspPreviousDiagnostic<CR>
---         " nno <silent><nowait> <leader>r :<C-u>LspRename<CR>
---         nno <silent><nowait> <leader>l :<C-u>LspDocumentDiagnostics<CR>
---         nno <silent><nowait> <leader>h :<C-u>LspCodeAction<CR>
---     endif
--- endf
--- if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
---     call DdcMapping()
--- endif
--- nno          :     <Cmd>call DdcCommandlinePre()<CR>:
--- nno          /     <Cmd>call DdcCommandlinePre()<CR>/
--- cno <expr> <C-n>
---   \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
--- cno <expr> <C-p>
---   \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
--- cno <expr> <CR>
---   \ pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<CR>'
--- cno <expr> <C-e>
---   \ pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' : '<C-e>'
--- cno <expr> <TAB>
---   \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : ''
--- cno <expr> <S-TAB>
---   \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : ''
--- cno <expr> <DOWN>
---   \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
--- cno <expr> <UP>
---   \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
--- ]])
+vim.cmd([[
+fun DdcMapping() abort
+    "" ddc.vim (with pum.vim)
+    ino <silent> <C-n> <Cmd>call pum#map#select_relative(+1)<CR>
+    ino <silent> <C-p> <Cmd>call pum#map#select_relative(-1)<CR>
+    ino <silent> <expr> <CR>
+      \ pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<CR>'
+    ino <silent> <expr> <C-e>
+      \ pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' : '<C-e>'
+    ino <silent> <expr> <TAB>
+      \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<TAB>'
+    ino <silent> <expr> <S-TAB>
+      \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<S-TAB>'
+    ino <silent> <expr> <DOWN>
+      \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
+    ino <silent> <expr> <UP>
+      \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
+    if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
+        "" vim-lsp
+        nno <silent><nowait> <C-]>     :<C-u>LspDefinition<CR>
+        nno <silent><nowait> <leader>] :<C-u>LspDefinition<CR>
+        nno <silent><nowait> <leader>[ :<C-u>LspReferences<CR>
+        nno <silent><nowait> <leader>k :<C-u>LspHover<CR>
+        nno <silent><nowait> <leader>n :<C-u>LspNextDiagnostic<CR>
+        nno <silent><nowait> <leader>p :<C-u>LspPreviousDiagnostic<CR>
+        " nno <silent><nowait> <leader>r :<C-u>LspRename<CR>
+        nno <silent><nowait> <leader>l :<C-u>LspDocumentDiagnostics<CR>
+        nno <silent><nowait> <leader>h :<C-u>LspCodeAction<CR>
+    endif
+endf
+if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
+    call DdcMapping()
+endif
+nno          :     <Cmd>call DdcCommandlinePre()<CR>:
+nno          /     <Cmd>call DdcCommandlinePre()<CR>/
+cno <expr> <C-n>
+  \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
+cno <expr> <C-p>
+  \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
+cno <expr> <CR>
+  \ pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<CR>'
+cno <expr> <C-e>
+  \ pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' : '<C-e>'
+cno <expr> <TAB>
+  \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : ''
+cno <expr> <S-TAB>
+  \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : ''
+cno <expr> <DOWN>
+  \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
+cno <expr> <UP>
+  \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
+]])
 
 -- -- skkeleton
 keymap("i", "<C-j>", "<Plug>(skkeleton-enable)",  opts)
