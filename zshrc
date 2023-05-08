@@ -62,6 +62,7 @@ alias vin="$EDITOR --noplugin"
 alias vimdiff="$EDITOR -d"
 alias vide="$EDITOR -S ~/.config/nvim/ide.vim"
 alias vimrc="$EDITOR ~/dotfiles/nvim/init.vim ~/dotfiles/nvim/vimrc/*.vim"
+alias nvimrc="$EDITOR ~/dotfiles/nvim/**/*.lua"
 alias zshrc="$EDITOR ~/.zshrc;source ~/.zshrc"
 alias zprofile="$EDITOR ~/.zprofile;source ~/.zprofile"
 
