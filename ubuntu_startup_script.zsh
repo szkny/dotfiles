@@ -96,8 +96,9 @@ mkdir -p ~/.skk && cd ~/.skk
 wget https://skk-dev.github.io/dict/SKK-JISYO.L.gz && gunzip SKK-JISYO.L.gz
 cd ~
 
-## synbolic link for tmux
+## tmux
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # ## zplug
 # curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
