@@ -90,13 +90,27 @@ let g:splitterm_auto_close_window = 1
 "" fzf.vim
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
-let $FZF_DEFAULT_COMMAND =  'find * -path "*/\.*" -prune -o -path "node_modules/**" -prune -o -path "target/**" -prune -o -path "dist/**" -prune -o  -type f -print -o -type l -print 2> /dev/null'
-let $FZF_DEFAULT_OPTS="--reverse --bind ctrl-j:preview-down,ctrl-k:preview-up"
+" The Silver Searcher
+lua if vim.fn.executable('ag') then
+  \     vim.api.nvim_set_var('$FZF_DEFAULT_COMMAND' , 'ag --hidden --ignore .git -g ""')
+  \     vim.opt.grepprg = 'ag --nogroup --nocolor'
+  \ end
+lua if vim.fn.executable('rg') then
+  \     vim.api.nvim_set_var('$FZF_DEFAULT_COMMAND' , 'rg --files --hidden --follow --glob "!.git/*"')
+  \     vim.opt.grepprg = 'rg --vimgrep'
+  \     vim.api.nvim_create_user_command("Find",
+  \         "call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob \"!.git/*\" --color \"always\" '.shellescape(<q-args>).'| tr -d \"\\017\"', 1, <bang>0)",
+  \         { bang = true, nargs = '*' }
+  \     )
+  \ end
+lua vim.api.nvim_set_var('$FZF_DEFAULT_OPTS' , '--reverse --bind ctrl-j:preview-down,ctrl-k:preview-up')
+lua vim.api.nvim_create_user_command("Files",
+  \     "call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)",
+  \     { bang = true, nargs = '?' }
+  \ )
 " let g:fzf_layout = { 'window': 'enew' }
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 let g:fzf_preview_window = ['right,50%,<70(down,60%)', 'ctrl-/']
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 let g:fzf_colors =
 \ { 'fg':         ['fg', 'FzfNormal'],
 \   'bg':         ['bg', 'FzfNormal'],
@@ -1271,7 +1285,7 @@ lua require('bufferline').setup {
   \ }
 
 
-"" nvim-scrollbar  " TODO
+"" nvim-scrollbar
 lua require("scrollbar").setup({
   \   show = true,
   \   show_in_active_only = true,

@@ -1,0 +1,73 @@
+-- *****************************************************************************
+--   Autocmd Rules
+-- *****************************************************************************
+-- -- IME
+-- if has('mac')
+--   let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102"'
+--   aug MyIMEGroup
+--     au!
+--     au InsertLeave * :call system(g:imeoff)
+--   aug END
+-- endif
+--
+-- -- The PC is fast enough, do syntax highlight syncing from start unless 200 lines
+-- aug vimrc_sync_fromstart
+--     au!
+--     au BufEnter * :syntax sync maxlines=200
+-- aug END
+--
+-- -- Remember cursor position
+-- aug vimrc_remember_cursor_position
+--     au!
+--     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+-- aug END
+--
+-- -- txt
+-- aug vimrc_wrapping
+--     au!
+--     au BufRead,BufNewFile *.txt setlocal wrap wrapmargin=2 textwidth=79
+-- aug END
+--
+-- -- make/cmake
+-- aug vimrc_make_cmake
+--     au!
+--     au FileType make setlocal noexpandtab
+--     au BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
+-- aug END
+--
+-- -- Disable visualbell
+-- set noerrorbells visualbell t_vb=
+-- aug visualbell
+--     au GUIEnter * set visualbell t_vb=
+-- aug END
+--
+-- -- for CRLF
+-- fun! s:Applycrlfff() abort
+--     try
+--         call execute("/\\v\r$")
+--         edit ++ff=dos
+--     catch
+--     endtry
+-- endf
+-- aug applycrlffileformat
+--     au!
+--     au BufReadPost * call s:Applycrlfff()
+-- aug END
+
+-- *****************************************************************************
+--   Custom configs
+-- *****************************************************************************
+-- -- c/cpp
+-- aug vimrc_c_cpp
+--     au!
+--     au FileType c,cpp setlocal tabstop=4 shiftwidth=4 expandtab
+-- aug END
+--
+-- -- javascript/typescript
+-- aug vimrc_js_ts
+--     au!
+--     au BufNewFile,BufRead *.cjs,*.mjs setfiletype javascript
+--     au BufNewFile,BufRead *.tsx setfiletype typescript
+--     au FileType javascript,typescript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+-- aug END
+
