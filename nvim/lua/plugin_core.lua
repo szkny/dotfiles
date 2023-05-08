@@ -17,8 +17,12 @@ vim.opt.runtimepath:prepend(lazypath)
 -- *****************************************************************************
 --   Install plugins
 -- *****************************************************************************
+opts = {
+    -- lazy = true
+}
 plugins = {
-    'tomtom/tcomment_vim',
+    'nvim-tree/nvim-web-devicons',
+    'numToStr/Comment.nvim',
     'kevinhwang91/rnvimr',
     'tpope/vim-fugitive',
     'lewis6991/gitsigns.nvim',
@@ -29,7 +33,6 @@ plugins = {
     'kevinhwang91/nvim-hlslens',
     'liuchengxu/vista.vim',
     'dstein64/vim-startuptime',
-    'nvim-tree/nvim-web-devicons',
     'nvim-lualine/lualine.nvim',
     'wfxr/minimap.vim',
     'petertriho/nvim-scrollbar',
@@ -72,5 +75,5 @@ plugins = {
     'pearofducks/ansible-vim',
 }
 
-require("lazy").setup(plugins)
+require("lazy").setup(plugins, opts)
 

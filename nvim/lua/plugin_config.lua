@@ -1313,12 +1313,31 @@ vim.cmd([[
 -- let g:VM_maps["Select Cursor Up"]   = '<M-C-Up>'   " start selecting up
 
 
--- tcomment_vim
-vim.cmd([[
-    if !exists('g:tcomment_types')
-        let g:tcomment_types = {}
-    endif
-]])
+-- Comment.nvim
+require('Comment').setup({
+    padding = true,
+    sticky = true,
+    ignore = nil,
+    toggler = {
+        line = 'gcc',
+        block = 'gbc',
+    },
+    opleader = {
+        line = 'gc',
+        block = 'gb',
+    },
+    extra = {
+        above = 'gcO',
+        below = 'gco',
+        eol = 'gcA',
+    },
+    mappings = {
+        basic = true,
+        extra = true,
+    },
+})
+vim.api.nvim_set_keymap('n', '<C-_>', 'gcc', {})
+vim.api.nvim_set_keymap('v', '<C-_>', 'gc',  {})
 
 
 -- vim-colorizer.lua

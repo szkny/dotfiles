@@ -173,9 +173,6 @@ keymap("n", "ｄｄ", "dd", opts)
 keymap("n", "ｙｙ", "yy", opts)
 
 -- for Plugins
--- -- tcomment
-keymap("n", "<C-/>",      ":TComment<CR>",            opts)
-keymap("v", "<C-/>",      ":TComment<CR>",            opts)
 -- -- vim-easy-align
 keymap("v", "<Leader>=",  ":EasyAlign *=<CR>",        opts)
 keymap("v", "<Enter>",    "<Plug>(EasyAlign)",        opts)
