@@ -159,24 +159,24 @@ filetype plugin indent on
 "*****************************************************************************
 "" Ignore default plugins
 "*****************************************************************************
-let g:did_install_default_menus = 1
-let g:did_install_syntax_menu   = 1
-let g:did_indent_on             = 1
-let g:did_load_filetypes        = 1
-let g:did_load_ftplugin         = 1
-let g:loaded_2html_plugin       = 1
-let g:loaded_gzip               = 1
-let g:loaded_man                = 1
-let g:loaded_matchit            = 1
-let g:loaded_matchparen         = 1
-let g:loaded_netrwPlugin        = 1
-let g:loaded_remote_plugins     = 1
-let g:loaded_shada_plugin       = 1
-let g:loaded_spellfile_plugin   = 1
-let g:loaded_tarPlugin          = 1
-let g:loaded_tutor_mode_plugin  = 1
-let g:loaded_zipPlugin          = 1
-let g:skip_loading_mswin        = 1
+lua vim.api.nvim_set_var('did_install_default_menus' , 1)
+lua vim.api.nvim_set_var('did_install_syntax_menu'   , 1)
+lua vim.api.nvim_set_var('did_indent_on'             , 1)
+lua vim.api.nvim_set_var('did_load_filetypes'        , 1)
+lua vim.api.nvim_set_var('did_load_ftplugin'         , 1)
+lua vim.api.nvim_set_var('loaded_2html_plugin'       , 1)
+lua vim.api.nvim_set_var('loaded_gzip'               , 1)
+lua vim.api.nvim_set_var('loaded_man'                , 1)
+lua vim.api.nvim_set_var('loaded_matchit'            , 1)
+lua vim.api.nvim_set_var('loaded_matchparen'         , 1)
+lua vim.api.nvim_set_var('loaded_netrwPlugin'        , 1)
+lua vim.api.nvim_set_var('loaded_remote_plugins'     , 1)
+lua vim.api.nvim_set_var('loaded_shada_plugin'       , 1)
+lua vim.api.nvim_set_var('loaded_spellfile_plugin'   , 1)
+lua vim.api.nvim_set_var('loaded_tarPlugin'          , 1)
+lua vim.api.nvim_set_var('loaded_tutor_mode_plugin'  , 1)
+lua vim.api.nvim_set_var('loaded_zipPlugin'          , 1)
+lua vim.api.nvim_set_var('skip_loading_mswin'        , 1)
 
 "*****************************************************************************
 "" Basic Setup
@@ -403,22 +403,6 @@ aug vimrc_make_cmake
     au BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
 aug END
 
-" The Silver Searcher
-if executable('ag')
-    let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
-    set grepprg=ag\ --nogroup\ --nocolor
-endif
-
-" ripgrep
-if executable('rg')
-    let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-    set grepprg=rg\ --vimgrep
-    command! -bang -nargs=* Find call fzf#vim#grep(
-                \'rg --column --line-number --no-heading --fixed-strings --ignore-case '
-                \.'--hidden --follow --glob "!.git/*" --color "always" '
-                \.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-endif
-
 " Disable visualbell
 set noerrorbells visualbell t_vb=
 aug visualbell
@@ -459,8 +443,8 @@ aug END
 "*****************************************************************************
 "" Include user's local vim config
 "*****************************************************************************
-set runtimepath+=~/.config/nvim
-ru! vimrc/*.vim
+lua vim.api.nvim_command('set runtimepath+=~/.config/nvim')
+lua vim.api.nvim_command('ru! vimrc/*.vim')
 command! Vimrc silent e ~/dotfiles/nvim
 command! Reload silent source ~/.config/nvim/init.vim
 
