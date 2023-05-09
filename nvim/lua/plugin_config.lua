@@ -2,6 +2,32 @@
 --   Plugin Configuration
 -- *****************************************************************************
 
+-- nvim-web-devicons
+require'nvim-web-devicons'.setup {
+ override_by_extension = {
+  ["log"] = {
+    icon = "",
+    color = "#81e043",
+    name = "Log"
+  },
+  ["txt"] = {
+    icon = "",
+    color = "#81e043",
+    name = "Text"
+  },
+  ["csv"] = {
+    icon = "",
+    color = "#81e043",
+    name = "Csv"
+  },
+  ["tsv"] = {
+    icon = "",
+    color = "#81e043",
+    name = "Tsv"
+  }
+ },
+}
+
 -- nvim-notify
 --   stages = "fade_in_slide_out",
 --   stages = "fade",
