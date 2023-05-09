@@ -47,13 +47,8 @@ vim.api.nvim_set_var('coc_global_extensions', {
 
 -- for ansible yaml
 vim.cmd([[
-    let g:coc_filetype_map = {
-      \ 'yaml.ansible': 'ansible',
-      \ }
+    let g:coc_filetype_map = { 'yaml.ansible': 'ansible' }
 ]])
--- vim.api.nvim_set_var('coc_filetype_map', {
---     yaml.ansible = 'ansible',
--- }
 
 vim.cmd([[
     fun! CheckBackspace() abort

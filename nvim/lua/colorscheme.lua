@@ -24,5 +24,4 @@ vim.cmd([[
     aug END
 ]])
 
--- vim.cmd('colorscheme desert')
 vim.cmd('colorscheme codedark')
