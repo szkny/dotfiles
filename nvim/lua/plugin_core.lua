@@ -71,7 +71,7 @@ plugins = {
     'raimon49/requirements.txt.vim',
     { 'cespare/vim-toml', ft = 'toml' },
     { 'posva/vim-vue', ft = 'vue' },
-    { 'hashivim/vim-terraform', ft = 'terraform' },
+    'hashivim/vim-terraform',
     'pearofducks/ansible-vim',
 }
 
