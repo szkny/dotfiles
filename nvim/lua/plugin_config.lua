@@ -632,40 +632,29 @@ require('nvim-treesitter.configs').setup {
 }
 
 
-if vim.fn.has('wsl') then
-    -- indent-blankline.nvim
-    vim.cmd([[
-        let g:indent_blankline_char                       = '│'
-        let g:indent_blankline_context_char               = '┃'
-        let g:indent_blankline_space_char_blankline       = ' '
-        let g:indent_blankline_use_treesitter             = v:true
-        let g:indent_blankline_indent_level               = 30
-        let g:indent_blankline_max_indent_increase        = g:indent_blankline_indent_level
-        let g:indent_blankline_show_first_indent_level    = v:true
-        let g:indent_blankline_show_current_context_start = v:true
-        let g:indent_blankline_filetype_exclude           = ['terminal', 'help', 'fzf', 'vista_kind', 'NvimTree', 'mason', 'rnvimr']
-        let g:indent_blankline_bufname_exclude            = ['README.md']
-        let g:indent_blankline_disable_with_nolist        = v:true
-        lua require("indent_blankline").setup {
-            \   show_current_context = true,
-            \   show_current_context_start = true,
-            \ }
-        hi IndentBlanklineChar               gui=nocombine guifg=#3a3a3a
-        hi IndentBlanklineContextChar        gui=bold      guifg=#606060
-        " hi IndentBlanklineContextStart       gui=bold
-        hi IndentBlanklineSpaceChar          gui=nocombine guifg=#3a3a3a
-        hi IndentBlanklineSpaceCharBlankline gui=nocombine guifg=#3a3a3a
-    ]])
-else
-    -- indentline
-    vim.cmd([[
-        let g:indentLine_enabled         = 1
-        let g:indentLine_char            = '│'
-        let g:indentLine_concealcursor   = 'inc'
-        let g:indentLine_conceallevel    = 2
-        let g:indentLine_fileTypeExclude = ['json', 'terminal', 'help', 'fzf', 'vista_kind', 'NvimTree', 'mason', 'rnvimr']
-    ]])
-end
+-- indent-blankline.nvim
+vim.cmd([[
+    let g:indent_blankline_char                       = '│'
+    let g:indent_blankline_context_char               = '┃'
+    let g:indent_blankline_space_char_blankline       = ' '
+    let g:indent_blankline_use_treesitter             = v:true
+    let g:indent_blankline_indent_level               = 30
+    let g:indent_blankline_max_indent_increase        = g:indent_blankline_indent_level
+    let g:indent_blankline_show_first_indent_level    = v:true
+    let g:indent_blankline_show_current_context_start = v:true
+    let g:indent_blankline_filetype_exclude           = ['terminal', 'help', 'fzf', 'vista_kind', 'NvimTree', 'mason', 'rnvimr']
+    let g:indent_blankline_bufname_exclude            = ['README.md']
+    let g:indent_blankline_disable_with_nolist        = v:true
+    lua require("indent_blankline").setup {
+        \   show_current_context = true,
+        \   show_current_context_start = true,
+        \ }
+    hi IndentBlanklineChar               gui=nocombine guifg=#3a3a3a
+    hi IndentBlanklineContextChar        gui=bold      guifg=#606060
+    " hi IndentBlanklineContextStart       gui=bold
+    hi IndentBlanklineSpaceChar          gui=nocombine guifg=#3a3a3a
+    hi IndentBlanklineSpaceCharBlankline gui=nocombine guifg=#3a3a3a
+]])
 
 
 -- lualine.nvim

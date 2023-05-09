@@ -7,12 +7,12 @@ if not vim.loop.fs_stat(lazypath) then
     "git",
     "clone",
     "--filter=blob:none",
-    "--single-branch",
     "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
     lazypath,
   })
 end
-vim.opt.runtimepath:prepend(lazypath)
+vim.opt.rtp:prepend(lazypath)
 
 -- *****************************************************************************
 --   Install plugins
@@ -23,6 +23,7 @@ options = {
     }
 }
 plugins = {
+    'nvim-tree/nvim-web-devicons',
     'numToStr/Comment.nvim',
     'kevinhwang91/rnvimr',
     'tpope/vim-fugitive',
@@ -43,8 +44,10 @@ plugins = {
     'lukas-reineke/indent-blankline.nvim',
     'tomasiser/vim-code-dark',
     'tpope/vim-fugitive',
-    'nvim-tree/nvim-web-devicons',
-	"nvim-tree/nvim-tree.lua", 
+    {
+        'nvim-tree/nvim-tree.lua',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+    },
     'szkny/SplitTerm',
     'MunifTanjim/nui.nvim',
     'rcarriga/nvim-notify',
