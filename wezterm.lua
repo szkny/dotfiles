@@ -6,12 +6,16 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
+
+-- base
 config.default_prog = { "wsl.exe", "--cd", "~", "--exec", "/usr/bin/zsh", "-l" }
+
 
 -- font
 config.font = wezterm.font("HackGen Console NFJ", { weight="Regular", stretch="Normal", italic=false })
 config.font_size = 12.0
 config.adjust_window_size_when_changing_font_size = false
+
 
 -- color
 config.colors = {
@@ -21,6 +25,7 @@ config.colors = {
 } 
 config.color_scheme = "Tomorrow (dark) (terminal.sexy)"
 
+
 -- window
 config.window_background_opacity = 0.95
 config.text_background_opacity = 1.00
@@ -29,6 +34,11 @@ config.text_background_opacity = 1.00
 config.initial_rows = 50
 config.initial_cols = 150
 config.window_decorations = "RESIZE"
+window_padding = {
+    left = 3, right = 3,
+    top = 3, bottom = 3,
+}
+
 
 -- tab bar
 config.enable_tab_bar = true
@@ -38,26 +48,75 @@ config.window_frame = {
   active_titlebar_bg = '#1f1f1f',
   inactive_titlebar_bg = '#1f1f1f',
 }
-wezterm.on(
-  'format-tab-title',
-  function(tab, tabs, panes, config, hover, max_width)
-    local title = tab.tab_title
-    if not ( title and #title > 0 ) then
-        -- title = tab.active_pane.title
-        title = ' wsl '
-    end
-    if tab.is_active then
-      return {
-        { Background = { Color = '#333333' } },
-        { Text = ' ' .. title .. ' ' },
-      }
-    end
+-- wezterm.on(
+--   'format-tab-title',
+--   function(tab, tabs, panes, config, hover, max_width)
+--     local title = tab.tab_title
+--     if not ( title and #title > 0 ) then
+--         -- title = tab.active_pane.title
+--         title = ' wsl '
+--     end
+--     if tab.is_active then
+--       return {
+--         { Background = { Color = '#333333' } },
+--         { Text = ' ' .. title .. ' ' },
+--       }
+--     end
+--     return {
+--       { Background = { Color = '#1f1f1f' } },
+--       { Text = ' ' .. title .. ' ' },
+--     }
+--   end
+-- )
+-- local tab_title = function(tab_info)
+--   local title = tab_info.tab_title
+--   if title and #title > 0 then
+--     return title
+--   end
+--   return tab_info.active_pane.title
+-- end
+wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
+  local mux_window = wzt.mux.get_window(tab.window_id)
+  local mux_tab = mux_window:active_tab()
+  local mux_tab_cols = mux_tab:get_size().cols
+  local tab_count = #tabs
+  local inactive_tab_cols = math.floor(mux_tab_cols / tab_count)
+  local active_tab_cols = mux_tab_cols - (tab_count - 1) * inactive_tab_cols
+  local title = tab_title(tab)
+  title = ' ' .. title .. ' '
+  local title_cols = wzt.column_width(title)
+  local icon = ' ⦿'
+  local icon_cols = wzt.column_width(icon)
+  if tab.is_active then
+    local rest_cols = math.max(active_tab_cols - title_cols, 0)
+    local right_cols = math.ceil(rest_cols / 2)
+    local left_cols = rest_cols - right_cols
     return {
-      { Background = { Color = '#1f1f1f' } },
-      { Text = ' ' .. title .. ' ' },
+      -- left
+      { Foreground = { Color = 'Fuchsia' } },
+      { Text = wzt.pad_right(icon, left_cols) },
+      -- center
+      { Foreground = { Color = '#46BDFF' } },
+      { Attribute = { Italic = true } },
+      { Text = title },
+      -- right
+      { Text = wzt.pad_right('', right_cols) },
+    }
+  else
+    local rest_cols = math.max(inactive_tab_cols - title_cols, 0)
+    local right_cols = math.ceil(rest_cols / 2)
+    local left_cols = rest_cols - right_cols
+    return {
+      -- left
+      { Text = wzt.pad_right('', left_cols) },
+      -- center
+      { Attribute = { Italic = true } },
+      { Text = title },
+      -- right
+      { Text = wzt.pad_right('', right_cols) },
     }
   end
-)
+end
 -- local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_right_half_circle_thick
 -- local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_right_half_circle_thick
 -- config.tab_bar_style = {
@@ -117,6 +176,7 @@ config.tab_bar_style = {
 --     fg_color = "#c6c8d1",
 -- }
 
+
 -- key bindings
 config.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
@@ -138,6 +198,7 @@ config.keys = {
   },
 }
 
+
 -- notifications
 config.audible_bell = "Disabled"
 config.visual_bell = {
@@ -147,5 +208,6 @@ config.visual_bell = {
   fade_out_duration_ms = 150,
 }
 config.colors.visual_bell = '#aaaaaa'
+
 
 return config
