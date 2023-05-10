@@ -117,6 +117,27 @@ config.tab_bar_style = {
 --     fg_color = "#c6c8d1",
 -- }
 
+-- key bindings
+config.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 1000 }
+config.keys = {
+  {
+    key = 'v',
+    mods = 'LEADER',
+    action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+  },
+  {
+    key = 's',
+    mods = 'LEADER',
+    action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+  },
+  -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
+  {
+    key = 'q',
+    mods = 'LEADER|CTRL',
+    action = wezterm.action.SendString '\x01',
+  },
+}
+
 -- notifications
 config.audible_bell = "Disabled"
 config.visual_bell = {
@@ -125,6 +146,6 @@ config.visual_bell = {
   fade_out_function = 'EaseOut',
   fade_out_duration_ms = 150,
 }
-config.colors.visual_bell = '#202020'
+config.colors.visual_bell = '#aaaaaa'
 
 return config
