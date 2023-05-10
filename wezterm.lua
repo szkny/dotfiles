@@ -25,6 +25,7 @@ config.color_scheme = "Tomorrow (dark) (terminal.sexy)"
 config.window_background_opacity = 0.95
 config.text_background_opacity = 1.00
 -- config.win32_system_backdrop = "Acrylic"
+-- config.win32_acrylic_accent_color = "#ffffff"
 config.initial_rows = 50
 config.initial_cols = 150
 config.window_decorations = "RESIZE"
