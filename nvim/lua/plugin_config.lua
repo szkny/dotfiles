@@ -1153,7 +1153,7 @@ require("scrollbar").setup({
     },
   },
   handlers = {
-      cursor = true,
+      cursor = false,
       handle = true,
       diagnostic = true,
       gitsigns = true,
