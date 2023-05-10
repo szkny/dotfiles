@@ -58,30 +58,64 @@ wezterm.on(
     }
   end
 )
-local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_right_half_circle_thick
-local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_right_half_circle_thick
+-- local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_right_half_circle_thick
+-- local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_right_half_circle_thick
+-- config.tab_bar_style = {
+--   active_tab_left = wezterm.format {
+--     { Background = { Color = '#1f1f1f' } },
+--     { Foreground = { Color = '#333333' } },
+--     { Text = SOLID_LEFT_ARROW },
+--   },
+--   active_tab_right = wezterm.format {
+--     { Background = { Color = '#1f1f1f' } },
+--     { Foreground = { Color = '#333333' } },
+--     { Text = SOLID_RIGHT_ARROW },
+--   },
+--   inactive_tab_left = wezterm.format {
+--     { Background = { Color = '#1f1f1f' } },
+--     { Foreground = { Color = '#1f1f1f' } },
+--     { Text = SOLID_LEFT_ARROW },
+--   },
+--   inactive_tab_right = wezterm.format {
+--     { Background = { Color = '#1f1f1f' } },
+--     { Foreground = { Color = '#1f1f1f' } },
+--     { Text = SOLID_RIGHT_ARROW },
+--   },
+--   new_tab = wezterm.format {
+--     { Background = { Color = '#1f1f1f' } },
+--   },
+-- }
+local SOLID_LEFT_ARROW = " "
+local SOLID_RIGHT_ARROW = " "
 config.tab_bar_style = {
   active_tab_left = wezterm.format {
-    { Background = { Color = '#1f1f1f' } },
-    { Foreground = { Color = '#333333' } },
+    { Foreground = { Color = '#1f1f1f' } },
+    { Background = { Color = '#333333' } },
     { Text = SOLID_LEFT_ARROW },
   },
   active_tab_right = wezterm.format {
-    { Background = { Color = '#1f1f1f' } },
-    { Foreground = { Color = '#333333' } },
+    { Foreground = { Color = '#1f1f1f' } },
+    { Background = { Color = '#333333' } },
     { Text = SOLID_RIGHT_ARROW },
   },
   inactive_tab_left = wezterm.format {
-    { Background = { Color = '#1f1f1f' } },
     { Foreground = { Color = '#1f1f1f' } },
+    { Background = { Color = '#1f1f1f' } },
     { Text = SOLID_LEFT_ARROW },
   },
   inactive_tab_right = wezterm.format {
-    { Background = { Color = '#1f1f1f' } },
     { Foreground = { Color = '#1f1f1f' } },
+    { Background = { Color = '#1f1f1f' } },
     { Text = SOLID_RIGHT_ARROW },
   },
+  new_tab = wezterm.format {
+    { Background = { Color = '#1f1f1f' } },
+  },
 }
+-- colors.tab_bar.new_tab = {
+--     bg_color = "#1f1f1f",
+--     fg_color = "#c6c8d1",
+-- }
 
 -- notifications
 config.audible_bell = "Disabled"
