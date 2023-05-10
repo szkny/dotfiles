@@ -1,8 +1,8 @@
 # TODO list
 
 - neovim
-  - init.vim → init.lua
-    - vim-plug → packer.nvim
+  - init.vim → init.lua : WIP
+    - vim-plug → lazy.nvim : DONE
     - LSP
       - tweak ddc.vim
         - snippet

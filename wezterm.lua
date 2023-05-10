@@ -16,7 +16,7 @@ config.adjust_window_size_when_changing_font_size = false
 -- color
 config.colors = {
   cursor_bg = '#ffffff',
-  cursor_fg = 'black',
+  cursor_fg = '#000000',
   cursor_border = '#ffffff',
 } 
 config.color_scheme = "Tomorrow (dark) (terminal.sexy)"
@@ -29,15 +29,15 @@ config.text_background_opacity = 1.00
 config.initial_rows = 50
 config.initial_cols = 150
 config.window_decorations = "RESIZE"
+
+-- tab bar
+config.enable_tab_bar = true
+config.hide_tab_bar_if_only_one_tab = false
 config.window_frame = {
   font_size = 8.0,
   active_titlebar_bg = '#1f1f1f',
   inactive_titlebar_bg = '#1f1f1f',
 }
-
--- tab
-config.enable_tab_bar = true
-config.hide_tab_bar_if_only_one_tab = false
 wezterm.on(
   'format-tab-title',
   function(tab, tabs, panes, config, hover, max_width)
@@ -58,6 +58,30 @@ wezterm.on(
     }
   end
 )
+local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_right_half_circle_thick
+local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_right_half_circle_thick
+config.tab_bar_style = {
+  active_tab_left = wezterm.format {
+    { Background = { Color = '#1f1f1f' } },
+    { Foreground = { Color = '#333333' } },
+    { Text = SOLID_LEFT_ARROW },
+  },
+  active_tab_right = wezterm.format {
+    { Background = { Color = '#1f1f1f' } },
+    { Foreground = { Color = '#333333' } },
+    { Text = SOLID_RIGHT_ARROW },
+  },
+  inactive_tab_left = wezterm.format {
+    { Background = { Color = '#1f1f1f' } },
+    { Foreground = { Color = '#1f1f1f' } },
+    { Text = SOLID_LEFT_ARROW },
+  },
+  inactive_tab_right = wezterm.format {
+    { Background = { Color = '#1f1f1f' } },
+    { Foreground = { Color = '#1f1f1f' } },
+    { Text = SOLID_RIGHT_ARROW },
+  },
+}
 
 -- notifications
 config.audible_bell = "Disabled"
