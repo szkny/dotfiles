@@ -149,7 +149,7 @@ vim.cmd([[
     \   'preview-fg': ['fg', 'FzfPreview'],
     \   'preview-bg': ['bg', 'FzfPreview']}
     hi link FzfNormal Normal
-    hi FzfNormal                   guibg=#383838 
+    hi FzfNormal                   guibg=#2a2a2a 
     hi FzfCursorLine guifg=#ffffff guibg=#5e5e5e 
     hi FzfPreview                  guibg=none 
 ]])
@@ -1368,5 +1368,5 @@ vim.cmd([[
                 \ 'row':    float2nr(round(0.05 * &lines)),
                 \ 'style': 'minimal'
                 \ }
-    hi RnvimrCurses guibg=#383838
+    hi RnvimrCurses guibg=#2a2a2a
 ]])
