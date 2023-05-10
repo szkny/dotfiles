@@ -10,3 +10,6 @@
       - basic setup for mason.nvim
   - hlslens.nvim
     - \* command
+
+- wezterm
+  - transparent tab bar
