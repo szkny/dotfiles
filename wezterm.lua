@@ -142,11 +142,11 @@ config.keys = {
 config.audible_bell = "Disabled"
 config.visual_bell = {
   fade_in_function = 'EaseIn',
-  fade_in_duration_ms = 50,
+  fade_in_duration_ms = 100,
   fade_out_function = 'EaseOut',
-  fade_out_duration_ms = 50,
+  fade_out_duration_ms = 350,
 }
-config.colors.visual_bell = '#333333'
+config.colors.visual_bell = '#444444'
 
 
 return config
