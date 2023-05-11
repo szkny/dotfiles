@@ -44,7 +44,7 @@ window_padding = {
 config.enable_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = false
 config.window_frame = {
-  font_size = 8.0,
+  font_size = 6.0,
   active_titlebar_bg = '#1f1f1f',
   inactive_titlebar_bg = '#1f1f1f',
 }
@@ -54,7 +54,7 @@ wezterm.on(
     local title = tab.tab_title
     if not ( title and #title > 0 ) then
         -- title = tab.active_pane.title
-        title = ' wsl '
+        title = ' ' .. wezterm.nerdfonts.cod_terminal_ubuntu .. ' '
     end
     if tab.is_active then
       return {
@@ -68,10 +68,11 @@ wezterm.on(
     }
   end
 )
-config.colors.tab_bar = {}
-config.colors.tab_bar.new_tab = {
-    bg_color = "#1f1f1f",
-    fg_color = "#c6c8d1",
+config.colors.tab_bar = {
+    new_tab = {
+        bg_color = "#1f1f1f",
+        fg_color = "#c6c8d1",
+    }
 }
 
 
@@ -87,6 +88,26 @@ config.keys = {
     key = 's',
     mods = 'LEADER',
     action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+  },
+  {
+    key = 'K',
+    mods = 'CTRL',
+    action = wezterm.action.AdjustPaneSize {"Up", 1}
+  },
+  {
+    key = 'J',
+    mods = 'CTRL',
+    action = wezterm.action.AdjustPaneSize {"Down", 1}
+  },
+  {
+    key = 'L',
+    mods = 'CTRL',
+    action = wezterm.action.AdjustPaneSize {"Right", 1}
+  },
+  {
+    key = 'H',
+    mods = 'CTRL',
+    action = wezterm.action.AdjustPaneSize {"Left", 1}
   },
   {
     key = 'k',
