@@ -48,133 +48,31 @@ config.window_frame = {
   active_titlebar_bg = '#1f1f1f',
   inactive_titlebar_bg = '#1f1f1f',
 }
--- wezterm.on(
---   'format-tab-title',
---   function(tab, tabs, panes, config, hover, max_width)
---     local title = tab.tab_title
---     if not ( title and #title > 0 ) then
---         -- title = tab.active_pane.title
---         title = ' wsl '
---     end
---     if tab.is_active then
---       return {
---         { Background = { Color = '#333333' } },
---         { Text = ' ' .. title .. ' ' },
---       }
---     end
---     return {
---       { Background = { Color = '#1f1f1f' } },
---       { Text = ' ' .. title .. ' ' },
---     }
---   end
--- )
--- local tab_title = function(tab_info)
---   local title = tab_info.tab_title
---   if title and #title > 0 then
---     return title
---   end
---   return tab_info.active_pane.title
--- end
-wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
-  local mux_window = wzt.mux.get_window(tab.window_id)
-  local mux_tab = mux_window:active_tab()
-  local mux_tab_cols = mux_tab:get_size().cols
-  local tab_count = #tabs
-  local inactive_tab_cols = math.floor(mux_tab_cols / tab_count)
-  local active_tab_cols = mux_tab_cols - (tab_count - 1) * inactive_tab_cols
-  local title = tab_title(tab)
-  title = ' ' .. title .. ' '
-  local title_cols = wzt.column_width(title)
-  local icon = ' ⦿'
-  local icon_cols = wzt.column_width(icon)
-  if tab.is_active then
-    local rest_cols = math.max(active_tab_cols - title_cols, 0)
-    local right_cols = math.ceil(rest_cols / 2)
-    local left_cols = rest_cols - right_cols
+wezterm.on(
+  'format-tab-title',
+  function(tab, tabs, panes, config, hover, max_width)
+    local title = tab.tab_title
+    if not ( title and #title > 0 ) then
+        -- title = tab.active_pane.title
+        title = ' wsl '
+    end
+    if tab.is_active then
+      return {
+        { Background = { Color = '#333333' } },
+        { Text = ' ' .. title .. ' ' },
+      }
+    end
     return {
-      -- left
-      { Foreground = { Color = 'Fuchsia' } },
-      { Text = wzt.pad_right(icon, left_cols) },
-      -- center
-      { Foreground = { Color = '#46BDFF' } },
-      { Attribute = { Italic = true } },
-      { Text = title },
-      -- right
-      { Text = wzt.pad_right('', right_cols) },
-    }
-  else
-    local rest_cols = math.max(inactive_tab_cols - title_cols, 0)
-    local right_cols = math.ceil(rest_cols / 2)
-    local left_cols = rest_cols - right_cols
-    return {
-      -- left
-      { Text = wzt.pad_right('', left_cols) },
-      -- center
-      { Attribute = { Italic = true } },
-      { Text = title },
-      -- right
-      { Text = wzt.pad_right('', right_cols) },
+      { Background = { Color = '#1f1f1f' } },
+      { Text = ' ' .. title .. ' ' },
     }
   end
-end
--- local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_right_half_circle_thick
--- local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_right_half_circle_thick
--- config.tab_bar_style = {
---   active_tab_left = wezterm.format {
---     { Background = { Color = '#1f1f1f' } },
---     { Foreground = { Color = '#333333' } },
---     { Text = SOLID_LEFT_ARROW },
---   },
---   active_tab_right = wezterm.format {
---     { Background = { Color = '#1f1f1f' } },
---     { Foreground = { Color = '#333333' } },
---     { Text = SOLID_RIGHT_ARROW },
---   },
---   inactive_tab_left = wezterm.format {
---     { Background = { Color = '#1f1f1f' } },
---     { Foreground = { Color = '#1f1f1f' } },
---     { Text = SOLID_LEFT_ARROW },
---   },
---   inactive_tab_right = wezterm.format {
---     { Background = { Color = '#1f1f1f' } },
---     { Foreground = { Color = '#1f1f1f' } },
---     { Text = SOLID_RIGHT_ARROW },
---   },
---   new_tab = wezterm.format {
---     { Background = { Color = '#1f1f1f' } },
---   },
--- }
-local SOLID_LEFT_ARROW = " "
-local SOLID_RIGHT_ARROW = " "
-config.tab_bar_style = {
-  active_tab_left = wezterm.format {
-    { Foreground = { Color = '#1f1f1f' } },
-    { Background = { Color = '#333333' } },
-    { Text = SOLID_LEFT_ARROW },
-  },
-  active_tab_right = wezterm.format {
-    { Foreground = { Color = '#1f1f1f' } },
-    { Background = { Color = '#333333' } },
-    { Text = SOLID_RIGHT_ARROW },
-  },
-  inactive_tab_left = wezterm.format {
-    { Foreground = { Color = '#1f1f1f' } },
-    { Background = { Color = '#1f1f1f' } },
-    { Text = SOLID_LEFT_ARROW },
-  },
-  inactive_tab_right = wezterm.format {
-    { Foreground = { Color = '#1f1f1f' } },
-    { Background = { Color = '#1f1f1f' } },
-    { Text = SOLID_RIGHT_ARROW },
-  },
-  new_tab = wezterm.format {
-    { Background = { Color = '#1f1f1f' } },
-  },
+)
+config.colors.tab_bar = {}
+config.colors.tab_bar.new_tab = {
+    bg_color = "#1f1f1f",
+    fg_color = "#c6c8d1",
 }
--- colors.tab_bar.new_tab = {
---     bg_color = "#1f1f1f",
---     fg_color = "#c6c8d1",
--- }
 
 
 -- key bindings
@@ -190,11 +88,31 @@ config.keys = {
     mods = 'LEADER',
     action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
   },
+  {
+    key = 'k',
+    mods = 'LEADER',
+    action = wezterm.action.ActivatePaneDirection "Up"
+  },
+  {
+    key = 'j',
+    mods = 'LEADER',
+    action = wezterm.action.ActivatePaneDirection "Down"
+  },
+  {
+    key = 'l',
+    mods = 'LEADER',
+    action = wezterm.action.ActivatePaneDirection "Right"
+  },
+  {
+    key = 'h',
+    mods = 'LEADER',
+    action = wezterm.action.ActivatePaneDirection "Left"
+  },
   -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
   {
     key = 'q',
     mods = 'LEADER|CTRL',
-    action = wezterm.action.SendString '\x01',
+    action = wezterm.action.SendString '\x11',
   },
 }
 
