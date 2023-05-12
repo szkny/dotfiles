@@ -168,6 +168,7 @@ function ssh-active-ec2-instances() {
         echo " $ sshrc $SSH_TARGET"
         sshrc $SSH_TARGET
     fi
+    return 0
 }
 
 ## fzf function
@@ -224,6 +225,9 @@ export FZF_DEFAULT_OPTS=$(cat <<"EOF"
   --multi
   --height=90%
   --layout=reverse
+  --prompt '∷ '
+  --pointer ▶
+  --marker ▶
   --preview '
       [ -f {} ] \
       && bat --color=always --style=numbers {} \
