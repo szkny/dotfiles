@@ -1346,12 +1346,12 @@ require('gitsigns').setup {
 }
 vim.cmd([[
     hi GitSignsAdd    gui=bold guifg=#00bb00
-    hi GitSignsChange gui=bold guifg=#cccc00
+    hi GitSignsChange gui=bold guifg=#aaaa00
     hi GitSignsDelete gui=bold guifg=#ff2222
     hi GitSignsCurrentLineBlame gui=none guifg=#777777
     hi DiffAdd    gui=none guifg=none guibg=#004400
     hi DiffChange gui=none guifg=none guibg=#3f3f00
-    hi Difftext   gui=none guifg=none guibg=#606000
+    hi Difftext   gui=none guifg=none guibg=#404000
     hi DiffDelete gui=none guifg=none guibg=#440000
 ]])
 
