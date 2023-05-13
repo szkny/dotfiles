@@ -176,6 +176,8 @@ keymap("n", "ｙｙ", "yy", opts)
 -- -- vim-easy-align
 keymap("v", "<Leader>=",  ":EasyAlign *=<CR>",        opts)
 keymap("v", "<Enter>",    "<Plug>(EasyAlign)",        opts)
+-- -- fuzzy-motion
+keymap("n", "<Leader>/",  ":FuzzyMotion<CR>",         opts)
 -- -- fzf.vim
 keymap("n", "<C-b>",      ":<C-u>Buffers<CR>",        opts)
 keymap("n", "<C-p>",      ":<C-u>Files<CR>",          opts)
