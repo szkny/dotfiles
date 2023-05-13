@@ -86,7 +86,6 @@ npm install -g neovim
 mkdir -p ~/.config/nvim
 ln -s ~/dotfiles/nvim/init.lua ~/.config/nvim/
 ln -s ~/dotfiles/nvim/lua ~/.config/nvim/
-nvim --headless +PlugInstall +qall
 # ### for coc-nvim
 ln -s ~/dotfiles/nvim/coc-settings.json ~/.config/nvim/
 # sudo apt install terraform-ls

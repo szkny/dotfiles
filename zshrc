@@ -63,6 +63,7 @@ alias vimdiff="$EDITOR -d"
 alias vide="$EDITOR -S ~/.config/nvim/ide.vim"
 alias vimrc="$EDITOR ~/dotfiles/nvim/init.vim ~/dotfiles/nvim/vimrc/*.vim"
 alias nvimrc="$EDITOR ~/dotfiles/nvim/**/*.lua"
+alias weztermconf="$EDITOR ~/dotfiles/wezterm.lua && cp ~/dotfiles/wezterm.lua ~/win_home/.wezterm.lua"
 alias zshrc="$EDITOR ~/.zshrc;source ~/.zshrc"
 alias zprofile="$EDITOR ~/.zprofile;source ~/.zprofile"
 
