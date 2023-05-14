@@ -1346,8 +1346,8 @@ vim.cmd([[
     hi GitSignsDelete gui=bold guifg=#ff2222
     hi GitSignsCurrentLineBlame gui=none guifg=#777777
     hi DiffAdd    gui=none guifg=none guibg=#004400
-    hi DiffChange gui=none guifg=none guibg=#3f3f00
-    hi Difftext   gui=none guifg=none guibg=#404000
+    hi DiffChange gui=none guifg=none guibg=#303000
+    hi Difftext   gui=none guifg=none guibg=#444400
     hi DiffDelete gui=none guifg=none guibg=#440000
 ]])
 
