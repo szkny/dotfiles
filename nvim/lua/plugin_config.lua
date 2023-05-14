@@ -35,9 +35,6 @@ require'nvim-web-devicons'.setup {
 --   render = "compact",
 require("notify").setup({
   stages = "fade",
-  on_open = nil,
-  on_close = nil,
-  keep = nil,
   render = "compact",
   background_colour = "#3e3e3e",
   timeout = 3000,
@@ -1222,7 +1219,6 @@ vim.cmd([[
 require('Comment').setup({
     padding = true,
     sticky = true,
-    ignore = nil,
     toggler = {
         line = 'gcc',
         block = 'gbc',
