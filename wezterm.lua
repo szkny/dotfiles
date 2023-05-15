@@ -82,32 +82,32 @@ config.keys = {
   {
     key = 'v',
     mods = 'LEADER',
-    action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+    action = wezterm.action.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
   },
   {
     key = 's',
     mods = 'LEADER',
-    action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+    action = wezterm.action.SplitVertical({ domain = 'CurrentPaneDomain' }),
   },
   {
     key = 'K',
     mods = 'CTRL',
-    action = wezterm.action.AdjustPaneSize {"Up", 1}
+    action = wezterm.action.AdjustPaneSize({"Up", 1})
   },
   {
     key = 'J',
     mods = 'CTRL',
-    action = wezterm.action.AdjustPaneSize {"Down", 1}
+    action = wezterm.action.AdjustPaneSize({"Down", 1})
   },
   {
     key = 'L',
     mods = 'CTRL',
-    action = wezterm.action.AdjustPaneSize {"Right", 1}
+    action = wezterm.action.AdjustPaneSize({"Right", 1})
   },
   {
     key = 'H',
     mods = 'CTRL',
-    action = wezterm.action.AdjustPaneSize {"Left", 1}
+    action = wezterm.action.AdjustPaneSize({"Left", 1})
   },
   {
     key = 'k',
@@ -128,6 +128,16 @@ config.keys = {
     key = 'h',
     mods = 'LEADER',
     action = wezterm.action.ActivatePaneDirection "Left"
+  },
+  {
+    key = 'c',
+    mods = 'LEADER',
+    action = wezterm.action.SpawnTab("CurrentPaneDomain")
+  },
+  {
+    key = 'x',
+    mods = 'LEADER',
+    action = wezterm.action.CloseCurrentTab({ confirm = true })
   },
   -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
   {
