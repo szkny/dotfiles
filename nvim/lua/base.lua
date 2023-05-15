@@ -105,6 +105,7 @@ vim.g.python3_host_prog = '~/.pyenv/shims/python3'
 
 -- conceal level
 vim.api.nvim_set_var('conceallevel', 0)
+vim.api.nvim_set_var('vim_json_syntax_conceal', 0)
 
 -- *****************************************************************************
 --   Visual Settings
