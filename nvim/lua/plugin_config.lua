@@ -103,7 +103,7 @@ require("noice").setup({
   },
 })
 vim.cmd([[
-    hi NoiceMini         guifg=#ffbb00 guibg=#000000
+    hi NoiceMini         guifg=#ffbb00 guibg=#383838
     hi NoiceCmdlinePopup               guibg=#383838
     hi NoiceConfirm                    guibg=#383838
 ]])
