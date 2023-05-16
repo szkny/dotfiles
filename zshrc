@@ -53,7 +53,6 @@ alias od='od -x'
 alias rsync='rsync -auvrz'
 alias kill='kill -9'
 alias gcam='git commit -am'
-alias dotfiles='cd ~/dotfiles'
 
 ## setup for vim
 export EDITOR='nvim'
@@ -139,6 +138,17 @@ function start-tmux(){
   # elif [[ $SHLVL -eq 1 && $tmux_count -gt 1 ]]; then
   #   tmux -u attach
   fi
+}
+function dotfiles(){
+  cd ~/dotfiles
+  echo
+  echo -n "run 'git pull'?(y/N): "
+  if read -q; then
+    echo
+    echo '> git pull'
+    git pull
+  fi
+  return 0
 }
 
 ## aws cli utility functions
