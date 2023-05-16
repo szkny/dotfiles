@@ -450,18 +450,7 @@ vim.cmd([[
     let g:vista_fzf_preview            = ['right,50%,<70(down,60%)']
     let g:vista_keep_fzf_colors        = 1
     let g:vista_fzf_opt                = ['--bind=ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up']
-    if get(g:, 'use_coc_nvim', 0) == 1
-        let g:vista_default_executive = 'coc'
-    endif
-    "" TODO: vim-lspを使った時にもvistaウィンドウでハイライトさせる
-    " let g:vista_default_executive = 'vim_lsp'
-    " let g:vista_executive_for = {
-    "     \ 'c': 'vim_lsp',
-    "     \ 'go': 'vim_lsp',
-    "     \ 'python': 'vim_lsp',
-    "     \ 'javascript': 'vim_lsp',
-    "     \ 'typescript': 'vim_lsp',
-    "     \ }
+    let g:vista_default_executive = 'coc'
     fun! VistaInit() abort
       try
         if &filetype != ''
@@ -471,9 +460,6 @@ vim.cmd([[
     endf
     au BufEnter * call VistaInit()
     hi link VistaFloat Pmenu
-    " hi VistaKind   guifg=
-    " hi VistaTag    guifg=
-    " hi VistaPublic guifg=
     hi VistaLineNr guifg=#777777
 ]])
 
