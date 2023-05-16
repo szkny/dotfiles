@@ -39,7 +39,7 @@ plugins = {
     'wfxr/minimap.vim',
     'petertriho/nvim-scrollbar',
     'akinsho/bufferline.nvim',
-    'norcalli/nvim-colorizer.lua',
+    'brenoprata10/nvim-highlight-colors',
     { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
     'lukas-reineke/indent-blankline.nvim',
     'tomasiser/vim-code-dark',

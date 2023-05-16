@@ -1230,23 +1230,11 @@ vim.api.nvim_set_keymap('n', '<C-_>', 'gcc', {})
 vim.api.nvim_set_keymap('v', '<C-_>', 'gc',  {})
 
 
--- vim-colorizer.lua
-require('colorizer').setup(
-  {
-    '*';
-  },
-  {
-    RGB      = true,
-    RRGGBB   = true,
-    names    = false,
-    RRGGBBAA = true,
-    rgb_fn   = true,
-    hsl_fn   = true,
-    css      = true,
-    css_fn   = true,
-    mode     = 'background',
-  }
-)
+-- nvim-highlight-colors
+require('nvim-highlight-colors').setup({
+    render = 'background',
+    enable_named_colors = true,
+})
 
 
 -- delimitmate
