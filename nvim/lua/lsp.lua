@@ -30,6 +30,7 @@ vim.api.nvim_set_var('coc_global_extensions', {
     'coc-pairs',
     'coc-snippets',
     'coc-vimlsp',
+    'coc-lua',
     'coc-prettier',
     'coc-tsserver',
     'coc-deno',

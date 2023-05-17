@@ -96,6 +96,16 @@
         ],
     },
 
+    // coc-lua
+    "Lua": {
+        "diagnostics": {
+            "globals": [
+                "vim",
+                "win_separator_fg"
+            ]
+        }
+    },
+
     // coc-json
     "json": {
         "enable": true,

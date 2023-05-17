@@ -47,10 +47,10 @@ vim.opt.expandtab = true
 vim.opt.hidden = true
 
 -- Searching
-vim.opt.hlsearch = ture
-vim.opt.incsearch = ture
-vim.opt.ignorecase = ture
-vim.opt.smartcase = ture
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 vim.opt.inccommand = 'nosplit'
 
 -- completion
