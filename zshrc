@@ -142,7 +142,7 @@ function start-tmux(){
 function dotfiles(){
   cd ~/dotfiles
   echo
-  echo -n "run 'git pull'?(y/N): "
+  echo -n "run 'git pull'? [y/N]: "
   if read -q; then
     echo
     echo '> git pull'
