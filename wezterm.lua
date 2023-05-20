@@ -22,7 +22,7 @@ config.colors = {
   cursor_bg = '#ffffff',
   cursor_fg = '#000000',
   cursor_border = '#ffffff',
-} 
+}
 config.color_scheme = "Tomorrow (dark) (terminal.sexy)"
 
 
@@ -34,7 +34,7 @@ config.text_background_opacity = 1.00
 config.initial_rows = 50
 config.initial_cols = 150
 config.window_decorations = "RESIZE"
-window_padding = {
+config.window_padding = {
     left = 3, right = 3,
     top = 3, bottom = 3,
 }
