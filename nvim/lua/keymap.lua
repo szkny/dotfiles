@@ -184,6 +184,16 @@ keymap("n", "<C-p>",      ":<C-u>Files<CR>",          opts)
 keymap("n", "<Leader>f",  ":<C-u>Lines<CR>",          opts)
 keymap("n", "<C-f>",      ":<C-u>Rg<CR>",             opts)
 keymap("v", "<C-f>",      ":<C-u>call VRgWord<CR>",   opts)
+vim.cmd([[
+fun! VRgWord() abort range
+    let @@ = ''
+    exe 'silent normal gvy'
+    if @@ !=# ''
+        let l:text = join(split(@@,'\n'))
+        silent exe 'Rg '.l:text
+    endif
+endf
+]])
 -- -- ranger.vim
 keymap("n", "<C-h>",      ":<C-u>RnvimrToggle<CR>",   opts)
 -- -- nvim-tree
