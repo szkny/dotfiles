@@ -1158,6 +1158,8 @@ vim.cmd([[
     hi ScrollbarWarnHandle      gui=bold guifg=#dddd00 guibg=#888888
     hi ScrollbarHint            gui=bold guifg=#5599dd
     hi ScrollbarHintHandle      gui=bold guifg=#5599dd guibg=#888888
+    hi ScrollbarInfo            gui=bold guifg=#ffffff
+    hi ScrollbarInfoHandle      gui=bold guifg=#ffffff guibg=#888888
     hi ScrollbarGitAdd          gui=none guifg=#00bb00
     hi ScrollbarGitAddHandle    gui=none guifg=#00bb00 guibg=#888888
     hi ScrollbarGitChange       gui=none guifg=#cccc00
