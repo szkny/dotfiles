@@ -17,12 +17,12 @@ vim.opt.rtp:prepend(lazypath)
 -- *****************************************************************************
 --   Install plugins
 -- *****************************************************************************
-options = {
+local options = {
     defaults = {
         lazy = false,
     }
 }
-plugins = {
+local plugins = {
     'nvim-tree/nvim-web-devicons',
     'numToStr/Comment.nvim',
     'kevinhwang91/rnvimr',

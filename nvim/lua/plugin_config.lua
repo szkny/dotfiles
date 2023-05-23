@@ -653,27 +653,27 @@ local lualine_filename = {
     newfile = '[New]',
   }
 }
-local lualine_noice = {
-  {
-    require("noice").api.status.message.get_hl,
-    cond = require("noice").api.status.message.has,
-  },
-  {
-    require("noice").api.status.command.get,
-    cond = require("noice").api.status.command.has,
-    color = { fg = "#ff9e64" },
-  },
-  {
-    require("noice").api.status.mode.get,
-    cond = require("noice").api.status.mode.has,
-    color = { fg = "#ff9e64" },
-  },
-  {
-    require("noice").api.status.search.get,
-    cond = require("noice").api.status.search.has,
-    color = { fg = "#ff9e64" },
-  },
-}
+-- local lualine_noice = {
+--   {
+--     require("noice").api.status.message.get_hl,
+--     cond = require("noice").api.status.message.has,
+--   },
+--   {
+--     require("noice").api.status.command.get,
+--     cond = require("noice").api.status.command.has,
+--     color = { fg = "#ff9e64" },
+--   },
+--   {
+--     require("noice").api.status.mode.get,
+--     cond = require("noice").api.status.mode.has,
+--     color = { fg = "#ff9e64" },
+--   },
+--   {
+--     require("noice").api.status.search.get,
+--     cond = require("noice").api.status.search.has,
+--     color = { fg = "#ff9e64" },
+--   },
+-- }
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -755,13 +755,13 @@ require('bufferline').setup {
     tab_size = 18,
     diagnostics = "coc",
     diagnostics_update_in_insert = false,
-    diagnostics_indicator = function(count, level, diagnostics_dict, context)
+    diagnostics_indicator = function(count, level)
         local icon = level:match("error") and ""
                    or level:match("warning") and ""
                    or level:match("hint") and "" or ""
         return icon .. " " .. count
     end,
-    custom_filter = function(buf_number, buf_numbers)
+    custom_filter = function(buf_number)
         if vim.bo[buf_number].filetype ~= "qf" then
             return true
         end
