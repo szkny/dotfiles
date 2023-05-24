@@ -75,7 +75,7 @@ local plugins = {
     { 'posva/vim-vue', ft = 'vue' },
     'hashivim/vim-terraform',
     'pearofducks/ansible-vim',
-    { 'mechatroner/rainbow_csv', ft = { 'csv', 'tsv' } },
+    -- { 'mechatroner/rainbow_csv', ft = { 'csv', 'tsv' } },
 }
 
 require("lazy").setup(plugins, options)
