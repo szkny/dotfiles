@@ -24,6 +24,11 @@ require'nvim-web-devicons'.setup {
     icon = "",
     color = "#81e043",
     name = "Tsv"
+  },
+  ["dockerfile"] = {
+    icon = "",
+    color = "#5599dd",
+    name = "Dockerfile"
   }
  },
 }
