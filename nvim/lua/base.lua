@@ -135,7 +135,7 @@ vim.opt.guicursor = 'n-v-c:block-Cursor,i:ver100-iCursor,n-v-c:blinkon0,i:blinkw
 vim.opt.scrolloff = 3
 
 -- Status bar
-vim.opt.laststatus = 2
+vim.opt.laststatus = 3
 vim.opt.showtabline = 1
 vim.opt.showmode = false
 
