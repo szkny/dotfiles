@@ -24,11 +24,10 @@ config.colors = {
   cursor_border = '#ffffff',
 }
 -- config.color_scheme = "Tomorrow (dark) (terminal.sexy)"
--- config.color_scheme = 'Aci (Gogh)'
 -- config.color_scheme = 'Adventure'
 -- config.color_scheme = 'Andromeda'
--- config.color_scheme = 'Argonaut'
-config.color_scheme = 'Tokyo Night (Gogh)'
+config.color_scheme = 'Argonaut'
+-- config.color_scheme = 'Tokyo Night (Gogh)'
 
 
 -- window
