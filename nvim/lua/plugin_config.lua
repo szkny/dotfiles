@@ -529,7 +529,6 @@ require('nvim-treesitter.configs').setup {
       "vim",
       "terraform",
       "terraform-vars",
-      "vue",
   },
     additional_vim_regex_highlighting = false,
   },
