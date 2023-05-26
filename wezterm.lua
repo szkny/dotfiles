@@ -23,14 +23,19 @@ config.colors = {
   cursor_fg = '#000000',
   cursor_border = '#ffffff',
 }
-config.color_scheme = "Tomorrow (dark) (terminal.sexy)"
+-- config.color_scheme = "Tomorrow (dark) (terminal.sexy)"
+-- config.color_scheme = 'Aci (Gogh)'
+-- config.color_scheme = 'Adventure'
+-- config.color_scheme = 'Andromeda'
+config.color_scheme = 'Argonaut'
 
 
 -- window
-config.window_background_opacity = 0.80
+config.window_background_opacity = 0.60
 config.text_background_opacity = 1.00
 config.win32_system_backdrop = "Acrylic"
-config.win32_acrylic_accent_color = "#000000"
+-- config.win32_system_backdrop = "Mica"
+-- config.win32_system_backdrop = "Tabbed"
 config.initial_rows = 50
 config.initial_cols = 150
 config.window_decorations = "RESIZE"
@@ -42,11 +47,11 @@ config.window_padding = {
 
 -- tab bar
 config.enable_tab_bar = true
-config.hide_tab_bar_if_only_one_tab = false
+config.hide_tab_bar_if_only_one_tab = true
 config.window_frame = {
-  font_size = 6.0,
-  active_titlebar_bg = '#1f1f1f',
-  inactive_titlebar_bg = '#1f1f1f',
+  font_size = 7.0,
+  active_titlebar_bg = '#252525',
+  inactive_titlebar_bg = '#252525',
 }
 wezterm.on(
   'format-tab-title',
@@ -58,7 +63,7 @@ wezterm.on(
     end
     if tab.is_active then
       return {
-        { Background = { Color = '#333333' } },
+        { Background = { Color = '#252525' } },
         { Text = ' ' .. title .. ' ' },
       }
     end
@@ -70,7 +75,7 @@ wezterm.on(
 )
 config.colors.tab_bar = {
     new_tab = {
-        bg_color = "#1f1f1f",
+        bg_color = "#252525",
         fg_color = "#c6c8d1",
     }
 }
