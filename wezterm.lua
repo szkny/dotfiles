@@ -27,10 +27,10 @@ config.color_scheme = "Tomorrow (dark) (terminal.sexy)"
 
 
 -- window
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.80
 config.text_background_opacity = 1.00
--- config.win32_system_backdrop = "Acrylic"
--- config.win32_acrylic_accent_color = "#ffffff"
+config.win32_system_backdrop = "Acrylic"
+config.win32_acrylic_accent_color = "#000000"
 config.initial_rows = 50
 config.initial_cols = 150
 config.window_decorations = "RESIZE"
@@ -50,7 +50,7 @@ config.window_frame = {
 }
 wezterm.on(
   'format-tab-title',
-  function(tab, tabs, panes, config, hover, max_width)
+  function(tab)
     local title = tab.tab_title
     if not ( title and #title > 0 ) then
         -- title = tab.active_pane.title
