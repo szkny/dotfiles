@@ -72,7 +72,7 @@ local plugins = {
     { 'elzr/vim-json', ft = 'json' },
     'raimon49/requirements.txt.vim',
     { 'cespare/vim-toml', ft = 'toml' },
-    { 'posva/vim-vue', ft = 'vue' },
+    -- { 'posva/vim-vue', ft = 'vue' },
     'hashivim/vim-terraform',
     'pearofducks/ansible-vim',
     -- { 'mechatroner/rainbow_csv', ft = { 'csv', 'tsv' } },
