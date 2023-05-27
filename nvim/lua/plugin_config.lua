@@ -1201,13 +1201,15 @@ vim.cmd([[
 ]])
 
 
--- "" visual-multi  " TODO
--- let g:VM_default_mappings = 0
--- let g:VM_maps = {}
--- let g:VM_maps['Find Under']         = '<C-d>'      " replace C-n
--- let g:VM_maps['Find Subword Under'] = '<C-d>'      " replace visual C-n
--- let g:VM_maps["Select Cursor Down"] = '<M-C-Down>' " start selecting down
--- let g:VM_maps["Select Cursor Up"]   = '<M-C-Up>'   " start selecting up
+--  visual-multi  " TODO
+vim.cmd([[
+    let g:VM_default_mappings = 0
+    let g:VM_maps = {}
+    let g:VM_maps['Find Under']         = '<C-d>'      " replace C-n
+    let g:VM_maps['Find Subword Under'] = '<C-d>'      " replace visual C-n
+    let g:VM_maps["Select Cursor Down"] = '<M-C-Down>' " start selecting down
+    let g:VM_maps["Select Cursor Up"]   = '<M-C-Up>'   " start selecting up
+]])
 
 
 -- Comment.nvim
@@ -1330,7 +1332,7 @@ vim.cmd([[
     hi GitSignsCurrentLineBlame gui=none guifg=#777777
     hi DiffAdd    gui=none guifg=none guibg=#004400
     hi DiffChange gui=none guifg=none guibg=#303000
-    hi Difftext   gui=none guifg=none guibg=#444400
+    hi Difftext   gui=none guifg=none guibg=#505000
     hi DiffDelete gui=none guifg=none guibg=#440000
 ]])
 

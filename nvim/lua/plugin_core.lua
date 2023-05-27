@@ -37,6 +37,7 @@ local plugins = {
     { 'dstein64/vim-startuptime', cmd = 'StartupTime', lazy = false },
     'nvim-lualine/lualine.nvim',
     'wfxr/minimap.vim',
+    -- 'mg979/vim-visual-multi',
     'petertriho/nvim-scrollbar',
     'akinsho/bufferline.nvim',
     'brenoprata10/nvim-highlight-colors',
