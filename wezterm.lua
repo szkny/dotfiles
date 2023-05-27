@@ -41,7 +41,7 @@ config.initial_cols = 150
 config.window_decorations = "RESIZE"
 config.window_padding = {
     left = 3, right = 3,
-    top = 3, bottom = 3,
+    top = 3, bottom = 0,
 }
 
 
