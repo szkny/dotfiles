@@ -31,7 +31,7 @@ config.color_scheme = 'Argonaut'
 
 
 -- window
-config.window_background_opacity = 0.75
+config.window_background_opacity = 0.60
 config.text_background_opacity = 1.00
 config.win32_system_backdrop = "Acrylic"
 -- config.win32_system_backdrop = "Mica"
