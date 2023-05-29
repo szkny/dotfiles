@@ -50,8 +50,8 @@ config.enable_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.window_frame = {
   font_size = 7.0,
-  active_titlebar_bg = '#252525',
-  inactive_titlebar_bg = '#252525',
+  active_titlebar_bg = '#1f232f',
+  inactive_titlebar_bg = '#1f232f',
 }
 wezterm.on(
   'format-tab-title',
@@ -63,19 +63,19 @@ wezterm.on(
     end
     if tab.is_active then
       return {
-        { Background = { Color = '#252525' } },
+        { Background = { Color = '#1f232f' } },
         { Text = ' ' .. title .. ' ' },
       }
     end
     return {
-      { Background = { Color = '#1f1f1f' } },
+      { Background = { Color = '#181d24' } },
       { Text = ' ' .. title .. ' ' },
     }
   end
 )
 config.colors.tab_bar = {
     new_tab = {
-        bg_color = "#252525",
+        bg_color = "#1f232f",
         fg_color = "#c6c8d1",
     }
 }
