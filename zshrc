@@ -232,24 +232,25 @@ export PATH="$PATH:$HOME/go/bin"
 
 ## fzf setup
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_OPTS=$(cat <<"EOF"
-  --multi
-  --height=90%
-  --layout=reverse
-  --prompt '∷ '
-  --pointer ▶
-  --marker ▶
-  --preview '
-      [ -f {} ] \
-      && bat --color=always --style=numbers {} \
-      || exa -T {} -I node_modules
-  '
-  --preview-window 'hidden,wrap,right,90%'
-  --bind 'ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up'
-  --select-1
-  --exit-0
-EOF
-)
+export FZF_DEFAULT_OPTS="--multi --height=90% --layout=reverse --prompt '∷ ' --pointer ▶ --marker ▶ --preview '[ -f {} ] && bat --color=always --style=numbers {} || exa -T {} -I node_modules' --preview-window 'hidden,wrap,right,90%' --bind 'ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up' --select-1 --exit-0"
+# export FZF_DEFAULT_OPTS=$(cat <<"EOF"
+#   --multi
+#   --height=90%
+#   --layout=reverse
+#   --prompt '∷ '
+#   --pointer ▶
+#   --marker ▶
+#   --preview '
+#       [ -f {} ] \
+#       && bat --color=always --style=numbers {} \
+#       || exa -T {} -I node_modules
+#   '
+#   --preview-window 'hidden,wrap,right,90%'
+#   --bind 'ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up'
+#   --select-1
+#   --exit-0
+# EOF
+# )
 export FZF_CTRL_T_OPTS=$(cat <<"EOF"
 --preview '
   [ -f {} ] \
