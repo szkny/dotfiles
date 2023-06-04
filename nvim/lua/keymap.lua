@@ -10,8 +10,9 @@ vim.g.maplocalleader = " "
 
 -- general
 keymap("n", "<leader><leader>", "<CMD>Reload<CR>", opts)
-keymap("t", "<ESC>", "<C-\\><C-n>",  opts)
-keymap("t", "<C-[>", "<C-\\><C-n>",  opts)
+keymap("t", "<C-[>", "<C-\\><C-n>", opts)
+keymap("t", "<ESC>", "<C-\\><C-n><Plug>(esc)", { noremap = true })
+keymap("n", "<Plug>(esc)<ESC>", "i<ESC>", opts)
 keymap("i", "<C-s>", "<ESC>:w<CR>a", opts)
 keymap("n", "<C-s>", ":w<CR>",       opts)
 keymap("n", "q",     ":q<CR>",       opts)
