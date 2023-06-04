@@ -25,8 +25,11 @@ zstyle ':completion:*' complete-options true
 zstyle ':completion:*:options' auto-description '%d'
 
 ## Vim風キーバインド
-# bindkey -v
-bindkey -e
+bindkey -v
+bindkey "^?" backward-delete-char
+
+## Emacs風キーバインド
+# bindkey -e
 
 ## cdとタイプしなくても、移動
 setopt AUTO_CD
