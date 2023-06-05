@@ -29,6 +29,7 @@ bindkey -v
 bindkey "^?" backward-delete-char
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
+bindkey "^U" kill-whole-line
 
 ## Emacs風キーバインド
 # bindkey -e
