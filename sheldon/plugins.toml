@@ -1,3 +1,4 @@
+# ----------------------------
 # `sheldon` configuration file
 # ----------------------------
 
@@ -10,13 +11,15 @@ apply = ["source"]
 
 [templates]
 defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
-# defer = ""
 
 [plugins.compinit]
 inline = 'autoload -Uz compinit && zsh-defer compinit'
 
 [plugins.bashcompinit]
 inline = 'autoload -Uz bashcompinit && zsh-defer bashcompinit'
+
+[plugins.tetriscurses]
+inline = "autoload -Uz tetriscurses"
 
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
