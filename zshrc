@@ -30,6 +30,8 @@ bindkey "^?" backward-delete-char
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
 bindkey "^U" kill-whole-line
+bindkey "^N" history-beginning-search-forward-end
+bindkey "^P" history-beginning-search-backward-end
 
 ## Emacs風キーバインド
 # bindkey -e
