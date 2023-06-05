@@ -27,6 +27,8 @@ zstyle ':completion:*:options' auto-description '%d'
 ## Vim風キーバインド
 bindkey -v
 bindkey "^?" backward-delete-char
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
 
 ## Emacs風キーバインド
 # bindkey -e
