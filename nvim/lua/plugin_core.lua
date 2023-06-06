@@ -45,6 +45,7 @@ local plugins = {
     'lukas-reineke/indent-blankline.nvim',
     'tomasiser/vim-code-dark',
     'tpope/vim-fugitive',
+    'stevearc/oil.nvim',
     require('plugin/nvim_tree'),
     'szkny/SplitTerm',
     'MunifTanjim/nui.nvim',

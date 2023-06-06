@@ -420,6 +420,13 @@ vim.cmd([[
 ]])
 
 
+-- oil.nvim
+require("oil").setup({
+    default_file_explorer = true,
+    trash_command = "rip",
+})
+
+
 -- nvim-tree
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.api.nvim_set_var("loaded_netrw", 1)
