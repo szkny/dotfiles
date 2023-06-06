@@ -36,9 +36,29 @@ vim.cmd([[
 -- for edit
 keymap("v", ">", ">gv", opts)
 keymap("v", "<", "<gv", opts)
-keymap("n", "<C-d>", "ReplaceWordText() !=# '' ? ':<C-u>'. ReplaceWordText().'<Left><Left><Left>' : '<ESC>'", { expr = true })
-keymap("v", "<C-d>", "VReplaceWordText() !=# '' ? ':<C-u>'. ReplaceWordText().'<Left><Left><Left>' : '<ESC>'", { expr = true })
+keymap("n", "<C-d>", "ReplaceWordText()  !=# '' ? ':<C-u>'.  ReplaceWordText().'<Left><Left><Left>' : '<ESC>'", { expr = true })
+keymap("v", "<C-d>", "VReplaceWordText() !=# '' ? ':<C-u>'. VReplaceWordText().'<Left><Left><Left>' : '<ESC>'", { expr = true })
 vim.cmd([[
+    fun! s:get_vselect_txt()
+        if mode()=="v"
+            let [line_start, column_start] = getpos("v")[1:2]
+            let [line_end, column_end] = getpos(".")[1:2]
+        else
+            let [line_start, column_start] = getpos("'<")[1:2]
+            let [line_end, column_end] = getpos("'>")[1:2]
+        end
+        if (line2byte(line_start)+column_start) > (line2byte(line_end)+column_end)
+            let [line_start, column_start, line_end, column_end] =
+            \   [line_end, column_end, line_start, column_start]
+        end
+        let lines = getline(line_start, line_end)
+        if len(lines) == 0
+                return ''
+        endif
+        let lines[-1] = lines[-1][: column_end - 1]
+        let lines[0] = lines[0][column_start - 1:]
+        return join(lines, "\n")
+    endf
     fun! ReplaceWordText() abort
         let l:target = expand('<cword>')
         if l:target !=# ''
@@ -199,6 +219,9 @@ endf
 keymap("n", "<C-h>",      ":<C-u>RnvimrToggle<CR>",   opts)
 -- -- nvim-tree
 keymap("n", "<C-n>",      ":<C-u>NvimTreeToggle<CR>", opts)
+-- -- oil.nvim
+-- keymap("n", "<leader>o",  "<C-w>v<C-w>h:<C-u>Oil<CR>", opts)
+keymap("n", "<leader>o",  ":<C-u>lua require('oil').open_float()<CR>", opts)
 -- -- vista.vim
 keymap("n", "<C-t>",      ":<C-u>Vista!!<CR>",        opts)
 keymap("n", "<C-g>",      ":<C-u>Vista finder<CR>",   opts)

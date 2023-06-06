@@ -422,9 +422,61 @@ vim.cmd([[
 
 -- oil.nvim
 require("oil").setup({
+    columns = {
+      -- "permissions",
+      -- "size",
+      -- "mtime",
+      "icon",
+    },
+    -- Buffer-local options to use for oil buffers
+    buf_options = {
+      buflisted = false,
+      bufhidden = "hide",
+    },
+    -- Window-local options to use for oil buffers
+    win_options = {
+      wrap = false,
+      signcolumn = "no",
+      cursorcolumn = false,
+      foldcolumn = "0",
+      spell = false,
+      list = false,
+      conceallevel = 3,
+      concealcursor = "n",
+    },
     default_file_explorer = true,
     trash_command = "rip",
+    use_default_keymaps = false,
+    keymaps = {
+      ["?"]     = "actions.show_help",
+      ["<CR>"]  = "actions.select",
+      ["<C-l>"] = "actions.select",
+      ["<C-h>"] = "actions.parent",
+      ["W"]     = "actions.open_cwd",
+      ["<Tab>"] = "actions.preview",
+      ["q"]     = "actions.close",
+      ["R"]     = "actions.refresh",
+      ["H"]     = "actions.toggle_hidden",
+      ["I"]     = "actions.toggle_hidden",
+      ["<BS>"]  = "actions.toggle_hidden",
+    },
 })
+vim.cmd([[
+    fun! s:oil_init() abort
+        setlocal nonumber
+        " setlocal bufhidden=wipe
+        setlocal nobuflisted
+        setlocal nolist
+        setlocal nospell
+        setlocal noequalalways
+        " vertical resize 25
+    endf
+    au FileType oil call s:oil_init()
+]])
+
+-- local fname = "oil-ssh://szknypc//home/szkny/dotfiles/wezterm.lua"
+-- -- res = string.match(fname, "^.+://(.-)%/(.+)")
+-- print(string.match(fname, "^.+://(.-)%/(.+)"))
 
 
 -- nvim-tree
