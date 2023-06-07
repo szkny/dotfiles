@@ -1,7 +1,8 @@
 -- *****************************************************************************
 --   Key-Mappings
 -- *****************************************************************************
-local keymap = vim.api.nvim_set_keymap
+-- local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- Remap space as leader key
@@ -220,25 +221,24 @@ keymap("n", "<C-h>",      ":<C-u>RnvimrToggle<CR>",   opts)
 -- -- nvim-tree
 keymap("n", "<C-n>",      ":<C-u>NvimTreeToggle<CR>", opts)
 -- -- oil.nvim
--- keymap("n", "<leader>o",  "<C-w>v<C-w>h:<C-u>Oil<CR>", opts)
-keymap("n", "<leader>o",  ":<C-u>lua require('oil').open_float()<CR>", opts)
--- local fname = "oil-ssh://szknypc//home/szkny/dotfiles/wezterm.lua"
--- local fname = "/home/szkny/dotfiles/wezterm.lua"
-hoge = function(fname)
-    local protocol, target, path = string.match(fname, "^(.+)://(.-)%/(.+)")
-    if protocol ~= "oil-ssh" then
-        path = fname
-    end
-    local basepath = path:match("(.*".."/"..")")
-    local command
-    if protocol == "oil-ssh" then
-        command = "ssh "..target.." -t 'cd "..basepath.."' && zsh"
-    else
-        command = "cd "..basepath
-        path = fname
-    end
-    return basepath
-end
+keymap("n", "<Leader>o",  require('oil').open_float, opts)
+keymap("n", "<Leader>T", function()
+        local fname = vim.fn.expand("%")
+        local protocol, target, path = string.match(fname, "^(.+)://(.-)%/(.+)")
+        if protocol ~= "oil-ssh" then
+            path = fname
+        end
+        local basepath = path:match("(.*".."/"..")")
+        local command
+        if protocol == "oil-ssh" then
+            command = "ssh "..target.." -t 'cd "..basepath.." && zsh'"
+        else
+            command = "cd "..basepath.." && zsh "
+        end
+        vim.cmd('call splitterm#open_width(12, "'..command..'")')
+        vim.cmd("startinsert")
+    end,
+    opts)
 -- -- SplitTerm
 keymap("n", "t",          ":<C-u>12SplitTerm<CR>i",  opts)
 -- -- vista.vim
