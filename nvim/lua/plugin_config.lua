@@ -423,17 +423,15 @@ vim.cmd([[
 -- oil.nvim
 require("oil").setup({
     columns = {
-      -- "permissions",
-      -- "size",
-      -- "mtime",
+      "permissions",
+      "size",
+      "mtime",
       "icon",
     },
-    -- Buffer-local options to use for oil buffers
     buf_options = {
       buflisted = false,
       bufhidden = "hide",
     },
-    -- Window-local options to use for oil buffers
     win_options = {
       wrap = false,
       signcolumn = "no",
@@ -464,7 +462,6 @@ require("oil").setup({
 vim.cmd([[
     fun! s:oil_init() abort
         setlocal nonumber
-        " setlocal bufhidden=wipe
         setlocal nobuflisted
         setlocal nolist
         setlocal nospell
