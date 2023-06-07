@@ -116,3 +116,7 @@ vim.cmd([[
     endf
     command! Open call s:open()
 ]])
+
+vim.cmd([[
+    command! Fshow exe "SplitTerm zsh -i -c fshow" | startinsert
+]])
