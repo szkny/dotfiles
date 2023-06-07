@@ -226,11 +226,17 @@ keymap("n", "<leader>o",  ":<C-u>lua require('oil').open_float()<CR>", opts)
 -- local fname = "/home/szkny/dotfiles/wezterm.lua"
 hoge = function(fname)
     local protocol, target, path = string.match(fname, "^(.+)://(.-)%/(.+)")
-    if protocol == "oil-ssh" then
-    else
+    if protocol ~= "oil-ssh" then
         path = fname
     end
     local basepath = path:match("(.*".."/"..")")
+    local command
+    if protocol == "oil-ssh" then
+        command = "ssh "..target.." -t 'cd "..basepath.."' && zsh"
+    else
+        command = "cd "..basepath
+        path = fname
+    end
     return basepath
 end
 -- -- SplitTerm
