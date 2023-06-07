@@ -222,6 +222,19 @@ keymap("n", "<C-n>",      ":<C-u>NvimTreeToggle<CR>", opts)
 -- -- oil.nvim
 -- keymap("n", "<leader>o",  "<C-w>v<C-w>h:<C-u>Oil<CR>", opts)
 keymap("n", "<leader>o",  ":<C-u>lua require('oil').open_float()<CR>", opts)
+-- local fname = "oil-ssh://szknypc//home/szkny/dotfiles/wezterm.lua"
+-- local fname = "/home/szkny/dotfiles/wezterm.lua"
+hoge = function(fname)
+    local protocol, target, path = string.match(fname, "^(.+)://(.-)%/(.+)")
+    if protocol == "oil-ssh" then
+    else
+        path = fname
+    end
+    local basepath = path:match("(.*".."/"..")")
+    return basepath
+end
+-- -- SplitTerm
+keymap("n", "t",          ":<C-u>12SplitTerm<CR>i",  opts)
 -- -- vista.vim
 keymap("n", "<C-t>",      ":<C-u>Vista!!<CR>",        opts)
 keymap("n", "<C-g>",      ":<C-u>Vista finder<CR>",   opts)
@@ -294,7 +307,6 @@ keymap("c", "<C-l>", "<Plug>(skkeleton-disable)", opts)
 keymap("i", "<M-;>", "<ESC>:Appendchar ;<Cr>a",      opts)
 keymap("n", "<M-;>",      ":Appendchar ;<Cr>",       opts)
 keymap("v", "<M-;>",      ":Appendchar ;<Cr>",       opts)
-keymap("n", "t",          ":<C-u>12SplitTerm<CR>i",  opts)
 keymap("v", "<Leader>t",  ":Trans<CR>",              opts)
 keymap("v", "<Leader>gf", ":Fshow<CR>",              opts)
 keymap("n", "<Leader>l", "exists(':MinimapRefresh') ? ':<C-u>set hlsearch!<CR>:MinimapRefresh<CR>' : ':<C-u>set hlsearch!<CR>'", { silent = true, expr = true })

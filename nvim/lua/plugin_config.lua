@@ -474,10 +474,6 @@ vim.cmd([[
     au FileType oil call s:oil_init()
 ]])
 
--- local fname = "oil-ssh://szknypc//home/szkny/dotfiles/wezterm.lua"
--- -- res = string.match(fname, "^.+://(.-)%/(.+)")
--- print(string.match(fname, "^.+://(.-)%/(.+)"))
-
 
 -- nvim-tree
 -- disable netrw at the very start of your init.lua (strongly advised)
