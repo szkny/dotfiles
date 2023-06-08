@@ -222,18 +222,21 @@ keymap("n", "<C-h>",      ":<C-u>RnvimrToggle<CR>",   opts)
 keymap("n", "<C-n>",      ":<C-u>NvimTreeToggle<CR>", opts)
 -- -- oil.nvim
 keymap("n", "<Leader>o",  require('oil').open_float, opts)
-keymap("n", "<Leader>T", function()
+keymap("n", "<Leader>t", function()
         local fname = vim.fn.expand("%")
         local protocol, target, path = string.match(fname, "^(.+)://(.-)%/(.+)")
         if protocol ~= "oil-ssh" then
             path = fname
         end
         local basepath = path:match("(.*".."/"..")")
+        if basepath == nil then
+            basepath = vim.cmd("pwd")
+        end
         local command
         if protocol == "oil-ssh" then
-            command = "ssh "..target.." -t 'cd "..basepath.." && zsh'"
+            command = "ssh "..target.." -t 'cd "..basepath.." && $SHELL'"
         else
-            command = "cd "..basepath.." && zsh "
+            command = "cd "..basepath.." && $SHELL"
         end
         vim.cmd('call splitterm#open_width(12, "'..command..'")')
         vim.cmd("startinsert")
@@ -313,7 +316,7 @@ keymap("c", "<C-l>", "<Plug>(skkeleton-disable)", opts)
 keymap("i", "<M-;>", "<ESC>:Appendchar ;<Cr>a",      opts)
 keymap("n", "<M-;>",      ":Appendchar ;<Cr>",       opts)
 keymap("v", "<M-;>",      ":Appendchar ;<Cr>",       opts)
-keymap("v", "<Leader>t",  ":Trans<CR>",              opts)
+keymap("v", "<Leader>T",  ":Trans<CR>",              opts)
 keymap("v", "<Leader>gf", ":Fshow<CR>",              opts)
 keymap("n", "<Leader>l", "exists(':MinimapRefresh') ? ':<C-u>set hlsearch!<CR>:MinimapRefresh<CR>' : ':<C-u>set hlsearch!<CR>'", { silent = true, expr = true })
 
