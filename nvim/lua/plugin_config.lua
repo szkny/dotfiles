@@ -448,6 +448,7 @@ require("oil").setup({
     keymaps = {
       ["?"]     = "actions.show_help",
       ["<CR>"]  = "actions.select",
+      ["<2-LeftMouse>"] = "actions.select",
       ["<C-l>"] = "actions.select",
       ["<C-h>"] = "actions.parent",
       ["W"]     = "actions.open_cwd",
