@@ -37,8 +37,8 @@ vim.cmd([[
 -- for edit
 keymap("v", ">", ">gv", opts)
 keymap("v", "<", "<gv", opts)
-keymap("n", "<C-d>", "ReplaceWordText()  !=# '' ? ':<C-u>'.  ReplaceWordText().'<Left><Left><Left>' : '<ESC>'", { expr = true })
-keymap("v", "<C-d>", "VReplaceWordText() !=# '' ? ':<C-u>'. VReplaceWordText().'<Left><Left><Left>' : '<ESC>'", { expr = true })
+vim.api.nvim_set_keymap("n", "<C-d>", "ReplaceWordText()  !=# '' ? ':<C-u>'.  ReplaceWordText().'<Left><Left><Left>' : '<ESC>'", { expr = true })
+vim.api.nvim_set_keymap("v", "<C-d>", "VReplaceWordText() !=# '' ? ':<C-u>'. VReplaceWordText().'<Left><Left><Left>' : '<ESC>'", { expr = true })
 vim.cmd([[
     fun! s:get_vselect_txt()
         if mode()=="v"
