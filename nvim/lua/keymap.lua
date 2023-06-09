@@ -318,7 +318,7 @@ keymap("c", "<C-l>", "<Plug>(skkeleton-disable)", opts)
 keymap("i", "<M-;>", "<ESC>:Appendchar ;<Cr>a",      opts)
 keymap("n", "<M-;>",      ":Appendchar ;<Cr>",       opts)
 keymap("v", "<M-;>",      ":Appendchar ;<Cr>",       opts)
-keymap("v", "<Leader>T",  ":Trans<CR>",              opts)
+keymap("v", "<Leader>t",  ":Trans<CR>",              opts)
 keymap("v", "<Leader>gf", ":Fshow<CR>",              opts)
 keymap("n", "<Leader>l", "exists(':MinimapRefresh') ? ':<C-u>set hlsearch!<CR>:MinimapRefresh<CR>' : ':<C-u>set hlsearch!<CR>'", { silent = true, expr = true })
 
