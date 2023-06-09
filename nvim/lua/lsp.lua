@@ -44,6 +44,7 @@ vim.api.nvim_set_var('coc_global_extensions', {
     'coc-clangd',
     '@yaegassy/coc-ansible',
 })
+    -- '@yaegassy/coc-volar',
     -- 'coc-eslint',
 
 -- for ansible yaml
