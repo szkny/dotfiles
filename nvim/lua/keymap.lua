@@ -222,26 +222,28 @@ keymap("n", "<C-h>",      ":<C-u>RnvimrToggle<CR>",   opts)
 keymap("n", "<C-n>",      ":<C-u>NvimTreeToggle<CR>", opts)
 -- -- oil.nvim
 keymap("n", "<Leader>o",  require('oil').open_float, opts)
-keymap("n", "<Leader>t", function()
-        local fname = vim.fn.expand("%")
+keymap("n", "<Leader>t",
+    function()
+        local fname = vim.fn.expand("%:p")
         local protocol, target, path = string.match(fname, "^(.+)://(.-)%/(.+)")
         if protocol ~= "oil-ssh" then
             path = fname
         end
         local basepath = path:match("(.*".."/"..")")
         if basepath == nil then
-            basepath = vim.cmd("pwd")
+            basepath = vim.fn.expand("%:p:h")
         end
         local command
         if protocol == "oil-ssh" then
-            command = "ssh "..target.." -t 'cd "..basepath.." && $SHELL'"
+            command = "ssh "..target.." -t 'cd \\'"..basepath.."\\' && $SHELL'"
         else
-            command = "cd "..basepath.." && $SHELL"
+            command = "cd \\'"..basepath.."\\' && $SHELL"
         end
         vim.cmd('call splitterm#open_width(12, "'..command..'")')
         vim.cmd("startinsert")
     end,
-    opts)
+    opts
+)
 -- -- SplitTerm
 keymap("n", "t",          ":<C-u>12SplitTerm<CR>i",  opts)
 -- -- vista.vim
