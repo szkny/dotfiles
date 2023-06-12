@@ -470,6 +470,9 @@ vim.cmd([[
         " vertical resize 25
     endf
     au FileType oil call s:oil_init()
+    hi OilFile gui=bold guifg=#bbbbbb
+    hi OilDir  gui=bold guifg=#77aadd
+    hi OilLink gui=bold guifg=#77afaf
 ]])
 
 
