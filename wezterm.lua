@@ -59,7 +59,7 @@ wezterm.on(
     local title = tab.tab_title
     if not ( title and #title > 0 ) then
         -- title = tab.active_pane.title
-        title = ' ' .. wezterm.nerdfonts.cod_terminal_ubuntu .. ' '
+        title = '  ' .. wezterm.nerdfonts.cod_terminal_ubuntu .. '  '
     end
     if tab.is_active then
       return {
