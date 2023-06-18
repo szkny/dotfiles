@@ -20,7 +20,7 @@ keymap("n", "q",     ":q<CR>",       opts)
 keymap("n", "<S-q>", ":qall<CR>",    opts)
 keymap("n", "<Leader>q",  ":Bdelete<CR>",              opts)
 keymap("n", "<Leader>bq", ":Bdelete<CR>",              opts)
-keymap("n", "<Leader>pq", ":bdelete#<CR>:redraw!<CR>", opts)
+keymap("n", "<Leader>pq", ":bprevious<CR>:bdelete#<CR>:redraw!<CR>", opts)
 vim.cmd([[
     fun s:myBdelete() abort
         bnext

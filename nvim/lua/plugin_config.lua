@@ -1237,7 +1237,7 @@ vim.cmd([[
 require('hlslens').setup( {
   calm_down = true,
   nearest_only = true,
-  nearest_float_when = 'always',
+  nearest_float_when = 'auto',
   build_position_cb = function(plist, _, _, _)
     require("scrollbar.handlers.search").handler.show(plist.start_pos)
   end,

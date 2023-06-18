@@ -47,6 +47,7 @@ vim.cmd([[
                 let l:text = join(a:000)
             endif
             let l:text = substitute(l:text, '"', '\\"', 'g')
+            let l:text = substitute(l:text, '`', '\\`', 'g')
             if len(l:text) < 900
                 call splitterm#open('trans', '{en=ja}', '"'.l:text.'"', ' ; read -q')
             else
