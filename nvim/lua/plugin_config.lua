@@ -485,10 +485,10 @@ vim.cmd([[
     hi NvimTreeFolderName                gui=bold guifg=#77aadd
     hi NvimTreeEmptyFolderName           gui=bold guifg=#77aadd
     hi NvimTreeOpenedFolderName          gui=bold guifg=#77aadd
-    hi NvimTreeSpecialFile               gui=bold,underline guifg=#d8bf55
+    hi NvimTreeSpecialFile               gui=bold,underline guifg=#dfbf66
     hi NvimTreeSymlink                   gui=bold guifg=#77afaf
     hi NvimTreeSymlinkFolderName         gui=bold guifg=#77afaf
-    hi NvimTreeExecFile                  gui=bold guifg=#b3b355
+    hi NvimTreeExecFile                  gui=bold guifg=#bfbf66
     hi NvimTreeGitDirty                  gui=bold guifg=#ddaa55
     hi NvimTreeGitStaged                 gui=bold guifg=#44cc44
     hi NvimTreeGitNew                    gui=bold guifg=#44cc44
