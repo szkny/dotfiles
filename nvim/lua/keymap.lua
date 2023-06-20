@@ -18,21 +18,9 @@ keymap("i", "<C-s>", "<ESC>:w<CR>a", opts)
 keymap("n", "<C-s>", ":w<CR>",       opts)
 keymap("n", "q",     ":q<CR>",       opts)
 keymap("n", "<S-q>", ":qall<CR>",    opts)
-keymap("n", "<Leader>q",  ":Bdelete<CR>",              opts)
-keymap("n", "<Leader>bq", ":Bdelete<CR>",              opts)
-keymap("n", "<Leader>pq", ":bprevious<CR>:bdelete#<CR>:redraw!<CR>", opts)
-vim.cmd([[
-    fun s:myBdelete() abort
-        bnext
-        try
-            bdelete #
-        catch
-            bdelete
-        endtry
-        redraw!
-    endf
-    command! Bdelete call s:myBdelete()
-]])
+keymap("n", "<Leader>q",  ":bnext    |try|bdelete#|catch|bdelete|endtry|redraw!<CR>", opts)
+keymap("n", "<Leader>bq", ":bnext    |try|bdelete#|catch|bdelete|endtry|redraw!<CR>", opts)
+keymap("n", "<Leader>pq", ":bprevious|try|bdelete#|catch|bdelete|endtry|redraw!<CR>", opts)
 
 -- for edit
 keymap("v", ">", ">gv", opts)
