@@ -16,7 +16,21 @@ keymap("t", "<ESC>", "<C-\\><C-n><Plug>(esc)", { noremap = true })
 keymap("n", "<Plug>(esc)<ESC>", "i<ESC>", opts)
 keymap("i", "<C-s>", function() vim.cmd('w') end, opts)
 keymap("n", "<C-s>", function() vim.cmd('w') end, opts)
-keymap("n", "q",     function() vim.cmd('q') end, opts)
+keymap("n", "q",
+    function()
+        try {
+            function()
+                vim.cmd('q')
+            end,
+            catch {
+                function(error)
+                    print('caught error: ' .. error)
+                    -- print('E173: some files to edit')
+                end
+            }
+        }
+    end,
+    opts)
 keymap("n", "<S-q>", function() vim.cmd('qall') end, opts)
 keymap("n", "<Leader>q",  ":bnext    |try|bdelete#|catch|bdelete|endtry|redraw!<CR>", opts)
 keymap("n", "<Leader>bq", ":bnext    |try|bdelete#|catch|bdelete|endtry|redraw!<CR>", opts)
