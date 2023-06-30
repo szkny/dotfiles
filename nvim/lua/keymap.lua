@@ -241,13 +241,13 @@ keymap("n", "<Leader>t",
         else
             command = "cd \\'"..basepath.."\\' && $SHELL"
         end
-        vim.cmd('call splitterm#open_width(12, "'..command..'")')
+        vim.cmd('call splitterm#open_width(18, "'..command..'")')
         vim.cmd("startinsert")
     end,
     opts
 )
 -- -- SplitTerm
-keymap("n", "t",          ":<C-u>12SplitTerm<CR>i",  opts)
+keymap("n", "t",          ":<C-u>18SplitTerm<CR>i",  opts)
 -- -- vista.vim
 keymap("n", "<C-t>",      ":<C-u>Vista!!<CR>",        opts)
 keymap("n", "<C-g>",      ":<C-u>Vista finder<CR>",   opts)
