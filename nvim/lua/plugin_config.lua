@@ -1256,8 +1256,10 @@ vim.cmd([[
     hi IncSearch guibg=#334f7a
     hi WildMenu  guibg=#334f7a
     hi default link HlSearchNear IncSearch
-    hi default link HlSearchLens WildMenu
-    hi default link HlSearchLensNear IncSearch
+    " hi default link HlSearchLens WildMenu
+    " hi default link HlSearchLensNear IncSearch
+    hi HlSearchLens     guifg=#777777 guibg=none
+    hi HlSearchLensNear guifg=#777777 guibg=none
 ]])
 
 
