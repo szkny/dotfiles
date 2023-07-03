@@ -79,6 +79,35 @@ vim.cmd([[
         endif
     endf
 ]])
+keymap("n", "<leader>r",
+    function ()
+        -- vim([[
+        --     call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob \"!.git/*\" --color \"always\" '.shellescape(<q-args>).'| tr -d \"\\017\"', 1, <bang>0)
+        --     call fzf#run(fzf#wrap(#{
+        --         \ source: values(map(copy(g:plugs), {k,v-> k.' '.get(split(globpath(get(v,'dir',''), '\creadme.*'), '\n'), 0, '')})),
+        --         \ options: ['--with-nth=1', '--preview', 'bat --color=always --plain {2}'],
+        --         \ sink: funcref('s:PlugReadmeFzf')}))
+        --     function s:PlugReadmeFzf(name_and_path) abort
+        --         exe 'PlugReadme' substitute(a:name_and_path, ' .*', '', '')
+        --     endfunction
+        -- ]])
+        -- local targetword = vim.fn.input("Target Word: ")
+        -- vim.cmd("Rg "..targetword)
+        local lenqf = vim.fn.getqflist()
+        if #lenqf > 0 then
+            local targetword = vim.fn.input("Target Word: ")
+            local replaceword = vim.fn.input("New Word: ")
+            local choice = vim.fn.confirm(
+                "Will you replace "..#lenqf.." of '"..targetword.."' with '"..replaceword.."' ?",
+                "&Yes\n&No"
+            )
+            if choice == 1 then
+                vim.cmd("cdo s/"..targetword.."/"..replaceword.."/g | :w | :cclose")
+            end
+        end
+    end,
+    opts
+)
 
 -- -- for tab/window
 keymap("n", "<Right>", ":ChangeBuffer next<CR>",     opts)
