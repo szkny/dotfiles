@@ -14,8 +14,8 @@ keymap("n", "<leader><leader>", "<CMD>Reload<CR>", opts)
 keymap("t", "<C-[>", "<C-\\><C-n>", opts)
 keymap("t", "<ESC>", "<C-\\><C-n><Plug>(esc)", { noremap = true })
 keymap("n", "<Plug>(esc)<ESC>", "i<ESC>", opts)
-keymap("i", "<C-s>", function() vim.cmd('w') end, opts)
-keymap("n", "<C-s>", function() vim.cmd('w') end, opts)
+keymap("i", "<C-s>", function() vim.cmd('w!') end, opts)
+keymap("n", "<C-s>", function() vim.cmd('w!') end, opts)
 keymap("n", "q",
     function()
         try {
@@ -102,7 +102,7 @@ keymap("n", "<leader>r",
                 "&Yes\n&No"
             )
             if choice == 1 then
-                vim.cmd("cdo s/"..targetword.."/"..replaceword.."/g | :w | :cclose")
+                vim.cmd("cdo s/"..targetword.."/"..replaceword.."/g | :w! | :cclose")
             end
         end
     end,

@@ -115,10 +115,10 @@ vim.cmd([[
 vim.cmd([[
     aug vimrc_python
         au!
-        au FileType python call s:init_python()
+        au FileType python call My_init_python()
     aug END
 
-    fun s:init_python ()
+    fun My_init_python ()
         setlocal tabstop=4
         setlocal shiftwidth=4
         setlocal expandtab
