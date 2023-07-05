@@ -140,6 +140,11 @@ config.keys = {
     action = wezterm.action.SpawnTab("CurrentPaneDomain")
   },
   {
+    key = 'n',
+    mods = 'LEADER',
+    action = wezterm.action.SpawnTab("CurrentPaneDomain")
+  },
+  {
     key = 'x',
     mods = 'LEADER',
     action = wezterm.action.CloseCurrentTab({ confirm = true })
