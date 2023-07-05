@@ -119,6 +119,24 @@ vim.cmd([[
 ]])
 
 vim.cmd([[
+    fun! RgPostProcess(...) abort
+        cgetexpr a:000[0]
+        let l:qflist = getqflist()
+        if len(l:qflist) > 0
+            let l:targetword = "require"
+            " let l:targetword = input("Target Word: ")
+            let l:replaceword = input("New Word: ")
+            let l:choice = confirm(
+                \ "Will you replace ".len(l:qflist)." of '".l:targetword."' with '".l:replaceword."' ?",
+                \ "&Yes\n&No")
+            if l:choice == 1
+                exe "cdo s/".l:targetword."/".l:replaceword."/g | :w! | :cclose"
+            endif
+        endif
+    endf
+]])
+
+vim.cmd([[
     command! Fshow exe "SplitTerm zsh -i -c fshow" | startinsert
 ]])
 

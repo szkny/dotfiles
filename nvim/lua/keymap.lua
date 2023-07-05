@@ -81,41 +81,32 @@ vim.cmd([[
 ]])
 keymap("n", "<leader>r",
     function ()
-        -- vim.cmd([[
-        --     call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob \"!.git/*\" --color \"always\" '.shellescape(<q-args>).'| tr -d \"\\017\"', 1, <bang>0)
-        --     call fzf#run(fzf#wrap(#{
-        --         \ source: ,
-        --         \ options: [],
-        --         \ sink: funcref('s:RgPostProcess')}))
-        --     function s:RgPostProcess(name_and_path) abort
-        --         lenqf = getqflist()
-        --         if len(lenqf) > 0
-        --             targetword = input("Target Word: ")
-        --             replaceword = input("New Word: ")
-        --             choice = confirm(
-        --                 "Will you replace "..#lenqf.." of '"..targetword.."' with '"..replaceword.."' ?",
-        --                 "&Yes\n&No"
-        --             )
-        --             if choice == 1
-        --                 exe "cdo s/".l:targetword."/".l:replaceword."/g | :w! | :cclose"
-        --             endif
-        --         endif
-        --     endfunction
-        -- ]])
-        -- local targetword = vim.fn.input("Target Word: ")
-        -- vim.cmd("Rg "..targetword)
-        local lenqf = vim.fn.getqflist()
-        if #lenqf > 0 then
-            local targetword = vim.fn.input("Target Word: ")
-            local replaceword = vim.fn.input("New Word: ")
-            local choice = vim.fn.confirm(
-                "Will you replace "..#lenqf.." of '"..targetword.."' with '"..replaceword.."' ?",
-                "&Yes\n&No"
-            )
-            if choice == 1 then
-                vim.cmd("cdo s/"..targetword.."/"..replaceword.."/g | :w! | :cclose")
-            end
-        end
+        vim.cmd([[
+            try
+                let s:targetword = '""'
+                call fzf#run(fzf#wrap(#{
+                  \ source: 'rg --column --line-number --no-heading --fixed-strings --smart-case --hidden --follow --color=always '.s:targetword.' | tr -d \"\\017\"',
+                  \ options: "--ansi",
+                  \ sinklist: funcref("RgPostProcess"),
+                  \ }))
+            catch
+                echomsg 'error occurred:' . v:exception
+            endtry
+        ]])
+        -- -- local targetword = vim.fn.input("Target Word: ")
+        -- -- vim.cmd("Rg "..targetword)
+        -- local lenqf = vim.fn.getqflist()
+        -- if #lenqf > 0 then
+        --     local targetword = vim.fn.input("Target Word: ")
+        --     local replaceword = vim.fn.input("New Word: ")
+        --     local choice = vim.fn.confirm(
+        --         "Will you replace "..#lenqf.." of '"..targetword.."' with '"..replaceword.."' ?",
+        --         "&Yes\n&No"
+        --     )
+        --     if choice == 1 then
+        --         vim.cmd("cdo s/"..targetword.."/"..replaceword.."/g | :w! | :cclose")
+        --     end
+        -- end
     end,
     opts
 )
