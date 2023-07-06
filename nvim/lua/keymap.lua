@@ -82,15 +82,15 @@ vim.cmd([[
 keymap("n", "<leader>r",
     function ()
         vim.cmd([[
-            function! Rg_to_qf(line)
+            fun! Rg_to_qf(line)
                 let parts = split(a:line, ':')
                 return {'filename': parts[0], 'lnum': parts[1], 'col': parts[2],
                       \ 'text': join(parts[3:], ':')}
-            endfunction
+            endf
 
-            function! RgToQF(query)
+            fun! RgToQF(query)
               call setqflist(map(systemlist('rg --column '.a:query), 'Rg_to_qf(v:val)'))
-            endfunction
+            endf
 
             let wordUnderCursor = expand("<cword>")
             call inputsave()
@@ -103,9 +103,11 @@ keymap("n", "<leader>r",
             let numqf = len(getqflist())
             let choice = confirm(
                 \ "Will you replace ".numqf." of '".wordToReplace."' with '".replacement."' ?",
-                \ "&Yes\n&No")
+                \ "&Yes\n&No\n&Check")
             if choice == 1
-                execute "cdo s/" . wordToReplace . "/" . replacement ."/g"
+                exe "cdo s/" . wordToReplace . "/" . replacement ."/g"
+            elseif choice == 3
+                exe "cdo s/" . wordToReplace . "/" . replacement ."/gc"
             endif
         ]])
         -- local qflist = vim.fn.getqflist()
