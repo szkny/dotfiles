@@ -82,29 +82,52 @@ vim.cmd([[
 keymap("n", "<leader>r",
     function ()
         vim.cmd([[
-            try
-                let s:targetword = '""'
-                call fzf#run(fzf#wrap(#{
-                  \ source: 'rg --column --line-number --no-heading --fixed-strings --smart-case --hidden --follow --color=always '.s:targetword.' | tr -d \"\\017\"',
-                  \ options: "--ansi",
-                  \ sinklist: funcref("RgPostProcess"),
-                  \ }))
-            catch
-                echomsg 'error occurred:' . v:exception
-            endtry
+            function! Rg_to_qf(line)
+                let parts = split(a:line, ':')
+                return {'filename': parts[0], 'lnum': parts[1], 'col': parts[2],
+                      \ 'text': join(parts[3:], ':')}
+            endfunction
+
+            function! RgToQF(query)
+              call setqflist(map(systemlist('rg --column '.a:query), 'Rg_to_qf(v:val)'))
+            endfunction
+
+            let wordUnderCursor = expand("<cword>")
+            call inputsave()
+            let wordToReplace = input("Replace : ", wordUnderCursor)
+            call inputrestore()
+            call inputsave()
+            let replacement = input("Replace \"" . wordUnderCursor . "\" with: ")
+            call inputrestore()
+            call RgToQF(wordUnderCursor)
+            let numqf = len(getqflist())
+            let choice = confirm(
+                \ "Will you replace ".numqf." of '".wordToReplace."' with '".replacement."' ?",
+                \ "&Yes\n&No")
+            if choice == 1
+                execute "cdo s/" . wordToReplace . "/" . replacement ."/g"
+            endif
         ]])
-        -- -- local targetword = vim.fn.input("Target Word: ")
-        -- -- vim.cmd("Rg "..targetword)
-        -- local lenqf = vim.fn.getqflist()
-        -- if #lenqf > 0 then
+        -- local qflist = vim.fn.getqflist()
+        -- if #qflist > 0 then
         --     local targetword = vim.fn.input("Target Word: ")
         --     local replaceword = vim.fn.input("New Word: ")
-        --     local choice = vim.fn.confirm(
-        --         "Will you replace "..#lenqf.." of '"..targetword.."' with '"..replaceword.."' ?",
-        --         "&Yes\n&No"
-        --     )
-        --     if choice == 1 then
-        --         vim.cmd("cdo s/"..targetword.."/"..replaceword.."/g | :w! | :cclose")
+        --     local numreplace = 0
+        --     for i = 1,#qflist do
+        --         if string.find(qflist[i]["text"], targetword) then
+        --             numreplace = numreplace + 1
+        --         end
+        --     end
+        --     if numreplace > 0 then
+        --         local choice = vim.fn.confirm(
+        --             "Will you replace "..numreplace.." of '"..targetword.."' with '"..replaceword.."' ?",
+        --             "&Yes\n&No"
+        --         )
+        --         if choice == 1 then
+        --             vim.cmd("cdo s/"..targetword.."/"..replaceword.."/g | :w!")
+        --         end
+        --     else
+        --         print("not found: '"..targetword.."'")
         --     end
         -- end
     end,
