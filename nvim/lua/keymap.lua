@@ -97,7 +97,7 @@ keymap("n", "<leader>r",
             let wordToReplace = input("Replace : ", wordUnderCursor)
             call inputrestore()
             call inputsave()
-            let replacement = input("Replace \"" . wordUnderCursor . "\" with: ")
+            let replacement = input("Replace \"" . wordToReplace . "\" with: ")
             call inputrestore()
             call RgToQF(wordUnderCursor)
             let numqf = len(getqflist())
