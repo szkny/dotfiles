@@ -133,6 +133,10 @@ if vim.fn.executable('rg') then
         "call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob \"!.git/*\" --color \"always\" '.shellescape(<q-args>).'| tr -d \"\\017\"', 1, <bang>0)",
         { bang = true, nargs = '*' }
     )
+    vim.api.nvim_create_user_command("RgFiles",
+        "call fzf#run(fzf#wrap(#{source: 'rg --files -u -L', options: '--preview-window \"nohidden,wrap,down,50%\" --preview \"bat --color=always --style=numbers {}\"'}))",
+        { bang = true, nargs = '?' }
+    )
 end
 vim.api.nvim_set_var('$FZF_DEFAULT_OPTS' , '--reverse --bind ctrl-j:preview-down,ctrl-k:preview-up')
 vim.api.nvim_create_user_command("Files",
