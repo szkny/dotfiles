@@ -121,11 +121,33 @@ vim.api.nvim_set_var("splitterm_auto_close_window", 1)
 -- fzf.vim
 vim.api.nvim_set_var("wildmode", "list:longest,list:full")
 vim.api.nvim_set_var("wildignore", "*.o,*.obj,.git,*.rbc,*.pyc,__pycache__")
--- The Silver Searcher
+vim.api.nvim_set_var('$FZF_DEFAULT_OPTS' , '--reverse --bind ctrl-j:preview-down,ctrl-k:preview-up')
+vim.api.nvim_set_var('fzf_layout',         { window = { width = 0.9, height = 0.9 } })
+vim.api.nvim_set_var('fzf_preview_window', { 'right,50%,<70(down,60%)', 'ctrl-/' })
+vim.api.nvim_set_var('fzf_colors',         {
+    fg = { 'fg', 'FzfNormal' },
+    bg = { 'bg', 'FzfNormal' },
+    ['fg+'] = { 'fg', 'FzfCursorLine' },
+    ['bg+'] = { 'bg', 'FzfCursorLine' },
+    ['preview-fg'] = { 'fg', 'FzfPreview' },
+    ['preview-bg'] = { 'bg', 'FzfPreview' },
+})
+vim.api.nvim_create_user_command("Files",
+    "call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)",
+    { bang = true, nargs = '?' }
+)
+vim.cmd([[
+    hi link FzfNormal Normal
+    hi FzfNormal                   guibg=#2a2a2a 
+    hi FzfCursorLine guifg=#ffffff guibg=#5e5e5e 
+    hi FzfPreview                  guibg=none
+]])
+-- fzf.vim for Silver Searcher
 if vim.fn.executable('ag') then
     vim.api.nvim_set_var('$FZF_DEFAULT_COMMAND' , 'ag --hidden --ignore .git -g ""')
     vim.opt.grepprg = 'ag --nogroup --nocolor'
 end
+-- fzf.vim for RipGrep
 if vim.fn.executable('rg') then
     vim.api.nvim_set_var('$FZF_DEFAULT_COMMAND' , 'rg --files --hidden --follow --glob "!.git/*"')
     vim.opt.grepprg = 'rg --vimgrep'
@@ -133,32 +155,11 @@ if vim.fn.executable('rg') then
         "call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob \"!.git/*\" --color \"always\" '.shellescape(<q-args>).'| tr -d \"\\017\"', 1, <bang>0)",
         { bang = true, nargs = '*' }
     )
-    vim.api.nvim_create_user_command("RgFiles",
+    vim.api.nvim_create_user_command("Files",
         "call fzf#run(fzf#wrap(#{source: 'rg --files -uuu -L', options: '--preview-window \"nohidden,wrap,down,50%\" --preview \"bat --color=always --style=numbers {}\"'}))",
         { bang = true, nargs = '?' }
     )
 end
-vim.api.nvim_set_var('$FZF_DEFAULT_OPTS' , '--reverse --bind ctrl-j:preview-down,ctrl-k:preview-up')
-vim.api.nvim_create_user_command("Files",
-    "call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)",
-    { bang = true, nargs = '?' }
-)
--- let g:fzf_layout = { 'window': 'enew' }
-vim.cmd([[
-    let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
-    let g:fzf_preview_window = ['right,50%,<70(down,60%)', 'ctrl-/']
-    let g:fzf_colors =
-    \ { 'fg':         ['fg', 'FzfNormal'],
-    \   'bg':         ['bg', 'FzfNormal'],
-    \   'fg+':        ['fg', 'FzfCursorLine'],
-    \   'bg+':        ['bg', 'FzfCursorLine'],
-    \   'preview-fg': ['fg', 'FzfPreview'],
-    \   'preview-bg': ['bg', 'FzfPreview']}
-    hi link FzfNormal Normal
-    hi FzfNormal                   guibg=#2a2a2a 
-    hi FzfCursorLine guifg=#ffffff guibg=#5e5e5e 
-    hi FzfPreview                  guibg=none 
-]])
 
 
 -- vim-easy-align
