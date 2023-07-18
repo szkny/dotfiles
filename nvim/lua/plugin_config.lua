@@ -994,7 +994,7 @@ require('bufferline').setup {
       bg = '#181d24',
     },
     duplicate = {
-      fg = "#888888",
+      fg = '#888888',
       bg = '#181d24',
       italic = false,
     },
@@ -1064,23 +1064,27 @@ require('bufferline').setup {
     },
     modified = {
       fg = '#bb7700',
-      bg = "#181d24",
+      bg = '#181d24',
       bold = true,
     },
     separator_selected = {
-      fg = "#303030",
-      bg = "#181d24",
+      fg = '#303030',
+      bg = '#181d24',
     },
     separator_visible = {
-      fg = "#303030",
-      bg = "#181d24",
+      fg = '#303030',
+      bg = '#181d24',
     },
     separator = {
-      fg = "#444450",
-      bg = "#181d24",
+      fg = '#444450',
+      bg = '#181d24',
     },
     offset_separator = {
       fg = win_separator_fg,
+      bg = 'none',
+    },
+    trunc_marker = {
+      fg = '#888888',
       bg = 'none',
     },
   }
