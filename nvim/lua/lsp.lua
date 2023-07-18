@@ -231,14 +231,12 @@ vim.cmd([[
         " nno <silent><nowait> <leader>a :<C-u>CocFzfList diagnostics<CR>
         nno <silent><nowait> <leader>a <CMD>call Cocfzflist_wrap("diagnostics")<CR>
         nno <silent><nowait> <leader>c <CMD>call Cocfzflist_wrap()<CR>
-        if !exists('*Cocfzflist_wrap')
-            fun Cocfzflist_wrap(...) abort
-                try
-                    exe 'CocFzfList '.join(a:000)
-                catch
-                endtry
-            endf
-        endif
+        fun! Cocfzflist_wrap(...) abort
+            try
+                exe 'CocFzfList '.join(a:000)
+            catch
+            endtry
+        endf
     endf
 
     call CocMapping()
