@@ -1084,7 +1084,7 @@ require('bufferline').setup {
       bg = 'none',
     },
     trunc_marker = {
-      fg = '#888888',
+      fg = '#666666',
       bg = 'none',
     },
   }
