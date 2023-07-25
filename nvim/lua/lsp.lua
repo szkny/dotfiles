@@ -41,6 +41,7 @@ vim.api.nvim_set_var('coc_global_extensions', {
     'coc-vetur',
     'coc-jedi',
     'coc-sh',
+    'coc-rust-analyzer',
     'coc-clangd',
     '@yaegassy/coc-ansible',
 })
