@@ -507,9 +507,9 @@ vim.cmd([[
 vim.cmd([[
     let g:minimap_auto_start                        = 0
     let g:minimap_auto_start_win_enter              = 0
-    let g:minimap_width                             = 12
+    let g:minimap_width                             = 10
     let g:minimap_window_width_override_for_scaling = 2147483647
-    let g:minimap_block_filetypes                   = ['terminal', 'fzf', 'vista_kind', 'NvimTree', 'rnvimr']
+    let g:minimap_block_filetypes                   = ['terminal', 'fzf', 'vista', 'vista_kind', 'NvimTree', 'rnvimr']
     " let g:minimap_close_buftypes                   = ['nofile', 'startify', 'netrw', 'vim-plug', 'terminal']
     let g:minimap_enable_highlight_colorgroup = 0
     let g:minimap_highlight_range             = 1
@@ -530,6 +530,10 @@ vim.cmd([[
     hi MyMinimapDiffLine    guifg=#bbbb00
     hi MyMinimapDiffAdded   guifg=#00aa77
     hi MyMinimapDiffRemoved guifg=#bb0000
+    " aug minimap_auto_start
+    "     au!
+    "     au WinEnter * if g:minimap_auto_start_win_enter | exe 'Minimap' | endif
+    " aug END
 ]])
 
 
@@ -579,7 +583,7 @@ vim.cmd([[
     let g:indent_blankline_max_indent_increase        = g:indent_blankline_indent_level
     let g:indent_blankline_show_first_indent_level    = v:true
     let g:indent_blankline_show_current_context_start = v:true
-    let g:indent_blankline_filetype_exclude           = ['terminal', 'help', 'fzf', 'vista_kind', 'NvimTree', 'mason', 'rnvimr']
+    let g:indent_blankline_filetype_exclude           = ['terminal', 'help', 'fzf', 'vista', 'vista_kind', 'NvimTree', 'mason', 'rnvimr']
     let g:indent_blankline_bufname_exclude            = ['README.md']
     let g:indent_blankline_disable_with_nolist        = v:true
     lua require("indent_blankline").setup {
