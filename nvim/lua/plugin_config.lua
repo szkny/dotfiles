@@ -991,7 +991,7 @@ require('bufferline').setup {
     },
     fill = {
       fg = '#555555',
-      bg = '#10181f',
+      bg = 'none',
     },
     background = {
       fg = '#888888',
@@ -1182,7 +1182,7 @@ require("scrollbar").setup({
     },
   },
   handlers = {
-      cursor = true,
+      cursor = false,
       handle = true,
       diagnostic = true,
       gitsigns = true,
