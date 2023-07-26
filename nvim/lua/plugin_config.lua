@@ -991,7 +991,7 @@ require('bufferline').setup {
     },
     fill = {
       fg = '#555555',
-      bg = 'none',
+      bg = '#10181f',
     },
     background = {
       fg = '#888888',
