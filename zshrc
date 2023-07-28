@@ -12,6 +12,8 @@ eval "$(starship init zsh)"
 zsh-defer start-tmux
 ### pyenv
 _pyenv_init () { eval "$(pyenv init -)" } && zsh-defer _pyenv_init
+### zoxide
+_zoxide_init () { eval "$(zoxide init zsh)" } && zsh-defer _zoxide_init
 ### aws-cli
 _autocomplete_aws_cli () { complete -C '/usr/local/bin/aws_completer' aws } && zsh-defer _autocomplete_aws_cli
 
@@ -92,6 +94,7 @@ bindkey -s '^V' '^uvi\n'
 bindkey -s '^H' '^uranger-cd\n'
 # bindkey -s '^H' '^ucd **\t'
 bindkey -s '^F' '^ufdghq\n'
+bindkey -s '^G' '^uzi\n'
 
 ## functions
 function cdls(){

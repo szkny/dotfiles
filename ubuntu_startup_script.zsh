@@ -14,6 +14,7 @@ sudo apt install -y silversearcher-ag
 sudo apt install -y ripgrep
 sudo apt install -y universal-ctags
 sudo apt install -y trash-cli
+sudo apt install -y zoxide
 
 ## install rust / cargo
 echo 'install rust / cargo..'

@@ -37,7 +37,3 @@ apply = ["defer"]
 github = "lukechilds/zsh-better-npm-completion"
 apply = ["defer"]
 
-[plugins.z]
-github = "rupa/z"
-apply = ["defer"]
-
