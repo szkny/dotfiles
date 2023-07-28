@@ -107,7 +107,7 @@ vim.cmd([[
     command! Prettier call s:prettier()
     aug PrettierSettings
         au!
-        au BufWritePre *.js,*.cjs,*.mjs,*.ts,*.tsx call s:prettier_on_save()
+        au BufWritePre *.js,*.cjs,*.mjs,*.ts,*.tsx,*.json,*.yml,*.yaml call s:prettier_on_save()
     aug END
 ]])
 
