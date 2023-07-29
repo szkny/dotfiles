@@ -180,7 +180,7 @@ vim.cmd([[
     hi PmenuSBar    guifg=#666666 guibg=#cccccc
     hi FloatBorder  gui=bold guibg=#282828
     call pum#set_option(#{
-      \   auto_select: v:true,
+      \   auto_select: v:false,
       \   max_height: 15,
       \   max_width: 0,
       \   offset_row: 1,
