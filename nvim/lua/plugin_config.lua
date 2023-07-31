@@ -156,7 +156,7 @@ if vim.fn.executable('rg') then
         { bang = true, nargs = '*' }
     )
     vim.api.nvim_create_user_command("Files",
-        "call fzf#run(fzf#wrap(#{source: 'rg --files -uuu -L', options: '--preview-window \"nohidden,wrap,down,60%\" --preview \"bat --color=always --style=numbers {}\"'}))",
+        "call fzf#run(fzf#wrap(#{source: 'rg --files -uuu -g !.git/ -L', options: '--preview-window \"nohidden,wrap,down,60%\" --preview \"bat --color=always --style=numbers {}\"'}))",
         { bang = true, nargs = '?' }
     )
 end
