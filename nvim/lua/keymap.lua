@@ -330,18 +330,18 @@ fun DdcMapping() abort
       \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' : '<DOWN>'
     ino <silent> <expr> <UP>
       \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
-    if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
-        "" vim-lsp
-        nno <silent><nowait> <C-]>     :<C-u>LspDefinition<CR>
-        nno <silent><nowait> <leader>] :<C-u>LspDefinition<CR>
-        nno <silent><nowait> <leader>[ :<C-u>LspReferences<CR>
-        nno <silent><nowait> <leader>k :<C-u>LspHover<CR>
-        nno <silent><nowait> <leader>n :<C-u>LspNextDiagnostic<CR>
-        nno <silent><nowait> <leader>p :<C-u>LspPreviousDiagnostic<CR>
-        " nno <silent><nowait> <leader>r :<C-u>LspRename<CR>
-        nno <silent><nowait> <leader>l :<C-u>LspDocumentDiagnostics<CR>
-        nno <silent><nowait> <leader>h :<C-u>LspCodeAction<CR>
-    endif
+    " if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
+    "     "" vim-lsp
+    "     nno <silent><nowait> <C-]>     :<C-u>LspDefinition<CR>
+    "     nno <silent><nowait> <leader>] :<C-u>LspDefinition<CR>
+    "     nno <silent><nowait> <leader>[ :<C-u>LspReferences<CR>
+    "     nno <silent><nowait> <leader>k :<C-u>LspHover<CR>
+    "     nno <silent><nowait> <leader>n :<C-u>LspNextDiagnostic<CR>
+    "     nno <silent><nowait> <leader>p :<C-u>LspPreviousDiagnostic<CR>
+    "     " nno <silent><nowait> <leader>r :<C-u>LspRename<CR>
+    "     nno <silent><nowait> <leader>l :<C-u>LspDocumentDiagnostics<CR>
+    "     nno <silent><nowait> <leader>h :<C-u>LspCodeAction<CR>
+    " endif
 endf
 if get(g:, 'use_coc_nvim', 0) == 0 && get(g:, 'use_mason_nvim', 0) == 0
     call DdcMapping()
