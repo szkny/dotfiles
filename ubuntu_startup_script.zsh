@@ -14,7 +14,6 @@ sudo apt install -y silversearcher-ag
 sudo apt install -y ripgrep
 sudo apt install -y universal-ctags
 sudo apt install -y trash-cli
-sudo apt install -y zoxide
 
 ## install rust / cargo
 echo 'install rust / cargo..'
@@ -24,7 +23,7 @@ curl https://sh.rustup.rs -sSf | sh
 ## install cargo libs
 echo 'install cargo packages..'
 . ~/.zshrc
-cargo install exa bat rm-improved code-minimap git-delta
+cargo install exa bat rm-improved code-minimap git-delta zoxide
 ## cargo install deno
 
 ## mocword
