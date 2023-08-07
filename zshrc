@@ -95,7 +95,7 @@ bindkey -s '^V' '^uvi\n'
 bindkey -s '^H' '^uranger-cd\n'
 # bindkey -s '^H' '^ucd **\t'
 bindkey -s '^F' '^ufdghq\n'
-bindkey -s '^G' '^uzigp\n'
+bindkey -s '^G' '^uzg\n'
 
 ## functions
 function cdls(){
@@ -122,6 +122,7 @@ function ranger-cd(){
     fi
     rm -f -- "$tempfile"
 }
+
 function google() { # Goolge Search by Google Chrome
     local str opt
     if [ $# != 0 ]; then
@@ -134,6 +135,7 @@ function google() { # Goolge Search by Google Chrome
     fi
     open -a Google\ Chrome http://www.google.co.jp/$opt
 }
+
 function command_not_found_handler(){
     echo "zsh: command not found: " $1
     echo -e "  __        ___    ____ _____ _____ ____   \n"\
@@ -142,14 +144,18 @@ function command_not_found_handler(){
             "   \\ V  V / ___ \\ ___) || | | |___| |_| | \n"\
             "    \\_/\_/_/   \\_\\____/ |_| |_____|____/  \n"
 }
+
 function jupyterlab-rm-checkpoints(){
     find ~/Project/jupyterlab -name .ipynb_checkpoints
     find ~/Project/jupyterlab -name .ipynb_checkpoints | xargs rm -rf
 }
+
 function openiterm(){
     osascript -e 'tell application "Iterm" to activate'
 }
+
 function IsExistCmd(){ type "$1" > /dev/null 2>&1; }
+
 function start-tmux(){
   if ! IsExistCmd tmux; then
     echo tmux not installed
@@ -162,14 +168,14 @@ function start-tmux(){
   #   tmux -u attach
   fi
 }
+
 function dotfiles(){
   cd ~/dotfiles
   checked_git_pull
   return 0
 }
 
-## zoxide function
-function zigp () {
+function zg () {
   __zoxide_zi && [ -d .git ] && checked_git_pull
   return 0
 }
