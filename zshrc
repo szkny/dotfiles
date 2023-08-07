@@ -63,6 +63,7 @@ alias od='od -x'
 alias rsync='rsync -auvrz'
 alias kill='kill -9'
 alias gcam='git commit -am'
+alias gp='git pull'
 
 ## setup for vim
 export EDITOR='nvim'
@@ -94,12 +95,23 @@ bindkey -s '^V' '^uvi\n'
 bindkey -s '^H' '^uranger-cd\n'
 # bindkey -s '^H' '^ucd **\t'
 bindkey -s '^F' '^ufdghq\n'
-bindkey -s '^G' '^uzi\n'
+bindkey -s '^G' '^uzigp\n'
 
 ## functions
 function cdls(){
     \cd $@ && exa -G --icons
 }
+
+function checked_git_pull () {
+  echo
+  echo -n "run 'git pull'? [y/N]: "
+  if read -q; then
+    echo
+    echo '> git pull'
+    git pull
+  fi
+}
+
 function ranger-cd(){
     tempfile="$(mktemp -t tmp.XXXXXX)"
     ranger --choosedir="$tempfile" "${@:-$(pwd)}"
@@ -152,13 +164,13 @@ function start-tmux(){
 }
 function dotfiles(){
   cd ~/dotfiles
-  echo
-  echo -n "run 'git pull'? [y/N]: "
-  if read -q; then
-    echo
-    echo '> git pull'
-    git pull
-  fi
+  checked_git_pull
+  return 0
+}
+
+## zoxide function
+function zigp () {
+  __zoxide_zi && [ -d .git ] && checked_git_pull
   return 0
 }
 
@@ -205,13 +217,7 @@ function fdghq(){
   local selectedrepos=$(ghq list --full-path | fzf)
   if [ -n "$selectedrepos" ]; then
     cd $selectedrepos
-    echo
-    echo -n "run 'git pull'? [y/N]: "
-    if read -q; then
-      echo
-      echo '> git pull'
-      git pull
-    fi
+    checked_git_pull
   fi
   return 0
 }
