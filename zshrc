@@ -107,7 +107,7 @@ function checked_git_pull () {
   echo -n "run 'git pull'? [y/N]: "
   if read -q; then
     echo
-    echo '> git pull'
+    # echo '> git pull'
     git pull
   fi
 }
