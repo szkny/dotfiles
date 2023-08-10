@@ -1,149 +1,136 @@
 {
-    // show diagnostics
-    "diagnostic.enable": true,
-    "diagnostic.autoRefresh": true,
-    "diagnostic.enableHighlightLineNumber": false,
-    "diagnostic.enableSign": true, 
-    "diagnostic.infoSign": "",
-    "diagnostic.errorSign": "",
-    "diagnostic.hintSign": "",
-    "diagnostic.warningSign": "",
-    "diagnostic.messageTarget": "float",
-    "diagnostic.virtualText": true,
-    "diagnostic.virtualTextPrefix": "    ",
-    "diagnostic.virtualTextCurrentLineOnly": false,
-    "diagnostic.messageDelay": 10,
-    "diagnostic.refreshOnInsertMode": false,
-    "codeLens.enable": true,
+  // show diagnostics
+  "diagnostic.enable": true,
+  "diagnostic.autoRefresh": true,
+  "diagnostic.enableHighlightLineNumber": false,
+  "diagnostic.enableSign": true,
+  "diagnostic.infoSign": "",
+  "diagnostic.errorSign": "",
+  "diagnostic.hintSign": "",
+  "diagnostic.warningSign": "",
+  "diagnostic.messageTarget": "float",
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextPrefix": "    ",
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "diagnostic.messageDelay": 10,
+  "diagnostic.refreshOnInsertMode": false,
+  "codeLens.enable": true,
 
-    // suggest config
-    "suggest.floatConfig": {
-        "border": true,
-        "rounded": true,
-        "highlight": "CocFloating",
-        "borderhighlight": "CocFloating",
-        "winblend": 20,
-    },
-    "suggest.autoTrigger": "always",
-    "suggest.formatItems": [
-        "abbr",
-        "menu",
-        "kind",
-        "shortcut",
-    ],
-    "suggest.completionItemKindLabels": {
-        "function": "\uf794 Function",
-        "method":"\uf6a6 Method",
-        "variable": "\uf71b Variable",
-        "constant": "\uf8ff Constant",
-        "struct": "\ufb44 Struct",
-        "class": "\uf0e8 Class",
-        "interface": "\ufa52 Interface",
-        "text": "\ue612 Text",
-        "enum": "\uf435 Enum",
-        "enumMember": "\uf02b EnumMember",
-        "color": "\ue22b Color",
-        "property": "\uf0ad Property",
-        "field": "\uf192 Field",
-        "unit": "\uf475 Unit",
-        "file": "\uf471 File",
-        "value": "\uf8a3 Value",
-        "event": "\ufacd Event",
-        "folder": "\uf115 Folder",
-        "keyword": "\uf893 Keyword",
-        "snippet": "\uf64d Snippet",
-        "operator": "\uf055 Operator",
-        "reference": "\uf87a Reference",
-        "typeParameter": "\uf278 TypeParameter",
-        "default": "\uf29c Default"
-    },
+  // suggest config
+  "suggest.floatConfig": {
+    "border": true,
+    "rounded": true,
+    "highlight": "CocFloating",
+    "borderhighlight": "CocFloating",
+    "winblend": 20
+  },
+  "suggest.autoTrigger": "always",
+  "suggest.formatItems": ["abbr", "menu", "kind", "shortcut"],
+  "suggest.completionItemKindLabels": {
+    "function": "\uf794 Function",
+    "method": "\uf6a6 Method",
+    "variable": "\uf71b Variable",
+    "constant": "\uf8ff Constant",
+    "struct": "\ufb44 Struct",
+    "class": "\uf0e8 Class",
+    "interface": "\ufa52 Interface",
+    "text": "\ue612 Text",
+    "enum": "\uf435 Enum",
+    "enumMember": "\uf02b EnumMember",
+    "color": "\ue22b Color",
+    "property": "\uf0ad Property",
+    "field": "\uf192 Field",
+    "unit": "\uf475 Unit",
+    "file": "\uf471 File",
+    "value": "\uf8a3 Value",
+    "event": "\ufacd Event",
+    "folder": "\uf115 Folder",
+    "keyword": "\uf893 Keyword",
+    "snippet": "\uf64d Snippet",
+    "operator": "\uf055 Operator",
+    "reference": "\uf87a Reference",
+    "typeParameter": "\uf278 TypeParameter",
+    "default": "\uf29c Default"
+  },
 
-    // signature config
-    "signature.enable": true,
-    "signature.floatConfig": {
-        "border": true,
-        "rounded": true,
-        "highlight": "CocFloating",
-        "borderhighlight": "CocFloating",
-        "winblend": 20,
-    },
+  // signature config
+  "signature.enable": true,
+  "signature.floatConfig": {
+    "border": true,
+    "rounded": true,
+    "highlight": "CocFloating",
+    "borderhighlight": "CocFloating",
+    "winblend": 20
+  },
 
-    // hover config
-    "hover.floatConfig": {
-        "border": true,
-        "rounded": true,
-        "highlight": "CocFloating",
-        "borderhighlight": "CocFloating",
-        "winblend": 20,
-    },
+  // hover config
+  "hover.floatConfig": {
+    "border": true,
+    "rounded": true,
+    "highlight": "CocFloating",
+    "borderhighlight": "CocFloating",
+    "winblend": 20
+  },
 
-    // show color
-    "colors.enable": true,
+  // show color
+  "colors.enable": true,
 
-    // coc-tsserver
-    "typescript.check.npmIsInstalled": true,
-    "typescript.preferences.quoteStyle": "double",
-    "javascript.preferences.quoteStyle": "double",
-    "typescript.suggest.autoImports": true,
-    "javascript.suggest.autoImports": true,
-    "tsserver.disableAutomaticTypeAcquisition": false,
+  // coc-tsserver
+  "typescript.check.npmIsInstalled": true,
+  "typescript.preferences.quoteStyle": "double",
+  "javascript.preferences.quoteStyle": "double",
+  "typescript.suggest.autoImports": true,
+  "javascript.suggest.autoImports": true,
+  "tsserver.disableAutomaticTypeAcquisition": false,
 
-    // eslint
-    "eslint": {
-        "eslint.enable": false,
-        "eslint.filetypes": [
-            "vue"
-        ],
-    },
+  // eslint
+  "eslint": {
+    "eslint.enable": false,
+    "eslint.filetypes": ["vue"]
+  },
 
-    // coc-lua
-    "Lua": {
-        "diagnostics": {
-            "globals": [
-                "vim",
-                "win_separator_fg"
-            ]
-        }
-    },
+  // coc-lua
+  "Lua": {
+    "diagnostics": {
+      "globals": ["vim", "win_separator_fg"]
+    }
+  },
 
-    // coc-json
-    "json": {
-        "enable": true,
-        "enableDefaultSchemas": false
-    },
+  // coc-json
+  "json": {
+    "enable": true,
+    "enableDefaultSchemas": false
+  },
 
-    // coc-yaml
-    "yaml": {
-        "enable": true,
-        "schemas": {
-            "url": "globPattern",
-            "Kubernetes": "globPattern"
-        }
-    },
+  // coc-yaml
+  "yaml": {
+    "enable": true,
+    "schemas": {
+      "url": "globPattern",
+      "Kubernetes": "globPattern"
+    }
+  },
 
-    // coc-jedi
-    "jedi": {
-        "enable": true,
-        "startupMessage": false,
-        "executable.command": "~/.pyenv/shims/jedi-language-server"
-    },
+  // coc-jedi
+  "jedi": {
+    "enable": true,
+    "startupMessage": false,
+    "executable.command": "~/.pyenv/shims/jedi-language-server"
+  },
 
-    // coc-sh
-    "sh": {
-        "enable": false,
-    },
+  // coc-sh
+  "sh": {
+    "enable": false
+  },
 
-    // terraform-ls
-    "languageserver": {
-        "terraform": {
-            "command": "terraform-ls",
-            "args": ["serve"],
-            "filetypes": [
-                "terraform",
-                "tf"
-            ],
-            "initializationOptions": {},
-            "settings": {}
-        }
-    },
+  // terraform-ls
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf"],
+      "initializationOptions": {},
+      "settings": {}
+    }
+  }
 }

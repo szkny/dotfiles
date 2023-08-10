@@ -35,11 +35,11 @@ gzip -d mocword.sqlite.gz
 
 ## install python
 echo 'install python..'
-git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 . ~/.zshrc
-pyenv install --verbose 3.6.5
+pyenv install --verbose 3.11.0
 pyenv install --verbose 2.7.15
-pyenv global 3.6.5 2.7.15
+pyenv global 3.11.0 2.7.15
 
 ## install python packages
 pip3 install -U pip
@@ -48,10 +48,10 @@ pip install pandas
 
 ## install node.js
 echo 'install node.js..'
-curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+curl https://get.volta.sh | bash
 . ~/.zshrc
-nvm install 14.17.1
-npm install -g prettier@2.8.0
+volta install node@18.16.0
+npm install -g prettier
 
 ## install fzf
 echo 'install cargo packages..'
@@ -59,9 +59,15 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
 ## install ghq
-echo 'install cargo packages..'
+echo 'install ghq..'
 go install github.com/x-motemen/ghq@latest
 mkdir -p ~/ghq
+
+## install lazygit
+echo 'install lazygit..'
+go install github.com/jesseduffield/lazygit@latest
+mkdir -p ~/.config/lazygit
+ln -s ~/dotfiles/lazygit/config.yml ~/.config/lazygit/config.yml
 
 ## install ranger-cli
 echo 'install ranger-cli..'
