@@ -40,8 +40,8 @@ config.initial_rows = 45
 config.initial_cols = 150
 config.window_decorations = "RESIZE"
 config.window_padding = {
-    left = 3, right = 3,
-    top = 3, bottom = 0,
+  left = 3, right = 3,
+  top = 3, bottom = 0,
 }
 
 
@@ -59,8 +59,9 @@ wezterm.on(
   function(tab)
     local title = tab.tab_title
     if not ( title and #title > 0 ) then
-        -- title = tab.active_pane.title
-        title = '  ' .. wezterm.nerdfonts.cod_terminal_ubuntu .. '  '
+      -- local icon = wezterm.nerdfonts.cod_terminal_ubuntu
+      local icon = wezterm.nerdfonts.cod_terminal
+      title = icon .. '    ' .. ( tab.tab_index + 1 )
     end
     if tab.is_active then
       return {
@@ -75,10 +76,10 @@ wezterm.on(
   end
 )
 config.colors.tab_bar = {
-    new_tab = {
-        bg_color = "#1f232f",
-        fg_color = "#c6c8d1",
-    }
+  new_tab = {
+    bg_color = "#1f232f",
+    fg_color = "#c6c8d1",
+  }
 }
 
 
