@@ -313,7 +313,7 @@ keymap("n", "<C-k>",      ":<C-u>MinimapToggle<CR>:MinimapRefresh<CR>", opts )
 keymap("n", "<Leader>gg", ":<C-u>G<CR>",                                opts )
 keymap("n", "<Leader>gd", ":<C-u>Gvdiffsplit<CR>",                      opts )
 -- -- lazygit
-keymap("n", "<Leader>lg", ":<C-u>VSplitTerm lazygit<CR>i",              opts )
+keymap("n", "<Leader>lg", ":<C-u>30SplitTerm lazygit<CR>i",             opts )
 
 vim.cmd([[
 fun DdcMapping() abort
