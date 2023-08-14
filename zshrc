@@ -56,14 +56,15 @@ alias cd='cdls'
 alias ls='exa -G --icons'
 alias ll='exa -lh --icons'
 alias c='clear'
-alias g='git'
 alias tree='exa -T --icons'
 alias mv='mv -i'
 alias od='od -x'
 alias rsync='rsync -auvrz'
 alias kill='kill -9'
+alias g='git'
 alias gcam='git commit -am'
 alias gp='git pull'
+alias lg='lazygit'
 
 ## setup for vim
 export EDITOR='nvim'
@@ -107,7 +108,6 @@ function checked_git_pull () {
   echo -n "run 'git pull'? [y/N]: "
   if read -q; then
     echo
-    # echo '> git pull'
     git pull
   fi
 }
