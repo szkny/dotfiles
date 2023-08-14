@@ -303,15 +303,17 @@ keymap("n", "<Leader>t",
     opts
 )
 -- -- SplitTerm
-keymap("n", "t",          ":<C-u>18SplitTerm<CR>i",  opts)
+keymap("n", "t",          ":<C-u>18SplitTerm<CR>i",                     opts )
 -- -- vista.vim
-keymap("n", "<C-t>",      ":<C-u>Vista!!<CR>",        opts)
-keymap("n", "<C-g>",      ":<C-u>Vista finder<CR>",   opts)
+keymap("n", "<C-t>",      ":<C-u>Vista!!<CR>",                          opts )
+keymap("n", "<C-g>",      ":<C-u>Vista finder<CR>",                     opts )
 -- -- minimap.vim
-keymap("n", "<C-k>",      ":<C-u>MinimapToggle<CR>:MinimapRefresh<CR>", opts)
+keymap("n", "<C-k>",      ":<C-u>MinimapToggle<CR>:MinimapRefresh<CR>", opts )
 -- -- fugitive
-keymap("n", "<Leader>gg", ":<C-u>G<CR>",              opts)
-keymap("n", "<Leader>gd", ":<C-u>Gvdiffsplit<CR>",    opts)
+keymap("n", "<Leader>gg", ":<C-u>G<CR>",                                opts )
+keymap("n", "<Leader>gd", ":<C-u>Gvdiffsplit<CR>",                      opts )
+-- -- lazygit
+keymap("n", "<Leader>lg", ":<C-u>VSplitTerm lazygit<CR>i",              opts )
 
 vim.cmd([[
 fun DdcMapping() abort
