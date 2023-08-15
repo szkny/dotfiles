@@ -42,6 +42,13 @@ return {
               modified_placement = "after",
               padding = " ",
               symlink_arrow = " → ",
+              show = {
+                file = true,
+                folder = true,
+                folder_arrow = true,
+                git = true,
+                modified = true,
+              },
               glyphs = {
                 git = {
                   unstaged = "M",
