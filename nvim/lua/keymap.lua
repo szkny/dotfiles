@@ -105,9 +105,9 @@ keymap("n", "<leader>r",
                 \ "Will you replace ".numqf." of '".wordToReplace."' with '".replacement."' ?",
                 \ "&Yes\n&No\n&Check")
             if choice == 1
-                exe "cdo s/" . wordToReplace . "/" . replacement ."/g"
+                exe "cdo s/" . wordToReplace . "/" . replacement ."/g | w"
             elseif choice == 3
-                exe "cdo s/" . wordToReplace . "/" . replacement ."/gc"
+                exe "cdo s/" . wordToReplace . "/" . replacement ."/gc | w"
             endif
         ]])
         -- local qflist = vim.fn.getqflist()
