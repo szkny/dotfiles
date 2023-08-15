@@ -105,9 +105,9 @@ keymap("n", "<leader>r",
                 \ "Will you replace ".numqf." of '".wordToReplace."' with '".replacement."' ?",
                 \ "&Yes\n&No\n&Check")
             if choice == 1
-                exe "cdo s/" . wordToReplace . "/" . replacement ."/g"
+                exe "cdo s/" . wordToReplace . "/" . replacement ."/g | w"
             elseif choice == 3
-                exe "cdo s/" . wordToReplace . "/" . replacement ."/gc"
+                exe "cdo s/" . wordToReplace . "/" . replacement ."/gc | w"
             endif
         ]])
         -- local qflist = vim.fn.getqflist()
@@ -313,7 +313,7 @@ keymap("n", "<C-k>",      ":<C-u>MinimapToggle<CR>:MinimapRefresh<CR>", opts )
 keymap("n", "<Leader>gg", ":<C-u>G<CR>",                                opts )
 keymap("n", "<Leader>gd", ":<C-u>Gvdiffsplit<CR>",                      opts )
 -- -- lazygit
-keymap("n", "<Leader>lg", ":<C-u>50SplitTerm lazygit<CR>i",             opts )
+keymap("n", "<Leader>lg", ":<C-u>100SplitTerm lazygit<CR>i",             opts )
 
 vim.cmd([[
 fun DdcMapping() abort
