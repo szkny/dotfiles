@@ -101,6 +101,7 @@ bindkey -s '^G' '^uzg\n'
 ## functions
 function cdls(){
   \cd $@ && [ $( ls | wc -l ) -lt 20 ] && exa -G --icons
+  return 0
 }
 
 function checked_git_pull () {
