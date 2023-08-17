@@ -75,6 +75,7 @@ alias vide="$EDITOR -S ~/.config/nvim/ide.vim"
 alias vimrc="$EDITOR ~/dotfiles/nvim/init.vim ~/dotfiles/nvim/vimrc/*.vim"
 alias nvimrc="$EDITOR ~/dotfiles/nvim/init.lua ~/dotfiles/nvim/lua/*.lua"
 alias weztermconf="$EDITOR ~/dotfiles/wezterm.lua && cp ~/dotfiles/wezterm.lua ~/win_home/.wezterm.lua"
+alias alacrittyconf="$EDITOR  ~/dotfiles/alacritty.yml && cp ~/dotfiles/alacritty.yml ~/win_home/AppData/Roaming/alacritty/alacritty.yml"
 alias zshrc="$EDITOR ~/.zshrc;source ~/.zshrc"
 alias zprofile="$EDITOR ~/.zprofile;source ~/.zprofile"
 

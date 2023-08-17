@@ -1,0 +1,26 @@
+shell:
+  program: wsl.exe --cd ~
+
+font:
+  normal:
+    family: HackGen Console NFJ
+    style: Regular
+  size: 12
+  offset:
+    x: 0
+    y: 0
+  glyph_offset:
+    x: 0
+    y: 1
+
+window:
+  dimensions:
+    columns: 150
+    lines: 45
+  decorations: none
+  opacity: 0.80
+
+mouse:
+  double_click: { threshold: 300 }
+  triple_click: { threshold: 300 }
+  hide_when_typing: false
