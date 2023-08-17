@@ -1258,12 +1258,12 @@ require('Comment').setup({
     padding = true,
     sticky = true,
     toggler = {
-        line = 'gcc',
+        line = '<C-_>',
         block = 'gbc',
     },
     opleader = {
-        -- line = 'gc',
-        -- block = 'gb',
+        line = '<C-_>',
+        block = 'gb',
     },
     extra = {
         -- above = 'gcO',
@@ -1275,8 +1275,6 @@ require('Comment').setup({
         extra = true,
     },
 })
-vim.api.nvim_set_keymap('n', '<C-/>', 'gcc', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', '<C-/>', 'gc',  { noremap = true, silent = true })
 
 
 -- nvim-highlight-colors
