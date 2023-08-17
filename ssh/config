@@ -1,6 +1,7 @@
 # common setting
 Host *
   StrictHostKeyChecking no
+  UserKnownHostsFile=/dev/null
   ServerAliveInterval 60
   ServerAliveCountMax 300
   TCPKeepAlive yes
