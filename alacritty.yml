@@ -18,7 +18,7 @@ window:
     columns: 150
     lines: 45
   decorations: none
-  opacity: 0.80
+  opacity: 0.90
 
 mouse:
   double_click: { threshold: 300 }
