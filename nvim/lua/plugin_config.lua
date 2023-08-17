@@ -1337,11 +1337,11 @@ require('gitsigns').setup {
     follow_files = true
   },
   attach_to_untracked = true,
-  current_line_blame = true,
+  current_line_blame = false,
   current_line_blame_opts = {
     virt_text = true,
     virt_text_pos = 'eol',
-    delay = 1000,
+    delay = 0,
     ignore_whitespace = true,
     virt_text_priority = 0,
   },
