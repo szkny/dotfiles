@@ -47,7 +47,7 @@ config.window_padding = {
 
 -- tab bar
 config.enable_tab_bar = true
-config.hide_tab_bar_if_only_one_tab = false
+config.hide_tab_bar_if_only_one_tab = true
 config.use_fancy_tab_bar = true
 config.window_frame = {
   font_size = 7.0,
