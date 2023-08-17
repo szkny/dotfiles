@@ -1275,8 +1275,8 @@ require('Comment').setup({
         extra = true,
     },
 })
-vim.api.nvim_set_keymap('n', '<C-_>', 'gcc', {})
-vim.api.nvim_set_keymap('v', '<C-_>', 'gc',  {})
+vim.api.nvim_set_keymap('n', '<C-/>', 'gcc', {})
+vim.api.nvim_set_keymap('v', '<C-/>', 'gc',  {})
 
 
 -- nvim-highlight-colors
