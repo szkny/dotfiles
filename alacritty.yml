@@ -5,7 +5,7 @@ font:
   normal:
     family: HackGen Console NFJ
     style: Regular
-  size: 12
+  size: 13
   offset:
     x: 0
     y: 0
@@ -18,9 +18,9 @@ window:
     columns: 150
     lines: 45
   decorations: none
-  opacity: 0.90
+  opacity: 0.85
 
 mouse:
   double_click: { threshold: 300 }
   triple_click: { threshold: 300 }
-  hide_when_typing: false
+  hide_when_typing: true
