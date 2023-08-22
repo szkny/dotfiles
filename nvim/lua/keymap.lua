@@ -137,10 +137,12 @@ keymap("n", "<leader>r",
 )
 
 -- -- for tab/window
-keymap("n", "<Right>", ":ChangeBuffer next<CR>",     opts)
-keymap("n", "<Left>",  ":ChangeBuffer previous<CR>", opts)
-keymap("n", "<M-l>",   ":ChangeBuffer next<CR>",     opts)
-keymap("n", "<M-h>",   ":ChangeBuffer previous<CR>", opts)
+-- keymap("n", "<Right>", ":ChangeBuffer next<CR>",     opts)
+-- keymap("n", "<Left>",  ":ChangeBuffer previous<CR>", opts)
+keymap("n", "<Right>", ":BufferLineCycleNext<CR>",   opts)
+keymap("n", "<Left>",  ":BufferLineCyclePrev<CR>",   opts)
+keymap("n", "<M-l>",   ":BufferLineCycleNext<CR>",   opts)
+keymap("n", "<M-h>",   ":BufferLineCyclePrev<CR>",   opts)
 keymap("n", "<TAB>",   ":buffer#<CR>",               opts)
 keymap("n", "<Up>",    ":ResizeWindow +1<CR>",       opts)
 keymap("n", "<Down>",  ":ResizeWindow -1<CR>",       opts)
