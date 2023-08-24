@@ -2,6 +2,20 @@
 --   Plugin Configuration
 -- *****************************************************************************
 
+-- nvim-lspconfig
+local lspconfig = require("lspconfig")
+lspconfig.tsserver.setup {}
+
+
+-- nvim-navic
+local navic = require("nvim-navic")
+lspconfig.clangd.setup {
+  on_attach = function(client, bufnr)
+    navic.attach(client, bufnr)
+  end
+}
+
+
 -- nvim-web-devicons
 require'nvim-web-devicons'.setup {
  override_by_extension = {

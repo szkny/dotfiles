@@ -48,6 +48,11 @@ local plugins = {
     'stevearc/oil.nvim',
     require('plugin/nvim_tree'),
     'szkny/SplitTerm',
+    'neovim/nvim-lspconfig',
+    {
+      "SmiteshP/nvim-navic",
+      requires = "neovim/nvim-lspconfig"
+    },
     'MunifTanjim/nui.nvim',
     'rcarriga/nvim-notify',
     'folke/noice.nvim',
