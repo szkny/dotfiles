@@ -96,6 +96,7 @@ ln -s ~/dotfiles/nvim/init.lua ~/.config/nvim/
 ln -s ~/dotfiles/nvim/lua ~/.config/nvim/
 # ### for coc-nvim
 ln -s ~/dotfiles/nvim/coc-settings.json ~/.config/nvim/
+pip install -U jedi-language-server
 # sudo apt install terraform-ls
 ### for treesitter
 cargo install tree-sitter-cli
