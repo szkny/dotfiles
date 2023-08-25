@@ -23,7 +23,8 @@ curl https://sh.rustup.rs -sSf | sh
 ## install cargo libs
 echo 'install cargo packages..'
 . ~/.zshrc
-cargo install exa bat rm-improved code-minimap git-delta zoxide
+cargo install exa bat rm-improved \
+  code-minimap git-delta zoxide viu
 ## cargo install deno
 
 ## mocword
@@ -76,7 +77,8 @@ mkdir -p ~/Project
 git clone https://github.com/ranger/ranger ~/Project/ranger
 cd ~/Project/ranger
 sudo make install
-git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+git clone https://github.com/alexanderjeurissen/ranger_devicons \
+  ~/.config/ranger/plugins/ranger_devicons
 cd ~
 
 ## install neovim
@@ -106,9 +108,6 @@ cd ~
 ## tmux
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-# ## zplug
-# curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
 ## sheldon
 cargo install sheldon --locked
