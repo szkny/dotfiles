@@ -122,6 +122,22 @@ vim.cmd([[
     command! Fshow exe "SplitTerm zsh -i -c fshow" | startinsert
 ]])
 
+vim.cmd([[
+    fun! s:viu(...) abort
+        if executable('viu')
+            if a:0 == 0
+                let l:filepath = expand('%:p')
+            else
+                let l:filepath = join(a:000)
+            endif
+            call splitterm#open('viu', l:filepath, '; read -q')
+        else
+            echo "command not found: viu"
+        endif
+    endf
+    command! -nargs=* Viu call s:viu(<f-args>)
+]])
+
 function catch(what)
    return what[1]
 end
