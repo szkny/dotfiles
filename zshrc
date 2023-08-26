@@ -258,6 +258,8 @@ export PATH="$PATH:$HOME/go/bin"
 
 ## fzf setup
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files -uuu --follow --glob "!**/.git/*"'
+export FZF_CTRL_T_COMMAND='rg --files -uuu --follow --glob "!**/.git/*"'
 export FZF_DEFAULT_OPTS=$(cat <<"EOF"
   --multi
   --height=90%
