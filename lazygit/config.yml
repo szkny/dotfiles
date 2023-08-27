@@ -3,7 +3,7 @@ git:
     colorArg: always
     pager: delta --dark --paging=never
 gui:
-  sidePanelWidth: 0.20
+  sidePanelWidth: 0.30
   showIcons: true
   theme:
     selectedLineBgColor:

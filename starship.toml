@@ -29,7 +29,7 @@ $terraform\
 $aws\
 [ ](fg:#1d2230)\
 $fill$status$cmd_duration$time
-$line_break$character"""
+$character"""
 
 # Prompt propaties
 [character]
@@ -38,9 +38,7 @@ error_symbol      = '[❯](bold #ee3333)'
 
 [fill]
 symbol            = ' '
-
-[line_break]
-disabled          = true
+disabled          = false
 
 [status]
 disabled          = false
