@@ -256,7 +256,7 @@ vim.cmd([[
     hi NvimTreeGitNew                    gui=bold guifg=#44cc44
     hi NvimTreeModifiedFile              gui=bold guifg=#ffaa00
     hi NvimTreeLspDiagnosticsError       gui=none guifg=#ff0000
-    hi NvimTreeLspDiagnosticsWarning     gui=none guifg=#dddd00
+    hi NvimTreeLspDiagnosticsWarning     gui=none guifg=#e0d000
     hi NvimTreeLspDiagnosticsInformation gui=none guifg=#ffffff
     hi NvimTreeLspDiagnosticsHint        gui=none guifg=#5588dd
 ]])
@@ -554,7 +554,7 @@ require('lualine').setup {
 }
 vim.cmd([[
     hi lualine_lsp_err     guibg=#212736 guifg=#ff0000
-    hi lualine_lsp_warn    guibg=#212736 guifg=#dddd00
+    hi lualine_lsp_warn    guibg=#212736 guifg=#e0d000
     hi lualine_lsp_hint    guibg=#212736 guifg=#5599dd
     hi lualine_lsp_info    guibg=#212736 guifg=#5599dd
     hi lualine_diff_add    guibg=#394260 guifg=#66aa88
@@ -682,25 +682,25 @@ require('bufferline').setup {
         italic = false,
     },
     warning_selected = {
-        fg = '#dddd00',
+        fg = '#e0d000',
         bg = 'none',
         bold = true,
         italic = false,
     },
     warning_visible = {
-        fg = '#dddd00',
+        fg = '#e0d000',
         bg = 'none',
         bold = true,
         italic = false,
     },
     warning_diagnostic_selected = {
-        fg = '#dddd00',
+        fg = '#e0d000',
         bg = 'none',
         bold = true,
         italic = false,
     },
     warning_diagnostic_visible = {
-        fg = '#dddd00',
+        fg = '#e0d000',
         bg = 'none',
         bold = true,
         italic = false,
@@ -812,13 +812,13 @@ require('bufferline').setup {
         italic = false,
     },
     warning = {
-        fg = '#888800',
+        fg = '#908000',
         bg = '#181d24',
         bold = true,
         italic = false,
     },
     warning_diagnostic = {
-        fg = '#888800',
+        fg = '#908000',
         bg = '#181d24',
         bold = true,
         italic = false,
@@ -988,8 +988,8 @@ vim.cmd([[
     hi ScrollbarSearchHandle    gui=bold guifg=#ffaa77 guibg=#888888
     hi ScrollbarError           gui=bold guifg=#ff0000
     hi ScrollbarErrorHandle     gui=bold guifg=#ff0000 guibg=#888888
-    hi ScrollbarWarn            gui=bold guifg=#dddd00
-    hi ScrollbarWarnHandle      gui=bold guifg=#dddd00 guibg=#888888
+    hi ScrollbarWarn            gui=bold guifg=#e0d000
+    hi ScrollbarWarnHandle      gui=bold guifg=#e0d000 guibg=#888888
     hi ScrollbarHint            gui=bold guifg=#5599dd
     hi ScrollbarHintHandle      gui=bold guifg=#5599dd guibg=#888888
     hi ScrollbarInfo            gui=bold guifg=#ffffff

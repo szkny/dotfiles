@@ -21,10 +21,17 @@ require('mason-lspconfig').setup_handlers({ function(server)
       ]])
     end,
   }
+  if server == 'lua_ls' then
+    opt.settings = {
+      Lua = {
+        diagnostics = { enable = true, globals = { 'vim' } },
+      }
+    }
+  end
   require('lspconfig')[server].setup(opt)
 end })
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -42,13 +49,16 @@ vim.keymap.set('n', '<leader>p', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = true }
 )
--- Reference highlight
-vim.cmd [[
-set updatetime=500
-highlight LspReferenceText  guibg=#334f7a
-highlight LspReferenceRead  guibg=#334f7a
-highlight LspReferenceWrite guibg=#334f7a
-]]
+-- Highlight
+vim.cmd([[
+hi DiagnosticError   guifg=#ff0000
+hi DiagnosticWarn    guifg=#edd000
+hi DiagnosticInfo    guifg=#ffffff
+hi DiagnosticHint    guifg=#5588dd
+hi LspReferenceText  guibg=#334f7a
+hi LspReferenceRead  guibg=#334f7a
+hi LspReferenceWrite guibg=#334f7a
+]])
 
 -- 3. completion (hrsh7th/nvim-cmp)
 local cmp = require("cmp")
