@@ -65,6 +65,7 @@ alias g='git'
 alias gcam='git commit -am'
 alias gp='git pull'
 alias lg='lazygit'
+alias gg='lazygit'
 
 ## setup for vim
 export EDITOR='nvim'
