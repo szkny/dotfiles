@@ -3,18 +3,22 @@ require('mason').setup()
 require('mason-lspconfig').setup_handlers({ function(server)
   local opt = {
     capabilities = require("cmp_nvim_lsp").default_capabilities(),
-    -- Function executed when the LSP server startup
     on_attach = function(client)
-      -- Only highlight if compatible with the language
       if client.supports_method "textDocument/documentHighlight" then
         vim.cmd([[
-          augroup lsp_document_highlight
-            autocmd!
-            autocmd CursorHold,CursorHoldI * lua vim.lsp.buf.document_highlight()
-            autocmd CursorMoved,CursorMovedI * lua vim.lsp.buf.clear_references()
-          augroup END
+          aug lsp_document_highlight
+            au!
+            au CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+            au CursorMoved,CursorMovedI <buffer> lua vim.lsp.buf.clear_references()
+          aug END
         ]])
       end
+      vim.cmd([[
+        aug lsp_show_diagnostic
+          au!
+          au CursorHold <buffer> lua vim.diagnostic.open_float()
+        aug END
+      ]])
     end,
   }
   require('lspconfig')[server].setup(opt)
@@ -28,7 +32,7 @@ end
 
 -- 2. build-in LSP function
 -- keyboard shortcut
-vim.keymap.set('n', '<leader>k',  '<cmd>lua vim.lsp.buf.hover()<CR>')
+vim.keymap.set('n', '<leader>k', '<cmd>lua vim.lsp.buf.hover()<CR>')
 vim.keymap.set('n', '<leader>[', '<cmd>lua vim.lsp.buf.references()<CR>')
 vim.keymap.set('n', '<leader>]', '<cmd>lua vim.lsp.buf.definition()<CR>')
 vim.keymap.set('n', '<C-]>',     '<cmd>lua vim.lsp.buf.definition()<CR>')
@@ -36,7 +40,7 @@ vim.keymap.set('n', '<leader>n', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 vim.keymap.set('n', '<leader>p', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
 -- LSP handlers
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false }
+  vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = true }
 )
 -- Reference highlight
 vim.cmd [[
