@@ -1,15 +1,21 @@
+-- 1. LSP Sever management
 require('mason').setup()
 require('mason-lspconfig').setup_handlers({ function(server)
   local opt = {
-    -- -- Function executed when the LSP server startup
-    -- on_attach = function(client, bufnr)
-    --   local opts = { noremap=true, silent=true }
-    --   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    --   vim.cmd 'autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000)'
-    -- end,
-    -- capabilities = require('cmp_nvim_lsp').update_capabilities(
-    --   vim.lsp.protocol.make_client_capabilities()
-    -- )
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    -- Function executed when the LSP server startup
+    on_attach = function(client)
+      -- Only highlight if compatible with the language
+      if client.supports_method "textDocument/documentHighlight" then
+        vim.cmd([[
+          augroup lsp_document_highlight
+            autocmd!
+            autocmd CursorHold,CursorHoldI * lua vim.lsp.buf.document_highlight()
+            autocmd CursorMoved,CursorMovedI * lua vim.lsp.buf.clear_references()
+          augroup END
+        ]])
+      end
+    end,
   }
   require('lspconfig')[server].setup(opt)
 end })
@@ -20,6 +26,27 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
+-- 2. build-in LSP function
+-- keyboard shortcut
+vim.keymap.set('n', '<leader>k',  '<cmd>lua vim.lsp.buf.hover()<CR>')
+vim.keymap.set('n', '<leader>[', '<cmd>lua vim.lsp.buf.references()<CR>')
+vim.keymap.set('n', '<leader>]', '<cmd>lua vim.lsp.buf.definition()<CR>')
+vim.keymap.set('n', '<C-]>',     '<cmd>lua vim.lsp.buf.definition()<CR>')
+vim.keymap.set('n', '<leader>n', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+vim.keymap.set('n', '<leader>p', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+-- LSP handlers
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false }
+)
+-- Reference highlight
+vim.cmd [[
+set updatetime=500
+highlight LspReferenceText  guibg=#334f7a
+highlight LspReferenceRead  guibg=#334f7a
+highlight LspReferenceWrite guibg=#334f7a
+]]
+
+-- 3. completion (hrsh7th/nvim-cmp)
 local cmp = require("cmp")
 cmp.setup({
   snippet = {
@@ -29,7 +56,7 @@ cmp.setup({
   },
   sources = {
     { name = "nvim_lsp" },
-    -- { name = "buffer" },
+    { name = "buffer" },
     { name = "path" },
   },
   mapping = cmp.mapping.preset.insert({
