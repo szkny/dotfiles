@@ -85,7 +85,7 @@ vim.cmd([[
         au!
         au BufNewFile,BufRead *.js,*.cjs,*.mjs setfiletype javascript
         au BufNewFile,BufRead *.ts,*.tsx setfiletype typescript
-        au FileType javascript,typescript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+        au FileType javascript,typescript,vue,json,yaml setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
     aug END
 
     fun! s:prettier() abort
