@@ -182,229 +182,6 @@ vim.cmd([[
 ]])
 
 
--- pum.vim
-vim.cmd([[
-    set shortmess+=c
-    set wildoptions+=pum
-    hi PumNormalMenu gui=none guifg=#dddddd guibg=#383838
-    hi PumColumnKind gui=none guifg=#888888 guibg=#383838
-    hi PumColumnMenu gui=none guifg=#888888 guibg=#383838
-    hi PumSelected  gui=bold guibg=#226688
-    hi PumMatches   guifg=#44aabb
-    hi PmenuSBar    guifg=#666666 guibg=#cccccc
-    hi FloatBorder  gui=bold guibg=#282828
-    call pum#set_option(#{
-      \   auto_select: v:false,
-      \   max_height: 15,
-      \   max_width: 0,
-      \   offset_row: 1,
-      \   scrollbar_char: ' ',
-      \   padding: v:true,
-      \   use_complete: v:true,
-      \   border: 'rounded',
-      \   highlight_normal_menu: 'PumNormalMenu',
-      \   highlight_matches: '',
-      \   highlight_scrollbar: 'PmenuSBar',
-      \   highlight_selected: 'PumSelected',
-      \   highlight_columns: #{
-      \     abbr: 'PumNormalMenu',
-      \     kind: 'PumColumnKind',
-      \     menu: 'PumColumnMenu',
-      \   },
-      \ })
-
-    "" ddc.vim
-    call ddc#custom#patch_global(#{
-       \   ui: 'pum',
-       \   autoCompleteEvents: [
-       \     'CmdlineEnter', 'CmdlineChanged',
-       \   ],
-       \   backspaceCompletion: v:true,
-       \   sources: [],
-       \   sourceOptions: #{
-       \     _: #{
-       \       matchers: ['matcher_fuzzy'],
-       \       sorters: ['sorter_fuzzy'],
-       \       converters: ['converter_fuzzy', 'converter_remove_overlap'],
-       \       ignoreCase: v:true,
-       \       minAutoCompleteLength: 1,
-       \     },
-       \   },
-       \   filterParams: #{
-       \     matcher_fuzzy: #{
-       \       splitMode: 'word'
-       \     },
-       \     converter_fuzzy: #{
-       \       hlGroup: 'PumMatches'
-       \     }
-       \   },
-       \ })
-
-    call ddc#custom#patch_global(#{
-       \   sources: [
-       \     'skkeleton',
-       \   ],
-       \   sourceOptions: #{
-       \     _: #{
-       \       matchers: ['matcher_fuzzy'],
-       \       sorters: ['sorter_fuzzy'],
-       \       converters: ['converter_fuzzy', 'converter_remove_overlap'],
-       \       ignoreCase: v:true,
-       \       minAutoCompleteLength: 1,
-       \     },
-       \     skkeleton: #{
-       \       mark: '[SKK]',
-       \       matchers: ['skkeleton'],
-       \       sorters: [],
-       \       isVolatile: v:true,
-       \     },
-       \   },
-       \ })
-
-    fun s:enable_ddc() abort
-        let l:current_mode = mode()
-        if (l:current_mode=='i')
-            let b:coc_suggest_disable = v:true
-            call ddc#custom#patch_global('autoCompleteEvents',
-            \ ['TextChangedI', 'TextChangedP', 'CmdlineChanged', 'CmdlineEnter'])
-            call DdcMapping()
-        endif
-    endf
-
-    fun s:disable_ddc() abort
-        let l:current_mode = mode()
-        if (l:current_mode=='i')
-            let b:coc_suggest_disable = v:false
-            call ddc#custom#patch_global('autoCompleteEvents', ['CmdlineChanged', 'CmdlineEnter'])
-            call CocMapping()
-        endif
-    endf
-
-    call <sid>disable_ddc()
-
-    aug toggleSkkeleton
-        au!
-        au User skkeleton-enable-pre  call <sid>enable_ddc()
-        au User skkeleton-disable-pre call <sid>disable_ddc()
-    aug END
-
-    "" ddc.vim cmdline completion setup
-    call ddc#custom#patch_global('cmdlineSources', {
-      \ ':': [
-      \   'cmdline',
-      \   'cmdline-history',
-      \   'necovim',
-      \   'file',
-      \   'mocword',
-      \   'skkeleton',
-      \ ],
-      \ '/': [
-      \   'around',
-      \   'file',
-      \   'skkeleton',
-      \ ],
-      \ })
-    fun! DdcCommandlinePre() abort
-      " Note: It disables default command line completion!
-      if !exists('b:prev_buffer_config')
-        let b:prev_buffer_config = ddc#custom#get_buffer()
-      endif
-      call ddc#custom#patch_buffer('ui', 'pum')
-      call ddc#custom#patch_buffer('sourceOptions', #{
-        \ cmdline: #{
-        \   mark: '[COMMAND]',
-        \   forceCompletionPattern: '\ |:|-|"\w+/*',
-        \ },
-        \ cmdline-history: #{
-        \   mark: '[HISTORY]',
-        \ },
-        \ necovim: #{
-        \   mark: '[ARGS]',
-        \   forceCompletionPattern: '\ |:|-|"\w+/*',
-        \ },
-        \ file: #{
-        \   mark: '[FILE]',
-        \   forceCompletionPattern: '\S/\S*',
-        \ },
-        \ mocword: #{
-        \   mark: '[MOCWORD]',
-        \   forceCompletionPattern: '\ ',
-        \   minAutoCompleteLength: 2,
-        \   isVolatile: v:true,
-        \ },
-        \ skkeleton: #{
-        \   mark: '[SKK]',
-        \   matchers: ['skkeleton'],
-        \   sorters: [],
-        \   isVolatile: v:true,
-        \ },
-        \ })
-      au User DDCCmdlineLeave ++once call DdcCommandlinePost()
-      au InsertEnter <buffer> ++once call DdcCommandlinePost()
-      call ddc#enable_cmdline_completion()
-    endf
-    fun! DdcCommandlinePost() abort
-      " Restore sources
-      if exists('b:prev_buffer_config')
-        call ddc#custom#set_buffer(b:prev_buffer_config)
-        unlet b:prev_buffer_config
-      else
-        call ddc#custom#set_buffer({})
-      endif
-    endf
-    if !exists('g:necovim#complete_functions')
-      let g:necovim#complete_functions = {}
-    endif
-    let g:necovim#complete_functions.Ref = 'ref#complete'
-    call ddc#enable()
-
-    "" skkeleton
-    fun! s:skkeleton_init() abort
-        call skkeleton#config(#{
-          \ globalJisyo: '~/.skk/SKK-JISYO.L',
-          \ kanaTable: 'rom',
-          \ eggLikeNewline: v:true,
-          \ showCandidatesCount: 10,
-          \ usePopup: v:false,
-          \ registerConvertResult: v:true,
-          \ acceptIllegalResult: v:true,
-          \ keepState: v:false,
-          \ })
-        call skkeleton#register_kanatable('rom', {
-          \ "z\<Space>": ["\u3000", ''],
-          \ })
-        call add(g:skkeleton#mapped_keys, '<C-h>')
-        call add(g:skkeleton#mapped_keys, '<F6>')
-        call add(g:skkeleton#mapped_keys, '<F7>')
-        call add(g:skkeleton#mapped_keys, '<F8>')
-        call add(g:skkeleton#mapped_keys, '<F9>')
-        call add(g:skkeleton#mapped_keys, '<F10>')
-        call add(g:skkeleton#mapped_keys, '<C-k>')
-        call add(g:skkeleton#mapped_keys, '<C-q>')
-        call add(g:skkeleton#mapped_keys, '<C-a>')
-        call skkeleton#register_keymap('input', '<C-h>', '')
-        call skkeleton#register_keymap('input', '<Up>', '')
-        call skkeleton#register_keymap('input', '<Down>', '')
-        call skkeleton#register_keymap('input', '<F6>',  'katakana')
-        call skkeleton#register_keymap('input', '<F7>',  'katakana')
-        call skkeleton#register_keymap('input', '<F8>',  'hankatakana')
-        call skkeleton#register_keymap('input', '<F9>',  'zenkaku')
-        call skkeleton#register_keymap('input', '<F10>', 'disable')
-        call skkeleton#register_keymap('input', '<C-k>', 'katakana')
-        call skkeleton#register_keymap('input', '<C-q>', 'hankatakana')
-        call skkeleton#register_keymap('input', '<C-a>', 'zenkaku')
-    endf
-    aug skkeleton-initialize-pre
-      au!
-      au User skkeleton-initialize-pre call s:skkeleton_init()
-    aug END
-    aug skkeleton-mode-changed
-      au!
-      au User skkeleton-mode-changed redrawstatus
-    aug END
-]])
-
-
 -- oil.nvim
 require("oil").setup({
     columns = {
@@ -500,7 +277,7 @@ vim.cmd([[
     let g:vista_fzf_preview            = ['right,50%,<70(down,60%)']
     let g:vista_keep_fzf_colors        = 1
     let g:vista_fzf_opt                = ['--bind=ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up']
-    let g:vista_default_executive = 'coc'
+    let g:vista_default_executive = 'nvim_lsp'
     fun! VistaInit() abort
       try
         if &filetype != ''
@@ -647,7 +424,7 @@ vim.cmd([[
         return ''
       endtry
     endf
-    let g:lualine_diagnostics_source = 'coc'
+    let g:lualine_diagnostics_source = 'nvim_diagnostic'
 ]])
 local my_custom_theme = {
   normal = {
@@ -806,7 +583,7 @@ require('bufferline').setup {
     max_prefix_length = 6,
     truncate_names = true,
     tab_size = 18,
-    diagnostics = "coc",
+    diagnostics = "nvim_lsp",
     diagnostics_update_in_insert = false,
     diagnostics_indicator = function(count, level)
         local icon = level:match("error") and ""
