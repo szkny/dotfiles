@@ -371,12 +371,12 @@ keymap("n", "<Leader>gb", require("gitsigns").toggle_current_line_blame, opts )
 -- cno <expr> <UP>
 --   \ pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>' : '<UP>'
 -- ]])
---
--- -- -- skkeleton
--- keymap("i", "<C-j>", "<Plug>(skkeleton-enable)",  opts)
--- keymap("c", "<C-j>", "<Plug>(skkeleton-enable)",  opts)
--- keymap("i", "<C-l>", "<Plug>(skkeleton-disable)", opts)
--- keymap("c", "<C-l>", "<Plug>(skkeleton-disable)", opts)
+
+-- -- skkeleton
+keymap("i", "<C-j>", "<Plug>(skkeleton-enable)",  opts)
+keymap("c", "<C-j>", "<Plug>(skkeleton-enable)",  opts)
+keymap("i", "<C-l>", "<Plug>(skkeleton-disable)", opts)
+keymap("c", "<C-l>", "<Plug>(skkeleton-disable)", opts)
 
 -- for My Commands
 keymap("i", "<M-;>", "<ESC>:Appendchar ;<Cr>a",      opts)
