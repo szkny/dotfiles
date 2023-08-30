@@ -3,7 +3,7 @@ require('mason').setup()
 require('mason-lspconfig').setup_handlers({ function(server)
   local opt = {
     capabilities = require("cmp_nvim_lsp").default_capabilities(),
-    on_attach = function(client)
+    on_attach = function(client, bufnr)
       if client.supports_method "textDocument/documentHighlight" then
         vim.cmd([[
           aug lsp_document_highlight
@@ -13,6 +13,7 @@ require('mason-lspconfig').setup_handlers({ function(server)
           aug END
         ]])
       end
+      require('nvim-navic').attach(client, bufnr)
       vim.cmd([[
         aug lsp_show_diagnostic
           au!
