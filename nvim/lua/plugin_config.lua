@@ -438,6 +438,51 @@ vim.cmd([[
 ]])
 
 
+-- nvim-navic
+require('nvim-navic').setup({
+    icons = {
+        File          = "󰈙 ",
+        Module        = " ",
+        Namespace     = "󰌗 ",
+        Package       = " ",
+        Class         = "󰌗 ",
+        Method        = "󰆧 ",
+        Property      = " ",
+        Field         = " ",
+        Constructor   = " ",
+        Enum          = "󰕘",
+        Interface     = "󰕘",
+        Function      = "󰊕 ",
+        Variable      = "󰆧 ",
+        Constant      = "󰏿 ",
+        String        = "󰀬 ",
+        Number        = "󰎠 ",
+        Boolean       = "◩ ",
+        Array         = "󰅪 ",
+        Object        = "󰅩 ",
+        Key           = "󰌋 ",
+        Null          = "󰟢 ",
+        EnumMember    = " ",
+        Struct        = "󰌗 ",
+        Event         = " ",
+        Operator      = "󰆕 ",
+        TypeParameter = "󰊄 ",
+    },
+    lsp = {
+        auto_attach = true,
+        preference = nil,
+    },
+    highlight = false,
+    separator = " > ",
+    depth_limit = 0,
+    depth_limit_indicator = "..",
+    safe_output = true,
+    lazy_update_context = false,
+    click = false
+})
+-- vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+
+
 -- lualine.nvim
 vim.cmd([[
     fun! LualineSkkeletonMode() abort
@@ -561,7 +606,7 @@ require('lualine').setup {
     section_separators = { left = '', right = ''},
     disabled_filetypes = {
       statusline = {'NvimTree', 'vista', 'minimap'},
-      winbar = {},
+      winbar = {'NvimTree', 'vista', 'minimap'},
     },
     ignore_focus = {'NvimTree', 'vista', 'minimap'},
     always_divide_middle = true,
@@ -597,7 +642,16 @@ require('lualine').setup {
     lualine_z = {}
   },
   tabline = {},
-  winbar = {},
+  winbar = {
+    lualine_c = {
+      {
+        "' '..require('nvim-navic').get_location()",
+        color_correction = nil,
+        navic_opts = nil,
+        color = { fg = '#b0b0d0', bg = 'none' }
+      }
+    }
+  },
   inactive_winbar = {},
   extensions = {}
 }

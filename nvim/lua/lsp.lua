@@ -3,7 +3,7 @@ require('mason').setup()
 require('mason-lspconfig').setup_handlers({ function(server)
   local opt = {
     capabilities = require("cmp_nvim_lsp").default_capabilities(),
-    on_attach = function(client, bufnr)
+    on_attach = function(client)
       if client.supports_method "textDocument/documentHighlight" then
         vim.cmd([[
           aug lsp_document_highlight
@@ -13,7 +13,6 @@ require('mason-lspconfig').setup_handlers({ function(server)
           aug END
         ]])
       end
-      require('nvim-navic').attach(client, bufnr)
       vim.cmd([[
         aug lsp_show_diagnostic
           au!
@@ -32,6 +31,7 @@ require('mason-lspconfig').setup_handlers({ function(server)
   require('lspconfig')[server].setup(opt)
 end })
 
+-- diagnostic signs
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
