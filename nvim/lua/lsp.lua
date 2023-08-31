@@ -96,8 +96,8 @@ cmp.setup({
     ghost_text = true,
   },
 })
-vim.api.nvim_set_hl(0, "Pmenu", { bg="#333333", fg="#c5cdd9" })
-vim.api.nvim_set_hl(0, "PmenuSel", { bg="#225566", fg="none" })
+vim.api.nvim_set_hl(0, "Pmenu", { bg="#333333", fg="#9fa3a8" })
+vim.api.nvim_set_hl(0, "PmenuSel", { bg="#334f7a", fg="none" })
 
 cmp.setup.cmdline({"/", "?"}, {
   mapping = cmp.mapping.preset.cmdline(),
