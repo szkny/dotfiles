@@ -309,6 +309,8 @@ keymap("n", "t",          ":<C-u>18SplitTerm<CR>i",                     opts )
 -- -- vista.vim
 keymap("n", "<C-t>",      ":<C-u>Vista!!<CR>",                          opts )
 keymap("n", "<C-g>",      ":<C-u>Vista finder<CR>",                     opts )
+-- -- Navbuddy
+keymap("n", "<C-t>",      ":<C-u>Navbuddy<CR>",                         opts )
 -- -- minimap.vim
 keymap("n", "<C-k>",      ":<C-u>MinimapToggle<CR>:MinimapRefresh<CR>", opts )
 -- -- fugitive
