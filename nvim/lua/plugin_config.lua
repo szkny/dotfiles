@@ -493,7 +493,7 @@ vim.api.nvim_set_hl(0, "NavicIconsEvent",         { bold=false, bg="none", fg="#
 vim.api.nvim_set_hl(0, "NavicIconsOperator",      { bold=false, bg="none", fg="#bbbbbb" })
 vim.api.nvim_set_hl(0, "NavicIconsTypeParameter", { bold=false, bg="none", fg="#bbbbbb" })
 vim.api.nvim_set_hl(0, "NavicText",               { bold=false, bg="none", fg="#888888" })
-vim.api.nvim_set_hl(0, "NavicSeparator",          { bold=false, bg="none", fg="#888888" })
+vim.api.nvim_set_hl(0, "NavicSeparator",          { bold=false, bg="none", fg="#aaaaaa" })
 
 
 -- nvim-navbuddy

@@ -1,6 +1,6 @@
 -- 1. LSP Sever management
-require('mason').setup()
-require('mason-lspconfig').setup_handlers({ function(server)
+require("mason").setup()
+require("mason-lspconfig").setup_handlers({ function(server)
   local opt = {
     capabilities = require("cmp_nvim_lsp").default_capabilities(),
     on_attach = function(client)
@@ -21,14 +21,14 @@ require('mason-lspconfig').setup_handlers({ function(server)
       ]])
     end,
   }
-  if server == 'lua_ls' then
+  if server == "lua_ls" then
     opt.settings = {
       Lua = {
-        diagnostics = { enable = true, globals = { 'vim' } },
+        diagnostics = { enable = true, globals = { "vim" } },
       }
     }
   end
-  require('lspconfig')[server].setup(opt)
+  require("lspconfig")[server].setup(opt)
 end })
 
 -- diagnostic signs
@@ -40,12 +40,12 @@ end
 
 -- 2. build-in LSP function
 -- keyboard shortcut
-vim.keymap.set('n', '<leader>k', '<cmd>lua vim.lsp.buf.hover()<CR>')
-vim.keymap.set('n', '<leader>[', '<cmd>lua vim.lsp.buf.references()<CR>')
-vim.keymap.set('n', '<leader>]', '<cmd>lua vim.lsp.buf.definition()<CR>')
-vim.keymap.set('n', '<C-]>',     '<cmd>lua vim.lsp.buf.definition()<CR>')
-vim.keymap.set('n', '<leader>n', '<cmd>lua vim.diagnostic.goto_next()<CR>')
-vim.keymap.set('n', '<leader>p', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+vim.keymap.set("n", "<leader>k", "<cmd>lua vim.lsp.buf.hover()<CR>")
+vim.keymap.set("n", "<leader>[", "<cmd>lua vim.lsp.buf.references()<CR>")
+vim.keymap.set("n", "<leader>]", "<cmd>lua vim.lsp.buf.definition()<CR>")
+vim.keymap.set("n", "<C-]>",     "<cmd>lua vim.lsp.buf.definition()<CR>")
+vim.keymap.set("n", "<leader>n", "<cmd>lua vim.diagnostic.goto_next()<CR>")
+vim.keymap.set("n", "<leader>p", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
 -- LSP handlers
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = true }
@@ -73,23 +73,36 @@ cmp.setup({
     { name = "nvim_lsp" },
     { name = "buffer" },
     { name = "path" },
+    { name = "skkeleton" },
+  },
+  window = {
+    completion = {
+      border = "rounded"
+    },
+    documentation = {
+      border = "rounded"
+    },
   },
   mapping = cmp.mapping.preset.insert({
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-n>"] = cmp.mapping.select_next_item(),
-    ['<C-l>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ["<CR>"] = cmp.mapping.confirm { select = true },
+    ["<C-p>"]  = cmp.mapping.select_prev_item(),
+    ["<C-n>"]  = cmp.mapping.select_next_item(),
+    ["<Up>"]   = cmp.mapping.select_prev_item(),
+    ["<Down>"] = cmp.mapping.select_next_item(),
+    ["<C-l>"]  = cmp.mapping.complete(),
+    ["<C-e>"]  = cmp.mapping.abort(),
+    ["<CR>"]   = cmp.mapping.confirm { select = true },
   }),
   experimental = {
     ghost_text = true,
   },
 })
+vim.api.nvim_set_hl(0, "Pmenu", { bg="#333333", fg="#c5cdd9" })
+vim.api.nvim_set_hl(0, "PmenuSel", { bg="#225566", fg="none" })
 
-cmp.setup.cmdline('/', {
+cmp.setup.cmdline({"/", "?"}, {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
-    { name = 'buffer' }
+    { name = "buffer" }
   }
 })
 cmp.setup.cmdline(":", {
@@ -99,3 +112,4 @@ cmp.setup.cmdline(":", {
     { name = "cmdline" },
   },
 })
+
