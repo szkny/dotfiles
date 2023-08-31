@@ -320,7 +320,7 @@ vim.cmd([[
         endif
       endtry
     endf
-    au BufEnter * call VistaInit()
+    " au BufEnter * call VistaInit()
     hi link VistaFloat Pmenu
     " hi VistaKind   guifg=
     " hi VistaTag    guifg=
