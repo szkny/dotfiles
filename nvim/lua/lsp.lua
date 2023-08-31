@@ -21,9 +21,15 @@ require("mason-lspconfig").setup_handlers({ function(server)
       ]])
     end,
     handlers = {
-      ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = "rounded"}),
-      ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = "rounded" }),
-    }, 
+      ["textDocument/hover"] =  vim.lsp.with(
+        vim.lsp.handlers.hover,
+        { border = "rounded" }
+      ),
+      ["textDocument/signatureHelp"] =  vim.lsp.with(
+        vim.lsp.handlers.signature_help,
+        { border = "rounded" }
+      ),
+    },
   }
   if server == "lua_ls" then
     opt.settings = {
@@ -55,16 +61,16 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = true }
 )
 -- Highlight
-vim.api.nvim_set_hl(0, "DiagnosticError",   { bg="none",    fg="#ff0000" })
-vim.api.nvim_set_hl(0, "DiagnosticWarn",    { bg="none",    fg="#edd000" })
-vim.api.nvim_set_hl(0, "DiagnosticHint",    { bg="none",    fg="#5588dd" })
-vim.api.nvim_set_hl(0, "LspReferenceText",  { bg="none",    fg="#334f7a" })
-vim.api.nvim_set_hl(0, "LspReferenceRead",  { bg="none",    fg="#334f7a" })
-vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg="none",    fg="#334f7a" })
 vim.api.nvim_set_hl(0, "FloatNormal",       { bg="none",    fg="#9fa3a8" })
 vim.api.nvim_set_hl(0, "FloatBorder",       { bg="none",    fg="#9fa3a8" })
 vim.api.nvim_set_hl(0, "Pmenu",             { bg="#252525", fg="#9fa3af" })
-vim.api.nvim_set_hl(0, "PmenuSel",          { bg="#334f7a", fg="none" })
+vim.api.nvim_set_hl(0, "PmenuSel",          { bg="#334f7a", fg="none"    })
+vim.api.nvim_set_hl(0, "LspReferenceText",  { bg="#334f7a", fg="none"    })
+vim.api.nvim_set_hl(0, "LspReferenceRead",  { bg="#334f7a", fg="none"    })
+vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg="#334f7a", fg="none"    })
+vim.api.nvim_set_hl(0, "DiagnosticError",   { bg="none",    fg="#ff0000" })
+vim.api.nvim_set_hl(0, "DiagnosticWarn",    { bg="none",    fg="#edd000" })
+vim.api.nvim_set_hl(0, "DiagnosticHint",    { bg="none",    fg="#5588dd" })
 
 -- 3. completion (hrsh7th/nvim-cmp)
 local cmp = require("cmp")

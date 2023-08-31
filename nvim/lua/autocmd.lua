@@ -79,6 +79,14 @@ vim.cmd([[
     aug END
 ]])
 
+-- vimscript/lua
+vim.cmd([[
+    aug vimrc_vimscript_lua
+        au!
+        au FileType vim,lua setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+    aug END
+]])
+
 -- javascript/typescript
 vim.cmd([[
     aug vimrc_js_ts
