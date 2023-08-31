@@ -259,11 +259,11 @@ keymap("n", "ｙｙ", "yy", opts)
 keymap("v", "<Leader>=",  ":EasyAlign *=<CR>",        opts)
 keymap("v", "<Enter>",    "<Plug>(EasyAlign)",        opts)
 -- -- fuzzy-motion
-keymap("n", "<Leader>/",  ":FuzzyMotion<CR>",         opts)
+keymap("n", "<Leader>f",  ":FuzzyMotion<CR>",         opts)
 -- -- fzf.vim
 keymap("n", "<C-b>",      ":<C-u>Buffers<CR>",        opts)
 keymap("n", "<C-p>",      ":<C-u>Files<CR>",          opts)
-keymap("n", "<Leader>f",  ":<C-u>Lines<CR>",          opts)
+keymap("n", "<Leader>/",  ":<C-u>Lines<CR>",          opts)
 keymap("n", "<C-f>",      ":<C-u>Rg<CR>",             opts)
 keymap("v", "<C-f>",      ":<C-u>call VRgWord()<CR>", opts)
 vim.cmd([[
@@ -383,6 +383,6 @@ keymap("i", "<M-;>", "<ESC>:Appendchar ;<Cr>a",      opts)
 keymap("n", "<M-;>",      ":Appendchar ;<Cr>",       opts)
 keymap("v", "<M-;>",      ":Appendchar ;<Cr>",       opts)
 keymap("v", "<Leader>t",  ":Trans<CR>",              opts)
-keymap("v", "<Leader>gf", ":Fshow<CR>",              opts)
+keymap("n", "<Leader>gf", ":Fshow<CR>",              opts)
 keymap("n", "<Leader>l", "exists(':MinimapRefresh') ? ':<C-u>set hlsearch!<CR>:MinimapRefresh<CR>' : ':<C-u>set hlsearch!<CR>'", { silent = true, expr = true })
 

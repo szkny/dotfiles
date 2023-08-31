@@ -2,20 +2,6 @@
 --   Plugin Configuration
 -- *****************************************************************************
 
--- nvim-lspconfig
-local lspconfig = require("lspconfig")
-lspconfig.tsserver.setup {}
-
-
--- nvim-navic
-local navic = require("nvim-navic")
-lspconfig.clangd.setup {
-  on_attach = function(client, bufnr)
-    navic.attach(client, bufnr)
-  end
-}
-
-
 -- nvim-web-devicons
 require'nvim-web-devicons'.setup {
  override_by_extension = {
@@ -472,7 +458,7 @@ require('nvim-navic').setup({
         auto_attach = true,
         preference = nil,
     },
-    highlight = false,
+    highlight = true,
     separator = " > ",
     depth_limit = 0,
     depth_limit_indicator = "..",
@@ -480,7 +466,34 @@ require('nvim-navic').setup({
     lazy_update_context = false,
     click = false
 })
--- vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+vim.api.nvim_set_hl(0, "NavicIconsFile",          { bold=false, bg="none", fg="#bbbbbb" })
+vim.api.nvim_set_hl(0, "NavicIconsModule",        { bold=false, bg="none", fg="#bbbb55" })
+vim.api.nvim_set_hl(0, "NavicIconsNamespace",     { bold=false, bg="none", fg="#bbbb55" })
+vim.api.nvim_set_hl(0, "NavicIconsPackage",       { bold=false, bg="none", fg="#aa7755" })
+vim.api.nvim_set_hl(0, "NavicIconsClass",         { bold=false, bg="none", fg="#aa7755" })
+vim.api.nvim_set_hl(0, "NavicIconsMethod",        { bold=false, bg="none", fg="#bb9999" })
+vim.api.nvim_set_hl(0, "NavicIconsProperty",      { bold=false, bg="none", fg="#bbbbbb" })
+vim.api.nvim_set_hl(0, "NavicIconsField",         { bold=false, bg="none", fg="#5577bb" })
+vim.api.nvim_set_hl(0, "NavicIconsConstructor",   { bold=false, bg="none", fg="#bb9999" })
+vim.api.nvim_set_hl(0, "NavicIconsEnum",          { bold=false, bg="none", fg="#bbbbbb" })
+vim.api.nvim_set_hl(0, "NavicIconsInterface",     { bold=false, bg="none", fg="#bbbbbb" })
+vim.api.nvim_set_hl(0, "NavicIconsFunction",      { bold=false, bg="none", fg="#bb9999" })
+vim.api.nvim_set_hl(0, "NavicIconsVariable",      { bold=false, bg="none", fg="#5577bb" })
+vim.api.nvim_set_hl(0, "NavicIconsConstant",      { bold=false, bg="none", fg="#bbbbbb" })
+vim.api.nvim_set_hl(0, "NavicIconsString",        { bold=false, bg="none", fg="#bbbbbb" })
+vim.api.nvim_set_hl(0, "NavicIconsNumber",        { bold=false, bg="none", fg="#bbbbbb" })
+vim.api.nvim_set_hl(0, "NavicIconsBoolean",       { bold=false, bg="none", fg="#bbbbbb" })
+vim.api.nvim_set_hl(0, "NavicIconsArray",         { bold=false, bg="none", fg="#bbbbbb" })
+vim.api.nvim_set_hl(0, "NavicIconsObject",        { bold=false, bg="none", fg="#bbbbbb" })
+vim.api.nvim_set_hl(0, "NavicIconsKey",           { bold=false, bg="none", fg="#bbbbbb" })
+vim.api.nvim_set_hl(0, "NavicIconsNull",          { bold=false, bg="none", fg="#bbbbbb" })
+vim.api.nvim_set_hl(0, "NavicIconsEnumMember",    { bold=false, bg="none", fg="#bbbbbb" })
+vim.api.nvim_set_hl(0, "NavicIconsStruct",        { bold=false, bg="none", fg="#bbbbbb" })
+vim.api.nvim_set_hl(0, "NavicIconsEvent",         { bold=false, bg="none", fg="#bbbbbb" })
+vim.api.nvim_set_hl(0, "NavicIconsOperator",      { bold=false, bg="none", fg="#bbbbbb" })
+vim.api.nvim_set_hl(0, "NavicIconsTypeParameter", { bold=false, bg="none", fg="#bbbbbb" })
+vim.api.nvim_set_hl(0, "NavicText",               { bold=false, bg="none", fg="#888888" })
+vim.api.nvim_set_hl(0, "NavicSeparator",          { bold=false, bg="none", fg="#888888" })
 
 
 -- lualine.nvim
@@ -625,7 +638,7 @@ require('lualine').setup {
     lualine_b = { 'branch', lualine_diff },
     lualine_c = {
       lualine_filename,
-      { 'LualineVistaNearestMethodOrFunction' },
+      -- { 'LualineVistaNearestMethodOrFunction' },
     },
     lualine_x = {
       lualine_diagnostics, 'filetype', 'encoding', 'fileformat',
@@ -648,7 +661,7 @@ require('lualine').setup {
         "require('nvim-navic').get_location()",
         color_correction = nil,
         navic_opts = nil,
-        color = { fg = '#666666', bg = 'none' }
+        -- color = { fg = '#666666', bg = 'none' }
       }
     }
   },
