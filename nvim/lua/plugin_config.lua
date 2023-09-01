@@ -41,7 +41,7 @@ require'nvim-web-devicons'.setup {
 require("notify").setup({
   stages = "fade",
   render = "compact",
-  background_colour = "#3e3e3e",
+  background_colour = "#252525",
   timeout = 3000,
   max_width = 80,
   minimum_width = 50,
@@ -71,11 +71,11 @@ vim.cmd([[
     hi NotifyINFOTitle   guifg=#A9FF68 guibg=none
     hi NotifyDEBUGTitle  guifg=#8B8B8B guibg=none
     hi NotifyTRACETitle  guifg=#D484FF guibg=none
-    hi NotifyERRORBody   guibg=none
-    hi NotifyWARNBody    guibg=none
-    hi NotifyINFOBody    guibg=none
-    hi NotifyDEBUGBody   guibg=none
-    hi NotifyTRACEBody   guibg=none
+    hi NotifyERRORBody   guibg=#252525
+    hi NotifyWARNBody    guibg=#252525
+    hi NotifyINFOBody    guibg=#252525
+    hi NotifyDEBUGBody   guibg=#252525
+    hi NotifyTRACEBody   guibg=#252525
 ]])
 
 
