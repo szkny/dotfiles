@@ -317,7 +317,7 @@ keymap("n", "<C-k>",      ":<C-u>MinimapToggle<CR>:MinimapRefresh<CR>", opts )
 -- keymap("n", "<Leader>gg", ":<C-u>G<CR>",                                opts )
 keymap("n", "<Leader>gd", ":<C-u>Gvdiffsplit<CR>",                      opts )
 -- -- lazygit
-keymap("n", "<Leader>gg", ":<C-u>100SplitTerm lazygit<CR>i",            opts )
+keymap("n", "<Leader>gg", ":<C-u>1000SplitTerm lazygit<CR>i",            opts )
 -- -- gitsigns.nvim
 keymap("n", "<Leader>gb", require("gitsigns").toggle_current_line_blame, opts )
 
