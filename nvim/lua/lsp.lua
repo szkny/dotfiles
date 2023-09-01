@@ -1,5 +1,18 @@
 -- 1. LSP Sever management
 require("mason").setup()
+require("mason-lspconfig").setup({
+  ensure_installed = {
+    "lua_ls",
+    "jedi_language_server",
+    "tsserver",
+    "terraformls",
+    "volar",
+    "jsonls",
+    "yamlls",
+    "bashls",
+  },
+  automatic_installation = true,
+})
 require("mason-lspconfig").setup_handlers({ function(server)
   local opt = {
     capabilities = require("cmp_nvim_lsp").default_capabilities(),
