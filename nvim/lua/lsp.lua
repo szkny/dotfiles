@@ -10,6 +10,7 @@ require("mason-lspconfig").setup({
     "jsonls",
     "yamlls",
     "bashls",
+    "vimls",
   },
   automatic_installation = true,
 })
