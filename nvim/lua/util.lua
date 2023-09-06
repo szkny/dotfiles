@@ -42,7 +42,7 @@ fun! NewTerm(...) abort
     let l:cmd = 'terminal '.join(a:000)
     silent enew
     silent exe 'lcd ' . l:current_dir
-    silent exe l:cmd
+    silent exe l:cmd.'; read -q'
     " change buffer name
     if a:0 == 0
       let l:num = 1
