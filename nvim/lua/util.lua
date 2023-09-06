@@ -40,9 +40,12 @@ fun! NewTerm(...) abort
     endif
     " execute command
     let l:cmd = 'terminal '.join(a:000)
+    if a:0 > 0
+      let l:cmd = l:cmd.'; read -q'
+    endif
     silent enew
     silent exe 'lcd ' . l:current_dir
-    silent exe l:cmd.'; read -q'
+    silent exe l:cmd
     " change buffer name
     if a:0 == 0
       let l:num = 1
