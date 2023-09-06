@@ -31,7 +31,7 @@ vim.cmd([[
 ]])
 
 vim.cmd([[
-fun! NewTerm(...) abort
+fun! Term(...) abort
     " 新規バッファでターミナルモードを開始する関数
     "      :NewTerm [Command] で任意のシェルコマンドを実行
     let l:current_dir = expand('%:p:h')
@@ -74,7 +74,7 @@ fun! NewTerm(...) abort
     setlocal nospell
     setlocal lazyredraw
 endf
-command! -complete=shellcmd -nargs=* NewTerm call NewTerm(<f-args>)
+command! -complete=shellcmd -nargs=* Term call Term(<f-args>)
 ]])
 
 vim.cmd([[
