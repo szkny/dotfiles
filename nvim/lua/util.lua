@@ -31,6 +31,50 @@ vim.cmd([[
 ]])
 
 vim.cmd([[
+fun! NewTerm(...) abort
+    " 新規バッファでターミナルモードを開始する関数
+    "      :NewTerm [Command] で任意のシェルコマンドを実行
+    let l:current_dir = expand('%:p:h')
+    if l:current_dir[0] !=# '/'
+        let l:current_dir = getcwd()
+    endif
+    " execute command
+    let l:cmd = 'terminal '.join(a:000)
+    silent enew
+    silent exe 'lcd ' . l:current_dir
+    silent exe l:cmd
+    " change buffer name
+    if a:0 == 0
+      let l:num = 1
+      let l:name = split('zsh',' ')[0]
+      while bufexists(l:num.':'.l:name)
+          let l:num += 1
+      endwhile
+      exe 'file '.l:num.':'.l:name
+    elseif a:0 > 0
+      let l:num = 1
+      let l:name = split(a:1,' ')[0]
+      while bufexists(l:num.':'.l:name)
+          let l:num += 1
+      endwhile
+      exe 'file '.l:num.':'.l:name
+    endif
+    " set local settings
+    setlocal nonumber
+    setlocal buftype=terminal
+    setlocal filetype=terminal
+    setlocal nocursorline
+    setlocal nocursorcolumn
+    setlocal noswapfile
+    setlocal nomodifiable
+    setlocal nolist
+    setlocal nospell
+    setlocal lazyredraw
+endf
+command! -complete=shellcmd -nargs=* NewTerm call NewTerm(<f-args>)
+]])
+
+vim.cmd([[
     fun! s:trans(...) abort range
         " transコマンド(Google翻訳)を利用してvisual選択中の文字列を日本語変換する関数
         if executable('trans')
