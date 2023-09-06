@@ -306,6 +306,7 @@ keymap("n", "<Leader>t",
 )
 -- -- SplitTerm
 keymap("n", "t",          ":<C-u>18SplitTerm<CR>i",                     opts )
+keymap("n", "<leader>t",  ":<C-u>Term<CR>i",                            opts )
 -- -- vista.vim
 -- keymap("n", "<C-t>",      ":<C-u>Vista!!<CR>",                          opts )
 keymap("n", "<C-g>",      ":<C-u>Vista finder<CR>",                     opts )
