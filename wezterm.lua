@@ -22,6 +22,16 @@ config.colors = {
   cursor_bg = '#ffffff',
   cursor_fg = '#000000',
   cursor_border = '#ffffff',
+  brights = {
+    '#999999',
+    'red',
+    'lime',
+    'yellow',
+    'blue',
+    'fuchsia',
+    'aqua',
+    'white',
+  },
 }
 -- config.color_scheme = "Tomorrow (dark) (terminal.sexy)"
 -- config.color_scheme = 'Adventure'
