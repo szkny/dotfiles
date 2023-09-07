@@ -27,7 +27,7 @@ config.colors = {
     'red',
     'lime',
     'yellow',
-    'blue',
+    '#0099ee',
     'fuchsia',
     'aqua',
     'white',
