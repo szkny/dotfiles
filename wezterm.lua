@@ -24,13 +24,13 @@ config.colors = {
   cursor_border = '#ffffff',
   brights = {
     '#999999',
-    'red',
-    'lime',
-    'yellow',
+    '#ff6655',
+    '#55dd55',
+    '#eedd00',
     '#0099ee',
-    'fuchsia',
-    'aqua',
-    'white',
+    '#dd66dd',
+    '#77ccdd',
+    '#dddddd',
   },
 }
 -- config.color_scheme = "Tomorrow (dark) (terminal.sexy)"
