@@ -57,6 +57,7 @@ local plugins = {
     { 'williamboman/mason-lspconfig.nvim', lazy = false },
     { 'SmiteshP/nvim-navic', lazy = false},
     { 'SmiteshP/nvim-navbuddy', lazy = false },
+    { 'simrat39/symbols-outline.nvim', lazy = false },
     { "hrsh7th/nvim-cmp", lazy = false },
     { "hrsh7th/cmp-nvim-lsp", lazy = false },
     { "hrsh7th/vim-vsnip", lazy = false },
