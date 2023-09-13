@@ -539,18 +539,18 @@ require("nvim-navbuddy").setup({
 require("symbols-outline").setup({
   highlight_hovered_item = true,
   show_guides = true,
-  auto_preview = false,
   position = 'right',
-  relative_width = true,
+  relative_width = false,
   width = 25,
   auto_close = false,
+  auto_preview = false,
   show_symbol_details = true,
   preview_bg_highlight = 'Pmenu',
   autofold_depth = nil,
   auto_unfold_hover = true,
   fold_markers = { '', '' },
   keymaps = {
-    close = {"<Esc>", "q"},
+    close = {},
     goto_location = "<Cr>",
     focus_location = "o",
     hover_symbol = "<Leader>k",
@@ -596,6 +596,8 @@ require("symbols-outline").setup({
     Fragment      = { icon = " ", hl = "@constant" },
   },
 })
+vim.api.nvim_set_hl(0, "FocusedSymbol",           { bold=true,  bg="#334f7a", fg="#ffffff" })
+vim.api.nvim_set_hl(0, "SymbolsOutlineConnector", { bold=false, bg="none",    fg="#666666" })
 
 
 -- lualine.nvim
