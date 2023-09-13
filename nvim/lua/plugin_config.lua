@@ -597,7 +597,7 @@ require("symbols-outline").setup({
   },
 })
 vim.api.nvim_set_hl(0, "FocusedSymbol",           { bold=true,  bg="#334f7a", fg="#ffffff" })
-vim.api.nvim_set_hl(0, "SymbolsOutlineConnector", { bold=false, bg="none",    fg="#666666" })
+vim.api.nvim_set_hl(0, "SymbolsOutlineConnector", { bold=false, bg="none",    fg="#aaaaaa" })
 
 
 -- lualine.nvim
