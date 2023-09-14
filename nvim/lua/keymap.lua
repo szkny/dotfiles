@@ -10,7 +10,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- general
-keymap("n", "<leader><leader>", "<CMD>Reload<CR>", opts)
+keymap("n", "<leader><leader>", "<CMD>lua dofile(vim.env.MYVIMRC)<CR><CMD>echo 'Nvim configuration reloaded!'<CR>", opts)
 keymap("t", "<C-[>", "<C-\\><C-n>", opts)
 keymap("t", "<ESC>", "<C-\\><C-n><Plug>(esc)", { noremap = true })
 keymap("n", "<Plug>(esc)<ESC>", "i<ESC>", opts)
