@@ -762,10 +762,10 @@ require('lualine').setup {
   winbar = {
     lualine_c = {
       {
-        "require('nvim-navic').get_location()",
+        "require('nvim-navic').get_location()..''",
         color_correction = nil,
         navic_opts = nil,
-        -- color = { fg = '#666666', bg = 'none' }
+        color = { fg = '#666666', bg = 'none' }
       }
     }
   },
