@@ -541,7 +541,7 @@ require("symbols-outline").setup({
   show_guides = true,
   position = 'right',
   relative_width = false,
-  width = 25,
+  width = 35,
   auto_close = false,
   auto_preview = false,
   show_symbol_details = true,
