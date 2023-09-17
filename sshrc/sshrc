@@ -1,1 +1,21 @@
-export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/vimrc' | source \$MYVIMRC"
+export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
+
+# aliases
+alias cd="cdls"
+alias c="clear"
+alias g="git"
+
+# keymap
+set -o vi
+bind '"\C-a":beginning-of-line'
+bind '"\C-e":end-of-line'
+bind '"\C-n":next-history'
+bind '"\C-p":previous-history'
+
+# functions
+function cdls(){
+    \cd $@ && ls
+}
+
+# initial command
+
