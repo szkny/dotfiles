@@ -596,7 +596,7 @@ require("symbols-outline").setup({
     Fragment      = { icon = " ", hl = "@constant" },
   },
 })
-vim.api.nvim_set_hl(0, "FocusedSymbol",           { bold=true,  bg="#334f7a", fg="#ffffff" })
+vim.api.nvim_set_hl(0, "FocusedSymbol",           { bold=true,  bg="#444444", fg="#ffffff" })
 vim.api.nvim_set_hl(0, "SymbolsOutlineConnector", { bold=false, bg="none",    fg="#aaaaaa" })
 
 
