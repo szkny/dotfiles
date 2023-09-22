@@ -91,7 +91,7 @@ require("noice").setup({
   },
   cmdline = {
     enabled = true,
-    view = "cmdline_popup",
+    view = "cmdline",
     format = {
       cmdline = { pattern = "^:", icon = "", lang = "vim" },
       search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
@@ -110,6 +110,7 @@ require("noice").setup({
 vim.cmd([[
     hi NoiceMini         guifg=#ffbb00 guibg=#383838
     hi NoiceCmdlinePopup               guibg=#383838
+    hi NoiceCmdline                    guibg=#1f1f1f
     hi NoiceConfirm                    guibg=#383838
 ]])
 
@@ -621,19 +622,6 @@ vim.cmd([[
         catch
             return ''
         endtry
-    endf
-    fun! LualineVistaNearestMethodOrFunction() abort
-      try
-        let l:min_width = 50
-        if winwidth(0) >= l:min_width
-            let l:funcname_text = get(b:, 'vista_nearest_method_or_function', '')
-            if l:funcname_text == ''
-              return ''
-            endif
-            return ' '.l:funcname_text
-        endif
-        return ''
-      endtry
     endf
     let g:lualine_diagnostics_source = 'nvim_diagnostic'
 ]])
