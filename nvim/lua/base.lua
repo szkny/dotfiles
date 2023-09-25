@@ -72,7 +72,7 @@ vim.opt.swapfile = false
 
 -- Time (msec)
 vim.opt.ttimeoutlen = 0
-vim.opt.updatetime = 500
+vim.opt.updatetime = 250
 
 -- etc..
 vim.opt.shell = os.getenv('SHELL') or '/bin/sh'
