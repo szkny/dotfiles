@@ -29,7 +29,7 @@ window:
   startup_mode: Windowed
   title: Ubuntu
   dynamic_title: false
-  decorations: none
+  decorations: full
   opacity: 0.95
 
 scrolling:
