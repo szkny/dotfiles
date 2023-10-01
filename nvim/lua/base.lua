@@ -121,7 +121,6 @@ vim.api.nvim_set_var('no_buffers_menu', 1)
 vim.opt.mousemodel = 'popup'
 -- set t_Co=256
 vim.opt.termguicolors = true
-vim.opt.background = 'dark'
 
 -- Change cursor by mode
 vim.opt.guicursor = 'n-v-c:block-Cursor,i:ver100-iCursor,n-v-c:blinkon0,i:blinkwait10'

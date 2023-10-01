@@ -24,8 +24,10 @@ vim.cmd([[
     aug END
 ]])
 
+vim.opt.background = 'dark'
 local c = require('vscode.colors').get_colors()
 require('vscode').setup({
+  style = 'dark',
   transparent = true,
   italic_comments = true,
   disable_nvimtree_bg = true,
