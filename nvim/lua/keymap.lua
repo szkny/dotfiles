@@ -315,7 +315,7 @@ keymap("n", "<C-g>",      ":<C-u>Vista finder<CR>",                     opts )
 -- -- symbols-outline.nvim
 keymap("n", "<C-t>",      ":<C-u>SymbolsOutline<CR>",                   opts )
 -- -- minimap.vim
-keymap("n", "<C-k>",      ":<C-u>MinimapToggle<CR>:MinimapRefresh<CR>", opts )
+keymap("n", "<C-k>",      "<CMD>ScrollbarToggle<CR>:MinimapToggle<CR>", opts )
 -- -- fugitive
 -- keymap("n", "<Leader>gg", ":<C-u>G<CR>",                                opts )
 keymap("n", "<Leader>gd", ":<C-u>Gvdiffsplit<CR>",                      opts )
@@ -389,5 +389,5 @@ keymap("n", "<M-;>",      ":Appendchar ;<Cr>",       opts)
 keymap("v", "<M-;>",      ":Appendchar ;<Cr>",       opts)
 keymap("v", "<Leader>t",  ":Trans<CR>",              opts)
 keymap("n", "<Leader>gf", ":Fshow<CR>",              opts)
-keymap("n", "<Leader>l", "exists(':MinimapRefresh') ? ':<C-u>set hlsearch!<CR>:MinimapRefresh<CR>' : ':<C-u>set hlsearch!<CR>'", { silent = true, expr = true })
+keymap("n", "<Leader>l", "exists(':MinimapUpdateHighlight') ? ':<C-u>set hlsearch!<CR>:MinimapUpdateHighlight<CR>' : ':<C-u>set hlsearch!<CR>'", { silent = true, expr = true })
 
