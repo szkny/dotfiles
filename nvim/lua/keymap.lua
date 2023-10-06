@@ -315,7 +315,7 @@ keymap("n", "<C-g>",      ":<C-u>Vista finder<CR>",                     opts )
 -- -- symbols-outline.nvim
 keymap("n", "<C-t>",      ":<C-u>SymbolsOutline<CR>",                   opts )
 -- -- minimap.vim
-keymap("n", "<C-k>",      "<CMD>ScrollbarToggle<CR>:MinimapToggle<CR>:MinimapUpdateHighlight<CR>", opts )
+keymap("n", "<C-k>",      "<CMD>ScrollbarToggle<CR>:MinimapToggle<CR>:try|e|catch|endtry<CR>:MinimapUpdateHighlight<CR>", opts )
 -- -- fugitive
 -- keymap("n", "<Leader>gg", ":<C-u>G<CR>",                                opts )
 keymap("n", "<Leader>gd", ":<C-u>Gvdiffsplit<CR>",                      opts )
