@@ -389,5 +389,5 @@ keymap("n", "<M-;>",      ":Appendchar ;<Cr>",       opts)
 keymap("v", "<M-;>",      ":Appendchar ;<Cr>",       opts)
 keymap("v", "<Leader>t",  ":Trans<CR>",              opts)
 keymap("n", "<Leader>gf", ":Fshow<CR>",              opts)
-keymap("n", "<Leader>l", "exists(':MinimapUpdateHighlight') ? ':<C-u>set hlsearch!<CR>:try|e|catch|endtry<CR>:MinimapUpdateHighlight<CR>' : ':<C-u>set hlsearch!<CR>'", { silent = true, expr = true })
+keymap("n", "<Leader>l", "exists(':MinimapUpdateHighlight') ? ':<C-u>set hlsearch!<CR>:MinimapUpdateHighlight<CR>' : ':<C-u>set hlsearch!<CR>'", { silent = true, expr = true })
 
