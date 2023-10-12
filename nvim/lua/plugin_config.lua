@@ -291,7 +291,7 @@ vim.cmd([[
     hi NvimTreeGitStaged                 gui=bold guifg=#44cc44
     hi NvimTreeGitNew                    gui=bold guifg=#44cc44
     hi NvimTreeModifiedFile              gui=bold guifg=#ffaa00
-    hi NvimTreeLspDiagnosticsError       gui=none guifg=#ff0000
+    hi NvimTreeLspDiagnosticsError       gui=none guifg=#ee3333
     hi NvimTreeLspDiagnosticsWarning     gui=none guifg=#edd000
     hi NvimTreeLspDiagnosticsInformation gui=none guifg=#ffffff
     hi NvimTreeLspDiagnosticsHint        gui=none guifg=#5588dd
@@ -765,7 +765,7 @@ require('lualine').setup {
   extensions = {}
 }
 vim.cmd([[
-    hi lualine_lsp_err     guibg=#212736 guifg=#ff0000
+    hi lualine_lsp_err     guibg=#212736 guifg=#ee3333
     hi lualine_lsp_warn    guibg=#212736 guifg=#edd000
     hi lualine_lsp_hint    guibg=#212736 guifg=#5599dd
     hi lualine_lsp_info    guibg=#212736 guifg=#5599dd
@@ -823,9 +823,27 @@ require('barbar').setup({
   sidebar_filetypes = { NvimTree = { text = '   File Explorer' } },
   no_name_title = '[No Name]',
 })
-vim.api.nvim_set_hl(0, "BufferCurrentSign", { bg="none", fg="#88ccff" })
-vim.api.nvim_set_hl(0, "BufferInactiveSign", { bg="#2a2a2a", fg="#3a3a3a" })
-
+vim.api.nvim_set_hl(0, "BufferCurrent",       { bg="none",    fg="#ffffff", bold = true })
+vim.api.nvim_set_hl(0, "BufferVisible",       { bg="none",    fg="#ffffff" })
+vim.api.nvim_set_hl(0, "BufferInactive",      { bg="#181d24", fg="#888888" })
+vim.api.nvim_set_hl(0, "BufferCurrentMod",    { bg="none",    fg="#ffaa00", bold = true })
+vim.api.nvim_set_hl(0, "BufferVisibleMod",    { bg="none",    fg="#ffaa00" })
+vim.api.nvim_set_hl(0, "BufferInactiveMod",   { bg="#181d24", fg="#bb7700" })
+vim.api.nvim_set_hl(0, "BufferCurrentSign",   { bg="none",    fg="#88ccff", bold = true })
+vim.api.nvim_set_hl(0, "BufferVisibleSign",   { bg="none",    fg="#5588dd" })
+vim.api.nvim_set_hl(0, "BufferInactiveSign",  { bg="#181d24", fg="#444444" })
+vim.api.nvim_set_hl(0, "BufferCurrentERROR",  { bg="none",    fg="#ee3333", bold = true })
+vim.api.nvim_set_hl(0, "BufferVisibleERROR",  { bg="none",    fg="#ee3333" })
+vim.api.nvim_set_hl(0, "BufferInactiveERROR", { bg="#181d24", fg="#aa3333" })
+vim.api.nvim_set_hl(0, "BufferCurrentWARN",   { bg="none",    fg="#edd000", bold = true })
+vim.api.nvim_set_hl(0, "BufferVisibleWARN",   { bg="none",    fg="#edd000" })
+vim.api.nvim_set_hl(0, "BufferInactiveWARN",  { bg="#181d24", fg="#908000" })
+vim.api.nvim_set_hl(0, "BufferCurrentHINT",   { bg="none",    fg="#5588dd", bold = true })
+vim.api.nvim_set_hl(0, "BufferVisibleHINT",   { bg="none",    fg="#5588dd" })
+vim.api.nvim_set_hl(0, "BufferInactiveHINT",  { bg="#181d24", fg="#4466aa" })
+vim.api.nvim_set_hl(0, "BufferCurrentINFO",   { bg="none",    fg="#ffffff", bold = true })
+vim.api.nvim_set_hl(0, "BufferVisibleINFO",   { bg="none",    fg="#ffffff" })
+vim.api.nvim_set_hl(0, "BufferInactiveINFO",  { bg="#181d24", fg="#888888" })
 
 -- -- bufferline.nvim
 --   -- separator_style = 'slant',
@@ -1250,8 +1268,8 @@ vim.cmd([[
     hi ScrollbarCursorHandle    gui=none guifg=#ffffff guibg=#888888
     hi ScrollbarSearch          gui=bold guifg=#ffaa77
     hi ScrollbarSearchHandle    gui=bold guifg=#ffaa77 guibg=#888888
-    hi ScrollbarError           gui=bold guifg=#ff0000
-    hi ScrollbarErrorHandle     gui=bold guifg=#ff0000 guibg=#888888
+    hi ScrollbarError           gui=bold guifg=#ee3333
+    hi ScrollbarErrorHandle     gui=bold guifg=#ee3333 guibg=#888888
     hi ScrollbarWarn            gui=bold guifg=#edd000
     hi ScrollbarWarnHandle      gui=bold guifg=#edd000 guibg=#888888
     hi ScrollbarHint            gui=bold guifg=#5599dd
@@ -1262,8 +1280,8 @@ vim.cmd([[
     hi ScrollbarGitAddHandle    gui=none guifg=#00bb00 guibg=#888888
     hi ScrollbarGitChange       gui=none guifg=#cccc00
     hi ScrollbarGitChangeHandle gui=none guifg=#cccc00 guibg=#888888
-    hi ScrollbarGitDelete       gui=none guifg=#ff2222
-    hi ScrollbarGitDeleteHandle gui=none guifg=#ff2222 guibg=#888888
+    hi ScrollbarGitDelete       gui=none guifg=#bb2222
+    hi ScrollbarGitDeleteHandle gui=none guifg=#bb2222 guibg=#888888
 ]])
 
 
