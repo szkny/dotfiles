@@ -82,7 +82,7 @@ vim.api.nvim_set_hl(0, "PmenuSel",          { bg="#334f7a", fg="none"    })
 vim.api.nvim_set_hl(0, "LspReferenceText",  { bg="#334f7a", fg="none"    })
 vim.api.nvim_set_hl(0, "LspReferenceRead",  { bg="#334f7a", fg="none"    })
 vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg="#334f7a", fg="none"    })
-vim.api.nvim_set_hl(0, "DiagnosticError",   { bg="none",    fg="#ff0000" })
+vim.api.nvim_set_hl(0, "DiagnosticError",   { bg="none",    fg="#ee3333" })
 vim.api.nvim_set_hl(0, "DiagnosticWarn",    { bg="none",    fg="#edd000" })
 vim.api.nvim_set_hl(0, "DiagnosticHint",    { bg="none",    fg="#5588dd" })
 
