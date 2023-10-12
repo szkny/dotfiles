@@ -775,327 +775,379 @@ vim.cmd([[
 ]])
 
 
--- bufferline.nvim
-  -- separator_style = 'slant',
-require('bufferline').setup {
-  options = {
-    mode = "buffers",
-    numbers = "none",
-    close_command = "bn|sp|bp|bd! %d",
-    right_mouse_command = "bdelete! %d",
-    left_mouse_command = "buffer %d",
-    buffer_close_icon = '',
-    modified_icon = '●',
-    close_icon = '',
-    indicator = {
-      icon = '▎',
-      style = 'icon'
+-- barbar.nvim
+vim.g.barbar_auto_setup = false
+require('barbar').setup({
+  animation = true,
+  auto_hide = false,
+  tabpages = false,
+  clickable = true,
+  icons = {
+    buffer_index = false,
+    buffer_number = false,
+    button = '',
+    diagnostics = {
+      [vim.diagnostic.severity.ERROR] = {enabled = true, icon = ' '},
+      [vim.diagnostic.severity.WARN] = {enabled = true, icon = ' '},
+      [vim.diagnostic.severity.INFO] = {enabled = true, icon = ' '},
+      [vim.diagnostic.severity.HINT] = {enabled = true, icon = ' '},
     },
-    max_name_length = 36,
-    max_prefix_length = 6,
-    truncate_names = true,
-    tab_size = 18,
-    diagnostics = "nvim_lsp",
-    diagnostics_update_in_insert = false,
-    diagnostics_indicator = function(count, level)
-        local icon = level:match("error") and ""
-                   or level:match("warning") and ""
-                   or level:match("hint") and "" or ""
-        return icon .. " " .. count
-    end,
-    custom_filter = function(buf_number)
-        if vim.bo[buf_number].filetype ~= "qf" then
-            return true
-        end
-    end,
-    offsets = {
-      {
-        filetype = "NvimTree",
-        text = function()
-          return vim.fn.fnamemodify(vim.fn.getcwd(), ':t:gs?\\l?\\U\\0?')
-        end,
-        text_align = "left",
-        separator = true,
-        highlight = "NvimTreeRootFolder",
-      }
+    gitsigns = {
+      added = {enabled = false, icon = '+'},
+      changed = {enabled = false, icon = '~'},
+      deleted = {enabled = false, icon = '-'},
     },
-    color_icons = true,
-    show_buffer_icons = true,
-    show_buffer_close_icons = true,
-    show_close_icon = true,
-    show_tab_indicators = true,
-    show_duplicate_prefix = true,
-    persist_buffer_sort = true,
-    separator_style = "thin",
-    enforce_regular_tabs = false,
-    always_show_bufferline = true,
-    hover = {
+    filetype = {
+      custom_colors = false,
       enabled = true,
-      delay = 200,
-      reveal = {'close'}
     },
+    separator = {left = '▎', right = ''},
+    separator_at_end = false,
+    modified = {button = '●'},
+    pinned = {button = '', filename = true},
+    preset = 'default',
+    alternate = {filetype = {enabled = false}},
+    current = {buffer_index = false},
+    inactive = {button = '×'},
+    visible = {modified = {buffer_number = false}},
   },
-  highlights = {
-    buffer_selected = {
-      fg = '#ffffff',
-      bg = 'none',
-      italic = false,
-      bold = true,
-    },
-    buffer_visible = {
-      fg = '#ffffff',
-      bg = 'none',
-      italic = false,
-      bold = true,
-    },
-    duplicate_selected = {
-      fg = '#ffffff',
-      bg = 'none',
-      italic = false,
-      bold = true,
-    },
-    duplicate_visible = {
-      fg = '#ffffff',
-      bg = 'none',
-      italic = false,
-    },
-    diagnostic_selected = {
-        bg = 'none',
-        bold = true,
-        italic = false,
-    },
-    diagnostic_visible = {
-        bg = 'none',
-        bold = true,
-        italic = false,
-    },
-    error_selected = {
-        fg = '#ff0000',
-        bg = 'none',
-        bold = true,
-        italic = false,
-    },
-    error_visible = {
-        fg = '#ff0000',
-        bg = 'none',
-        bold = true,
-        italic = false,
-    },
-    error_diagnostic_selected = {
-        fg = '#ff0000',
-        bg = 'none',
-        bold = true,
-        italic = false,
-    },
-    error_diagnostic_visible = {
-        fg = '#ff0000',
-        bg = 'none',
-        bold = true,
-        italic = false,
-    },
-    warning_selected = {
-        fg = '#edd000',
-        bg = 'none',
-        bold = true,
-        italic = false,
-    },
-    warning_visible = {
-        fg = '#edd000',
-        bg = 'none',
-        bold = true,
-        italic = false,
-    },
-    warning_diagnostic_selected = {
-        fg = '#edd000',
-        bg = 'none',
-        bold = true,
-        italic = false,
-    },
-    warning_diagnostic_visible = {
-        fg = '#edd000',
-        bg = 'none',
-        bold = true,
-        italic = false,
-    },
-    info_selected = {
-        fg = '#ffffff',
-        bg = 'none',
-        bold = true,
-        italic = false,
-    },
-    info_visible = {
-        fg = '#ffffff',
-        bg = 'none',
-        bold = true,
-        italic = false,
-    },
-    info_diagnostic_selected = {
-        fg = '#ffffff',
-        bg = 'none',
-        bold = true,
-        italic = false,
-    },
-    info_diagnostic_visible = {
-        fg = '#ffffff',
-        bg = 'none',
-        bold = true,
-        italic = false,
-    },
-    hint_selected = {
-        fg = '#ffffff',
-        bg = 'none',
-        bold = true,
-        italic = false,
-    },
-    hint_visible = {
-        fg = '#ffffff',
-        bg = 'none',
-        bold = true,
-        italic = false,
-    },
-    hint_diagnostic_selected = {
-        fg = '#5588dd',
-        bg = 'none',
-        bold = true,
-        italic = false,
-    },
-    hint_diagnostic_visible = {
-        fg = '#5588dd',
-        bg = 'none',
-        bold = true,
-        italic = false,
-    },
-    indicator_selected = {
-      fg = '#88ccff',
-      bg = 'none',
-    },
-    close_button = {
-      fg = '#888888',
-      bg = 'none',
-    },
-    close_button_visible = {
-      fg = '#888888',
-      bg = 'none',
-    },
-    close_button_selected = {
-      fg = '#aaaaaa',
-      bg = 'none',
-      bold = true,
-    },
-    numbers_selected = {
-      fg = '#ffffff',
-      bg = 'none',
-      italic = false,
-    },
-    modified_selected = {
-      fg = '#ffaa00',
-      bg = 'none',
-      bold = true,
-    },
-    fill = {
-      fg = '#555555',
-      bg = 'none',
-    },
-    background = {
-      fg = '#888888',
-      bg = '#181d24',
-    },
-    duplicate = {
-      fg = '#888888',
-      bg = '#181d24',
-      italic = false,
-    },
-    diagnostic = {
-        fg = '#888888',
-        bg = '#181d24',
-        bold = true,
-        italic = false,
-    },
-    error = {
-        fg = '#880000',
-        bg = '#181d24',
-        bold = true,
-        italic = false,
-    },
-    error_diagnostic = {
-        fg = '#880000',
-        bg = '#181d24',
-        bold = true,
-        italic = false,
-    },
-    warning = {
-        fg = '#908000',
-        bg = '#181d24',
-        bold = true,
-        italic = false,
-    },
-    warning_diagnostic = {
-        fg = '#908000',
-        bg = '#181d24',
-        bold = true,
-        italic = false,
-    },
-    info = {
-        fg = '#888888',
-        bg = '#181d24',
-        bold = true,
-        italic = false,
-    },
-    info_diagnostic = {
-        fg = '#888888',
-        bg = '#181d24',
-        bold = true,
-        italic = false,
-    },
-    hint = {
-        fg = '#888888',
-        bg = '#181d24',
-        bold = true,
-        italic = false,
-    },
-    hint_diagnostic = {
-        fg = '#4466aa',
-        bg = '#181d24',
-        bold = true,
-        italic = false,
-    },
-    numbers = {
-      fg = '#888888',
-      bg = '#181d24',
-      italic = false,
-    },
-    numbers_visible = {
-      fg = '#888888',
-      bg = '#181d24',
-      italic = false,
-    },
-    modified = {
-      fg = '#bb7700',
-      bg = '#181d24',
-      bold = true,
-    },
-    separator_selected = {
-      fg = '#303030',
-      bg = '#181d24',
-    },
-    separator_visible = {
-      fg = '#303030',
-      bg = '#181d24',
-    },
-    separator = {
-      fg = '#444450',
-      bg = '#181d24',
-    },
-    offset_separator = {
-      fg = '#555555',
-      bg = 'none',
-    },
-    trunc_marker = {
-      fg = '#666666',
-      bg = 'none',
-    },
-  }
-}
+  highlight_alternate = false,
+  highlight_inactive_file_icons = true,
+  highlight_visible = true,
+  insert_at_end = false,
+  insert_at_start = false,
+  maximum_padding = 1,
+  minimum_padding = 1,
+  maximum_length = 30,
+  minimum_length = 12,
+  sidebar_filetypes = { NvimTree = { text = '      FILE EXPLORER' } },
+  no_name_title = '[No Name]',
+})
+vim.api.nvim_set_hl(0, "BufferCurrentSign", { bg="none", fg="#88ccff" })
+vim.api.nvim_set_hl(0, "BufferInactiveSign", { bg="#2a2a2a", fg="#3a3a3a" })
+
+
+-- -- bufferline.nvim
+--   -- separator_style = 'slant',
+-- require('bufferline').setup {
+--   options = {
+--     mode = "buffers",
+--     numbers = "none",
+--     close_command = "bn|sp|bp|bd! %d",
+--     right_mouse_command = "bdelete! %d",
+--     left_mouse_command = "buffer %d",
+--     buffer_close_icon = '',
+--     modified_icon = '●',
+--     close_icon = '',
+--     indicator = {
+--       icon = '▎',
+--       style = 'icon'
+--     },
+--     max_name_length = 36,
+--     max_prefix_length = 6,
+--     truncate_names = true,
+--     tab_size = 18,
+--     diagnostics = "nvim_lsp",
+--     diagnostics_update_in_insert = false,
+--     diagnostics_indicator = function(count, level)
+--         local icon = level:match("error") and ""
+--                    or level:match("warning") and ""
+--                    or level:match("hint") and "" or ""
+--         return icon .. " " .. count
+--     end,
+--     custom_filter = function(buf_number)
+--         if vim.bo[buf_number].filetype ~= "qf" then
+--             return true
+--         end
+--     end,
+--     offsets = {
+--       {
+--         filetype = "NvimTree",
+--         text = function()
+--           return vim.fn.fnamemodify(vim.fn.getcwd(), ':t:gs?\\l?\\U\\0?')
+--         end,
+--         text_align = "left",
+--         separator = true,
+--         highlight = "NvimTreeRootFolder",
+--       }
+--     },
+--     color_icons = true,
+--     show_buffer_icons = true,
+--     show_buffer_close_icons = true,
+--     show_close_icon = true,
+--     show_tab_indicators = true,
+--     show_duplicate_prefix = true,
+--     persist_buffer_sort = true,
+--     separator_style = "thin",
+--     enforce_regular_tabs = false,
+--     always_show_bufferline = true,
+--     hover = {
+--       enabled = true,
+--       delay = 200,
+--       reveal = {'close'}
+--     },
+--   },
+--   highlights = {
+--     buffer_selected = {
+--       fg = '#ffffff',
+--       bg = 'none',
+--       italic = false,
+--       bold = true,
+--     },
+--     buffer_visible = {
+--       fg = '#ffffff',
+--       bg = 'none',
+--       italic = false,
+--       bold = true,
+--     },
+--     duplicate_selected = {
+--       fg = '#ffffff',
+--       bg = 'none',
+--       italic = false,
+--       bold = true,
+--     },
+--     duplicate_visible = {
+--       fg = '#ffffff',
+--       bg = 'none',
+--       italic = false,
+--     },
+--     diagnostic_selected = {
+--         bg = 'none',
+--         bold = true,
+--         italic = false,
+--     },
+--     diagnostic_visible = {
+--         bg = 'none',
+--         bold = true,
+--         italic = false,
+--     },
+--     error_selected = {
+--         fg = '#ff0000',
+--         bg = 'none',
+--         bold = true,
+--         italic = false,
+--     },
+--     error_visible = {
+--         fg = '#ff0000',
+--         bg = 'none',
+--         bold = true,
+--         italic = false,
+--     },
+--     error_diagnostic_selected = {
+--         fg = '#ff0000',
+--         bg = 'none',
+--         bold = true,
+--         italic = false,
+--     },
+--     error_diagnostic_visible = {
+--         fg = '#ff0000',
+--         bg = 'none',
+--         bold = true,
+--         italic = false,
+--     },
+--     warning_selected = {
+--         fg = '#edd000',
+--         bg = 'none',
+--         bold = true,
+--         italic = false,
+--     },
+--     warning_visible = {
+--         fg = '#edd000',
+--         bg = 'none',
+--         bold = true,
+--         italic = false,
+--     },
+--     warning_diagnostic_selected = {
+--         fg = '#edd000',
+--         bg = 'none',
+--         bold = true,
+--         italic = false,
+--     },
+--     warning_diagnostic_visible = {
+--         fg = '#edd000',
+--         bg = 'none',
+--         bold = true,
+--         italic = false,
+--     },
+--     info_selected = {
+--         fg = '#ffffff',
+--         bg = 'none',
+--         bold = true,
+--         italic = false,
+--     },
+--     info_visible = {
+--         fg = '#ffffff',
+--         bg = 'none',
+--         bold = true,
+--         italic = false,
+--     },
+--     info_diagnostic_selected = {
+--         fg = '#ffffff',
+--         bg = 'none',
+--         bold = true,
+--         italic = false,
+--     },
+--     info_diagnostic_visible = {
+--         fg = '#ffffff',
+--         bg = 'none',
+--         bold = true,
+--         italic = false,
+--     },
+--     hint_selected = {
+--         fg = '#ffffff',
+--         bg = 'none',
+--         bold = true,
+--         italic = false,
+--     },
+--     hint_visible = {
+--         fg = '#ffffff',
+--         bg = 'none',
+--         bold = true,
+--         italic = false,
+--     },
+--     hint_diagnostic_selected = {
+--         fg = '#5588dd',
+--         bg = 'none',
+--         bold = true,
+--         italic = false,
+--     },
+--     hint_diagnostic_visible = {
+--         fg = '#5588dd',
+--         bg = 'none',
+--         bold = true,
+--         italic = false,
+--     },
+--     indicator_selected = {
+--       fg = '#88ccff',
+--       bg = 'none',
+--     },
+--     close_button = {
+--       fg = '#888888',
+--       bg = 'none',
+--     },
+--     close_button_visible = {
+--       fg = '#888888',
+--       bg = 'none',
+--     },
+--     close_button_selected = {
+--       fg = '#aaaaaa',
+--       bg = 'none',
+--       bold = true,
+--     },
+--     numbers_selected = {
+--       fg = '#ffffff',
+--       bg = 'none',
+--       italic = false,
+--     },
+--     modified_selected = {
+--       fg = '#ffaa00',
+--       bg = 'none',
+--       bold = true,
+--     },
+--     fill = {
+--       fg = '#555555',
+--       bg = 'none',
+--     },
+--     background = {
+--       fg = '#888888',
+--       bg = '#181d24',
+--     },
+--     duplicate = {
+--       fg = '#888888',
+--       bg = '#181d24',
+--       italic = false,
+--     },
+--     diagnostic = {
+--         fg = '#888888',
+--         bg = '#181d24',
+--         bold = true,
+--         italic = false,
+--     },
+--     error = {
+--         fg = '#880000',
+--         bg = '#181d24',
+--         bold = true,
+--         italic = false,
+--     },
+--     error_diagnostic = {
+--         fg = '#880000',
+--         bg = '#181d24',
+--         bold = true,
+--         italic = false,
+--     },
+--     warning = {
+--         fg = '#908000',
+--         bg = '#181d24',
+--         bold = true,
+--         italic = false,
+--     },
+--     warning_diagnostic = {
+--         fg = '#908000',
+--         bg = '#181d24',
+--         bold = true,
+--         italic = false,
+--     },
+--     info = {
+--         fg = '#888888',
+--         bg = '#181d24',
+--         bold = true,
+--         italic = false,
+--     },
+--     info_diagnostic = {
+--         fg = '#888888',
+--         bg = '#181d24',
+--         bold = true,
+--         italic = false,
+--     },
+--     hint = {
+--         fg = '#888888',
+--         bg = '#181d24',
+--         bold = true,
+--         italic = false,
+--     },
+--     hint_diagnostic = {
+--         fg = '#4466aa',
+--         bg = '#181d24',
+--         bold = true,
+--         italic = false,
+--     },
+--     numbers = {
+--       fg = '#888888',
+--       bg = '#181d24',
+--       italic = false,
+--     },
+--     numbers_visible = {
+--       fg = '#888888',
+--       bg = '#181d24',
+--       italic = false,
+--     },
+--     modified = {
+--       fg = '#bb7700',
+--       bg = '#181d24',
+--       bold = true,
+--     },
+--     separator_selected = {
+--       fg = '#303030',
+--       bg = '#181d24',
+--     },
+--     separator_visible = {
+--       fg = '#303030',
+--       bg = '#181d24',
+--     },
+--     separator = {
+--       fg = '#444450',
+--       bg = '#181d24',
+--     },
+--     offset_separator = {
+--       fg = '#555555',
+--       bg = 'none',
+--     },
+--     trunc_marker = {
+--       fg = '#666666',
+--       bg = 'none',
+--     },
+--   }
+-- }
 
 
 -- nvim-scrollbar

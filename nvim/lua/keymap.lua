@@ -139,13 +139,19 @@ keymap("n", "<leader>r",
 -- -- for tab/window
 -- keymap("n", "<Right>", ":ChangeBuffer next<CR>",     opts)
 -- keymap("n", "<Left>",  ":ChangeBuffer previous<CR>", opts)
-keymap("n", "<Right>", ":BufferLineCycleNext<CR>",   opts)
-keymap("n", "<Left>",  ":BufferLineCyclePrev<CR>",   opts)
-keymap("n", "<M-l>",   ":BufferLineCycleNext<CR>",   opts)
-keymap("n", "<M-h>",   ":BufferLineCyclePrev<CR>",   opts)
-keymap("n", "<TAB>",   ":buffer#<CR>",               opts)
-keymap("n", "<Up>",    ":ResizeWindow +1<CR>",       opts)
-keymap("n", "<Down>",  ":ResizeWindow -1<CR>",       opts)
+-- keymap("n", "<Right>", ":BufferLineCycleNext<CR>",   opts)
+-- keymap("n", "<Left>",  ":BufferLineCyclePrev<CR>",   opts)
+-- keymap("n", "<M-l>",   ":BufferLineCycleNext<CR>",   opts)
+-- keymap("n", "<M-h>",   ":BufferLineCyclePrev<CR>",   opts)
+keymap("n", "<Right>", ":BufferNext<CR>",         opts)
+keymap("n", "<Left>",  ":BufferPrevious<CR>",     opts)
+keymap("n", "<M-l>",   ":BufferNext<CR>",         opts)
+keymap("n", "<M-h>",   ":BufferPrevious<CR>",     opts)
+keymap("n", "<Leader><Right>", ":BufferMoveNext<CR>",     opts)
+keymap("n", "<Leader><Left>",  ":BufferMovePrevious<CR>", opts)
+keymap("n", "<TAB>",   ":buffer#<CR>",            opts)
+keymap("n", "<Up>",    ":ResizeWindow +1<CR>",    opts)
+keymap("n", "<Down>",  ":ResizeWindow -1<CR>",    opts)
 vim.cmd([[
     fun! s:changebuffer(direction) abort
         " バッファタブを切り替える関数
