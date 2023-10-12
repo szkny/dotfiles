@@ -820,7 +820,7 @@ require('barbar').setup({
   minimum_padding = 1,
   maximum_length = 30,
   minimum_length = 12,
-  sidebar_filetypes = { NvimTree = { text = '      FILE EXPLORER' } },
+  sidebar_filetypes = { NvimTree = { text = '   File Explorer' } },
   no_name_title = '[No Name]',
 })
 vim.api.nvim_set_hl(0, "BufferCurrentSign", { bg="none", fg="#88ccff" })
