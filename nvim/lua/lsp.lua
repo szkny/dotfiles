@@ -78,7 +78,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 vim.api.nvim_set_hl(0, "FloatNormal",       { bg="none",    fg="#9fa3a8" })
 vim.api.nvim_set_hl(0, "FloatBorder",       { bg="none",    fg="#9fa3a8" })
 vim.api.nvim_set_hl(0, "Pmenu",             { bg="#252525", fg="#9fa3af" })
-vim.api.nvim_set_hl(0, "PmenuSel",          { bg="#334f7a", fg="none"    })
+vim.api.nvim_set_hl(0, "PmenuSel",          { bg="#334f7a", fg="none"   , bold=true })
 vim.api.nvim_set_hl(0, "LspReferenceText",  { bg="#334f7a", fg="none"    })
 vim.api.nvim_set_hl(0, "LspReferenceRead",  { bg="#334f7a", fg="none"    })
 vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg="#334f7a", fg="none"    })
