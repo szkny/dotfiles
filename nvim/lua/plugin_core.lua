@@ -39,7 +39,6 @@ local plugins = {
   'wfxr/minimap.vim',
   -- 'mg979/vim-visual-multi',
   'petertriho/nvim-scrollbar',
-  -- 'akinsho/bufferline.nvim',
   'romgrk/barbar.nvim',
   'brenoprata10/nvim-highlight-colors',
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },

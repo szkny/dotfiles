@@ -24,8 +24,6 @@ vim.cmd([[
         let l:month = l:months[l:nmonth] . ' '
         let l:now = l:week . l:month . l:day
         let l:now .= strftime('%H:%M:%S %Y')
-        " let l:now .= strftime('%H:%M:%S %z (%Z) %Y')
-        " let l:now = strftime('%Y-%m-%d(%a) %H:%M:%S')
         return l:now
     endf
 ]])
