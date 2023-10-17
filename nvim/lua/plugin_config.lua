@@ -818,7 +818,7 @@ require('barbar').setup({
   insert_at_start = false,
   maximum_padding = 1,
   minimum_padding = 1,
-  maximum_length = 30,
+  maximum_length = 60,
   minimum_length = 12,
   sidebar_filetypes = { NvimTree = { text = '   File Explorer' } },
   no_name_title = '[No Name]',
