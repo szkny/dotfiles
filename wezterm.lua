@@ -76,11 +76,13 @@ wezterm.on(
     if tab.is_active then
       return {
         { Background = { Color = '#1f232f' } },
+        { Foreground = { Color = '#888888' } },
         { Text = ' ' .. title .. ' ' },
       }
     end
     return {
       { Background = { Color = '#181d24' } },
+      { Foreground = { Color = '#555555' } },
       { Text = ' ' .. title .. ' ' },
     }
   end
@@ -88,7 +90,7 @@ wezterm.on(
 config.colors.tab_bar = {
   new_tab = {
     bg_color = "#1f232f",
-    fg_color = "#c6c8d1",
+    fg_color = "#888888",
   }
 }
 
