@@ -157,7 +157,7 @@ vim.cmd([[
     fun! s:open() abort
         " openコマンドにより編集中ファイルを開く関数
         if executable('open')
-            silent exe '!open '.expand('%:p')
+            silent exe '!open '.expand('%')
         endif
     endf
     command! Open call s:open()
