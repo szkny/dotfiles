@@ -812,7 +812,7 @@ require('barbar').setup({
     visible = {modified = {buffer_number = false}},
   },
   highlight_alternate = false,
-  highlight_inactive_file_icons = true,
+  highlight_inactive_file_icons = false,
   highlight_visible = true,
   insert_at_end = false,
   insert_at_start = false,
