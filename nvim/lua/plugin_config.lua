@@ -39,8 +39,8 @@ require'nvim-web-devicons'.setup {
 --   render = "default",
 --   render = "compact",
 require("notify").setup({
-  stages = "fade",
-  render = "compact",
+  stages = "fade_in_slide_out",
+  render = "default",
   background_colour = "#252525",
   timeout = 3000,
   max_width = 80,
