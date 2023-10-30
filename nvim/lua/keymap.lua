@@ -32,9 +32,9 @@ keymap("n", "q",
     end,
     opts)
 keymap("n", "<S-q>", function() vim.cmd('qall') end, opts)
-keymap("n", "<Leader>q",  ":BufferNext    |try|bdelete#|catch|bdelete|endtry|redraw!<CR>", opts)
-keymap("n", "<Leader>bq", ":BufferNext    |try|bdelete#|catch|bdelete|endtry|redraw!<CR>", opts)
-keymap("n", "<Leader>pq", ":BufferPrevious|try|bdelete#|catch|bdelete|endtry|redraw!<CR>", opts)
+keymap("n", "<Leader>q",  ":BufferNext    <CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", opts)
+keymap("n", "<Leader>bq", ":BufferNext    <CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", opts)
+keymap("n", "<Leader>pq", ":BufferPrevious<CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", opts)
 
 -- for edit
 keymap("v", ">", ">gv", opts)
