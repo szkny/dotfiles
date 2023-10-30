@@ -136,6 +136,27 @@ keymap("n", "<leader>r",
     opts
 )
 
+keymap("n", "<leader>d",
+  function()
+    vim.cmd([[
+      " fun! Rg_to_qf(line)
+      "     let parts = split(a:line, ':')
+      "     return {'filename': parts[0], 'lnum': parts[1], 'col': parts[2],
+      "           \ 'text': join(parts[3:], ':')}
+      " endf
+      " fun! RgToQF(query)
+      "   call setqflist(map(systemlist('rg --column '.a:query), 'Rg_to_qf(v:val)'))
+      " endf
+      " call RgToQF("hoge")
+      let qflist = getqflist()
+      let file1 = qflist[0]
+      let file2 = qflist[1]
+      exe "100SplitTerm delta "..file1.." "..file2
+    ]])
+  end,
+  opts
+)
+
 -- -- for tab/window
 -- keymap("n", "<Right>", ":ChangeBuffer next<CR>",     opts)
 -- keymap("n", "<Left>",  ":ChangeBuffer previous<CR>", opts)
