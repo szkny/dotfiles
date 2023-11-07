@@ -798,7 +798,7 @@ require('barbar').setup({
       deleted = {enabled = false, icon = '-'},
     },
     filetype = {
-      custom_colors = true,
+      custom_colors = false,
       enabled = true,
     },
     separator = {left = '▎', right = ''},
@@ -823,30 +823,28 @@ require('barbar').setup({
   sidebar_filetypes = { NvimTree = { text = '   File Explorer' } },
   no_name_title = '[No Name]',
 })
-vim.api.nvim_set_hl(0, "BufferCurrent",       { bg="none",    fg="#ffffff", bold = true })
+vim.api.nvim_set_hl(0, "BufferTabpageFill",   { bg="none" })
+vim.api.nvim_set_hl(0, "BufferCurrent",       { bg="#1e1e1e", fg="#ffffff", bold = true })
 vim.api.nvim_set_hl(0, "BufferVisible",       { bg="none",    fg="#ffffff" })
-vim.api.nvim_set_hl(0, "BufferInactive",      { bg="#181d24", fg="#888888" })
-vim.api.nvim_set_hl(0, "BufferCurrentIcon",   { bg="none",    fg="#c8c8c8", bold = true })
-vim.api.nvim_set_hl(0, "BufferVisibleIcon",   { bg="none",    fg="#c8c8c8" })
-vim.api.nvim_set_hl(0, "BufferInactiveIcon",  { bg="#181d24", fg="#666666" })
-vim.api.nvim_set_hl(0, "BufferCurrentMod",    { bg="none",    fg="#ffaa00", bold = true })
+vim.api.nvim_set_hl(0, "BufferInactive",      { bg="none",    fg="#888888" })
+vim.api.nvim_set_hl(0, "BufferCurrentMod",    { bg="#1e1e1e", fg="#ffaa00", bold = true })
 vim.api.nvim_set_hl(0, "BufferVisibleMod",    { bg="none",    fg="#ffaa00" })
-vim.api.nvim_set_hl(0, "BufferInactiveMod",   { bg="#181d24", fg="#bb7700" })
-vim.api.nvim_set_hl(0, "BufferCurrentSign",   { bg="none",    fg="#88ccff", bold = true })
+vim.api.nvim_set_hl(0, "BufferInactiveMod",   { bg="none",    fg="#bb7700" })
+vim.api.nvim_set_hl(0, "BufferCurrentSign",   { bg="#1e1e1e", fg="#88ccff", bold = true })
 vim.api.nvim_set_hl(0, "BufferVisibleSign",   { bg="none",    fg="#5588dd" })
-vim.api.nvim_set_hl(0, "BufferInactiveSign",  { bg="#181d24", fg="#444444" })
-vim.api.nvim_set_hl(0, "BufferCurrentERROR",  { bg="none",    fg="#ee3333" })
+vim.api.nvim_set_hl(0, "BufferInactiveSign",  { bg="none",    fg="#444444" })
+vim.api.nvim_set_hl(0, "BufferCurrentERROR",  { bg="#1e1e1e", fg="#ee3333" })
 vim.api.nvim_set_hl(0, "BufferVisibleERROR",  { bg="none",    fg="#ee3333" })
-vim.api.nvim_set_hl(0, "BufferInactiveERROR", { bg="#181d24", fg="#aa3333" })
-vim.api.nvim_set_hl(0, "BufferCurrentWARN",   { bg="none",    fg="#edd000" })
+vim.api.nvim_set_hl(0, "BufferInactiveERROR", { bg="none",    fg="#aa3333" })
+vim.api.nvim_set_hl(0, "BufferCurrentWARN",   { bg="#1e1e1e", fg="#edd000" })
 vim.api.nvim_set_hl(0, "BufferVisibleWARN",   { bg="none",    fg="#edd000" })
-vim.api.nvim_set_hl(0, "BufferInactiveWARN",  { bg="#181d24", fg="#908000" })
-vim.api.nvim_set_hl(0, "BufferCurrentHINT",   { bg="none",    fg="#5588dd" })
+vim.api.nvim_set_hl(0, "BufferInactiveWARN",  { bg="none",    fg="#908000" })
+vim.api.nvim_set_hl(0, "BufferCurrentHINT",   { bg="#1e1e1e", fg="#5588dd" })
 vim.api.nvim_set_hl(0, "BufferVisibleHINT",   { bg="none",    fg="#5588dd" })
-vim.api.nvim_set_hl(0, "BufferInactiveHINT",  { bg="#181d24", fg="#4466aa" })
-vim.api.nvim_set_hl(0, "BufferCurrentINFO",   { bg="none",    fg="#ffffff" })
+vim.api.nvim_set_hl(0, "BufferInactiveHINT",  { bg="none",    fg="#4466aa" })
+vim.api.nvim_set_hl(0, "BufferCurrentINFO",   { bg="#1e1e1e", fg="#ffffff" })
 vim.api.nvim_set_hl(0, "BufferVisibleINFO",   { bg="none",    fg="#ffffff" })
-vim.api.nvim_set_hl(0, "BufferInactiveINFO",  { bg="#181d24", fg="#888888" })
+vim.api.nvim_set_hl(0, "BufferInactiveINFO",  { bg="none",    fg="#888888" })
 
 
 -- nvim-scrollbar
