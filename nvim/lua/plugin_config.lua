@@ -798,7 +798,7 @@ require('barbar').setup({
       deleted = {enabled = false, icon = '-'},
     },
     filetype = {
-      custom_colors = false,
+      custom_colors = true,
       enabled = true,
     },
     separator = {left = '▎', right = ''},
@@ -826,6 +826,9 @@ require('barbar').setup({
 vim.api.nvim_set_hl(0, "BufferCurrent",       { bg="none",    fg="#ffffff", bold = true })
 vim.api.nvim_set_hl(0, "BufferVisible",       { bg="none",    fg="#ffffff" })
 vim.api.nvim_set_hl(0, "BufferInactive",      { bg="#181d24", fg="#888888" })
+vim.api.nvim_set_hl(0, "BufferCurrentIcon",   { bg="none",    fg="#c8c8c8", bold = true })
+vim.api.nvim_set_hl(0, "BufferVisibleIcon",   { bg="none",    fg="#c8c8c8" })
+vim.api.nvim_set_hl(0, "BufferInactiveIcon",  { bg="#181d24", fg="#666666" })
 vim.api.nvim_set_hl(0, "BufferCurrentMod",    { bg="none",    fg="#ffaa00", bold = true })
 vim.api.nvim_set_hl(0, "BufferVisibleMod",    { bg="none",    fg="#ffaa00" })
 vim.api.nvim_set_hl(0, "BufferInactiveMod",   { bg="#181d24", fg="#bb7700" })
