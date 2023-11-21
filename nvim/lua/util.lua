@@ -32,9 +32,10 @@ vim.cmd([[
 fun! Term(...) abort
     " 新規バッファでターミナルモードを開始する関数
     "      :NewTerm [Command] で任意のシェルコマンドを実行
-    let l:current_dir = expand('%:p:h')
-    if l:current_dir[0] !=# '/'
-        let l:current_dir = getcwd()
+    let l:current_dir = getcwd()
+    let l:basepath = expand('%:p:h')
+    if l:basepath[0] !=# '/'
+        let l:basepath = getcwd()
     endif
     " execute command
     let l:cmd = 'terminal '.join(a:000)
@@ -42,8 +43,9 @@ fun! Term(...) abort
       let l:cmd = l:cmd.'; read -q'
     endif
     silent enew
-    silent exe 'lcd ' . l:current_dir
+    silent exe 'lcd ' . l:basepath
     silent exe l:cmd
+    silent exe 'lcd ' . l:current_dir
     " change buffer name
     if a:0 == 0
       let l:num = 1
