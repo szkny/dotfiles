@@ -3,14 +3,15 @@ require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = {
     "lua_ls",
+    "vimls",
     "jedi_language_server",
     "tsserver",
-    "terraformls",
     "volar",
+    "html",
     "jsonls",
     "yamlls",
     "bashls",
-    "vimls",
+    "terraformls",
   },
   automatic_installation = true,
 })
