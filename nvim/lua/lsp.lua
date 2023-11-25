@@ -69,8 +69,16 @@ vim.keymap.set("n", "<leader>k", "<cmd>lua vim.lsp.buf.hover()<CR>")
 vim.keymap.set("n", "<leader>[", "<cmd>lua vim.lsp.buf.references()<CR>")
 vim.keymap.set("n", "<leader>]", "<cmd>lua vim.lsp.buf.definition()<CR>")
 vim.keymap.set("n", "<C-]>",     "<cmd>lua vim.lsp.buf.definition()<CR>")
+vim.keymap.set("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 vim.keymap.set("n", "<leader>n", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 vim.keymap.set("n", "<leader>p", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+-- Command
+vim.api.nvim_create_user_command("LspCodeAction",
+  function ()
+    vim.lsp.buf.code_action()
+  end,
+  { bang = true, nargs = '?' }
+)
 -- LSP handlers
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = true }
