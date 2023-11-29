@@ -37,7 +37,7 @@ local plugins = {
     event = "VeryLazy",
     init = function()
       vim.o.timeout = true
-      vim.o.timeoutlen = 0
+      vim.o.timeoutlen = 500
     end,
   },
   { 'liuchengxu/vista.vim', cmd = 'Vista' },
