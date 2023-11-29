@@ -429,48 +429,48 @@ vim.cmd([[
 ]])
 
 
--- nvim-navic
-require('nvim-navic').setup({
-    icons = {
-        File          = ' ',
-        Module        = ' ',
-        Namespace     = ' ',
-        Package       = ' ',
-        Class         = ' ',
-        Method        = ' ',
-        Property      = ' ',
-        Field         = ' ',
-        Constructor   = ' ',
-        Enum          = ' ',
-        Interface     = ' ',
-        Function      = ' ',
-        Variable      = ' ',
-        Constant      = ' ',
-        String        = ' ',
-        Number        = ' ',
-        Boolean       = ' ',
-        Array         = ' ',
-        Object        = ' ',
-        Key           = ' ',
-        Null          = ' ',
-        EnumMember    = ' ',
-        Struct        = ' ',
-        Event         = ' ',
-        Operator      = ' ',
-        TypeParameter = ' '
-    },
-    lsp = {
-        auto_attach = true,
-        preference = nil,
-    },
-    highlight = true,
-    separator = " 〉",
-    depth_limit = 0,
-    depth_limit_indicator = "..",
-    safe_output = true,
-    lazy_update_context = false,
-    click = true
-})
+-- -- nvim-navic
+-- require('nvim-navic').setup({
+--     icons = {
+--         File          = ' ',
+--         Module        = ' ',
+--         Namespace     = ' ',
+--         Package       = ' ',
+--         Class         = ' ',
+--         Method        = ' ',
+--         Property      = ' ',
+--         Field         = ' ',
+--         Constructor   = ' ',
+--         Enum          = ' ',
+--         Interface     = ' ',
+--         Function      = ' ',
+--         Variable      = ' ',
+--         Constant      = ' ',
+--         String        = ' ',
+--         Number        = ' ',
+--         Boolean       = ' ',
+--         Array         = ' ',
+--         Object        = ' ',
+--         Key           = ' ',
+--         Null          = ' ',
+--         EnumMember    = ' ',
+--         Struct        = ' ',
+--         Event         = ' ',
+--         Operator      = ' ',
+--         TypeParameter = ' '
+--     },
+--     lsp = {
+--         auto_attach = true,
+--         preference = nil,
+--     },
+--     highlight = true,
+--     separator = " 〉",
+--     depth_limit = 0,
+--     depth_limit_indicator = "..",
+--     safe_output = true,
+--     lazy_update_context = false,
+--     click = true
+-- })
 vim.api.nvim_set_hl(0, "NavicIconsFile",          { bold=false, bg="none", fg="#bbbbbb" })
 vim.api.nvim_set_hl(0, "NavicIconsModule",        { bold=false, bg="none", fg="#bbbb55" })
 vim.api.nvim_set_hl(0, "NavicIconsNamespace",     { bold=false, bg="none", fg="#bbbb55" })
@@ -499,6 +499,27 @@ vim.api.nvim_set_hl(0, "NavicIconsOperator",      { bold=false, bg="none", fg="#
 vim.api.nvim_set_hl(0, "NavicIconsTypeParameter", { bold=false, bg="none", fg="#bbbbbb" })
 vim.api.nvim_set_hl(0, "NavicText",               { bold=false, bg="none", fg="#888888" })
 vim.api.nvim_set_hl(0, "NavicSeparator",          { bold=false, bg="none", fg="#aaaaaa" })
+
+
+-- barbeque
+require("barbecue").setup({
+  create_autocmd = false,
+})
+vim.api.nvim_create_autocmd(
+  {
+    "WinScrolled",
+    "BufWinEnter",
+    "CursorHold",
+    "InsertLeave",
+    "BufModifiedSet",
+  },
+  {
+    group = vim.api.nvim_create_augroup("barbecue.updater", {}),
+    callback = function()
+      require("barbecue.ui").update()
+    end,
+  }
+)
 
 
 -- nvim-navbuddy
@@ -753,17 +774,17 @@ require('lualine').setup {
   },
   tabline = {},
   winbar = {
-    lualine_c = {
-      {
-        [[
-          require('nvim-navic').get_location()
-          .. ( require('nvim-navic').is_available() and ' ' or '' )
-        ]],
-        color_correction = nil,
-        navic_opts = nil,
-        color = { fg = '#666666', bg = 'none' }
-      }
-    }
+    -- lualine_c = {
+    --   {
+    --     [[
+    --       require('nvim-navic').get_location()
+    --       .. ( require('nvim-navic').is_available() and ' ' or '' )
+    --     ]],
+    --     color_correction = nil,
+    --     navic_opts = nil,
+    --     color = { fg = '#666666', bg = 'none' }
+    --   }
+    -- }
   },
   inactive_winbar = {},
   extensions = {}
