@@ -1,14 +1,14 @@
 -- *****************************************************************************
 --   Plugin manager core
 -- *****************************************************************************
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable',
     lazypath,
   })
 end
@@ -34,7 +34,7 @@ local plugins = {
   'kevinhwang91/nvim-hlslens',
   {
     'folke/which-key.nvim',
-    event = "VeryLazy",
+    event = 'VeryLazy',
     init = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 500
@@ -66,13 +66,13 @@ local plugins = {
   { 'SmiteshP/nvim-navbuddy', lazy = false },
   { 'utilyre/barbecue.nvim', lazy = false },
   { 'simrat39/symbols-outline.nvim', lazy = false },
-  { "hrsh7th/nvim-cmp", lazy = false },
-  { "hrsh7th/cmp-nvim-lsp", lazy = false },
-  { "hrsh7th/vim-vsnip", lazy = false },
-  { "hrsh7th/cmp-path", lazy = false },
-  { "hrsh7th/cmp-buffer", lazy = false },
-  { "hrsh7th/cmp-cmdline", lazy = false },
-  { "rinx/cmp-skkeleton", lazy = false },
+  { 'hrsh7th/nvim-cmp', lazy = false },
+  { 'hrsh7th/cmp-nvim-lsp', lazy = false },
+  { 'hrsh7th/vim-vsnip', lazy = false },
+  { 'hrsh7th/cmp-path', lazy = false },
+  { 'hrsh7th/cmp-buffer', lazy = false },
+  { 'hrsh7th/cmp-cmdline', lazy = false },
+  { 'szkny/cmp-skkeleton', lazy = false },
   { 'vim-denops/denops.vim', lazy = false },
   { 'vim-skk/skkeleton', lazy = false },
   { 'yuki-yano/fuzzy-motion.vim', lazy = false },
@@ -84,5 +84,5 @@ local plugins = {
   'pearofducks/ansible-vim',
 }
 
-require("lazy").setup(plugins, options)
+require('lazy').setup(plugins, options)
 
