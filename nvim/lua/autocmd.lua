@@ -99,7 +99,7 @@ vim.cmd([[
     fun! s:prettier() abort
         let l:pos = getpos('.')
         silent keepjumps exe "0, $!prettier --stdin-filepath ".expand("%")
-        keepjumps call setpos('.', l:pos)
+        call setpos('.', l:pos)
         if v:shell_error != 0
             undo
             echoerr '[ERROR] prettier failed.'
