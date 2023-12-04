@@ -81,8 +81,16 @@ vim.api.nvim_create_user_command("LspCodeAction",
 )
 -- LSP handlers
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = true }
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    update_in_insert = false,
+    virtual_text = {
+    	format = function(diagnostic)
+    		return string.format("%s (%s: %s)", diagnostic.message, diagnostic.source, diagnostic.code)
+    	end,
+    },
+  }
 )
+
 -- Highlight
 vim.api.nvim_set_hl(0, "FloatNormal",       { bg="none",    fg="#9fa3a8" })
 vim.api.nvim_set_hl(0, "FloatBorder",       { bg="none",    fg="#9fa3a8" })
