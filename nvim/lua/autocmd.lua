@@ -110,6 +110,9 @@ vim.cmd([[
     fun! s:prettier_on_save()
         if get(g:, 'prettier_on_save')
             call s:prettier()
+            if exists('LspRestart')
+                LspRestart
+            endif
         endif
     endf
     command! Prettier call s:prettier()
