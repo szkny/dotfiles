@@ -97,10 +97,6 @@ vim.cmd([[
     aug END
 
     fun! s:prettier() abort
-        try
-            undojoin
-        catch
-        endtry
         let l:pos = getpos('.')
         silent keepjumps exe "0, $!prettier --stdin-filepath ".expand("%")
         keepjumps call setpos('.', l:pos)
