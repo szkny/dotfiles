@@ -21,6 +21,10 @@ inline = "autoload -Uz bashcompinit && zsh-defer bashcompinit"
 [plugins.tetriscurses]
 inline = "autoload -Uz tetriscurses"
 
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
+apply = ["defer"]
+
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
 apply = ["defer"]
