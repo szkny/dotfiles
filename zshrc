@@ -203,8 +203,13 @@ function get-active-ec2-instances() {
             ] | @tsv'
     ) | column -t
     export AWS_PROFILE=$TMP_AWS_PROFILE
+    return 0
 }
 function ssh-active-ec2-instances() {
+    local TMP_AWS_PROFILE=$AWS_PROFILE
+    if [ $# -eq 1 ]; then
+        export AWS_PROFILE="$1"
+    fi
     local ACTIVE_INSTANCES=`get-active-ec2-instances $1`
     local SELECTED_INSTANCE=`echo $ACTIVE_INSTANCES | fzf`
     local SSH_TARGET=`echo $SELECTED_INSTANCE | awk '{print $2}'`
@@ -212,6 +217,7 @@ function ssh-active-ec2-instances() {
         echo " $ sshrc $SSH_TARGET"
         sshrc $SSH_TARGET
     fi
+    export AWS_PROFILE=$TMP_AWS_PROFILE
     return 0
 }
 
