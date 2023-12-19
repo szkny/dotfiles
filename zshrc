@@ -188,7 +188,7 @@ function zg () {
 function get-active-ec2-instances() {
     local TMP_AWS_PROFILE=$AWS_PROFILE
     if [ $# -eq 1 ]; then
-        AWS_PROFILE="$1"
+        export AWS_PROFILE="$1"
     fi
     (
         echo "Name InstanceId PrivateIP LaunchTime"
@@ -202,7 +202,7 @@ function get-active-ec2-instances() {
                 .LaunchTime
             ] | @tsv'
     ) | column -t
-    AWS_PROFILE=$TMP_AWS_PROFILE
+    export AWS_PROFILE=$TMP_AWS_PROFILE
 }
 function ssh-active-ec2-instances() {
     local ACTIVE_INSTANCES=`get-active-ec2-instances $1`
