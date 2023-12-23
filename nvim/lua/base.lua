@@ -100,8 +100,8 @@ vim.api.nvim_set_var('session_autosave'        , 'no')
 vim.api.nvim_set_var('session_command_aliases' , 1)
 
 -- Python Host Program
-vim.g.python_host_prog = '~/.pyenv/shims/python2'
-vim.g.python3_host_prog = '~/.pyenv/shims/python3'
+vim.g.python_host_prog = '~/.local/share/rtx/shims/python2'
+vim.g.python3_host_prog = '~/.local/share/rtx/shims/python3'
 
 -- conceal level
 vim.api.nvim_set_var('conceallevel', 0)

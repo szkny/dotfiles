@@ -10,8 +10,8 @@ eval "$(starship init zsh)"
 ## zsh-defer
 ### tmux
 zsh-defer start-tmux
-### pyenv
-_pyenv_init () { eval "$(pyenv init -)" } && zsh-defer _pyenv_init
+# ### pyenv
+# _pyenv_init () { eval "$(pyenv init -)" } && zsh-defer _pyenv_init
 ### zoxide
 _zoxide_init () { eval "$(zoxide init zsh)" } && zsh-defer _zoxide_init
 ### aws-cli
@@ -304,15 +304,18 @@ export FZF_CTRL_R_OPTS=$(cat <<"EOF"
 EOF
 )
 
+## rtx
+eval "$(~/.local/share/rtx/bin/rtx activate zsh)"
+
 ## terraform setup
 export PATH=$PATH:$HOME/.tfenv/bin
 
 ## go setup
 export PATH=$PATH:$HOME/go/bin
 
-## pyenv setup
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+# ## pyenv setup
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
 
 ## cargo setup
 [ -f ~/.cargo/env ] && source ~/.cargo/env
@@ -322,9 +325,9 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# volta
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+# # volta
+# export VOLTA_HOME="$HOME/.volta"
+# export PATH="$VOLTA_HOME/bin:$PATH"
 
 ## mocword
 export MOCWORD_DATA=~/.mocword/mocword.sqlite

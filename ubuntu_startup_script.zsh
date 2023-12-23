@@ -22,25 +22,18 @@ curl https://sh.rustup.rs -sSf | sh
 
 ## install cargo libs
 echo 'install cargo packages..'
-. ~/.zshrc
 cargo install exa bat rm-improved \
   code-minimap git-delta zoxide viu
 ## cargo install deno
 
-## mocword
-cargo install mocword
-mkdir -p ~/.mocword
-cd ~/.mocword
-curl -LO https://github.com/high-moctane/mocword-data/releases/download/eng20200217/mocword.sqlite.gz
-gzip -d mocword.sqlite.gz
+## install rtx
+echo 'install rtx..'
+curl https://rtx.jdx.dev/install.sh | sh
+eval "$(~/.local/share/rtx/bin/rtx activate zsh)"
 
 ## install python
 echo 'install python..'
-git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-. ~/.zshrc
-pyenv install --verbose 3.11.0
-pyenv install --verbose 2.7.15
-pyenv global 3.11.0 2.7.15
+rtx use -g python@3.11.0 python@2.7.15
 
 ## install python packages
 pip3 install -U pip
@@ -49,9 +42,7 @@ pip install pandas
 
 ## install node.js
 echo 'install node.js..'
-curl https://get.volta.sh | bash
-. ~/.zshrc
-volta install node@18.16.0
+rtx use -g node@18.16.0
 npm install -g prettier
 
 ## install fzf
@@ -105,6 +96,13 @@ cargo install tree-sitter-cli
 mkdir -p ~/.skk && cd ~/.skk
 wget https://skk-dev.github.io/dict/SKK-JISYO.L.gz && gunzip SKK-JISYO.L.gz
 cd ~
+
+## mocword
+cargo install mocword
+mkdir -p ~/.mocword
+cd ~/.mocword
+curl -LO https://github.com/high-moctane/mocword-data/releases/download/eng20200217/mocword.sqlite.gz
+gzip -d mocword.sqlite.gz
 
 ## tmux
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
