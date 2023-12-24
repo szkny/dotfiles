@@ -9,7 +9,6 @@ sudo apt install -y build-essential libbz2-dev libdb-dev \
   zlib1g-dev uuid-dev tk-dev
 sudo apt install -y git curl zip unzip wget bsdmainutils gawk
 sudo apt install -y tmux
-sudo apt install -y golang
 sudo apt install -y silversearcher-ag
 sudo apt install -y ripgrep
 sudo apt install -y universal-ctags
@@ -45,6 +44,10 @@ pip install pandas
 echo 'install node.js..'
 rtx use -g node@18.16.0
 npm install -g prettier
+
+## install go
+echo 'install go..'
+rtx use -g go@latest
 
 ## install fzf
 echo 'install cargo packages..'
