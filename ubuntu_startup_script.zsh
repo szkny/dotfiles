@@ -29,7 +29,9 @@ cargo install exa bat rm-improved \
 echo 'install rtx..'
 curl https://rtx.jdx.dev/install.sh | sh
 eval "$(~/.local/share/rtx/bin/rtx activate zsh)"
-rtx completion zsh > /usr/local/share/zsh/site-functions/_rtx
+rtx completion zsh > ./_rtx
+sudo mkdir -p /usr/local/share/zsh/site-functions
+sudo mv ./_rtx /usr/local/share/zsh/site-functions/_rtx
 
 ## install python
 echo 'install python..'
