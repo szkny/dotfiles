@@ -125,6 +125,8 @@ vim.cmd([[
         endif
     endf
     command! Prettier call s:prettier()
+    command! PrettierEnable let g:prettier_on_save = 1
+    command! PrettierDisable let g:prettier_on_save = 0
     aug PrettierSettings
         au!
         au BufWritePre *.js,*.cjs,*.mjs,*.ts,*.tsx,*.vue,*.html,*.css,*.json,*.yml,*.yaml call s:prettier_on_save()
