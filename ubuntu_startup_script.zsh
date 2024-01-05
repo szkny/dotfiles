@@ -8,7 +8,6 @@ sudo apt install -y build-essential libbz2-dev libdb-dev \
   libncursesw5-dev libsqlite3-dev libssl-dev \
   zlib1g-dev uuid-dev tk-dev
 sudo apt install -y git curl zip unzip wget bsdmainutils gawk
-sudo apt install -y tmux
 sudo apt install -y silversearcher-ag
 sudo apt install -y ripgrep
 sudo apt install -y universal-ctags
@@ -103,22 +102,28 @@ mkdir -p ~/.skk && cd ~/.skk
 wget https://skk-dev.github.io/dict/SKK-JISYO.L.gz && gunzip SKK-JISYO.L.gz
 cd ~
 
-## mocword
+## install mocword
 cargo install mocword
 mkdir -p ~/.mocword
 cd ~/.mocword
 curl -LO https://github.com/high-moctane/mocword-data/releases/download/eng20200217/mocword.sqlite.gz
 gzip -d mocword.sqlite.gz
 
-## tmux
+## install tmux
+sudo apt install -y tmux
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-## sheldon
+## install sheldon
 cargo install sheldon --locked
 ln -s ~/dotfiles/sheldon ~/.config/
 
-## starship prompt
+## install starship prompt
 curl -sS https://starship.rs/install.sh | sh
 ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
+
+## install jq / yq
+sudo apt -y install jq
+sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && \
+    sudo chmod +x /usr/bin/yq
 
