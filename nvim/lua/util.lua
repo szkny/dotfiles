@@ -46,22 +46,22 @@ fun! Term(...) abort
     " silent exe 'lcd ' . l:basepath
     silent exe l:cmd
     silent exe 'lcd ' . l:current_dir
-    " change buffer name
-    if a:0 == 0
-      let l:num = 1
-      let l:name = split('zsh',' ')[0]
-      while bufexists(l:num.':'.l:name)
-          let l:num += 1
-      endwhile
-      exe 'file '.l:num.':'.l:name
-    elseif a:0 > 0
-      let l:num = 1
-      let l:name = split(a:1,' ')[0]
-      while bufexists(l:num.':'.l:name)
-          let l:num += 1
-      endwhile
-      exe 'file '.l:num.':'.l:name
-    endif
+    " " change buffer name
+    " if a:0 == 0
+    "   let l:num = 1
+    "   let l:name = split('zsh',' ')[0]
+    "   while bufexists(l:num.':'.l:name)
+    "       let l:num += 1
+    "   endwhile
+    "   exe 'file '.l:num.':'.l:name
+    " elseif a:0 > 0
+    "   let l:num = 1
+    "   let l:name = split(a:1,' ')[0]
+    "   while bufexists(l:num.':'.l:name)
+    "       let l:num += 1
+    "   endwhile
+    "   exe 'file '.l:num.':'.l:name
+    " endif
     " set local settings
     setlocal nonumber
     setlocal buftype=terminal
