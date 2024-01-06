@@ -50,6 +50,7 @@ local plugins = {
   'brenoprata10/nvim-highlight-colors',
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   { 'lukas-reineke/indent-blankline.nvim', tag = 'v2.20.8' },
+  'rmagatti/auto-session',
   'Mofiqul/vscode.nvim',
   'stevearc/oil.nvim',
   require('plugin/nvim_tree'),

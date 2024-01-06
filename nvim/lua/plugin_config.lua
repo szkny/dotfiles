@@ -278,6 +278,30 @@ vim.cmd([[
 ]])
 
 
+-- auto-session
+require("auto-session").setup {
+  log_level = "error",
+  auto_session_suppress_dirs = { "~/", "~/Project", "~/Downloads", "/"},
+  cwd_change_handling = {
+    restore_upcoming_session = true,
+    pre_cwd_changed_hook = nil,
+    post_cwd_changed_hook = function()
+      require("lualine").refresh()
+    end,
+  },
+}
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  pattern = 'NvimTree*',
+  callback = function()
+    local api = require('nvim-tree.api')
+    local view = require('nvim-tree.view')
+    if not view.is_visible() then
+      api.tree.open()
+    end
+  end,
+})
+
+
 -- nvim-tree
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.api.nvim_set_var("loaded_netrw", 1)
