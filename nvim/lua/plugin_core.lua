@@ -29,7 +29,7 @@ local plugins = {
   { 'tpope/vim-fugitive', lazy = false },
   'lewis6991/gitsigns.nvim',
   { 'rbong/vim-flog', cmd = 'Flog' },
-  'Raimondi/delimitMate',
+  { 'windwp/nvim-autopairs', event = 'InsertEnter' },
   { 'junegunn/vim-easy-align', lazy = false },
   'kevinhwang91/nvim-hlslens',
   {
