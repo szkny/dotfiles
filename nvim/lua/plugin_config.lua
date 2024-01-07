@@ -279,9 +279,13 @@ vim.cmd([[
 
 
 -- auto-session
-require("auto-session").setup {
+require("auto-session").setup({
   log_level = "error",
-  auto_session_suppress_dirs = { "~/", "~/Project", "~/Downloads", "/"},
+  auto_session_root_dir = vim.fn.stdpath("data").."/sessions/",
+  auto_save_enabled = true,
+  auto_restore_enabled = true,
+  auto_session_enable_last_session = true,
+  auto_session_suppress_dirs = { "~/", "~/Project", "~/Downloads", "/" },
   cwd_change_handling = {
     restore_upcoming_session = true,
     pre_cwd_changed_hook = nil,
@@ -289,7 +293,7 @@ require("auto-session").setup {
       require("lualine").refresh()
     end,
   },
-}
+})
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   pattern = 'NvimTree*',
   callback = function()
@@ -731,27 +735,6 @@ local lualine_filename = {
     newfile = '[New]',
   }
 }
--- local lualine_noice = {
---   {
---     require("noice").api.status.message.get_hl,
---     cond = require("noice").api.status.message.has,
---   },
---   {
---     require("noice").api.status.command.get,
---     cond = require("noice").api.status.command.has,
---     color = { fg = "#ff9e64" },
---   },
---   {
---     require("noice").api.status.mode.get,
---     cond = require("noice").api.status.mode.has,
---     color = { fg = "#ff9e64" },
---   },
---   {
---     require("noice").api.status.search.get,
---     cond = require("noice").api.status.search.has,
---     color = { fg = "#ff9e64" },
---   },
--- }
 require('lualine').setup {
   options = {
     icons_enabled = true,
