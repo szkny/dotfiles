@@ -308,6 +308,8 @@ eval "$(~/.local/bin/mise activate zsh)"
 
 ## go setup
 export GOROOT=$(mise where go)/go
+export GOPATH=$(mise where go)/package/bin
+export PATH=$PATH:$GOPATH
 
 # ## pyenv setup
 # export PYENV_ROOT="$HOME/.pyenv"
@@ -315,9 +317,6 @@ export GOROOT=$(mise where go)/go
 
 ## cargo setup
 [ -f ~/.cargo/env ] && source ~/.cargo/env
-
-## terraform setup
-export PATH=$PATH:$HOME/.tfenv/bin
 
 # ## nvm setup
 # export NVM_DIR="$HOME/.nvm"
@@ -327,6 +326,9 @@ export PATH=$PATH:$HOME/.tfenv/bin
 # # volta
 # export VOLTA_HOME="$HOME/.volta"
 # export PATH="$VOLTA_HOME/bin:$PATH"
+
+## terraform setup
+export PATH=$PATH:$HOME/.tfenv/bin
 
 ## mocword
 export MOCWORD_DATA=~/.mocword/mocword.sqlite
