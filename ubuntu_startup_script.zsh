@@ -24,17 +24,17 @@ cargo install exa bat rm-improved \
   code-minimap git-delta zoxide viu
 ## cargo install deno
 
-## install rtx
-echo 'install rtx..'
-curl https://rtx.jdx.dev/install.sh | sh
-eval "$(~/.local/share/rtx/bin/rtx activate zsh)"
-rtx completion zsh > ./_rtx
+## install mise
+echo 'install mise..'
+curl https://mise.jdx.dev/install.sh | sh
+eval "$(~/.local/bin/mise activate zsh)"
+mise completion zsh > ./_mise
 sudo mkdir -p /usr/local/share/zsh/site-functions
-sudo mv ./_rtx /usr/local/share/zsh/site-functions/_rtx
+sudo mv ./_mise /usr/local/share/zsh/site-functions/_mise
 
 ## install python
 echo 'install python..'
-rtx use -g python@3.11.0 python@2.7.15
+mise use -g python@3.11.0 python@2.7.15
 
 ## install python packages
 pip3 install -U pip
@@ -43,17 +43,12 @@ pip install pandas
 
 ## install node.js
 echo 'install node.js..'
-rtx use -g node@18.16.0
+mise use -g node@18.16.0
 npm install -g prettier
 
 ## install go
 echo 'install go..'
-rtx use -g go@latest
-
-## install fzf
-echo 'install cargo packages..'
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+mise use -g go@latest
 
 ## install ghq
 echo 'install ghq..'
@@ -65,6 +60,11 @@ echo 'install lazygit..'
 go install github.com/jesseduffield/lazygit@latest
 mkdir -p ~/.config/lazygit
 ln -s ~/dotfiles/lazygit/config.yml ~/.config/lazygit/config.yml
+
+## install fzf
+echo 'install fzf..'
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
 
 ## install ranger-cli
 echo 'install ranger-cli..'

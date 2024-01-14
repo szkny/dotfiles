@@ -261,7 +261,6 @@ function fshow() {
 
 ## PATHs
 export PATH="$PATH:$HOME/Project/bin"
-export PATH="$PATH:$HOME/go/bin"
 
 ## fzf setup
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -304,14 +303,11 @@ export FZF_CTRL_R_OPTS=$(cat <<"EOF"
 EOF
 )
 
-## rtx
-eval "$(~/.local/share/rtx/bin/rtx activate zsh)"
-
-## terraform setup
-export PATH=$PATH:$HOME/.tfenv/bin
+## mise
+eval "$(~/.local/bin/mise activate zsh)"
 
 ## go setup
-export PATH=$PATH:$HOME/go/bin
+export GOROOT=$(mise where go)/go
 
 # ## pyenv setup
 # export PYENV_ROOT="$HOME/.pyenv"
@@ -319,6 +315,9 @@ export PATH=$PATH:$HOME/go/bin
 
 ## cargo setup
 [ -f ~/.cargo/env ] && source ~/.cargo/env
+
+## terraform setup
+export PATH=$PATH:$HOME/.tfenv/bin
 
 # ## nvm setup
 # export NVM_DIR="$HOME/.nvm"
