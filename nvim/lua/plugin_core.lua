@@ -75,7 +75,7 @@ local plugins = {
   { 'hrsh7th/cmp-cmdline', lazy = false },
   { 'rinx/cmp-skkeleton', lazy = false },
   { 'vim-denops/denops.vim', lazy = false },
-  { 'vim-skk/skkeleton', lazy = false },
+  { 'vim-skk/skkeleton', lazy = false, commit = 'ce5968d' },
   { 'yuki-yano/fuzzy-motion.vim', lazy = false },
   { 'szkny/Ipython', ft = 'python' },
   { 'elzr/vim-json', ft = 'json' },
