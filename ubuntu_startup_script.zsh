@@ -35,6 +35,7 @@ sudo mv ./_mise /usr/local/share/zsh/site-functions/_mise
 ## install python
 echo 'install python..'
 mise use -g python@3.11.0 python@2.7.15
+eval "$(~/.local/bin/mise activate zsh)"
 
 ## install python packages
 pip3 install -U pip
@@ -44,11 +45,13 @@ pip install pandas
 ## install node.js
 echo 'install node.js..'
 mise use -g node@18.16.0
+eval "$(~/.local/bin/mise activate zsh)"
 npm install -g prettier
 
 ## install go
 echo 'install go..'
 mise use -g go@latest
+eval "$(~/.local/bin/mise activate zsh)"
 
 ## install ghq
 echo 'install ghq..'
