@@ -196,3 +196,24 @@ function try(what)
    end
    return result
 end
+
+function oil_ssh_term()
+  local fname = vim.fn.expand("%:p")
+  local protocol, target, path = string.match(fname, "^(.+)://(.-)%/(.+)")
+  if protocol ~= "oil-ssh" then
+      path = fname
+  end
+  local basepath = path:match("(.*".."/"..")")
+  if basepath == nil then
+      basepath = vim.fn.expand("%:p:h")
+  end
+  local command
+  if protocol == "oil-ssh" then
+      command = "ssh "..target.." -t 'cd \\'"..basepath.."\\' && $SHELL'"
+  else
+      command = "cd \\'"..basepath.."\\' && $SHELL"
+  end
+  vim.cmd('call splitterm#open_width(18, "'..command..'")')
+  vim.cmd("startinsert")
+end
+vim.api.nvim_create_user_command("OilSshTerm", oil_ssh_term, { bang = true, nargs = '?' })
