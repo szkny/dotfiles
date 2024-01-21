@@ -304,6 +304,12 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
     end
   end,
 })
+-- vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+--   pattern = '*MINIMAP*',
+--   callback = function()
+--     vim.cmd('Minimap')
+--   end,
+-- })
 
 
 -- nvim-tree
@@ -311,6 +317,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
 vim.api.nvim_set_var("loaded_netrw", 1)
 vim.api.nvim_set_var("loaded_netrwPlugin", 1)
 vim.cmd([[
+    hi NvimTreeWinSeparator              gui=none guifg=#555555
     hi NvimTreeRootFolder                gui=bold guifg=#bbbbbb
     hi NvimTreeFolderName                gui=bold guifg=#77aadd
     hi NvimTreeEmptyFolderName           gui=bold guifg=#77aadd
