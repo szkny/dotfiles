@@ -195,24 +195,198 @@ config.keys = {
     action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }),
   },
 }
--- config.key_tables = {
---   config.keys,
---   copy_mode = {
---     {key="Escape", mods="NONE", action=wezterm.action{CopyMode="Close"}},
---     {key="h", mods="NONE", action=wezterm.action{CopyMode="MoveLeft"}},
---     {key="j", mods="NONE", action=wezterm.action{CopyMode="MoveDown"}},
---     {key="k", mods="NONE", action=wezterm.action{CopyMode="MoveUp"}},
---     {key="l", mods="NONE", action=wezterm.action{CopyMode="MoveRight"}},
---     {key=" ", mods="NONE", action=wezterm.action{CopyMode="ToggleSelectionByCell"}},
---     {key="/", mods="NONE", action=wezterm.action{Search={CaseSensitiveString=""}}},
---     {key="n", mods="NONE", action=wezterm.action{CopyMode="NextMatch"}},
---     {key="N", mods="SHIFT", action=wezterm.action{CopyMode="PriorMatch"}},
---   },
---   search_mode = {
---     {key="Escape", mods="NONE", action=wezterm.action{CopyMode="Close"}},
---     {key="Enter", mods="NONE", action="ActivateCopyMode"},
---   },
--- }
+local act = wezterm.action
+
+config.key_tables = {
+  copy_mode = {
+    { key = "Tab", mods = "NONE", action = act.CopyMode "MoveForwardWord" },
+    {
+      key = "Tab",
+      mods = "SHIFT",
+      action = act.CopyMode "MoveBackwardWord",
+    },
+    {
+      key = "Enter",
+      mods = "NONE",
+      action = act.CopyMode "MoveToStartOfNextLine",
+    },
+    { key = "Escape", mods = "NONE", action = act.CopyMode "Close" },
+    {
+      key = "Space",
+      mods = "NONE",
+      action = act.CopyMode { SetSelectionMode = "Cell" },
+    },
+    {
+      key = "$",
+      mods = "NONE",
+      action = act.CopyMode "MoveToEndOfLineContent",
+    },
+    {
+      key = "$",
+      mods = "SHIFT",
+      action = act.CopyMode "MoveToEndOfLineContent",
+    },
+    { key = ",", mods = "NONE", action = act.CopyMode "JumpReverse" },
+    { key = "0", mods = "NONE", action = act.CopyMode "MoveToStartOfLine" },
+    { key = ";", mods = "NONE", action = act.CopyMode "JumpAgain" },
+    {
+      key = "F",
+      mods = "NONE",
+      action = act.CopyMode { JumpBackward = { prev_char = false } },
+    },
+    {
+      key = "F",
+      mods = "SHIFT",
+      action = act.CopyMode { JumpBackward = { prev_char = false } },
+    },
+    {
+      key = "G",
+      mods = "NONE",
+      action = act.CopyMode "MoveToScrollbackBottom",
+    },
+    {
+      key = "G",
+      mods = "SHIFT",
+      action = act.CopyMode "MoveToScrollbackBottom",
+    },
+    { key = "H", mods = "SHIFT", action = act.CopyMode "MoveToViewportTop" },
+    { key = "L", mods = "SHIFT", action = act.CopyMode "MoveToViewportBottom" },
+    -- { key = "H", mods = "SHIFT", action = act.CopyMode { MoveLeft = 2 } },
+    -- { key = "L", mods = "SHIFT", action = act.CopyMode { MoveRight = 2 } },
+    { key = "J", mods = "SHIFT", action = act.CopyMode { MoveByPage = 0.1 } },
+    { key = "K", mods = "SHIFT", action = act.CopyMode { MoveByPage = -0.1 } },
+    {
+      key = "O",
+      mods = "NONE",
+      action = act.CopyMode "MoveToSelectionOtherEndHoriz",
+    },
+    {
+      key = "O",
+      mods = "SHIFT",
+      action = act.CopyMode "MoveToSelectionOtherEndHoriz",
+    },
+    {
+      key = "T",
+      mods = "NONE",
+      action = act.CopyMode { JumpBackward = { prev_char = true } },
+    },
+    {
+      key = "T",
+      mods = "SHIFT",
+      action = act.CopyMode { JumpBackward = { prev_char = true } },
+    },
+    {
+      key = "V",
+      mods = "NONE",
+      action = act.CopyMode { SetSelectionMode = "Line" },
+    },
+    {
+      key = "V",
+      mods = "SHIFT",
+      action = act.CopyMode { SetSelectionMode = "Line" },
+    },
+    {
+      key = "^",
+      mods = "NONE",
+      action = act.CopyMode "MoveToStartOfLineContent",
+    },
+    {
+      key = "^",
+      mods = "SHIFT",
+      action = act.CopyMode "MoveToStartOfLineContent",
+    },
+    { key = "b", mods = "NONE", action = act.CopyMode "MoveBackwardWord" },
+    { key = "c", mods = "CTRL", action = act.CopyMode "Close" },
+    {
+      key = "d",
+      mods = "CTRL",
+      action = act.CopyMode { MoveByPage = 0.5 },
+    },
+    {
+      key = "e",
+      mods = "NONE",
+      action = act.CopyMode "MoveForwardWordEnd",
+    },
+    {
+      key = "f",
+      mods = "NONE",
+      action = act.CopyMode { JumpForward = { prev_char = false } },
+    },
+    {
+      key = "g",
+      mods = "NONE",
+      action = act.CopyMode "MoveToScrollbackTop",
+    },
+    { key = "h", mods = "NONE", action = act.CopyMode "MoveLeft" },
+    { key = "j", mods = "NONE", action = act.CopyMode "MoveDown" },
+    { key = "k", mods = "NONE", action = act.CopyMode "MoveUp" },
+    { key = "l", mods = "NONE", action = act.CopyMode "MoveRight" },
+    { key = "q", mods = "NONE", action = act.CopyMode "Close" },
+    {
+      key = "u",
+      mods = "CTRL",
+      action = act.CopyMode { MoveByPage = -0.5 },
+    },
+    {
+      key = "v",
+      mods = "NONE",
+      action = act.CopyMode { SetSelectionMode = "Cell" },
+    },
+    {
+      key = "v",
+      mods = "CTRL",
+      action = act.CopyMode { SetSelectionMode = "Block" },
+    },
+    { key = "w", mods = "NONE", action = act.CopyMode "MoveForwardWord" },
+    {
+      key = "y",
+      mods = "NONE",
+      action = act.Multiple {
+        { CopyTo = "ClipboardAndPrimarySelection" },
+        { CopyMode = "Close" },
+      },
+    },
+    { key = "PageUp", mods = "NONE", action = act.CopyMode "PageUp" },
+    { key = "PageDown", mods = "NONE", action = act.CopyMode "PageDown" },
+    {
+      key = "End",
+      mods = "NONE",
+      action = act.CopyMode "MoveToEndOfLineContent",
+    },
+    {
+      key = "Home",
+      mods = "NONE",
+      action = act.CopyMode "MoveToStartOfLine",
+    },
+    { key = "LeftArrow", mods = "NONE", action = act.CopyMode "MoveLeft" },
+    {
+      key = "LeftArrow",
+      mods = "CTRL",
+      action = act.CopyMode "MoveBackwardWord",
+    },
+    {
+      key = "RightArrow",
+      mods = "NONE",
+      action = act.CopyMode "MoveRight",
+    },
+    {
+      key = "RightArrow",
+      mods = "CTRL",
+      action = act.CopyMode "MoveForwardWord",
+    },
+    { key = "UpArrow", mods = "NONE", action = act.CopyMode "MoveUp" },
+    { key = "DownArrow", mods = "NONE", action = act.CopyMode "MoveDown" },
+    { key = "/", mods = "NONE",   action = wezterm.action{ Search={ CaseInSensitiveString = "" } } },
+    { key = "/", mods = "LEADER", action = wezterm.action{ Search={ CaseInSensitiveString = "" } } },
+    { key = "F", mods = "SHIFT|CTRL", action = wezterm.action{ Search={ CaseSensitiveString = "" } } },
+    { key = "n", mods = "NONE",   action = wezterm.action{ CopyMode = "NextMatch" } },
+    { key = "N", mods = "SHIFT",  action = wezterm.action{ CopyMode = "PriorMatch" } },
+  },
+  search_mode = {
+    { key = "Escape", mods = "NONE", action = "ActivateCopyMode" },
+    { key = "Enter",  mods = "NONE", action = "ActivateCopyMode" },
+  },
+}
 
 
 -- notifications

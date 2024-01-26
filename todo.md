@@ -1,15 +1,14 @@
 # TODO list
 
 - neovim
-  - init.vim → init.lua : DONE
-    - vim-plug → lazy.nvim : DONE
-    - LSP
-      - tweak ddc.vim
-        - snippet
-      - basic setup for coc.nvim : DONE
-      - basic setup for mason.nvim : DONE
-  - hlslens.nvim : DONE
-    - \* command
+  - neoscroll.nvim
+  - 
 
 - wezterm
+  - replacement of tmux
+    - key bindings
+      - copy mode
+      - search mode
+      - switch pane
+    - status line
   - transparent tab bar
