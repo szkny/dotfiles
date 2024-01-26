@@ -1003,6 +1003,24 @@ vim.cmd([[
 ]])
 
 
+-- neoscroll.nvim
+require("neoscroll").setup({
+  mappings = {
+    "<C-y>",
+    "<C-e>",
+  },
+  hide_cursor = true,
+  stop_eof = true,
+  respect_scrolloff = false,
+  cursor_scrolls_alone = true,
+  easing_function = "quadratic",
+})
+require('neoscroll.config').set_mappings({
+  ['<C-y>'] = {'scroll', {'-vim.wo.scroll', 'true', '300'}},
+  ['<C-e>'] = {'scroll', { 'vim.wo.scroll', 'true', '300'}},
+})
+
+
 -- nvim-hlslens
 require('hlslens').setup( {
   calm_down = true,
