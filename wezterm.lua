@@ -186,7 +186,7 @@ config.keys = {
   {
     key = "x",
     mods = "LEADER",
-    action = wezterm.action.CloseCurrentTab({ confirm = true })
+    action = wezterm.action.CloseCurrentPane({ confirm = true })
   },
   -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
   {
