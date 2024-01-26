@@ -163,11 +163,11 @@ config.keys = {
     mods = 'LEADER',
     action = wezterm.action.CloseCurrentTab({ confirm = true })
   },
-  -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
+  -- Send "CTRL-Q" to the terminal when pressing CTRL-Q, CTRL-Q
   {
-    key = 'q',
+    key = '1',
     mods = 'LEADER|CTRL',
-    action = wezterm.action.SendString '\x11',
+    action = wezterm.action.SendKey({ key = 'q', mods = 'CTRL' }),
   },
 }
 
