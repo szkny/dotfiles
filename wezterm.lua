@@ -190,7 +190,7 @@ config.keys = {
   },
   -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
   {
-    key = "1",
+    key = "a",
     mods = "LEADER|CTRL",
     action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }),
   },
