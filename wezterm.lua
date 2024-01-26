@@ -96,7 +96,7 @@ config.colors.tab_bar = {
 
 
 -- key bindings
-config.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 1000 }
+config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
   {
     key = 'v',
@@ -149,6 +149,31 @@ config.keys = {
     action = wezterm.action.ActivatePaneDirection "Left"
   },
   {
+    key = 'z',
+    mods = 'LEADER',
+    action = wezterm.action.TogglePaneZoomState
+  },
+  {
+    key = 'f',
+    mods = 'LEADER',
+    action = wezterm.action.QuickSelect
+  },
+  {
+    key = ' ',
+    mods = 'SHIFT|CTRL',
+    action = wezterm.action.QuickSelect
+  },
+  {
+    key = "[",
+    mods = "LEADER",
+    action = wezterm.action.ActivateCopyMode
+  },
+  {
+    key = "]",
+    mods = "LEADER",
+    action = wezterm.action.PasteFrom "Clipboard"
+  },
+  {
     key = 'c',
     mods = 'LEADER',
     action = wezterm.action.SpawnTab("CurrentPaneDomain")
@@ -163,11 +188,11 @@ config.keys = {
     mods = 'LEADER',
     action = wezterm.action.CloseCurrentTab({ confirm = true })
   },
-  -- Send "CTRL-Q" to the terminal when pressing CTRL-Q, CTRL-Q
+  -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
   {
     key = '1',
     mods = 'LEADER|CTRL',
-    action = wezterm.action.SendKey({ key = 'q', mods = 'CTRL' }),
+    action = wezterm.action.SendKey({ key = 'a', mods = 'CTRL' }),
   },
 }
 
