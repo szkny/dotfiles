@@ -1,4 +1,4 @@
-local wezterm = require('wezterm')
+local wezterm = require("wezterm")
 
 local config = {}
 
@@ -19,25 +19,25 @@ config.adjust_window_size_when_changing_font_size = false
 
 -- color
 config.colors = {
-  cursor_bg = '#ffffff',
-  cursor_fg = '#000000',
-  cursor_border = '#ffffff',
+  cursor_bg = "#ffffff",
+  cursor_fg = "#000000",
+  cursor_border = "#ffffff",
   brights = {
-    '#999999',
-    '#ff6655',
-    '#55dd55',
-    '#eedd00',
-    '#0099ee',
-    '#dd66dd',
-    '#77ccdd',
-    '#dddddd',
+    "#999999",
+    "#ff6655",
+    "#55dd55",
+    "#eedd00",
+    "#0099ee",
+    "#dd66dd",
+    "#77ccdd",
+    "#dddddd",
   },
 }
 -- config.color_scheme = "Tomorrow (dark) (terminal.sexy)"
--- config.color_scheme = 'Adventure'
--- config.color_scheme = 'Andromeda'
-config.color_scheme = 'Argonaut'
--- config.color_scheme = 'Tokyo Night (Gogh)'
+-- config.color_scheme = "Adventure"
+-- config.color_scheme = "Andromeda"
+config.color_scheme = "Argonaut"
+-- config.color_scheme = "Tokyo Night (Gogh)"
 
 
 -- window
@@ -61,29 +61,29 @@ config.hide_tab_bar_if_only_one_tab = false
 config.use_fancy_tab_bar = true
 config.window_frame = {
   font_size = 7.0,
-  active_titlebar_bg = '#1f232f',
-  inactive_titlebar_bg = '#1f232f',
+  active_titlebar_bg = "#1f232f",
+  inactive_titlebar_bg = "#1f232f",
 }
 wezterm.on(
-  'format-tab-title',
+  "format-tab-title",
   function(tab)
     local title = tab.tab_title
     if not ( title and #title > 0 ) then
       -- local icon = wezterm.nerdfonts.cod_terminal_ubuntu
       local icon = wezterm.nerdfonts.cod_terminal
-      title = icon .. '    ' .. ( tab.tab_index + 1 )
+      title = icon .. "    " .. ( tab.tab_index + 1 )
     end
     if tab.is_active then
       return {
-        { Background = { Color = '#1f232f' } },
-        { Foreground = { Color = '#888888' } },
-        { Text = ' ' .. title .. ' ' },
+        { Background = { Color = "#1f232f" } },
+        { Foreground = { Color = "#888888" } },
+        { Text = " " .. title .. " " },
       }
     end
     return {
-      { Background = { Color = '#181d24' } },
-      { Foreground = { Color = '#555555' } },
-      { Text = ' ' .. title .. ' ' },
+      { Background = { Color = "#181d24" } },
+      { Foreground = { Color = "#555555" } },
+      { Text = " " .. title .. " " },
     }
   end
 )
@@ -99,68 +99,68 @@ config.colors.tab_bar = {
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
   {
-    key = 'v',
-    mods = 'LEADER',
-    action = wezterm.action.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
+    key = "v",
+    mods = "LEADER",
+    action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
   },
   {
-    key = 's',
-    mods = 'LEADER',
-    action = wezterm.action.SplitVertical({ domain = 'CurrentPaneDomain' }),
+    key = "s",
+    mods = "LEADER",
+    action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
   },
   {
-    key = 'K',
-    mods = 'CTRL',
+    key = "K",
+    mods = "CTRL",
     action = wezterm.action.AdjustPaneSize({"Up", 1})
   },
   {
-    key = 'J',
-    mods = 'CTRL',
+    key = "J",
+    mods = "CTRL",
     action = wezterm.action.AdjustPaneSize({"Down", 1})
   },
   {
-    key = 'L',
-    mods = 'CTRL',
+    key = "L",
+    mods = "CTRL",
     action = wezterm.action.AdjustPaneSize({"Right", 1})
   },
   {
-    key = 'H',
-    mods = 'CTRL',
+    key = "H",
+    mods = "CTRL",
     action = wezterm.action.AdjustPaneSize({"Left", 1})
   },
   {
-    key = 'k',
-    mods = 'LEADER',
+    key = "k",
+    mods = "LEADER",
     action = wezterm.action.ActivatePaneDirection "Up"
   },
   {
-    key = 'j',
-    mods = 'LEADER',
+    key = "j",
+    mods = "LEADER",
     action = wezterm.action.ActivatePaneDirection "Down"
   },
   {
-    key = 'l',
-    mods = 'LEADER',
+    key = "l",
+    mods = "LEADER",
     action = wezterm.action.ActivatePaneDirection "Right"
   },
   {
-    key = 'h',
-    mods = 'LEADER',
+    key = "h",
+    mods = "LEADER",
     action = wezterm.action.ActivatePaneDirection "Left"
   },
   {
-    key = 'z',
-    mods = 'LEADER',
+    key = "z",
+    mods = "LEADER",
     action = wezterm.action.TogglePaneZoomState
   },
   {
-    key = 'f',
-    mods = 'LEADER',
+    key = "f",
+    mods = "LEADER",
     action = wezterm.action.QuickSelect
   },
   {
-    key = ' ',
-    mods = 'SHIFT|CTRL',
+    key =  " ",
+    mods = "SHIFT|CTRL",
     action = wezterm.action.QuickSelect
   },
   {
@@ -174,38 +174,56 @@ config.keys = {
     action = wezterm.action.PasteFrom "Clipboard"
   },
   {
-    key = 'c',
-    mods = 'LEADER',
+    key = "c",
+    mods = "LEADER",
     action = wezterm.action.SpawnTab("CurrentPaneDomain")
   },
   {
-    key = 'n',
-    mods = 'LEADER',
+    key = "n",
+    mods = "LEADER",
     action = wezterm.action.SpawnTab("CurrentPaneDomain")
   },
   {
-    key = 'x',
-    mods = 'LEADER',
+    key = "x",
+    mods = "LEADER",
     action = wezterm.action.CloseCurrentTab({ confirm = true })
   },
   -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
   {
-    key = '1',
-    mods = 'LEADER|CTRL',
-    action = wezterm.action.SendKey({ key = 'a', mods = 'CTRL' }),
+    key = "1",
+    mods = "LEADER|CTRL",
+    action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }),
   },
 }
+-- config.key_tables = {
+--   config.keys,
+--   copy_mode = {
+--     {key="Escape", mods="NONE", action=wezterm.action{CopyMode="Close"}},
+--     {key="h", mods="NONE", action=wezterm.action{CopyMode="MoveLeft"}},
+--     {key="j", mods="NONE", action=wezterm.action{CopyMode="MoveDown"}},
+--     {key="k", mods="NONE", action=wezterm.action{CopyMode="MoveUp"}},
+--     {key="l", mods="NONE", action=wezterm.action{CopyMode="MoveRight"}},
+--     {key=" ", mods="NONE", action=wezterm.action{CopyMode="ToggleSelectionByCell"}},
+--     {key="/", mods="NONE", action=wezterm.action{Search={CaseSensitiveString=""}}},
+--     {key="n", mods="NONE", action=wezterm.action{CopyMode="NextMatch"}},
+--     {key="N", mods="SHIFT", action=wezterm.action{CopyMode="PriorMatch"}},
+--   },
+--   search_mode = {
+--     {key="Escape", mods="NONE", action=wezterm.action{CopyMode="Close"}},
+--     {key="Enter", mods="NONE", action="ActivateCopyMode"},
+--   },
+-- }
 
 
 -- notifications
 config.audible_bell = "Disabled"
 config.visual_bell = {
-  fade_in_function = 'EaseIn',
+  fade_in_function = "EaseIn",
   fade_in_duration_ms = 100,
-  fade_out_function = 'EaseOut',
+  fade_out_function = "EaseOut",
   fade_out_duration_ms = 350,
 }
-config.colors.visual_bell = '#444444'
+config.colors.visual_bell = "#444444"
 
 
 return config
