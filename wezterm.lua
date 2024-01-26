@@ -96,7 +96,7 @@ config.colors.tab_bar = {
 
 
 -- key bindings
-config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+config.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 3000 }
 config.keys = {
   {
     key = "v",
