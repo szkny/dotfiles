@@ -185,6 +185,14 @@ vim.cmd([[
     command! -nargs=* Viu call s:viu(<f-args>)
 ]])
 
+vim.cmd([[
+    fun! s:delta(...) abort
+      exe "100SplitTerm file=$(fzf) && delta -s --paging always "..expand("%").." $file"
+      startinsert
+    endf
+    command! -nargs=* Delta call s:delta(<f-args>)
+]])
+
 function catch(what)
    return what[1]
 end

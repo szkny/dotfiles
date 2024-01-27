@@ -1008,6 +1008,8 @@ require("neoscroll").setup({
   mappings = {
     "<C-y>",
     "<C-e>",
+    "<C-u>",
+    "<C-d>",
   },
   hide_cursor = true,
   stop_eof = true,
@@ -1018,6 +1020,8 @@ require("neoscroll").setup({
 require('neoscroll.config').set_mappings({
   ['<C-y>'] = {'scroll', {'-vim.wo.scroll', 'true', '300'}},
   ['<C-e>'] = {'scroll', { 'vim.wo.scroll', 'true', '300'}},
+  ['<C-u>'] = {'scroll', {'-vim.wo.scroll', 'true', '300'}},
+  ['<C-d>'] = {'scroll', { 'vim.wo.scroll', 'true', '300'}},
 })
 
 

@@ -39,8 +39,8 @@ keymap("n", "<Leader>pq", ":BufferPrevious<CR>:try|bdelete#|catch|bdelete|endtry
 -- for edit
 keymap("v", ">", ">gv", opts)
 keymap("v", "<", "<gv", opts)
-vim.api.nvim_set_keymap("n", "<C-d>", "ReplaceWordText()  !=# '' ? ':<C-u>'.  ReplaceWordText().'<Left><Left><Left>' : '<ESC>'", { expr = true })
-vim.api.nvim_set_keymap("v", "<C-d>", "VReplaceWordText() !=# '' ? ':<C-u>'. VReplaceWordText().'<Left><Left><Left>' : '<ESC>'", { expr = true })
+vim.api.nvim_set_keymap("n", "<Leader>d", "ReplaceWordText()  !=# '' ? ':<C-u>'.  ReplaceWordText().'<Left><Left><Left>' : '<ESC>'", { expr = true })
+vim.api.nvim_set_keymap("v", "<Leader>d", "VReplaceWordText() !=# '' ? ':<C-u>'. VReplaceWordText().'<Left><Left><Left>' : '<ESC>'", { expr = true })
 vim.cmd([[
     fun! s:get_vselect_txt()
         if mode()=="v"
@@ -134,16 +134,6 @@ keymap("n", "<leader>r",
         -- end
     end,
     opts
-)
-
-keymap("n", "<leader>d",
-  function()
-    vim.cmd([[
-      exe "100SplitTerm file=$(fzf) && delta -s --paging always "..expand("%").." $file"
-      startinsert
-    ]])
-  end,
-  opts
 )
 
 -- -- for tab/window
