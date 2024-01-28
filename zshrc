@@ -307,9 +307,8 @@ EOF
 eval "$(~/.local/bin/mise activate zsh)"
 
 ## go setup
-export GOROOT=$(mise where go)/go
-export GOPATH=$(mise where go)/package/bin
-export PATH=$PATH:$GOPATH
+export GOPATH=$(mise where go)
+export PATH=$PATH:$GOPATH/bin
 
 # ## pyenv setup
 # export PYENV_ROOT="$HOME/.pyenv"
