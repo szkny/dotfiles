@@ -1012,7 +1012,7 @@ require("neoscroll").setup({
     "<C-d>",
   },
   hide_cursor = true,
-  stop_eof = true,
+  stop_eof = false,
   respect_scrolloff = false,
   cursor_scrolls_alone = true,
   easing_function = "quadratic",
