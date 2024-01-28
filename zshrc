@@ -271,8 +271,8 @@ export FZF_DEFAULT_OPTS=$(cat <<"EOF"
   --height=90%
   --layout=reverse
   --prompt '∷ '
-  --pointer ▶
-  --marker ▶
+  --pointer 
+  --marker 
   --preview '
       [ -f {} ] \
       && bat --color=always --style=numbers {} \
