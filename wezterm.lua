@@ -211,6 +211,7 @@ config.key_tables = {
       action = act.CopyMode "MoveToStartOfNextLine",
     },
     { key = "Escape", mods = "NONE", action = act.CopyMode "Close" },
+    { key = "[",      mods = "CTRL", action = act.CopyMode "Close" },
     {
       key = "Space",
       mods = "NONE",
@@ -384,6 +385,7 @@ config.key_tables = {
   },
   search_mode = {
     { key = "Escape", mods = "NONE", action = "ActivateCopyMode" },
+    { key = "[",      mods = "CTRL", action = "ActivateCopyMode" },
     { key = "Enter",  mods = "NONE", action = "ActivateCopyMode" },
   },
 }
