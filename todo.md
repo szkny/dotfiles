@@ -1,8 +1,7 @@
 # TODO list
 
 - neovim
-  - neoscroll.nvim
-  - 
+  - ranger.nvim
 
 - wezterm
   - replacement of tmux
