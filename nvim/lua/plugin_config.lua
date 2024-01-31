@@ -1008,8 +1008,6 @@ vim.cmd([[
 -- neoscroll.nvim
 require("neoscroll").setup({
   mappings = {
-    "<C-y>",
-    "<C-e>",
     "<C-u>",
     "<C-d>",
   },
@@ -1020,8 +1018,6 @@ require("neoscroll").setup({
   easing_function = "quadratic",
 })
 require('neoscroll.config').set_mappings({
-  ['<C-y>'] = {'scroll', {'-vim.wo.scroll', 'true', '300'}},
-  ['<C-e>'] = {'scroll', { 'vim.wo.scroll', 'true', '300'}},
   ['<C-u>'] = {'scroll', {'-vim.wo.scroll', 'true', '300'}},
   ['<C-d>'] = {'scroll', { 'vim.wo.scroll', 'true', '300'}},
 })
