@@ -386,6 +386,7 @@ config.key_tables = {
   search_mode = {
     { key = "Escape", mods = "NONE", action = "ActivateCopyMode" },
     { key = "[",      mods = "CTRL", action = "ActivateCopyMode" },
+    { key = "c",      mods = "CTRL", action = "ActivateCopyMode" },
     { key = "Enter",  mods = "NONE", action = "ActivateCopyMode" },
   },
 }
