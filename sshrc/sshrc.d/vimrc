@@ -99,10 +99,10 @@ tno <silent> <C-[>   <C-\><C-n>
 tno <silent> <ESC>   <C-\><C-n>
 
 " for edit
-vno <silent> >       >gv
-vno <silent> <       <gv
-nno <expr>   <C-d>   ReplaceWordText()  !=# '' ? ':<C-u>'. ReplaceWordText().'<Left><Left><Left>' : '<ESC>'
-vno <expr>   <C-d>   VReplaceWordText() !=# '' ? ':<C-u>'.VReplaceWordText().'<Left><Left><Left>' : '<ESC>'
+vno <silent> >          >gv
+vno <silent> <          <gv
+nno <expr>   <Leader>d  ReplaceWordText()  !=# '' ? ':<C-u>'. ReplaceWordText().'<Left><Left><Left>' : '<ESC>'
+vno <expr>   <Leader>d  VReplaceWordText() !=# '' ? ':<C-u>'.VReplaceWordText().'<Left><Left><Left>' : '<ESC>'
 
 " tab/window
 nno <silent> <Right> :<C-u>ChangeBuffer next<CR>
