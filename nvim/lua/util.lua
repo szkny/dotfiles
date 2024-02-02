@@ -74,7 +74,7 @@ fun! Term(...) abort
     setlocal nospell
     setlocal lazyredraw
 endf
-command! -complete=shellcmd -nargs=* Term call Term(<f-args>)
+command! -nargs=* Term call Term(<f-args>)
 ]])
 
 vim.cmd([[
