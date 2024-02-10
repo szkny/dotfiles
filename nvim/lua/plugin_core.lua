@@ -23,7 +23,7 @@ local options = {
   }
 }
 local plugins = {
-  { 'nvim-tree/nvim-web-devicons', tag = 'v0.99' },
+  { 'nvim-tree/nvim-web-devicons' },
   { 'numToStr/Comment.nvim' },
   { 'kevinhwang91/rnvimr', cmd = 'RnvimrToggle' },
   { 'tpope/vim-fugitive', lazy = false },
