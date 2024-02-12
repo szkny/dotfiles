@@ -55,28 +55,26 @@ require("notify").setup({
     TRACE = "✎ ",
   },
 })
-vim.cmd([[
-    hi NotifyERRORBorder guifg=#8A1F1F guibg=none
-    hi NotifyWARNBorder  guifg=#79491D guibg=none
-    hi NotifyINFOBorder  guifg=#4F6752 guibg=none
-    hi NotifyDEBUGBorder guifg=#8B8B8B guibg=none
-    hi NotifyTRACEBorder guifg=#4F3552 guibg=none
-    hi NotifyERRORIcon   guifg=#F70067 guibg=none
-    hi NotifyWARNIcon    guifg=#F79000 guibg=none
-    hi NotifyINFOIcon    guifg=#A9FF68 guibg=none
-    hi NotifyDEBUGIcon   guifg=#8B8B8B guibg=none
-    hi NotifyTRACEIcon   guifg=#D484FF guibg=none
-    hi NotifyERRORTitle  guifg=#F70067 guibg=none
-    hi NotifyWARNTitle   guifg=#F79000 guibg=none
-    hi NotifyINFOTitle   guifg=#A9FF68 guibg=none
-    hi NotifyDEBUGTitle  guifg=#8B8B8B guibg=none
-    hi NotifyTRACETitle  guifg=#D484FF guibg=none
-    hi NotifyERRORBody   guibg=#252525
-    hi NotifyWARNBody    guibg=#252525
-    hi NotifyINFOBody    guibg=#252525
-    hi NotifyDEBUGBody   guibg=#252525
-    hi NotifyTRACEBody   guibg=#252525
-]])
+vim.api.nvim_set_hl(0, "NotifyERRORBorder", { fg="#8a1f1f", bg="none" })
+vim.api.nvim_set_hl(0, "NotifyWARNBorder",  { fg="#79491d", bg="none" })
+vim.api.nvim_set_hl(0, "NotifyINFOBorder",  { fg="#4f6752", bg="none" })
+vim.api.nvim_set_hl(0, "NotifyDEBUGBorder", { fg="#8b8b8b", bg="none" })
+vim.api.nvim_set_hl(0, "NotifyTRACEBorder", { fg="#4f3552", bg="none" })
+vim.api.nvim_set_hl(0, "NotifyERRORIcon",   { fg="#f70067", bg="none" })
+vim.api.nvim_set_hl(0, "NotifyWARNIcon",    { fg="#f79000", bg="none" })
+vim.api.nvim_set_hl(0, "NotifyINFOIcon",    { fg="#a9ff68", bg="none" })
+vim.api.nvim_set_hl(0, "NotifyDEBUGIcon",   { fg="#8b8b8b", bg="none" })
+vim.api.nvim_set_hl(0, "NotifyTRACEIcon",   { fg="#d484ff", bg="none" })
+vim.api.nvim_set_hl(0, "NotifyERRORTitle",  { fg="#f70067", bg="none" })
+vim.api.nvim_set_hl(0, "NotifyWARNTitle",   { fg="#F79000", bg="none" })
+vim.api.nvim_set_hl(0, "NotifyINFOTitle",   { fg="#A9FF68", bg="none" })
+vim.api.nvim_set_hl(0, "NotifyDEBUGTitle",  { fg="#8B8B8B", bg="none" })
+vim.api.nvim_set_hl(0, "NotifyTRACETitle",  { fg="#D484FF", bg="none" })
+vim.api.nvim_set_hl(0, "NotifyERRORBody",   { fg="none",    bg="#252525" })
+vim.api.nvim_set_hl(0, "NotifyWARNBody",    { fg="none",    bg="#252525" })
+vim.api.nvim_set_hl(0, "NotifyINFOBody",    { fg="none",    bg="#252525" })
+vim.api.nvim_set_hl(0, "NotifyDEBUGBody",   { fg="none",    bg="#252525" })
+vim.api.nvim_set_hl(0, "NotifyTRACEBody",   { fg="none",    bg="#252525" })
 
 
 -- noice.nvim
@@ -107,12 +105,10 @@ require("noice").setup({
     long_message_to_split = true,
   },
 })
-vim.cmd([[
-    hi NoiceMini         guifg=#ffbb00 guibg=#383838
-    hi NoiceCmdlinePopup               guibg=#383838
-    hi NoiceCmdline                    guibg=#1f1f1f
-    hi NoiceConfirm                    guibg=#383838
-]])
+vim.api.nvim_set_hl(0, "NoiceMini",         { fg="#ffbb00", bg="#383838" })
+vim.api.nvim_set_hl(0, "NoiceCmdlinePopup", { fg="none",    bg="#383838" })
+vim.api.nvim_set_hl(0, "NoiceCmdline",      { fg="none",    bg="#1f1f1f" })
+vim.api.nvim_set_hl(0, "NoiceConfirm",      { fg="none",    bg="#383838" })
 
 
 -- which-key.nvim
@@ -141,12 +137,9 @@ vim.api.nvim_create_user_command("Files",
     "call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)",
     { bang = true, nargs = '?' }
 )
-vim.cmd([[
-    hi link FzfNormal Normal
-    hi FzfNormal                   guibg=#2a2a2a 
-    hi FzfCursorLine guifg=#ffffff guibg=#5e5e5e 
-    hi FzfPreview                  guibg=none
-]])
+vim.api.nvim_set_hl(0, "FzfNormal",     { fg="none",    bg="#2a2a2a" })
+vim.api.nvim_set_hl(0, "FzfCursorLine", { fg="#ffffff", bg="#5e5e5e" })
+vim.api.nvim_set_hl(0, "FzfPreview",    { fg="none",    bg="none" })
 -- fzf.vim for Silver Searcher
 if vim.fn.executable('ag') then
     vim.api.nvim_set_var('$FZF_DEFAULT_COMMAND' , 'ag --hidden --ignore .git -g ""')
@@ -168,9 +161,7 @@ end
 
 
 -- vim-easy-align
-vim.cmd([[
-    let g:easy_align_ignore_groups = ['String']
-]])
+vim.g.easy_align_ignore_groups = { 'String' }
 
 
 -- skkeleton
@@ -272,10 +263,10 @@ vim.cmd([[
         " vertical resize 25
     endf
     au FileType oil call s:oil_init()
-    hi OilFile gui=bold guifg=#bbbbbb
-    hi OilDir  gui=bold guifg=#77aadd
-    hi OilLink gui=bold guifg=#77afaf
 ]])
+vim.api.nvim_set_hl(0, "OilFile", { fg="#bbbbbb", bg="none", bold=true })
+vim.api.nvim_set_hl(0, "OilDir",  { fg="#77aadd", bg="none", bold=true })
+vim.api.nvim_set_hl(0, "OilLink", { fg="#77afaf", bg="none", bold=true })
 
 
 -- auto-session
@@ -318,43 +309,43 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.api.nvim_set_var("loaded_netrw", 1)
 vim.api.nvim_set_var("loaded_netrwPlugin", 1)
-vim.cmd([[
-    hi NvimTreeWinSeparator              gui=none guifg=#555555
-    hi NvimTreeRootFolder                gui=bold guifg=#bbbbbb
-    hi NvimTreeFolderName                gui=bold guifg=#77aadd
-    hi NvimTreeEmptyFolderName           gui=bold guifg=#77aadd
-    hi NvimTreeOpenedFolderName          gui=bold guifg=#77aadd
-    hi NvimTreeSpecialFile               gui=bold,underline guifg=#dfbf66
-    hi NvimTreeSymlink                   gui=bold guifg=#77afaf
-    hi NvimTreeSymlinkFolderName         gui=bold guifg=#77afaf
-    hi NvimTreeExecFile                  gui=bold guifg=#bfbf66
-    hi NvimTreeGitDirty                  gui=bold guifg=#ddaa55
-    hi NvimTreeGitStaged                 gui=bold guifg=#44cc44
-    hi NvimTreeGitNew                    gui=bold guifg=#44cc44
-    hi NvimTreeModifiedFile              gui=bold guifg=#ffaa00
-    hi NvimTreeLspDiagnosticsError       gui=none guifg=#ee3333
-    hi NvimTreeLspDiagnosticsWarning     gui=none guifg=#edd000
-    hi NvimTreeLspDiagnosticsInformation gui=none guifg=#ffffff
-    hi NvimTreeLspDiagnosticsHint        gui=none guifg=#5588dd
-]])
+vim.api.nvim_set_hl(0, "NvimTreeWinSeparator",              { fg="#555555", bg="none" })
+vim.api.nvim_set_hl(0, "NvimTreeRootFolder",                { fg="#bbbbbb", bg="none", bold = true })
+vim.api.nvim_set_hl(0, "NvimTreeFolderName",                { fg="#77aadd", bg="none", bold = true })
+vim.api.nvim_set_hl(0, "NvimTreeEmptyFolderName",           { fg="#77aadd", bg="none", bold = true })
+vim.api.nvim_set_hl(0, "NvimTreeOpenedFolderName",          { fg="#77aadd", bg="none", bold = true })
+vim.api.nvim_set_hl(0, "NvimTreeSpecialFile",               { fg="#dfbf66", bg="none", bold = true, underline = true })
+vim.api.nvim_set_hl(0, "NvimTreeSymlink",                   { fg="#77afaf", bg="none", bold = true })
+vim.api.nvim_set_hl(0, "NvimTreeSymlinkFolderName",         { fg="#77afaf", bg="none", bold = true })
+vim.api.nvim_set_hl(0, "NvimTreeExecFile",                  { fg="#bfbf66", bg="none", bold = true })
+vim.api.nvim_set_hl(0, "NvimTreeGitDirty",                  { fg="#ddaa55", bg="none", bold = true })
+vim.api.nvim_set_hl(0, "NvimTreeGitStaged",                 { fg="#44cc44", bg="none", bold = true })
+vim.api.nvim_set_hl(0, "NvimTreeGitNew",                    { fg="#44cc44", bg="none", bold = true })
+vim.api.nvim_set_hl(0, "NvimTreeModifiedFile",              { fg="#ffaa00", bg="none", bold = true })
+vim.api.nvim_set_hl(0, "NvimTreeLspDiagnosticsError",       { fg="#ee3333", bg="none" })
+vim.api.nvim_set_hl(0, "NvimTreeLspDiagnosticsWarning",     { fg="#edd000", bg="none" })
+vim.api.nvim_set_hl(0, "NvimTreeLspDiagnosticsInformation", { fg="#ffffff", bg="none" })
+vim.api.nvim_set_hl(0, "NvimTreeLspDiagnosticsHint",        { fg="#5588dd", bg="none" })
 
 
 -- vista.vim
+vim.g.vista_no_mappings             = 0
+vim.g.vista_echo_cursor             = 0
+vim.g.vista_echo_cursor_strategy    = 'floating_win'
+vim.g.vista_blink                   = {3, 200}
+vim.g.vista_top_level_blink         = {3, 200}
+vim.g.vista_highlight_whole_line    = 1
+vim.g.vista_update_on_text_changed  = 1
+vim.g.vista_sidebar_width           = 25
+vim.g.vista_icon_indent             = {'└ ', '│ '}
+vim.g["vista#renderer#enable_icon"] = 1
+vim.g.vista_fzf_preview             = {'right,50%,<70(down,60%)'}
+vim.g.vista_keep_fzf_colors         = 1
+vim.g.vista_fzf_opt                 = {'--bind = ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up'}
+vim.g.vista_default_executive       = 'nvim_lsp'
+vim.api.nvim_set_hl(0, "VistaFloat",  { link = "Pmenu" })
+vim.api.nvim_set_hl(0, "VistaLineNr", { fg="#777777", bg="none" })
 vim.cmd([[
-    let g:vista_no_mappings            = 0
-    let g:vista_echo_cursor            = 0
-    let g:vista_echo_cursor_strategy   = 'floating_win'
-    let g:vista_blink                  = [3, 200]
-    let g:vista_top_level_blink        = [3, 200]
-    let g:vista_highlight_whole_line   = 1
-    let g:vista_update_on_text_changed = 1
-    let g:vista_sidebar_width          = 25
-    let g:vista_icon_indent            = ['└ ', '│ ']
-    let g:vista#renderer#enable_icon   = 1
-    let g:vista_fzf_preview            = ['right,50%,<70(down,60%)']
-    let g:vista_keep_fzf_colors        = 1
-    let g:vista_fzf_opt                = ['--bind=ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up']
-    let g:vista_default_executive = 'nvim_lsp'
     fun! VistaInit() abort
       try
         if &filetype != ''
@@ -363,46 +354,41 @@ vim.cmd([[
       endtry
     endf
     " au BufEnter * call VistaInit()
-    hi link VistaFloat Pmenu
-    " hi VistaKind   guifg=
-    " hi VistaTag    guifg=
-    " hi VistaPublic guifg=
-    hi VistaLineNr guifg=#777777
 ]])
 
 
 -- minimap.vim
-vim.cmd([[
-    let g:minimap_auto_start                        = 0
-    let g:minimap_auto_start_win_enter              = 0
-    let g:minimap_width                             = 10
-    let g:minimap_window_width_override_for_scaling = 2147483647
-    let g:minimap_block_filetypes                   = ['terminal', 'fzf', 'vista', 'vista_kind', 'NvimTree', 'rnvimr']
-    " let g:minimap_close_buftypes                   = ['nofile', 'startify', 'netrw', 'vim-plug', 'terminal']
-    let g:minimap_enable_highlight_colorgroup = 0
-    let g:minimap_highlight_range             = 1
-    let g:minimap_highlight_search            = 1
-    let g:minimap_git_colors                  = 1
-    let g:minimap_cursor_color_priority       = 110
-    let g:minimap_search_color_priority       = 120
-    let g:minimap_base_highlight   = 'Normal'
-    let g:minimap_cursor_color     = 'MyMinimapCursor'
-    let g:minimap_range_color      = 'MyMinimapRange'
-    let g:minimap_search_color     = 'MyMinimapSearch'
-    let g:minimap_diff_color       = 'MyMinimapDiffLine'
-    let g:minimap_diffadd_color    = 'MyMinimapDiffAdded'
-    let g:minimap_diffremove_color = 'MyMinimapDiffRemoved'
-    hi MyMinimapCursor      guifg=#000000 guibg=#ffffff
-    hi MyMinimapRange       guifg=#ffffff guibg=#555555
-    hi MyMinimapSearch      guifg=#ffffff guibg=#bbbb00
-    hi MyMinimapDiffLine    guifg=#bbbb00
-    hi MyMinimapDiffAdded   guifg=#00aa77
-    hi MyMinimapDiffRemoved guifg=#bb0000
-    " aug minimap_auto_start
-    "     au!
-    "     au WinEnter * if g:minimap_auto_start_win_enter | exe 'Minimap' | endif
-    " aug END
-]])
+vim.g.minimap_auto_start                        = 0
+vim.g.minimap_auto_start_win_enter              = 0
+vim.g.minimap_width                             = 10
+vim.g.minimap_window_width_override_for_scaling = 2147483647
+vim.g.minimap_block_filetypes                   = {'terminal', 'fzf', 'vista', 'vista_kind', 'NvimTree', 'rnvimr'}
+-- vim.g.minimap_close_buftypes                    = {'nofile', 'startify', 'netrw', 'vim-plug', 'terminal'}
+vim.g.minimap_enable_highlight_colorgroup       = 0
+vim.g.minimap_highlight_range                   = 1
+vim.g.minimap_highlight_search                  = 1
+vim.g.minimap_git_colors                        = 1
+vim.g.minimap_cursor_color_priority             = 110
+vim.g.minimap_search_color_priority             = 120
+vim.g.minimap_base_highlight                    = 'Normal'
+vim.g.minimap_cursor_color                      = 'MyMinimapCursor'
+vim.g.minimap_range_color                       = 'MyMinimapRange'
+vim.g.minimap_search_color                      = 'MyMinimapSearch'
+vim.g.minimap_diff_color                        = 'MyMinimapDiffLine'
+vim.g.minimap_diffadd_color                     = 'MyMinimapDiffAdded'
+vim.g.minimap_diffremove_color                  = 'MyMinimapDiffRemoved'
+vim.api.nvim_set_hl(0, "MyMinimapCursor",      { fg="#000000", bg="#ffffff" })
+vim.api.nvim_set_hl(0, "MyMinimapRange",       { fg="#ffffff", bg="#555555" })
+vim.api.nvim_set_hl(0, "MyMinimapSearch",      { fg="#ffffff", bg="#bbbb00" })
+vim.api.nvim_set_hl(0, "MyMinimapDiffLine",    { fg="#bbbb00", bg="none" })
+vim.api.nvim_set_hl(0, "MyMinimapDiffAdded",   { fg="#00aa77", bg="none" })
+vim.api.nvim_set_hl(0, "MyMinimapDiffRemoved", { fg="#bb0000", bg="none" })
+-- vim.cmd([[
+--     aug minimap_auto_start
+--         au!
+--         au WinEnter * if g:minimap_auto_start_win_enter | exe 'Minimap' | endif
+--     aug END
+-- ]])
 
 
 -- nvim-treesitter
@@ -442,28 +428,25 @@ require('nvim-treesitter.configs').setup {
 
 
 -- indent-blankline.nvim
-vim.cmd([[
-    let g:indent_blankline_char                       = '│'
-    let g:indent_blankline_context_char               = '┃'
-    let g:indent_blankline_space_char_blankline       = ' '
-    let g:indent_blankline_use_treesitter             = v:true
-    let g:indent_blankline_indent_level               = 30
-    let g:indent_blankline_max_indent_increase        = g:indent_blankline_indent_level
-    let g:indent_blankline_show_first_indent_level    = v:true
-    let g:indent_blankline_show_current_context_start = v:true
-    let g:indent_blankline_filetype_exclude           = ['terminal', 'help', 'fzf', 'vista', 'vista_kind', 'NvimTree', 'mason', 'rnvimr']
-    let g:indent_blankline_bufname_exclude            = ['README.md']
-    let g:indent_blankline_disable_with_nolist        = v:true
-    lua require("indent_blankline").setup {
-        \   show_current_context = true,
-        \   show_current_context_start = true,
-        \ }
-    hi IndentBlanklineChar               gui=nocombine guifg=#3a3a3a
-    hi IndentBlanklineContextChar        gui=bold      guifg=#606060
-    " hi IndentBlanklineContextStart       gui=bold
-    hi IndentBlanklineSpaceChar          gui=nocombine guifg=#3a3a3a
-    hi IndentBlanklineSpaceCharBlankline gui=nocombine guifg=#3a3a3a
-]])
+require("indent_blankline").setup({
+  show_current_context = true,
+  show_current_context_start = true,
+})
+vim.g.indent_blankline_char                       = '│'
+vim.g.indent_blankline_context_char               = '┃'
+vim.g.indent_blankline_space_char_blankline       = ' '
+vim.g.indent_blankline_use_treesitter             = true
+vim.g.indent_blankline_indent_level               = 30
+vim.g.indent_blankline_max_indent_increase        = vim.g.indent_blankline_indent_level
+vim.g.indent_blankline_show_first_indent_level    = true
+vim.g.indent_blankline_show_current_context_start = true
+vim.g.indent_blankline_filetype_exclude           = { 'terminal', 'help', 'fzf', 'vista', 'vista_kind', 'NvimTree', 'mason', 'rnvimr' }
+vim.g.indent_blankline_bufname_exclude            = { 'README.md' }
+vim.g.indent_blankline_disable_with_nolist        = true
+vim.api.nvim_set_hl(0, "IndentBlanklineChar",               { fg="#3a3a3a", bg="none", nocombine = true })
+vim.api.nvim_set_hl(0, "IndentBlanklineContextChar",        { fg="#606060", bg="none", bold = true })
+vim.api.nvim_set_hl(0, "IndentBlanklineSpaceChar",          { fg="#3a3a3a", bg="none", nocombine = true })
+vim.api.nvim_set_hl(0, "IndentBlanklineSpaceCharBlankline", { fg="#3a3a3a", bg="none", nocombine = true })
 
 
 -- -- nvim-navic
@@ -685,8 +668,8 @@ vim.cmd([[
             return ''
         endtry
     endf
-    let g:lualine_diagnostics_source = 'nvim_diagnostic'
 ]])
+vim.g.lualine_diagnostics_source = 'nvim_diagnostic'
 local my_custom_theme = {
   normal = {
     a = { fg = '#ddddee', bg = '#5588dd' , gui = 'bold' },
@@ -805,15 +788,13 @@ require('lualine').setup {
   inactive_winbar = {},
   extensions = {}
 }
-vim.cmd([[
-    hi lualine_lsp_err     guibg=#212736 guifg=#ee3333
-    hi lualine_lsp_warn    guibg=#212736 guifg=#edd000
-    hi lualine_lsp_hint    guibg=#212736 guifg=#5599dd
-    hi lualine_lsp_info    guibg=#212736 guifg=#5599dd
-    hi lualine_diff_add    guibg=#394260 guifg=#66aa88
-    hi lualine_diff_change guibg=#394260 guifg=#bbbb88
-    hi lualine_diff_delete guibg=#394260 guifg=#aa6666
-]])
+vim.api.nvim_set_hl(0, "lualine_lsp_err",     { fg="#ee3333", bg="#212736" })
+vim.api.nvim_set_hl(0, "lualine_lsp_warn",    { fg="#edd000", bg="#212736" })
+vim.api.nvim_set_hl(0, "lualine_lsp_hint",    { fg="#5599dd", bg="#212736" })
+vim.api.nvim_set_hl(0, "lualine_lsp_info",    { fg="#5599dd", bg="#212736" })
+vim.api.nvim_set_hl(0, "lualine_diff_add",    { fg="#66aa88", bg="#394260" })
+vim.api.nvim_set_hl(0, "lualine_diff_change", { fg="#bbbb88", bg="#394260" })
+vim.api.nvim_set_hl(0, "lualine_diff_delete", { fg="#aa6666", bg="#394260" })
 
 
 -- barbar.nvim
@@ -982,27 +963,25 @@ require("scrollbar").setup({
       search = true,
   },
 })
-vim.cmd([[
-    hi ScrollbarHandle          gui=none guifg=#333333 guibg=#888888
-    hi ScrollbarCursor          gui=none guifg=#333333 guibg=#888888
-    hi ScrollbarCursorHandle    gui=none guifg=#ffffff guibg=#888888
-    hi ScrollbarSearch          gui=bold guifg=#ffaa77
-    hi ScrollbarSearchHandle    gui=bold guifg=#ffaa77 guibg=#888888
-    hi ScrollbarError           gui=bold guifg=#ee3333
-    hi ScrollbarErrorHandle     gui=bold guifg=#ee3333 guibg=#888888
-    hi ScrollbarWarn            gui=bold guifg=#edd000
-    hi ScrollbarWarnHandle      gui=bold guifg=#edd000 guibg=#888888
-    hi ScrollbarHint            gui=bold guifg=#5599dd
-    hi ScrollbarHintHandle      gui=bold guifg=#5599dd guibg=#888888
-    hi ScrollbarInfo            gui=bold guifg=#ffffff
-    hi ScrollbarInfoHandle      gui=bold guifg=#ffffff guibg=#888888
-    hi ScrollbarGitAdd          gui=none guifg=#00bb00
-    hi ScrollbarGitAddHandle    gui=none guifg=#00bb00 guibg=#888888
-    hi ScrollbarGitChange       gui=none guifg=#cccc00
-    hi ScrollbarGitChangeHandle gui=none guifg=#cccc00 guibg=#888888
-    hi ScrollbarGitDelete       gui=none guifg=#bb2222
-    hi ScrollbarGitDeleteHandle gui=none guifg=#bb2222 guibg=#888888
-]])
+vim.api.nvim_set_hl(0, "ScrollbarHandle",          { fg="#333333", bg="#888888" })
+vim.api.nvim_set_hl(0, "ScrollbarCursor",          { fg="#333333", bg="#888888" })
+vim.api.nvim_set_hl(0, "ScrollbarCursorHandle",    { fg="#ffffff", bg="#888888" })
+vim.api.nvim_set_hl(0, "ScrollbarSearch",          { fg="#ffaa77", bg="none",    bold = true })
+vim.api.nvim_set_hl(0, "ScrollbarSearchHandle",    { fg="#ffaa77", bg="#888888", bold = true })
+vim.api.nvim_set_hl(0, "ScrollbarError",           { fg="#ee3333", bg="none",    bold = true })
+vim.api.nvim_set_hl(0, "ScrollbarErrorHandle",     { fg="#ee3333", bg="#888888", bold = true })
+vim.api.nvim_set_hl(0, "ScrollbarWarn",            { fg="#edd000", bg="none",    bold = true })
+vim.api.nvim_set_hl(0, "ScrollbarWarnHandle",      { fg="#edd000", bg="#888888", bold = true })
+vim.api.nvim_set_hl(0, "ScrollbarHint",            { fg="#5599dd", bg="none",    bold = true })
+vim.api.nvim_set_hl(0, "ScrollbarHintHandle",      { fg="#5599dd", bg="#888888", bold = true })
+vim.api.nvim_set_hl(0, "ScrollbarInfo",            { fg="#ffffff", bg="none",    bold = true })
+vim.api.nvim_set_hl(0, "ScrollbarInfoHandle",      { fg="#ffffff", bg="#888888", bold = true })
+vim.api.nvim_set_hl(0, "ScrollbarGitAdd",          { fg="#00bb00", bg="none" })
+vim.api.nvim_set_hl(0, "ScrollbarGitAddHandle",    { fg="#00bb00", bg="#888888" })
+vim.api.nvim_set_hl(0, "ScrollbarGitChange",       { fg="#cccc00", bg="none" })
+vim.api.nvim_set_hl(0, "ScrollbarGitChangeHandle", { fg="#cccc00", bg="#888888" })
+vim.api.nvim_set_hl(0, "ScrollbarGitDelete",       { fg="#bb2222", bg="none" })
+vim.api.nvim_set_hl(0, "ScrollbarGitDeleteHandle", { fg="#bb2222", bg="#888888" })
 
 
 -- neoscroll.nvim
@@ -1041,39 +1020,31 @@ vim.api.nvim_set_keymap('n', 'N',
     kopts)
 vim.api.nvim_set_keymap('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
 vim.api.nvim_set_keymap('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
-vim.cmd([[
-    hi Search    guibg=#334f7a
-    hi IncSearch guibg=#334f7a
-    hi WildMenu  guibg=#334f7a
-    hi default link HlSearchNear IncSearch
-    " hi default link HlSearchLens WildMenu
-    " hi default link HlSearchLensNear IncSearch
-    hi HlSearchLens     guifg=#777777 guibg=none
-    hi HlSearchLensNear guifg=#777777 guibg=none
-]])
+vim.api.nvim_set_hl(0, "Search",           { fg="none",    bg="#334f7a" })
+vim.api.nvim_set_hl(0, "IncSearch",        { fg="none",    bg="#334f7a" })
+vim.api.nvim_set_hl(0, "WildMenu",         { fg="none",    bg="#334f7a" })
+vim.api.nvim_set_hl(0, "HlSearchNear",     { link = "IncSearch", default = true })
+vim.api.nvim_set_hl(0, "HlSearchLens",     { fg="#777777", bg="none" })
+vim.api.nvim_set_hl(0, "HlSearchLensNear", { fg="#777777", bg="none" })
 
 
 -- lightspeed.nvim
 require('lightspeed').setup({
-  ignore_case = true,
+  ignore_case = false,
   exit_after_idle_msecs = { unlabeled = nil, labeled = nil },
   limit_ft_matches = 4,
   repeat_ft_with_target_char = false,
 })
-vim.cmd([[
-    hi LightspeedOneCharMatch gui=bold guifg=#ff3377 guibg=none
-    hi LightspeedCursor gui=bold
-]])
+vim.api.nvim_set_hl(0, "LightspeedOneCharMatch", { fg="#ff3377", bg="none", bold = true })
+vim.api.nvim_set_hl(0, "LightspeedCursor",       { fg="none",    bg="none", bold = true })
 
 
 -- fuzzy-motion.vim
 vim.g.fuzzy_motion_auto_jump = true
-vim.cmd([[
-  hi FuzzyMotionShade   gui=bold guifg=#666666 guibg=none
-  hi FuzzyMotionChar    gui=bold guifg=#eeeeee guibg=#ff3377
-  hi FuzzyMotionSubChar gui=bold guifg=#eeeeee guibg=#ff3377
-  hi FuzzyMotionMatch   gui=bold guifg=#66bbee guibg=none
-]])
+vim.api.nvim_set_hl(0, "FuzzyMotionShade",   { fg="#666666", bg="none",    bold = true })
+vim.api.nvim_set_hl(0, "FuzzyMotionChar",    { fg="#eeeeee", bg="#ff3377", bold = true })
+vim.api.nvim_set_hl(0, "FuzzyMotionSubChar", { fg="#eeeeee", bg="#ff3377", bold = true })
+vim.api.nvim_set_hl(0, "FuzzyMotionMatch",   { fg="#66bbee", bg="none",    bold = true })
 
 
 --  visual-multi  " TODO
@@ -1194,29 +1165,27 @@ require('gitsigns').setup {
     end, {expr=true})
   end
 }
-vim.cmd([[
-    hi GitSignsAdd    gui=bold guifg=#00bb00
-    hi GitSignsChange gui=bold guifg=#aaaa00
-    hi GitSignsDelete gui=bold guifg=#ff2222
-    hi GitSignsCurrentLineBlame gui=none guifg=#777777
-    hi DiffAdd    gui=none guifg=none guibg=#004400
-    hi DiffChange gui=none guifg=none guibg=#303000
-    hi Difftext   gui=none guifg=none guibg=#505000
-    hi DiffDelete gui=none guifg=none guibg=#440000
-]])
+vim.api.nvim_set_hl(0, "GitSignsAdd",              { fg="#00bb00", bg="none", bold = true })
+vim.api.nvim_set_hl(0, "GitSignsChange",           { fg="#aaaa00", bg="none", bold = true })
+vim.api.nvim_set_hl(0, "GitSignsDelete",           { fg="#ff2222", bg="none", bold = true })
+vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", { fg="#777777", bg="none" })
+vim.api.nvim_set_hl(0, "DiffAdd",                  { fg="none",    bg="#004400" })
+vim.api.nvim_set_hl(0, "DiffChange",               { fg="none",    bg="#303000" })
+vim.api.nvim_set_hl(0, "Difftext",                 { fg="none",    bg="#505000" })
+vim.api.nvim_set_hl(0, "DiffDelete",               { fg="none",    bg="#440000" })
 
 
 -- rnvimr
+vim.g.rnvimr_enable_picker = 1
+vim.g.rnvimr_draw_border = 1
 vim.cmd([[
-    let g:rnvimr_enable_picker = 1
-    let g:rnvimr_draw_border = 1
-    let g:rnvimr_layout = {
-                \ 'relative': 'editor',
-                \ 'width':  float2nr(round(0.90 * &columns)),
-                \ 'height': float2nr(round(0.90 * &lines)),
-                \ 'col':    float2nr(round(0.05 * &columns)),
-                \ 'row':    float2nr(round(0.05 * &lines)),
-                \ 'style': 'minimal'
-                \ }
-    hi RnvimrCurses guibg=#2a2a2a
+  let g:rnvimr_layout = {
+    \ 'relative': 'editor',
+    \ 'width':  float2nr(round(0.90 * &columns)),
+    \ 'height': float2nr(round(0.90 * &lines)),
+    \ 'col':    float2nr(round(0.05 * &columns)),
+    \ 'row':    float2nr(round(0.05 * &lines)),
+    \ 'style': 'minimal'
+    \ }
 ]])
+vim.api.nvim_set_hl(0, "RnvimrCurses", { fg="none", bg="#2a2a2a" })
