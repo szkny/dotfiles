@@ -1053,6 +1053,22 @@ vim.cmd([[
 ]])
 
 
+-- lightspeed.nvim
+require('lightspeed').setup({
+  ignore_case = false,
+  exit_after_idle_msecs = { unlabeled = nil, labeled = nil },
+  jump_to_unique_chars = { safety_timeout = 400 },
+  match_only_the_start_of_same_char_seqs = true,
+  force_beacons_into_match_width = false,
+  limit_ft_matches = 5,
+  repeat_ft_with_target_char = true,
+})
+vim.cmd([[
+    hi LightspeedOneCharMatch gui=bold guifg=#ff3377 guibg=none
+    hi LightspeedCursor gui=bold
+]])
+
+
 --  visual-multi  " TODO
 vim.cmd([[
     let g:VM_default_mappings = 0

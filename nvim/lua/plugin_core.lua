@@ -71,6 +71,7 @@ local plugins = {
   { 'vim-denops/denops.vim', lazy = false },
   { 'vim-skk/skkeleton', lazy = false, commit = 'ce5968d' },
   { 'yuki-yano/fuzzy-motion.vim', lazy = false },
+  { 'ggandor/lightspeed.nvim', lazy = false},
   { 'szkny/Ipython', ft = 'python' },
   { 'elzr/vim-json', ft = 'json' },
   { 'raimon49/requirements.txt.vim' },
