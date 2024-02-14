@@ -279,7 +279,7 @@ export FZF_DEFAULT_OPTS=$(cat <<"EOF"
       && bat --color=always --style=numbers {} \
       || exa -T {} -I node_modules
   '
-  --preview-window 'hidden,wrap,right,90%'
+  --preview-window 'hidden,wrap,down,80%'
   --bind 'ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up'
   --select-1
   --exit-0
