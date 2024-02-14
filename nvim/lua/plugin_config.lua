@@ -123,7 +123,7 @@ vim.api.nvim_set_var("splitterm_auto_close_window", 1)
 vim.api.nvim_set_var("wildmode", "list:longest,list:full")
 vim.api.nvim_set_var("wildignore", "*.o,*.obj,.git,*.rbc,*.pyc,__pycache__")
 vim.api.nvim_set_var('$FZF_DEFAULT_OPTS' , '--reverse --bind ctrl-j:preview-down,ctrl-k:preview-up')
-vim.api.nvim_set_var('fzf_layout',         { window = { width = 0.9, height = 0.9 } })
+vim.api.nvim_set_var('fzf_layout',         { window = { width = 1.00, height = 0.95 } })
 vim.api.nvim_set_var('fzf_preview_window', { 'right,50%,<70(down,60%)', 'ctrl-/' })
 vim.api.nvim_set_var('fzf_colors',         {
     fg = { 'fg', 'FzfNormal' },
