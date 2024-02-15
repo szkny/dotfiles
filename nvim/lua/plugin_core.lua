@@ -32,7 +32,7 @@ local plugins = {
   { 'windwp/nvim-autopairs', event = 'InsertEnter' },
   { 'junegunn/vim-easy-align', lazy = false },
   { 'kevinhwang91/nvim-hlslens' },
-  { 'folke/which-key.nvim', event = 'VeryLazy', init = function() vim.o.timeout = true vim.o.timeoutlen = 100 end },
+  { 'folke/which-key.nvim', event = 'VeryLazy', init = function() vim.o.timeout = true vim.o.timeoutlen = 500 end },
   { 'liuchengxu/vista.vim', cmd = 'Vista' },
   { 'dstein64/vim-startuptime', cmd = 'StartupTime' },
   { 'nvim-lualine/lualine.nvim' },
