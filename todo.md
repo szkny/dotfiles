@@ -2,6 +2,8 @@
 
 - neovim
   - ranger.nvim
+  - vista.vim
+    - fix 'Vista finder' config
 
 - wezterm
   - replacement of tmux
