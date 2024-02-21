@@ -223,6 +223,8 @@ keymap("n", "dw", "b\"_de", opts)
 -- for cursor move
 keymap("n", "j",     "gj",         opts)
 keymap("n", "k",     "gk",         opts)
+keymap("n", "<C-e>", "<C-e>gj",    opts)
+keymap("n", "<C-y>", "<C-y>gk",    opts)
 keymap("i", "<C-h>", "<Left>",     opts)
 keymap("i", "<C-l>", "<Right>",    opts)
 keymap("n", "<S-h>", "10h",        opts)
