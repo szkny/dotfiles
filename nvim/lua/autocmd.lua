@@ -138,7 +138,9 @@ vim.api.nvim_create_autocmd("BufReadCmd", {
     callback = function()
         local path = vim.fn.expand("%:p")
         local output = vim.fn.systemlist("bun " .. path)
-        vim.api.nvim_buf_set_lines(0, 0, -1, true, output)
+        if output then
+          vim.api.nvim_buf_set_lines(0, 0, -1, true, output)
+        end
         vim.opt_local.filetype = "conf"
         vim.opt_local.readonly = true
         vim.opt_local.modifiable = false
