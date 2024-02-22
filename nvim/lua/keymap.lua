@@ -14,8 +14,8 @@ keymap("n", "<leader><leader>", "<CMD>lua dofile(vim.env.MYVIMRC)<CR><CMD>echo '
 keymap("t", "<C-[>", "<C-\\><C-n>", opts)
 keymap("t", "<ESC>", "<C-\\><C-n><Plug>(esc)", { noremap = true })
 keymap("n", "<Plug>(esc)<ESC>", "i<ESC>", opts)
-keymap("i", "<C-s>", function() vim.cmd('w!') end, opts)
-keymap("n", "<C-s>", function() vim.cmd('w!') end, opts)
+keymap("i", "<C-s>", function() try { function() vim.cmd('w!') end, catch{ function (err) print('caught error: '..err)  end } } end, opts)
+keymap("n", "<C-s>", function() try { function() vim.cmd('w!') end, catch{ function (err) print('caught error: '..err)  end } } end, opts)
 keymap("n", "q",
     function()
         try {
