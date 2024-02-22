@@ -1,4 +1,5 @@
 -- 1. LSP Sever management
+require("neodev").setup()
 require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = {
@@ -50,6 +51,9 @@ require("mason-lspconfig").setup_handlers({ function(server)
     opt.settings = {
       Lua = {
         diagnostics = { enable = true, globals = { "vim" } },
+        completion = {
+          callSnippet = "Replace"
+        }
       }
     }
   end
