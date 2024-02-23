@@ -392,6 +392,16 @@ config.key_tables = {
 }
 
 
+-- mouse
+config.mouse_bindings = {
+  {
+    event = { Up = { streak = 1, button = 'Left' } },
+    mods = 'CTRL',
+    action = wezterm.action.OpenLinkAtMouseCursor,
+  },
+}
+
+
 -- notifications
 config.audible_bell = "Disabled"
 config.visual_bell = {
