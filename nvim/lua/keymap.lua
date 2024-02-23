@@ -304,8 +304,6 @@ keymap("n", "<leader>t",  ":<C-u>Term<CR>i",                            opts )
 keymap("n", "<C-g>",      ":<C-u>Vista finder<CR>",                     opts )
 -- -- Navbuddy
 -- keymap("n", "<C-t>",      ":<C-u>Navbuddy<CR>",                         opts )
--- -- symbols-outline.nvim
-keymap("n", "<C-t>",      ":<C-u>SymbolsOutline<CR>",                   opts )
 -- -- minimap.vim
 keymap("n", "<C-k>",      "<CMD>ScrollbarToggle<CR>:MinimapToggle<CR>:try|e|catch|endtry<CR>:MinimapUpdateHighlight<CR>", opts )
 -- -- fugitive
