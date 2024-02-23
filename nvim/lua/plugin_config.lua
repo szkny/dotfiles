@@ -298,7 +298,13 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   end,
 })
 -- vim.api.nvim_create_autocmd({ 'BufEnter' }, {
---   pattern = '*MINIMAP*',
+--   pattern = 'aerial',
+--   callback = function()
+--     require('aerial').open()
+--   end,
+-- })
+-- vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+--   pattern = '-MINIMAP-',
 --   callback = function()
 --     vim.cmd('Minimap')
 --   end,

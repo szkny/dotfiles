@@ -45,7 +45,6 @@ local plugins = {
   { 'lukas-reineke/indent-blankline.nvim', tag = 'v2.20.8' },
   { 'rmagatti/auto-session' },
   { 'Mofiqul/vscode.nvim' },
-  -- { "craftzdog/solarized-osaka.nvim", lazy = false, priority = 1000, opts = {} },
   { 'stevearc/oil.nvim' },
   require('plugin/nvim_tree'),
   { 'szkny/SplitTerm', lazy = false },
