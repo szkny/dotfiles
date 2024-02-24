@@ -193,11 +193,11 @@ vim.cmd([[
     command! -nargs=* Delta call s:delta(<f-args>)
 ]])
 
-function catch(what)
+function Catch(what)
   return what[1]
 end
 
-function try(what)
+function Try(what)
   local status, result = pcall(what[1])
   if not status then
     what[2](result)
@@ -205,7 +205,22 @@ function try(what)
   return result
 end
 
-function oil_ssh_term()
+function Dump(o)
+  if type(o) == "table" then
+    local s = "{ "
+    for k, v in pairs(o) do
+      if type(k) ~= "number" then
+        k = '"' .. k .. '"'
+      end
+      s = s .. "[" .. k .. "] = " .. Dump(v) .. ","
+    end
+    return s .. "} "
+  else
+    return tostring(o)
+  end
+end
+
+local function oil_ssh_term()
   local fname = vim.fn.expand("%:p")
   local protocol, target, path = string.match(fname, "^(.+)://(.-)%/(.+)")
   if protocol ~= "oil-ssh" then
@@ -224,20 +239,7 @@ function oil_ssh_term()
   vim.cmd('call splitterm#open_width(18, "' .. command .. '")')
   vim.cmd("startinsert")
 end
-
 vim.api.nvim_create_user_command("OilSshTerm", oil_ssh_term, { bang = true, nargs = "?" })
-
-function dump(o)
-  if type(o) == "table" then
-    local s = "{ "
-    for k, v in pairs(o) do
-      if type(k) ~= "number" then
-        k = '"' .. k .. '"'
-      end
-      s = s .. "[" .. k .. "] = " .. dump(v) .. ","
-    end
-    return s .. "} "
-  else
-    return tostring(o)
-  end
-end
+return {
+  oil_ssh_term = oil_ssh_term,
+}

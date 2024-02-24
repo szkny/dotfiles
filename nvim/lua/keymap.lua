@@ -20,11 +20,11 @@ keymap("t", "<C-[>", "<C-\\><C-n>", opts)
 keymap("t", "<ESC>", "<C-\\><C-n><Plug>(esc)", { noremap = true })
 keymap("n", "<Plug>(esc)<ESC>", "i<ESC>", opts)
 keymap("i", "<C-s>", function()
-  try({
+  Try({
     function()
       vim.cmd("w!")
     end,
-    catch({
+    Catch({
       function(err)
         print("caught error: " .. err)
       end,
@@ -32,11 +32,11 @@ keymap("i", "<C-s>", function()
   })
 end, opts)
 keymap("n", "<C-s>", function()
-  try({
+  Try({
     function()
       vim.cmd("w!")
     end,
-    catch({
+    Catch({
       function(err)
         print("caught error: " .. err)
       end,
@@ -44,11 +44,11 @@ keymap("n", "<C-s>", function()
   })
 end, opts)
 keymap("n", "q", function()
-  try({
+  Try({
     function()
       vim.cmd("q")
     end,
-    catch({
+    Catch({
       function(error)
         print("caught error: " .. error)
         -- print('E173: some files to edit')
@@ -329,7 +329,7 @@ keymap("n", "<C-h>", ":<C-u>RnvimrToggle<CR>", opts)
 keymap("n", "<C-n>", ":<C-u>NvimTreeToggle<CR>", opts)
 -- -- oil.nvim
 keymap("n", "<Leader>o", require("oil").open_float, opts)
-keymap("n", "<Leader>t", oil_ssh_term, opts)
+keymap("n", "<Leader>t", require("util").oil_ssh_term, opts)
 -- -- SplitTerm
 keymap("n", "t", ":<C-u>18SplitTerm<CR>i", opts)
 keymap("n", "<leader>t", ":<C-u>Term<CR>i", opts)
