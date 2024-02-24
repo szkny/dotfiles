@@ -6,4 +6,3 @@ require("autocmd")
 require("colorscheme")
 require("plugin_config")
 require("lsp")
-

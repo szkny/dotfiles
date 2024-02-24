@@ -2,8 +2,8 @@
 --   Autocmd Rules
 -- *****************************************************************************
 -- IME
-if vim.fn.has('mac') then
-  vim.api.nvim_set_var('imeoff', 'osascript -e "tell application \"System Events\" to key code 102"')
+if vim.fn.has("mac") then
+  vim.api.nvim_set_var("imeoff", 'osascript -e "tell application "System Events" to key code 102"')
   vim.cmd([[
     aug MyIMEGroup
       au!
@@ -95,56 +95,20 @@ vim.cmd([[
         au BufNewFile,BufRead *.ts,*.tsx setfiletype typescript
         au FileType javascript,typescript,vue,html,css,json,yaml setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
     aug END
-
-    fun! s:prettier() abort
-        try
-          undojoin
-        catch
-        endtry
-        let l:pos = getpos('.')
-        silent keepjumps exe "0, $!prettier --stdin-filepath ".expand("%")
-        keepjumps call setpos('.', l:pos)
-        if v:shell_error != 0
-            undo
-            echoerr '[ERROR] prettier failed.'
-            echoerr ''
-        endif
-    endf
-    let g:prettier_on_save = 1
-    fun! s:prettier_on_save()
-        if get(g:, 'prettier_on_save')
-            try
-                call s:prettier()
-                if exists(':LspRestart')
-                    LspRestart
-                endif
-            catch
-                echo '[ERROR] prettier failed.'
-                echo ''
-            endtry
-        endif
-    endf
-    command! Prettier call s:prettier()
-    command! PrettierEnable let g:prettier_on_save = 1
-    command! PrettierDisable let g:prettier_on_save = 0
-    aug PrettierSettings
-        au!
-        au BufWritePre *.js,*.cjs,*.mjs,*.ts,*.tsx,*.vue,*.html,*.css,*.json,*.yml,*.yaml call s:prettier_on_save()
-    aug END
 ]])
 
 vim.api.nvim_create_autocmd("BufReadCmd", {
-    pattern = "bun.lockb",
-    callback = function()
-        local path = vim.fn.expand("%:p")
-        local output = vim.fn.systemlist("bun " .. path)
-        if output then
-          vim.api.nvim_buf_set_lines(0, 0, -1, true, output)
-        end
-        vim.opt_local.filetype = "conf"
-        vim.opt_local.readonly = true
-        vim.opt_local.modifiable = false
-    end,
+  pattern = "bun.lockb",
+  callback = function()
+    local path = vim.fn.expand("%:p")
+    local output = vim.fn.systemlist("bun " .. path)
+    if output then
+      vim.api.nvim_buf_set_lines(0, 0, -1, true, output)
+    end
+    vim.opt_local.filetype = "conf"
+    vim.opt_local.readonly = true
+    vim.opt_local.modifiable = false
+  end,
 })
 
 -- python
@@ -185,21 +149,6 @@ vim.cmd([[
                         " \|hi  ColorColumn guibg=#0f0f0f
             au BufNewFile,BufRead Pipfile      setfiletype toml
             au BufNewFile,BufRead Pipfile.lock setfiletype json
-        aug END
-        aug delimitMate
-            if exists('delimitMate_version')
-                au FileType python   let b:delimitMate_nesting_quotes = ['"',"'"]
-            endif
-        aug END
-        let g:pyform_on_save = 1
-        fun! s:pyform_on_save()
-            if get(g:, 'pyform_on_save')
-                call s:pyform()
-            endif
-        endf
-        aug pyformSettings
-            au!
-            au BufWritePre *.py call s:pyform_on_save()
         aug END
 
         " plugin setting
@@ -247,54 +196,5 @@ vim.cmd([[
             endif
             return l:max_line_length + 1
         endf
-
-        fun! s:pyform(...) abort
-            " autopep8やyapfに利用して編集中のPythonスクリプトを自動整形する関数
-            "      :Pyform [autopep8(デフォルト) もしくは yapf]
-            if &filetype ==# 'python'
-                let l:formatter = 'autopep8'
-                if a:0 > 0
-                    let l:formatter = a:1
-                endif
-                if l:formatter ==# 'autopep8'
-                    if !executable('autopep8')
-                        echon 'Pyform: [error] autopep8 command not found.'
-                        echon '                installing autopep8...'
-                        if !executable('pip')
-                            echoerr 'You have to install pip!'
-                            return
-                        endif
-                        call system('pip install autopep8')
-                        echon
-                    endif
-                    let l:pos = getpos('.')
-                    silent exe '%!autopep8 -'
-                    call setpos('.', l:pos)
-                elseif l:formatter ==# 'yapf'
-                    if !executable('yapf')
-                        echon 'Pyform: [error] yapf command not found.'
-                        echon '                installing yapf...'
-                        if !executable('pip')
-                            echoerr 'You have to install pip!'
-                            return
-                        endif
-                        call system('pip install git+https://github.com/google/yapf')
-                        echon
-                    endif
-                    let l:pos = getpos('.')
-                    silent exe '0, $!yapf'
-                    call setpos('.', l:pos)
-                else
-                    echon 'Pyfrom: [error] you can use autopep8 or yapf.'
-                endif
-            else
-                echon 'Pyform: [error] invalid file type. this is "' . &filetype. '".'
-            endif
-        endf
-        fun! s:CompletionPyformCommands(ArgLead, CmdLine, CusorPos)
-            return filter(['autopep8', 'yapf'], printf('v:val =~ "^%s"', a:ArgLead))
-        endf
-        command! -complete=customlist,s:CompletionPyformCommands -nargs=? Pyform call s:pyform(<f-args>)
     endf
 ]])
-

@@ -10,37 +10,74 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- general
-keymap("n", "<leader><leader>", "<CMD>lua dofile(vim.env.MYVIMRC)<CR><CMD>echo 'Nvim configuration reloaded!'<CR>", opts)
+keymap(
+  "n",
+  "<leader><leader>",
+  "<CMD>lua dofile(vim.env.MYVIMRC)<CR><CMD>echo 'Nvim configuration reloaded!'<CR>",
+  opts
+)
 keymap("t", "<C-[>", "<C-\\><C-n>", opts)
 keymap("t", "<ESC>", "<C-\\><C-n><Plug>(esc)", { noremap = true })
 keymap("n", "<Plug>(esc)<ESC>", "i<ESC>", opts)
-keymap("i", "<C-s>", function() try { function() vim.cmd('w!') end, catch{ function (err) print('caught error: '..err)  end } } end, opts)
-keymap("n", "<C-s>", function() try { function() vim.cmd('w!') end, catch{ function (err) print('caught error: '..err)  end } } end, opts)
-keymap("n", "q",
+keymap("i", "<C-s>", function()
+  try({
     function()
-        try {
-            function()
-                vim.cmd('q')
-            end,
-            catch {
-                function(error)
-                    print('caught error: ' .. error)
-                    -- print('E173: some files to edit')
-                end
-            }
-        }
+      vim.cmd("w!")
     end,
-    opts)
-keymap("n", "<S-q>", function() vim.cmd('qall') end, opts)
-keymap("n", "<Leader>q",  ":BufferNext    <CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", opts)
+    catch({
+      function(err)
+        print("caught error: " .. err)
+      end,
+    }),
+  })
+end, opts)
+keymap("n", "<C-s>", function()
+  try({
+    function()
+      vim.cmd("w!")
+    end,
+    catch({
+      function(err)
+        print("caught error: " .. err)
+      end,
+    }),
+  })
+end, opts)
+keymap("n", "q", function()
+  try({
+    function()
+      vim.cmd("q")
+    end,
+    catch({
+      function(error)
+        print("caught error: " .. error)
+        -- print('E173: some files to edit')
+      end,
+    }),
+  })
+end, opts)
+keymap("n", "<S-q>", function()
+  vim.cmd("qall")
+end, opts)
+keymap("n", "<Leader>q", ":BufferNext    <CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", opts)
 keymap("n", "<Leader>bq", ":BufferNext    <CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", opts)
 keymap("n", "<Leader>pq", ":BufferPrevious<CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", opts)
 
 -- for edit
 keymap("v", ">", ">gv", opts)
 keymap("v", "<", "<gv", opts)
-vim.api.nvim_set_keymap("n", "<Leader>d", "ReplaceWordText()  !=# '' ? ':<C-u>'.  ReplaceWordText().'<Left><Left><Left>' : '<ESC>'", { expr = true })
-vim.api.nvim_set_keymap("v", "<Leader>d", "VReplaceWordText() !=# '' ? ':<C-u>'. VReplaceWordText().'<Left><Left><Left>' : '<ESC>'", { expr = true })
+vim.api.nvim_set_keymap(
+  "n",
+  "<Leader>d",
+  "ReplaceWordText()  !=# '' ? ':<C-u>'.  ReplaceWordText().'<Left><Left><Left>' : '<ESC>'",
+  { expr = true }
+)
+vim.api.nvim_set_keymap(
+  "v",
+  "<Leader>d",
+  "VReplaceWordText() !=# '' ? ':<C-u>'. VReplaceWordText().'<Left><Left><Left>' : '<ESC>'",
+  { expr = true }
+)
 vim.cmd([[
     fun! s:get_vselect_txt()
         if mode()=="v"
@@ -79,9 +116,8 @@ vim.cmd([[
         endif
     endf
 ]])
-keymap("n", "<leader>r",
-    function ()
-        vim.cmd([[
+keymap("n", "<leader>r", function()
+  vim.cmd([[
             fun! Rg_to_qf(line)
                 let parts = split(a:line, ':')
                 return {'filename': parts[0], 'lnum': parts[1], 'col': parts[2],
@@ -110,31 +146,29 @@ keymap("n", "<leader>r",
                 exe "cdo s/" . wordToReplace . "/" . replacement ."/gc | w"
             endif
         ]])
-        -- local qflist = vim.fn.getqflist()
-        -- if #qflist > 0 then
-        --     local targetword = vim.fn.input("Target Word: ")
-        --     local replaceword = vim.fn.input("New Word: ")
-        --     local numreplace = 0
-        --     for i = 1,#qflist do
-        --         if string.find(qflist[i]["text"], targetword) then
-        --             numreplace = numreplace + 1
-        --         end
-        --     end
-        --     if numreplace > 0 then
-        --         local choice = vim.fn.confirm(
-        --             "Will you replace "..numreplace.." of '"..targetword.."' with '"..replaceword.."' ?",
-        --             "&Yes\n&No"
-        --         )
-        --         if choice == 1 then
-        --             vim.cmd("cdo s/"..targetword.."/"..replaceword.."/g | :w!")
-        --         end
-        --     else
-        --         print("not found: '"..targetword.."'")
-        --     end
-        -- end
-    end,
-    opts
-)
+  -- local qflist = vim.fn.getqflist()
+  -- if #qflist > 0 then
+  --     local targetword = vim.fn.input("Target Word: ")
+  --     local replaceword = vim.fn.input("New Word: ")
+  --     local numreplace = 0
+  --     for i = 1,#qflist do
+  --         if string.find(qflist[i]["text"], targetword) then
+  --             numreplace = numreplace + 1
+  --         end
+  --     end
+  --     if numreplace > 0 then
+  --         local choice = vim.fn.confirm(
+  --             "Will you replace "..numreplace.." of '"..targetword.."' with '"..replaceword.."' ?",
+  --             "&Yes\n&No"
+  --         )
+  --         if choice == 1 then
+  --             vim.cmd("cdo s/"..targetword.."/"..replaceword.."/g | :w!")
+  --         end
+  --     else
+  --         print("not found: '"..targetword.."'")
+  --     end
+  -- end
+end, opts)
 
 -- -- for tab/window
 -- keymap("n", "<Right>", ":ChangeBuffer next<CR>",     opts)
@@ -143,15 +177,15 @@ keymap("n", "<leader>r",
 -- keymap("n", "<Left>",  ":BufferLineCyclePrev<CR>",   opts)
 -- keymap("n", "<M-l>",   ":BufferLineCycleNext<CR>",   opts)
 -- keymap("n", "<M-h>",   ":BufferLineCyclePrev<CR>",   opts)
-keymap("n", "<Right>", ":BufferNext<CR>",         opts)
-keymap("n", "<Left>",  ":BufferPrevious<CR>",     opts)
-keymap("n", "<M-l>",   ":BufferNext<CR>",         opts)
-keymap("n", "<M-h>",   ":BufferPrevious<CR>",     opts)
-keymap("n", "<Leader><Right>", ":BufferMoveNext<CR>",     opts)
-keymap("n", "<Leader><Left>",  ":BufferMovePrevious<CR>", opts)
-keymap("n", "<TAB>",   ":buffer#<CR>",            opts)
-keymap("n", "<Up>",    ":ResizeWindow +1<CR>",    opts)
-keymap("n", "<Down>",  ":ResizeWindow -1<CR>",    opts)
+keymap("n", "<Right>", ":BufferNext<CR>", opts)
+keymap("n", "<Left>", ":BufferPrevious<CR>", opts)
+keymap("n", "<M-l>", ":BufferNext<CR>", opts)
+keymap("n", "<M-h>", ":BufferPrevious<CR>", opts)
+keymap("n", "<Leader><Right>", ":BufferMoveNext<CR>", opts)
+keymap("n", "<Leader><Left>", ":BufferMovePrevious<CR>", opts)
+keymap("n", "<TAB>", ":buffer#<CR>", opts)
+keymap("n", "<Up>", ":ResizeWindow +1<CR>", opts)
+keymap("n", "<Down>", ":ResizeWindow -1<CR>", opts)
 vim.cmd([[
     fun! s:changebuffer(direction) abort
         " バッファタブを切り替える関数
@@ -205,80 +239,80 @@ vim.cmd([[
 ]])
 
 -- for yank/delete/paste
-keymap("n", "c",  "\"_c",   opts)
-keymap("v", "c",  "\"_c",   opts)
-keymap("n", "C",  "\"_C",   opts)
-keymap("v", "C",  "\"_C",   opts)
+keymap("n", "c", '"_c', opts)
+keymap("v", "c", '"_c', opts)
+keymap("n", "C", '"_C', opts)
+keymap("v", "C", '"_C', opts)
 -- keymap("n", "s",  "\"_s",   opts)
 -- keymap("v", "s",  "\"_s",   opts)
 -- keymap("n", "S",  "\"_S",   opts)
 -- keymap("v", "S",  "\"_S",   opts)
-keymap("n", "x",  "\"_x",   opts)
-keymap("v", "x",  "\"_x",   opts)
-keymap("v", "p",  "\"_dP",  opts)
-keymap("n", "D",  "\"_D",   opts)
-keymap("n", "de", "\"_de",  opts)
-keymap("n", "dw", "b\"_de", opts)
+keymap("n", "x", '"_x', opts)
+keymap("v", "x", '"_x', opts)
+keymap("v", "p", '"_dP', opts)
+keymap("n", "D", '"_D', opts)
+keymap("n", "de", '"_de', opts)
+keymap("n", "dw", 'b"_de', opts)
 
 -- for cursor move
-keymap("n", "j",     "gj",         opts)
-keymap("n", "k",     "gk",         opts)
-keymap("n", "<C-e>", "<C-e>gj",    opts)
-keymap("n", "<C-y>", "<C-y>gk",    opts)
-keymap("i", "<C-h>", "<Left>",     opts)
-keymap("i", "<C-l>", "<Right>",    opts)
-keymap("n", "<S-h>", "10h",        opts)
-keymap("n", "<S-l>", "10l",        opts)
-keymap("v", "<S-h>", "10h",        opts)
-keymap("v", "<S-l>", "10l",        opts)
-keymap("n", "<S-j>", "5gj",        opts)
-keymap("n", "<S-k>", "5gk",        opts)
-keymap("v", "<S-j>", "5gj",        opts)
-keymap("v", "<S-k>", "5gk",        opts)
+keymap("n", "j", "gj", opts)
+keymap("n", "k", "gk", opts)
+keymap("n", "<C-e>", "<C-e>gj", opts)
+keymap("n", "<C-y>", "<C-y>gk", opts)
+keymap("i", "<C-h>", "<Left>", opts)
+keymap("i", "<C-l>", "<Right>", opts)
+keymap("n", "<S-h>", "10h", opts)
+keymap("n", "<S-l>", "10l", opts)
+keymap("v", "<S-h>", "10h", opts)
+keymap("v", "<S-l>", "10l", opts)
+keymap("n", "<S-j>", "5gj", opts)
+keymap("n", "<S-k>", "5gk", opts)
+keymap("v", "<S-j>", "5gj", opts)
+keymap("v", "<S-k>", "5gk", opts)
 -- keymap("n", "<S-j>", "<C-e>",      opts)
 -- keymap("n", "<S-k>", "<C-y>",      opts)
 -- keymap("v", "<S-j>", "<C-e>",      opts)
 -- keymap("v", "<S-k>", "<C-y>",      opts)
-keymap("i", "<M-h>", "<Left>",     opts)
-keymap("i", "<M-j>", "<Down>",     opts)
-keymap("i", "<M-k>", "<Up>",       opts)
-keymap("i", "<M-l>", "<Right>",    opts)
-keymap("t", "<M-h>", "<Left>",     opts)
-keymap("t", "<M-j>", "<Down>",     opts)
-keymap("t", "<M-k>", "<Up>",       opts)
-keymap("t", "<M-l>", "<Right>",    opts)
-keymap("n", "<M-u>", "<PageUp>",   opts)
+keymap("i", "<M-h>", "<Left>", opts)
+keymap("i", "<M-j>", "<Down>", opts)
+keymap("i", "<M-k>", "<Up>", opts)
+keymap("i", "<M-l>", "<Right>", opts)
+keymap("t", "<M-h>", "<Left>", opts)
+keymap("t", "<M-j>", "<Down>", opts)
+keymap("t", "<M-k>", "<Up>", opts)
+keymap("t", "<M-l>", "<Right>", opts)
+keymap("n", "<M-u>", "<PageUp>", opts)
 keymap("n", "<M-d>", "<PageDown>", opts)
-keymap("c", "<C-a>", "<Home>",     opts)
-keymap("c", "<C-e>", "<End>",      opts)
+keymap("c", "<C-a>", "<Home>", opts)
+keymap("c", "<C-e>", "<End>", opts)
 
 -- for IME
-keymap("n", "あ",   "a",  opts)
-keymap("n", "い",   "i",  opts)
-keymap("n", "う",   "u",  opts)
-keymap("n", "お",   "o",  opts)
-keymap("n", "ｒ",   "r",  opts)
-keymap("n", "ｊ",   "gj", opts)
-keymap("n", "ｋ",   "gj", opts)
-keymap("n", "ｌ",   "l",  opts)
-keymap("n", "ｈ",   "h",  opts)
-keymap("n", "ｐ",   "p",  opts)
+keymap("n", "あ", "a", opts)
+keymap("n", "い", "i", opts)
+keymap("n", "う", "u", opts)
+keymap("n", "お", "o", opts)
+keymap("n", "ｒ", "r", opts)
+keymap("n", "ｊ", "gj", opts)
+keymap("n", "ｋ", "gj", opts)
+keymap("n", "ｌ", "l", opts)
+keymap("n", "ｈ", "h", opts)
+keymap("n", "ｐ", "p", opts)
 keymap("n", "ｄｄ", "dd", opts)
 keymap("n", "ｙｙ", "yy", opts)
 
 -- for Plugins
 -- -- vim-easy-align
-keymap("v", "<Leader>=",  ":EasyAlign *=<CR>",        opts)
-keymap("v", "<Enter>",    "<Plug>(EasyAlign)",        opts)
+keymap("v", "<Leader>=", ":EasyAlign *=<CR>", opts)
+keymap("v", "<Enter>", "<Plug>(EasyAlign)", opts)
 -- -- fuzzy-motion
-keymap("n", "<Leader>f",  ":silent FuzzyMotion<CR>",  opts)
-keymap("n", "s",          ":silent FuzzyMotion<CR>",  opts)
+keymap("n", "<Leader>f", ":silent FuzzyMotion<CR>", opts)
+keymap("n", "s", ":silent FuzzyMotion<CR>", opts)
 -- -- fzf.vim
-keymap("n", "<C-b>",      ":<C-u>Buffers<CR>",        opts)
-keymap("n", "<C-p>",      ":<C-u>Files<CR>",          opts)
-keymap("n", "<Leader>/",  ":<C-u>Lines<CR>",          opts)
-keymap("n", "<C-f>",      ":<C-u>Rg<CR>",             opts)
-keymap("v", "<C-f>",      ":<C-u>call VRgWord()<CR>", opts)
+keymap("n", "<C-b>", ":<C-u>Buffers<CR>", opts)
+keymap("n", "<C-p>", ":<C-u>Files<CR>", opts)
+keymap("n", "<Leader>/", ":<C-u>Lines<CR>", opts)
+keymap("n", "<C-f>", ":<C-u>Rg<CR>", opts)
+keymap("v", "<C-f>", ":<C-u>call VRgWord()<CR>", opts)
 vim.cmd([[
 fun! VRgWord() abort range
     let @@ = ''
@@ -290,41 +324,50 @@ fun! VRgWord() abort range
 endf
 ]])
 -- -- ranger.vim
-keymap("n", "<C-h>",      ":<C-u>RnvimrToggle<CR>",   opts)
+keymap("n", "<C-h>", ":<C-u>RnvimrToggle<CR>", opts)
 -- -- nvim-tree
-keymap("n", "<C-n>",      ":<C-u>NvimTreeToggle<CR>", opts)
+keymap("n", "<C-n>", ":<C-u>NvimTreeToggle<CR>", opts)
 -- -- oil.nvim
-keymap("n", "<Leader>o",  require('oil').open_float,  opts)
-keymap("n", "<Leader>t",  oil_ssh_term,               opts)
+keymap("n", "<Leader>o", require("oil").open_float, opts)
+keymap("n", "<Leader>t", oil_ssh_term, opts)
 -- -- SplitTerm
-keymap("n", "t",          ":<C-u>18SplitTerm<CR>i",                     opts )
-keymap("n", "<leader>t",  ":<C-u>Term<CR>i",                            opts )
+keymap("n", "t", ":<C-u>18SplitTerm<CR>i", opts)
+keymap("n", "<leader>t", ":<C-u>Term<CR>i", opts)
 -- -- vista.vim
 -- keymap("n", "<C-t>",      ":<C-u>Vista!!<CR>",                          opts )
-keymap("n", "<C-g>",      ":<C-u>Vista finder<CR>",                     opts )
+keymap("n", "<C-g>", ":<C-u>Vista finder<CR>", opts)
 -- -- Navbuddy
 -- keymap("n", "<C-t>",      ":<C-u>Navbuddy<CR>",                         opts )
 -- -- minimap.vim
-keymap("n", "<C-k>",      "<CMD>ScrollbarToggle<CR>:MinimapToggle<CR>:try|e|catch|endtry<CR>:MinimapUpdateHighlight<CR>", opts )
+keymap(
+  "n",
+  "<C-k>",
+  "<CMD>ScrollbarToggle<CR>:MinimapToggle<CR>:try|e|catch|endtry<CR>:MinimapUpdateHighlight<CR>",
+  opts
+)
 -- -- fugitive
 -- keymap("n", "<Leader>gg", ":<C-u>G<CR>",                                opts )
-keymap("n", "<Leader>gd", ":<C-u>Gvdiffsplit<CR>",                      opts )
+keymap("n", "<Leader>gd", ":<C-u>Gvdiffsplit<CR>", opts)
 -- -- lazygit
-keymap("n", "<Leader>gg", ":<C-u>SplitTerm lazygit<CR><C-w>J:res 1000<CR>i", opts )
+keymap("n", "<Leader>gg", ":<C-u>SplitTerm lazygit<CR><C-w>J:res 1000<CR>i", opts)
 -- -- gitsigns.nvim
-keymap("n", "<Leader>gb", require("gitsigns").toggle_current_line_blame, opts )
+keymap("n", "<Leader>gb", require("gitsigns").toggle_current_line_blame, opts)
 
 -- -- skkeleton
-keymap("i", "<C-j>", "<Plug>(skkeleton-enable)",  opts)
-keymap("c", "<C-j>", "<Plug>(skkeleton-enable)",  opts)
+keymap("i", "<C-j>", "<Plug>(skkeleton-enable)", opts)
+keymap("c", "<C-j>", "<Plug>(skkeleton-enable)", opts)
 keymap("i", "<C-l>", "<Plug>(skkeleton-disable)", opts)
 keymap("c", "<C-l>", "<Plug>(skkeleton-disable)", opts)
 
 -- for My Commands
-keymap("i", "<M-;>", "<ESC>:Appendchar ;<Cr>a",      opts)
-keymap("n", "<M-;>",      ":Appendchar ;<Cr>",       opts)
-keymap("v", "<M-;>",      ":Appendchar ;<Cr>",       opts)
-keymap("v", "<Leader>t",  ":Trans<CR>",              opts)
-keymap("n", "<Leader>gf", ":Fshow<CR>",              opts)
-keymap("n", "<Leader>l", "exists(':MinimapUpdateHighlight') ? ':<C-u>set hlsearch!<CR>:MinimapUpdateHighlight<CR>' : ':<C-u>set hlsearch!<CR>'", { silent = true, expr = true })
-
+keymap("i", "<M-;>", "<ESC>:Appendchar ;<Cr>a", opts)
+keymap("n", "<M-;>", ":Appendchar ;<Cr>", opts)
+keymap("v", "<M-;>", ":Appendchar ;<Cr>", opts)
+keymap("v", "<Leader>t", ":Trans<CR>", opts)
+keymap("n", "<Leader>gf", ":Fshow<CR>", opts)
+keymap(
+  "n",
+  "<Leader>l",
+  "exists(':MinimapUpdateHighlight') ? ':<C-u>set hlsearch!<CR>:MinimapUpdateHighlight<CR>' : ':<C-u>set hlsearch!<CR>'",
+  { silent = true, expr = true }
+)

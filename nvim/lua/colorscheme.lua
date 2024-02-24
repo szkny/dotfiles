@@ -17,18 +17,18 @@ vim.cmd([[
     aug END
 ]])
 
-vim.opt.background = 'dark'
-local c = require('vscode.colors').get_colors()
-require('vscode').setup({
-  style = 'dark',
+vim.opt.background = "dark"
+local c = require("vscode.colors").get_colors()
+require("vscode").setup({
+  style = "dark",
   transparent = true,
   italic_comments = true,
   disable_nvimtree_bg = true,
   color_overrides = {
-    vscLineNumber = '#666666',
+    vscLineNumber = "#666666",
   },
   group_overrides = {
-    Cursor = { fg=c.vscDarkBlue, bg=c.vscLightGreen, bold=true },
-  }
+    Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
+  },
 })
-require('vscode').load('dark')
+require("vscode").load("dark")
