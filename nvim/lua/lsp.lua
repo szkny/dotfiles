@@ -74,6 +74,9 @@ null_ls.setup({
   },
 })
 local formatter_on_save = true
+vim.api.nvim_create_user_command("Format", function()
+  vim.lsp.buf.format({ async = false })
+end, {})
 vim.api.nvim_create_user_command("FormatterEnable", function()
   formatter_on_save = true
 end, {})
