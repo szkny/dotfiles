@@ -589,6 +589,32 @@ require("aerial").setup({
   end,
 })
 vim.keymap.set("n", "<C-t>", "<cmd>AerialToggle!<CR>")
+-- vim.keymap.set("n", "<C-t>", function ()
+--   local aerial_api = require("aerial")
+--   local script_winid
+--   if not aerial_api.is_open() then
+--     script_winid = vim.fn.win_getid()
+--   end
+--   aerial_api.toggle({focus = true})
+--   if script_winid then
+--     -- -- TODO: NvimTreeが開いている場合はNvimTreeの下に配置したい
+--     -- local view = require('nvim-tree.view')
+--     -- if view.is_visible() then
+--     --   local current_win = vim.api.nvim_get_current_win()
+--     --   local current_tabpage = vim.api.nvim_win_get_tabpage(current_win)
+--     --   local tabpages = vim.api.nvim_list_tabpages()
+--     --   for _, tabpage in ipairs(tabpages) do
+--     --       if tabpage ~= current_tabpage then
+--     --           local win_ids = vim.api.nvim_tabpage_list_wins(tabpage)
+--     --           local first_win_id = win_ids[1]
+--     --           vim.api.nvim_win_set_config(current_win, {relative='win', win=first_win_id})
+--     --           break
+--     --       end
+--     --   end
+--     -- end
+--     vim.fn.win_gotoid(script_winid)
+--   end
+-- end)
 
 
 -- lualine.nvim
