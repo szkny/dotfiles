@@ -6,11 +6,11 @@
   - vista.vim
     - fix 'Vista finder' config
   - aerial.nvim
-    - basic setup
+    - basic setup :DONE
   - auto-session.nvim
     - adapt it to neotree, terminal, code-minimap, etc.
   - mason
-    - setup auto formatter
+    - setup auto formatter :DONE
 
 - wezterm
   - replacement of tmux
