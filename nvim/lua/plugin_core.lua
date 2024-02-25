@@ -47,7 +47,7 @@ local plugins = {
   { "Mofiqul/vscode.nvim" },
   { "stevearc/oil.nvim" },
   require("plugin/nvim_tree"),
-  { "szkny/SplitTerm",     cmd = "SplitTerm" },
+  { "szkny/SplitTerm",     lazy = false },
   { "junegunn/fzf",        lazy = false },
   { "junegunn/fzf.vim",    lazy = false },
   { "MunifTanjim/nui.nvim" },
