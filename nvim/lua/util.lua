@@ -222,6 +222,9 @@ end
 
 local function oil_ssh_term()
   local fname = vim.fn.expand("%:p")
+  if type(fname) == "table" then
+    fname = fname[0]
+  end
   local protocol, target, path = string.match(fname, "^(.+)://(.-)%/(.+)")
   if protocol ~= "oil-ssh" then
     path = fname
