@@ -5,7 +5,7 @@
   - ranger.nvim
     - basic setup
   - vista.vim
-    - fix 'Vista finder' config
+    - fix 'Vista finder' config: DONE
   - aerial.nvim
     - basic setup :DONE
   - auto-session.nvim
