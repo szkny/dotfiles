@@ -285,7 +285,6 @@ export FZF_DEFAULT_OPTS=$(cat <<"EOF"
   --exit-0
 EOF
 )
-# export FZF_DEFAULT_OPTS="--multi --height=90% --layout=reverse --prompt '∷ ' --pointer ▶ --marker ▶ --preview '[ -f {} ] && bat --color=always --style=numbers {} || exa -T {} -I node_modules' --preview-window 'hidden,wrap,right,90%' --bind 'ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up' --select-1 --exit-0"
 export FZF_CTRL_T_OPTS=$(cat <<"EOF"
 --preview '
   [ -f {} ] \
@@ -317,11 +316,6 @@ export PATH=$PATH:$GOPATH/bin
 
 ## cargo setup
 [ -f ~/.cargo/env ] && source ~/.cargo/env
-
-# ## nvm setup
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # # volta
 # export VOLTA_HOME="$HOME/.volta"
