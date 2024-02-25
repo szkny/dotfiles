@@ -86,9 +86,9 @@ local plugins = {
   { "ggandor/lightspeed.nvim",       lazy = false },
   { "szkny/Ipython",                 ft = "python" },
   { "elzr/vim-json",                 ft = "json" },
-  { "raimon49/requirements.txt.vim", ft = "requirements" },
   { "cespare/vim-toml",              ft = "toml" },
   { "hashivim/vim-terraform",        ft = "terraform" },
+  { "raimon49/requirements.txt.vim" },
   { "pearofducks/ansible-vim" },
 }
 
