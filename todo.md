@@ -4,6 +4,8 @@
 
   - auto changing cursor shape in tmux
   - make startup time faster
+  - telescope.nvim
+    - basic setup
   - ranger.nvim
     - basic setup
   - vista.vim
