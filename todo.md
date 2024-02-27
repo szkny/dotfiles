@@ -2,6 +2,7 @@
 
 - neovim
 
+  - auto changing cursor shape in tmux
   - make startup time faster
   - ranger.nvim
     - basic setup
