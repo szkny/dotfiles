@@ -1,6 +1,7 @@
 # TODO list
 
 - neovim
+
   - make startup time faster
   - ranger.nvim
     - basic setup
