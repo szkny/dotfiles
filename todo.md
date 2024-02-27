@@ -6,16 +6,12 @@
   - make startup time faster
   - telescope.nvim
     - basic setup
-  - ranger.nvim
+  - obsidian.nvim
     - basic setup
-  - vista.vim
-    - fix 'Vista finder' config: DONE
-  - aerial.nvim
-    - basic setup :DONE
   - auto-session.nvim
     - adapt it to neotree, terminal, code-minimap, etc.
-  - mason
-    - setup auto formatter :DONE
+  - ranger.nvim
+    - basic setup
 
 - wezterm
   - replacement of tmux
