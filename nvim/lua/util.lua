@@ -195,12 +195,22 @@ vim.cmd([[
 
 vim.cmd([[
     fun! s:google(...) abort
-      if a:0 == 0
-          let l:word = ''
-      else
-          let l:word = '/search?q='.join(a:000, '&q=')
+      let l:word = ''
+      if a:0 > 0
+        let l:word = '/search?q='.join(a:000, '&q=')
       endif
-      call splitterm#open_width(1000, 'w3m "google.com'.l:word.'"')
+      exe 'term w3m "google.com' . l:word . '"'
+      exe 'file Google Search'
+      setlocal nonumber
+      setlocal buftype=terminal
+      setlocal filetype=terminal
+      setlocal nocursorline
+      setlocal nocursorcolumn
+      setlocal noswapfile
+      setlocal nomodifiable
+      setlocal nolist
+      setlocal nospell
+      setlocal lazyredraw
       startinsert
     endf
     command! -nargs=* Google call s:google(<f-args>)
