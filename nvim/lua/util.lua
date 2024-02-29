@@ -187,10 +187,23 @@ vim.cmd([[
 
 vim.cmd([[
     fun! s:delta(...) abort
-      exe "100SplitTerm file=$(fzf) && delta -s --paging always "..expand("%").." $file"
+      exe "1000SplitTerm file=$(fzf) && delta -s --paging always "..expand("%").." $file"
       startinsert
     endf
     command! -nargs=* Delta call s:delta(<f-args>)
+]])
+
+vim.cmd([[
+    fun! s:google(...) abort
+      if a:0 == 0
+          let l:word = ''
+      else
+          let l:word = '/search?q='.join(a:000, '&q=')
+      endif
+      call splitterm#open_width(1000, 'w3m "google.com'.l:word.'"')
+      startinsert
+    endf
+    command! -nargs=* Google call s:google(<f-args>)
 ]])
 
 function Catch(what)
