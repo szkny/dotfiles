@@ -57,7 +57,7 @@ require("mason-lspconfig").setup_handlers({
 })
 
 -- formatter
-local formatter_on_save = false
+local formatter_on_save = true
 require("mason-null-ls").setup({
   ensure_installed = {
     "stylua",
