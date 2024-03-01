@@ -57,6 +57,7 @@ require("mason-lspconfig").setup_handlers({
 })
 
 -- formatter
+local formatter_on_save = false
 require("mason-null-ls").setup({
   ensure_installed = {
     "stylua",
@@ -72,8 +73,19 @@ null_ls.setup({
     null_ls.builtins.formatting.prettier,
     null_ls.builtins.formatting.black,
   },
+  on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        callback = function()
+          if formatter_on_save then
+            vim.lsp.buf.format({ async = false })
+          end
+        end,
+        buffer = bufnr,
+      })
+    end
+  end,
 })
-local formatter_on_save = true
 vim.api.nvim_create_user_command("Format", function()
   vim.lsp.buf.format({ async = false })
 end, {})
@@ -83,13 +95,6 @@ end, {})
 vim.api.nvim_create_user_command("FormatterDisable", function()
   formatter_on_save = false
 end, {})
-vim.api.nvim_create_autocmd("BufWritePre", {
-  callback = function()
-    if formatter_on_save then
-      vim.lsp.buf.format({ async = false })
-    end
-  end,
-})
 
 -- diagnostic signs
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
