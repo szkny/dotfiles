@@ -20,22 +20,18 @@ require("mason-lspconfig").setup_handlers({
   function(server)
     local opt = {
       capabilities = require("cmp_nvim_lsp").default_capabilities(),
-      on_attach = function(client)
+      on_attach = function(client, bufnr)
         if client.supports_method("textDocument/documentHighlight") then
-          vim.cmd([[
-          aug lsp_document_highlight
-            au!
-            au CursorHold,CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
-            au CursorMoved,CursorMovedI <buffer> lua vim.lsp.buf.clear_references()
-          aug END
-        ]])
+          vim.api.nvim_create_autocmd(
+            { "CursorHold", "CursorHoldI" },
+            { callback = vim.lsp.buf.document_highlight, buffer = bufnr }
+          )
+          vim.api.nvim_create_autocmd(
+            { "CursorMoved", "CursorMovedI" },
+            { callback = vim.lsp.buf.clear_references, buffer = bufnr }
+          )
         end
-        vim.cmd([[
-        aug lsp_show_diagnostic
-          au!
-          au CursorHold <buffer> lua vim.diagnostic.open_float()
-        aug END
-      ]])
+        vim.api.nvim_create_autocmd({ "CursorHold" }, { callback = vim.diagnostic.open_float, buffer = bufnr })
       end,
       handlers = {
         ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
