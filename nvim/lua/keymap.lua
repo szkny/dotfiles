@@ -10,15 +10,21 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- general
-keymap(
-  "n",
-  "<leader><leader>",
-  -- "<CMD>lua dofile(vim.env.MYVIMRC)<CR><CMD>echo 'Nvim configuration reloaded!'<CR>",
-  "<CMD>source $MYVIMRC<CR><CMD>echo 'Nvim configuration reloaded!'<CR>",
-  opts
-)
+local function reload_nvim_config()
+  local dir = vim.fn.expand("~/.config/nvim/lua")
+  local files = vim.fn.readdir(dir)
+  for _, file in ipairs(files) do
+    if vim.fn.isdirectory(dir .. "/" .. file) == 0 and file:match("%.lua$") then
+      if file ~= "plugin_core.lua" then
+        dofile(dir .. "/" .. file)
+      end
+    end
+  end
+  print("Nvim configurations reloaded!")
+end
+keymap("n", "<leader><leader>", reload_nvim_config, opts)
 keymap("t", "<C-[>", "<C-\\><C-n>", opts)
-keymap("t", "<ESC>", "<C-\\><C-n><Plug>(esc)", { noremap = true })
+keymap("t", "<ESC>", "<C-\\><C-n><Plug>(esc)", opts)
 keymap("n", "<Plug>(esc)<ESC>", "i<ESC>", opts)
 keymap("i", "<C-s>", function()
   Try({
@@ -58,7 +64,7 @@ keymap("n", "q", function()
   })
 end, opts)
 keymap("n", "<S-q>", function()
-  vim.cmd("qall")
+  vim.cmd("qall!")
 end, opts)
 keymap("n", "<Leader>q", ":BufferNext    <CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", opts)
 keymap("n", "<Leader>bq", ":BufferNext    <CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", opts)
@@ -328,7 +334,7 @@ endf
 keymap("n", "<C-h>", ":<C-u>RnvimrToggle<CR>", opts)
 -- -- nvim-tree
 keymap("n", "<C-n>", function()
-  require("nvim-tree.api").tree.toggle({ focus = false })
+  require("nvim-tree.api").tree.toggle({ focus = true })
 end, opts)
 -- -- oil.nvim
 keymap("n", "<Leader>o", require("oil").open_float, opts)

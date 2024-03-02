@@ -24,7 +24,7 @@ vim.api.nvim_set_var("skip_loading_mswin", 1)
 --   Basic Setup
 -- *****************************************************************************"
 -- Encoding
-vim.opt.fileencoding = "utf-8"
+-- vim.opt.fileencoding = "utf-8"
 vim.opt.fileencodings = "utf-8"
 vim.opt.fileformats = "unix,dos,mac"
 vim.opt.bomb = true
@@ -156,17 +156,19 @@ vim.opt.cursorline = true
 -- *****************************************************************************
 --   Abbreviations
 -- *****************************************************************************
--- -- no one is really happy until you have this shortcuts
--- cnoreabbrev W! w!
--- cnoreabbrev Q! q!
--- cnoreabbrev Qall! qall!
--- cnoreabbrev Wq wq
--- cnoreabbrev Wa wa
--- cnoreabbrev wQ wq
--- cnoreabbrev WQ wq
--- cnoreabbrev W w
--- cnoreabbrev Q q
--- cnoreabbrev Qall qall
+-- no one is really happy until you have this shortcuts
+vim.cmd([[
+  cnoreabbrev W! w!
+  cnoreabbrev Q! q!
+  cnoreabbrev Qall! qall!
+  cnoreabbrev Wq wq
+  cnoreabbrev Wa wa
+  cnoreabbrev wQ wq
+  cnoreabbrev WQ wq
+  cnoreabbrev W w
+  cnoreabbrev Q q
+  cnoreabbrev Qall qall
+]])
 
 -- *****************************************************************************
 --   Include user's local vim config
