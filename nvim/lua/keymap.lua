@@ -13,7 +13,8 @@ vim.g.maplocalleader = " "
 keymap(
   "n",
   "<leader><leader>",
-  "<CMD>lua dofile(vim.env.MYVIMRC)<CR><CMD>echo 'Nvim configuration reloaded!'<CR>",
+  -- "<CMD>lua dofile(vim.env.MYVIMRC)<CR><CMD>echo 'Nvim configuration reloaded!'<CR>",
+  "<CMD>source $MYVIMRC<CR><CMD>echo 'Nvim configuration reloaded!'<CR>",
   opts
 )
 keymap("t", "<C-[>", "<C-\\><C-n>", opts)
@@ -326,7 +327,9 @@ endf
 -- -- ranger.vim
 keymap("n", "<C-h>", ":<C-u>RnvimrToggle<CR>", opts)
 -- -- nvim-tree
-keymap("n", "<C-n>", ":<C-u>NvimTreeToggle<CR>", opts)
+keymap("n", "<C-n>", function()
+  require("nvim-tree.api").tree.toggle({ focus = false })
+end, opts)
 -- -- oil.nvim
 keymap("n", "<Leader>o", require("oil").open_float, opts)
 keymap("n", "<Leader>t", require("util").oil_ssh_term, opts)
