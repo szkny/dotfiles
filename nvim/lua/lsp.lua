@@ -31,7 +31,7 @@ require("mason-lspconfig").setup_handlers({
             { callback = vim.lsp.buf.clear_references, buffer = bufnr }
           )
         end
-        vim.api.nvim_create_autocmd({ "CursorHold" }, { callback = vim.diagnostic.open_float, buffer = bufnr })
+        -- vim.api.nvim_create_autocmd({ "CursorHold" }, { callback = vim.diagnostic.open_float, buffer = bufnr })
       end,
       handlers = {
         ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
