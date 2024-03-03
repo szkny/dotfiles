@@ -282,140 +282,107 @@ require("auto-session").setup({
     post_cwd_changed_hook = nil,
   },
 })
-local auto_session_plugin_state = {
-  nvimtree = false,
-  minimap = false,
-  aerial = false,
+local auto_session_plugins = {
+  splitterm = {
+    save_index = 1,
+    state = false,
+    save_commands = {
+      "exe '18SplitTerm'",
+      'exe "normal! \\<C-w>W"',
+    },
+  },
+  nvimtree = {
+    save_index = 2,
+    state = false,
+    save_commands = { "lua require('nvim-tree.api').tree.toggle({focus=false})" },
+  },
+  minimap = {
+    save_index = 3,
+    state = false,
+    save_commands = {
+      "exe 'ScrollbarHide'",
+      "exe 'Minimap'",
+    },
+  },
+  aerial = {
+    save_index = 4,
+    state = false,
+    save_commands = { "exe 'AerialToggle!'" },
+  },
 }
-local add_auto_session_command = function(commands)
-  local root_dir = require("auto-session").get_root_dir()
-  local cwd = string.gsub(vim.fn.getcwd(), "/", "%%")
-  local auto_session_file = root_dir .. cwd .. ".vim"
-  local file = io.open(auto_session_file, "a")
-  if file then
-    for _, command in ipairs(commands) do
-      file:write(command .. "\n")
+function Find_buffer(pattern)
+  local buffers = vim.api.nvim_list_bufs()
+  for _, buf in ipairs(buffers) do
+    local bufname = vim.api.nvim_buf_get_name(buf)
+    if string.find(bufname, pattern) then
+      return true
     end
-    file:close()
-  else
-    print("Failed to open file: " .. auto_session_file)
+  end
+  return false
+end
+
+local function close_splitterm()
+  if Find_buffer("SplitTerm") then
+    vim.cmd("SplitTermClose")
+    auto_session_plugins.splitterm.state = true
   end
 end
-vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
-  callback = function()
-    -- NvimTree
-    local view = require("nvim-tree.view")
-    if view.is_visible() then
-      local api = require("nvim-tree.api")
-      api.tree.close()
-      auto_session_plugin_state.nvimtree = true
+local function close_nvim_tree()
+  local view = require("nvim-tree.view")
+  if view.is_visible() then
+    local api = require("nvim-tree.api")
+    api.tree.close()
+    auto_session_plugins.nvimtree.state = true
+  end
+end
+local function close_minimap()
+  if Find_buffer("-MINIMAP-") then
+    vim.cmd("MinimapClose")
+    auto_session_plugins.minimap.state = true
+  end
+end
+local function close_aerial()
+  local aerial_api = require("aerial")
+  if aerial_api.is_open() then
+    aerial_api.close_all()
+    auto_session_plugins.aerial.state = true
+  end
+end
+local function save_auto_session()
+  local auto_session_root_dir = require("auto-session").get_root_dir()
+  local cwd = string.gsub(vim.fn.getcwd(), "/", "%%")
+  local auto_session_file_name = auto_session_root_dir .. cwd .. ".vim"
+  local auto_session_file_io = io.open(auto_session_file_name, "a")
+  if auto_session_file_io then
+    local sorted_plugins = {}
+    for _, plugin in pairs(auto_session_plugins) do
+      table.insert(sorted_plugins, plugin)
     end
-    -- minimap
-    local find_buffer = function(pattern)
-      local buffers = vim.api.nvim_list_bufs()
-      for _, buf in ipairs(buffers) do
-        local bufname = vim.api.nvim_buf_get_name(buf)
-        if string.find(bufname, pattern) then
-          return true
+    table.sort(sorted_plugins, function(a, b)
+      return a.save_index < b.save_index
+    end)
+    for _, plugin in ipairs(sorted_plugins) do
+      if plugin.state then
+        plugin.state = false
+        for _, command in ipairs(plugin.save_commands) do
+          auto_session_file_io:write(command .. "\n")
         end
       end
-      return false
     end
-    if find_buffer("-MINIMAP-") then
-      vim.cmd("MinimapClose")
-      auto_session_plugin_state.minimap = true
-    end
-    -- aerial
-    local aerial_api = require("aerial")
-    if aerial_api.is_open() then
-      aerial_api.close_all()
-      auto_session_plugin_state.aerial = true
-    end
-  end,
-})
--- save restore commands for auto reopen
-vim.api.nvim_create_autocmd({ "VimLeave" }, {
+    auto_session_file_io:close()
+  else
+    print("Failed to open file: " .. auto_session_file_name)
+  end
+end
+vim.api.nvim_create_autocmd("VimLeavePre", {
   callback = function()
-    -- NvimTree
-    if auto_session_plugin_state.nvimtree then
-      auto_session_plugin_state.nvimtree = false
-      add_auto_session_command({ "lua require('nvim-tree.api').tree.toggle({focus=false})" })
-    end
-    -- minimap
-    if auto_session_plugin_state.minimap then
-      auto_session_plugin_state.minimap = false
-      add_auto_session_command({
-        "exe 'ScrollbarHide'",
-        "exe 'Minimap'",
-      })
-    end
-    -- aerial
-    if auto_session_plugin_state.aerial then
-      auto_session_plugin_state.aerial = false
-      add_auto_session_command({ "exe 'AerialToggle!'" })
-    end
+    close_splitterm()
+    close_nvim_tree()
+    close_minimap()
+    close_aerial()
   end,
 })
--- local auto_session_plugin_callback = {
---   nvimtree = {
---     on_vim_leave_pre = function()
---       local view = require("nvim-tree.view")
---       if view.is_visible() then
---         local api = require("nvim-tree.api")
---         api.tree.close()
---         auto_session_plugin_state.nvimtree = true
---       end
---     end,
---     on_vim_leave = function()
---       if auto_session_plugin_state.nvimtree then
---         auto_session_plugin_state.nvimtree = false
---         add_auto_session_command({ "lua require('nvim-tree.api').tree.toggle({focus=false})" })
---       end
---     end,
---   },
---   minimap = {
---     on_vim_leave_pre = function()
---       local find_buffer = function(pattern)
---         local buffers = vim.api.nvim_list_bufs()
---         for _, buf in ipairs(buffers) do
---           local bufname = vim.api.nvim_buf_get_name(buf)
---           if string.find(bufname, pattern) then
---             return true
---           end
---         end
---         return false
---       end
---       if find_buffer("-MINIMAP-") then
---         vim.cmd("MinimapClose")
---         auto_session_plugin_state.minimap = true
---       end
---     end,
---     on_vim_leave = function()
---       if auto_session_plugin_state.minimap then
---         auto_session_plugin_state.minimap = false
---         add_auto_session_command({
---           "exe 'ScrollbarHide'",
---           "exe 'Minimap'",
---         })
---       end
---     end,
---   },
---   aerial = {
---     on_vim_leave_pre = function()
---       local aerial_api = require("aerial")
---       if aerial_api.is_open() then
---         aerial_api.close_all()
---         auto_session_plugin_state.aerial = true
---       end
---     end,
---     on_vim_leave = function()
---       if auto_session_plugin_state.aerial then
---         auto_session_plugin_state.aerial = false
---         add_auto_session_command({ "exe 'AerialToggle!'" })
---       end
---     end,
---   },
--- }
+vim.api.nvim_create_autocmd({ "VimLeave" }, { callback = save_auto_session })
 
 -- nvim-tree
 -- disable netrw at the very start of your init.lua (strongly advised)
