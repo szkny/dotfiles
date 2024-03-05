@@ -8,8 +8,6 @@
     - basic setup
   - obsidian.nvim
     - basic setup
-  - auto-session.nvim
-    - adapt it to neotree, terminal, code-minimap, etc.
   - ranger.nvim
     - basic setup
 
