@@ -284,30 +284,35 @@ require("auto-session").setup({
 })
 local auto_session_plugins = {
   splitterm = {
-    save_index = 1,
     state = false,
+    save_index = 1,
     save_commands = {
       "exe '18SplitTerm'",
       'exe "normal! \\<C-w>W"',
     },
   },
   nvimtree = {
-    save_index = 2,
     state = false,
+    save_index = 2,
     save_commands = { "lua require('nvim-tree.api').tree.toggle({focus=false})" },
   },
   minimap = {
-    save_index = 3,
     state = false,
+    save_index = 3,
     save_commands = {
       "exe 'ScrollbarHide'",
       "exe 'Minimap'",
     },
   },
   aerial = {
-    save_index = 4,
     state = false,
+    save_index = 4,
     save_commands = { "exe 'AerialToggle!'" },
+  },
+  trouble = {
+    state = false,
+    save_index = 5,
+    save_commands = { "exe 'TroubleToggle'" },
   },
 }
 function Find_buffer(pattern)
@@ -348,6 +353,12 @@ local function close_aerial()
     auto_session_plugins.aerial.state = true
   end
 end
+local function close_trouble()
+  if Find_buffer("Trouble") then
+    vim.cmd("TroubleClose")
+    auto_session_plugins.trouble.state = true
+  end
+end
 local function save_auto_session()
   local auto_session_root_dir = require("auto-session").get_root_dir()
   local cwd = string.gsub(vim.fn.getcwd(), "/", "%%")
@@ -380,6 +391,7 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
     close_nvim_tree()
     close_minimap()
     close_aerial()
+    close_trouble()
   end,
 })
 vim.api.nvim_create_autocmd({ "VimLeave" }, { callback = save_auto_session })
@@ -687,6 +699,21 @@ vim.keymap.set("n", "<C-t>", "<cmd>AerialToggle!<CR>")
 --     vim.fn.win_gotoid(script_winid)
 --   end
 -- end)
+
+-- trouble.nvim
+require("trouble").setup({
+  position = "bottom",
+  hight = 10,
+  mode = "workspace_diagnostics",
+  severity = {
+    vim.diagnostic.severity.ERROR,
+    vim.diagnostic.severity.WARN,
+    vim.diagnostic.severity.HINT,
+    vim.diagnostic.severity.INFO,
+  },
+  icon = true,
+  use_diagnostic_signs = false,
+})
 
 -- lualine.nvim
 vim.cmd([[
