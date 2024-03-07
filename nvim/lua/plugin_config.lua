@@ -312,7 +312,10 @@ local auto_session_plugins = {
   trouble = {
     state = false,
     save_index = 5,
-    save_commands = { "exe 'TroubleToggle'" },
+    save_commands = {
+      "exe 'TroubleToggle'",
+      'exe "normal! \\<C-w>W"',
+    },
   },
 }
 function Find_buffer(pattern)
@@ -703,7 +706,7 @@ vim.keymap.set("n", "<C-t>", "<cmd>AerialToggle!<CR>")
 -- trouble.nvim
 require("trouble").setup({
   position = "bottom",
-  hight = 10,
+  height = 5,
   mode = "workspace_diagnostics",
   severity = {
     vim.diagnostic.severity.ERROR,
