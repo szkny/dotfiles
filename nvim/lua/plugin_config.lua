@@ -2,58 +2,27 @@
 --   Plugin Configuration
 -- *****************************************************************************
 
--- nvim-web-devicons
-require("nvim-web-devicons").setup({
-  override_by_extension = {
-    ["log"] = {
-      icon = "",
-      color = "#81e043",
-      name = "Log",
-    },
-    ["txt"] = {
-      icon = "",
-      color = "#81e043",
-      name = "Text",
-    },
-    ["csv"] = {
-      icon = "",
-      color = "#81e043",
-      name = "Csv",
-    },
-    ["tsv"] = {
-      icon = "",
-      color = "#81e043",
-      name = "Tsv",
-    },
-    ["dockerfile"] = {
-      icon = "",
-      color = "#5599dd",
-      name = "Dockerfile",
-    },
-  },
-})
-
 -- nvim-notify
 --   stages = "fade_in_slide_out",
 --   stages = "fade",
 --   render = "default",
 --   render = "compact",
 require("notify").setup({
-  stages = "fade_in_slide_out",
-  render = "default",
-  background_colour = "#252525",
-  timeout = 3000,
-  max_width = 80,
-  minimum_width = 50,
-  top_down = false,
-  fps = 60,
-  icons = {
-    ERROR = " ",
-    WARN = " ",
-    INFO = " ",
-    DEBUG = " ",
-    TRACE = "✎ ",
-  },
+	stages = "fade_in_slide_out",
+	render = "default",
+	background_colour = "#252525",
+	timeout = 3000,
+	max_width = 80,
+	minimum_width = 50,
+	top_down = false,
+	fps = 60,
+	icons = {
+		ERROR = " ",
+		WARN = " ",
+		INFO = " ",
+		DEBUG = " ",
+		TRACE = "✎ ",
+	},
 })
 vim.api.nvim_set_hl(0, "NotifyERRORBorder", { fg = "#8a1f1f", bg = "none" })
 vim.api.nvim_set_hl(0, "NotifyWARNBorder", { fg = "#79491d", bg = "none" })
@@ -78,31 +47,31 @@ vim.api.nvim_set_hl(0, "NotifyTRACEBody", { fg = "none", bg = "#252525" })
 
 -- noice.nvim
 require("noice").setup({
-  messages = {
-    enabled = true,
-    view = "notify",
-    view_error = "notify",
-    view_warn = "notify",
-    view_history = "messages",
-    view_search = "mini",
-  },
-  cmdline = {
-    enabled = true,
-    view = "cmdline",
-    format = {
-      cmdline = { pattern = "^:", icon = "", lang = "vim" },
-      search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
-      search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
-      filter = { pattern = "^:%s*!", icon = "$", lang = "zsh" },
-      lua = { pattern = "^:%s*lua%s+", icon = "", lang = "lua" },
-      help = { pattern = "^:%s*he?l?p?%s+", icon = "" },
-    },
-  },
-  presets = {
-    bottom_search = false,
-    command_palette = false,
-    long_message_to_split = true,
-  },
+	messages = {
+		enabled = true,
+		view = "notify",
+		view_error = "notify",
+		view_warn = "notify",
+		view_history = "messages",
+		view_search = "mini",
+	},
+	cmdline = {
+		enabled = true,
+		view = "cmdline",
+		format = {
+			cmdline = { pattern = "^:", icon = "", lang = "vim" },
+			search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
+			search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
+			filter = { pattern = "^:%s*!", icon = "$", lang = "zsh" },
+			lua = { pattern = "^:%s*lua%s+", icon = "", lang = "lua" },
+			help = { pattern = "^:%s*he?l?p?%s+", icon = "" },
+		},
+	},
+	presets = {
+		bottom_search = false,
+		command_palette = false,
+		long_message_to_split = true,
+	},
 })
 vim.api.nvim_set_hl(0, "NoiceMini", { fg = "#ffbb00", bg = "#383838" })
 vim.api.nvim_set_hl(0, "NoiceCmdlinePopup", { fg = "none", bg = "#383838" })
@@ -122,44 +91,41 @@ vim.api.nvim_set_var("$FZF_DEFAULT_OPTS", "--reverse --bind ctrl-j:preview-down,
 vim.api.nvim_set_var("fzf_layout", { window = { width = 1.00, height = 0.98, yoffset = 1.00 } })
 vim.api.nvim_set_var("fzf_preview_window", { "right,50%,<70(down,60%)", "ctrl-/" })
 vim.api.nvim_set_var("fzf_colors", {
-  fg = { "fg", "FzfNormal" },
-  bg = { "bg", "FzfNormal" },
-  ["fg+"] = { "fg", "FzfCursorLine" },
-  ["bg+"] = { "bg", "FzfCursorLine" },
-  ["preview-fg"] = { "fg", "FzfPreview" },
-  ["preview-bg"] = { "bg", "FzfPreview" },
+	fg = { "fg", "FzfNormal" },
+	bg = { "bg", "FzfNormal" },
+	["fg+"] = { "fg", "FzfCursorLine" },
+	["bg+"] = { "bg", "FzfCursorLine" },
+	["preview-fg"] = { "fg", "FzfPreview" },
+	["preview-bg"] = { "bg", "FzfPreview" },
 })
 vim.api.nvim_create_user_command(
-  "Files",
-  "call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)",
-  { bang = true, nargs = "?" }
+	"Files",
+	"call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)",
+	{ bang = true, nargs = "?" }
 )
 vim.api.nvim_set_hl(0, "FzfNormal", { fg = "none", bg = "#2a2a2a" })
 vim.api.nvim_set_hl(0, "FzfCursorLine", { fg = "#ffffff", bg = "#5e5e5e" })
 vim.api.nvim_set_hl(0, "FzfPreview", { fg = "none", bg = "none" })
 -- fzf.vim for Silver Searcher
 if vim.fn.executable("ag") then
-  vim.api.nvim_set_var("$FZF_DEFAULT_COMMAND", 'ag --hidden --ignore .git -g ""')
-  vim.opt.grepprg = "ag --nogroup --nocolor"
+	vim.api.nvim_set_var("$FZF_DEFAULT_COMMAND", 'ag --hidden --ignore .git -g ""')
+	vim.opt.grepprg = "ag --nogroup --nocolor"
 end
 -- fzf.vim for RipGrep
 if vim.fn.executable("rg") then
-  vim.api.nvim_set_var("$FZF_DEFAULT_COMMAND", 'rg --files --hidden --follow --glob "!.git/*"')
-  vim.opt.grepprg = "rg --vimgrep"
-  vim.api.nvim_create_user_command(
-    "Find",
-    'call fzf#vim#grep(\'rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" \'.shellescape(<q-args>).\'| tr -d "\\017"\', 1, <bang>0)',
-    { bang = true, nargs = "*" }
-  )
-  vim.api.nvim_create_user_command(
-    "Files",
-    "call fzf#run(fzf#wrap(#{source: 'rg --files -uuu -g !.git/ -g !node_modules/ -L', options: '--preview-window \"nohidden,wrap,down,60%\" --preview \"[ -f {} ] && bat --color=always --style=numbers {} || echo {}\"'}))",
-    { bang = true, nargs = "?" }
-  )
+	vim.api.nvim_set_var("$FZF_DEFAULT_COMMAND", 'rg --files --hidden --follow --glob "!.git/*"')
+	vim.opt.grepprg = "rg --vimgrep"
+	vim.api.nvim_create_user_command(
+		"Find",
+		'call fzf#vim#grep(\'rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" \'.shellescape(<q-args>).\'| tr -d "\\017"\', 1, <bang>0)',
+		{ bang = true, nargs = "*" }
+	)
+	vim.api.nvim_create_user_command(
+		"Files",
+		"call fzf#run(fzf#wrap(#{source: 'rg --files -uuu -g !.git/ -g !node_modules/ -L', options: '--preview-window \"nohidden,wrap,down,60%\" --preview \"[ -f {} ] && bat --color=always --style=numbers {} || echo {}\"'}))",
+		{ bang = true, nargs = "?" }
+	)
 end
-
--- vim-easy-align
-vim.g.easy_align_ignore_groups = { "String" }
 
 -- skkeleton
 vim.cmd([[
@@ -211,43 +177,43 @@ aug END
 
 -- oil.nvim
 require("oil").setup({
-  columns = {
-    "permissions",
-    "size",
-    "mtime",
-    "icon",
-  },
-  buf_options = {
-    buflisted = false,
-    bufhidden = "hide",
-  },
-  win_options = {
-    wrap = false,
-    signcolumn = "no",
-    cursorcolumn = false,
-    foldcolumn = "0",
-    spell = false,
-    list = false,
-    conceallevel = 3,
-    concealcursor = "n",
-  },
-  default_file_explorer = true,
-  trash_command = "rip",
-  use_default_keymaps = false,
-  keymaps = {
-    ["?"] = "actions.show_help",
-    ["<CR>"] = "actions.select",
-    ["<2-LeftMouse>"] = "actions.select",
-    ["<C-l>"] = "actions.select",
-    ["<C-h>"] = "actions.parent",
-    ["W"] = "actions.open_cwd",
-    ["<Tab>"] = "actions.preview",
-    ["q"] = "actions.close",
-    ["R"] = "actions.refresh",
-    ["H"] = "actions.toggle_hidden",
-    ["I"] = "actions.toggle_hidden",
-    ["<BS>"] = "actions.toggle_hidden",
-  },
+	columns = {
+		"permissions",
+		"size",
+		"mtime",
+		"icon",
+	},
+	buf_options = {
+		buflisted = false,
+		bufhidden = "hide",
+	},
+	win_options = {
+		wrap = false,
+		signcolumn = "no",
+		cursorcolumn = false,
+		foldcolumn = "0",
+		spell = false,
+		list = false,
+		conceallevel = 3,
+		concealcursor = "n",
+	},
+	default_file_explorer = true,
+	trash_command = "rip",
+	use_default_keymaps = false,
+	keymaps = {
+		["?"] = "actions.show_help",
+		["<CR>"] = "actions.select",
+		["<2-LeftMouse>"] = "actions.select",
+		["<C-l>"] = "actions.select",
+		["<C-h>"] = "actions.parent",
+		["W"] = "actions.open_cwd",
+		["<Tab>"] = "actions.preview",
+		["q"] = "actions.close",
+		["R"] = "actions.refresh",
+		["H"] = "actions.toggle_hidden",
+		["I"] = "actions.toggle_hidden",
+		["<BS>"] = "actions.toggle_hidden",
+	},
 })
 vim.cmd([[
     fun! s:oil_init() abort
@@ -266,136 +232,136 @@ vim.api.nvim_set_hl(0, "OilLink", { fg = "#77afaf", bg = "none", bold = true })
 
 -- auto-session
 require("auto-session").setup({
-  log_level = "error",
-  auto_session_root_dir = vim.fn.stdpath("data") .. "/sessions/",
-  auto_session_enabled = true,
-  auto_session_create_enabled = true,
-  auto_session_enable_last_session = false,
-  auto_session_suppress_dirs = { "~/", "~/Project", "~/Downloads", "/" },
-  auto_save_enabled = true,
-  auto_restore_enabled = true,
-  auto_session_use_git_branch = false,
-  bypass_session_save_file_types = nil,
-  cwd_change_handling = {
-    restore_upcoming_session = true,
-    pre_cwd_changed_hook = nil,
-    post_cwd_changed_hook = nil,
-  },
+	log_level = "error",
+	auto_session_root_dir = vim.fn.stdpath("data") .. "/sessions/",
+	auto_session_enabled = true,
+	auto_session_create_enabled = true,
+	auto_session_enable_last_session = false,
+	auto_session_suppress_dirs = { "~/", "~/Project", "~/Downloads", "/" },
+	auto_save_enabled = true,
+	auto_restore_enabled = true,
+	auto_session_use_git_branch = false,
+	bypass_session_save_file_types = nil,
+	cwd_change_handling = {
+		restore_upcoming_session = true,
+		pre_cwd_changed_hook = nil,
+		post_cwd_changed_hook = nil,
+	},
 })
 local auto_session_plugins = {
-  splitterm = {
-    state = false,
-    save_index = 1,
-    save_commands = {
-      "exe '18SplitTerm'",
-      'exe "normal! \\<C-w>W"',
-    },
-  },
-  nvimtree = {
-    state = false,
-    save_index = 2,
-    save_commands = { "lua require('nvim-tree.api').tree.toggle({focus=false})" },
-  },
-  minimap = {
-    state = false,
-    save_index = 3,
-    save_commands = {
-      "exe 'ScrollbarHide'",
-      "exe 'Minimap'",
-    },
-  },
-  aerial = {
-    state = false,
-    save_index = 4,
-    save_commands = { "exe 'AerialToggle!'" },
-  },
-  trouble = {
-    state = false,
-    save_index = 5,
-    save_commands = {
-      "exe 'TroubleToggle'",
-      'exe "normal! \\<C-w>W"',
-    },
-  },
+	splitterm = {
+		state = false,
+		save_index = 1,
+		save_commands = {
+			"exe '18SplitTerm'",
+			'exe "normal! \\<C-w>W"',
+		},
+	},
+	nvimtree = {
+		state = false,
+		save_index = 2,
+		save_commands = { "lua require('nvim-tree.api').tree.toggle({focus=false})" },
+	},
+	minimap = {
+		state = false,
+		save_index = 3,
+		save_commands = {
+			"exe 'ScrollbarHide'",
+			"exe 'Minimap'",
+		},
+	},
+	aerial = {
+		state = false,
+		save_index = 4,
+		save_commands = { "exe 'AerialToggle!'" },
+	},
+	trouble = {
+		state = false,
+		save_index = 5,
+		save_commands = {
+			"exe 'TroubleToggle'",
+			'exe "normal! \\<C-w>W"',
+		},
+	},
 }
 function Find_buffer(pattern)
-  local buffers = vim.api.nvim_list_bufs()
-  for _, buf in ipairs(buffers) do
-    local bufname = vim.api.nvim_buf_get_name(buf)
-    if string.find(bufname, pattern) then
-      return true
-    end
-  end
-  return false
+	local buffers = vim.api.nvim_list_bufs()
+	for _, buf in ipairs(buffers) do
+		local bufname = vim.api.nvim_buf_get_name(buf)
+		if string.find(bufname, pattern) then
+			return true
+		end
+	end
+	return false
 end
 
 local function close_splitterm()
-  if Find_buffer("SplitTerm") then
-    vim.cmd("SplitTermClose")
-    auto_session_plugins.splitterm.state = true
-  end
+	if Find_buffer("SplitTerm") then
+		vim.cmd("SplitTermClose")
+		auto_session_plugins.splitterm.state = true
+	end
 end
 local function close_nvim_tree()
-  local view = require("nvim-tree.view")
-  if view.is_visible() then
-    local api = require("nvim-tree.api")
-    api.tree.close()
-    auto_session_plugins.nvimtree.state = true
-  end
+	local view = require("nvim-tree.view")
+	if view.is_visible() then
+		local api = require("nvim-tree.api")
+		api.tree.close()
+		auto_session_plugins.nvimtree.state = true
+	end
 end
 local function close_minimap()
-  if Find_buffer("-MINIMAP-") then
-    vim.cmd("MinimapClose")
-    auto_session_plugins.minimap.state = true
-  end
+	if Find_buffer("-MINIMAP-") then
+		vim.cmd("MinimapClose")
+		auto_session_plugins.minimap.state = true
+	end
 end
 local function close_aerial()
-  local aerial_api = require("aerial")
-  if aerial_api.is_open() then
-    aerial_api.close_all()
-    auto_session_plugins.aerial.state = true
-  end
+	local aerial_api = require("aerial")
+	if aerial_api.is_open() then
+		aerial_api.close_all()
+		auto_session_plugins.aerial.state = true
+	end
 end
 local function close_trouble()
-  if Find_buffer("Trouble") then
-    vim.cmd("TroubleClose")
-    auto_session_plugins.trouble.state = true
-  end
+	if Find_buffer("Trouble") then
+		vim.cmd("TroubleClose")
+		auto_session_plugins.trouble.state = true
+	end
 end
 local function save_auto_session()
-  local auto_session_root_dir = require("auto-session").get_root_dir()
-  local cwd = string.gsub(vim.fn.getcwd(), "/", "%%")
-  local auto_session_file_name = auto_session_root_dir .. cwd .. ".vim"
-  local auto_session_file_io = io.open(auto_session_file_name, "a")
-  if auto_session_file_io then
-    local sorted_plugins = {}
-    for _, plugin in pairs(auto_session_plugins) do
-      table.insert(sorted_plugins, plugin)
-    end
-    table.sort(sorted_plugins, function(a, b)
-      return a.save_index < b.save_index
-    end)
-    for _, plugin in ipairs(sorted_plugins) do
-      if plugin.state then
-        plugin.state = false
-        for _, command in ipairs(plugin.save_commands) do
-          auto_session_file_io:write(command .. "\n")
-        end
-      end
-    end
-    auto_session_file_io:close()
-  else
-    print("Failed to open file: " .. auto_session_file_name)
-  end
+	local auto_session_root_dir = require("auto-session").get_root_dir()
+	local cwd = string.gsub(vim.fn.getcwd(), "/", "%%")
+	local auto_session_file_name = auto_session_root_dir .. cwd .. ".vim"
+	local auto_session_file_io = io.open(auto_session_file_name, "a")
+	if auto_session_file_io then
+		local sorted_plugins = {}
+		for _, plugin in pairs(auto_session_plugins) do
+			table.insert(sorted_plugins, plugin)
+		end
+		table.sort(sorted_plugins, function(a, b)
+			return a.save_index < b.save_index
+		end)
+		for _, plugin in ipairs(sorted_plugins) do
+			if plugin.state then
+				plugin.state = false
+				for _, command in ipairs(plugin.save_commands) do
+					auto_session_file_io:write(command .. "\n")
+				end
+			end
+		end
+		auto_session_file_io:close()
+	else
+		print("Failed to open file: " .. auto_session_file_name)
+	end
 end
 vim.api.nvim_create_autocmd("VimLeavePre", {
-  callback = function()
-    close_splitterm()
-    close_nvim_tree()
-    close_minimap()
-    close_aerial()
-    close_trouble()
-  end,
+	callback = function()
+		close_splitterm()
+		close_nvim_tree()
+		close_minimap()
+		close_aerial()
+		close_trouble()
+	end,
 })
 vim.api.nvim_create_autocmd({ "VimLeave" }, { callback = save_auto_session })
 
@@ -471,7 +437,7 @@ vim.g.minimap_diffadd_color = "MyMinimapDiffAdded"
 vim.g.minimap_diffremove_color = "MyMinimapDiffRemoved"
 vim.api.nvim_set_hl(0, "MyMinimapCursor", { fg = "#000000", bg = "#ffffff" })
 vim.api.nvim_set_hl(0, "MyMinimapRange", { fg = "#ffffff", bg = "#555555" })
-vim.api.nvim_set_hl(0, "MyMinimapSearch", { fg = "#ffffff", bg = "#bbbb00" })
+vim.api.nvim_set_hl(0, "MyMinimapSearch", { fg = "#ffffff", bg = "#334f7a" })
 vim.api.nvim_set_hl(0, "MyMinimapDiffLine", { fg = "#bbbb00", bg = "none" })
 vim.api.nvim_set_hl(0, "MyMinimapDiffAdded", { fg = "#00aa77", bg = "none" })
 vim.api.nvim_set_hl(0, "MyMinimapDiffRemoved", { fg = "#bb0000", bg = "none" })
@@ -484,43 +450,43 @@ vim.api.nvim_set_hl(0, "MyMinimapDiffRemoved", { fg = "#bb0000", bg = "none" })
 
 -- nvim-treesitter
 require("nvim-treesitter.configs").setup({
-  ensure_installed = {
-    "vim",
-    "regex",
-    "json",
-    "markdown",
-    "c",
-    "cpp",
-    "python",
-    "go",
-    "javascript",
-    "typescript",
-    "vue",
-    "css",
-  },
-  sync_install = false,
-  auto_install = true,
-  ignore_install = { "haskell", "help" },
-  highlight = {
-    enable = true,
-    disable = {
-      "haskell",
-      "markdown",
-      "vim",
-      "terraform",
-      "terraform-vars",
-    },
-    additional_vim_regex_highlighting = false,
-  },
-  indent = {
-    enable = true,
-  },
+	ensure_installed = {
+		"vim",
+		"regex",
+		"json",
+		"markdown",
+		"c",
+		"cpp",
+		"python",
+		"go",
+		"javascript",
+		"typescript",
+		"vue",
+		"css",
+	},
+	sync_install = false,
+	auto_install = true,
+	ignore_install = { "haskell", "help" },
+	highlight = {
+		enable = true,
+		disable = {
+			"haskell",
+			"markdown",
+			"vim",
+			"terraform",
+			"terraform-vars",
+		},
+		additional_vim_regex_highlighting = false,
+	},
+	indent = {
+		enable = true,
+	},
 })
 
 -- indent-blankline.nvim
 require("indent_blankline").setup({
-  show_current_context = true,
-  show_current_context_start = true,
+	show_current_context = true,
+	show_current_context_start = true,
 })
 vim.g.indent_blankline_char = "│"
 vim.g.indent_blankline_context_char = "┃"
@@ -531,7 +497,7 @@ vim.g.indent_blankline_max_indent_increase = vim.g.indent_blankline_indent_level
 vim.g.indent_blankline_show_first_indent_level = true
 vim.g.indent_blankline_show_current_context_start = true
 vim.g.indent_blankline_filetype_exclude =
-{ "terminal", "help", "fzf", "vista", "vista_kind", "NvimTree", "mason", "rnvimr" }
+	{ "terminal", "help", "fzf", "vista", "vista_kind", "NvimTree", "mason", "rnvimr" }
 vim.g.indent_blankline_bufname_exclude = { "README.md" }
 vim.g.indent_blankline_disable_with_nolist = true
 vim.api.nvim_set_hl(0, "IndentBlanklineChar", { fg = "#3a3a3a", bg = "none", nocombine = true })
@@ -564,125 +530,125 @@ vim.cmd([[
 ]])
 vim.g.lualine_diagnostics_source = "nvim_diagnostic"
 local my_custom_theme = {
-  normal = {
-    a = { fg = "#ddddee", bg = "#5588dd", gui = "bold" },
-    b = { fg = "#5588dd", bg = "#394260" },
-    c = { fg = "#5588dd", bg = "#212736" },
-  },
-  insert = { a = { fg = "#394260", bg = "#a3aed2", gui = "bold" } },
-  terminal = { a = { fg = "#394260", bg = "#a3aed2", gui = "bold" } },
-  visual = { a = { fg = "#394260", bg = "#88b4c4", gui = "bold" } },
-  replace = { a = { fg = "#394260", bg = "#9988dd", gui = "bold" } },
-  inactive = {
-    a = { fg = "#ddddee", bg = "#212736" },
-    b = { fg = "#ddddee", bg = "#212736" },
-    c = { fg = "#ddddee", bg = "#212736" },
-  },
+	normal = {
+		a = { fg = "#ddddee", bg = "#5588dd", gui = "bold" },
+		b = { fg = "#5588dd", bg = "#394260" },
+		c = { fg = "#5588dd", bg = "#212736" },
+	},
+	insert = { a = { fg = "#394260", bg = "#a3aed2", gui = "bold" } },
+	terminal = { a = { fg = "#394260", bg = "#a3aed2", gui = "bold" } },
+	visual = { a = { fg = "#394260", bg = "#88b4c4", gui = "bold" } },
+	replace = { a = { fg = "#394260", bg = "#9988dd", gui = "bold" } },
+	inactive = {
+		a = { fg = "#ddddee", bg = "#212736" },
+		b = { fg = "#ddddee", bg = "#212736" },
+		c = { fg = "#ddddee", bg = "#212736" },
+	},
 }
 local lualine_diagnostics = {
-  "diagnostics",
-  sources = { vim.g.lualine_diagnostics_source },
-  sections = { "error", "warn", "info", "hint" },
-  diagnostics_color = {
-    error = "lualine_lsp_err",
-    warn = "lualine_lsp_warn",
-    info = "lualine_lsp_info",
-    hint = "lualine_lsp_hint",
-  },
-  symbols = {
-    error = " ",
-    warn = " ",
-    info = " ",
-    hint = " ",
-  },
-  colored = true,
-  update_in_insert = true,
-  always_visible = false,
+	"diagnostics",
+	sources = { vim.g.lualine_diagnostics_source },
+	sections = { "error", "warn", "info", "hint" },
+	diagnostics_color = {
+		error = "lualine_lsp_err",
+		warn = "lualine_lsp_warn",
+		info = "lualine_lsp_info",
+		hint = "lualine_lsp_hint",
+	},
+	symbols = {
+		error = " ",
+		warn = " ",
+		info = " ",
+		hint = " ",
+	},
+	colored = true,
+	update_in_insert = true,
+	always_visible = false,
 }
 local lualine_diff = {
-  "diff",
-  colored = true,
-  diff_color = {
-    added = "lualine_diff_add",
-    modified = "lualine_diff_change",
-    removed = "lualine_diff_delete",
-  },
-  symbols = { added = "+", modified = "~", removed = "-" },
+	"diff",
+	colored = true,
+	diff_color = {
+		added = "lualine_diff_add",
+		modified = "lualine_diff_change",
+		removed = "lualine_diff_delete",
+	},
+	symbols = { added = "+", modified = "~", removed = "-" },
 }
 local lualine_filename = {
-  "filename",
-  file_status = true,
-  newfile_status = false,
-  symbols = {
-    modified = "●",
-    readonly = "",
-    unnamed = "[No Name]",
-    newfile = "[New]",
-  },
+	"filename",
+	file_status = true,
+	newfile_status = false,
+	symbols = {
+		modified = "●",
+		readonly = "",
+		unnamed = "[No Name]",
+		newfile = "[New]",
+	},
 }
 require("lualine").setup({
-  options = {
-    icons_enabled = true,
-    theme = my_custom_theme,
-    -- theme = 'vscode',
-    component_separators = { left = " ", right = " " },
-    section_separators = { left = "", right = "" },
-    disabled_filetypes = {
-      statusline = { "NvimTree", "vista", "minimap" },
-      winbar = { "NvimTree", "vista", "minimap" },
-    },
-    ignore_focus = { "NvimTree", "vista", "minimap" },
-    always_divide_middle = true,
-    globalstatus = true,
-    refresh = {
-      statusline = 250,
-      tabline = 250,
-      winbar = 250,
-    },
-  },
-  sections = {
-    lualine_a = {
-      { "mode", separator = { left = "", right = "" } },
-      { "LualineSkkeletonMode" },
-    },
-    lualine_b = { "branch", lualine_diff },
-    lualine_c = {
-      lualine_filename,
-      -- { 'LualineVistaNearestMethodOrFunction' },
-    },
-    lualine_x = {
-      lualine_diagnostics,
-      "filetype",
-      "encoding",
-      "fileformat",
-    },
-    lualine_y = { "progress" },
-    lualine_z = { { "location", separator = { left = "", right = "" } } },
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = { "location" },
-    lualine_y = {},
-    lualine_z = {},
-  },
-  tabline = {},
-  winbar = {
-    -- lualine_c = {
-    --   {
-    --     [[
-    --       require('nvim-navic').get_location()
-    --       .. ( require('nvim-navic').is_available() and ' ' or '' )
-    --     ]],
-    --     color_correction = nil,
-    --     navic_opts = nil,
-    --     color = { fg = '#666666', bg = 'none' }
-    --   }
-    -- }
-  },
-  inactive_winbar = {},
-  extensions = {},
+	options = {
+		icons_enabled = true,
+		theme = my_custom_theme,
+		-- theme = 'vscode',
+		component_separators = { left = " ", right = " " },
+		section_separators = { left = "", right = "" },
+		disabled_filetypes = {
+			statusline = { "NvimTree", "vista", "minimap" },
+			winbar = { "NvimTree", "vista", "minimap" },
+		},
+		ignore_focus = { "NvimTree", "vista", "minimap" },
+		always_divide_middle = true,
+		globalstatus = true,
+		refresh = {
+			statusline = 250,
+			tabline = 250,
+			winbar = 250,
+		},
+	},
+	sections = {
+		lualine_a = {
+			{ "mode", separator = { left = "", right = "" } },
+			{ "LualineSkkeletonMode" },
+		},
+		lualine_b = { "branch", lualine_diff },
+		lualine_c = {
+			lualine_filename,
+			-- { 'LualineVistaNearestMethodOrFunction' },
+		},
+		lualine_x = {
+			lualine_diagnostics,
+			"filetype",
+			"encoding",
+			"fileformat",
+		},
+		lualine_y = { "progress" },
+		lualine_z = { { "location", separator = { left = "", right = "" } } },
+	},
+	inactive_sections = {
+		lualine_a = {},
+		lualine_b = {},
+		lualine_c = {},
+		lualine_x = { "location" },
+		lualine_y = {},
+		lualine_z = {},
+	},
+	tabline = {},
+	winbar = {
+		-- lualine_c = {
+		--   {
+		--     [[
+		--       require('nvim-navic').get_location()
+		--       .. ( require('nvim-navic').is_available() and ' ' or '' )
+		--     ]],
+		--     color_correction = nil,
+		--     navic_opts = nil,
+		--     color = { fg = '#666666', bg = 'none' }
+		--   }
+		-- }
+	},
+	inactive_winbar = {},
+	extensions = {},
 })
 vim.api.nvim_set_hl(0, "lualine_lsp_err", { fg = "#ee3333", bg = "#212736" })
 vim.api.nvim_set_hl(0, "lualine_lsp_warn", { fg = "#edd000", bg = "#212736" })
@@ -695,50 +661,50 @@ vim.api.nvim_set_hl(0, "lualine_diff_delete", { fg = "#aa6666", bg = "#394260" }
 -- barbar.nvim
 vim.g.barbar_auto_setup = false
 require("barbar").setup({
-  animation = true,
-  auto_hide = false,
-  tabpages = false,
-  clickable = true,
-  icons = {
-    buffer_index = false,
-    buffer_number = false,
-    button = "",
-    diagnostics = {
-      [vim.diagnostic.severity.ERROR] = { enabled = true, icon = " " },
-      [vim.diagnostic.severity.WARN] = { enabled = true, icon = " " },
-      [vim.diagnostic.severity.INFO] = { enabled = true, icon = " " },
-      [vim.diagnostic.severity.HINT] = { enabled = true, icon = " " },
-    },
-    gitsigns = {
-      added = { enabled = false, icon = "+" },
-      changed = { enabled = false, icon = "~" },
-      deleted = { enabled = false, icon = "-" },
-    },
-    filetype = {
-      custom_colors = false,
-      enabled = true,
-    },
-    separator = { left = "▎", right = "" },
-    separator_at_end = false,
-    modified = { button = "●" },
-    pinned = { button = "", filename = true },
-    preset = "default",
-    alternate = { filetype = { enabled = false } },
-    current = { buffer_index = false },
-    inactive = { button = "×" },
-    visible = { modified = { buffer_number = false } },
-  },
-  highlight_alternate = false,
-  highlight_inactive_file_icons = false,
-  highlight_visible = true,
-  insert_at_end = false,
-  insert_at_start = false,
-  maximum_padding = 1,
-  minimum_padding = 1,
-  maximum_length = 60,
-  minimum_length = 12,
-  sidebar_filetypes = { NvimTree = { text = "   File Explorer" } },
-  no_name_title = "[No Name]",
+	animation = true,
+	auto_hide = false,
+	tabpages = false,
+	clickable = true,
+	icons = {
+		buffer_index = false,
+		buffer_number = false,
+		button = "",
+		diagnostics = {
+			[vim.diagnostic.severity.ERROR] = { enabled = true, icon = " " },
+			[vim.diagnostic.severity.WARN] = { enabled = true, icon = " " },
+			[vim.diagnostic.severity.INFO] = { enabled = true, icon = " " },
+			[vim.diagnostic.severity.HINT] = { enabled = true, icon = " " },
+		},
+		gitsigns = {
+			added = { enabled = false, icon = "+" },
+			changed = { enabled = false, icon = "~" },
+			deleted = { enabled = false, icon = "-" },
+		},
+		filetype = {
+			custom_colors = false,
+			enabled = true,
+		},
+		separator = { left = "▎", right = "" },
+		separator_at_end = false,
+		modified = { button = "●" },
+		pinned = { button = "", filename = true },
+		preset = "default",
+		alternate = { filetype = { enabled = false } },
+		current = { buffer_index = false },
+		inactive = { button = "×" },
+		visible = { modified = { buffer_number = false } },
+	},
+	highlight_alternate = false,
+	highlight_inactive_file_icons = false,
+	highlight_visible = true,
+	insert_at_end = false,
+	insert_at_start = false,
+	maximum_padding = 1,
+	minimum_padding = 1,
+	maximum_length = 60,
+	minimum_length = 12,
+	sidebar_filetypes = { NvimTree = { text = "   File Explorer" } },
+	no_name_title = "[No Name]",
 })
 vim.api.nvim_set_hl(0, "BufferTabpageFill", { bg = "none" })
 vim.api.nvim_set_hl(0, "BufferCurrent", { bg = "#1e1e1e", fg = "#ffffff", bold = true })
@@ -765,97 +731,97 @@ vim.api.nvim_set_hl(0, "BufferInactiveINFO", { bg = "none", fg = "#888888" })
 
 -- nvim-scrollbar
 require("scrollbar").setup({
-  show = true,
-  show_in_active_only = true,
-  set_highlights = true,
-  max_lines = false,
-  hide_if_all_visible = true,
-  handle = {
-    text = " ",
-    highlight = "CursorColumn",
-    hide_if_all_visible = true,
-  },
-  marks = {
-    Cursor = {
-      text = "•",
-      priority = 0,
-      highlight = "Normal",
-    },
-    Search = {
-      text = { "-", "=" },
-      priority = 1,
-      highlight = "Search",
-    },
-  },
-  Error = {
-    text = { "-", "=" },
-    priority = 2,
-    highlight = "DiagnosticVirtualTextError",
-  },
-  Warn = {
-    text = { "-", "=" },
-    priority = 3,
-    highlight = "DiagnosticVirtualTextWarn",
-  },
-  Info = {
-    text = { "-", "=" },
-    priority = 4,
-    highlight = "DiagnosticVirtualTextInfo",
-  },
-  Hint = {
-    text = { "-", "=" },
-    priority = 5,
-    highlight = "DiagnosticVirtualTextHint",
-  },
-  GitAdd = {
-    text = "│",
-    priority = 7,
-    highlight = "GitSignsAdd",
-  },
-  GitChange = {
-    text = "│",
-    priority = 7,
-    highlight = "GitSignsChange",
-  },
-  GitDelete = {
-    text = "▁",
-    priority = 7,
-    highlight = "GitSignsDelete",
-  },
-  excluded_buftypes = {
-    "terminal",
-    "nofile",
-  },
-  excluded_filetypes = {
-    "prompt",
-    "minimap",
-    "NvimTree",
-    "noice",
-  },
-  autocmd = {
-    render = {
-      "BufWinEnter",
-      "TabEnter",
-      "TermEnter",
-      "WinEnter",
-      "CmdwinLeave",
-      "TextChanged",
-      "VimResized",
-      "WinScrolled",
-    },
-    clear = {
-      "TabLeave",
-      "TermLeave",
-      "WinLeave",
-    },
-  },
-  handlers = {
-    cursor = false,
-    handle = true,
-    diagnostic = true,
-    gitsigns = true,
-    search = true,
-  },
+	show = true,
+	show_in_active_only = true,
+	set_highlights = true,
+	max_lines = false,
+	hide_if_all_visible = true,
+	handle = {
+		text = " ",
+		highlight = "CursorColumn",
+		hide_if_all_visible = true,
+	},
+	marks = {
+		Cursor = {
+			text = "•",
+			priority = 0,
+			highlight = "Normal",
+		},
+		Search = {
+			text = { "-", "=" },
+			priority = 1,
+			highlight = "Search",
+		},
+	},
+	Error = {
+		text = { "-", "=" },
+		priority = 2,
+		highlight = "DiagnosticVirtualTextError",
+	},
+	Warn = {
+		text = { "-", "=" },
+		priority = 3,
+		highlight = "DiagnosticVirtualTextWarn",
+	},
+	Info = {
+		text = { "-", "=" },
+		priority = 4,
+		highlight = "DiagnosticVirtualTextInfo",
+	},
+	Hint = {
+		text = { "-", "=" },
+		priority = 5,
+		highlight = "DiagnosticVirtualTextHint",
+	},
+	GitAdd = {
+		text = "│",
+		priority = 7,
+		highlight = "GitSignsAdd",
+	},
+	GitChange = {
+		text = "│",
+		priority = 7,
+		highlight = "GitSignsChange",
+	},
+	GitDelete = {
+		text = "▁",
+		priority = 7,
+		highlight = "GitSignsDelete",
+	},
+	excluded_buftypes = {
+		"terminal",
+		"nofile",
+	},
+	excluded_filetypes = {
+		"prompt",
+		"minimap",
+		"NvimTree",
+		"noice",
+	},
+	autocmd = {
+		render = {
+			"BufWinEnter",
+			"TabEnter",
+			"TermEnter",
+			"WinEnter",
+			"CmdwinLeave",
+			"TextChanged",
+			"VimResized",
+			"WinScrolled",
+		},
+		clear = {
+			"TabLeave",
+			"TermLeave",
+			"WinLeave",
+		},
+	},
+	handlers = {
+		cursor = false,
+		handle = true,
+		diagnostic = true,
+		gitsigns = true,
+		search = true,
+	},
 })
 vim.api.nvim_set_hl(0, "ScrollbarHandle", { fg = "#333333", bg = "#888888" })
 vim.api.nvim_set_hl(0, "ScrollbarCursor", { fg = "#333333", bg = "#888888" })
@@ -879,42 +845,42 @@ vim.api.nvim_set_hl(0, "ScrollbarGitDeleteHandle", { fg = "#bb2222", bg = "#8888
 
 -- neoscroll.nvim
 require("neoscroll").setup({
-  mappings = {
-    "<C-u>",
-    "<C-d>",
-  },
-  hide_cursor = true,
-  stop_eof = true,
-  respect_scrolloff = true,
-  cursor_scrolls_alone = true,
-  easing_function = "quadratic",
+	mappings = {
+		"<C-u>",
+		"<C-d>",
+	},
+	hide_cursor = true,
+	stop_eof = true,
+	respect_scrolloff = true,
+	cursor_scrolls_alone = true,
+	easing_function = "quadratic",
 })
 require("neoscroll.config").set_mappings({
-  ["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "300" } },
-  ["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "300" } },
+	["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "300" } },
+	["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "300" } },
 })
 
 -- nvim-hlslens
 require("hlslens").setup({
-  calm_down = true,
-  nearest_only = true,
-  nearest_float_when = "auto",
-  build_position_cb = function(plist, _, _, _)
-    require("scrollbar.handlers.search").handler.show(plist.start_pos)
-  end,
+	calm_down = true,
+	nearest_only = true,
+	nearest_float_when = "auto",
+	build_position_cb = function(plist, _, _, _)
+		require("scrollbar.handlers.search").handler.show(plist.start_pos)
+	end,
 })
 local kopts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap(
-  "n",
-  "n",
-  [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
-  kopts
+	"n",
+	"n",
+	[[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+	kopts
 )
 vim.api.nvim_set_keymap(
-  "n",
-  "N",
-  [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
-  kopts
+	"n",
+	"N",
+	[[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+	kopts
 )
 vim.api.nvim_set_keymap("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
 vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
@@ -927,10 +893,10 @@ vim.api.nvim_set_hl(0, "HlSearchLensNear", { fg = "#777777", bg = "none" })
 
 -- lightspeed.nvim
 require("lightspeed").setup({
-  ignore_case = false,
-  exit_after_idle_msecs = { unlabeled = nil, labeled = nil },
-  limit_ft_matches = 4,
-  repeat_ft_with_target_char = false,
+	ignore_case = false,
+	exit_after_idle_msecs = { unlabeled = nil, labeled = nil },
+	limit_ft_matches = 4,
+	repeat_ft_with_target_char = false,
 })
 vim.api.nvim_set_hl(0, "LightspeedOneCharMatch", { fg = "#ff3377", bg = "none", bold = true })
 vim.api.nvim_set_hl(0, "LightspeedCursor", { fg = "none", bg = "none", bold = true })
@@ -952,134 +918,8 @@ vim.cmd([[
     let g:VM_maps["Select Cursor Up"]   = '<M-C-Up>'   " start selecting up
 ]])
 
--- Comment.nvim
-require("Comment").setup({
-  padding = true,
-  sticky = true,
-  toggler = {
-    line = "<C-_>",
-    block = "gbc",
-  },
-  opleader = {
-    line = "<C-_>",
-    block = "gb",
-  },
-  extra = {
-    -- above = 'gcO',
-    -- below = 'gco',
-    -- eol = 'gcA',
-  },
-  mappings = {
-    basic = true,
-    extra = true,
-  },
-})
-
 -- nvim-highlight-colors
 require("nvim-highlight-colors").setup({
-  render = "background",
-  enable_named_colors = true,
+	render = "background",
+	enable_named_colors = true,
 })
-
--- nvim-autopairs
-require("nvim-autopairs").setup({})
-require("cmp").event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done())
-
--- fugitive
-vim.cmd([[
-    if exists('*fugitive#statusline')
-        set statusline+=%{fugitive#statusline()}
-    endif
-    fun! s:fugitive_init() abort
-        setlocal nonumber
-        setlocal bufhidden=wipe
-        setlocal nobuflisted
-        setlocal nolist
-        setlocal nospell
-        setlocal noequalalways
-        resize 10
-    endf
-    au FileType fugitive call s:fugitive_init()
-]])
-
--- gitsigns.nvim
-require("scrollbar.handlers.gitsigns").setup()
-require("gitsigns").setup({
-  signs = {
-    add = { text = "│" },
-    change = { text = "│" },
-    delete = { text = "_" },
-    topdelete = { text = "‾" },
-    changedelete = { text = "~" },
-    untracked = { text = "┆" },
-  },
-  signcolumn = true,
-  numhl = false,
-  linehl = false,
-  word_diff = false,
-  watch_gitdir = {
-    interval = 1000,
-    follow_files = true,
-  },
-  attach_to_untracked = true,
-  current_line_blame = false,
-  current_line_blame_opts = {
-    virt_text = true,
-    virt_text_pos = "eol",
-    delay = 0,
-    ignore_whitespace = true,
-    virt_text_priority = 0,
-  },
-  current_line_blame_formatter = "  <author>, <author_time:%Y-%m-%d> - <summary>",
-  sign_priority = 6,
-  update_debounce = 100,
-  on_attach = function(bufnr)
-    local gs = package.loaded.gitsigns
-    local function map(mode, l, r, opts)
-      opts = opts or {}
-      opts.buffer = bufnr
-      vim.keymap.set(mode, l, r, opts)
-    end
-    map("n", "<leader>gn", function()
-      if vim.wo.diff then
-        return ""
-      end
-      vim.schedule(function()
-        gs.next_hunk()
-      end)
-      return "<Ignore>"
-    end, { expr = true })
-    map("n", "<leader>gp", function()
-      if vim.wo.diff then
-        return ""
-      end
-      vim.schedule(function()
-        gs.prev_hunk()
-      end)
-      return "<Ignore>"
-    end, { expr = true })
-  end,
-})
-vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = "#00bb00", bg = "none", bold = true })
-vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#aaaa00", bg = "none", bold = true })
-vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = "#ff2222", bg = "none", bold = true })
-vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", { fg = "#777777", bg = "none" })
-vim.api.nvim_set_hl(0, "DiffAdd", { fg = "none", bg = "#004400" })
-vim.api.nvim_set_hl(0, "DiffChange", { fg = "none", bg = "#303000" })
-vim.api.nvim_set_hl(0, "Difftext", { fg = "none", bg = "#505000" })
-vim.api.nvim_set_hl(0, "DiffDelete", { fg = "none", bg = "#440000" })
-
--- rnvimr
-vim.g.rnvimr_enable_picker = 1
-vim.g.rnvimr_draw_border = 1
-vim.cmd([[
-  let g:rnvimr_layout = {
-    \ 'relative': 'editor',
-    \ 'width':  float2nr(round(0.90 * &columns)),
-    \ 'height': float2nr(round(0.90 * &lines)),
-    \ 'col':    float2nr(round(0.05 * &columns)),
-    \ 'row':    float2nr(round(0.05 * &lines)),
-    \ 'style': 'minimal'
-    \ }
-]])
-vim.api.nvim_set_hl(0, "RnvimrCurses", { fg = "none", bg = "#2a2a2a" })

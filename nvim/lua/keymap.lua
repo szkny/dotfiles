@@ -11,60 +11,60 @@ vim.g.maplocalleader = " "
 
 -- general
 local function reload_nvim_config()
-  local dir = vim.fn.expand("~/.config/nvim/lua")
-  local files = vim.fn.readdir(dir)
-  for _, file in ipairs(files) do
-    if vim.fn.isdirectory(dir .. "/" .. file) == 0 and file:match("%.lua$") then
-      if file ~= "plugin_core.lua" then
-        dofile(dir .. "/" .. file)
-      end
-    end
-  end
-  print("Nvim configurations reloaded!")
+	local dir = vim.fn.expand("~/.config/nvim/lua")
+	local files = vim.fn.readdir(dir)
+	for _, file in ipairs(files) do
+		if vim.fn.isdirectory(dir .. "/" .. file) == 0 and file:match("%.lua$") then
+			if file ~= "plugin_core.lua" then
+				dofile(dir .. "/" .. file)
+			end
+		end
+	end
+	print("Nvim configurations reloaded!")
 end
 keymap("n", "<leader><leader>", reload_nvim_config, opts)
 keymap("t", "<C-[>", "<C-\\><C-n>", opts)
 keymap("t", "<ESC>", "<C-\\><C-n><Plug>(esc)", opts)
 keymap("n", "<Plug>(esc)<ESC>", "i<ESC>", opts)
 keymap("i", "<C-s>", function()
-  Try({
-    function()
-      vim.cmd("w!")
-    end,
-    Catch({
-      function(err)
-        print("caught error: " .. err)
-      end,
-    }),
-  })
+	Try({
+		function()
+			vim.cmd("w!")
+		end,
+		Catch({
+			function(err)
+				print("caught error: " .. err)
+			end,
+		}),
+	})
 end, opts)
 keymap("n", "<C-s>", function()
-  Try({
-    function()
-      vim.cmd("w!")
-    end,
-    Catch({
-      function(err)
-        print("caught error: " .. err)
-      end,
-    }),
-  })
+	Try({
+		function()
+			vim.cmd("w!")
+		end,
+		Catch({
+			function(err)
+				print("caught error: " .. err)
+			end,
+		}),
+	})
 end, opts)
 keymap("n", "q", function()
-  Try({
-    function()
-      vim.cmd("q")
-    end,
-    Catch({
-      function(error)
-        print("caught error: " .. error)
-        -- print('E173: some files to edit')
-      end,
-    }),
-  })
+	Try({
+		function()
+			vim.cmd("q")
+		end,
+		Catch({
+			function(error)
+				print("caught error: " .. error)
+				-- print('E173: some files to edit')
+			end,
+		}),
+	})
 end, opts)
 keymap("n", "<S-q>", function()
-  vim.cmd("qall!")
+	vim.cmd("qall!")
 end, opts)
 keymap("n", "<Leader>q", ":BufferNext    <CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", opts)
 keymap("n", "<Leader>bq", ":BufferNext    <CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", opts)
@@ -74,16 +74,16 @@ keymap("n", "<Leader>pq", ":BufferPrevious<CR>:try|bdelete#|catch|bdelete|endtry
 keymap("v", ">", ">gv", opts)
 keymap("v", "<", "<gv", opts)
 vim.api.nvim_set_keymap(
-  "n",
-  "<Leader>d",
-  "ReplaceWordText()  !=# '' ? ':<C-u>'.  ReplaceWordText().'<Left><Left><Left>' : '<ESC>'",
-  { expr = true }
+	"n",
+	"<Leader>d",
+	"ReplaceWordText()  !=# '' ? ':<C-u>'.  ReplaceWordText().'<Left><Left><Left>' : '<ESC>'",
+	{ expr = true }
 )
 vim.api.nvim_set_keymap(
-  "v",
-  "<Leader>d",
-  "VReplaceWordText() !=# '' ? ':<C-u>'. VReplaceWordText().'<Left><Left><Left>' : '<ESC>'",
-  { expr = true }
+	"v",
+	"<Leader>d",
+	"VReplaceWordText() !=# '' ? ':<C-u>'. VReplaceWordText().'<Left><Left><Left>' : '<ESC>'",
+	{ expr = true }
 )
 vim.cmd([[
     fun! s:get_vselect_txt()
@@ -124,7 +124,7 @@ vim.cmd([[
     endf
 ]])
 keymap("n", "<leader>r", function()
-  vim.cmd([[
+	vim.cmd([[
             fun! Rg_to_qf(line)
                 let parts = split(a:line, ':')
                 return {'filename': parts[0], 'lnum': parts[1], 'col': parts[2],
@@ -153,28 +153,28 @@ keymap("n", "<leader>r", function()
                 exe "cdo s/" . wordToReplace . "/" . replacement ."/gc | w"
             endif
         ]])
-  -- local qflist = vim.fn.getqflist()
-  -- if #qflist > 0 then
-  --     local targetword = vim.fn.input("Target Word: ")
-  --     local replaceword = vim.fn.input("New Word: ")
-  --     local numreplace = 0
-  --     for i = 1,#qflist do
-  --         if string.find(qflist[i]["text"], targetword) then
-  --             numreplace = numreplace + 1
-  --         end
-  --     end
-  --     if numreplace > 0 then
-  --         local choice = vim.fn.confirm(
-  --             "Will you replace "..numreplace.." of '"..targetword.."' with '"..replaceword.."' ?",
-  --             "&Yes\n&No"
-  --         )
-  --         if choice == 1 then
-  --             vim.cmd("cdo s/"..targetword.."/"..replaceword.."/g | :w!")
-  --         end
-  --     else
-  --         print("not found: '"..targetword.."'")
-  --     end
-  -- end
+	-- local qflist = vim.fn.getqflist()
+	-- if #qflist > 0 then
+	--     local targetword = vim.fn.input("Target Word: ")
+	--     local replaceword = vim.fn.input("New Word: ")
+	--     local numreplace = 0
+	--     for i = 1,#qflist do
+	--         if string.find(qflist[i]["text"], targetword) then
+	--             numreplace = numreplace + 1
+	--         end
+	--     end
+	--     if numreplace > 0 then
+	--         local choice = vim.fn.confirm(
+	--             "Will you replace "..numreplace.." of '"..targetword.."' with '"..replaceword.."' ?",
+	--             "&Yes\n&No"
+	--         )
+	--         if choice == 1 then
+	--             vim.cmd("cdo s/"..targetword.."/"..replaceword.."/g | :w!")
+	--         end
+	--     else
+	--         print("not found: '"..targetword.."'")
+	--     end
+	-- end
 end, opts)
 
 -- -- for tab/window
@@ -308,9 +308,6 @@ keymap("n", "ｄｄ", "dd", opts)
 keymap("n", "ｙｙ", "yy", opts)
 
 -- for Plugins
--- -- vim-easy-align
-keymap("v", "<Leader>=", ":EasyAlign *=<CR>", opts)
-keymap("v", "<Enter>", "<Plug>(EasyAlign)", opts)
 -- -- fuzzy-motion
 keymap("n", "<Leader>f", ":silent FuzzyMotion<CR>", opts)
 keymap("n", "s", ":silent FuzzyMotion<CR>", opts)
@@ -330,12 +327,10 @@ fun! VRgWord() abort range
     endif
 endf
 ]])
--- -- ranger.vim
-keymap("n", "<C-h>", ":<C-u>RnvimrToggle<CR>", opts)
--- -- nvim-tree
-keymap("n", "<C-n>", function()
-  require("nvim-tree.api").tree.toggle({ focus = true })
-end, opts)
+-- -- -- nvim-tree
+-- keymap("n", "<C-n>", function()
+--   require("nvim-tree.api").tree.toggle({ focus = true })
+-- end, opts)
 -- -- oil.nvim
 keymap("n", "<Leader>o", require("oil").open_float, opts)
 keymap("n", "<Leader>t", require("util").oil_ssh_term, opts)
@@ -349,14 +344,11 @@ keymap("n", "<C-g>", ":<C-u>Vista finder<CR>", opts)
 -- keymap("n", "<C-t>",      ":<C-u>Navbuddy<CR>",                         opts )
 -- -- minimap.vim
 keymap(
-  "n",
-  "<C-k>",
-  "<CMD>ScrollbarToggle<CR>:MinimapToggle<CR>:try|e|catch|endtry<CR>:MinimapUpdateHighlight<CR>",
-  opts
+	"n",
+	"<C-k>",
+	"<CMD>ScrollbarToggle<CR>:MinimapToggle<CR>:try|e|catch|endtry<CR>:MinimapUpdateHighlight<CR>",
+	opts
 )
--- -- fugitive
--- keymap("n", "<Leader>gg", ":<C-u>G<CR>",                                opts )
-keymap("n", "<Leader>gd", ":<C-u>Gvdiffsplit<CR>", opts)
 -- -- lazygit
 keymap("n", "<Leader>gg", ":<C-u>SplitTerm lazygit<CR><C-w>J:res 1000<CR>i", opts)
 -- -- gitsigns.nvim
@@ -375,8 +367,8 @@ keymap("v", "<M-;>", ":Appendchar ;<Cr>", opts)
 keymap("v", "<Leader>t", ":Trans<CR>", opts)
 keymap("n", "<Leader>gf", ":Fshow<CR>", opts)
 keymap(
-  "n",
-  "<Leader>l",
-  "exists(':MinimapUpdateHighlight') ? ':<C-u>set hlsearch!<CR>:MinimapUpdateHighlight<CR>' : ':<C-u>set hlsearch!<CR>'",
-  { silent = true, expr = true }
+	"n",
+	"<Leader>l",
+	"exists(':MinimapUpdateHighlight') ? ':<C-u>set hlsearch!<CR>:MinimapUpdateHighlight<CR>' : ':<C-u>set hlsearch!<CR>'",
+	{ silent = true, expr = true }
 )
