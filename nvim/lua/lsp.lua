@@ -359,7 +359,7 @@ vim.keymap.set("n", "<C-t>", "<cmd>AerialToggle!<CR>")
 -- trouble.nvim
 require("trouble").setup({
   position = "bottom",
-  height = 7,
+  height = 5,
   mode = "workspace_diagnostics",
   severity = {
     vim.diagnostic.severity.ERROR,
