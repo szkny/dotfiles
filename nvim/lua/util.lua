@@ -76,6 +76,7 @@ fun! Term(...) abort
 endf
 command! -nargs=* Term call Term(<f-args>)
 ]])
+vim.keymap.set("n", "<leader>t", ":<C-u>Term<CR>i", { noremap = true, silent = true })
 
 vim.cmd([[
     fun! s:trans(...) abort range

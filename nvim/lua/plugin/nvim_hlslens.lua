@@ -21,6 +21,12 @@ vim.api.nvim_set_keymap(
 )
 vim.api.nvim_set_keymap("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
 vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.keymap.set(
+	"n",
+	"<Leader>l",
+	"exists(':MinimapUpdateHighlight') ? ':<C-u>set hlsearch!<CR>:MinimapUpdateHighlight<CR>' : ':<C-u>set hlsearch!<CR>'",
+	{ silent = true, expr = true }
+)
 vim.api.nvim_set_hl(0, "Search", { fg = "none", bg = "#334f7a" })
 vim.api.nvim_set_hl(0, "IncSearch", { fg = "none", bg = "#334f7a" })
 vim.api.nvim_set_hl(0, "WildMenu", { fg = "none", bg = "#334f7a" })

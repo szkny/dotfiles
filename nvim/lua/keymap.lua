@@ -327,32 +327,11 @@ fun! VRgWord() abort range
     endif
 endf
 ]])
--- -- -- nvim-tree
--- keymap("n", "<C-n>", function()
---   require("nvim-tree.api").tree.toggle({ focus = true })
--- end, opts)
 -- -- oil.nvim
 keymap("n", "<Leader>o", require("oil").open_float, opts)
 keymap("n", "<Leader>t", require("util").oil_ssh_term, opts)
--- -- SplitTerm
-keymap("n", "t", ":<C-u>18SplitTerm<CR>i", opts)
-keymap("n", "<leader>t", ":<C-u>Term<CR>i", opts)
--- -- vista.vim
--- keymap("n", "<C-t>",      ":<C-u>Vista!!<CR>",                          opts )
-keymap("n", "<C-g>", ":<C-u>Vista finder<CR>", opts)
 -- -- Navbuddy
 -- keymap("n", "<C-t>",      ":<C-u>Navbuddy<CR>",                         opts )
--- -- minimap.vim
-keymap(
-	"n",
-	"<C-k>",
-	"<CMD>ScrollbarToggle<CR>:MinimapToggle<CR>:try|e|catch|endtry<CR>:MinimapUpdateHighlight<CR>",
-	opts
-)
--- -- lazygit
-keymap("n", "<Leader>gg", ":<C-u>SplitTerm lazygit<CR><C-w>J:res 1000<CR>i", opts)
--- -- gitsigns.nvim
-keymap("n", "<Leader>gb", require("gitsigns").toggle_current_line_blame, opts)
 
 -- -- skkeleton
 keymap("i", "<C-j>", "<Plug>(skkeleton-enable)", opts)
@@ -366,9 +345,3 @@ keymap("n", "<M-;>", ":Appendchar ;<Cr>", opts)
 keymap("v", "<M-;>", ":Appendchar ;<Cr>", opts)
 keymap("v", "<Leader>t", ":Trans<CR>", opts)
 keymap("n", "<Leader>gf", ":Fshow<CR>", opts)
-keymap(
-	"n",
-	"<Leader>l",
-	"exists(':MinimapUpdateHighlight') ? ':<C-u>set hlsearch!<CR>:MinimapUpdateHighlight<CR>' : ':<C-u>set hlsearch!<CR>'",
-	{ silent = true, expr = true }
-)

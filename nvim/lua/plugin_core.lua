@@ -50,11 +50,18 @@ local plugins = {
 		end,
 	},
 	{
+		-- TODO: WIP lazy load setup
 		"lewis6991/gitsigns.nvim",
 		event = "VeryLazy",
-		config = function()
-			require("plugin.gitsigns")
-		end,
+		-- keys = {
+		-- 	{ "<Leader>gb", require("gitsigns").toggle_current_line_blame, mode = "n" },
+		-- },
+		dependencies = {
+			"petertriho/nvim-scrollbar",
+		},
+		-- config = function()
+		-- 	require("plugin.gitsigns")
+		-- end,
 	},
 	{ "rbong/vim-flog", cmd = "Flog" },
 	{
@@ -76,6 +83,7 @@ local plugins = {
 		end,
 	},
 	{
+		-- TODO: WIP lazy load setup
 		"kevinhwang91/nvim-hlslens",
 		-- lazy = false,
 		-- event = "VeryLazy",
@@ -86,18 +94,97 @@ local plugins = {
 		-- 	require("plugin.nvim_hlslens")
 		-- end,
 	},
-	{ "liuchengxu/vista.vim", cmd = "Vista" },
+	{
+		"liuchengxu/vista.vim",
+		cmd = "Vista",
+		keys = {
+			-- { "<C-t>", "<CMD>Vista!!<CR>", mode = "n" },
+			{ "<C-g>", "<CMD>Vista finder<CR>", mode = "n" },
+		},
+		config = function()
+			require("plugin.vista")
+		end,
+	},
 	{ "dstein64/vim-startuptime", cmd = "StartupTime" },
-	{ "nvim-lualine/lualine.nvim" },
-	{ "wfxr/minimap.vim", cmd = "MinimapToggle" },
+	{
+		"nvim-lualine/lualine.nvim",
+		-- event = "VeryLazy",
+		event = "VimEnter",
+		config = function()
+			require("plugin.lualine")
+		end,
+	},
+	{
+		"wfxr/minimap.vim",
+		cmd = "MinimapToggle",
+		dependencies = {
+			"petertriho/nvim-scrollbar",
+		},
+		config = function()
+			require("plugin.minimap")
+		end,
+	},
 	-- { 'mg979/vim-visual-multi' },
-	{ "petertriho/nvim-scrollbar" },
-	{ "karb94/neoscroll.nvim" },
-	{ "romgrk/barbar.nvim" },
-	{ "brenoprata10/nvim-highlight-colors" },
-	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-	{ "lukas-reineke/indent-blankline.nvim", tag = "v2.20.8" },
-	{ "rmagatti/auto-session" },
+	{
+		-- TODO: WIP lazy load setup
+		"petertriho/nvim-scrollbar",
+		dependencies = {
+			"kevinhwang91/nvim-hlslens",
+			"lewis6991/gitsigns.nvim",
+		},
+		-- lazy = false,
+		-- event = "VeryLazy",
+		-- opt = require("plugin.nvim_scrollbar"),
+		-- config = function()
+		-- 	require("plugin.nvim_scrollbar")
+		-- end,
+	},
+	{
+		"karb94/neoscroll.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("plugin.neoscroll")
+		end,
+	},
+	{
+		-- TODO: WIP lazy load setup
+		"romgrk/barbar.nvim",
+		-- lazy = false,
+		-- config = function()
+		-- 	require("plugin.barbar")
+		-- end,
+	},
+	{
+		-- TODO: WIP lazy load setup
+		"brenoprata10/nvim-highlight-colors",
+		-- lazy = false,
+		-- event = "VeryLazy",
+		-- opt = require("plugin.nvim_highlight_colors"),
+	},
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		lazy = false,
+		-- evnet = "VeryLazy",
+		config = function()
+			require("plugin.nvim_treesitter")
+		end,
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		tag = "v2.20.8",
+		event = "VeryLazy",
+		config = function()
+			require("plugin.indent_blankline")
+		end,
+	},
+	{
+		"rmagatti/auto-session",
+		lazy = false,
+		config = function()
+			require("plugin.auto-session")
+		end,
+	},
 	{ "Mofiqul/vscode.nvim" },
 	{ "stevearc/oil.nvim" },
 	{
@@ -111,7 +198,18 @@ local plugins = {
 			require("plugin.nvim_tree")
 		end,
 	},
-	{ "szkny/SplitTerm", lazy = false },
+	{
+		"szkny/SplitTerm",
+		cmd = "SplitTerm",
+		keys = {
+			{ "t", "<CMD>18SplitTerm<CR>i", mode = "n" },
+			{ "<leader>gg", "<CMD>SplitTerm lazygit<CR><C-w>J:res 1000<CR>i<CR>", mode = "n" },
+		},
+		event = "VeryLazy",
+		config = function()
+			require("plugin.splitterm")
+		end,
+	},
 	{ "junegunn/fzf", lazy = false },
 	{ "junegunn/fzf.vim", lazy = false },
 	{ "MunifTanjim/nui.nvim" },
