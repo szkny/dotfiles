@@ -14,6 +14,11 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- cache loader
+if vim.loader then
+	vim.loader.enable()
+end
+
 -- *****************************************************************************
 --   Install plugins
 -- *****************************************************************************

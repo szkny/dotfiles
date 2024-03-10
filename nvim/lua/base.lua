@@ -58,12 +58,12 @@ vim.opt.complete:remove("t")
 
 -- Copy/Paste/Cut
 if vim.fn.has("wsl") == 1 then
-  vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-    pattern = "*",
-    command = ":call system('clip.exe', @\")",
-  })
+	vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+		pattern = "*",
+		command = ":call system('clip.exe', @\")",
+	})
 else
-  vim.opt.clipboard:append({ unnamedplus = true })
+	vim.opt.clipboard:append({ unnamedplus = true })
 end
 
 -- Directories for swp files
