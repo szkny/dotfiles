@@ -6,7 +6,10 @@ require("nvim-tree").setup({
 	sort_by = "case_sensitive",
 	view = {
 		adaptive_size = true,
-		width = 25,
+		width = {
+			min = 25,
+			max = 40,
+		},
 		signcolumn = "yes",
 		preserve_window_proportions = true,
 	},

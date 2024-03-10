@@ -178,8 +178,8 @@ local plugins = {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		lazy = false,
-		-- evnet = "VeryLazy",
+		-- lazy = false,
+		evnet = "VeryLazy",
 		config = function()
 			require("plugin.nvim_treesitter")
 		end,
@@ -293,49 +293,97 @@ local plugins = {
 		dependencies = {
 			"neovim/nvim-lspconfig",
 		},
+		lazy = false,
+		-- event = "VeryLazy",
+		config = function()
+			require("lsp")
+		end,
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",
 		dependencies = { "nvimtools/none-ls.nvim", "nvim-lua/plenary.nvim" },
+		event = "VeryLazy",
+		config = function()
+			require("plugin.mason_null_ls")
+		end,
 	},
-	{ "SmiteshP/nvim-navic", lazy = false },
+	{
+		"SmiteshP/nvim-navic",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+		},
+		config = function()
+			require("plugin.nvim_navic")
+		end,
+	},
 	{
 		"SmiteshP/nvim-navbuddy",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
+			"SmiteshP/nvim-navic",
+			"nvim-tree/nvim-web-devicons",
 		},
-		lazy = false,
+		cmd = "Navbuddy",
+		config = function()
+			require("plugin.nvim_navbuddy")
+		end,
 	},
 	{
+		-- TODO: WIP lazy load setup
 		"utilyre/barbecue.nvim",
 		dependencies = {
 			"SmiteshP/nvim-navic",
 			"nvim-tree/nvim-web-devicons",
 		},
+		-- lazy = false,
+		-- init = function()
+		-- 	require("plugin.barbecue")
+		-- end,
 	},
 	{
 		"stevearc/aerial.nvim",
 		dependencies = {
+			"nvim-tree/nvim-web-devicons",
 			"neovim/nvim-lspconfig",
 			"nvim-treesitter/nvim-treesitter",
 		},
+		cmd = { "AerialToggle" },
+		keys = {
+			{ "<C-t>", "<CMD>AerialToggle!<CR>", mode = "n" },
+		},
+		config = function()
+			require("plugin.aerial")
+		end,
 	},
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+		cmd = { "TroubleToggle" },
+		config = function()
+			require("plugin.trouble")
+		end,
 	},
-	{ "hrsh7th/nvim-cmp", event = { "InsertEnter", "CmdlineEnter" } },
+	{
+		"hrsh7th/nvim-cmp",
+		event = { "InsertEnter", "CmdlineEnter" },
+		config = function()
+			require("plugin.nvim_cmp")
+		end,
+	},
 	{ "hrsh7th/cmp-nvim-lsp", event = { "InsertEnter", "CmdlineEnter" } },
 	{ "hrsh7th/vim-vsnip", event = { "InsertEnter", "CmdlineEnter" } },
 	{ "hrsh7th/cmp-path", event = { "InsertEnter", "CmdlineEnter" } },
 	{ "hrsh7th/cmp-buffer", event = { "InsertEnter", "CmdlineEnter" } },
 	{ "hrsh7th/cmp-cmdline", event = { "InsertEnter", "CmdlineEnter" } },
 	{ "rinx/cmp-skkeleton", event = { "InsertEnter", "CmdlineEnter" } },
-	-- { "vim-denops/denops.vim" },
 	{
 		"vim-skk/skkeleton",
 		dependencies = { "vim-denops/denops.vim" },
 		event = { "InsertEnter", "CmdlineEnter" },
+		keys = {
+			{ "<C-j>", "<Plug>(skkeleton-enable)", mode = "i" },
+			{ "<C-j>", "<Plug>(skkeleton-enable)", mode = "c" },
+		},
 		commit = "ce5968d",
 		init = function()
 			require("plugin.skkeleton")

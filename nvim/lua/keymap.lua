@@ -307,19 +307,6 @@ keymap("n", "ｐ", "p", opts)
 keymap("n", "ｄｄ", "dd", opts)
 keymap("n", "ｙｙ", "yy", opts)
 
--- for Plugins
--- -- Navbuddy
--- keymap("n", "<C-t>",      ":<C-u>Navbuddy<CR>",                         opts )
-
--- -- skkeleton
-keymap("i", "<C-j>", "<Plug>(skkeleton-enable)", opts)
-keymap("c", "<C-j>", "<Plug>(skkeleton-enable)", opts)
-keymap("i", "<C-l>", "<Plug>(skkeleton-disable)", opts)
-keymap("c", "<C-l>", "<Plug>(skkeleton-disable)", opts)
-
 -- for My Commands
-keymap("i", "<M-;>", "<ESC>:Appendchar ;<Cr>a", opts)
-keymap("n", "<M-;>", ":Appendchar ;<Cr>", opts)
-keymap("v", "<M-;>", ":Appendchar ;<Cr>", opts)
 keymap("v", "<Leader>t", ":Trans<CR>", opts)
 keymap("n", "<Leader>gf", ":Fshow<CR>", opts)
