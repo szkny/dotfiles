@@ -78,7 +78,7 @@ local plugins = {
 		event = "VeryLazy",
 		config = function()
 			vim.g.easy_align_ignore_groups = { "String" }
-			vim.keymap.set("v", "<Leader>=", ":EasyAlign *=<CR>", { noremap = true, silent = true })
+			vim.keymap.set("v", "<Leader>=", "<CMD>EasyAlign *=<CR>", { noremap = true, silent = true })
 			vim.keymap.set("v", "<Enter>", "<Plug>(EasyAlign)", { noremap = true, silent = true })
 		end,
 	},
@@ -186,7 +186,13 @@ local plugins = {
 		end,
 	},
 	{ "Mofiqul/vscode.nvim" },
-	{ "stevearc/oil.nvim" },
+	{
+		"stevearc/oil.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("plugin.oil")
+		end,
+	},
 	{
 		"nvim-tree/nvim-tree.lua",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -210,17 +216,47 @@ local plugins = {
 			require("plugin.splitterm")
 		end,
 	},
-	{ "junegunn/fzf", lazy = false },
-	{ "junegunn/fzf.vim", lazy = false },
-	{ "MunifTanjim/nui.nvim" },
-	{ "rcarriga/nvim-notify" },
-	{ "folke/noice.nvim" },
+	{
+		"junegunn/fzf",
+		dependencies = { "junegunn/fzf.vim" },
+		cmd = { "FZF" },
+	},
+	{
+		"junegunn/fzf.vim",
+		dependencies = { "junegunn/fzf" },
+		event = "VeryLazy",
+		config = function()
+			require("plugin.fzf")
+		end,
+	},
+	{
+		"rcarriga/nvim-notify",
+		event = "VeryLazy",
+		config = function()
+			require("plugin.nvim_notify")
+		end,
+	},
+	{
+		"folke/noice.nvim",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		event = "VeryLazy",
+		config = function()
+			require("plugin.noice")
+		end,
+	},
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 		init = function()
 			vim.o.timeout = true
 			vim.o.timeoutlen = 500
+		end,
+		config = function()
+			require("which-key").setup({})
 		end,
 	},
 	{ "folke/neodev.nvim" },
@@ -232,7 +268,13 @@ local plugins = {
 		dependencies = { "williamboman/mason.nvim", "nvimtools/none-ls.nvim", "nvim-lua/plenary.nvim" },
 	},
 	{ "SmiteshP/nvim-navic", lazy = false },
-	{ "SmiteshP/nvim-navbuddy", lazy = false },
+	{
+		"SmiteshP/nvim-navbuddy",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+		},
+		lazy = false,
+	},
 	{ "utilyre/barbecue.nvim" },
 	{ "stevearc/aerial.nvim" },
 	{

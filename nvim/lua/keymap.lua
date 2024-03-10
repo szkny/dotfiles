@@ -311,25 +311,6 @@ keymap("n", "ｙｙ", "yy", opts)
 -- -- fuzzy-motion
 keymap("n", "<Leader>f", ":silent FuzzyMotion<CR>", opts)
 keymap("n", "s", ":silent FuzzyMotion<CR>", opts)
--- -- fzf.vim
-keymap("n", "<C-b>", ":<C-u>Buffers<CR>", opts)
-keymap("n", "<C-p>", ":<C-u>Files<CR>", opts)
-keymap("n", "<Leader>/", ":<C-u>Lines<CR>", opts)
-keymap("n", "<C-f>", ":<C-u>Rg<CR>", opts)
-keymap("v", "<C-f>", ":<C-u>call VRgWord()<CR>", opts)
-vim.cmd([[
-fun! VRgWord() abort range
-    let @@ = ''
-    exe 'silent normal gvy'
-    if @@ !=# ''
-        let l:text = join(split(@@,'\n'))
-        silent exe 'Rg '.l:text
-    endif
-endf
-]])
--- -- oil.nvim
-keymap("n", "<Leader>o", require("oil").open_float, opts)
-keymap("n", "<Leader>t", require("util").oil_ssh_term, opts)
 -- -- Navbuddy
 -- keymap("n", "<C-t>",      ":<C-u>Navbuddy<CR>",                         opts )
 
