@@ -24,7 +24,15 @@ local options = {
 }
 local plugins = {
 	{
+		"Mofiqul/vscode.nvim",
+		lazy = false,
+		init = function()
+			require("colorscheme")
+		end,
+	},
+	{
 		"nvim-tree/nvim-web-devicons",
+		dependencies = { "Mofiqul/vscode.nvim" },
 		opts = require("plugin.nvim_web_devicons"),
 	},
 	{
@@ -59,7 +67,7 @@ local plugins = {
 		dependencies = {
 			"petertriho/nvim-scrollbar",
 		},
-		-- config = function()
+		-- init = function()
 		-- 	require("plugin.gitsigns")
 		-- end,
 	},
@@ -107,12 +115,13 @@ local plugins = {
 	},
 	{ "dstein64/vim-startuptime", cmd = "StartupTime" },
 	{
+		-- TODO: WIP lazy load setup
 		"nvim-lualine/lualine.nvim",
-		-- event = "VeryLazy",
-		event = "VimEnter",
-		config = function()
-			require("plugin.lualine")
-		end,
+		-- dependencies = { "nvim-tree/nvim-web-devicons" },
+		-- event = "VimEnter",
+		-- init = function()
+		-- 	require("plugin.lualine")
+		-- end,
 	},
 	{
 		"wfxr/minimap.vim",
@@ -134,7 +143,7 @@ local plugins = {
 		},
 		-- lazy = false,
 		-- event = "VeryLazy",
-		-- opt = require("plugin.nvim_scrollbar"),
+		-- opts = require("plugin.nvim_scrollbar"),
 		-- config = function()
 		-- 	require("plugin.nvim_scrollbar")
 		-- end,
@@ -149,8 +158,8 @@ local plugins = {
 	{
 		-- TODO: WIP lazy load setup
 		"romgrk/barbar.nvim",
-		-- lazy = false,
-		-- config = function()
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		-- init = function()
 		-- 	require("plugin.barbar")
 		-- end,
 	},
@@ -159,7 +168,7 @@ local plugins = {
 		"brenoprata10/nvim-highlight-colors",
 		-- lazy = false,
 		-- event = "VeryLazy",
-		-- opt = require("plugin.nvim_highlight_colors"),
+		-- opts = require("plugin.nvim_highlight_colors"),
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -185,7 +194,6 @@ local plugins = {
 			require("plugin.auto-session")
 		end,
 	},
-	{ "Mofiqul/vscode.nvim" },
 	{
 		"stevearc/oil.nvim",
 		event = "VeryLazy",
@@ -259,13 +267,31 @@ local plugins = {
 			require("which-key").setup({})
 		end,
 	},
-	{ "folke/neodev.nvim" },
+	{
+		"folke/neodev.nvim",
+		opts = {},
+	},
 	{ "neovim/nvim-lspconfig" },
-	{ "williamboman/mason.nvim" },
-	{ "williamboman/mason-lspconfig.nvim" },
+	{
+		"williamboman/mason.nvim",
+		cmd = {
+			"Mason",
+			"MasonInstall",
+			"MasonUninstall",
+			"MasonUninstallAll",
+			"MasonLog",
+			"MasonUpdate",
+		},
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+		},
+	},
 	{
 		"jay-babu/mason-null-ls.nvim",
-		dependencies = { "williamboman/mason.nvim", "nvimtools/none-ls.nvim", "nvim-lua/plenary.nvim" },
+		dependencies = { "nvimtools/none-ls.nvim", "nvim-lua/plenary.nvim" },
 	},
 	{ "SmiteshP/nvim-navic", lazy = false },
 	{
@@ -275,8 +301,20 @@ local plugins = {
 		},
 		lazy = false,
 	},
-	{ "utilyre/barbecue.nvim" },
-	{ "stevearc/aerial.nvim" },
+	{
+		"utilyre/barbecue.nvim",
+		dependencies = {
+			"SmiteshP/nvim-navic",
+			"nvim-tree/nvim-web-devicons",
+		},
+	},
+	{
+		"stevearc/aerial.nvim",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -288,16 +326,44 @@ local plugins = {
 	{ "hrsh7th/cmp-buffer", event = { "InsertEnter", "CmdlineEnter" } },
 	{ "hrsh7th/cmp-cmdline", event = { "InsertEnter", "CmdlineEnter" } },
 	{ "rinx/cmp-skkeleton", event = { "InsertEnter", "CmdlineEnter" } },
-	{ "vim-denops/denops.vim", lazy = false },
-	{ "vim-skk/skkeleton", lazy = false, commit = "ce5968d" },
-	{ "yuki-yano/fuzzy-motion.vim", lazy = false },
-	{ "ggandor/lightspeed.nvim", lazy = false },
-	{ "szkny/Ipython", ft = "python" },
+	-- { "vim-denops/denops.vim" },
+	{
+		"vim-skk/skkeleton",
+		dependencies = { "vim-denops/denops.vim" },
+		event = { "InsertEnter", "CmdlineEnter" },
+		commit = "ce5968d",
+		init = function()
+			require("plugin.skkeleton")
+		end,
+	},
+	{
+		"yuki-yano/fuzzy-motion.vim",
+		dependencies = { "vim-denops/denops.vim" },
+		keys = {
+			{ "<Leader>f", "<CMD>silent FuzzyMotion<CR>", mode = "n" },
+			{ "s", "<CMD>silent FuzzyMotion<CR>", mode = "n" },
+		},
+		config = function()
+			require("plugin.fuzzy_motion")
+		end,
+	},
+	{
+		"ggandor/lightspeed.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("plugin.lightspeed")
+		end,
+	},
+	{
+		"szkny/Ipython",
+		dependencies = { "szkny/SplitTerm" },
+		ft = "python",
+	},
 	{ "elzr/vim-json", ft = "json" },
 	{ "cespare/vim-toml", ft = "toml" },
 	{ "hashivim/vim-terraform", ft = "terraform" },
-	{ "raimon49/requirements.txt.vim" },
-	{ "pearofducks/ansible-vim" },
+	{ "raimon49/requirements.txt.vim", ft = "requirements" },
+	{ "pearofducks/ansible-vim", evnet = "VeryLazy" },
 }
 
 require("lazy").setup(plugins, options)

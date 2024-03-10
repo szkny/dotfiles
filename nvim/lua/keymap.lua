@@ -308,9 +308,6 @@ keymap("n", "ｄｄ", "dd", opts)
 keymap("n", "ｙｙ", "yy", opts)
 
 -- for Plugins
--- -- fuzzy-motion
-keymap("n", "<Leader>f", ":silent FuzzyMotion<CR>", opts)
-keymap("n", "s", ":silent FuzzyMotion<CR>", opts)
 -- -- Navbuddy
 -- keymap("n", "<C-t>",      ":<C-u>Navbuddy<CR>",                         opts )
 
