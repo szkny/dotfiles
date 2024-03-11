@@ -16,5 +16,3 @@ vim.cmd([[
         au ColorScheme * hi Cursor      gui=reverse
     aug END
 ]])
-
-vim.opt.background = "dark"

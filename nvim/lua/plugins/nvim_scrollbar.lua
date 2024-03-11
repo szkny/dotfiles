@@ -4,8 +4,8 @@ return {
 		"kevinhwang91/nvim-hlslens",
 		"lewis6991/gitsigns.nvim",
 	},
-	lazy = false,
-	-- event = "VeryLazy",
+	-- lazy = false,
+	event = "VeryLazy",
 	opts = {
 		show = true,
 		show_in_active_only = true,
