@@ -1,6 +1,9 @@
 return {
   "wfxr/minimap.vim",
-  cmd = "MinimapToggle",
+  cmd = {
+    "Minimap",
+    "MinimapToggle",
+  },
   dependencies = {
     "petertriho/nvim-scrollbar",
   },
