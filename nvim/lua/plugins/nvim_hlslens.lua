@@ -1,0 +1,42 @@
+-- TODO: WIP
+return {}
+-- return {
+--   "kevinhwang91/nvim-hlslens",
+--   lazy = false,
+--   dependencies = {
+--     "petertriho/nvim-scrollbar",
+--     "wfxr/minimap.vim",
+--   },
+--   opts = {
+--     calm_down = true,
+--     nearest_only = true,
+--     nearest_float_when = "auto",
+--     build_position_cb = function(plist, _, _, _)
+--       require("scrollbar.handlers.search").handler.show(plist.start_pos)
+--     end,
+--   },
+--   config = function()
+--     require("scrollbar.handlers.search").setup()
+--     local kopts = { noremap = true, silent = true }
+--     vim.api.nvim_set_keymap(
+--       "n",
+--       "n",
+--       [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+--       kopts
+--     )
+--     vim.api.nvim_set_keymap(
+--       "n",
+--       "N",
+--       [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+--       kopts
+--     )
+--     vim.api.nvim_set_keymap("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+--     vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+--     vim.keymap.set(
+--       "n",
+--       "<Leader>l",
+--       "exists(':MinimapUpdateHighlight') ? ':<C-u>set hlsearch!<CR>:MinimapUpdateHighlight<CR>' : ':<C-u>set hlsearch!<CR>'",
+--       { silent = true, expr = true }
+--     )
+--   end,
+-- }

@@ -1,0 +1,47 @@
+return {
+  "SmiteshP/nvim-navbuddy",
+  dependencies = {
+    "MunifTanjim/nui.nvim",
+    "SmiteshP/nvim-navic",
+    "nvim-tree/nvim-web-devicons",
+  },
+  cmd = "Navbuddy",
+  opts = {
+    window = {
+      border = "rounded",
+      size = "80%",
+    },
+    icons = {
+      File = " ",
+      Module = " ",
+      Namespace = " ",
+      Package = " ",
+      Class = " ",
+      Method = " ",
+      Property = " ",
+      Field = " ",
+      Constructor = " ",
+      Enum = " ",
+      Interface = " ",
+      Function = " ",
+      Variable = " ",
+      Constant = " ",
+      String = " ",
+      Number = " ",
+      Boolean = " ",
+      Array = " ",
+      Object = " ",
+      Key = " ",
+      Null = " ",
+      EnumMember = " ",
+      Struct = " ",
+      Event = " ",
+      Operator = " ",
+      TypeParameter = " ",
+    },
+    lsp = { auto_attach = true },
+  },
+  config = function(_, opts)
+    require("nvim-navbuddy").setup(opts)
+  end,
+}
