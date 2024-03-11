@@ -221,55 +221,28 @@ vim.cmd([[
 ]])
 
 function Catch(what)
-	return what[1]
+  return what[1]
 end
 
 function Try(what)
-	local status, result = pcall(what[1])
-	if not status then
-		what[2](result)
-	end
-	return result
+  local status, result = pcall(what[1])
+  if not status then
+    what[2](result)
+  end
+  return result
 end
 
 function Dump(o)
-	if type(o) == "table" then
-		local s = "{ "
-		for k, v in pairs(o) do
-			if type(k) ~= "number" then
-				k = '"' .. k .. '"'
-			end
-			s = s .. "[" .. k .. "] = " .. Dump(v) .. ","
-		end
-		return s .. "} "
-	else
-		return tostring(o)
-	end
+  if type(o) == "table" then
+    local s = "{ "
+    for k, v in pairs(o) do
+      if type(k) ~= "number" then
+        k = '"' .. k .. '"'
+      end
+      s = s .. "[" .. k .. "] = " .. Dump(v) .. ","
+    end
+    return s .. "} "
+  else
+    return tostring(o)
+  end
 end
-
-local function oil_ssh_term()
-	local fname = vim.fn.expand("%:p")
-	if type(fname) == "table" then
-		fname = fname[0]
-	end
-	local protocol, target, path = string.match(fname, "^(.+)://(.-)%/(.+)")
-	if protocol ~= "oil-ssh" then
-		path = fname
-	end
-	local basepath = path:match("(.*" .. "/" .. ")")
-	if basepath == nil then
-		basepath = vim.fn.expand("%:p:h")
-	end
-	local command
-	if protocol == "oil-ssh" then
-		command = "ssh " .. target .. " -t 'cd \\'" .. basepath .. "\\' && $SHELL'"
-	else
-		command = "cd \\'" .. basepath .. "\\' && $SHELL"
-	end
-	vim.cmd('call splitterm#open_width(18, "' .. command .. '")')
-	vim.cmd("startinsert")
-end
-vim.api.nvim_create_user_command("OilSshTerm", oil_ssh_term, { bang = true, nargs = "?" })
-return {
-	oil_ssh_term = oil_ssh_term,
-}

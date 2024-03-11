@@ -53,12 +53,37 @@ return {
         endf
         au FileType oil call s:oil_init()
     ]])
+
+    local function oil_ssh_term()
+      local fname = vim.fn.expand("%:p")
+      if type(fname) == "table" then
+        fname = fname[0]
+      end
+      local protocol, target, path = string.match(fname, "^(.+)://(.-)%/(.+)")
+      if protocol ~= "oil-ssh" then
+        path = fname
+      end
+      local basepath = path:match("(.*" .. "/" .. ")")
+      if basepath == nil then
+        basepath = vim.fn.expand("%:p:h")
+      end
+      local command
+      if protocol == "oil-ssh" then
+        command = "ssh " .. target .. " -t 'cd \\'" .. basepath .. "\\' && $SHELL'"
+      else
+        command = "cd \\'" .. basepath .. "\\' && $SHELL"
+      end
+      vim.cmd('call splitterm#open_width(18, "' .. command .. '")')
+      vim.cmd("startinsert")
+    end
+    vim.api.nvim_create_user_command("OilSshTerm", oil_ssh_term, { bang = true, nargs = "?" })
+
     vim.api.nvim_set_hl(0, "OilFile", { fg = "#bbbbbb", bg = "none", bold = true })
     vim.api.nvim_set_hl(0, "OilDir", { fg = "#77aadd", bg = "none", bold = true })
     vim.api.nvim_set_hl(0, "OilLink", { fg = "#77afaf", bg = "none", bold = true })
 
     local kopts = { noremap = true, silent = true }
     vim.keymap.set("n", "<Leader>o", require("oil").open_float, kopts)
-    vim.keymap.set("n", "<Leader>t", require("util").oil_ssh_term, kopts)
+    vim.keymap.set("n", "<Leader>t", oil_ssh_term, kopts)
   end,
 }
