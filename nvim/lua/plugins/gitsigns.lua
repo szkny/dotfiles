@@ -4,9 +4,6 @@ return {
   keys = {
     { "<Leader>gb", "<CMD>Gitsigns toggle_current_line_blame<CR>", mode = "n" },
   },
-  dependencies = {
-    "petertriho/nvim-scrollbar",
-  },
   opts = {
     signs = {
       add = { text = "│" },
@@ -63,7 +60,16 @@ return {
       end, { expr = true })
     end,
   },
-  init = function()
+  config = function(_, opts)
     require("scrollbar.handlers.gitsigns").setup()
+    require("gitsigns").setup(opts)
+    vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = "#00bb00", bg = "none", bold = true })
+    vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#aaaa00", bg = "none", bold = true })
+    vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = "#ff2222", bg = "none", bold = true })
+    vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", { fg = "#777777", bg = "none" })
+    vim.api.nvim_set_hl(0, "DiffAdd", { fg = "none", bg = "#004400" })
+    vim.api.nvim_set_hl(0, "DiffChange", { fg = "none", bg = "#303000" })
+    vim.api.nvim_set_hl(0, "Difftext", { fg = "none", bg = "#505000" })
+    vim.api.nvim_set_hl(0, "DiffDelete", { fg = "none", bg = "#440000" })
   end,
 }

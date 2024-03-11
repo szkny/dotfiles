@@ -146,5 +146,15 @@ return {
     inactive_winbar = {},
     extensions = {},
   },
-  init = function() end,
+  config = function(_, opts)
+    require("lualine").setup(opts)
+
+    vim.api.nvim_set_hl(0, "lualine_lsp_err", { fg = "#ee3333", bg = "#212736" })
+    vim.api.nvim_set_hl(0, "lualine_lsp_warn", { fg = "#edd000", bg = "#212736" })
+    vim.api.nvim_set_hl(0, "lualine_lsp_hint", { fg = "#5599dd", bg = "#212736" })
+    vim.api.nvim_set_hl(0, "lualine_lsp_info", { fg = "#5599dd", bg = "#212736" })
+    vim.api.nvim_set_hl(0, "lualine_diff_add", { fg = "#66aa88", bg = "#394260" })
+    vim.api.nvim_set_hl(0, "lualine_diff_change", { fg = "#bbbb88", bg = "#394260" })
+    vim.api.nvim_set_hl(0, "lualine_diff_delete", { fg = "#aa6666", bg = "#394260" })
+  end,
 }

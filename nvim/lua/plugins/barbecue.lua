@@ -4,8 +4,8 @@ return {
     "SmiteshP/nvim-navic",
     "nvim-tree/nvim-web-devicons",
   },
-  lazy = false,
-  init = function()
+  event = "VeryLazy",
+  config = function()
     require("barbecue").setup({
       create_autocmd = false,
     })

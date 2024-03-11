@@ -9,6 +9,7 @@ return {
       "<C-k>",
       "<CMD>ScrollbarToggle<CR>:MinimapToggle<CR>:try|e|catch|endtry<CR>:MinimapUpdateHighlight<CR>",
       mode = "n",
+      silent = true,
     },
   },
   config = function()

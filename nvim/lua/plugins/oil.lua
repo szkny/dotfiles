@@ -84,6 +84,6 @@ return {
 
     local kopts = { noremap = true, silent = true }
     vim.keymap.set("n", "<Leader>o", require("oil").open_float, kopts)
-    vim.keymap.set("n", "<Leader>t", oil_ssh_term, kopts)
+    -- vim.keymap.set("n", "<Leader>t", oil_ssh_term, kopts)
   end,
 }
