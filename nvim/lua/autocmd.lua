@@ -1,16 +1,6 @@
 -- *****************************************************************************
 --   Autocmd Rules
 -- *****************************************************************************
--- IME
-if vim.fn.has("mac") then
-  vim.api.nvim_set_var("imeoff", 'osascript -e "tell application "System Events" to key code 102"')
-  vim.cmd([[
-    aug MyIMEGroup
-      au!
-      au InsertLeave * :call system(g:imeoff)
-    aug END
-  ]])
-end
 
 -- The PC is fast enough, do syntax highlight syncing from start unless 200 lines
 vim.cmd([[
@@ -135,10 +125,6 @@ vim.cmd([[
             call append(7,'"""')
         endif
 
-        " mapping
-        nno <silent> <leader><CR> :Ipython<CR>
-        vno <silent> <leader><CR> :VIpython<CR>
-
         " auto command
         aug vimrc_python
             au!
@@ -150,25 +136,6 @@ vim.cmd([[
             au BufNewFile,BufRead Pipfile      setfiletype toml
             au BufNewFile,BufRead Pipfile.lock setfiletype json
         aug END
-
-        " plugin setting
-        "" Ipython
-        let g:ipython_startup_options = [
-                    \'--no-confirm-exit',
-                    \'--colors=Linux',
-                    \'--no-banner']
-        let g:ipython_startup_command = [
-                    \'from IPython import get_ipython',
-                    \'mgc = get_ipython().run_line_magic',
-                    \'mgc("load_ext", "autoreload")',
-                    \'mgc("autoreload", "2")',
-                    \'import pandas as pd',
-                    \'pd.options.display.max_rows = 10',
-                    \'pd.options.display.max_columns = 10',
-                    \'import warnings',
-                    \'warnings.filterwarnings(action="ignore",'
-                    \.' module="sklearn", message="^internal gelsd")']
-        let g:ipython_window_width = 10
 
         " function
         fun! s:pythonmaxlinelength() abort
