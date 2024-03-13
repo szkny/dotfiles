@@ -2,22 +2,6 @@
 --   Autocmd Rules
 -- *****************************************************************************
 
--- The PC is fast enough, do syntax highlight syncing from start unless 200 lines
-vim.cmd([[
-    aug vimrc_sync_fromstart
-        au!
-        au BufEnter * :syntax sync maxlines=200
-    aug END
-]])
-
--- Remember cursor position
-vim.cmd([[
-    aug vimrc_remember_cursor_position
-        au!
-        au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-    aug END
-]])
-
 -- txt
 vim.cmd([[
     aug vimrc_wrapping
