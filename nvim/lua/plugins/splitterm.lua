@@ -1,14 +1,14 @@
 return {
-  "szkny/SplitTerm",
-  cmd = "SplitTerm",
-  keys = {
-    { "t",          "<CMD>18SplitTerm<CR>i",                              mode = "n" },
-    { "<leader>gg", "<CMD>SplitTerm lazygit<CR><C-w>J:res 1000<CR>i<CR>", mode = "n" },
-  },
-  event = "VeryLazy",
-  config = function()
-    vim.api.nvim_set_var("splitterm_auto_close_window", 1)
-    vim.cmd([[
+	"szkny/SplitTerm",
+	cmd = "SplitTerm",
+	-- keys = {
+	--   { "t",          "<CMD>18SplitTerm<CR>i",                              mode = "n" },
+	--   { "<leader>gg", "<CMD>SplitTerm lazygit<CR><C-w>J:res 1000<CR>i<CR>", mode = "n" },
+	-- },
+	event = "VeryLazy",
+	config = function()
+		vim.api.nvim_set_var("splitterm_auto_close_window", 1)
+		vim.cmd([[
         fun! s:trans(...) abort range
             " transコマンド(Google翻訳)を利用してvisual選択中の文字列を日本語変換する関数
             if executable('trans')
@@ -89,11 +89,11 @@ return {
         endf
     ]])
 
-    vim.cmd([[
+		vim.cmd([[
         command! Fshow exe "SplitTerm zsh -i -c fshow" | startinsert
     ]])
 
-    vim.cmd([[
+		vim.cmd([[
         fun! s:viu(...) abort
             if executable('viu')
                 if a:0 == 0
@@ -109,7 +109,7 @@ return {
         command! -nargs=* Viu call s:viu(<f-args>)
     ]])
 
-    vim.cmd([[
+		vim.cmd([[
         fun! s:delta(...) abort
           exe "1000SplitTerm file=$(fzf) && delta -s --paging always "..expand("%").." $file"
           startinsert
@@ -117,8 +117,8 @@ return {
         command! -nargs=* Delta call s:delta(<f-args>)
     ]])
 
-    local kopts = { noremap = true, silent = true }
-    vim.keymap.set("v", "<Leader>t", "<CMD>Trans<CR>", kopts)
-    vim.keymap.set("n", "<Leader>gf", "<CMD>Fshow<CR>", kopts)
-  end,
+		local kopts = { noremap = true, silent = true }
+		vim.keymap.set("v", "<Leader>t", "<CMD>Trans<CR>", kopts)
+		vim.keymap.set("n", "<Leader>gf", "<CMD>Fshow<CR>", kopts)
+	end,
 }
