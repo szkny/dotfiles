@@ -3,7 +3,6 @@
 - neovim
 
   - auto changing cursor shape in tmux
-  - make startup time faster
   - telescope.nvim
     - basic setup
   - obsidian.nvim
