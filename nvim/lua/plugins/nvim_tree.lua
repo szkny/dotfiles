@@ -80,10 +80,14 @@ return {
 				max = vim.diagnostic.severity.ERROR,
 			},
 			icons = {
-				hint = "",
-				info = "",
-				warning = "",
-				error = "",
+				-- hint = "",
+				-- info = "",
+				-- warning = "",
+				-- error = "",
+				error = "",
+				warning = "",
+				info = "",
+				hint = "",
 			},
 		},
 		filters = {

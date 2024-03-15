@@ -113,8 +113,8 @@ vim.api.nvim_set_var("vim_json_syntax_conceal", 0)
 vim.opt.ruler = true
 vim.opt.number = true
 vim.opt.wrap = false
-vim.opt.pumblend = 20
-vim.opt.winblend = 20
+vim.opt.pumblend = 0
+vim.opt.winblend = 0
 
 vim.api.nvim_set_var("no_buffers_menu", 1)
 

@@ -1,13 +1,13 @@
 return {
-  "kevinhwang91/rnvimr",
-  cmd = "RnvimrToggle",
-  keys = {
-    { "<C-h>", "<CMD>RnvimrToggle<CR>", mode = "n" },
-  },
-  config = function()
-    vim.g.rnvimr_enable_picker = 1
-    vim.g.rnvimr_draw_border = 1
-    vim.cmd([[
+	"kevinhwang91/rnvimr",
+	cmd = "RnvimrToggle",
+	keys = {
+		{ "<C-h>", "<CMD>RnvimrToggle<CR>", mode = "n" },
+	},
+	config = function()
+		vim.g.rnvimr_enable_picker = 1
+		vim.g.rnvimr_draw_border = 1
+		vim.cmd([[
       let g:rnvimr_layout = {
         \ 'relative': 'editor',
         \ 'width':  float2nr(round(0.90 * &columns)),
@@ -17,6 +17,6 @@ return {
         \ 'style': 'minimal'
         \ }
     ]])
-    vim.api.nvim_set_hl(0, "RnvimrCurses", { fg = "none", bg = "#2a2a2a" })
-  end,
+		vim.api.nvim_set_hl(0, "RnvimrCurses", { fg = "none", bg = "none" })
+	end,
 }
