@@ -2,6 +2,8 @@
 
 - neovim
 
+  - noice.nvim
+    - transparent setup
   - auto changing cursor shape in tmux
   - telescope.nvim
     - basic setup
