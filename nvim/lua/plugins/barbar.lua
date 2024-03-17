@@ -31,14 +31,14 @@ return {
         custom_colors = false,
         enabled = true,
       },
-      separator = { left = "▎", right = "" },
+      separator = { left = "│", right = "" },
       separator_at_end = false,
       modified = { button = "●" },
       pinned = { button = "", filename = true },
       preset = "default",
       alternate = { filetype = { enabled = false } },
       current = { buffer_index = false },
-      inactive = { button = "×" },
+      inactive = { button = "×", separator = { left = "│", right = "" } },
       visible = { modified = { buffer_number = false } },
     },
     highlight_alternate = false,
@@ -79,7 +79,7 @@ return {
     vim.api.nvim_set_hl(0, "BufferInactiveMod", { bg = "none", fg = "#bb7700" })
     vim.api.nvim_set_hl(0, "BufferCurrentSign", { bg = "#1e1e1e", fg = "#88ccff", bold = true })
     vim.api.nvim_set_hl(0, "BufferVisibleSign", { bg = "none", fg = "#5588dd" })
-    vim.api.nvim_set_hl(0, "BufferInactiveSign", { bg = "none", fg = "#444444" })
+    vim.api.nvim_set_hl(0, "BufferInactiveSign", { bg = "none", fg = "#555555" })
     vim.api.nvim_set_hl(0, "BufferCurrentERROR", { bg = "#1e1e1e", fg = "#ee3333" })
     vim.api.nvim_set_hl(0, "BufferVisibleERROR", { bg = "none", fg = "#ee3333" })
     vim.api.nvim_set_hl(0, "BufferInactiveERROR", { bg = "none", fg = "#aa3333" })
