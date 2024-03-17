@@ -1,6 +1,14 @@
 return {
 	"gorbit99/codewindow.nvim",
 	event = "VeryLazy",
+	keys = {
+		{
+			"<C-k>",
+			"<CMD>lua require('codewindow').toggle_minimap()<CR>",
+			mode = "n",
+			silent = true,
+		},
+	},
 	opts = {
 		active_in_terminals = false,
 		auto_enable = false,
@@ -22,7 +30,6 @@ return {
 	config = function(_, opts)
 		local codewindow = require("codewindow")
 		codewindow.setup(opts)
-		vim.keymap.set("n", "<C-k>", codewindow.toggle_minimap, { silent = true })
 		vim.api.nvim_set_hl(0, "CodewindowBorder", { fg = "#555555", bg = "none" })
 		vim.api.nvim_set_hl(0, "CodewindowBackground", { bg = "none" })
 		vim.api.nvim_set_hl(0, "CodewindowBoundsBackground", { bg = "#2f2f2f" })
