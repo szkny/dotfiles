@@ -6,7 +6,7 @@
 vim.cmd([[
     aug vimrc_wrapping
         au!
-        au BufRead,BufNewFile *.txt setlocal wrap wrapmargin=2 textwidth=79
+        au BufRead,BufNewFile *.txt setlocal wrap wrapmargin=2 textwidth=1000
     aug END
 ]])
 
