@@ -1,6 +1,6 @@
 return {
 	"gorbit99/codewindow.nvim",
-	event = "VeryLazy",
+	-- event = "VeryLazy",
 	keys = {
 		{
 			"<C-k>",
