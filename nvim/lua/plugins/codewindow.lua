@@ -16,21 +16,23 @@ return {
 		max_minimap_height = nil,
 		max_lines = nil,
 		minimap_width = 15,
+		width_multiplier = 4, -- How many characters one dot represents
 		use_treesitter = true,
 		use_lsp = true,
 		use_git = true,
-		width_multiplier = 4, -- How many characters one dot represents
 		z_index = 1,
 		show_cursor = true,
 		screen_bounds = "background",
-		window_border = "rounded",
-		relative = "win", -- What will be the minimap be placed relative to, "win": the current window, "editor": the entire editor
+		-- window_border = "rounded",
+		window_border = "none",
+		-- relative = "editor",
+		relative = "win",
 		events = { "TextChanged", "InsertLeave", "DiagnosticChanged", "FileWritePost" },
 	},
 	config = function(_, opts)
 		local codewindow = require("codewindow")
 		codewindow.setup(opts)
-		vim.api.nvim_set_hl(0, "CodewindowBorder", { fg = "#555555", bg = "none" })
+		vim.api.nvim_set_hl(0, "CodewindowBorder", { fg = "#2f2f2f", bg = "none" })
 		vim.api.nvim_set_hl(0, "CodewindowBackground", { bg = "none" })
 		vim.api.nvim_set_hl(0, "CodewindowBoundsBackground", { bg = "#2f2f2f" })
 		vim.api.nvim_set_hl(0, "CodewindowWarn", { fg = "#edd000", bg = "none" })
