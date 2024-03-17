@@ -17,6 +17,6 @@ return {
         \ 'style': 'minimal'
         \ }
     ]])
-		vim.api.nvim_set_hl(0, "RnvimrCurses", { fg = "none", bg = "none" })
+		vim.api.nvim_set_hl(0, "RnvimrCurses", { fg = "#555555", bg = "none" })
 	end,
 }

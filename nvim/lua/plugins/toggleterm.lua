@@ -15,6 +15,12 @@ return {
 		float_opts = {
 			border = "curved",
 		},
+		highlights = {
+			FloatBorder = {
+				guifg = "#555555",
+				guibg = "none",
+			},
+		},
 	},
 	config = function(_, opts)
 		require("toggleterm").setup(opts)

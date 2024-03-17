@@ -64,7 +64,7 @@ return {
 		-- Highlight
 		vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none", fg = "#9fa3a8" })
 		vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none", fg = "#9fa3a8" })
-		vim.api.nvim_set_hl(0, "Pmenu", { bg = "none", fg = "#9fa3af" })
+		vim.api.nvim_set_hl(0, "Pmenu", { bg = "none", fg = "#9fa3a8" })
 		vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#334f7a", fg = "none", bold = true })
 	end,
 }
