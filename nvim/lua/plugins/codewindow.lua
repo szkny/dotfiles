@@ -15,8 +15,8 @@ return {
 		exclude_filetypes = { "help" },
 		max_minimap_height = nil,
 		max_lines = nil,
-		minimap_width = 15,
-		width_multiplier = 4, -- How many characters one dot represents
+		minimap_width = 10,
+		width_multiplier = 5, -- How many characters one dot represents
 		use_treesitter = true,
 		use_lsp = true,
 		use_git = true,
