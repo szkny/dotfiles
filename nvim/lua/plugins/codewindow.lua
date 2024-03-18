@@ -39,11 +39,10 @@ return {
 		vim.api.nvim_set_hl(0, "CodewindowBorder", { fg = "#2f2f2f", bg = "none" })
 		vim.api.nvim_set_hl(0, "CodewindowBackground", { bg = "none" })
 		vim.api.nvim_set_hl(0, "CodewindowBoundsBackground", { bg = "#384046" })
-		vim.api.nvim_set_hl(0, "CodewindowWarn", { fg = "#edd000", bg = "none" })
-		vim.api.nvim_set_hl(0, "CodewindowError", { fg = "#ee3333", bg = "none" })
-		vim.api.nvim_set_hl(0, "CodewindowUnderline", { fg = "#0000ff", bg = "none" })
-		vim.api.nvim_set_hl(0, "CodewindowAddition", { fg = "#00aa77", bg = "none" })
-		vim.api.nvim_set_hl(0, "CodewindowDeletion", { fg = "#bb0000", bg = "none" })
+		vim.api.nvim_set_hl(0, "CodewindowWarn", { fg = "#edd000", bg = "none", bold = true })
+		vim.api.nvim_set_hl(0, "CodewindowError", { fg = "#ee3333", bg = "none", bold = true })
+		vim.api.nvim_set_hl(0, "CodewindowAddition", { fg = "#00aa77", bg = "none", bold = true })
+		vim.api.nvim_set_hl(0, "CodewindowDeletion", { fg = "#bb0000", bg = "none", bold = true })
 		codewindow.open_minimap()
 	end,
 }
