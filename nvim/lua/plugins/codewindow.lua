@@ -1,10 +1,13 @@
 return {
 	"gorbit99/codewindow.nvim",
-	-- event = "VeryLazy",
+	dependencies = {
+		"petertriho/nvim-scrollbar",
+	},
+	event = "VeryLazy",
 	keys = {
 		{
 			"<C-k>",
-			"<CMD>lua require('codewindow').toggle_minimap()<CR>",
+			"<CMD>ScrollbarToggle<CR><CMD>lua require('codewindow').toggle_minimap()<CR>",
 			mode = "n",
 			silent = true,
 		},
@@ -22,6 +25,7 @@ return {
 		use_git = true,
 		z_index = 1,
 		show_cursor = true,
+		-- screen_bounds = "lines",
 		screen_bounds = "background",
 		-- window_border = "rounded",
 		window_border = "none",
@@ -34,11 +38,12 @@ return {
 		codewindow.setup(opts)
 		vim.api.nvim_set_hl(0, "CodewindowBorder", { fg = "#2f2f2f", bg = "none" })
 		vim.api.nvim_set_hl(0, "CodewindowBackground", { bg = "none" })
-		vim.api.nvim_set_hl(0, "CodewindowBoundsBackground", { bg = "#2f2f2f" })
+		vim.api.nvim_set_hl(0, "CodewindowBoundsBackground", { bg = "#384046" })
 		vim.api.nvim_set_hl(0, "CodewindowWarn", { fg = "#edd000", bg = "none" })
 		vim.api.nvim_set_hl(0, "CodewindowError", { fg = "#ee3333", bg = "none" })
 		vim.api.nvim_set_hl(0, "CodewindowUnderline", { fg = "#0000ff", bg = "none" })
 		vim.api.nvim_set_hl(0, "CodewindowAddition", { fg = "#00aa77", bg = "none" })
 		vim.api.nvim_set_hl(0, "CodewindowDeletion", { fg = "#bb0000", bg = "none" })
+		codewindow.open_minimap()
 	end,
 }
