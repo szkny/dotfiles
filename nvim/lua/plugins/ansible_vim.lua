@@ -1,1 +1,2 @@
-return { "pearofducks/ansible-vim", evnet = "VeryLazy" }
+return {}
+-- return { "pearofducks/ansible-vim", event = "VeryLazy" }

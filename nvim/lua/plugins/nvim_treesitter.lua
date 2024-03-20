@@ -2,7 +2,7 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	-- lazy = false,
-	evnet = "VeryLazy",
+	event = "VeryLazy",
 	opts = {
 		highlight = {
 			enable = true,
