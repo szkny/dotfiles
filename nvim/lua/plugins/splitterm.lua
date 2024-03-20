@@ -9,15 +9,34 @@ return {
 	config = function()
 		vim.api.nvim_set_var("splitterm_auto_close_window", 1)
 		vim.cmd([[
+        fun! s:get_vselect_txt()
+            if mode()=="v"
+                let [line_start, column_start] = getpos("v")[1:2]
+                let [line_end, column_end] = getpos(".")[1:2]
+            else
+                let [line_start, column_start] = getpos("'<")[1:2]
+                let [line_end, column_end] = getpos("'>")[1:2]
+            end
+            if (line2byte(line_start)+column_start) > (line2byte(line_end)+column_end)
+                let [line_start, column_start, line_end, column_end] =
+                \   [line_end, column_end, line_start, column_start]
+            end
+            let lines = getline(line_start, line_end)
+            if len(lines) == 0
+                    return ''
+            endif
+            let lines[-1] = lines[-1][: column_end - 1]
+            let lines[0] = lines[0][column_start - 1:]
+            return join(lines, "\n")
+        endf
         fun! s:trans(...) abort range
             " transコマンド(Google翻訳)を利用してvisual選択中の文字列を日本語変換する関数
             if executable('trans')
                 let l:text = ''
                 if a:0 == 0
-                    let @@ = ''
-                    exe 'silent normal gvy'
-                    if @@ !=# ''
-                        let l:text = join(split(@@,'\n'))
+                    let l:selected_text = s:get_vselect_txt()
+                    if l:selected_text !=# ''
+                        let l:text = join(split(l:selected_text,'\n'))
                     else
                         let l:text = expand('<cword>')
                     endif
@@ -44,10 +63,9 @@ return {
             if executable('trans')
                 let l:text = ''
                 if a:0 == 0
-                    let @@ = ''
-                    exe 'silent normal gvy'
-                    if @@ !=# ''
-                        let l:text = join(split(@@,'\n'))
+                    let l:selected_text = s:get_vselect_txt()
+                    if l:selected_text !=# ''
+                        let l:text = join(split(l:selected_text,'\n'))
                     else
                         let l:text = expand('<cword>')
                     endif
