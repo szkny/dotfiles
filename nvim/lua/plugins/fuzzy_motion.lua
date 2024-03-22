@@ -1,7 +1,7 @@
 return {
 	"yuki-yano/fuzzy-motion.vim",
 	dependencies = { "vim-denops/denops.vim" },
-	event = "VeryLazy",
+	-- event = "VeryLazy",
 	config = function()
 		vim.g.fuzzy_motion_auto_jump = true
 		local opts = { noremap = true, silent = true }
