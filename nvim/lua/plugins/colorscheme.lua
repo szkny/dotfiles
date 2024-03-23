@@ -29,6 +29,7 @@ return {
 	priority = 1000,
 	opts = {
 		-- style = "storm",
+		-- style = "moon",
 		style = "night",
 		transparent = true,
 		styles = {
