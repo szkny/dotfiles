@@ -23,14 +23,14 @@ vim.cmd([[
 vim.g.lualine_diagnostics_source = "nvim_diagnostic"
 local my_custom_theme = {
 	normal = {
-		a = { fg = "#ddddee", bg = "#5588dd", gui = "bold" },
+		a = { fg = "#ddddee", bg = "#5588dd", gui = "none" },
 		b = { fg = "#5588dd", bg = "#394260" },
 		c = { fg = "#5588dd" },
 	},
-	insert = { a = { fg = "#394260", bg = "#a3aed2", gui = "bold" } },
-	terminal = { a = { fg = "#394260", bg = "#a3aed2", gui = "bold" } },
-	visual = { a = { fg = "#394260", bg = "#88b4c4", gui = "bold" } },
-	replace = { a = { fg = "#394260", bg = "#9988dd", gui = "bold" } },
+	insert = { a = { fg = "#394260", bg = "#a3aed2", gui = "none" } },
+	terminal = { a = { fg = "#394260", bg = "#a3aed2", gui = "none" } },
+	visual = { a = { fg = "#394260", bg = "#88b4c4", gui = "none" } },
+	replace = { a = { fg = "#394260", bg = "#9988dd", gui = "none" } },
 	inactive = {
 		a = { fg = "#ddddee" },
 		b = { fg = "#ddddee" },

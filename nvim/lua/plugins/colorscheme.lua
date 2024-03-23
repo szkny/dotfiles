@@ -22,3 +22,16 @@ return {
 		require("vscode").load("dark")
 	end,
 }
+
+-- return {
+-- 	"rebelot/kanagawa.nvim",
+-- 	lazy = false,
+-- 	priority = 1000,
+-- 	opts = {
+-- 		transparent = true,
+-- 	},
+-- 	config = function(_, opts)
+-- 		require("kanagawa").setup(opts)
+-- 		require("kanagawa").load("wave")
+-- 	end,
+-- }
