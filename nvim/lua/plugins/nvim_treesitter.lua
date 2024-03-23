@@ -1,8 +1,7 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
-	-- lazy = false,
-	event = "VeryLazy",
+	event = "VimEnter",
 	opts = {
 		highlight = {
 			enable = true,
