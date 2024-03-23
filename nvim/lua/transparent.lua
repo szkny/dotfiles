@@ -1,36 +1,37 @@
 -- *****************************************************************************
 --   ColorScheme
 -- *****************************************************************************
-vim.cmd([[
-    aug transparencyBG
-      au!
-      au ColorScheme * hi Normal                    guibg=none
-      au ColorScheme * hi NonText                   guibg=none
-      au ColorScheme * hi EndOfBuffer guifg=#252525 guibg=none
-      au ColorScheme * hi LineNr      guifg=#666666 guibg=none
-      au ColorScheme * hi SignColumn                guibg=none
-      au ColorScheme * hi Folded                    guibg=none
-      au ColorScheme * hi VertSplit   guifg=#555555 guibg=none
-      au ColorScheme * hi NormalNC                  guibg=none
-      au ColorScheme * hi Comment                   guibg=none
-      au ColorScheme * hi Constant                  guibg=none
-      au ColorScheme * hi Special                   guibg=none
-      au ColorScheme * hi Identifier                guibg=none
-      au ColorScheme * hi Statement                 guibg=none
-      au ColorScheme * hi PreProc                   guibg=none
-      au ColorScheme * hi Type                      guibg=none
-      au ColorScheme * hi Underlined                guibg=none
-      au ColorScheme * hi Todo                      guibg=none
-      au ColorScheme * hi String                    guibg=none
-      au ColorScheme * hi Function                  guibg=none
-      au ColorScheme * hi Conditional               guibg=none
-      au ColorScheme * hi Repeat                    guibg=none
-      au ColorScheme * hi Operator                  guibg=none
-      au ColorScheme * hi Structure                 guibg=none
-      au ColorScheme * hi StatusLine                guibg=none
-      au ColorScheme * hi StatusLineNC              guibg=none
-      au ColorScheme * hi CursorLine                guibg=#303030
-      au ColorScheme * hi CursorLineNr              guibg=none
-      au ColorScheme * hi Cursor      gui=reverse
-    aug END
-]])
+vim.api.nvim_create_autocmd("ColorScheme", {
+	once = true,
+	callback = function()
+		vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+		vim.api.nvim_set_hl(0, "NonText", { bg = "none" })
+		vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = "#252525", bg = "none" })
+		vim.api.nvim_set_hl(0, "Buffer", { bg = "none" })
+		vim.api.nvim_set_hl(0, "LineNr", { fg = "##666666", bg = "none" })
+		vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+		vim.api.nvim_set_hl(0, "Folded", { bg = "none" })
+		vim.api.nvim_set_hl(0, "VertSplit", { fg = "#555555", bg = "none" })
+		vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+		vim.api.nvim_set_hl(0, "Comment", { bg = "none" })
+		vim.api.nvim_set_hl(0, "Constant", { bg = "none" })
+		vim.api.nvim_set_hl(0, "Special", { bg = "none" })
+		vim.api.nvim_set_hl(0, "Identifier", { bg = "none" })
+		vim.api.nvim_set_hl(0, "Statement", { bg = "none" })
+		vim.api.nvim_set_hl(0, "PreProc", { bg = "none" })
+		vim.api.nvim_set_hl(0, "Type", { bg = "none" })
+		vim.api.nvim_set_hl(0, "Underlined", { bg = "none" })
+		vim.api.nvim_set_hl(0, "Todo", { bg = "none" })
+		vim.api.nvim_set_hl(0, "String", { bg = "none" })
+		vim.api.nvim_set_hl(0, "Function", { bg = "none" })
+		vim.api.nvim_set_hl(0, "Conditional", { bg = "none" })
+		vim.api.nvim_set_hl(0, "Repeat", { bg = "none" })
+		vim.api.nvim_set_hl(0, "Operator", { bg = "none" })
+		vim.api.nvim_set_hl(0, "Structure", { bg = "none" })
+		vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
+		vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
+		vim.api.nvim_set_hl(0, "CursorLine", { bg = "#303030" })
+		vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "none" })
+		vim.api.nvim_set_hl(0, "Cursor", { reverse = true })
+	end,
+})
