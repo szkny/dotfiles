@@ -72,40 +72,46 @@ keymap("v", ">", ">gv", opts)
 keymap("v", "<", "<gv", opts)
 keymap("n", "<Leader>d", function()
 	vim.cmd([[
-    let wordUnderCursor = expand("<cword>")
+    let wordBefore = expand("<cword>")
     call inputsave()
-    let wordToReplace = input("Replace : ", wordUnderCursor)
+    let wordAfter = input("Replace : ", wordBefore)
     call inputrestore()
-    call inputsave()
-    let replacement = input("Replace \"" . wordToReplace . "\" with: ")
-    call inputrestore()
+    let pos = getpos('.')
+    exe '/'.wordBefore
+    call setpos('.', pos)
+    set nohlsearch
+    let searchInfo = searchcount()
+    let wordCount = searchInfo.total - searchInfo.current + 1
     let choice = confirm(
-        \ "Will you replace '".wordToReplace."' with '".replacement."' ?",
+        \ "Will you replace ".wordCount." of '".wordBefore."' with '".wordAfter."' ?",
         \ "&Yes\n&No\n&Check")
     if choice == 1
-      exe line('.').',$s/'.wordToReplace.'/'.replacement.'/g'
+      exe line('.').',$s/'.wordBefore.'/'.wordAfter.'/g'
     elseif choice == 3
-      exe line('.').',$s/'.wordToReplace.'/'.replacement.'/gc'
+      exe line('.').',$s/'.wordBefore.'/'.wordAfter.'/gc'
     endif
   ]])
 end, opts)
 keymap("v", "<Leader>d", function()
 	vim.cmd([[
-    let wordUnderCursor = GetVselectTxt()
-    exe "normal \<ESC>"
+    let wordBefore = GetVselectTxt()
+    exe "norm! \<ESC>\<ESC>"
     call inputsave()
-    let wordToReplace = input("Replace : ", wordUnderCursor)
+    let wordAfter = input("Replace : ", wordBefore)
     call inputrestore()
-    call inputsave()
-    let replacement = input("Replace \"" . wordToReplace . "\" with: ")
-    call inputrestore()
+    let pos = getpos('.')
+    exe '/'.wordBefore
+    call setpos('.', pos)
+    set nohlsearch
+    let searchInfo = searchcount()
+    let wordCount = searchInfo.total - searchInfo.current + 1
     let choice = confirm(
-        \ "Will you replace '".wordToReplace."' with '".replacement."' ?",
+        \ "Will you replace ".wordCount." of '".wordBefore."' with '".wordAfter."' ?",
         \ "&Yes\n&No\n&Check")
     if choice == 1
-      exe line('.').',$s/'.wordToReplace.'/'.replacement.'/g'
+      exe line('.').',$s/'.wordBefore.'/'.wordAfter.'/g'
     elseif choice == 3
-      exe line('.').',$s/'.wordToReplace.'/'.replacement.'/gc'
+      exe line('.').',$s/'.wordBefore.'/'.wordAfter.'/gc'
     endif
   ]])
 end, opts)
@@ -143,22 +149,19 @@ keymap("n", "<leader>r", function()
       call setqflist(map(systemlist('rg --column '.a:query), 'Rg_to_qf(v:val)'))
     endf
 
-    let wordUnderCursor = expand("<cword>")
+    let wordBefore = expand("<cword>")
     call inputsave()
-    let wordToReplace = input("Replace : ", wordUnderCursor)
+    let wordAfter = input("Replace : ", wordBefore)
     call inputrestore()
-    call inputsave()
-    let replacement = input("Replace \"" . wordToReplace . "\" with: ")
-    call inputrestore()
-    call RgToQF(wordUnderCursor)
+    call RgToQF(wordBefore)
     let numqf = len(getqflist())
     let choice = confirm(
-        \ "Will you replace ".numqf." of '".wordToReplace."' with '".replacement."' ?",
+        \ "Will you replace ".numqf." of '".wordBefore."' with '".wordAfter."' ?",
         \ "&Yes\n&No\n&Check")
     if choice == 1
-      exe "cdo s/" . wordToReplace . "/" . replacement ."/g | w"
+      exe "cdo s/" . wordBefore . "/" . wordAfter ."/g | w"
     elseif choice == 3
-      exe "cdo s/" . wordToReplace . "/" . replacement ."/gc | w"
+      exe "cdo s/" . wordBefore . "/" . wordAfter ."/gc | w"
     endif
   ]])
 	-- local qflist = vim.fn.getqflist()
