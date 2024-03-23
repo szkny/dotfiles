@@ -2,9 +2,6 @@ return {
 	"kevinhwang91/nvim-hlslens",
 	-- lazy = false,
 	event = "VeryLazy",
-	-- dependencies = {
-	--   "wfxr/minimap.vim",
-	-- },
 	opts = {
 		calm_down = true,
 		nearest_only = true,
@@ -31,12 +28,7 @@ return {
 		)
 		vim.api.nvim_set_keymap("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
 		vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
-		vim.keymap.set(
-			"n",
-			"<Leader>l",
-			"exists(':MinimapUpdateHighlight') ? ':<C-u>set hlsearch!<CR>:MinimapUpdateHighlight<CR>' : ':<C-u>set hlsearch!<CR>'",
-			{ silent = true, expr = true }
-		)
+		vim.keymap.set("n", "<Leader>l", "<CMD>set hlsearch!<CR>", { silent = true })
 
 		vim.api.nvim_set_hl(0, "Search", { fg = "none", bg = "#334f7a" })
 		vim.api.nvim_set_hl(0, "IncSearch", { fg = "none", bg = "#334f7a" })

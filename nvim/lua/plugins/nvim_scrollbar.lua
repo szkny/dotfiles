@@ -74,7 +74,6 @@ return {
 		},
 		excluded_filetypes = {
 			"prompt",
-			"minimap",
 			"NvimTree",
 			"noice",
 		},
