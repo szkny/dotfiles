@@ -2,6 +2,8 @@
 
 - neovim
 
+  - aerial.nvim
+    - place aerial pane under nvimtree pane
   - barbar.nvim
     - adapt changing colorscheme
   - auto changing cursor shape in tmux
