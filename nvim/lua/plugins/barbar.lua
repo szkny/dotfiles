@@ -93,9 +93,9 @@ return {
 		vim.api.nvim_set_hl(0, "BufferCurrentINFO", { bg = NormalHl.bg, fg = "#ffffff" })
 		vim.api.nvim_set_hl(0, "BufferVisibleINFO", { bg = "none", fg = "#ffffff" })
 		vim.api.nvim_set_hl(0, "BufferInactiveINFO", { bg = "none", fg = "#888888" })
-		vim.api.nvim_set_hl(0, "BufferCurrentIcon", { bg = NormalHl.bg, fg = "#ffffff", bold = true })
-		vim.api.nvim_set_hl(0, "BufferVisibleIcon", { bg = "none", fg = "#ffffff" })
-		vim.api.nvim_set_hl(0, "BufferInactiveIcon", { bg = "none", fg = "#888888" })
+		vim.api.nvim_set_hl(0, "BufferCurrentIcon", { bg = NormalHl.bg, fg = "#667788", bold = true })
+		vim.api.nvim_set_hl(0, "BufferVisibleIcon", { bg = "none", fg = "#667788" })
+		vim.api.nvim_set_hl(0, "BufferInactiveIcon", { bg = "none", fg = "#667788" })
 		vim.api.nvim_set_hl(0, "BufferOffset", { bg = "none" })
 	end,
 }
