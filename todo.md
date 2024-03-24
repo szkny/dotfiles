@@ -2,6 +2,8 @@
 
 - neovim
 
+  - barbar.nvim
+    - adapt changing colorscheme
   - auto changing cursor shape in tmux
   - telescope.nvim
     - basic setup
