@@ -23,14 +23,26 @@ vim.cmd([[
 vim.g.lualine_diagnostics_source = "nvim_diagnostic"
 local my_custom_theme = {
 	normal = {
-		a = { fg = "#ddddee", bg = "#5588dd", gui = "none" },
-		b = { fg = "#5588dd", bg = "#394260" },
-		c = { fg = "#5588dd" },
+		a = { fg = "#21213a", bg = "#77a0ff" },
+		b = { fg = "#77a0ff", bg = "#394260" },
+		c = { fg = "#a3aed2" },
 	},
-	insert = { a = { fg = "#394260", bg = "#a3aed2", gui = "none" } },
-	terminal = { a = { fg = "#394260", bg = "#a3aed2", gui = "none" } },
-	visual = { a = { fg = "#394260", bg = "#88b4c4", gui = "none" } },
-	replace = { a = { fg = "#394260", bg = "#9988dd", gui = "none" } },
+	insert = {
+		a = { fg = "#394260", bg = "#a3aed2" },
+		b = { fg = "#a3aed2", bg = "#394260" },
+	},
+	terminal = {
+		a = { fg = "#394260", bg = "#a3aed2" },
+		b = { fg = "#a3aed2", bg = "#394260" },
+	},
+	visual = {
+		a = { fg = "#394260", bg = "#88b4c4" },
+		b = { fg = "#88b4c4", bg = "#394260" },
+	},
+	replace = {
+		a = { fg = "#394260", bg = "#9988dd" },
+		b = { fg = "#9988dd", bg = "#394260" },
+	},
 	inactive = {
 		a = { fg = "#ddddee" },
 		b = { fg = "#ddddee" },

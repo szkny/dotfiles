@@ -40,6 +40,11 @@ return {
 			sidebars = "transparent",
 			floats = "transparent",
 		},
+		on_colors = function(colors)
+			colors.error = "#ee3333"
+			colors.warning = "#edd000"
+			colors.hint = "#5588dd"
+		end,
 	},
 	config = function(_, opts)
 		require("tokyonight").setup(opts)
