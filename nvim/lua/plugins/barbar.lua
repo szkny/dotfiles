@@ -60,9 +60,10 @@ return {
 		require("barbar").setup(opts)
 
 		local kopts = { noremap = true, silent = true }
-		vim.keymap.set("n", "<Leader>q", ":BufferNext    <CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", kopts)
-		vim.keymap.set("n", "<Leader>bq", ":BufferNext    <CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", kopts)
-		vim.keymap.set("n", "<Leader>pq", ":BufferPrevious<CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", kopts)
+		-- vim.keymap.set("n", "<Leader>q", ":BufferNext    <CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", kopts)
+		-- vim.keymap.set("n", "<Leader>bq", ":BufferNext    <CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", kopts)
+		-- vim.keymap.set("n", "<Leader>pq", ":BufferPrevious<CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", kopts)
+		vim.keymap.set("n", "<Leader>q", ":BufferDelete<CR>", kopts)
 		vim.keymap.set("n", "<Right>", ":BufferNext<CR>", kopts)
 		vim.keymap.set("n", "<Left>", ":BufferPrevious<CR>", kopts)
 		vim.keymap.set("n", "<M-l>", ":BufferNext<CR>", kopts)
