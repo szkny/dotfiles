@@ -75,6 +75,7 @@ keymap("n", "<Leader>d", function()
     let wordBefore = expand("<cword>")
     call inputsave()
     let wordAfter = input("Replace : ", wordBefore)
+    let wordBefore = substitute(wordBefore, '/', '\/', 'g')
     call inputrestore()
     let pos = getpos('.')
     exe '/'.wordBefore
@@ -98,6 +99,7 @@ keymap("v", "<Leader>d", function()
     exe "norm! \<ESC>\<ESC>"
     call inputsave()
     let wordAfter = input("Replace : ", wordBefore)
+    let wordBefore = substitute(wordBefore, '/', '\/', 'g')
     call inputrestore()
     let pos = getpos('.')
     exe '/'.wordBefore
