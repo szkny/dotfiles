@@ -8,7 +8,7 @@ return {
 		{
 			"<C-k>",
 			"<CMD>ScrollbarToggle<CR><CMD>lua require('codewindow').toggle_minimap()<CR>",
-			mode = { "n", "v" },
+			mode = { "n", "v", "i" },
 			silent = true,
 		},
 	},
