@@ -75,10 +75,11 @@ keymap("n", "<Leader>d", function()
     let wordBefore = expand("<cword>")
     call inputsave()
     let wordAfter = input("Replace : ", wordBefore)
-    let wordBefore = substitute(wordBefore, '/', '\/', 'g')
+    let wordBeforeSub = substitute(wordBefore, '/', '\\/', 'g')
+    let wordAfterSub = substitute(wordAfter, '/', '\\/', 'g')
     call inputrestore()
     let pos = getpos('.')
-    exe '/'.wordBefore
+    exe '/'.wordBeforeSub
     call setpos('.', pos)
     set nohlsearch
     let searchInfo = searchcount()
@@ -87,9 +88,9 @@ keymap("n", "<Leader>d", function()
         \ "Will you replace ".wordCount." of '".wordBefore."' with '".wordAfter."' ?",
         \ "&Yes\n&No\n&Check")
     if choice == 1
-      exe line('.').',$s/'.wordBefore.'/'.wordAfter.'/g'
+      exe line('.').',$s/'.wordBeforeSub.'/'.wordAfterSub.'/g'
     elseif choice == 3
-      exe line('.').',$s/'.wordBefore.'/'.wordAfter.'/gc'
+      exe line('.').',$s/'.wordBeforeSub.'/'.wordAfterSub.'/gc'
     endif
   ]])
 end, opts)
@@ -99,10 +100,11 @@ keymap("v", "<Leader>d", function()
     exe "norm! \<ESC>\<ESC>"
     call inputsave()
     let wordAfter = input("Replace : ", wordBefore)
-    let wordBefore = substitute(wordBefore, '/', '\/', 'g')
+    let wordBeforeSub = substitute(wordBefore, '/', '\\/', 'g')
+    let wordAfterSub = substitute(wordAfter, '/', '\\/', 'g')
     call inputrestore()
     let pos = getpos('.')
-    exe '/'.wordBefore
+    exe '/'.wordBeforeSub
     call setpos('.', pos)
     set nohlsearch
     let searchInfo = searchcount()
@@ -111,9 +113,9 @@ keymap("v", "<Leader>d", function()
         \ "Will you replace ".wordCount." of '".wordBefore."' with '".wordAfter."' ?",
         \ "&Yes\n&No\n&Check")
     if choice == 1
-      exe line('.').',$s/'.wordBefore.'/'.wordAfter.'/g'
+      exe line('.').',$s/'.wordBeforeSub.'/'.wordAfterSub.'/g'
     elseif choice == 3
-      exe line('.').',$s/'.wordBefore.'/'.wordAfter.'/gc'
+      exe line('.').',$s/'.wordBeforeSub.'/'.wordAfterSub.'/gc'
     endif
   ]])
 end, opts)
