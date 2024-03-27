@@ -23,7 +23,7 @@ return {
 			ensure_installed = {
 				"lua_ls",
 				"vimls",
-				"jedi_language_server",
+				"ruff_lsp",
 				"tsserver",
 				"volar",
 				"html",
