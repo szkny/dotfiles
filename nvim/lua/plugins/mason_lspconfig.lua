@@ -114,8 +114,23 @@ return {
 		vim.api.nvim_set_hl(0, "LspReferenceText", { bg = "#334f7a", fg = "none" })
 		vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = "#334f7a", fg = "none" })
 		vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg = "#334f7a", fg = "none" })
-		vim.api.nvim_set_hl(0, "DiagnosticError", { bg = "none", fg = "#ee3333" })
-		vim.api.nvim_set_hl(0, "DiagnosticWarn", { bg = "none", fg = "#edd000" })
-		vim.api.nvim_set_hl(0, "DiagnosticHint", { bg = "none", fg = "#5588dd" })
+		-- vim.api.nvim_set_hl(0, "DiagnosticSignError", { bg = "none", fg = "#ee3333" })
+		-- vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { bg = "none", fg = "#edd000" })
+		-- vim.api.nvim_set_hl(0, "DiagnosticSignHint", { bg = "none", fg = "#5588dd" })
+
+		local DgsErrorHl = vim.api.nvim_get_hl(0, { name = "DiagnosticSignError" })
+		local DgsWarnHl = vim.api.nvim_get_hl(0, { name = "DiagnosticSignWarn" })
+		local DgsHintHl = vim.api.nvim_get_hl(0, { name = "DiagnosticSignHint" })
+		vim.api.nvim_set_hl(0, "DiagnosticError", { bg = "none", fg = DgsErrorHl.fg })
+		vim.api.nvim_set_hl(0, "DiagnosticWarn", { bg = "none", fg = DgsWarnHl.fg })
+		vim.api.nvim_set_hl(0, "DiagnosticHint", { bg = "none", fg = DgsHintHl.fg })
+
+		-- local util = require("util.blendcolor")
+		-- DgsErrorBg = util.darken(DgsErrorHl.fg)
+		-- DgsWarnBg = util.darken(DgsWarnHl.fg)
+		-- DgsHintBg = util.darken(DgsHintHl.fg)
+		-- vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { bg = DgsErrorBg, fg = DgsErrorHl.fg })
+		-- vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { bg = DgsWarnBg, fg = DgsWarnHl.fg })
+		-- vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { bg = DgsHintBg, fg = DgsHintHl.fg })
 	end,
 }

@@ -133,6 +133,9 @@ return {
 		-- disable netrw at the very start of your init.lua (strongly advised)
 		vim.api.nvim_set_var("loaded_netrw", 1)
 		vim.api.nvim_set_var("loaded_netrwPlugin", 1)
+		local DgsErrorHl = vim.api.nvim_get_hl(0, { name = "DiagnosticSignError" })
+		local DgsWarnHl = vim.api.nvim_get_hl(0, { name = "DiagnosticSignWarn" })
+		local DgsHintHl = vim.api.nvim_get_hl(0, { name = "DiagnosticSignHint" })
 		vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { fg = "#555555", bg = "none" })
 		vim.api.nvim_set_hl(0, "NvimTreeRootFolder", { fg = "#bbbbbb", bg = "none", bold = true })
 		vim.api.nvim_set_hl(0, "NvimTreeFolderName", { fg = "#77aadd", bg = "none", bold = true })
@@ -148,9 +151,9 @@ return {
 		vim.api.nvim_set_hl(0, "NvimTreeModifiedIcon", { fg = "#ffaa00", bg = "none", bold = true })
 		vim.api.nvim_set_hl(0, "NvimTreeModifiedFileHL", { fg = "#ffaa00", bg = "none", bold = true })
 		vim.api.nvim_set_hl(0, "NvimTreeModifiedFolderHL", { fg = "#ffaa00", bg = "none", bold = true })
-		vim.api.nvim_set_hl(0, "NvimTreeLspDiagnosticsError", { fg = "#ee3333", bg = "none" })
-		vim.api.nvim_set_hl(0, "NvimTreeLspDiagnosticsWarning", { fg = "#edd000", bg = "none" })
+		vim.api.nvim_set_hl(0, "NvimTreeLspDiagnosticsError", { fg = DgsErrorHl.fg, bg = "none" })
+		vim.api.nvim_set_hl(0, "NvimTreeLspDiagnosticsWarning", { fg = DgsWarnHl.fg, bg = "none" })
+		vim.api.nvim_set_hl(0, "NvimTreeLspDiagnosticsHint", { fg = DgsHintHl.fg, bg = "none" })
 		vim.api.nvim_set_hl(0, "NvimTreeLspDiagnosticsInformation", { fg = "#ffffff", bg = "none" })
-		vim.api.nvim_set_hl(0, "NvimTreeLspDiagnosticsHint", { fg = "#5588dd", bg = "none" })
 	end,
 }

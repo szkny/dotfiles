@@ -28,7 +28,7 @@ return {
 				deleted = { enabled = false, icon = "-" },
 			},
 			filetype = {
-				custom_colors = false,
+				custom_colors = true,
 				enabled = true,
 			},
 			separator = { left = "│", right = "" },
@@ -72,6 +72,13 @@ return {
 		vim.keymap.set("n", "<Leader><Left>", ":BufferMovePrevious<CR>", kopts)
 
 		local NormalHl = vim.api.nvim_get_hl(0, { name = "Normal" })
+		local DgsErrorHl = vim.api.nvim_get_hl(0, { name = "DiagnosticSignError" })
+		local DgsWarnHl = vim.api.nvim_get_hl(0, { name = "DiagnosticSignWarn" })
+		local DgsHintHl = vim.api.nvim_get_hl(0, { name = "DiagnosticSignHint" })
+		-- local util = require("util.blendcolor")
+		-- DgsErrorBg = util.darken(DgsErrorHl.fg)
+		-- DgsWarnBg = util.darken(DgsWarnHl.fg)
+		-- DgsHintBg = util.darken(DgsHintHl.fg)
 		vim.api.nvim_set_hl(0, "BufferTabpageFill", { bg = "none" })
 		vim.api.nvim_set_hl(0, "BufferCurrent", { bg = NormalHl.bg, fg = "#ffffff", bold = true })
 		vim.api.nvim_set_hl(0, "BufferVisible", { bg = "none", fg = "#ffffff" })
@@ -82,21 +89,21 @@ return {
 		vim.api.nvim_set_hl(0, "BufferCurrentSign", { bg = NormalHl.bg, fg = "#88ccff", bold = true })
 		vim.api.nvim_set_hl(0, "BufferVisibleSign", { bg = "none", fg = "#5588dd" })
 		vim.api.nvim_set_hl(0, "BufferInactiveSign", { bg = "none", fg = "#555555" })
-		vim.api.nvim_set_hl(0, "BufferCurrentERROR", { bg = NormalHl.bg, fg = "#ee3333" })
-		vim.api.nvim_set_hl(0, "BufferVisibleERROR", { bg = "none", fg = "#ee3333" })
-		vim.api.nvim_set_hl(0, "BufferInactiveERROR", { bg = "none", fg = "#aa3333" })
-		vim.api.nvim_set_hl(0, "BufferCurrentWARN", { bg = NormalHl.bg, fg = "#edd000" })
-		vim.api.nvim_set_hl(0, "BufferVisibleWARN", { bg = "none", fg = "#edd000" })
-		vim.api.nvim_set_hl(0, "BufferInactiveWARN", { bg = "none", fg = "#908000" })
-		vim.api.nvim_set_hl(0, "BufferCurrentHINT", { bg = NormalHl.bg, fg = "#5588dd" })
-		vim.api.nvim_set_hl(0, "BufferVisibleHINT", { bg = "none", fg = "#5588dd" })
-		vim.api.nvim_set_hl(0, "BufferInactiveHINT", { bg = "none", fg = "#4466aa" })
+		vim.api.nvim_set_hl(0, "BufferCurrentERROR", { bg = NormalHl.bg, fg = DgsErrorHl.fg })
+		vim.api.nvim_set_hl(0, "BufferVisibleERROR", { bg = "none", fg = DgsErrorHl.fg })
+		vim.api.nvim_set_hl(0, "BufferInactiveERROR", { bg = "none", fg = DgsErrorBg })
+		vim.api.nvim_set_hl(0, "BufferCurrentWARN", { bg = NormalHl.bg, fg = DgsWarnHl.fg })
+		vim.api.nvim_set_hl(0, "BufferVisibleWARN", { bg = "none", fg = DgsWarnHl.fg })
+		vim.api.nvim_set_hl(0, "BufferInactiveWARN", { bg = "none", fg = DgsWarnBg })
+		vim.api.nvim_set_hl(0, "BufferCurrentHINT", { bg = NormalHl.bg, fg = DgsHintHl.fg })
+		vim.api.nvim_set_hl(0, "BufferVisibleHINT", { bg = "none", fg = DgsHintHl.fg })
+		vim.api.nvim_set_hl(0, "BufferInactiveHINT", { bg = "none", fg = DgsHintBg })
 		vim.api.nvim_set_hl(0, "BufferCurrentINFO", { bg = NormalHl.bg, fg = "#ffffff" })
 		vim.api.nvim_set_hl(0, "BufferVisibleINFO", { bg = "none", fg = "#ffffff" })
 		vim.api.nvim_set_hl(0, "BufferInactiveINFO", { bg = "none", fg = "#888888" })
-		vim.api.nvim_set_hl(0, "BufferCurrentIcon", { bg = NormalHl.bg, fg = "#667788", bold = true })
-		vim.api.nvim_set_hl(0, "BufferVisibleIcon", { bg = "none", fg = "#667788" })
-		vim.api.nvim_set_hl(0, "BufferInactiveIcon", { bg = "none", fg = "#667788" })
+		vim.api.nvim_set_hl(0, "BufferCurrentIcon", { bg = NormalHl.bg, fg = "#778899", bold = true })
+		vim.api.nvim_set_hl(0, "BufferVisibleIcon", { bg = "none", fg = "#445566" })
+		vim.api.nvim_set_hl(0, "BufferInactiveIcon", { bg = "none", fg = "#445566" })
 		vim.api.nvim_set_hl(0, "BufferOffset", { bg = "none" })
 	end,
 }

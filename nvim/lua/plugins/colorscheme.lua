@@ -40,15 +40,13 @@ return {
 			sidebars = "transparent",
 			floats = "transparent",
 		},
-		on_colors = function(colors)
-			colors.error = "#ee3333"
-			colors.warning = "#edd000"
-			colors.hint = "#5588dd"
-		end,
 	},
 	config = function(_, opts)
 		require("tokyonight").setup(opts)
 		vim.cmd("colorscheme tokyonight")
+		vim.api.nvim_set_hl(0, "DiagnosticSignError", { bg = "none", fg = "#c53b53" })
+		vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { bg = "none", fg = "#edd000" })
+		vim.api.nvim_set_hl(0, "DiagnosticSignHint", { bg = "none", fg = "#4fd6be" })
 	end,
 }
 
