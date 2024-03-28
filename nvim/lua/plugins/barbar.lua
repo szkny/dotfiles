@@ -81,7 +81,7 @@ return {
 		vim.api.nvim_set_hl(0, "BufferInactive", { bg = "none", fg = "#888888" })
 		vim.api.nvim_set_hl(0, "BufferCurrentMod", { bg = NormalHl.bg, fg = "#ffaa00", bold = true })
 		vim.api.nvim_set_hl(0, "BufferVisibleMod", { bg = "none", fg = "#ffaa00" })
-		vim.api.nvim_set_hl(0, "BufferInactiveMod", { bg = "none", fg = "#996600" })
+		vim.api.nvim_set_hl(0, "BufferInactiveMod", { bg = "none", fg = "#bb7700" })
 		vim.api.nvim_set_hl(0, "BufferCurrentSign", { bg = NormalHl.bg, fg = "#88ccff", bold = true })
 		vim.api.nvim_set_hl(0, "BufferVisibleSign", { bg = "none", fg = "#5588dd" })
 		vim.api.nvim_set_hl(0, "BufferInactiveSign", { bg = "none", fg = "#555555" })
