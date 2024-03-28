@@ -17,6 +17,9 @@
 -- 			},
 -- 			group_overrides = {
 -- 				Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
+-- 				DiagnosticSignError = { fg = "#ee3333", bg = "none" },
+-- 				DiagnosticSignWarn = { fg = "#edd000", bg = "none" },
+-- 				DiagnosticSignHint = { fg = "#5588dd", bg = "none" },
 -- 			},
 -- 		})
 -- 		require("vscode").load("dark")
