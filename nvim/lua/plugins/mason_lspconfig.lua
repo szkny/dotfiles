@@ -125,12 +125,8 @@ return {
 		vim.api.nvim_set_hl(0, "DiagnosticWarn", { bg = "none", fg = DgsWarnHl.fg })
 		vim.api.nvim_set_hl(0, "DiagnosticHint", { bg = "none", fg = DgsHintHl.fg })
 
-		-- local util = require("util.blendcolor")
-		-- DgsErrorBg = util.darken(DgsErrorHl.fg)
-		-- DgsWarnBg = util.darken(DgsWarnHl.fg)
-		-- DgsHintBg = util.darken(DgsHintHl.fg)
-		-- vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { bg = DgsErrorBg, fg = DgsErrorHl.fg })
-		-- vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { bg = DgsWarnBg, fg = DgsWarnHl.fg })
-		-- vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { bg = DgsHintBg, fg = DgsHintHl.fg })
+		vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = DgsErrorHl.fg })
+		vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { fg = DgsWarnHl.fg })
+		vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = DgsHintHl.fg })
 	end,
 }
