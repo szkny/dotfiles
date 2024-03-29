@@ -148,3 +148,33 @@ return {
 -- 		require("kanagawa").load("wave")
 -- 	end,
 -- }
+
+-- return {
+-- 	"craftzdog/solarized-osaka.nvim",
+-- 	lazy = false,
+-- 	priority = 1000,
+-- 	opts = {
+-- 		transparent = true,
+-- 		terminal_colors = true,
+-- 		styles = {
+-- 			comments = { italic = true },
+-- 			keywords = { italic = true },
+-- 			functions = {},
+-- 			variables = {},
+-- 			sidebars = "transparent",
+-- 			floats = "transparent",
+-- 		},
+-- 		sidebars = { "qf", "help", "NvimTree", "terminal" },
+-- 		day_brightness = 0.0,
+-- 		hide_inactive_statusline = false,
+-- 		dim_inactive = true,
+-- 		lualine_bold = true,
+-- 	},
+-- 	config = function(_, opts)
+-- 		require("solarized-osaka").setup(opts)
+-- 		vim.cmd([[colorscheme solarized-osaka]])
+-- 		vim.api.nvim_set_hl(0, "DiagnosticSignError", { bg = "none", fg = "#c53b53" })
+-- 		vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { bg = "none", fg = "#edd000" })
+-- 		vim.api.nvim_set_hl(0, "DiagnosticSignHint", { bg = "none", fg = "#4fd6be" })
+-- 	end,
+-- }
