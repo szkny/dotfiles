@@ -22,7 +22,7 @@ vim.api.nvim_set_var("skip_loading_mswin", 1)
 
 -- *****************************************************************************
 --   Basic Setup
--- *****************************************************************************"
+-- *****************************************************************************
 -- Encoding
 -- vim.opt.fileencoding = "utf-8"
 vim.opt.fileencodings = "utf-8"
@@ -121,6 +121,10 @@ vim.api.nvim_set_var("no_buffers_menu", 1)
 vim.opt.mousemodel = "popup"
 -- set t_Co=256
 vim.opt.termguicolors = true
+
+-- Disable visualbell
+vim.opt.errorbells = false
+vim.opt.visualbell = false
 
 -- Change cursor by mode
 vim.opt.guicursor = "n-v-c:block-Cursor,i:ver100-iCursor,n-v-c:blinkon0,i:blinkwait10"
