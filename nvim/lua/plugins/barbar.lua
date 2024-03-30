@@ -58,7 +58,16 @@ return {
 		minimum_padding = 1,
 		maximum_length = 60,
 		minimum_length = 12,
-		sidebar_filetypes = { NvimTree = { text = "   File Explorer" } },
+		sidebar_filetypes = {
+			NvimTree = {
+				text = function()
+					local current_directory = os.getenv("PWD") or io.popen("cd"):read("*l")
+					local base_name = current_directory:match(".+/([^/]+)$")
+					local base_name_upper = string.upper(base_name)
+					return " " .. base_name_upper
+				end,
+			},
+		},
 		no_name_title = "[No Name]",
 	},
 	init = function()
@@ -92,19 +101,19 @@ return {
 		vim.api.nvim_set_hl(0, "BufferInactiveSign", { bg = "none", fg = "#555555" })
 		vim.api.nvim_set_hl(0, "BufferCurrentERROR", { bg = NormalHl.bg, fg = DgsErrorHl.fg })
 		vim.api.nvim_set_hl(0, "BufferVisibleERROR", { bg = "none", fg = DgsErrorHl.fg })
-		vim.api.nvim_set_hl(0, "BufferInactiveERROR", { bg = "none", fg = "#445566" })
+		vim.api.nvim_set_hl(0, "BufferInactiveERROR", { bg = "none", fg = "#555555" })
 		vim.api.nvim_set_hl(0, "BufferCurrentWARN", { bg = NormalHl.bg, fg = DgsWarnHl.fg })
 		vim.api.nvim_set_hl(0, "BufferVisibleWARN", { bg = "none", fg = DgsWarnHl.fg })
-		vim.api.nvim_set_hl(0, "BufferInactiveWARN", { bg = "none", fg = "#445566" })
+		vim.api.nvim_set_hl(0, "BufferInactiveWARN", { bg = "none", fg = "#555555" })
 		vim.api.nvim_set_hl(0, "BufferCurrentHINT", { bg = NormalHl.bg, fg = DgsHintHl.fg })
 		vim.api.nvim_set_hl(0, "BufferVisibleHINT", { bg = "none", fg = DgsHintHl.fg })
-		vim.api.nvim_set_hl(0, "BufferInactiveHINT", { bg = "none", fg = "#445566" })
+		vim.api.nvim_set_hl(0, "BufferInactiveHINT", { bg = "none", fg = "#555555" })
 		vim.api.nvim_set_hl(0, "BufferCurrentINFO", { bg = NormalHl.bg, fg = "#ffffff" })
 		vim.api.nvim_set_hl(0, "BufferVisibleINFO", { bg = "none", fg = "#ffffff" })
-		vim.api.nvim_set_hl(0, "BufferInactiveINFO", { bg = "none", fg = "#445566" })
+		vim.api.nvim_set_hl(0, "BufferInactiveINFO", { bg = "none", fg = "#555555" })
 		vim.api.nvim_set_hl(0, "BufferCurrentIcon", { bg = NormalHl.bg, fg = "#778899", bold = true })
-		vim.api.nvim_set_hl(0, "BufferVisibleIcon", { bg = "none", fg = "#445566" })
-		vim.api.nvim_set_hl(0, "BufferInactiveIcon", { bg = "none", fg = "#445566" })
+		vim.api.nvim_set_hl(0, "BufferVisibleIcon", { bg = "none", fg = "#555555" })
+		vim.api.nvim_set_hl(0, "BufferInactiveIcon", { bg = "none", fg = "#555555" })
 		vim.api.nvim_set_hl(0, "BufferOffset", { bg = "none" })
 	end,
 }
