@@ -56,7 +56,7 @@ return {
 			callback = function()
 				local width = vim.api.nvim_win_get_width(0)
 				local height = vim.api.nvim_win_get_height(0)
-				if width < 40 or height < 10 then
+				if width < 70 or height < 20 then
 					vim.cmd("if exists(':ScrollbarShow') | exe ':ScrollbarShow' | endif")
 					require("codewindow").close_minimap()
 				else
