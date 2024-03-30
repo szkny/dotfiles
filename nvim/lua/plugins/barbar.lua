@@ -36,10 +36,18 @@ return {
 			modified = { button = "●" },
 			pinned = { button = "", filename = true },
 			preset = "default",
-			alternate = { filetype = { enabled = false } },
-			current = { buffer_index = false },
-			inactive = { button = "×", separator = { left = "│", right = "" } },
-			visible = { modified = { buffer_number = false } },
+			current = {
+				buffer_index = false,
+				filetype = { custom_colors = true },
+			},
+			inactive = {
+				button = "×",
+				separator = { left = "│", right = "" },
+				filetype = { custom_colors = true },
+			},
+			visible = {
+				filetype = { custom_colors = true },
+			},
 		},
 		highlight_alternate = false,
 		highlight_inactive_file_icons = false,
@@ -60,9 +68,6 @@ return {
 		require("barbar").setup(opts)
 
 		local kopts = { noremap = true, silent = true }
-		-- vim.keymap.set("n", "<Leader>q", ":BufferNext    <CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", kopts)
-		-- vim.keymap.set("n", "<Leader>bq", ":BufferNext    <CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", kopts)
-		-- vim.keymap.set("n", "<Leader>pq", ":BufferPrevious<CR>:try|bdelete#|catch|bdelete|endtry|redraw!<CR>", kopts)
 		vim.keymap.set("n", "<Leader>q", ":BufferDelete<CR>", kopts)
 		vim.keymap.set("n", "<Right>", ":BufferNext<CR>", kopts)
 		vim.keymap.set("n", "<Left>", ":BufferPrevious<CR>", kopts)
