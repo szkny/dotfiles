@@ -89,6 +89,7 @@ return {
 				dim_context = true,
 				alt_background = true,
 			},
+			beacon = true,
 		},
 	},
 	config = function(_, opts)
