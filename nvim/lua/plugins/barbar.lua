@@ -1,5 +1,5 @@
 return {
-	"romgrk/barbar.nvim",
+	"szkny/barbar.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	-- lazy = false,
 	event = "VeryLazy",
@@ -28,7 +28,7 @@ return {
 				deleted = { enabled = false, icon = "-" },
 			},
 			filetype = {
-				custom_colors = true,
+				custom_colors = false,
 				enabled = true,
 			},
 			separator = { left = "│", right = "" },
@@ -38,15 +38,15 @@ return {
 			preset = "default",
 			current = {
 				buffer_index = false,
-				filetype = { custom_colors = true },
+				filetype = { custom_colors = false },
 			},
 			inactive = {
 				button = "×",
 				separator = { left = "│", right = "" },
-				filetype = { custom_colors = true },
+				filetype = { custom_colors = false },
 			},
 			visible = {
-				filetype = { custom_colors = true },
+				filetype = { custom_colors = false },
 			},
 		},
 		highlight_alternate = false,

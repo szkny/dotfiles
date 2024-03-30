@@ -2,7 +2,7 @@ return {
 	"nvim-tree/nvim-tree.lua",
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
-		"romgrk/barbar.nvim",
+		"szkny/barbar.nvim",
 	},
 	cmd = { "NvimTreeToggle" },
 	keys = {
