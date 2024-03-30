@@ -2,6 +2,9 @@
 
 - neovim
 
+  - barbar.nvim
+    - fix background color of icon
+    - set current dir name to side bar title
   - aerial.nvim
     - place aerial pane under nvimtree pane
   - barbar.nvim
