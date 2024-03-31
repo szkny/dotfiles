@@ -54,48 +54,48 @@
 -- }
 
 return {
-	"catppuccin/nvim",
-	lazy = false,
-	name = "catppuccin",
-	priority = 1000,
-	opts = {
-		flavour = "mocha",
-		background = {
-			light = "latte",
-			dark = "mocha",
-		},
-		transparent_background = true,
-		show_end_of_buffer = false,
-		term_colors = false,
-		dim_inactive = {
-			enabled = false,
-			shade = "dark",
-			percentage = 0.15,
-		},
-		no_italic = false,
-		no_bold = false,
-		no_underline = false,
-		integrations = {
-			cmp = true,
-			gitsigns = true,
-			nvimtree = true,
-			treesitter = true,
-			notify = true,
-			aerial = true,
-			barbar = true,
-			barbecue = {
-				dim_dirname = true,
-				bold_basename = true,
-				dim_context = true,
-				alt_background = true,
-			},
-			beacon = true,
-		},
-	},
-	config = function(_, opts)
-		require("catppuccin").setup(opts)
-		vim.cmd.colorscheme("catppuccin")
-	end,
+  "catppuccin/nvim",
+  lazy = false,
+  name = "catppuccin",
+  priority = 1000,
+  opts = {
+    flavour = "mocha",
+    background = {
+      light = "latte",
+      dark = "mocha",
+    },
+    transparent_background = true,
+    show_end_of_buffer = false,
+    term_colors = false,
+    dim_inactive = {
+      enabled = false,
+      shade = "dark",
+      percentage = 0.15,
+    },
+    no_italic = false,
+    no_bold = false,
+    no_underline = false,
+    integrations = {
+      cmp = true,
+      gitsigns = true,
+      nvimtree = true,
+      treesitter = true,
+      notify = true,
+      aerial = true,
+      barbar = true,
+      barbecue = {
+        dim_dirname = true,
+        bold_basename = true,
+        dim_context = false,
+        alt_background = true,
+      },
+      beacon = true,
+    },
+  },
+  config = function(_, opts)
+    require("catppuccin").setup(opts)
+    vim.cmd.colorscheme("catppuccin")
+  end,
 }
 
 -- return {
