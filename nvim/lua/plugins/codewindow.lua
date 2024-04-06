@@ -46,12 +46,12 @@ return {
 		vim.api.nvim_set_hl(0, "CodewindowWarn", { fg = DgsWarnHl.fg, bg = "none", bold = true })
 		vim.api.nvim_set_hl(0, "CodewindowAddition", { fg = "#00aa77", bg = "none", bold = true })
 		vim.api.nvim_set_hl(0, "CodewindowDeletion", { fg = "#bb0000", bg = "none", bold = true })
+		vim.cmd("if exists(':ScrollbarHide') | exe ':ScrollbarHide' | endif")
 		codewindow.open_minimap()
 		vim.api.nvim_create_autocmd({
 			"VimResized",
 			"WinResized",
 			"WinEnter",
-			"BufWinEnter",
 		}, {
 			callback = function()
 				local width = vim.api.nvim_win_get_width(0)
