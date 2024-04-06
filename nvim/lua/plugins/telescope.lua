@@ -24,6 +24,11 @@ return {
 				mode = "n",
 			},
 			{
+				"<Leader>/",
+				"<CMD>Telescope current_buffer_fuzzy_find<CR>",
+				mode = "n",
+			},
+			{
 				"<Leader>m",
 				"<CMD>Telescope marks<CR>",
 				mode = "n",
@@ -39,21 +44,25 @@ return {
 					for _, j in pairs(multi) do
 						if j.path ~= nil then
 							vim.cmd(string.format("%s %s", "edit", j.path))
+							vim.cmd("normal zz")
 						end
 					end
 				else
 					actions.select_default(prompt_bufnr)
+					vim.cmd("normal zz")
 				end
 			end
-			local select_one_or_multi_grep_string = function(prompt_bufnr)
+			local select_one_or_multi_qflist = function(prompt_bufnr)
 				local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
 				local multi = picker:get_multi_selection()
 				if not vim.tbl_isempty(multi) then
 					actions.send_selected_to_qflist(prompt_bufnr)
 					actions.open_qflist(prompt_bufnr)
 					vim.cmd("silent cfirst")
+					vim.cmd("normal zz")
 				else
 					actions.select_default(prompt_bufnr)
+					vim.cmd("normal zz")
 				end
 			end
 			require("telescope").setup({
@@ -100,14 +109,31 @@ return {
 					grep_string = {
 						mappings = {
 							i = {
-								["<CR>"] = select_one_or_multi_grep_string,
+								["<CR>"] = select_one_or_multi_qflist,
 								["<C-j>"] = actions.preview_scrolling_down,
 								["<C-k>"] = actions.preview_scrolling_up,
 								["<C-u>"] = false,
 								["<C-d>"] = actions.close,
 							},
 							n = {
-								["<CR>"] = select_one_or_multi_grep_string,
+								["<CR>"] = select_one_or_multi_qflist,
+								["<C-j>"] = actions.preview_scrolling_down,
+								["<C-k>"] = actions.preview_scrolling_up,
+								["q"] = actions.close,
+							},
+						},
+					},
+					current_buffer_fuzzy_find = {
+						mappings = {
+							i = {
+								["<CR>"] = select_one_or_multi_qflist,
+								["<C-j>"] = actions.preview_scrolling_down,
+								["<C-k>"] = actions.preview_scrolling_up,
+								["<C-u>"] = false,
+								["<C-d>"] = actions.close,
+							},
+							n = {
+								["<CR>"] = select_one_or_multi_qflist,
 								["<C-j>"] = actions.preview_scrolling_down,
 								["<C-k>"] = actions.preview_scrolling_up,
 								["q"] = actions.close,
@@ -125,6 +151,32 @@ return {
 				},
 			})
 			require("telescope").load_extension("fzf")
+
+			function vim.getVisualSelection()
+				vim.cmd('noau normal! "vy"')
+				local text = vim.fn.getreg("v")
+				vim.fn.setreg("v", {})
+
+				text = string.gsub(text, "\n", "")
+				if #text > 0 then
+					return text
+				else
+					return ""
+				end
+			end
+
+			local tb = require("telescope.builtin")
+			local opts = { noremap = true, silent = true }
+
+			vim.keymap.set("v", "<Leader>/", function()
+				local text = vim.getVisualSelection()
+				tb.current_buffer_fuzzy_find({ default_text = text })
+			end, opts)
+
+			vim.keymap.set("v", "<C-f>", function()
+				local text = vim.getVisualSelection()
+				tb.grep_string({ default_text = text })
+			end, opts)
 		end,
 	},
 }
