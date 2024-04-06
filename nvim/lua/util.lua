@@ -89,12 +89,15 @@ vim.cmd([[
 
 vim.cmd([[
     fun! s:google(...) abort
+      let l:current_dir = getcwd()
       let l:word = ''
       if a:0 > 0
         let l:word = '/search?q='.join(a:000, '&q=')
       endif
-      exe 'term w3m "google.com' . l:word . '"'
-      exe 'file Google Search'
+      silent enew
+      silent exe 'term w3m "google.com' . l:word . '"'
+      " silent exe 'file Google Search'
+      silent exe 'lcd ' . l:current_dir
       setlocal nonumber
       setlocal buftype=terminal
       setlocal filetype=terminal
@@ -111,28 +114,28 @@ vim.cmd([[
 ]])
 
 function Catch(what)
-  return what[1]
+	return what[1]
 end
 
 function Try(what)
-  local status, result = pcall(what[1])
-  if not status then
-    what[2](result)
-  end
-  return result
+	local status, result = pcall(what[1])
+	if not status then
+		what[2](result)
+	end
+	return result
 end
 
 function Dump(o)
-  if type(o) == "table" then
-    local s = "{ "
-    for k, v in pairs(o) do
-      if type(k) ~= "number" then
-        k = '"' .. k .. '"'
-      end
-      s = s .. "[" .. k .. "] = " .. Dump(v) .. ","
-    end
-    return s .. "} "
-  else
-    return tostring(o)
-  end
+	if type(o) == "table" then
+		local s = "{ "
+		for k, v in pairs(o) do
+			if type(k) ~= "number" then
+				k = '"' .. k .. '"'
+			end
+			s = s .. "[" .. k .. "] = " .. Dump(v) .. ","
+		end
+		return s .. "} "
+	else
+		return tostring(o)
+	end
 end
