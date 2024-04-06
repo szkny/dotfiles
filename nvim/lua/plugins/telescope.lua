@@ -35,14 +35,25 @@ return {
 				local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
 				local multi = picker:get_multi_selection()
 				if not vim.tbl_isempty(multi) then
-					require("telescope.actions").close(prompt_bufnr)
+					actions.close(prompt_bufnr)
 					for _, j in pairs(multi) do
 						if j.path ~= nil then
 							vim.cmd(string.format("%s %s", "edit", j.path))
 						end
 					end
 				else
-					require("telescope.actions").select_default(prompt_bufnr)
+					actions.select_default(prompt_bufnr)
+				end
+			end
+			local select_one_or_multi_grep_string = function(prompt_bufnr)
+				local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+				local multi = picker:get_multi_selection()
+				if not vim.tbl_isempty(multi) then
+					actions.send_selected_to_qflist(prompt_bufnr)
+					actions.open_qflist(prompt_bufnr)
+					vim.cmd("silent cfirst")
+				else
+					actions.select_default(prompt_bufnr)
 				end
 			end
 			require("telescope").setup({
@@ -72,6 +83,13 @@ return {
 					mappings = {
 						i = {
 							["<CR>"] = select_one_or_multi,
+							["<C-j>"] = actions.preview_scrolling_down,
+							["<C-k>"] = actions.preview_scrolling_up,
+						},
+						n = {
+							["<CR>"] = select_one_or_multi,
+							["<C-j>"] = actions.preview_scrolling_down,
+							["<C-k>"] = actions.preview_scrolling_up,
 						},
 					},
 				},
@@ -79,7 +97,14 @@ return {
 					grep_string = {
 						mappings = {
 							i = {
-								["<CR>"] = actions.send_selected_to_qflist + actions.open_qflist,
+								["<CR>"] = select_one_or_multi_grep_string,
+								["<C-j>"] = actions.preview_scrolling_down,
+								["<C-k>"] = actions.preview_scrolling_up,
+							},
+							n = {
+								["<CR>"] = select_one_or_multi_grep_string,
+								["<C-j>"] = actions.preview_scrolling_down,
+								["<C-k>"] = actions.preview_scrolling_up,
 							},
 						},
 					},
