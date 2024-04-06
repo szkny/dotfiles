@@ -62,14 +62,14 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	end,
 })
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-	pattern = { "*.ts", "*.tsx" },
+	pattern = { "*.ts" },
 	group = vimrc_js_ts,
 	callback = function()
 		vim.bo.filetype = "typescript"
 	end,
 })
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "javascript", "typescript", "vue", "html", "css", "json", "yaml" },
+	pattern = { "javascript", "typescript", "typescriptreact", "vue", "html", "css", "json", "yaml" },
 	group = vimrc_js_ts,
 	callback = function()
 		vim.opt_local.tabstop = 2
