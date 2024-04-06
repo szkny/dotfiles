@@ -26,7 +26,6 @@ return {
 						callback = function()
 							if formatter_on_save then
 								vim.lsp.buf.format({ async = false })
-								vim.cmd("silent normal zz")
 							end
 						end,
 						buffer = bufnr,

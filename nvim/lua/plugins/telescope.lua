@@ -152,7 +152,7 @@ return {
 			})
 			require("telescope").load_extension("fzf")
 
-			function vim.getVisualSelection()
+			local get_visual_selection = function()
 				vim.cmd('noau normal! "vy"')
 				local text = vim.fn.getreg("v")
 				vim.fn.setreg("v", {})
@@ -169,12 +169,12 @@ return {
 			local opts = { noremap = true, silent = true }
 
 			vim.keymap.set("v", "<Leader>/", function()
-				local text = vim.getVisualSelection()
+				local text = get_visual_selection()
 				tb.current_buffer_fuzzy_find({ default_text = text })
 			end, opts)
 
 			vim.keymap.set("v", "<C-f>", function()
-				local text = vim.getVisualSelection()
+				local text = get_visual_selection()
 				tb.grep_string({ default_text = text })
 			end, opts)
 		end,
