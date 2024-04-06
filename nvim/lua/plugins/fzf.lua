@@ -1,7 +1,7 @@
 return {
   "junegunn/fzf.vim",
   dependencies = { "junegunn/fzf" },
-  event = "VeryLazy",
+  -- event = "VeryLazy",
   config = function()
     vim.api.nvim_set_var("wildmode", "list:longest,list:full")
     vim.api.nvim_set_var("wildignore", "*.o,*.obj,.git,*.rbc,*.pyc,__pycache__")
