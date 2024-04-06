@@ -23,11 +23,11 @@ return {
 				"<CMD>Telescope buffers<CR>",
 				mode = "n",
 			},
-			{
-				"<Leader>/",
-				"<CMD>Telescope current_buffer_fuzzy_find<CR>",
-				mode = "n",
-			},
+			-- {
+			-- 	"<Leader>/",
+			-- 	"<CMD>Telescope current_buffer_fuzzy_find<CR>",
+			-- 	mode = "n",
+			-- },
 			{
 				"<Leader>m",
 				"<CMD>Telescope marks<CR>",
@@ -70,7 +70,7 @@ return {
 					layout_strategy = "center",
 					-- layout_strategy = "vertical",
 					-- layout_strategy = "horizontal",
-					-- sorting_strategy = "ascending",
+					sorting_strategy = "ascending",
 					layout_config = {
 						center = {
 							height = 0.4,
@@ -170,10 +170,10 @@ return {
 			local tb = require("telescope.builtin")
 			local opts = { noremap = true, silent = true }
 
-			vim.keymap.set("v", "<Leader>/", function()
-				local text = get_visual_selection()
-				tb.current_buffer_fuzzy_find({ default_text = text })
-			end, opts)
+			-- vim.keymap.set("v", "<Leader>/", function()
+			-- 	local text = get_visual_selection()
+			-- 	tb.current_buffer_fuzzy_find({ default_text = text })
+			-- end, opts)
 
 			vim.keymap.set("v", "<C-f>", function()
 				local text = get_visual_selection()

@@ -1,7 +1,7 @@
 return {
   "junegunn/fzf.vim",
   dependencies = { "junegunn/fzf" },
-  -- event = "VeryLazy",
+  event = "VeryLazy",
   config = function()
     vim.api.nvim_set_var("wildmode", "list:longest,list:full")
     vim.api.nvim_set_var("wildignore", "*.o,*.obj,.git,*.rbc,*.pyc,__pycache__")
@@ -45,22 +45,46 @@ return {
       )
     end
 
-    local opts = { noremap = true, silent = true }
-    vim.keymap.set("n", "<C-b>", ":<C-u>Buffers<CR>", opts)
-    vim.keymap.set("n", "<Leader>m", ":<C-u>Marks<CR>", opts)
-    vim.keymap.set("n", "<C-p>", ":<C-u>Files<CR>", opts)
-    vim.keymap.set("n", "<Leader>/", ":<C-u>Lines<CR>", opts)
-    vim.keymap.set("n", "<C-f>", ":<C-u>Rg<CR>", opts)
-    vim.keymap.set("v", "<C-f>", ":<C-u>call VRgWord()<CR>", opts)
     vim.cmd([[
-    fun! VRgWord() abort range
-        let @@ = ''
-        exe 'silent normal gvy'
-        if @@ !=# ''
-            let l:text = join(split(@@,'\n'))
-            silent exe 'Rg '.l:text
+      fun! GetVselectTxt()
+        if mode()=="v"
+          let [line_start, column_start] = getpos("v")[1:2]
+          let [line_end, column_end] = getpos(".")[1:2]
+        else
+          let [line_start, column_start] = getpos("'<")[1:2]
+          let [line_end, column_end] = getpos("'>")[1:2]
+        end
+        if (line2byte(line_start)+column_start) > (line2byte(line_end)+column_end)
+          let [line_start, column_start, line_end, column_end] =
+          \   [line_end, column_end, line_start, column_start]
+        end
+        let lines = getline(line_start, line_end)
+        if len(lines) == 0
+          return ''
         endif
-    endf
+        let lines[-1] = lines[-1][: column_end - 1]
+        let lines[0] = lines[0][column_start - 1:]
+        return join(lines, "\n")
+      endf
     ]])
+
+    local opts = { noremap = true, silent = true }
+    -- vim.keymap.set("n", "<C-b>", ":<C-u>Buffers<CR>", opts)
+    -- vim.keymap.set("n", "<Leader>m", ":<C-u>Marks<CR>", opts)
+    -- vim.keymap.set("n", "<C-p>", ":<C-u>Files<CR>", opts)
+    vim.keymap.set("n", "<Leader>/", ":<C-u>Lines<CR>", opts)
+    vim.keymap.set("v", "<Leader>/", ":<C-u>exe 'Lines '.GetVselectTxt()<CR>", opts)
+    -- vim.keymap.set("n", "<C-f>", ":<C-u>Rg<CR>", opts)
+    -- vim.keymap.set("v", "<C-f>", ":<C-u>call VRgWord()<CR>", opts)
+    -- vim.cmd([[
+    -- fun! VRgWord() abort range
+    --     let @@ = ''
+    --     exe 'silent normal gvy'
+    --     if @@ !=# ''
+    --         let l:text = join(split(@@,'\n'))
+    --         silent exe 'Rg '.l:text
+    --     endif
+    -- endf
+    -- ]])
   end,
 }
