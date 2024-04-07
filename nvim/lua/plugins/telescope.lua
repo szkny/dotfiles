@@ -6,34 +6,36 @@ return {
 			"nvim-lua/plenary.nvim",
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		},
+		lazy = true,
+		-- event = "VeryLazy",
 		cmd = { "Telescope" },
-		keys = {
-			{
-				"<C-p>",
-				"<CMD>Telescope find_files<CR>",
-				mode = "n",
-			},
-			{
-				"<C-f>",
-				"<CMD>Telescope grep_string search=<CR>",
-				mode = "n",
-			},
-			{
-				"<C-b>",
-				"<CMD>Telescope buffers<CR>",
-				mode = "n",
-			},
-			-- {
-			-- 	"<Leader>/",
-			-- 	"<CMD>Telescope current_buffer_fuzzy_find<CR>",
-			-- 	mode = "n",
-			-- },
-			{
-				"<Leader>m",
-				"<CMD>Telescope marks<CR>",
-				mode = "n",
-			},
-		},
+		-- keys = {
+		-- 	{
+		-- 		"<C-p>",
+		-- 		"<CMD>Telescope find_files<CR>",
+		-- 		mode = "n",
+		-- 	},
+		-- 	{
+		-- 		"<C-f>",
+		-- 		"<CMD>Telescope grep_string search=<CR>",
+		-- 		mode = "n",
+		-- 	},
+		-- 	{
+		-- 		"<C-b>",
+		-- 		"<CMD>Telescope buffers<CR>",
+		-- 		mode = "n",
+		-- 	},
+		-- 	{
+		-- 		"<Leader>/",
+		-- 		"<CMD>Telescope current_buffer_fuzzy_find<CR>",
+		-- 		mode = "n",
+		-- 	},
+		-- 	{
+		-- 		"<Leader>m",
+		-- 		"<CMD>Telescope marks<CR>",
+		-- 		mode = "n",
+		-- 	},
+		-- },
 		config = function()
 			local actions = require("telescope.actions")
 			local select_one_or_multi = function(prompt_bufnr)
@@ -170,10 +172,10 @@ return {
 			local tb = require("telescope.builtin")
 			local opts = { noremap = true, silent = true }
 
-			-- vim.keymap.set("v", "<Leader>/", function()
-			-- 	local text = get_visual_selection()
-			-- 	tb.current_buffer_fuzzy_find({ default_text = text })
-			-- end, opts)
+			vim.keymap.set("v", "<Leader>/", function()
+				local text = get_visual_selection()
+				tb.current_buffer_fuzzy_find({ default_text = text })
+			end, opts)
 
 			vim.keymap.set("v", "<C-f>", function()
 				local text = get_visual_selection()
