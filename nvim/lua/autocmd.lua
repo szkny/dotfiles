@@ -28,6 +28,18 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end,
 })
 
+-- markdown
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "markdown" },
+	group = vim.api.nvim_create_augroup("vimrc_markdown", { clear = true }),
+	callback = function()
+		vim.opt_local.tabstop = 2
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.softtabstop = 0
+		vim.opt_local.expandtab = true
+	end,
+})
+
 -- c/cpp
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "c", "cpp" },
