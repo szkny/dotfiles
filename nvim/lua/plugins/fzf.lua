@@ -57,6 +57,17 @@ return {
 				-- vim.keymap.set("t", "<C-k>", "<Up>", { silent = true, buffer = true })
 			end,
 		},
+		previewers = {
+			builtin = {
+				syntax = true,
+				syntax_limit_l = 0,
+				syntax_limit_b = 1024 * 1024 * 0.5,
+				limit_b = 1024 * 1024 * 0.5,
+				-- limit_b = 1024 * 1024 * 10,
+				treesitter = { enable = true, disable = {} },
+				toggle_behavior = "default",
+			},
+		},
 		keymap = {
 			builtin = {
 				["<C-_>"] = "toggle-preview",
