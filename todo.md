@@ -3,6 +3,7 @@
 - neovim
 
   - fzf-lua
+    - setup to include not only text but also file names in rg search target
     - visual lines search
   - aerial.nvim
     - place aerial pane under nvimtree pane
