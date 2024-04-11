@@ -179,7 +179,7 @@ function dotfiles(){
 }
 
 function zg () {
-  local dir=$(zoxide query --list --score | fzf | sed 's/^\ *[0-9.]\+ //')
+  local dir=$(zoxide query --list --score | fzf --no-sort | sed 's/^\ *[0-9.]\+ //')
   [[ ${dir} == "" ]] && return 1
   [ "${dir}" != "" ] && cd "${dir}" && [ -d .git ] && checked_git_pull
   return 0
