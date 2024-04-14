@@ -6,7 +6,7 @@ return {
 		"FzfLua",
 	},
 	keys = {
-		{ "<C-p>", "<CMD>FzfLua files<CR>", mode = "n" },
+		-- { "<C-p>", "<CMD>FzfLua files<CR>", mode = "n" },
 		-- { "<C-f>", "<CMD>FzfLua grep_project<CR>", mode = "n" },
 		-- { "<C-f>", "<CMD>FzfLua grep_visual<CR>", mode = "v" },
 		{ "<C-g>", "<CMD>FzfLua lsp_document_symbols<CR>", mode = "n" },
@@ -92,7 +92,6 @@ return {
 			vim.cmd('noau normal! "vy"')
 			local text = vim.fn.getreg("v")
 			vim.fn.setreg("v", {})
-
 			text = string.gsub(tostring(text), "\n", "")
 			if #text > 0 then
 				return text
@@ -100,36 +99,45 @@ return {
 				return ""
 			end
 		end
-		local fzf_exec_opts = {
-			prompt = "Rg> ",
-			git_icons = true,
-			file_icons = true,
-			color_icons = true,
+
+		local rg_cmd_file = "rg --files -uuu -g !.git/ -g !node_modules/ -L -- "
+		local rg_cmd_grep = "rg --line-number --fixed-strings --ignore-case --color=always -- "
+		local fzf_exec_opts_file = {
+			prompt = "Files> ",
 			previewer = "builtin",
 			actions = {
 				["default"] = require("fzf-lua").actions.file_edit,
 			},
+			fn_transform = function(x)
+				return require("fzf-lua").make_entry.file(x, {
+					file_icons = true,
+					color_icons = true,
+				})
+			end,
 		}
-		vim.keymap.set("n", "<C-f>", function()
-			require("fzf-lua").fzf_exec("rg --color=always --line-number .", fzf_exec_opts)
-		end, { silent = true })
-		vim.keymap.set("v", "<C-f>", function()
-			local text = get_visual_selection()
-			require("fzf-lua").fzf_exec("rg --color=always --line-number -- " .. text, fzf_exec_opts)
+		local fzf_exec_opts_grep = {
+			prompt = "Rg> ",
+			previewer = "builtin",
+			actions = require("fzf-lua").defaults.actions.files,
+			fn_transform = function(x)
+				return require("fzf-lua").make_entry.file(x, {
+					file_icons = true,
+					color_icons = true,
+				})
+			end,
+		}
+
+		vim.keymap.set({ "n", "v" }, "<C-p>", function()
+			require("fzf-lua").fzf_exec(rg_cmd_file .. ".", fzf_exec_opts_file)
 		end, { silent = true })
 
-		vim.keymap.set("v", "<Leader>/", function()
+		vim.keymap.set("n", "<C-f>", function()
+			require("fzf-lua").fzf_exec(rg_cmd_grep .. ".", fzf_exec_opts_grep)
+		end, { silent = true })
+
+		vim.keymap.set("v", "<C-f>", function()
 			local text = get_visual_selection()
-			require("fzf-lua").fzf_exec("rg --color=always --line-number -- " .. text, {
-				prompt = "Lines> ",
-				git_icons = true,
-				file_icons = true,
-				color_icons = true,
-				previewer = "builtin",
-				actions = {
-					["default"] = require("fzf-lua").actions.file_edit,
-				},
-			})
+			require("fzf-lua").fzf_exec(rg_cmd_grep .. text, fzf_exec_opts_grep)
 		end, { silent = true })
 	end,
 }
