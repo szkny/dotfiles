@@ -7,11 +7,13 @@ return {
 	},
 	keys = {
 		{ "<C-p>", "<CMD>FzfLua files<CR>", mode = "n" },
-		{ "<C-f>", "<CMD>FzfLua grep_project<CR>", mode = "n" },
-		{ "<C-f>", "<CMD>FzfLua grep_visual<CR>", mode = "v" },
+		-- { "<C-f>", "<CMD>FzfLua grep_project<CR>", mode = "n" },
+		-- { "<C-f>", "<CMD>FzfLua grep_visual<CR>", mode = "v" },
 		{ "<C-g>", "<CMD>FzfLua lsp_document_symbols<CR>", mode = "n" },
 		{ "<C-b>", "<CMD>FzfLua buffers<CR>", mode = "n" },
+		{ "<Leader>[", "<CMD>FzfLua lsp_references<CR>", mode = "n" },
 		{ "<Leader>/", "<CMD>FzfLua lines<CR>", mode = "n" },
+		{ "<Leader>b/", "<CMD>FzfLua blines<CR>", mode = "n" },
 		{ "<Leader>m", "<CMD>FzfLua marks<CR>", mode = "n" },
 	},
 	opts = {
@@ -23,7 +25,7 @@ return {
 			width = 0.85,
 			row = 0.35,
 			col = 0.50,
-			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+			border = "rounded",
 			fullscreen = false,
 			preview = {
 				default = "builtin",
@@ -98,9 +100,36 @@ return {
 				return ""
 			end
 		end
+		local fzf_exec_opts = {
+			prompt = "Rg> ",
+			git_icons = true,
+			file_icons = true,
+			color_icons = true,
+			previewer = "builtin",
+			actions = {
+				["default"] = require("fzf-lua").actions.file_edit,
+			},
+		}
+		vim.keymap.set("n", "<C-f>", function()
+			require("fzf-lua").fzf_exec("rg --color=always --line-number .", fzf_exec_opts)
+		end, { silent = true })
+		vim.keymap.set("v", "<C-f>", function()
+			local text = get_visual_selection()
+			require("fzf-lua").fzf_exec("rg --color=always --line-number -- " .. text, fzf_exec_opts)
+		end, { silent = true })
+
 		vim.keymap.set("v", "<Leader>/", function()
 			local text = get_visual_selection()
-			vim.cmd("exe 'FzfLua lines " .. text .. "'")
+			require("fzf-lua").fzf_exec("rg --color=always --line-number -- " .. text, {
+				prompt = "Lines> ",
+				git_icons = true,
+				file_icons = true,
+				color_icons = true,
+				previewer = "builtin",
+				actions = {
+					["default"] = require("fzf-lua").actions.file_edit,
+				},
+			})
 		end, { silent = true })
 	end,
 }
