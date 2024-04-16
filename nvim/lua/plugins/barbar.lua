@@ -67,7 +67,8 @@ return {
 					local current_directory = os.getenv("PWD") or io.popen("cd"):read("*l")
 					local base_name = current_directory:match(".+/([^/]+)$")
 					local base_name_upper = string.upper(base_name)
-					return " " .. base_name_upper
+					return "" .. base_name_upper
+					-- return " " .. base_name
 				end,
 			},
 		},
@@ -117,6 +118,6 @@ return {
 		vim.api.nvim_set_hl(0, "BufferCurrentIcon", { bg = NormalHl.bg, fg = "#778899", bold = true })
 		vim.api.nvim_set_hl(0, "BufferVisibleIcon", { bg = "none", fg = "#555555" })
 		vim.api.nvim_set_hl(0, "BufferInactiveIcon", { bg = "none", fg = "#555555" })
-		vim.api.nvim_set_hl(0, "BufferOffset", { bg = "none" })
+		vim.api.nvim_set_hl(0, "BufferOffset", { bg = "none", bold = true })
 	end,
 }
