@@ -88,9 +88,19 @@ config.colors.tab_bar = {
 	},
 }
 
+-- toggle full screen
+wezterm.on("toggle-full-screen", function(window, _)
+	window:toggle_fullscreen()
+end)
+
 -- key bindings
 config.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 3000 }
 config.keys = {
+	{
+		key = "F11",
+		mods = "",
+		action = wezterm.action.EmitEvent("toggle-full-screen"),
+	},
 	{
 		key = "v",
 		mods = "LEADER",
