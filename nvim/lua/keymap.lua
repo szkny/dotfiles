@@ -72,51 +72,61 @@ keymap("v", ">", ">gv", opts)
 keymap("v", "<", "<gv", opts)
 keymap("n", "<Leader>d", function()
 	vim.cmd([[
-    let wordBefore = expand("<cword>")
-    call inputsave()
-    let wordAfter = input("Replace : ", wordBefore)
-    let wordBeforeSub = substitute(wordBefore, '/', '\\/', 'g')
-    let wordAfterSub = substitute(wordAfter, '/', '\\/', 'g')
-    call inputrestore()
-    let pos = getpos('.')
-    exe '/'.wordBeforeSub
-    call setpos('.', pos)
-    set nohlsearch
-    let searchInfo = searchcount()
-    let wordCount = searchInfo.total - searchInfo.current + 1
-    let choice = confirm(
-        \ "Will you replace ".wordCount." of '".wordBefore."' with '".wordAfter."' ?",
-        \ "&Yes\n&No\n&Check")
-    if choice == 1
-      exe line('.').',$s/'.wordBeforeSub.'/'.wordAfterSub.'/g'
-    elseif choice == 3
-      exe line('.').',$s/'.wordBeforeSub.'/'.wordAfterSub.'/gc'
-    endif
+    try
+      let wordBefore = expand("<cword>")
+      call inputsave()
+      let wordAfter = input("Replace : ", wordBefore)
+      let wordBeforeSub = substitute(wordBefore, '/', '\\/', 'g')
+      let wordAfterSub = substitute(wordAfter, '/', '\\/', 'g')
+      call inputrestore()
+      if wordAfterSub != wordBeforeSub
+        let pos = getpos('.')
+        exe '/'.wordBeforeSub
+        call setpos('.', pos)
+        set nohlsearch
+        let searchInfo = searchcount()
+        let wordCount = searchInfo.total - searchInfo.current + 1
+        let choice = confirm(
+            \ "Will you replace ".wordCount." of '".wordBefore."' with '".wordAfter."' ?",
+            \ "&Yes\n&No\n&Check")
+        if choice == 1
+          exe line('.').',$s/'.wordBeforeSub.'/'.wordAfterSub.'/g'
+        elseif choice == 3
+          exe line('.').',$s/'.wordBeforeSub.'/'.wordAfterSub.'/gc'
+        endif
+      endif
+    catch
+    endtry
   ]])
 end, opts)
 keymap("v", "<Leader>d", function()
 	vim.cmd([[
-    let wordBefore = GetVselectTxt()
-    exe "norm! \<ESC>\<ESC>"
-    call inputsave()
-    let wordAfter = input("Replace : ", wordBefore)
-    let wordBeforeSub = substitute(wordBefore, '/', '\\/', 'g')
-    let wordAfterSub = substitute(wordAfter, '/', '\\/', 'g')
-    call inputrestore()
-    let pos = getpos('.')
-    exe '/'.wordBeforeSub
-    call setpos('.', pos)
-    set nohlsearch
-    let searchInfo = searchcount()
-    let wordCount = searchInfo.total - searchInfo.current + 1
-    let choice = confirm(
-        \ "Will you replace ".wordCount." of '".wordBefore."' with '".wordAfter."' ?",
-        \ "&Yes\n&No\n&Check")
-    if choice == 1
-      exe line('.').',$s/'.wordBeforeSub.'/'.wordAfterSub.'/g'
-    elseif choice == 3
-      exe line('.').',$s/'.wordBeforeSub.'/'.wordAfterSub.'/gc'
-    endif
+    try
+      let wordBefore = GetVselectTxt()
+      exe "norm! \<ESC>\<ESC>"
+      call inputsave()
+      let wordAfter = input("Replace : ", wordBefore)
+      let wordBeforeSub = substitute(wordBefore, '/', '\\/', 'g')
+      let wordAfterSub = substitute(wordAfter, '/', '\\/', 'g')
+      call inputrestore()
+      if wordAfterSub != wordBeforeSub
+        let pos = getpos('.')
+        exe '/'.wordBeforeSub
+        call setpos('.', pos)
+        set nohlsearch
+        let searchInfo = searchcount()
+        let wordCount = searchInfo.total - searchInfo.current + 1
+        let choice = confirm(
+            \ "Will you replace ".wordCount." of '".wordBefore."' with '".wordAfter."' ?",
+            \ "&Yes\n&No\n&Check")
+        if choice == 1
+          exe line('.').',$s/'.wordBeforeSub.'/'.wordAfterSub.'/g'
+        elseif choice == 3
+          exe line('.').',$s/'.wordBeforeSub.'/'.wordAfterSub.'/gc'
+        endif
+      endif
+    catch
+    endtry
   ]])
 end, opts)
 vim.cmd([[
