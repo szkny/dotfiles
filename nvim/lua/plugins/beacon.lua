@@ -16,6 +16,7 @@ return {
 
 		vim.g.beacon_size = 40
 		vim.g.beacon_show_jumps = 1
+		vim.g.beacon_minimal_jump = 5
 		vim.g.beacon_shrink = 1
 		vim.g.beacon_fade = 1
 		vim.g.beacon_timeout = 500
