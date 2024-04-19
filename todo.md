@@ -2,8 +2,6 @@
 
 - neovim
 
-  - fzf-lua
-    - visual lines search
   - aerial.nvim
     - place aerial pane under nvimtree pane
   - auto changing cursor shape in tmux
