@@ -113,7 +113,7 @@ return {
 				print("Failed to open file: " .. auto_session_file_name)
 			end
 		end
-		vim.api.nvim_create_autocmd("VimLeavePre", {
+		vim.api.nvim_create_autocmd("ExitPre", {
 			callback = function()
 				close_splitterm()
 				close_nvim_tree()
