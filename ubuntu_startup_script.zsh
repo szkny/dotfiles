@@ -1,17 +1,17 @@
 #!/usr/bin/zsh
-## install basic apt packages
-echo 'install basic apt packages..'
-sudo apt update -y
-sudo apt upgrade -y
-sudo apt install -y build-essential libbz2-dev libdb-dev \
+## install basic apt-get packages
+echo 'install basic apt-get packages..'
+sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo apt-get install -y build-essential libbz2-dev libdb-dev \
   libreadline-dev libffi-dev libgdbm-dev liblzma-dev \
   libncursesw5-dev libsqlite3-dev libssl-dev \
   zlib1g-dev uuid-dev tk-dev
-sudo apt install -y git curl zip unzip wget bsdmainutils gawk
-sudo apt install -y silversearcher-ag
-sudo apt install -y ripgrep
-sudo apt install -y universal-ctags
-sudo apt install -y trash-cli
+sudo apt-get install -y git curl zip unzip wget bsdmainutils gawk
+sudo apt-get install -y silversearcher-ag
+sudo apt-get install -y ripgrep
+sudo apt-get install -y universal-ctags
+sudo apt-get install -y trash-cli
 
 ## install rust / cargo
 echo 'install rust / cargo..'
@@ -71,7 +71,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 ## install ranger-cli
 echo 'install ranger-cli..'
-sudo apt install -y python3-setuptools python3-distutils file
+sudo apt-get install -y python3-setuptools python3-distutils file
 mkdir -p ~/Project
 git clone https://github.com/ranger/ranger ~/Project/ranger
 cd ~/Project/ranger
@@ -82,11 +82,11 @@ cd ~
 
 ## install neovim
 echo 'install neovim..'
-sudo apt install -y software-properties-common
+sudo apt-get install -y software-properties-common
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
-sudo apt update -y
-sudo apt install -y neovim
-sudo apt install -y python3-neovim
+sudo apt-get update -y
+sudo apt-get install -y neovim
+sudo apt-get install -y python3-neovim
 pip2 install neovim
 pip3 install neovim
 npm install -g neovim
@@ -96,7 +96,7 @@ ln -s ~/dotfiles/nvim/lua ~/.config/nvim/
 # ### for coc-nvim
 ln -s ~/dotfiles/nvim/coc-settings.json ~/.config/nvim/
 pip install -U jedi-language-server
-# sudo apt install terraform-ls
+# sudo apt-get install terraform-ls
 ### for treesitter
 cargo install tree-sitter-cli
 
@@ -113,7 +113,7 @@ curl -LO https://github.com/high-moctane/mocword-data/releases/download/eng20200
 gzip -d mocword.sqlite.gz
 
 ## install tmux
-sudo apt install -y tmux
+sudo apt-get install -y tmux
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
@@ -126,7 +126,7 @@ curl -sS https://starship.rs/install.sh | sh
 ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
 
 ## install jq / yq
-sudo apt -y install jq
+sudo apt-get -y install jq
 sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && \
     sudo chmod +x /usr/bin/yq
 
