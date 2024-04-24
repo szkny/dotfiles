@@ -21,6 +21,9 @@ return {
 				guibg = "none",
 			},
 		},
+		on_open = function()
+			vim.cmd([[startinsert]])
+		end,
 	},
 	config = function(_, opts)
 		require("toggleterm").setup(opts)
