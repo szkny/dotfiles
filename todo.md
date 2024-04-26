@@ -1,7 +1,8 @@
 # TODO list
 
 - neovim
-
+  - toggleterm
+    - execute any command
   - aerial.nvim
     - place aerial pane under nvimtree pane
   - auto changing cursor shape in tmux
@@ -9,7 +10,6 @@
     - basic setup
   - ranger.nvim
     - basic setup
-
 - wezterm
   - replacement of tmux
     - key bindings
