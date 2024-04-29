@@ -2,6 +2,8 @@ return {
 	"rcarriga/nvim-notify",
 	event = "VeryLazy",
 	opts = {
+		-- stages = "fade",
+		-- render = "compact",
 		stages = "fade_in_slide_out",
 		render = "default",
 		background_colour = "#252525",
@@ -19,10 +21,6 @@ return {
 		},
 	},
 	config = function(_, opts)
-		--   stages = "fade_in_slide_out",
-		--   stages = "fade",
-		--   render = "default",
-		--   render = "compact",
 		require("notify").setup(opts)
 		vim.api.nvim_set_hl(0, "NotifyERRORBorder", { fg = "#8a1f1f", bg = "none" })
 		vim.api.nvim_set_hl(0, "NotifyWARNBorder", { fg = "#79491d", bg = "none" })
