@@ -3,6 +3,8 @@
 - neovim
   - toggleterm
     - execute any command
+  - mason
+    - zsh lsp
   - aerial.nvim
     - place aerial pane under nvimtree pane
   - auto changing cursor shape in tmux
