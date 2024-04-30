@@ -1,8 +1,8 @@
 return {
 	"szkny/barbar.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	-- lazy = false,
-	event = "VeryLazy",
+	lazy = false,
+	-- event = "VeryLazy",
 	opts = {
 		animation = true,
 		auto_hide = false,
@@ -64,7 +64,7 @@ return {
 		sidebar_filetypes = {
 			NvimTree = {
 				text = function()
-					local current_directory = os.getenv("PWD") or io.popen("cd"):read("*l")
+					local current_directory = vim.fn.getcwd()
 					local base_name = current_directory:match(".+/([^/]+)$")
 					local base_name_upper = string.upper(base_name)
 					return "" .. base_name_upper
