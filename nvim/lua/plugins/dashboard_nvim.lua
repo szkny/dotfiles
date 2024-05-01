@@ -87,7 +87,7 @@ return {
 						desc = "Update",
 						group = "@property",
 						action = "Lazy update",
-						key = "u",
+						key = "U",
 					},
 					{
 						icon = " ",
