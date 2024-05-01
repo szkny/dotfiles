@@ -21,6 +21,26 @@ return {
 		end
 		require("dashboard").setup({
 			theme = "hyper",
+			disable_move = true, --  default is false disable move keymap for hyper
+			shortcut_type = "number", --  shorcut type 'letter' or 'number'
+			change_to_vcs_root = false, -- default is false,for open file in hyper mru. it will change to the root of vcs
+			hide = {
+				statusline = true,
+				tabline = true,
+				winbar = true,
+			},
+			-- preview = {
+			-- 	command = "viu -x 15 -w 100 -t ~/dotfiles/nvim/logo/neovim-logo-2.png; read -q", -- preview command
+			-- 	file_path = "", -- preview file path
+			-- 	file_height = 20, -- preview file height
+			-- 	file_width = 130, -- preview file width
+			-- },
+			-- preview = {
+			-- 	command = "viu -x 24 -t ~/dotfiles/nvim/logo/nvim.png; read -q", -- preview command
+			-- 	file_path = "", -- preview file path
+			-- 	file_height = 15, -- preview file height
+			-- 	file_width = 80, -- preview file width
+			-- },
 			config = {
 				week_header = {
 					enable = true,

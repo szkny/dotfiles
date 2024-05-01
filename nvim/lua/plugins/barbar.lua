@@ -1,8 +1,8 @@
 return {
 	"szkny/barbar.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	lazy = false,
 	-- event = "VeryLazy",
+	event = "VimEnter",
 	opts = {
 		animation = true,
 		auto_hide = false,
