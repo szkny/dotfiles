@@ -35,12 +35,12 @@ return {
 			-- 	file_height = 20, -- preview file height
 			-- 	file_width = 130, -- preview file width
 			-- },
-			-- preview = {
-			-- 	command = "viu -x 24 -t ~/dotfiles/nvim/logo/nvim.png; read -q", -- preview command
-			-- 	file_path = "", -- preview file path
-			-- 	file_height = 15, -- preview file height
-			-- 	file_width = 80, -- preview file width
-			-- },
+			preview = {
+				command = "viu -x 25 -t ~/dotfiles/nvim/logo/nvim.png; read -q", -- preview command
+				file_path = "", -- preview file path
+				file_height = 15, -- preview file height
+				file_width = 80, -- preview file width
+			},
 			config = {
 				week_header = {
 					enable = true,
