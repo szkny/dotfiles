@@ -62,7 +62,7 @@ return {
 						key = "e",
 					},
 					{
-						icon = " ",
+						icon = " ",
 						icon_hl = "@variable",
 						desc = "Files",
 						group = "@property",
@@ -82,7 +82,7 @@ return {
 						key = ",",
 					},
 					{
-						icon = " ",
+						icon = " ",
 						icon_hl = "@variable",
 						desc = "Update",
 						group = "@property",
@@ -90,7 +90,7 @@ return {
 						key = "U",
 					},
 					{
-						icon = " ",
+						icon = " ",
 						icon_hl = "@variable",
 						desc = "Quit",
 						group = "@property",
