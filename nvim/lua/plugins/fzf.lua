@@ -85,6 +85,7 @@ return {
 		vim.api.nvim_set_hl(0, "FzfLuaCursorLine", { link = "Cursorline" })
 		vim.api.nvim_set_hl(0, "FzfLuaPreview", { fg = "none", bg = "none" })
 
+		-- keymaps
 		local get_visual_selection = function()
 			vim.cmd('noau normal! "vy"')
 			local text = vim.fn.getreg("v")
@@ -143,5 +144,40 @@ return {
 			require("fzf-lua").lines()
 			vim.api.nvim_feedkeys(text, "t", true)
 		end, { silent = true })
+
+		-- commands
+		vim.api.nvim_create_user_command("Icons", function()
+			local icons = require("data.icons").get_icons()
+			require("fzf-lua").fzf_exec(function(fzf_cb)
+				coroutine.wrap(function()
+					local co = coroutine.running()
+					for k, v in pairs(icons) do
+						vim.schedule(function()
+							fzf_cb(v .. " : " .. k, function()
+								coroutine.resume(co)
+							end)
+						end)
+						coroutine.yield()
+					end
+					fzf_cb()
+				end)()
+			end, {
+				prompt = "Icons> ",
+				winopts = {
+					width = 0.5,
+					height = 0.5,
+				},
+				previewer = nil,
+				actions = {
+					["default"] = function(item)
+						if #item > 0 then
+							local icon = item[1]:sub(0, 4)
+							print("yank : " .. icon)
+							vim.fn.setreg("", icon)
+						end
+					end,
+				},
+			})
+		end, {})
 	end,
 }
