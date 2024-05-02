@@ -1,6 +1,5 @@
--- return {}
 return {
-	"nvimdev/lspsaga.nvim",
+	"szkny/lspsaga.nvim",
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 		"nvim-tree/nvim-web-devicons",
@@ -58,7 +57,17 @@ return {
 	},
 	config = function(_, opts)
 		require("lspsaga").setup(opts)
-		vim.keymap.set("n", "<leader>a", "<cmd>Lspsaga code_action<CR>")
+		vim.keymap.set("n", "<leader>a", function()
+			Try({
+				function()
+					vim.cmd([[Lspsaga code_action]])
+				end,
+				Catch({
+					nil,
+				}),
+			})
+		end)
+		-- vim.keymap.set("n", "<leader>a", "<cmd>Lspsaga code_action<CR>")
 		vim.keymap.set("n", "<leader>n", "<cmd>Lspsaga diagnostic_jump_next<CR>")
 		vim.keymap.set("n", "<leader>p", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
 		vim.keymap.set("n", "<leader>k", "<cmd>Lspsaga hover_doc<CR>")
