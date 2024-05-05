@@ -10,23 +10,23 @@ return {
 	},
 	event = "VeryLazy",
 	version = "*",
-	opts = {
-		direction = "float",
-		float_opts = {
-			border = "curved",
-		},
-		highlights = {
-			FloatBorder = {
-				guifg = "#555555",
-				guibg = "none",
+	config = function()
+		local FloatBorderHl = vim.api.nvim_get_hl(0, { name = "FloatBorder" })
+		require("toggleterm").setup({
+			direction = "float",
+			float_opts = {
+				border = "curved",
 			},
-		},
-		on_open = function()
-			vim.cmd([[startinsert]])
-		end,
-	},
-	config = function(_, opts)
-		require("toggleterm").setup(opts)
+			highlights = {
+				FloatBorder = {
+					guifg = FloatBorderHl.fg,
+					guibg = "none",
+				},
+			},
+			on_open = function()
+				vim.cmd([[startinsert]])
+			end,
+		})
 		local Terminal = require("toggleterm.terminal").Terminal
 		local lazygit = Terminal:new({
 			cmd = "lazygit",
