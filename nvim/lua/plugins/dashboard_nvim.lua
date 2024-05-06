@@ -41,10 +41,21 @@ return {
 			-- 	file_height = 15, -- preview file height
 			-- 	file_width = 80, -- preview file width
 			-- },
+			-- preview = {
+			-- 	command = "cat", -- preview command
+			-- 	file_path = "~/dotfiles/nvim/logo/nvim-ascii.txt ; read -q", -- preview file path
+			-- 	file_height = 15, -- preview file height
+			-- 	file_width = 80, -- preview file width
+			-- },
 			preview = {
-				command = "cat", -- preview command
-				file_path = "~/dotfiles/nvim/logo/nvim-ascii.txt ; read -q", -- preview file path
-				file_height = 15, -- preview file height
+				command = [[
+          FILE=$HOME/dotfiles/nvim/logo/nvim-ascii.txt;
+          printf '%0.s\n' $(seq 1 $(($(tput lines) - $(wc -l < $FILE))));
+          cat $FILE;
+          read -q
+        ]], -- preview command
+				file_path = "", -- preview file path
+				file_height = 20, -- preview file height
 				file_width = 80, -- preview file width
 			},
 			config = {
@@ -100,10 +111,16 @@ return {
 				},
 				project = {
 					enable = true,
-					limit = 5,
+					limit = 4,
 					icon = "  ",
 					label = "Recent Projects:",
 					action = "edit ",
+				},
+				mru = {
+					limit = 5,
+					icon = "  ",
+					label = "Most Recent Files:",
+					cwd_only = false,
 				},
 			},
 		})
