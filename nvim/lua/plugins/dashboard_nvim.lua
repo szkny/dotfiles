@@ -88,9 +88,17 @@ return {
 						desc = "Files",
 						group = "@property",
 						action = function()
-							open_fzf_lua()
+							open_fzf_lua(".")
 						end,
-						key = "C-p",
+						key = "<C-p>",
+					},
+					{
+						icon = " ",
+						icon_hl = "@variable",
+						desc = "FileTree",
+						group = "@property",
+						action = "enew! | NvimTreeToggle",
+						key = "<C-n>",
 					},
 					{
 						icon = " ",
