@@ -150,6 +150,7 @@ return {
 	-- {
 	-- 	"tzachar/cmp-ai",
 	-- 	dependencies = "nvim-lua/plenary.nvim",
+	--  event = { "InsertEnter", "CmdlineEnter" },
 	-- 	config = function()
 	-- 		local cmp_ai = require("cmp_ai.config")
 	-- 		cmp_ai:setup({
