@@ -68,17 +68,17 @@ return {
 			-- 	file_height = 20, -- preview file height
 			-- 	file_width = 130, -- preview file width
 			-- },
-			preview = {
-				command = [[
-			       FILE=$HOME/dotfiles/nvim/logo/nvim-ascii.txt;
-			       printf '%0.s\n' $(seq 1 $(($(tput lines) - $(wc -l < $FILE) - 2 )));
-			       cat $FILE;
-			       read -q
-			     ]], -- preview command
-				file_path = "", -- preview file path
-				file_height = 23, -- preview file height
-				file_width = 40, -- preview file width
-			},
+			-- preview = {
+			-- 	command = [[
+			--        FILE=$HOME/dotfiles/nvim/logo/nvim-ascii.txt;
+			--        printf '%0.s\n' $(seq 1 $(($(tput lines) - $(wc -l < $FILE) - 2 )));
+			--        cat $FILE;
+			--        read -q
+			--      ]], -- preview command
+			-- 	file_path = "", -- preview file path
+			-- 	file_height = 23, -- preview file height
+			-- 	file_width = 40, -- preview file width
+			-- },
 			-- preview = {
 			-- 	command = [[
 			--           FILE=$HOME/dotfiles/nvim/logo/neovim-ascii-1.txt;
