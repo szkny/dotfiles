@@ -4,12 +4,15 @@ return {
 	-- lazy = false,
 	event = "VimEnter",
 	config = function()
-		local open_fzf_lua = function(path)
+		local open_fzf_files = function(path)
 			require("fzf-lua").fzf_exec("rg --files -uuu -g !.git/ -g !node_modules/ -L -- " .. path, {
 				prompt = "Files> ",
 				previewer = "builtin",
 				actions = {
-					["default"] = require("fzf-lua").actions.file_edit,
+					["default"] = function(selected, opts)
+						require("fzf-lua").actions.file_edit(selected, opts)
+						vim.cmd("try | bnext | bdelete! | catch | endtry")
+					end,
 				},
 				fn_transform = function(x)
 					return require("fzf-lua").make_entry.file(x, {
@@ -19,6 +22,26 @@ return {
 				end,
 			})
 		end
+		local open_fzf_grep = function(path)
+			require("fzf-lua").fzf_exec("rg --line-number --ignore-case --color=always -- " .. path, {
+				prompt = "Rg> ",
+				previewer = "builtin",
+				actions = {
+					["default"] = function(selected, opts)
+						require("fzf-lua").actions.file_edit(selected, opts)
+						vim.cmd("try | bnext | bdelete! | catch | endtry")
+					end,
+				},
+				fn_transform = function(x)
+					x = string.gsub(x, "[ ]+", " ")
+					return require("fzf-lua").make_entry.file(x, {
+						file_icons = true,
+						color_icons = true,
+					})
+				end,
+			})
+		end
+
 		local logo = ""
 			.. "███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗\n"
 			.. "████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║\n"
@@ -94,14 +117,24 @@ return {
 						key = "e",
 					},
 					{
-						icon = " ",
+						icon = " ",
 						icon_hl = "@variable",
 						desc = "Files",
 						group = "@property",
 						action = function()
-							open_fzf_lua(".")
+							open_fzf_files(".")
 						end,
 						key = "<C-p>",
+					},
+					{
+						icon = " ",
+						icon_hl = "@variable",
+						desc = "Grep",
+						group = "@property",
+						action = function()
+							open_fzf_grep(".")
+						end,
+						key = "<C-f>",
 					},
 					{
 						icon = " ",
@@ -117,7 +150,7 @@ return {
 						desc = "Dotfiles",
 						group = "@property",
 						action = function()
-							open_fzf_lua("~/dotfiles")
+							open_fzf_files("~/dotfiles")
 						end,
 						key = ",",
 					},
