@@ -19,6 +19,16 @@ return {
 				end,
 			})
 		end
+		local logo = ""
+			.. "███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗\n"
+			.. "████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║\n"
+			.. "██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║\n"
+			.. "██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║\n"
+			.. "██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║\n"
+			.. "╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝\n"
+
+		logo = string.rep("\n", 8) .. logo .. "\n\n"
+		local header = vim.split(logo, "\n")
 		require("dashboard").setup({
 			theme = "hyper",
 			disable_move = true, --  default is false disable move keymap for hyper
@@ -36,31 +46,20 @@ return {
 			-- 	file_width = 130, -- preview file width
 			-- },
 			-- preview = {
-			-- 	command = "viu -x 25 -t ~/dotfiles/nvim/logo/nvim.png; read -q", -- preview command
+			-- 	command = [[
+			--        FILE=$HOME/dotfiles/nvim/logo/nvim-ascii.txt;
+			--        printf '%0.s\n' $(seq 1 $(($(tput lines) - $(wc -l < $FILE) - 2 )));
+			--        cat $FILE;
+			--        read -q
+			--      ]], -- preview command
 			-- 	file_path = "", -- preview file path
-			-- 	file_height = 15, -- preview file height
+			-- 	file_height = 20, -- preview file height
 			-- 	file_width = 80, -- preview file width
 			-- },
-			-- preview = {
-			-- 	command = "cat", -- preview command
-			-- 	file_path = "~/dotfiles/nvim/logo/nvim-ascii.txt ; read -q", -- preview file path
-			-- 	file_height = 15, -- preview file height
-			-- 	file_width = 80, -- preview file width
-			-- },
-			preview = {
-				command = [[
-          FILE=$HOME/dotfiles/nvim/logo/nvim-ascii.txt;
-          printf '%0.s\n' $(seq 1 $(($(tput lines) - $(wc -l < $FILE))));
-          cat $FILE;
-          read -q
-        ]], -- preview command
-				file_path = "", -- preview file path
-				file_height = 20, -- preview file height
-				file_width = 80, -- preview file width
-			},
 			config = {
+				header = header,
 				week_header = {
-					enable = true,
+					enable = false,
 				},
 				packages = { enable = true },
 				shortcut = {
