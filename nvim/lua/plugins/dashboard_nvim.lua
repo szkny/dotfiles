@@ -4,44 +4,6 @@ return {
 	-- lazy = false,
 	event = "VimEnter",
 	config = function()
-		local open_fzf_files = function(path)
-			require("fzf-lua").fzf_exec("rg --files -uuu -g !.git/ -g !node_modules/ -L -- " .. path, {
-				prompt = "Files> ",
-				previewer = "builtin",
-				actions = {
-					["default"] = function(selected, opts)
-						require("fzf-lua").actions.file_edit(selected, opts)
-						vim.cmd("try | bnext | bdelete! | catch | endtry")
-					end,
-				},
-				fn_transform = function(x)
-					return require("fzf-lua").make_entry.file(x, {
-						file_icons = true,
-						color_icons = true,
-					})
-				end,
-			})
-		end
-		local open_fzf_grep = function(path)
-			require("fzf-lua").fzf_exec("rg --line-number --ignore-case --color=always -- " .. path, {
-				prompt = "Rg> ",
-				previewer = "builtin",
-				actions = {
-					["default"] = function(selected, opts)
-						require("fzf-lua").actions.file_edit(selected, opts)
-						vim.cmd("try | bnext | bdelete! | catch | endtry")
-					end,
-				},
-				fn_transform = function(x)
-					x = string.gsub(x, "[ ]+", " ")
-					return require("fzf-lua").make_entry.file(x, {
-						file_icons = true,
-						color_icons = true,
-					})
-				end,
-			})
-		end
-
 		local logo = ""
 			.. "███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗\n"
 			.. "████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║\n"
@@ -122,7 +84,22 @@ return {
 						desc = "Files",
 						group = "@property",
 						action = function()
-							open_fzf_files(".")
+							require("fzf-lua").fzf_exec("rg --files -uuu -g !.git/ -g !node_modules/ -L -- .", {
+								prompt = "Files> ",
+								previewer = "builtin",
+								actions = {
+									["default"] = function(selected, opts)
+										require("fzf-lua").actions.file_edit(selected, opts)
+										vim.cmd("try | bnext | bdelete! | catch | endtry")
+									end,
+								},
+								fn_transform = function(x)
+									return require("fzf-lua").make_entry.file(x, {
+										file_icons = true,
+										color_icons = true,
+									})
+								end,
+							})
 						end,
 						key = "<C-p>",
 					},
@@ -132,7 +109,23 @@ return {
 						desc = "Grep",
 						group = "@property",
 						action = function()
-							open_fzf_grep(".")
+							require("fzf-lua").fzf_exec("rg --line-number --ignore-case --color=always -- .", {
+								prompt = "Rg> ",
+								previewer = "builtin",
+								actions = {
+									["default"] = function(selected, opts)
+										require("fzf-lua").actions.file_edit(selected, opts)
+										vim.cmd("try | bnext | bdelete! | catch | endtry")
+									end,
+								},
+								fn_transform = function(x)
+									x = string.gsub(x, "[ ]+", " ")
+									return require("fzf-lua").make_entry.file(x, {
+										file_icons = true,
+										color_icons = true,
+									})
+								end,
+							})
 						end,
 						key = "<C-f>",
 					},
@@ -150,7 +143,25 @@ return {
 						desc = "Dotfiles",
 						group = "@property",
 						action = function()
-							open_fzf_files("~/dotfiles")
+							require("fzf-lua").fzf_exec(
+								"rg --files -uuu -g !.git/ -g !node_modules/ -L -- ~/dotfiles",
+								{
+									prompt = "Files> ",
+									previewer = "builtin",
+									actions = {
+										["default"] = function(selected, opts)
+											require("fzf-lua").actions.file_edit(selected, opts)
+											vim.cmd("try | bnext | bdelete! | catch | endtry")
+										end,
+									},
+									fn_transform = function(x)
+										return require("fzf-lua").make_entry.file(x, {
+											file_icons = true,
+											color_icons = true,
+										})
+									end,
+								}
+							)
 						end,
 						key = ",",
 					},
