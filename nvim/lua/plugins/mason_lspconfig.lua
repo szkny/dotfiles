@@ -20,7 +20,13 @@ return {
 
 		-- 1. LSP Sever management
 		require("neodev").setup()
-		require("mason").setup()
+		require("mason").setup({
+			ui = {
+				border = "rounded",
+				width = 0.9,
+				height = 0.9,
+			},
+		})
 		require("mason-lspconfig").setup({
 			ensure_installed = {
 				"lua_ls",
