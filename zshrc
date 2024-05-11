@@ -336,18 +336,5 @@ export DISPLAY=$(ipconfig.exe | grep -a "IPv4" | tail -1 | awk '{print $NF}' | a
 ## start tmux
 export TERM="screen-256color"
 
-# auto start to cron (for hwclock)
-#   execute: crontab -e
-#       * * * * * /usr/sbin/hwclock -s
-if ! service cron status > /dev/null 2>&1; then
-  echo "Firing up cron daemon..." >&2
-  sudo service cron start > /dev/null 2>&1
-  if service cron status > /dev/null 2>&1; then
-    echo "cron now running." >&2
-  else
-    echo "cron failed to start!" >&2
-  fi
-fi
-
 ## measure zshrc startup time
 # zprof
