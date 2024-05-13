@@ -36,5 +36,15 @@ return {
 		vim.api.nvim_create_user_command("LazyGit", function()
 			lazygit:toggle()
 		end, {})
+		vim.api.nvim_create_user_command("Viu", function(opts)
+			local file = opts.fargs[1]
+			if file then
+				Terminal:new({
+					cmd = "viu -t " .. file .. "; read -q",
+					hidden = true,
+					direction = "float",
+				}):open()
+			end
+		end, { nargs = 1 })
 	end,
 }

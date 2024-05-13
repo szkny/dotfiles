@@ -119,12 +119,12 @@ return {
                 else
                     let l:filepath = join(a:000)
                 endif
-                call splitterm#open_width(1000, 'viu', l:filepath, '; read -q')
+                call splitterm#open_width(1000, 'viu -t', l:filepath, '; read -q')
             else
                 echo "command not found: viu"
             endif
         endf
-        command! -nargs=* Viu call s:viu(<f-args>)
+        " command! -nargs=* Viu call s:viu(<f-args>)
     ]])
 
 		vim.cmd([[
