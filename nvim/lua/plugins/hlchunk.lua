@@ -11,7 +11,7 @@ return {
 				vertical_line = "│",
 				left_top = "╭",
 				left_bottom = "╰",
-				right_arrow = "→",
+				right_arrow = "",
 			},
 			textobject = "",
 			max_file_size = 1024 * 1024,
@@ -38,11 +38,11 @@ return {
 	},
 	config = function(_, opts)
 		-- local HighlightFg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Normal")), "fg", "gui")
-		local HighlightFg = "#80b0c0"
+		local HighlightFg = "#90bfff"
 		local OtherFg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui")
 		opts.chunk.style = {
-			{ fg = HighlightFg, bg = "none", bold = true },
-			{ fg = "#c21f30", bold = true },
+			{ fg = HighlightFg, bg = "none", bold = false },
+			{ fg = "#c21f30", bold = false },
 		}
 		opts.indent.style = {
 			{ fg = OtherFg, bg = "none" },
