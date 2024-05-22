@@ -5,29 +5,22 @@ return {
 		auto_enable = true,
 		auto_resize_height = true,
 		preview = {
-			win_height = 12,
-			win_vheight = 12,
-			delay_syntax = 0,
+			win_height = 15,
+			win_vheight = 15,
+			winblend = 0,
 			border = "rounded",
 			show_title = true,
-			should_preview_cb = function(bufnr, _)
-				local ret = true
-				local bufname = vim.api.nvim_buf_get_name(bufnr)
-				local fsize = vim.fn.getfsize(bufname)
-				if fsize > 100 * 1024 then
-					-- skip file size greater than 100k
-					ret = false
-				elseif bufname:match("^fugitive://") then
-					-- skip fugitive buffer
-					ret = false
-				end
-				return ret
-			end,
+			delay_syntax = 0,
+			show_scroll_bar = true,
+			buf_label = false,
+			wrap = false,
 		},
 	},
 	config = function(_, opts)
+		local FloatBorderFg = vim.api.nvim_get_hl(0, { name = "FloatBorder" }).fg
 		vim.api.nvim_set_hl(0, "BqfPreviewFloat", { bg = "none" })
-		vim.api.nvim_set_hl(0, "BqfPreviewBorder", { bg = "none" })
+		vim.api.nvim_set_hl(0, "BqfPreviewBorder", { fg = FloatBorderFg, bg = "none" })
+		vim.api.nvim_set_hl(0, "BqfPreviewTitle", { fg = FloatBorderFg, bg = "none" })
 		require("bqf").setup(opts)
 	end,
 }
