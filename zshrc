@@ -66,6 +66,7 @@ alias gcam='git commit -am'
 alias gp='git pull'
 alias lg='lazygit'
 alias gg='lazygit'
+alias drop_caches="sudo sh -c \"echo 3 >'/proc/sys/vm/drop_caches'\""
 
 ## setup for vim
 export EDITOR='nvim'
