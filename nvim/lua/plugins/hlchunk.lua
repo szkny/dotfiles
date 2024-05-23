@@ -1,5 +1,6 @@
 return {
 	"shellRaining/hlchunk.nvim",
+	commit = "882d1bc8",
 	event = { "UIEnter" },
 	opts = {
 		chunk = {
