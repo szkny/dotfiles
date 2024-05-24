@@ -21,15 +21,15 @@ return {
 			sources = {
 				{
 					source = "filesystem",
-					display_name = " 󰉓 Files ",
+					display_name = "  Files ",
 				},
 				{
 					source = "buffers",
-					display_name = " 󰈚 Buffers ",
+					display_name = "  Buffers ",
 				},
 				{
 					source = "git_status",
-					display_name = " 󰊢 Git ",
+					display_name = "  Git ",
 				},
 			},
 			content_layout = "start",
@@ -92,10 +92,11 @@ return {
 					added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
 					modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
 					deleted = "✖", -- this can only be used in the git_status source
-					renamed = "󰁕", -- this can only be used in the git_status source
+					renamed = "", -- this can only be used in the git_status source
 					untracked = "",
 					ignored = "",
 					unstaged = "",
+					-- unstaged = "",
 					staged = "",
 					conflict = "",
 				},
@@ -240,9 +241,11 @@ return {
 			-- instead of relying on nvim autocmd events.
 			window = {
 				mappings = {
-					["<bs>"] = "navigate_up",
+					["<c-h>"] = "navigate_up",
+					["<c-l>"] = "navigate_down",
 					["."] = "set_root",
 					["H"] = "toggle_hidden",
+					["<bs>"] = "toggle_hidden",
 					["/"] = "fuzzy_finder",
 					["D"] = "fuzzy_finder_directory",
 					["#"] = "fuzzy_sorter", -- fuzzy sorting using the fzy algorithm
@@ -283,7 +286,8 @@ return {
 			window = {
 				mappings = {
 					["bd"] = "buffer_delete",
-					["<bs>"] = "navigate_up",
+					["<c-h>"] = "navigate_up",
+					["<c-l>"] = "navigate_down",
 					["."] = "set_root",
 					["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
 					["oc"] = { "order_by_created", nowait = false },
@@ -318,12 +322,7 @@ return {
 		},
 	},
 	config = function(_, opts)
-		-- NeoTreeGitAdded
-		-- NeoTreeGitConflict
-		-- NeoTreeGitDeleted
-		-- NeoTreeGitIgnored
-		-- NeoTreeGitModified
-		-- NeoTreeGitUntracked
+		vim.api.nvim_set_hl(0, "NeoTreeGitUnstaged", { link = "NeoTreeGitModified" })
 		vim.api.nvim_set_hl(0, "NeoTreeFileIcon", { fg = "#778888", bg = "none" })
 		require("neo-tree").setup(opts)
 	end,
