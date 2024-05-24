@@ -70,6 +70,11 @@ return {
 					return "" .. base_name_upper
 					-- return " " .. base_name
 				end,
+				align = "left",
+			},
+			["neo-tree"] = {
+				text = "File Explorer",
+				align = "center",
 			},
 		},
 		no_name_title = "[No Name]",
