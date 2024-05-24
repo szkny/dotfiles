@@ -106,10 +106,10 @@ return {
 			component_separators = { left = " ", right = " " },
 			section_separators = { left = "", right = "" },
 			disabled_filetypes = {
-				statusline = { "NvimTree", "vista", "minimap" },
-				winbar = { "NvimTree", "vista", "minimap" },
+				statusline = { "NvimTree", "neo-tree", "vista", "minimap" },
+				winbar = { "NvimTree", "neo-tree", "vista", "minimap" },
 			},
-			ignore_focus = { "NvimTree", "vista", "minimap" },
+			ignore_focus = { "NvimTree", "neo-tree", "vista", "minimap" },
 			always_divide_middle = true,
 			globalstatus = true,
 			refresh = {
