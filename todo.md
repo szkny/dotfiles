@@ -6,6 +6,7 @@
     - fix barbar.nvim sidebar bug when source selector changes
     - setup custom mapping
       - git diff view
+      - navigate_down
   - mason
     - zsh lsp
   - aerial.nvim
