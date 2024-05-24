@@ -242,7 +242,7 @@ return {
 			window = {
 				mappings = {
 					["<c-h>"] = "navigate_up",
-					["<c-l>"] = "navigate_down",
+					-- ["<c-l>"] = "navigate_down",
 					["."] = "set_root",
 					["H"] = "toggle_hidden",
 					["<bs>"] = "toggle_hidden",
@@ -287,7 +287,7 @@ return {
 				mappings = {
 					["bd"] = "buffer_delete",
 					["<c-h>"] = "navigate_up",
-					["<c-l>"] = "navigate_down",
+					-- ["<c-l>"] = "navigate_down",
 					["."] = "set_root",
 					["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
 					["oc"] = { "order_by_created", nowait = false },
