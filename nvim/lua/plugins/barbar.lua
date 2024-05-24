@@ -73,7 +73,7 @@ return {
 				align = "left",
 			},
 			["neo-tree"] = {
-				text = "File Explorer",
+				text = "Explorer",
 				align = "center",
 			},
 		},
