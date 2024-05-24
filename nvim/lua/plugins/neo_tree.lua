@@ -14,19 +14,45 @@ return {
 	},
 	opts = {
 		close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
+		source_selector = {
+			winbar = true,
+			statusline = false,
+			show_scrolled_off_parent_node = false,
+			sources = {
+				{
+					source = "filesystem",
+					display_name = " 󰉓 Files ",
+				},
+				{
+					source = "buffers",
+					display_name = " 󰈚 Buffers ",
+				},
+				{
+					source = "git_status",
+					display_name = " 󰊢 Git ",
+				},
+			},
+			content_layout = "start",
+			tabs_layout = "equal",
+			truncation_character = "…",
+			tabs_min_width = nil,
+			tabs_max_width = nil,
+			padding = 0,
+			separator = { left = "▏", right = "▕" },
+			separator_active = nil,
+			show_separator_on_edge = false,
+			highlight_tab = "NeoTreeTabInactive",
+			highlight_tab_active = "NeoTreeTabActive",
+			highlight_background = "NeoTreeTabInactive",
+			highlight_separator = "NeoTreeTabSeparatorInactive",
+			highlight_separator_active = "NeoTreeTabSeparatorActive",
+		},
 		popup_border_style = "rounded",
 		enable_git_status = true,
 		enable_diagnostics = true,
 		open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
 		sort_case_insensitive = false, -- used when sorting files and directories in the tree
 		sort_function = nil, -- use a custom function for sorting files and directories in the tree
-		-- sort_function = function (a,b)
-		--       if a.type == b.type then
-		--           return a.path > b.path
-		--       else
-		--           return a.type > b.type
-		--       end
-		--   end , -- this sorts files and directories descendantly
 		default_component_configs = {
 			container = {
 				enable_character_fade = true,
@@ -65,17 +91,29 @@ return {
 			},
 			git_status = {
 				symbols = {
-					-- Change type
 					added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
 					modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
 					deleted = "✖", -- this can only be used in the git_status source
 					renamed = "󰁕", -- this can only be used in the git_status source
-					-- Status type
 					untracked = "",
 					ignored = "",
-					unstaged = "󰄱",
+					unstaged = "",
 					staged = "",
 					conflict = "",
+				},
+			},
+			diagnostics = {
+				symbols = {
+					error = "",
+					warn = "",
+					hint = "",
+					info = "",
+				},
+				highlights = {
+					hint = "DiagnosticSignHint",
+					info = "DiagnosticSignInfo",
+					warn = "DiagnosticSignWarn",
+					error = "DiagnosticSignError",
 				},
 			},
 			-- If you don't want to use these columns, you can set `enabled = false` for each of them individually
@@ -282,11 +320,13 @@ return {
 		},
 	},
 	config = function(_, opts)
-		vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
-		vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
-		vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
-		vim.fn.sign_define("DiagnosticSignHint", { text = " ", texthl = "DiagnosticSignHint" })
-
+		-- NeoTreeGitAdded
+		-- NeoTreeGitConflict
+		-- NeoTreeGitDeleted
+		-- NeoTreeGitIgnored
+		-- NeoTreeGitModified
+		-- NeoTreeGitUntracked
+		-- vim.api.nvim_set_hl(0, "NeoTreeGitUnstaged", { fg = "#ddaa55", bg = "none" })
 		require("neo-tree").setup(opts)
 	end,
 }
