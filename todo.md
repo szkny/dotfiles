@@ -3,6 +3,7 @@
 - neovim
   - toggleterm
     - execute any command
+    - fix barbar.nvim sidebar bug when source selector changes
   - mason
     - zsh lsp
   - aerial.nvim
