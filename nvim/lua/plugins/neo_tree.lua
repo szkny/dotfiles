@@ -75,8 +75,6 @@ return {
 				folder_closed = "",
 				folder_open = "",
 				folder_empty = "󰜌",
-				-- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
-				-- then these will never be used.
 				default = "",
 				highlight = "NeoTreeFileIcon",
 			},
@@ -326,7 +324,7 @@ return {
 		-- NeoTreeGitIgnored
 		-- NeoTreeGitModified
 		-- NeoTreeGitUntracked
-		-- vim.api.nvim_set_hl(0, "NeoTreeGitUnstaged", { fg = "#ddaa55", bg = "none" })
+		vim.api.nvim_set_hl(0, "NeoTreeFileIcon", { fg = "#778888", bg = "none" })
 		require("neo-tree").setup(opts)
 	end,
 }
