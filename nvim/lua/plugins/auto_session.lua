@@ -29,19 +29,27 @@ return {
 					'exe "normal! \\<C-w>W"',
 				},
 			},
-			nvimtree = {
+			neotree = {
 				state = false,
 				save_index = 2,
+				save_commands = {
+					"Neotree",
+					'exe "normal! \\<C-w>W"',
+				},
+			},
+			nvimtree = {
+				state = false,
+				save_index = 3,
 				save_commands = { "lua require('nvim-tree.api').tree.toggle({focus=false})" },
 			},
 			aerial = {
 				state = false,
-				save_index = 3,
+				save_index = 4,
 				save_commands = { "exe 'AerialToggle!'" },
 			},
 			trouble = {
 				state = false,
-				save_index = 4,
+				save_index = 5,
 				save_commands = {
 					"exe 'TroubleToggle'",
 					'exe "normal! \\<C-w>W"',
@@ -57,6 +65,7 @@ return {
 					return true
 				end
 			end
+			print(pattern)
 			return false
 		end
 
@@ -64,6 +73,12 @@ return {
 			if Find_buffer("SplitTerm") then
 				vim.cmd("SplitTermClose")
 				auto_session_plugins.splitterm.state = true
+			end
+		end
+		local function close_neo_tree()
+			if Find_buffer("tree filesystem") then
+				vim.cmd("Neotree close")
+				auto_session_plugins.neotree.state = true
 			end
 		end
 		local function close_nvim_tree()
@@ -116,6 +131,7 @@ return {
 		vim.api.nvim_create_autocmd("ExitPre", {
 			callback = function()
 				close_splitterm()
+				close_neo_tree()
 				close_nvim_tree()
 				close_aerial()
 				close_trouble()
