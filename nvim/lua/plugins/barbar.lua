@@ -9,7 +9,7 @@ return {
 		exclude_ft = {
 			"qf",
 		},
-		tabpages = false,
+		tabpages = true,
 		clickable = true,
 		icons = {
 			buffer_index = false,
