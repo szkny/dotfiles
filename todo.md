@@ -4,6 +4,8 @@
   - toggleterm
     - execute any command
     - fix barbar.nvim sidebar bug when source selector changes
+    - setup custom mapping
+      - git diff view
   - mason
     - zsh lsp
   - aerial.nvim
