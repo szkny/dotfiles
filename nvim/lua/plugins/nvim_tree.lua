@@ -5,9 +5,9 @@ return {
 		"szkny/barbar.nvim",
 	},
 	cmd = { "NvimTreeToggle" },
-	keys = {
-		{ "<C-n>", "<CMD>NvimTreeToggle<CR>", mode = "n" },
-	},
+	-- keys = {
+	-- 	{ "<C-n>", "<CMD>NvimTreeToggle<CR>", mode = "n" },
+	-- },
 	opts = {
 		auto_reload_on_write = true,
 		disable_netrw = true,
