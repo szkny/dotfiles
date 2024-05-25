@@ -1,11 +1,13 @@
 # TODO list
 
 - neovim
-  - toggleterm
-    - execute any command
+  - neotree
+    - basic setup
     - fix barbar.nvim sidebar bug when source selector changes
     - setup custom mapping
       - git diff view
+  - toggleterm
+    - execute any command
   - mason
     - zsh lsp
   - aerial.nvim
