@@ -134,7 +134,7 @@ return {
 						icon_hl = "@variable",
 						desc = "FileTree",
 						group = "@property",
-						action = "enew! | NvimTreeToggle",
+						action = "enew! | Neotree",
 						key = "<C-n>",
 					},
 					{
