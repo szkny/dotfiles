@@ -2,6 +2,7 @@ return {
 	"ibhagwan/fzf-lua",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	event = "VeryLazy",
+  commit = "b442569",
 	cmd = {
 		"FzfLua",
 	},
