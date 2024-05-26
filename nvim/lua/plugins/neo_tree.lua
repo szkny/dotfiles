@@ -21,29 +21,25 @@ return {
 			sources = {
 				{
 					source = "filesystem",
-					display_name = "  Files ",
+					display_name = " Files",
 				},
 				{
 					source = "buffers",
-					display_name = "  Buffers ",
+					display_name = " Buffers",
 				},
 				{
 					source = "git_status",
-					display_name = "  Git ",
+					display_name = " Git",
 				},
 			},
-			content_layout = "start",
+			content_layout = "center",
 			tabs_layout = "equal",
 			truncation_character = "…",
-			tabs_min_width = nil,
-			tabs_max_width = nil,
-			padding = 0,
-			separator = { left = "▏", right = "▕" },
-			separator_active = nil,
+			separator = { left = "", right = "" },
 			show_separator_on_edge = false,
 			highlight_tab = "NeoTreeTabInactive",
 			highlight_tab_active = "NeoTreeTabActive",
-			highlight_background = "NeoTreeTabInactive",
+			highlight_background = "NeoTreeTabActive",
 			highlight_separator = "NeoTreeTabSeparatorInactive",
 			highlight_separator_active = "NeoTreeTabSeparatorActive",
 		},
@@ -52,7 +48,6 @@ return {
 		enable_diagnostics = true,
 		open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
 		sort_case_insensitive = false, -- used when sorting files and directories in the tree
-		sort_function = nil, -- use a custom function for sorting files and directories in the tree
 		default_component_configs = {
 			container = {
 				enable_character_fade = true,
