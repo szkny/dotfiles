@@ -18,6 +18,11 @@ return {
       au FileType fugitive call s:fugitive_init()
     ]])
     -- vim.keymap.set("n", "<Leader>gg", ":<C-u>G<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "<Leader>gd", ":<C-u>Gvdiffsplit<CR>", { noremap = true, silent = true })
+    vim.keymap.set(
+      "n",
+      "<Leader>gd",
+      "<CMD>Gvdiffsplit<CR><CMD>setl nobuflisted<CR>",
+      { noremap = true, silent = true }
+    )
   end,
 }
