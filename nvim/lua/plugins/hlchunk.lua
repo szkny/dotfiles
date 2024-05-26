@@ -1,11 +1,10 @@
 return {
 	"shellRaining/hlchunk.nvim",
-	commit = "882d1bc8",
 	event = { "UIEnter" },
 	opts = {
 		chunk = {
 			enable = true,
-			notify = true,
+			notify = false,
 			use_treesitter = true,
 			exclude_filetypes = {
 				["neo-tree-popup"] = true,
