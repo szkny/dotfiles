@@ -14,7 +14,7 @@ return {
 				vertical_line = "│",
 				left_top = "╭",
 				left_bottom = "╰",
-				right_arrow = "",
+				right_arrow = "",
 			},
 			textobject = "",
 			max_file_size = 1024 * 1024,
