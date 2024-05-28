@@ -145,14 +145,15 @@ return {
 			mappings = {
 				["<space>"] = {
 					"toggle_node",
-					nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
+					nowait = true,
 				},
 				["<2-LeftMouse>"] = "open",
 				["<cr>"] = "open",
 				["<esc>"] = "cancel", -- close preview or floating neo-tree window
 				["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
 				-- Read `# Preview Mode` for more information
-				["l"] = "focus_preview",
+				["l"] = "toggle_node",
+				["h"] = "close_node",
 				["S"] = "open_split",
 				["s"] = "open_vsplit",
 				-- ["S"] = "split_with_window_picker",
@@ -160,7 +161,7 @@ return {
 				["t"] = "open_tabnew",
 				-- ["<cr>"] = "open_drop",
 				-- ["t"] = "open_tab_drop",
-				["w"] = "open_with_window_picker",
+				-- ["w"] = "open_with_window_picker",
 				--["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
 				["C"] = "close_node",
 				-- ['C'] = 'close_all_subnodes',
