@@ -2,10 +2,11 @@
 
 - neovim
   - neotree
-    - basic setup
     - fix barbar.nvim sidebar bug when source selector changes
     - setup custom mapping
       - git diff view
+  - neogit
+    - basic setup
   - toggleterm
     - execute any command
   - mason
