@@ -6,7 +6,8 @@ return {
 		ensure_installed = {
 			"stylua",
 			"prettier",
-			"black",
+			-- "black",
+			"ruff",
 		},
 		automatic_installation = true,
 	},
