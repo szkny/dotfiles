@@ -1,8 +1,24 @@
 return {
 	"folke/trouble.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
+	event = "VeryLazy",
 	cmd = { "Trouble" },
+	keys = {
+		{
+			"<leader>t",
+			"<CMD>lua require('trouble').toggle('diagnostics')<CR>",
+			mode = "n",
+		},
+	},
 	opts = {
+		auto_open = true,
+		auto_close = true,
+		auto_preview = true,
+		auto_refresh = true,
+		auto_jump = false,
+		warn_no_results = false,
+		open_no_results = false,
+		focus = false,
 		position = "bottom",
 		height = 5,
 		mode = "workspace_diagnostics",
@@ -20,11 +36,11 @@ return {
 			hint = "",
 			information = "",
 			other = "",
-			-- error = "",
-			-- warning = "",
-			-- hint = "",
-			-- information = "",
-			-- other = "",
 		},
 	},
+	config = function(_, opts)
+		local trouble_api = require("trouble")
+		trouble_api.setup(opts)
+		trouble_api.open("diagnostics")
+	end,
 }

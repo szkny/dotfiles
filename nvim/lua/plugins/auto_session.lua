@@ -33,7 +33,7 @@ return {
 				state = false,
 				save_index = 2,
 				save_commands = {
-					"Neotree",
+					"exe 'Neotree'",
 					'exe "normal! \\<C-w>W"',
 				},
 			},
@@ -50,10 +50,7 @@ return {
 			trouble = {
 				state = false,
 				save_index = 5,
-				save_commands = {
-					"exe 'TroubleToggle'",
-					'exe "normal! \\<C-w>W"',
-				},
+				save_commands = {},
 			},
 		}
 
@@ -97,8 +94,9 @@ return {
 			end
 		end
 		local function close_trouble()
-			if Find_buffer("Trouble") then
-				vim.cmd("TroubleClose")
+			local trouble_api = require("trouble")
+			if trouble_api.is_open() then
+				trouble_api.close()
 				auto_session_plugins.trouble.state = true
 			end
 		end
