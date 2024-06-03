@@ -5,6 +5,7 @@
     - fix barbar.nvim sidebar bug when source selector changes
     - setup custom mapping
       - git diff view
+      - trash command (rip)
   - neogit
     - basic setup
   - toggleterm
