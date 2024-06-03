@@ -6,19 +6,39 @@ return {
 	},
 	event = "VeryLazy",
 	opts = {
-		-- your configuration comes here
-		-- or leave it empty to use the default settings
-		-- refer to the configuration section below
+		signs = true,
+		sign_priority = 8,
+		-- keywords recognized as todo comments
+		keywords = {
+			FIX = {
+				icon = " ",
+				color = "error",
+				alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
+			},
+			TODO = { icon = " ", color = "info" },
+			HACK = { icon = " ", color = "warning" },
+			WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+			PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+			NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+			TEST = { icon = "󰙨 ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+		},
+		gui_style = {
+			fg = "NONE",
+			bg = "BOLD",
+		},
+		search = {
+			command = "rg",
+			args = {
+				"--color=never",
+				"--no-heading",
+				"--with-filename",
+				"--line-number",
+				"--column",
+			},
+			pattern = [[\b(KEYWORDS):]],
+		},
 	},
 	config = function(_, opts)
 		require("todo-comments").setup(opts)
-		-- vim.api.nvim_create_user_command("Todos", function()
-		-- 	local rg_cmd_grep = "rg --line-number --ignore-case --color=always -- TODO|HACK|PERF|NOTE|FIX"
-		-- 	require("fzf-lua").fzf_exec(rg_cmd_grep, {
-		-- 		prompt = "TODO> ",
-		-- 		previewer = "builtin",
-		-- 		actions = require("fzf-lua").defaults.actions.files,
-		-- 	})
-		-- end, {})
 	end,
 }
