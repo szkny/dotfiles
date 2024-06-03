@@ -36,7 +36,7 @@ return {
 				ensure_installed = {
 					"lua_ls",
 					"vimls",
-					"ruff_lsp",
+					"ruff_lsp@0.0.52",
 					"tsserver",
 					"volar",
 					"html",
