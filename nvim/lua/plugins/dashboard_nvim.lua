@@ -134,7 +134,7 @@ return {
 						icon_hl = "@variable",
 						desc = "FileTree",
 						group = "@property",
-						action = "enew! | Neotree",
+						action = "enew! | Neotree show",
 						key = "<C-n>",
 					},
 					{

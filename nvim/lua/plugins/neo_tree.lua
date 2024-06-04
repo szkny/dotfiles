@@ -10,7 +10,7 @@ return {
 		"Neotree",
 	},
 	keys = {
-		{ "<C-n>", "<CMD>Neotree toggle<CR>", mode = "n" },
+		{ "<C-n>", "<CMD>Neotree toggle show<CR>", mode = "n" },
 	},
 	opts = {
 		close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
