@@ -18,6 +18,12 @@ return {
 		symbol_in_winbar = {
 			enable = false,
 		},
+		lightbulb = {
+			enable = true,
+			sign = true,
+			virtual_text = false,
+			enable_in_insert = false,
+		},
 		code_action = {
 			num_shortcut = true,
 			show_server_name = true,
