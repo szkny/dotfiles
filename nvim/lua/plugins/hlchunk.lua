@@ -19,6 +19,8 @@ return {
 			textobject = "",
 			max_file_size = 1024 * 1024,
 			error_sign = true,
+			duration = 200,
+			delay = 50,
 		},
 		indent = {
 			enable = true,
