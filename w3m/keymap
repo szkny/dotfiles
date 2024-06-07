@@ -7,3 +7,4 @@ keymap C-n NEXT_LINK
 keymap C-p PREV_LINK
 keymap L NEXT
 keymap H PREV
+keymap 0 LINE_BEGIN

@@ -130,3 +130,7 @@ sudo apt-get -y install jq
 sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && \
     sudo chmod +x /usr/bin/yq
 
+## install w3m
+sudo apt-get install -y w3m
+mkdir -p ~/.w3m
+ln -s ~/dotfiles/w3m/keymap ~/.w3m/keymap
