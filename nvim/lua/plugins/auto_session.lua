@@ -50,7 +50,7 @@ return {
 			trouble = {
 				state = false,
 				save_index = 5,
-				save_commands = {},
+				save_commands = { "exe 'Trouble diagnostics'" },
 			},
 		}
 
