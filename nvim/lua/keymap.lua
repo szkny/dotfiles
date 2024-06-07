@@ -79,7 +79,7 @@ keymap("n", "<Leader>d", function()
       let wordBeforeSub = substitute(wordBefore, '/', '\\/', 'g')
       let wordAfterSub = substitute(wordAfter, '/', '\\/', 'g')
       call inputrestore()
-      if wordAfterSub != wordBeforeSub
+      if wordAfterSub != wordBeforeSub && wordAfter != ""
         let pos = getpos('.')
         exe '/'.wordBeforeSub
         call setpos('.', pos)
@@ -109,7 +109,7 @@ keymap("v", "<Leader>d", function()
       let wordBeforeSub = substitute(wordBefore, '/', '\\/', 'g')
       let wordAfterSub = substitute(wordAfter, '/', '\\/', 'g')
       call inputrestore()
-      if wordAfterSub != wordBeforeSub
+      if wordAfterSub != wordBeforeSub && wordAfter != ""
         let pos = getpos('.')
         exe '/'.wordBeforeSub
         call setpos('.', pos)
