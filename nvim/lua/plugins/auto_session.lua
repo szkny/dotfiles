@@ -37,19 +37,14 @@ return {
 					'exe "normal! \\<C-w>W"',
 				},
 			},
-			nvimtree = {
-				state = false,
-				save_index = 3,
-				save_commands = { "lua require('nvim-tree.api').tree.toggle({focus=false})" },
-			},
 			aerial = {
 				state = false,
-				save_index = 4,
+				save_index = 3,
 				save_commands = { "exe 'AerialToggle!'" },
 			},
 			trouble = {
 				state = false,
-				save_index = 5,
+				save_index = 4,
 				save_commands = { "exe 'Trouble diagnostics'" },
 			},
 		}
@@ -76,14 +71,6 @@ return {
 			if Find_buffer("tree filesystem") then
 				vim.cmd("Neotree close")
 				auto_session_plugins.neotree.state = true
-			end
-		end
-		local function close_nvim_tree()
-			local view = require("nvim-tree.view")
-			if view.is_visible() then
-				local api = require("nvim-tree.api")
-				api.tree.close()
-				auto_session_plugins.nvimtree.state = true
 			end
 		end
 		local function close_aerial()
@@ -130,7 +117,6 @@ return {
 			callback = function()
 				close_splitterm()
 				close_neo_tree()
-				close_nvim_tree()
 				close_aerial()
 				close_trouble()
 			end,
