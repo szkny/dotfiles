@@ -1,5 +1,5 @@
 return {
-	"shellRaining/hlchunk.nvim",
+	"szkny/hlchunk.nvim",
 	event = { "UIEnter" },
 	opts = {
 		chunk = {
