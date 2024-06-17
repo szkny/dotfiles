@@ -1,5 +1,6 @@
 return {
 	"kevinhwang91/nvim-hlslens",
+	tag = "v1.0.0",
 	-- lazy = false,
 	event = "VeryLazy",
 	opts = {
