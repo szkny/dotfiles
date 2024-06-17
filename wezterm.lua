@@ -191,6 +191,26 @@ config.keys = {
 		mods = "LEADER",
 		action = wezterm.action.CloseCurrentPane({ confirm = true }),
 	},
+	{
+		key = "l",
+		mods = "LEADER|CTRL",
+		action = wezterm.action.ActivateTabRelative(1),
+	},
+	{
+		key = "h",
+		mods = "LEADER|CTRL",
+		action = wezterm.action.ActivateTabRelative(-1),
+	},
+	{
+		key = "RightArrow",
+		mods = "LEADER",
+		action = wezterm.action.MoveTabRelative(1),
+	},
+	{
+		key = "LeftArrow",
+		mods = "LEADER",
+		action = wezterm.action.MoveTabRelative(-1),
+	},
 	-- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
 	{
 		key = "a",
