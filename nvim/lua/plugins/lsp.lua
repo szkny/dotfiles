@@ -156,6 +156,7 @@ return {
 				"stylua",
 				"prettier",
 				"black",
+				"mypy",
 			},
 			automatic_installation = true,
 			methods = {
@@ -175,6 +176,7 @@ return {
 					null_ls.builtins.formatting.stylua,
 					null_ls.builtins.formatting.prettier,
 					null_ls.builtins.formatting.black,
+					null_ls.builtins.diagnostics.mypy,
 				},
 				on_attach = function(client, bufnr)
 					if client.supports_method("textDocument/formatting") then
