@@ -32,6 +32,18 @@ return {
 			long_message_to_split = true,
 			lsp_doc_border = true,
 		},
+		-- for LSP hover
+		routes = {
+			{
+				filter = {
+					event = "notify",
+					find = "No information available",
+				},
+				opts = {
+					skip = true,
+				},
+			},
+		},
 	},
 	config = function(_, opts)
 		require("noice").setup(opts)
