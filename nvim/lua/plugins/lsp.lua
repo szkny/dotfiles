@@ -116,13 +116,13 @@ return {
 
 			-- 2. build-in LSP function
 			-- keyboard shortcut
-			vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover)
-			vim.keymap.set("n", "<leader>[", vim.lsp.buf.references)
-			vim.keymap.set("n", "<leader>]", vim.lsp.buf.definition)
-			vim.keymap.set("n", "<C-]>", vim.lsp.buf.definition)
-			vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action)
-			vim.keymap.set("n", "<leader>n", vim.diagnostic.goto_next)
-			vim.keymap.set("n", "<leader>p", vim.diagnostic.goto_prev)
+			-- vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover)        -- lspsaga
+			-- vim.keymap.set("n", "<leader>[", vim.lsp.buf.references)   -- fzf-lua
+			-- vim.keymap.set("n", "<leader>]", vim.lsp.buf.definition)   -- lspsaga
+			-- vim.keymap.set("n", "<C-]>", vim.lsp.buf.definition)       -- lspsaga
+			-- vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action)  -- lspsaga
+			-- vim.keymap.set("n", "<leader>n", vim.diagnostic.goto_next) -- lspsaga
+			-- vim.keymap.set("n", "<leader>p", vim.diagnostic.goto_prev) -- lspsaga
 			-- Command
 			vim.api.nvim_create_user_command("LspCodeAction", function()
 				vim.lsp.buf.code_action()
@@ -222,6 +222,83 @@ return {
 			vim.api.nvim_create_user_command("FormatterDisable", function()
 				formatter_on_save = false
 			end, {})
+		end,
+	},
+	{
+		"szkny/lspsaga.nvim",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons",
+		},
+		event = "LspAttach",
+		opts = {
+			ui = {
+				border = "rounded",
+				devicon = true,
+				title = true,
+				expand = "⊞",
+				collapse = "⊟",
+				code_action = "💡",
+				actionfix = " ",
+			},
+			symbol_in_winbar = {
+				enable = false,
+			},
+			lightbulb = {
+				enable = true,
+				sign = true,
+				virtual_text = false,
+				enable_in_insert = false,
+			},
+			code_action = {
+				num_shortcut = true,
+				show_server_name = true,
+				extend_gitsigns = false,
+				keys = {
+					quit = { "<ESC>", "q" },
+					exec = "<CR>",
+				},
+			},
+			definition = {
+				width = 0.9,
+				height = 0.9,
+				keys = {
+					quit = { "<ESC>", "q" },
+				},
+			},
+			diagnostic = {
+				show_code_action = true,
+				jump_num_shortcut = true,
+				max_width = 0.8,
+				max_height = 0.6,
+				text_hl_follow = true,
+				border_follow = true,
+				extend_relatedInformation = true,
+				show_layout = "float",
+				show_normal_height = 10,
+				max_show_width = 0.9,
+				max_show_height = 0.6,
+				diagnostic_only_current = false,
+				keys = {
+					exec_action = "o",
+					toggle_or_jump = "<CR>",
+					quit = { "q", "<ESC>" },
+					quit_in_show = { "q", "<ESC>" },
+				},
+			},
+			hover = {
+				max_width = 0.5,
+				max_height = 0.5,
+			},
+		},
+		config = function(_, opts)
+			require("lspsaga").setup(opts)
+			vim.keymap.set("n", "<leader>a", "<cmd>Lspsaga code_action<CR>")
+			vim.keymap.set("n", "<leader>n", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+			vim.keymap.set("n", "<leader>p", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+			vim.keymap.set("n", "<leader>k", "<cmd>Lspsaga hover_doc<CR>")
+			vim.keymap.set("n", "<leader>]", "<cmd>Lspsaga peek_definition<CR>")
+			vim.keymap.set("n", "<C-]>", "<cmd>Lspsaga goto_definition<CR>")
 		end,
 	},
 }
