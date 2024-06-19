@@ -37,6 +37,7 @@ return {
 					"lua_ls",
 					"vimls",
 					"ruff_lsp",
+					"pylsp",
 					"tsserver",
 					"volar",
 					"html",
@@ -81,6 +82,25 @@ return {
 								},
 							},
 						}
+					elseif server == "pylsp" then
+						opt.settings = {
+							pylsp = {
+								plugins = {
+									ruff = {
+										enabled = true,
+									},
+									pycodestyle = {
+										enabled = false,
+									},
+									pyflakes = {
+										enabled = false,
+									},
+									mccabe = {
+										enabled = false,
+									},
+								},
+							},
+						}
 					end
 					require("lspconfig")[server].setup(opt)
 				end,
@@ -96,13 +116,13 @@ return {
 
 			-- 2. build-in LSP function
 			-- keyboard shortcut
-			vim.keymap.set("n", "<leader>k", "<cmd>lua vim.lsp.buf.hover()<CR>")
-			vim.keymap.set("n", "<leader>[", "<cmd>lua vim.lsp.buf.references()<CR>")
-			vim.keymap.set("n", "<leader>]", "<cmd>lua vim.lsp.buf.definition()<CR>")
-			vim.keymap.set("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>")
-			vim.keymap.set("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-			vim.keymap.set("n", "<leader>n", "<cmd>lua vim.diagnostic.goto_next()<CR>")
-			vim.keymap.set("n", "<leader>p", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+			vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover)
+			vim.keymap.set("n", "<leader>[", vim.lsp.buf.references)
+			vim.keymap.set("n", "<leader>]", vim.lsp.buf.definition)
+			vim.keymap.set("n", "<C-]>", vim.lsp.buf.definition)
+			vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action)
+			vim.keymap.set("n", "<leader>n", vim.diagnostic.goto_next)
+			vim.keymap.set("n", "<leader>p", vim.diagnostic.goto_prev)
 			-- Command
 			vim.api.nvim_create_user_command("LspCodeAction", function()
 				vim.lsp.buf.code_action()
