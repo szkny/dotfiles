@@ -28,6 +28,7 @@ return {
 			"Constructor",
 			"Method",
 			"Function",
+			"Variable",
 		},
 		highlight_mode = "split_width",
 		highlight_closest = true,
