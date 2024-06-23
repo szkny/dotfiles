@@ -1,6 +1,8 @@
 # TODO list
 
 - neovim
+  - nvim-dap
+    - basic setup
   - neotree
     - fix barbar.nvim sidebar bug when source selector changes
     - setup custom mapping
