@@ -3,6 +3,9 @@
 - neovim
   - nvim-dap
     - basic setup
+  - toggleterm
+    - manage multiple terminal sessions
+    - execute any command
   - neotree
     - fix barbar.nvim sidebar bug when source selector changes
     - setup custom mapping
@@ -10,8 +13,6 @@
       - trash command (rip)
   - neogit
     - basic setup
-  - toggleterm
-    - execute any command
   - mason
     - zsh lsp
   - aerial.nvim
