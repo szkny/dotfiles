@@ -151,18 +151,18 @@ return {
       end, { bang = true, nargs = "?" })
       -- LSP handlers
       vim.lsp.handlers["textDocument/publishDiagnostics"] =
-          vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-            border = "rounded",
-            update_in_insert = false,
-            signs = true,
-            underline = true,
-            virtual_text = {
-              prefix = "",
-              format = function(diagnostic)
-                return string.format("%s (%s: %s)", diagnostic.message, diagnostic.source, diagnostic.code)
-              end,
-            },
-          })
+        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+          border = "rounded",
+          update_in_insert = false,
+          signs = true,
+          underline = true,
+          virtual_text = {
+            prefix = "",
+            format = function(diagnostic)
+              return string.format("%s (%s: %s)", diagnostic.message, diagnostic.source, diagnostic.code)
+            end,
+          },
+        })
 
       -- Highlight
       vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none", fg = "#9fa3a8" })
@@ -184,6 +184,26 @@ return {
       vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = DgsErrorHl.fg })
       vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { fg = DgsWarnHl.fg })
       vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = DgsHintHl.fg })
+
+      -- Python virtual env
+      local function auto_activate_venv()
+        local venv_path = vim.fn.trim(vim.fn.system("poetry env info -p"))
+        if vim.v.shell_error == 0 then
+          vim.env.VIRTUAL_ENV = venv_path
+          vim.env.PATH = venv_path .. "/bin:" .. vim.env.PATH
+
+          require("noice").redirect(function()
+            local notify = require("notify")
+            notify("activate -> " .. venv_path, "info", { title = "Activate venv" })
+          end)
+        end
+      end
+
+      vim.api.nvim_create_autocmd("VimEnter", {
+        callback = function()
+          auto_activate_venv()
+        end,
+      })
     end,
   },
   {
