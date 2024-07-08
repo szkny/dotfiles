@@ -1,9 +1,8 @@
 # TODO list
 
 - neovim
-  - python type stubs (pyright?)
-    - pandas-stubs
-    - boto3-stubs
+  - lsp
+    - vue basic setup
   - nvim-dap
     - basic setup
   - toggleterm
