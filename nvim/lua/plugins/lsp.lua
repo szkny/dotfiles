@@ -158,18 +158,18 @@ return {
       end, { bang = true, nargs = "?" })
       -- LSP handlers
       vim.lsp.handlers["textDocument/publishDiagnostics"] =
-        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-          border = "rounded",
-          update_in_insert = false,
-          signs = true,
-          underline = true,
-          virtual_text = {
-            prefix = "",
-            format = function(diagnostic)
-              return string.format("%s (%s: %s)", diagnostic.message, diagnostic.source, diagnostic.code)
-            end,
-          },
-        })
+          vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+            border = "rounded",
+            update_in_insert = false,
+            signs = true,
+            underline = true,
+            virtual_text = {
+              prefix = "",
+              format = function(diagnostic)
+                return string.format("%s (%s: %s)", diagnostic.message, diagnostic.source, diagnostic.code)
+              end,
+            },
+          })
 
       -- Highlight
       vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none", fg = "#9fa3a8" })
