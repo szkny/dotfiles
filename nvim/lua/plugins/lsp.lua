@@ -123,6 +123,13 @@ return {
                 },
               },
             }
+          elseif server == "volar" then
+            opt.filetypes = { "vue" }
+            -- opt.init_options = {
+            --   typescript = {
+            --     tsdk = "~/.local/share/nvim/mason/packages/typescript-language-server/node_modules/typescript/lib",
+            --   },
+            -- }
           end
           require("lspconfig")[server].setup(opt)
         end,
