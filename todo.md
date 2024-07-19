@@ -1,6 +1,8 @@
 # TODO list
 
 - neovim
+  - fetch the latest commit
+    - barbar.nvim / hlchunk.nvim / lspsaga.nvim
   - lsp
     - vue basic setup
   - nvim-dap
