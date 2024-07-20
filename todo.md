@@ -1,6 +1,8 @@
 # TODO list
 
 - neovim
+  - nvim-ufo
+    - basic setup
   - markdown.nvim
     - basic setup
   - fetch the latest commit
