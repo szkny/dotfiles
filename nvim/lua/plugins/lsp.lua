@@ -199,10 +199,10 @@ return {
           vim.env.VIRTUAL_ENV = venv_path
           vim.env.PATH = venv_path .. "/bin:" .. vim.env.PATH
 
-          require("noice").redirect(function()
-            local notify = require("notify")
-            notify("activate -> " .. venv_path, "info", { title = "Activate venv" })
-          end)
+          -- require("noice").redirect(function()
+          --   local notify = require("notify")
+          --   notify("activate -> " .. venv_path, "info", { title = "Activate venv" })
+          -- end)
         end
       end
 
