@@ -29,7 +29,7 @@ return {
 		)
 		vim.api.nvim_set_keymap("n", "*", [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
 		vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
-		vim.keymap.set("n", "<Leader>l", "<CMD>set hlsearch!<CR>", { silent = true })
+		vim.api.nvim_set_keymap("n", "<Leader>l", "<CMD>set hlsearch!<CR>", { silent = true })
 
 		vim.api.nvim_set_hl(0, "Search", { fg = "none", bg = "#334f7a" })
 		vim.api.nvim_set_hl(0, "IncSearch", { fg = "none", bg = "#334f7a" })
