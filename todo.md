@@ -1,6 +1,8 @@
 # TODO list
 
 - neovim
+  - markdown.nvim
+    - basic setup
   - fetch the latest commit
     - barbar.nvim / hlchunk.nvim / lspsaga.nvim
   - lsp
