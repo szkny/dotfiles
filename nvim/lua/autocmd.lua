@@ -115,17 +115,17 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 		vim.opt_local.shiftwidth = 4
 		vim.opt_local.softtabstop = 0
 		vim.opt_local.expandtab = true
-		vim.cmd([[
-     if getline(0, '$') == ['']
-       call append(0,'#!/usr/bin/env python')
-       call append(1,'# -*- coding: utf-8 -*-')
-       call append(2,'"""')
-       call append(3,'Created on '.GetNow())
-       call append(4,'   @file  : '.expand('%:t'))
-       call append(5,'   @author: '.$USER)
-       call append(6,'   @brief :')
-       call append(7,'"""')
-     endif
-  ]])
+		-- vim.cmd([[
+		--    if getline(0, '$') == ['']
+		--      call append(0,'#!/usr/bin/env python')
+		--      call append(1,'# -*- coding: utf-8 -*-')
+		--      call append(2,'"""')
+		--      call append(3,'Created on '.GetNow())
+		--      call append(4,'   @file  : '.expand('%:t'))
+		--      call append(5,'   @author: '.$USER)
+		--      call append(6,'   @brief :')
+		--      call append(7,'"""')
+		--    endif
+		-- ]])
 	end,
 })
