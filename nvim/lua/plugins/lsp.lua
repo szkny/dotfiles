@@ -251,8 +251,10 @@ return {
           if client.supports_method("textDocument/formatting") then
             vim.api.nvim_create_autocmd("BufWritePre", {
               callback = function()
-                if formatter_on_save then
-                  vim.lsp.buf.format({ async = false })
+                if vim.bo.filetype ~= "lua" then
+                  if formatter_on_save then
+                    vim.lsp.buf.format({ async = false })
+                  end
                 end
               end,
               buffer = bufnr,
