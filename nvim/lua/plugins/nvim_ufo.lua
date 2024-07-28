@@ -10,7 +10,7 @@ return {
 		vim.o.foldlevelstart = 99
 		vim.o.foldenable = true
     vim.o.fillchars = [[vert:│,eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-    vim.o.statuscolumn = '%=%s%l %#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? " " : " ") : "  " }%*'
+    vim.o.statuscolumn = '%s%=%l %#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? " " : " ") : "  " }%*'
 
 		local ufo = require("ufo")
 
