@@ -41,7 +41,7 @@ return {
           "lua_ls",
           "vimls",
           "ruff_lsp",
-          "pylsp",
+          -- "pylsp",
           -- "pyright",
           "tsserver",
           "volar",
@@ -97,6 +97,8 @@ return {
                   },
                   pycodestyle = {
                     enabled = false,
+                    ignore = {"E501"},
+                    maxLineLength = 1000,
                   },
                   pyflakes = {
                     enabled = false,
