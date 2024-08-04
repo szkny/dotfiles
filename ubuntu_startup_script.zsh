@@ -40,7 +40,10 @@ eval "$(~/.local/bin/mise activate zsh)"
 ## install python packages
 pip3 install -U pip
 pip2 install -U pip
-pip install pandas
+pip install pandas poetry
+
+## python code linter
+ln -s ~/dotfiles/python_syntax_checker/pycodestyle ~/.config/pycodestyle
 
 ## install node.js
 echo 'install node.js..'
