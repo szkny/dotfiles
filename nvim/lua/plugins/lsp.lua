@@ -41,7 +41,7 @@ return {
           "lua_ls",
           "vimls",
           "ruff_lsp",
-          -- "pylsp",
+          "pylsp",
           -- "pyright",
           "tsserver",
           "volar",
