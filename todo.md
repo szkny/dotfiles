@@ -1,14 +1,13 @@
 # TODO list
 
 - neovim
-  - nvim-ufo
-    - basic setup
+  - lsp
+    - pylsp config
+    - vue basic setup
   - markdown.nvim
     - basic setup
   - fetch the latest commit
     - barbar.nvim / hlchunk.nvim / lspsaga.nvim
-  - lsp
-    - vue basic setup
   - nvim-dap
     - basic setup
   - toggleterm
