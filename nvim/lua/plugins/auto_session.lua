@@ -19,6 +19,8 @@ return {
 		},
 	},
 	config = function(_, opts)
+    vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 		require("auto-session").setup(opts)
 		local auto_session_plugins = {
 			splitterm = {
