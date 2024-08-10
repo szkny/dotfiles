@@ -8,6 +8,7 @@ return {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-cmdline",
 			"rinx/cmp-skkeleton",
+      "f3fora/cmp-spell",
 			"saadparwaiz1/cmp_luasnip",
 			"L3MON4D3/LuaSnip",
 			-- "tzachar/cmp-ai",
@@ -66,6 +67,16 @@ return {
 					{ name = "buffer" },
 					{ name = "path" },
 					{ name = "skkeleton" },
+					{
+            name = "spell",
+            option = {
+              keep_all_entries = false,
+              enable_in_context = function()
+                  return true
+              end,
+              preselect_correct_word = true,
+            }
+          },
 					{ name = "luasnip" },
 					-- { name = "cmp_ai" },
 				},
