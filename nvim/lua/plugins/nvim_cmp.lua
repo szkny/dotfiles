@@ -15,6 +15,14 @@ return {
 		},
 		event = { "InsertEnter", "CmdlineEnter" },
 		config = function()
+      -- for cmp-spell
+      vim.opt.spell = true
+      vim.opt.spelllang = { "en_us" }
+      vim.api.nvim_set_hl(0, "SpellBad", { undercurl=false, underline=false })
+      vim.api.nvim_set_hl(0, "SpellCap", { undercurl=false, underline=false })
+      vim.api.nvim_set_hl(0, "SpellRare", { undercurl=false, underline=false })
+      vim.api.nvim_set_hl(0, "SpellLocal", { undercurl=false, underline=false })
+
 			local has_words_before = function()
 				unpack = unpack or table.unpack
 				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
