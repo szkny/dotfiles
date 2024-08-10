@@ -1,6 +1,8 @@
 # TODO list
 
 - neovim
+  - vim-fugitive
+    - customise keymaps in Gstatus window
   - lsp
     - pylsp config
     - vue basic setup

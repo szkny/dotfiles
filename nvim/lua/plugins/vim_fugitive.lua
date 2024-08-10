@@ -15,6 +15,7 @@ return {
         vim.cmd("resize 10")
         -- local opts = { noremap = true, silent = true, nowait = true }
         -- vim.api.nvim_buf_set_keymap(0, "n", "<Leader>", "<Plug>(fugitive_-)", opts)
+        -- vim.api.nvim_buf_set_keymap(0, "n", "<Leader>", "<Plug>(fugitive-status-toggle)", opts)
       end,
     })
     -- vim.keymap.set("n", "<Leader>gg", ":<C-u>G<CR>", { noremap = true, silent = true })
