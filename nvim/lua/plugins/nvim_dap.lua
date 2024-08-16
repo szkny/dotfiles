@@ -40,4 +40,15 @@ return {
       end
     end
   },
+  {
+    "mfussenegger/nvim-dap",
+    event = "VeryLazy",
+    config = function ()
+      vim.fn.sign_define('DapBreakpoint',          { text='', texthl='debugBreakpoint', linehl='', numhl='' })
+      vim.fn.sign_define('DapBreakpointCondition', { text='', texthl='Debug', linehl='', numhl='' })
+      vim.fn.sign_define('DapStopped',             { text='→', texthl='debugBreakpoint', linehl='', numhl='' })
+      vim.fn.sign_define('DapLogPoint',            { text='', texthl='debugBreakpoint', linehl='', numhl='' })
+      vim.fn.sign_define('DapBreakpointRejected',  { text='R', texthl='debugBreakpoint', linehl='', numhl='' })
+    end
+  }
 }
