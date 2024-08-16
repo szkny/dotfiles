@@ -75,12 +75,28 @@ return {
     "mfussenegger/nvim-dap",
     event = "VeryLazy",
     config = function ()
+      -- signs
       vim.fn.sign_define('DapBreakpoint',          { text='', priority=50, texthl='debugBreakpoint', linehl='', numhl='' })
       vim.fn.sign_define('DapBreakpointCondition', { text='', priority=50, texthl='Debug', linehl='', numhl='' })
       vim.fn.sign_define('DapStopped',             { text='', priority=50, texthl='debugBreakpoint', linehl='NvimDapStopped', numhl='' })
       vim.fn.sign_define('DapLogPoint',            { text='', priority=50, texthl='Debug', linehl='', numhl='' })
       vim.fn.sign_define('DapBreakpointRejected',  { text='R', priority=50, texthl='Debug', linehl='', numhl='' })
       vim.api.nvim_set_hl(0, "NvimDapStopped", { bg = "#225588" })
+
+      -- commands
+      vim.api.nvim_create_user_command("Dap", "DapNew Launch\\ file", {})
+      vim.api.nvim_create_user_command("DapStart", "DapNew Launch\\ file", {})
+      vim.api.nvim_create_user_command("DapBreakpoint", "DapToggleBreakpoint", {})
+      vim.api.nvim_create_user_command("DapNext", "DapStepInto", {})
+      vim.api.nvim_create_user_command("DapQuit", "DapTerminate", {})
+
+      -- keymaps
+      local keymap_opts = { noremap = true, silent = false, nowait = false }
+      vim.keymap.set("n", "<Leader>ds", "<CMD>DapNew Launch\\ file<CR>", keymap_opts)
+      vim.keymap.set("n", "<Leader>db", "<CMD>DapToggleBreakpoint<CR>", keymap_opts)
+      vim.keymap.set("n", "<Leader>dn", "<CMD>DapStepInto<CR>", keymap_opts)
+      vim.keymap.set("n", "<Leader>dc", "<CMD>DapContinue<CR>", keymap_opts)
+      vim.keymap.set("n", "<Leader>dq", "<CMD>DapTerminate<CR>", keymap_opts)
     end
   }
 }
