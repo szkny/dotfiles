@@ -302,6 +302,7 @@ return {
         sign = true,
         virtual_text = false,
         enable_in_insert = false,
+        sign_priority = 10,
       },
       code_action = {
         num_shortcut = true,
