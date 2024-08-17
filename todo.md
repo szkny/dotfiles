@@ -3,15 +3,15 @@
 - neovim
   - vim-fugitive
     - customise keymaps in Gstatus window
+  - nvim-dap
+    - js/ts basic setup
+    - breakpoints list in qflist or trouble.nvim
+    - clear all breakpoints
   - lsp
     - pylsp config
     - vue basic setup
-  - markdown.nvim
-    - basic setup
   - fetch the latest commit
     - barbar.nvim / hlchunk.nvim / lspsaga.nvim
-  - nvim-dap
-    - basic setup
   - toggleterm
     - manage multiple terminal sessions
     - execute any command
