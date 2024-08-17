@@ -22,7 +22,6 @@ return {
   {
     "mfussenegger/nvim-dap",
     lazy = true,
-    -- event = "VeryLazy",
     dependencies = { "rcarriga/nvim-dap-ui", "theHamsta/nvim-dap-virtual-text" },
     config = function ()
       -- signs
@@ -31,7 +30,11 @@ return {
       vim.fn.sign_define('DapStopped',             { text='', priority=50, texthl='debugBreakpoint', linehl='NvimDapStopped', numhl='' })
       vim.fn.sign_define('DapLogPoint',            { text='', priority=50, texthl='Debug', linehl='', numhl='' })
       vim.fn.sign_define('DapBreakpointRejected',  { text='R', priority=50, texthl='Debug', linehl='', numhl='' })
-      vim.api.nvim_set_hl(0, "NvimDapStopped", { bg = "#223344" })
+		local DebugHl = vim.api.nvim_get_hl(0, { name = "Debug" })
+		local debugBreakpointHl = vim.api.nvim_get_hl(0, { name = "debugBreakpoint" })
+      vim.api.nvim_set_hl(0, "Debug",           { fg = DebugHl.fg, bg = "none" })
+      vim.api.nvim_set_hl(0, "debugBreakpoint", { fg = debugBreakpointHl.fg, bg = "none" })
+      vim.api.nvim_set_hl(0, "NvimDapStopped",  { bg = "#223366" })
 
       -- commands
       vim.api.nvim_create_user_command("Dap", "DapNew Launch\\ file", {})
@@ -52,7 +55,6 @@ return {
   {
     "rcarriga/nvim-dap-ui",
     lazy = true,
-    -- event = "VeryLazy",
     dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
     config = function ()
       local dap, dapui = require("dap"), require("dapui")
@@ -74,7 +76,6 @@ return {
   {
     "theHamsta/nvim-dap-virtual-text",
     lazy = true,
-    -- event = "VeryLazy",
     opts = {
       enabled = true,                        -- enable this plugin (the default)
       enabled_commands = true,               -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
