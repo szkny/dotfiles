@@ -14,6 +14,15 @@ return {
       else
         python_path = vim.g.python3_host_prog
       end
+      vim.fn.system(python_path .. " -m debugpy --version")
+      if vim.v.shell_error ~= 0 then
+        python_path = vim.g.python3_host_prog
+      else
+        require("noice").redirect(function()
+          local notify = require("notify")
+          notify("debugpy not found for " .. python_path, "warn", { title = "nvim-dap-python" })
+        end)
+      end
       require("dap-python").setup(python_path)
       -- If using the above, then `/path/to/venv/bin/python -m debugpy --version`
       -- must work in the shell
