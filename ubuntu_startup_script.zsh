@@ -130,8 +130,7 @@ ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
 
 ## install jq / yq
 sudo apt-get -y install jq
-sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && \
-    sudo chmod +x /usr/bin/yq
+go install github.com/mikefarah/yq/v4@latest
 
 ## install w3m
 sudo apt-get install -y w3m
