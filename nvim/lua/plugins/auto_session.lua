@@ -1,6 +1,7 @@
 return {
 	"rmagatti/auto-session",
 	lazy = false,
+  commit = "50f5f2ea",
 	opts = {
 		log_level = "error",
 		auto_session_root_dir = vim.fn.stdpath("data") .. "/sessions/",
