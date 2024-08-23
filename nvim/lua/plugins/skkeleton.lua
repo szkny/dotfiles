@@ -1,6 +1,11 @@
 return {
   "vim-skk/skkeleton",
-  dependencies = { "vim-denops/denops.vim" },
+  dependencies = {
+    {
+      "vim-denops/denops.vim",
+      commit = "a77c1fa5"
+    }
+  },
   event = { "InsertEnter", "CmdlineEnter" },
   keys = {
     { "<C-j>", "<Plug>(skkeleton-enable)", mode = "i" },
