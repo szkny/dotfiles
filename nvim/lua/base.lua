@@ -60,7 +60,7 @@ vim.opt.complete:remove("t")
 if vim.fn.has("wsl") == 1 then
 	vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 		pattern = "*",
-		command = ":call system('clip.exe', @\")",
+		command = ":call system('iconv -t sjis | clip.exe', @\")",
 	})
 else
 	vim.opt.clipboard:append({ unnamedplus = true })
