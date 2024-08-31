@@ -64,7 +64,7 @@ return {
 				},
 			})
 
-      sources = {
+      local sources = {
         { name = "nvim_lsp" },
         { name = "buffer" },
         { name = "path" },
@@ -81,7 +81,7 @@ return {
         { name = "luasnip" },
         -- { name = "cmp_ai" },
       }
-      if vim.fn.exists("skkeleton#is_enabled") == 1 then
+      if vim.fn.exists("*skkeleton#is_enabled") == 1 then
 					table.insert(sources, 4, { name = "skkeleton" })
       end
 			cmp.setup({
@@ -149,7 +149,7 @@ return {
       sources = {
 					{ name = "buffer" },
 			}
-      if vim.fn.exists("skkeleton#is_enabled") == 1 then
+      if vim.fn.exists("*skkeleton#is_enabled") == 1 then
 					table.insert(sources, { name = "skkeleton" })
       end
 			cmp.setup.cmdline({ "/", "?" }, {
@@ -160,7 +160,7 @@ return {
 					{ name = "path" },
 					{ name = "cmdline" },
 			}
-      if vim.fn.exists("skkeleton#is_enabled") == 1 then
+      if vim.fn.exists("*skkeleton#is_enabled") == 1 then
 					table.insert(sources, { name = "skkeleton" })
       end
 			cmp.setup.cmdline(":", {
