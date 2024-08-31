@@ -81,8 +81,8 @@ return {
         { name = "luasnip" },
         -- { name = "cmp_ai" },
       }
-      if vim.fn.exists("*skkeleton#is_enabled") == 1 then
-					table.insert(sources, 4, { name = "skkeleton" })
+      if vim.fn.executable("deno") == 1 then
+        table.insert(sources, 4, { name = "skkeleton" })
       end
 			cmp.setup({
 				snippet = {
@@ -149,8 +149,8 @@ return {
       sources = {
 					{ name = "buffer" },
 			}
-      if vim.fn.exists("*skkeleton#is_enabled") == 1 then
-					table.insert(sources, { name = "skkeleton" })
+      if vim.fn.executable("deno") == 1 then
+        table.insert(sources, { name = "skkeleton" })
       end
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
@@ -160,8 +160,8 @@ return {
 					{ name = "path" },
 					{ name = "cmdline" },
 			}
-      if vim.fn.exists("*skkeleton#is_enabled") == 1 then
-					table.insert(sources, { name = "skkeleton" })
+      if vim.fn.executable("deno") == 1 then
+        table.insert(sources, { name = "skkeleton" })
       end
 			cmp.setup.cmdline(":", {
 				mapping = cmp.mapping.preset.cmdline(),
