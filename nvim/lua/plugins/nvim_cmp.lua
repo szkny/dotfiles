@@ -64,30 +64,33 @@ return {
 				},
 			})
 
+      sources = {
+        { name = "nvim_lsp" },
+        { name = "buffer" },
+        { name = "path" },
+        {
+          name = "spell",
+          option = {
+            keep_all_entries = false,
+            enable_in_context = function()
+                return true
+            end,
+            preselect_correct_word = true,
+          }
+        },
+        { name = "luasnip" },
+        -- { name = "cmp_ai" },
+      }
+      if vim.fn.exists("skkeleton#is_enabled") == 1 then
+					table.insert(sources, 4, { name = "skkeleton" })
+      end
 			cmp.setup({
 				snippet = {
 					expand = function(args)
 						require("luasnip").lsp_expand(args.body)
 					end,
 				},
-				sources = {
-					{ name = "nvim_lsp" },
-					{ name = "buffer" },
-					{ name = "path" },
-					{ name = "skkeleton" },
-					{
-            name = "spell",
-            option = {
-              keep_all_entries = false,
-              enable_in_context = function()
-                  return true
-              end,
-              preselect_correct_word = true,
-            }
-          },
-					{ name = "luasnip" },
-					-- { name = "cmp_ai" },
-				},
+				sources = sources,
 				window = {
 					completion = {
 						border = "rounded",
@@ -143,20 +146,26 @@ return {
 				},
 			})
 
+      sources = {
+					{ name = "buffer" },
+			}
+      if vim.fn.exists("skkeleton#is_enabled") == 1 then
+					table.insert(sources, { name = "skkeleton" })
+      end
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
-				sources = {
-					{ name = "buffer" },
-					{ name = "skkeleton" },
-				},
+				sources = sources,
 			})
-			cmp.setup.cmdline(":", {
-				mapping = cmp.mapping.preset.cmdline(),
-				sources = {
+      sources = {
 					{ name = "path" },
 					{ name = "cmdline" },
-					{ name = "skkeleton" },
-				},
+			}
+      if vim.fn.exists("skkeleton#is_enabled") == 1 then
+					table.insert(sources, { name = "skkeleton" })
+      end
+			cmp.setup.cmdline(":", {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = sources,
 			})
 
 			-- Highlight

@@ -2,7 +2,7 @@ vim.cmd([[
     fun! LualineSkkeletonMode() abort
         try
             let l:current_mode = mode()
-            if (l:current_mode=='i' || l:current_mode=='c') && skkeleton#is_enabled()
+            if (l:current_mode=='i' || l:current_mode=='c') && exists("skkeleton#is_enabled") && skkeleton#is_enabled()
                 let l:mode_dict = #{
                   \ hira:    'あ',
                   \ kata:    'ア',

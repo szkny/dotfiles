@@ -6,6 +6,9 @@ return {
       commit = "a77c1fa5"
     }
   },
+  cond = function ()
+    return vim.fn.executable("deno") == 1
+  end,
   event = { "InsertEnter", "CmdlineEnter" },
   keys = {
     { "<C-j>", "<Plug>(skkeleton-enable)", mode = "i" },
