@@ -101,8 +101,26 @@ vim.api.nvim_set_var("session_autosave", "no")
 vim.api.nvim_set_var("session_command_aliases", 1)
 
 -- Python Host Program
-vim.g.python_host_prog = "~/.local/share/mise/shims/python2"
-vim.g.python3_host_prog = "~/.local/share/mise/shims/python3"
+vim.g.python_host_prog = vim.fn.system("which python2")
+if vim.v.shell_error == 0 then
+  vim.g.python_host_prog = string.gsub(
+    vim.g.python_host_prog,
+    "\n",
+    ""
+  )
+else
+  vim.g.python_host_prog = "~/.local/share/mise/shims/python2"
+end
+vim.g.python3_host_prog = vim.fn.system("which python3")
+if vim.v.shell_error == 0 then
+  vim.g.python3_host_prog = string.gsub(
+    vim.g.python3_host_prog,
+    "\n",
+    ""
+  )
+else
+  vim.g.python3_host_prog = "~/.local/share/mise/shims/python3"
+end
 
 -- conceal level
 vim.api.nvim_set_var("conceallevel", 0)
