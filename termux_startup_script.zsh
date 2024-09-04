@@ -21,6 +21,35 @@ pkg install -y rust
 pkg install -y rustc cargo rustc-nightly
 pkg install -y ranger w3m lynx
 
+# for deno
+pacman-key --init
+pacman-key --populate
+pacman -Syu
+pacman -Sy --noconfirm glibc-runner --assume-installed bash,patchelf,resolv-conf
+curl -fsSL https://deno.land/install.sh | time sh
+export DENO_INSTALL="${HOME}/.deno"
+export PATH="${PATH}:${DENO_INSTALL}/bin"
+patchelf --print-interpreter --print-needed "$(which deno)"
+patchelf --set-rpath "${PREFIX}/glibc/lib" --set-interpreter "${PREFIX}/glibc/lib/ld-linux-aarch64.so.1" "$(which deno)"
+ldd "$(which deno)"
+cat - << EOF > ~/.deno/bin/deno.glibc.sh
+#!/usr/bin/env sh
+_oldpwd="\${PWD}"
+_dir="\$(dirname "\${0}")"
+cd "\${_dir}"
+if ! [ -h "deno" ] ; then
+  >&2 mv -fv "deno" "deno.orig"
+  >&2 ln -sfv "deno.glibc.sh" "deno"
+fi
+cd "\${_oldpwd}"
+LD_PRELOAD= exec "\${_dir}/deno.orig" "\${@}"
+# Or
+#exec grun "\${_dir}/deno.orig" "\${@}"
+EOF
+chmod -c u+x ~/.deno/bin/deno.glibc.sh
+deno.glibc.sh --version
+deno <<< "console.log('Hello world')"
+
 # python
 pip3 install setuptools wheel packaging pyproject_metadata cython meson-python versioneer
 MATHLIB=m LDFLAGS="-lpython3.11" pip3 install --no-build-isolation --no-cache-dir numpy
