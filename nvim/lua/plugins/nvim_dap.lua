@@ -17,7 +17,6 @@ return {
       vim.fn.system(python_path .. " -m debugpy --version")
       if vim.v.shell_error ~= 0 then
         python_path = vim.g.python3_host_prog
-      else
         require("noice").redirect(function()
           local notify = require("notify")
           notify("debugpy not found for " .. python_path, "warn", { title = "nvim-dap-python" })
