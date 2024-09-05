@@ -54,6 +54,7 @@ deno <<< "console.log('Hello world')"
 pip3 install setuptools wheel packaging pyproject_metadata cython meson-python versioneer
 MATHLIB=m LDFLAGS="-lpython3.11" pip3 install --no-build-isolation --no-cache-dir numpy
 LDFLAGS="-lpython3.11" pip3 install --no-build-isolation --no-cache-dir pandas
+pkg install -y matplotlib
 
 # cargo
 cargo install rm-improved code-minimap git-delta zoxide viu fd-find
