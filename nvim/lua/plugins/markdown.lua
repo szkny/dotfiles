@@ -13,7 +13,8 @@ return {
       -- The number of '#' in the heading determines the 'level'
       -- The 'level' is used to index into the array using a cycle
       -- The result is left padded with spaces to hide any additional '#'
-      icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
+      -- icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
+      icons = { '󰎤 ', '󰎧 ', '󰎪 ', '󰎭 ', '󰎱 ', '󰎳 ' },
       -- Added to the sign column if enabled
       -- The 'level' is used to index into the array using a cycle
       signs = { '󰫎 ' },
