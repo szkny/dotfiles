@@ -9,6 +9,7 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
+    commit = "62360f0",
     dependencies = {
       "neovim/nvim-lspconfig",
       "folke/neodev.nvim",
@@ -43,7 +44,7 @@ return {
           "ruff_lsp",
           "pylsp",
           -- "pyright",
-          "ts_ls",
+          "tsserver",
           "volar",
           "html",
           "jsonls",
