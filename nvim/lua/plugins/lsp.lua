@@ -43,7 +43,7 @@ return {
           "ruff_lsp",
           "pylsp",
           -- "pyright",
-          "tsserver",
+          "ts_ls",
           "volar",
           "html",
           "jsonls",
