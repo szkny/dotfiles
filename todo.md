@@ -3,6 +3,8 @@
 - neovim
   - vim-fugitive
     - customise keymaps in Gstatus window
+      - toggle stage under cursor by 'space' key
+      - toggle stage all files by 'a' key
   - nvim-dap
     - js/ts basic setup
     - breakpoints list in qflist or trouble.nvim
