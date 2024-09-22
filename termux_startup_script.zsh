@@ -6,6 +6,7 @@ pkg update && pkg upgrade
 pkg install -y pacman patchelf which time ldd tree
 pkg install -y termux-exec
 pkg install -y termux-tools
+pkg install -y termux-app
 pkg install -y libc++
 pkg install -y coreutils
 pkg install -y openssl
