@@ -23,6 +23,10 @@ pkg install -y rustc cargo rustc-nightly
 pkg install -y neovim
 pkg install -y ranger w3m lynx
 
+# zsh
+pkg install -y zsh
+chsh -s zsh
+
 # font
 pkg install -y lsd
 mkdir -p ~/Project/font
