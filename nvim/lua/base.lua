@@ -63,6 +63,11 @@ if vim.fn.has("wsl") == 1 then
 		-- command = ":call system('iconv -t sjis | clip.exe', @\")",
 		command = ":call system('clip.exe', @\")",
 	})
+elseif vim.fn.has("termux") == 1 then
+	vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+		pattern = "*",
+		command = ":call system('termux-clipboard-set', @\")",
+	})
 else
 	vim.opt.clipboard:append({ unnamedplus = true })
 end
