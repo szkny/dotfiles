@@ -11,7 +11,7 @@ config.default_prog = { "wsl.exe", "--cd", "~", "--exec", "/usr/bin/zsh", "-l" }
 
 -- font
 config.font = wezterm.font("HackGen Console NFJ", { weight = "Regular", stretch = "Normal", italic = false })
-config.font_size = 11.8
+config.font_size = 11.0
 config.adjust_window_size_when_changing_font_size = false
 
 -- color
@@ -42,8 +42,8 @@ config.text_background_opacity = 1.00
 config.win32_system_backdrop = "Acrylic"
 -- config.win32_system_backdrop = "Mica"
 -- config.win32_system_backdrop = "Tabbed"
-config.initial_rows = 60
-config.initial_cols = 200
+config.initial_rows = 70
+config.initial_cols = 280
 config.window_decorations = "RESIZE"
 config.window_padding = {
 	left = 3,
