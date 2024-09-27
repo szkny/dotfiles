@@ -7,6 +7,8 @@ pkg install -y pacman patchelf which time ldd tree
 pkg install -y termux-exec
 pkg install -y termux-tools
 pkg install -y termux-app
+pkg install -y x11-repo
+pkg install -y root-repo
 pkg install -y libc++
 pkg install -y coreutils
 pkg install -y openssl
