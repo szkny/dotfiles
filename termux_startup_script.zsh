@@ -22,6 +22,7 @@ pkg install -y rust
 pkg install -y rustc cargo rustc-nightly
 pkg install -y neovim
 pkg install -y ranger w3m lynx
+pkg install -y bat
 
 # zsh
 pkg install -y zsh
