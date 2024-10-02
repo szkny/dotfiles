@@ -12,6 +12,7 @@ pkg install -y root-repo
 pkg install -y libc++
 pkg install -y coreutils
 pkg install -y openssl
+pkg install -y openssh
 pkg install -y build-essential make cmake ninja
 pkg install -y clang
 pkg install -y binutils-is-llvm
