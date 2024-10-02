@@ -12,7 +12,6 @@ pkg install -y root-repo
 pkg install -y libc++
 pkg install -y coreutils
 pkg install -y openssl
-pkg install -y openssh
 pkg install -y build-essential make cmake ninja
 pkg install -y clang
 pkg install -y binutils-is-llvm
@@ -77,4 +76,8 @@ pkg install -y matplotlib
 # cargo
 cargo install rm-improved code-minimap git-delta zoxide viu fd-find
 cargo install sheldon --locked
+
+# sshd
+pkg install -y openssh
+passwd
 
