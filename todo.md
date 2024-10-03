@@ -1,6 +1,8 @@
 # TODO list
 
 - neovim
+  - hlchunk
+    - fix rendering priority
   - vim-fugitive
     - customise keymaps in Gstatus window
       - toggle stage under cursor by 'space' key
