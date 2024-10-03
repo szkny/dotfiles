@@ -13,6 +13,27 @@ sudo apt-get install -y ripgrep
 sudo apt-get install -y universal-ctags
 sudo apt-get install -y trash-cli
 
+## install flutter
+export ANDROID_SDK_ROOT=$HOME/Project/Android/sdk
+export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export PATH=$PATH:$HOME/flutter/bin
+
+sudo apt-get install -y xz-utils libglu1-mesa clang cmake ninja-build pkg-config libgtk-3-dev default-jdk
+git clone https://github.com/flutter/flutter.git -b stable ~/flutter
+flutter doctor
+sudo snap install android-studio --classic
+sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+sdkmanager "system-images;android-35;google_apis;x86_64"
+sdkmanager "emulator"
+# avdmanager create avd -n flutter_emulator -k "system-images;android-35;google_apis;x86_64"
+
+### chrome
+mkdir -p ~/Project/chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o ~/Project/chrome/google-chrome-stable_current_amd64.deb
+sudo apt-get install -y ~/Project/chrome/google-chrome-stable_current_amd64.deb
+
 ## install rust / cargo
 echo 'install rust / cargo..'
 curl https://sh.rustup.rs -sSf | sh

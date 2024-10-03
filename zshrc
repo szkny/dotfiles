@@ -325,6 +325,15 @@ export PATH=$PATH:$GOPATH/bin
 ## terraform setup
 export PATH=$PATH:$HOME/.tfenv/bin
 
+## Android dev setup
+export ANDROID_SDK_ROOT=$HOME/Project/Android/sdk
+export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+
+## flutter setup
+export PATH=$PATH:$HOME/flutter/bin
+
 ## mocword
 export MOCWORD_DATA=~/.mocword/mocword.sqlite
 
