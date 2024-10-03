@@ -80,6 +80,7 @@ cargo install sheldon --locked
 # audio
 pkg install -y mpv
 pip install yewtube
+ln -s ~/dotfiles/mpv ~/.config/
 
 # sshd
 pkg install -y openssh
