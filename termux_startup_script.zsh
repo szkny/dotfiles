@@ -77,6 +77,10 @@ pkg install -y matplotlib
 cargo install rm-improved code-minimap git-delta zoxide viu fd-find
 cargo install sheldon --locked
 
+# audio
+pkg install -y mpv
+pip install yewtube
+
 # sshd
 pkg install -y openssh
 passwd
