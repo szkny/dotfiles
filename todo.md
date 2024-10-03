@@ -33,6 +33,8 @@
     - basic setup
   - ranger.nvim
     - basic setup
+- termux
+  - auto-execute termux-wake-lock and termux-wake-unlock when ssh login/logout
 - wezterm
   - replacement of tmux
     - key bindings
