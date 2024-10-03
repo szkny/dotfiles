@@ -20,8 +20,9 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
 export PATH=$PATH:$HOME/flutter/bin
 
-sudo apt-get install -y xz-utils libglu1-mesa clang cmake ninja-build pkg-config libgtk-3-dev default-jdk
+sudo apt-get install -y xz-utils libglu1-mesa clang cmake ninja-build pkg-config libgtk-3-dev openjdk-17-jdk
 git clone https://github.com/flutter/flutter.git -b stable ~/flutter
+flutter config --jdk-dir=/usr/lib/jvm/java-17-openjdk-amd64
 flutter doctor
 sudo snap install android-studio --classic
 sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
