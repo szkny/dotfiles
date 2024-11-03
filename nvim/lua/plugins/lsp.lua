@@ -37,13 +37,16 @@ return {
           height = 0.9,
         },
       })
-      require("mason-lspconfig").setup({
+      if vim.fn.has("termux") == 1 then
+        ensure_installed = {
+          "pylsp",
+        }
+      else
         ensure_installed = {
           "lua_ls",
           "vimls",
           "ruff_lsp",
           "pylsp",
-          -- "pyright",
           "tsserver",
           "volar",
           "html",
@@ -52,7 +55,10 @@ return {
           "taplo",
           "bashls",
           "terraformls",
-        },
+        }
+      end
+      require("mason-lspconfig").setup({
+        ensure_installed = ensure_installed,
         automatic_installation = true,
       })
       require("mason-lspconfig").setup_handlers({
