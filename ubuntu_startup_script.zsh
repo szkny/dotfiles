@@ -56,7 +56,7 @@ sudo mv ./_mise /usr/local/share/zsh/site-functions/_mise
 
 ## install python
 echo 'install python..'
-mise use -g python@3.11.0 python@2.7.15
+mise use -g python@3.12.0 python@2.7.15
 eval "$(~/.local/bin/mise activate zsh)"
 
 ## install python packages
