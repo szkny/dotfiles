@@ -175,7 +175,7 @@ vim.api.nvim_set_var("enable_italic_font", 1)
 vim.api.nvim_set_var("cpp_class_scope_highlight", 1)
 
 vim.opt.list = true
-vim.opt.listchars = "tab:¦ ,trail:-,eol:↲"
+vim.opt.listchars = "tab:¦ ,trail:-,eol:↓"
 vim.opt.fillchars = "vert:│,eob: "
 vim.opt.signcolumn = "yes"
 vim.opt.cursorcolumn = false
