@@ -158,3 +158,6 @@ go install github.com/mikefarah/yq/v4@latest
 sudo apt-get install -y w3m
 mkdir -p ~/.w3m
 ln -s ~/dotfiles/w3m/keymap ~/.w3m/keymap
+
+# git-cz
+npm install -g git-cz

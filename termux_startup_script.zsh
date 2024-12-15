@@ -88,3 +88,6 @@ passwd
 pkg install -y mpv
 pip install yewtube
 ln -s ~/dotfiles/mpv ~/.config/
+
+# git-cz
+npm install -g git-cz
