@@ -3,7 +3,6 @@
 # ----------------------------
 
 shell = "zsh"
-apply = []
 
 [plugins.compinit]
 inline = "autoload -Uz compinit && compinit"
