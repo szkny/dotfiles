@@ -7,16 +7,7 @@ eval "$(sheldon source)"
 ## starship
 eval "$(starship init zsh)"
 
-# ## zsh-defer
-# ### tmux
-# zsh-defer start-tmux
-# # ### pyenv
-# # _pyenv_init () { eval "$(pyenv init -)" } && zsh-defer _pyenv_init
-# ### zoxide
-# _zoxide_init () { eval "$(zoxide init zsh)" } && zsh-defer _zoxide_init
-# ### aws-cli
-# _autocomplete_aws_cli () { complete -C '/usr/local/bin/aws_completer' aws } && zsh-defer _autocomplete_aws_cli
-
+## zoxide
 eval "$(zoxide init zsh)"
 
 ## 補完機能
