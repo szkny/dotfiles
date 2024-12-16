@@ -7,15 +7,17 @@ eval "$(sheldon source)"
 ## starship
 eval "$(starship init zsh)"
 
-## zsh-defer
-### tmux
-zsh-defer start-tmux
-# ### pyenv
-# _pyenv_init () { eval "$(pyenv init -)" } && zsh-defer _pyenv_init
-### zoxide
-_zoxide_init () { eval "$(zoxide init zsh)" } && zsh-defer _zoxide_init
-### aws-cli
-_autocomplete_aws_cli () { complete -C '/usr/local/bin/aws_completer' aws } && zsh-defer _autocomplete_aws_cli
+# ## zsh-defer
+# ### tmux
+# zsh-defer start-tmux
+# # ### pyenv
+# # _pyenv_init () { eval "$(pyenv init -)" } && zsh-defer _pyenv_init
+# ### zoxide
+# _zoxide_init () { eval "$(zoxide init zsh)" } && zsh-defer _zoxide_init
+# ### aws-cli
+# _autocomplete_aws_cli () { complete -C '/usr/local/bin/aws_completer' aws } && zsh-defer _autocomplete_aws_cli
+
+eval "$(zoxide init zsh)"
 
 ## 補完機能
 setopt ALWAYS_TO_END 
@@ -345,6 +347,7 @@ export DISPLAY=$(ipconfig.exe | grep -a "IPv4" | tail -1 | awk '{print $NF}' | a
 
 ## start tmux
 export TERM="screen-256color"
+start-tmux
 
 ## measure zshrc startup time
 # zprof
