@@ -22,7 +22,6 @@ pkg install -y golang
 pkg install -y nodejs
 pkg install -y rust
 pkg install -y rustc cargo rustc-nightly
-pkg install -y neovim
 pkg install -y ranger w3m lynx
 pkg install -y bat
 
@@ -38,7 +37,92 @@ wget https://github.com/yuru7/HackGen/releases/download/v2.9.0/HackGen_NF_v2.9.0
 unzip ./HackGen*.zip
 cp ./HackGen*/HackGenConsoleNF-Regular.ttf ~/.termux/font.ttf
 
-# for deno
+# python
+pip3 install setuptools wheel packaging pyproject_metadata cython meson-python versioneer
+MATHLIB=m LDFLAGS="-lpython3.11" pip3 install --no-build-isolation --no-cache-dir numpy
+LDFLAGS="-lpython3.11" pip3 install --no-build-isolation --no-cache-dir pandas
+pkg install -y matplotlib
+pip3 install poetry
+
+## python code linter
+ln -s ~/dotfiles/python_syntax_checker/pycodestyle ~/.config/pycodestyle
+
+# cargo
+cargo install rm-improved code-minimap git-delta zoxide viu fd-find
+
+# neovim
+pkg install -y neovim
+pip2 install neovim
+pip3 install neovim
+npm install -g neovim
+mkdir -p ~/.config/nvim
+ln -s ~/dotfiles/nvim/init.lua ~/.config/nvim/
+ln -s ~/dotfiles/nvim/lua ~/.config/nvim/
+## for treesitter
+cargo install tree-sitter-cli
+
+# tmux
+pkg install -y tmux
+ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# ranger
+mkdir -p ~/.config
+cp -r ~/dotfiles/ranger ~/.config/ranger
+
+# fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+# ghq
+go install github.com/x-motemen/ghq@latest
+mkdir -p ~/ghq
+
+# lazygit
+go install github.com/jesseduffield/lazygit@latest
+mkdir -p ~/.config/lazygit
+ln -s ~/dotfiles/lazygit/config.yml ~/.config/lazygit/config.yml
+
+# sheldon
+cargo install sheldon --locked
+ln -s ~/dotfiles/sheldon ~/.config/
+
+# starship
+curl -sS https://starship.rs/install.sh | sh
+ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
+
+# jq / yq
+pkg install -y jq
+go install github.com/mikefarah/yq/v4@latest
+
+# skk
+mkdir -p ~/.skk && cd ~/.skk
+wget https://skk-dev.github.io/dict/SKK-JISYO.L.gz && gunzip SKK-JISYO.L.gz
+cd ~
+
+# mocword
+cargo install mocword
+mkdir -p ~/.mocword && cd ~/.mocword
+curl -LO https://github.com/high-moctane/mocword-data/releases/download/eng20200217/mocword.sqlite.gz
+gzip -d mocword.sqlite.gz
+cd ~
+
+# rsync
+pkg install -y rsync
+
+# audio
+pkg install -y mpv
+pip install yewtube
+ln -s ~/dotfiles/mpv ~/.config/
+
+# git-cz
+npm install -g git-cz
+
+# sshd
+pkg install -y openssh
+passwd
+
+# deno
 pacman-key --init
 pacman-key --populate
 pacman -Syu
@@ -66,28 +150,3 @@ EOF
 chmod -c u+x ~/.deno/bin/deno.glibc.sh
 deno.glibc.sh --version
 deno <<< "console.log('Hello world')"
-
-# python
-pip3 install setuptools wheel packaging pyproject_metadata cython meson-python versioneer
-MATHLIB=m LDFLAGS="-lpython3.11" pip3 install --no-build-isolation --no-cache-dir numpy
-LDFLAGS="-lpython3.11" pip3 install --no-build-isolation --no-cache-dir pandas
-pkg install -y matplotlib
-
-# cargo
-cargo install rm-improved code-minimap git-delta zoxide viu fd-find
-cargo install sheldon --locked
-
-# rsync
-pkg install -y rsync
-
-# sshd
-pkg install -y openssh
-passwd
-
-# audio
-pkg install -y mpv
-pip install yewtube
-ln -s ~/dotfiles/mpv ~/.config/
-
-# git-cz
-npm install -g git-cz

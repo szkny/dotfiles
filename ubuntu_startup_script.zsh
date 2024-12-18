@@ -103,6 +103,7 @@ cd ~/Project/ranger
 sudo make install
 git clone https://github.com/alexanderjeurissen/ranger_devicons \
   ~/.config/ranger/plugins/ranger_devicons
+cp -r ~/dotfiles/ranger ~/.config/ranger
 cd ~
 
 ## install neovim
