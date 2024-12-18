@@ -37,6 +37,7 @@ return {
           height = 0.9,
         },
       })
+      local ensure_installed
       if vim.fn.has("termux") == 1 then
         ensure_installed = {
           "pylsp",
