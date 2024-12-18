@@ -11,6 +11,7 @@ return {
       "f3fora/cmp-spell",
 			"saadparwaiz1/cmp_luasnip",
 			"L3MON4D3/LuaSnip",
+      "zbirenbaum/copilot-cmp",
 			-- "tzachar/cmp-ai",
 		},
 		event = { "InsertEnter", "CmdlineEnter" },
@@ -36,6 +37,7 @@ return {
 				mode = "symbol_text",
 				preset = "default",
 				symbol_map = {
+          Copilot = "",
 					Text = "",
 					Method = "",
 					Function = "",
@@ -65,6 +67,7 @@ return {
 			})
 
       local sources = {
+        { name = "copilot" },
         { name = "nvim_lsp" },
         { name = "buffer" },
         { name = "path" },
@@ -175,6 +178,26 @@ return {
 			vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#334f7a", fg = "none", bold = true })
 		end,
 	},
+  {
+    "zbirenbaum/copilot.lua",
+    event = { "InsertEnter", "LspAttach" },
+    fix_pairs = true,
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+        copilot_node_command = 'node',
+      })
+    end,
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    dependencies = { "zbirenbaum/copilot.lua" },
+    config = function()
+      require("copilot_cmp").setup()
+      vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
+    end,
+  },
 	-- {
 	-- 	"tzachar/cmp-ai",
 	-- 	dependencies = "nvim-lua/plenary.nvim",
