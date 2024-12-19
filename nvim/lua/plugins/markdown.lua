@@ -4,6 +4,9 @@ return {
   dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
   ft = "markdown",
   opts = {
+    enabled = true,
+    file_types = { "markdown" },
+    render_modes = { "n", "c", "t" },
     heading = {
       -- Turn on / off heading icon & background rendering
       enabled = true,
