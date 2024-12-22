@@ -17,6 +17,7 @@ pkg install -y clang
 pkg install -y binutils-is-llvm
 pkg install -y python libopenblas libandroid-execinfo patchelf
 pkg install -y wget
+pkg install -y netcat-openbsd
 pkg install -y file
 pkg install -y golang
 pkg install -y nodejs
