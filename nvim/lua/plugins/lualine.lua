@@ -96,7 +96,10 @@ local lualine_filename = {
 }
 return {
 	"nvim-lualine/lualine.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
+	dependencies = {
+    { "nvim-tree/nvim-web-devicons" },
+    { 'AndreM222/copilot-lualine' }
+  },
 	event = "VimEnter",
 	opts = {
 		options = {
@@ -130,6 +133,7 @@ return {
 			},
 			lualine_x = {
 				lualine_diagnostics,
+        "copilot",
 				"filetype",
 				"encoding",
 				"fileformat",
