@@ -133,7 +133,11 @@ return {
 			},
 			lualine_x = {
 				lualine_diagnostics,
-        "copilot",
+        {
+          "copilot",
+          show_colors = true,
+          show_loading = true,
+        },
 				"filetype",
 				"encoding",
 				"fileformat",
