@@ -28,15 +28,10 @@ Host powershell
 Host screensave-szknypc
     RequestTTY no
     RemoteCommand source ~/.zshrc && powershell.exe -Command "Start-Process C:\Windows\System32\scrnsave.scr"
-    ExitOnForwardFailure yes
 
 Host sleep-szknypc
     RequestTTY no
-    RemoteCommand source ~/.zshrc && rundll32.exe powrprof.dll,SetSuspendState 0,1,0
-    ExitOnForwardFailure yes
-    ServerAliveInterval 1
-    ServerAliveCountMax 1
-    TCPKeepAlive no
+    RemoteCommand source ~/.zshrc && rundll32.exe powrprof.dll,SetSuspendState Sleep
 
 Host jupyterlab
     localforward 8888 localhost:8888
