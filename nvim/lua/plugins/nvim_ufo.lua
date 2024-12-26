@@ -2,7 +2,7 @@ return {
 	"szkny/nvim-ufo",
 	dependencies = { "kevinhwang91/promise-async" },
 	opts = {
-		filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
+		filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason", "toggleterm" },
     provider_selector = function(_, _, _)
 		  return { "treesitter", "indent" }
 		end,
@@ -63,6 +63,8 @@ return {
 			pattern = opts.filetype_exclude,
 			callback = function()
 				ufo.detach()
+        vim.opt_local.foldcolumn = "0"
+        vim.opt_local.statuscolumn = ""
 			end,
 		})
 

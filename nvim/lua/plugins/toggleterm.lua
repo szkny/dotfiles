@@ -13,7 +13,9 @@ return {
 	config = function()
 		local FloatBorderHl = vim.api.nvim_get_hl(0, { name = "FloatBorder" })
 		require("toggleterm").setup({
-			direction = "float",
+			-- direction = "float",
+			direction = "horizontal",
+      size = 20,
 			float_opts = {
 				border = "curved",
 			},
