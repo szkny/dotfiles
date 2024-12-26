@@ -14,7 +14,7 @@ Host github github.com
     User git
 
 # Dev server
-Host szknypc powershell sleep-szknypc jupyterlab
+Host szknypc powershell screensave-szknypc sleep-szknypc jupyterlab
     HostName xxx.xxx.xxx.xxx
     IdentityFile ~/.ssh/keyname
     User szkny
@@ -25,9 +25,18 @@ Host powershell
     RequestTTY force
     RemoteCommand source ~/.zshrc && cd ~/win_home && powershell.exe
 
+Host screensave-szknypc
+    RequestTTY no
+    RemoteCommand source ~/.zshrc && powershell.exe -Command "Start-Process C:\Windows\System32\scrnsave.scr"
+    ExitOnForwardFailure yes
+
 Host sleep-szknypc
     RequestTTY no
     RemoteCommand source ~/.zshrc && rundll32.exe powrprof.dll,SetSuspendState 0,1,0
+    ExitOnForwardFailure yes
+    ServerAliveInterval 1
+    ServerAliveCountMax 1
+    TCPKeepAlive no
 
 Host jupyterlab
     localforward 8888 localhost:8888
