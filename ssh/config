@@ -6,3 +6,30 @@ Host *
   ServerAliveCountMax 300
   TCPKeepAlive yes
   LogLevel QUIET
+
+# Github
+Host github github.com
+    HostName github.com
+    IdentityFile ~/.ssh/keyname
+    User git
+
+# Dev server
+Host szknypc powershell sleep-szknypc jupyterlab
+    HostName xxx.xxx.xxx.xxx
+    IdentityFile ~/.ssh/keyname
+    User szkny
+    Port 2222
+    ProxyCommand bash -c 'if nc -z -w 1 %h 2222 &> /dev/null; then nc %h 2222; else nc xxx.xxx.xxx.xxx 2222; fi'
+
+Host powershell
+    RequestTTY force
+    RemoteCommand source ~/.zshrc && cd ~/win_home && powershell.exe
+
+Host sleep-szknypc
+    RequestTTY no
+    RemoteCommand source ~/.zshrc && rundll32.exe powrprof.dll,SetSuspendState 0,1,0
+
+Host jupyterlab
+    localforward 8888 localhost:8888
+    RequestTTY force
+    RemoteCommand eval "$(~/.local/bin/mise activate zsh)" && cd ~/Project/jupyterlab && jupyter lab --no-browser --port 8888
