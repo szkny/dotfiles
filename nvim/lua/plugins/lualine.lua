@@ -135,6 +135,25 @@ return {
 				lualine_diagnostics,
         {
           "copilot",
+          symbols = {
+            status = {
+              icons = {
+                enabled = " ",
+                sleep = " ",
+                disabled = " ",
+                warning = " ",
+                unknown = " "
+              },
+              hl = {
+                enabled = "#77aa99",
+                sleep = "#aeb7d0",
+                disabled = "#6272a4",
+                warning = "#bbaa77",
+                unknown = "#aa6666"
+              }
+            },
+            spinner_color = "#6272a4"
+            },
           show_colors = true,
           show_loading = true,
         },
