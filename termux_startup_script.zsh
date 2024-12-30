@@ -7,7 +7,6 @@ pkg install -y pacman patchelf which time ldd tree
 pkg install -y termux-exec
 pkg install -y termux-tools
 pkg install -y termux-app
-pkg install -y x11-repo
 pkg install -y root-repo
 pkg install -y libc++
 pkg install -y coreutils
@@ -122,6 +121,21 @@ npm install -g git-cz
 # sshd
 pkg install -y openssh
 passwd
+
+# GUI env
+pkg install -y x11-repo xfce4 tigervnc
+## setup password
+vncserver :1
+vncserver -kill :1
+## setup config
+mkdir -p ~/.vnc
+echo "startxfce4" > ~/.vnc/xstartup
+chmod +x ~/.vnc/xstartup
+## start vnc server
+# $ vncserver :1
+## then, connect to 127.0.0.1:5901 from VNC viewer
+## stop vnc server
+# $ vncserver -kill :1
 
 # deno
 pacman-key --init
