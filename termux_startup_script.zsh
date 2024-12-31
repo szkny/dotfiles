@@ -131,6 +131,10 @@ vncserver -kill :1
 mkdir -p ~/.vnc
 echo "startxfce4" > ~/.vnc/xstartup
 chmod +x ~/.vnc/xstartup
+## font
+pkg install -y fontconfig
+mkdir -p ~/.config/fontconfig
+cp ~/dotfiles/fontconfig/fonts.conf ~/.config/fontconfig/fonts.conf
 ## start vnc server
 # $ vncserver :1
 ## then, connect to 127.0.0.1:5901 from VNC viewer
