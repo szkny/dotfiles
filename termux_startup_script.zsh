@@ -14,7 +14,6 @@ pkg install -y openssl
 pkg install -y build-essential make cmake ninja
 pkg install -y clang
 pkg install -y binutils-is-llvm
-pkg install -y python libopenblas libandroid-execinfo patchelf
 pkg install -y wget
 pkg install -y netcat-openbsd
 pkg install -y file
@@ -38,9 +37,10 @@ unzip ./HackGen*.zip
 cp ./HackGen*/HackGenConsoleNF-Regular.ttf ~/.termux/font.ttf
 
 # python
+pkg install -y python libopenblas libandroid-execinfo patchelf
 pip3 install setuptools wheel packaging pyproject_metadata cython meson-python versioneer
-MATHLIB=m LDFLAGS="-lpython3.11" pip3 install --no-build-isolation --no-cache-dir numpy
-LDFLAGS="-lpython3.11" pip3 install --no-build-isolation --no-cache-dir pandas
+MATHLIB=m LDFLAGS="-lpython3.12" pip3 install --no-build-isolation --no-cache-dir numpy
+LDFLAGS="-lpython3.12" pip3 install --no-build-isolation --no-cache-dir pandas
 pkg install -y matplotlib
 pip3 install poetry
 
