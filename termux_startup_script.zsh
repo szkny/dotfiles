@@ -123,23 +123,17 @@ pkg install -y openssh
 passwd
 
 # GUI env
-pkg install -y x11-repo xfce4 tigervnc
-## setup password
-vncserver :1
-vncserver -kill :1
-## setup config
-mkdir -p ~/.vnc
-echo "startxfce4" > ~/.vnc/xstartup
-chmod +x ~/.vnc/xstartup
+pkg install -y x11-repo termux-x11-nightly xfce4 xfce4-goodies
 ## font
 pkg install -y fontconfig
 mkdir -p ~/.config/fontconfig
 cp ~/dotfiles/fontconfig/fonts.conf ~/.config/fontconfig/fonts.conf
-## start vnc server
-# $ vncserver :1
-## then, connect to 127.0.0.1:5901 from VNC viewer
-## stop vnc server
-# $ vncserver -kill :1
+## GUI startup script
+mkdir -p ~/Project/bin
+echo 'termux-x11 :0 -xstartup "dbus-launch --exit-with-session xfce4-session"' > ~/Project/bin/x11
+chmod +x ~/Project/bin/x11
+## 1. run `x11` script
+## 2. run `Termux:X11` app
 
 # deno
 pacman-key --init
