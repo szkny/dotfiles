@@ -23,7 +23,7 @@ Host szknypc powershell screensave-szknypc sleep-szknypc jupyterlab
 
 Host powershell
     RequestTTY force
-    RemoteCommand source ~/.zshrc && cd ~/win_home && powershell.exe
+    RemoteCommand source ~/.zshrc && cd ~/win_home && powershell.exe -NoLogo
 
 Host screensave-szknypc
     RequestTTY no
