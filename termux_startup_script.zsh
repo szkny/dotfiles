@@ -24,6 +24,7 @@ pkg install -y rust
 pkg install -y rustc cargo rustc-nightly
 pkg install -y ranger w3m lynx
 pkg install -y bat
+pkg install -y wol
 
 # zsh
 pkg install -y zsh
