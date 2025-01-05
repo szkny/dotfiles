@@ -16,6 +16,7 @@ pkg install -y clang
 pkg install -y binutils-is-llvm
 pkg install -y wget
 pkg install -y netcat-openbsd
+pkg install -y pulseaudio
 pkg install -y file
 pkg install -y golang
 pkg install -y nodejs
@@ -124,13 +125,14 @@ passwd
 
 # GUI env
 pkg install -y x11-repo termux-x11-nightly xfce4 xfce4-goodies
+pkg install -y tur-repo firefox
 ## font
 pkg install -y fontconfig
 mkdir -p ~/.config/fontconfig
 cp ~/dotfiles/fontconfig/fonts.conf ~/.config/fontconfig/fonts.conf
 ## GUI startup script
 mkdir -p ~/Project/bin
-echo 'termux-x11 :0 -xstartup "dbus-launch --exit-with-session xfce4-session"' > ~/Project/bin/x11
+cp ~/dotfiles/termux/bin/x11 ~/Project/bin
 chmod +x ~/Project/bin/x11
 ## 1. run `x11` script
 ## 2. run `Termux:X11` app
