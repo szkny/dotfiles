@@ -20,4 +20,5 @@ cp $1 $TMP_DIR
 # echo "Executing: am start -a android.intent.action.VIEW -t \"$MIME_TYPE\" -d file:///storage/emulated/0/Project/tmp/$TMP_FILE > /dev/null 2>&1"
 am start -a android.intent.action.VIEW -t "$MIME_TYPE" -d file:///storage/emulated/0/Project/tmp/$TMP_FILE > /dev/null 2>&1
 
+sleep 1
 rm $TMP_DIR/$TMP_FILE
