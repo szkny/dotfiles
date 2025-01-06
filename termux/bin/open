@@ -1,0 +1,23 @@
+#!/data/data/com.termux/files/usr/bin/zsh
+if [ $# -eq 0 ]; then
+	echo "Usage: $(basename $0) <file>"
+    exit 0
+fi
+
+if [ ! -f "$1" ]; then
+    echo "Error: File '$1' does not exist."
+    exit 1
+fi
+
+local TMP_DIR=$HOME/storage/shared/Project/tmp
+local TMP_FILE=$(basename $1)
+local MIME_TYPE=$(file --mime-type -b $1)
+
+# echo "Copying $1 to $TMP_DIR"
+mkdir -p $TMP_DIR
+cp $1 $TMP_DIR
+
+# echo "Executing: am start -a android.intent.action.VIEW -t \"$MIME_TYPE\" -d file:///storage/emulated/0/Project/tmp/$TMP_FILE > /dev/null 2>&1"
+am start -a android.intent.action.VIEW -t "$MIME_TYPE" -d file:///storage/emulated/0/Project/tmp/$TMP_FILE > /dev/null 2>&1
+
+rm $TMP_DIR/$TMP_FILE
