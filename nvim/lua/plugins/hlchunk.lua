@@ -1,6 +1,7 @@
 return {
 	"szkny/hlchunk.nvim",
-	event = { "UIEnter" },
+  event = {},
+	-- event = { "UIEnter" },
 	opts = {
 		chunk = {
 			enable = true,
