@@ -58,18 +58,18 @@ vim.opt.complete:remove("t")
 
 -- Copy/Paste/Cut
 if vim.fn.has("wsl") == 1 then
-	vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-		pattern = "*",
-		-- command = ":call system('iconv -t sjis | clip.exe', @\")",
-		command = ":call system('clip.exe', @\")",
-	})
+  vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+    pattern = "*",
+    command = ":call system('iconv -t sjis | clip.exe', @\")",
+    -- command = ":call system('clip.exe', @\")",
+  })
 elseif vim.fn.has("termux") == 1 then
-	vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-		pattern = "*",
-		command = ":call system('termux-clipboard-set', @\")",
-	})
+  vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+    pattern = "*",
+    command = ":call system('termux-clipboard-set', @\")",
+  })
 else
-	vim.opt.clipboard:append({ unnamedplus = true })
+  vim.opt.clipboard:append({ unnamedplus = true })
 end
 
 -- Directories for swp files
