@@ -120,6 +120,25 @@ function ranger-cd(){
     rm -f -- "$tempfile"
 }
 
+kill_process() {
+    selected=$(ps -e -o pid,user,comm --sort=-%cpu | fzf --header="Select processes to kill (Tab to select multiple)" --ansi --multi)
+    if [[ -z "$selected" ]]; then
+        echo "No process selected."
+        return 0
+    fi
+    echo "Kill the following processes? (y/N)"
+    echo "$selected"
+    read -r confirm
+    if [[ "$confirm" =~ ^[Yy]$ ]]; then
+        pids=$(echo "$selected" | awk '{print $1}')
+        for pid in $pids; do
+            kill "$pid" && echo "Process $pid killed." || echo "Failed to kill process $pid."
+        done
+    else
+        echo "Operation canceled."
+    fi
+}
+
 function google() { # Goolge Search by Google Chrome
     local str opt
     if [ $# != 0 ]; then
