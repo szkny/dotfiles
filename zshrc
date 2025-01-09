@@ -126,10 +126,10 @@ function kill_process() {
         echo "No process selected."
         return 0
     fi
-    echo "Kill the following processes? (y/N)"
+    echo "Kill the following processes? [y/N]"
     echo "$selected"
-    read -r confirm
-    if [[ "$confirm" =~ ^[Yy]$ ]]; then
+    if read -q; then
+        echo
         pids=$(echo "$selected" | awk '{print $1}')
         for pid in $pids; do
             kill "$pid" && echo "Process $pid killed." || echo "Failed to kill process $pid."
