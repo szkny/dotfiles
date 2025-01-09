@@ -127,7 +127,7 @@ passwd
 
 # GUI env
 pkg install -y x11-repo termux-x11-nightly xfce4 xfce4-goodies
-pkg install -y tur-repo firefox
+pkg install -y tur-repo chromium firefox
 ## font
 pkg install -y fontconfig
 mkdir -p ~/.config/fontconfig
