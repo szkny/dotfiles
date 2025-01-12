@@ -14,7 +14,7 @@ Host github github.com
     User git
 
 # Dev server
-Host szknypc powershell screensave-szknypc sleep-szknypc jupyterlab
+Host szknypc powershell *-szknypc jupyterlab
     HostName xxx.xxx.xxx.xxx
     IdentityFile ~/.ssh/keyname
     User szkny
@@ -28,6 +28,10 @@ Host powershell
 Host screensave-szknypc
     RequestTTY no
     RemoteCommand source ~/.zshrc && powershell.exe -Command "Start-Process C:\Windows\System32\scrnsave.scr"
+
+Host lock-szknypc
+    RequestTTY no
+    RemoteCommand source ~/.zshrc && rundll32.exe user32.dll,LockWorkStation > /dev/null 2&>1
 
 Host sleep-szknypc
     RequestTTY no
