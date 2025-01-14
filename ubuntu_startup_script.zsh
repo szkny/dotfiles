@@ -42,7 +42,7 @@ curl https://sh.rustup.rs -sSf | sh
 
 ## install cargo libs
 echo 'install cargo packages..'
-cargo install exa bat rm-improved \
+cargo install eza bat rm-improved \
   code-minimap git-delta zoxide viu fd-find
 ## cargo install deno
 

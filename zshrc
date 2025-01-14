@@ -46,10 +46,10 @@ SAVEHIST=1000000
 
 ## alias for commands
 alias cd='cdls'
-alias ls='exa -G --icons'
-alias ll='exa -lh --icons'
+alias ls='eza -G --icons'
+alias ll='eza -lh --icons'
 alias c='clear'
-alias tree='exa -T --icons'
+alias tree='eza -T --icons'
 alias mv='mv -i'
 alias od='od -x'
 alias rsync='rsync -auvrz'
@@ -96,7 +96,7 @@ bindkey -s '^G' '^uzg\n'
 
 ## functions
 function cdls(){
-  \cd $@ && [ $( ls | wc -l ) -lt 20 ] && exa -G --icons
+  \cd $@ && [ $( ls | wc -l ) -lt 20 ] && eza -G --icons
   return 0
 }
 
@@ -290,7 +290,7 @@ export FZF_DEFAULT_OPTS=$(cat <<"EOF"
   --preview '
       [ -f {} ] \
       && bat --color=always --style=numbers {} \
-      || exa -T {} -I node_modules
+      || eza -T {} -I node_modules
   '
   --preview-window 'hidden,wrap,down,80%'
   --bind 'ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up'
@@ -302,7 +302,7 @@ export FZF_CTRL_T_OPTS=$(cat <<"EOF"
 --preview '
   [ -f {} ] \
   && bat --color=always --style=numbers {} \
-  || exa -T {} -I node_modules
+  || eza -T {} -I node_modules
 ' 
 EOF
 )
