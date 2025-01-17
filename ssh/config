@@ -27,15 +27,15 @@ Host powershell
 
 Host screensave-szknypc
     RequestTTY no
-    RemoteCommand source ~/.zshrc && powershell.exe -Command "Start-Process C:\Windows\System32\scrnsave.scr"
+    RemoteCommand source ~/.zshrc && powershell.exe -Command "Start-Process C:\Windows\System32\scrnsave.scr" > /dev/null 2>&1
 
 Host lock-szknypc
     RequestTTY no
-    RemoteCommand source ~/.zshrc && rundll32.exe user32.dll,LockWorkStation > /dev/null 2&>1
+    RemoteCommand source ~/.zshrc && rundll32.exe user32.dll,LockWorkStation > /dev/null 2>&1
 
 Host sleep-szknypc
     RequestTTY no
-    RemoteCommand source ~/.zshrc && rundll32.exe powrprof.dll,SetSuspendState Sleep
+    RemoteCommand source ~/.zshrc && rundll32.exe powrprof.dll,SetSuspendState Sleep > /dev/null 2>&1
 
 Host jupyterlab
     localforward 8888 localhost:8888
