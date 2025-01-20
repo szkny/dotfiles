@@ -95,6 +95,20 @@ bindkey -s '^F' '^ufdghq\n'
 bindkey -s '^G' '^uzg\n'
 
 ## functions
+function fzf-command-widget() {
+  if [[ -z "$LBUFFER" ]]; then
+    local cmd=$(compgen -c | sort | uniq | fzf --height 40% --reverse)
+    if [[ -n $cmd ]]; then
+      LBUFFER+="$cmd "
+      zle redisplay
+    fi
+  else
+    zle expand-or-complete
+  fi
+}
+zle -N fzf-command-widget
+bindkey '^I' fzf-command-widget
+
 function cdls(){
   \cd $@ && [ $( ls | wc -l ) -lt 20 ] && eza -G --icons
   return 0
