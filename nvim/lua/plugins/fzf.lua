@@ -18,6 +18,7 @@ return {
     "default",
     -- "fzf-vim",
     -- "telescope",
+    file_icon_padding = " ",
     winopts = {
       height = 0.90,
       width = 0.85,
@@ -99,10 +100,10 @@ return {
       end
     end
 
-    local rg_cmd_file = "rg --files -uuu -g !.git/ -g !node_modules/ -L"
+    local rg_cmd_file = "rg --files -uuu -g !.git/ -g !node_modules/ -g !.venv/ -g !.mypy_cache/ -g !__pycache__/ -L"
     local rg_cmd_grep = "rg --line-number --ignore-case --color=always -- "
     local fzf_exec_opts_file = {
-      prompt = "Files> ",
+      prompt = "Files❯ ",
       previewer = "builtin",
       actions = {
         ["default"] = require("fzf-lua").actions.file_edit,
@@ -115,7 +116,7 @@ return {
       end,
     }
     local fzf_exec_opts_grep = {
-      prompt = "Rg> ",
+      prompt = "Rg❯ ",
       previewer = "builtin",
       actions = require("fzf-lua").defaults.actions.files,
       fn_transform = function(x)
@@ -163,7 +164,7 @@ return {
           fzf_cb()
         end)()
       end, {
-        prompt = "Icons> ",
+        prompt = "Icons❯ ",
         winopts = {
           width = 0.5,
           height = 0.5,
