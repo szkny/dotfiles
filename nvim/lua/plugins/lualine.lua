@@ -112,7 +112,7 @@ return {
 				statusline = { "NvimTree", "neo-tree", "vista", "minimap" },
 				winbar = { "NvimTree", "neo-tree", "vista", "minimap" },
 			},
-			ignore_focus = { "NvimTree", "neo-tree", "vista", "minimap" },
+			ignore_focus = { "NvimTree", "neo-tree", "vista", "minimap", "toggleterm", "aerial" },
 			always_divide_middle = true,
 			globalstatus = true,
 			refresh = {
