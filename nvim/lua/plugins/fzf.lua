@@ -100,7 +100,7 @@ return {
       end
     end
 
-    local rg_cmd_file = "rg --files -uuu -g !.git/ -g !node_modules/ -g !.venv/ -g !.mypy_cache/ -g !__pycache__/ -L"
+    local rg_cmd_file = "rg --files -uuu -g '!**/.git/*' -g '!**/node_modules/*' -g '!**/.venv/*' -g '!**/.mypy_cache/*' -g '!**/__pycache__/*' -L"
     local rg_cmd_grep = "rg --line-number --ignore-case --color=always -- "
     local fzf_exec_opts_file = {
       prompt = "Files❯ ",
