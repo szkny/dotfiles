@@ -55,3 +55,5 @@
     light = false
     side-by-side = false
     line-numbers = true
+[credential]
+    helper = store
