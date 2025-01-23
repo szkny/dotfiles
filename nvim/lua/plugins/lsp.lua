@@ -359,7 +359,7 @@ return {
       vim.keymap.set("n", "<leader>n", "<cmd>Lspsaga diagnostic_jump_next<CR>")
       vim.keymap.set("n", "<leader>p", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
       vim.keymap.set("n", "<leader>k", "<cmd>Lspsaga hover_doc<CR>")
-      vim.keymap.set("n", "<leader>]", "<cmd>Lspsaga peek_definition<CR>")
+      vim.keymap.set("n", "<leader>]", "<cmd>Lspsaga goto_definition<CR>")
       vim.keymap.set("n", "<C-]>", "<cmd>Lspsaga goto_definition<CR>")
     end,
   },
