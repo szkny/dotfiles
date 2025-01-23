@@ -9,7 +9,9 @@ return {
   keys = {
     { "<C-g>", "<CMD>FzfLua lsp_document_symbols<CR>", mode = "n" },
     { "<C-b>", "<CMD>FzfLua buffers<CR>", mode = "n" },
-    { "<Leader>[", "<CMD>FzfLua lsp_references<CR>", mode = "n" },
+    { "<Leader>[", function()
+      require("fzf-lua").lsp_references({ ignore_current_line = true, includeDeclaration = false })
+    end, mode = "n" },
     { "<Leader>/", "<CMD>FzfLua lines<CR>", mode = "n" },
     { "<Leader>b/", "<CMD>FzfLua blines<CR>", mode = "n" },
     { "<Leader>m", "<CMD>FzfLua marks<CR>", mode = "n" },
