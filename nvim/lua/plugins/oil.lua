@@ -23,7 +23,7 @@ return {
       concealcursor = "n",
     },
     default_file_explorer = true,
-    trash_command = "rip",
+    delete_to_trash = true,
     use_default_keymaps = false,
     keymaps = {
       ["?"] = "actions.show_help",
