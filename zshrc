@@ -147,7 +147,7 @@ function kill_process() {
     if read -q; then
         echo
         pids=$(echo "$selected" | awk '{print $1}')
-        for pid in $pids; do
+        for pid in ${(f)pids}; do
             kill "$pid" && echo "Process $pid killed." || echo "Failed to kill process $pid."
         done
     else
