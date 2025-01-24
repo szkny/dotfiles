@@ -104,7 +104,6 @@ function fzf-command-widget() {
     zle redisplay
   else
     zle expand-or-complete
-    zle redisplay
   fi
   return 0
 }
