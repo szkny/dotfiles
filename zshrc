@@ -102,10 +102,11 @@ function fzf-command-widget() {
       LBUFFER+="$cmd "
     fi
     zle redisplay
-    return 0
   else
     zle expand-or-complete
+    zle redisplay
   fi
+  return 0
 }
 zle -N fzf-command-widget
 bindkey '^I' fzf-command-widget
