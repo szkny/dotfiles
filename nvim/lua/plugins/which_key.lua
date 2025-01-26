@@ -6,6 +6,10 @@ return {
     vim.o.timeoutlen = 500
   end,
   config = function()
-    require("which-key").setup({})
+    require("which-key").setup({
+      win = {
+        border = "rounded",
+      },
+    })
   end,
 }
