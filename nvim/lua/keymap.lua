@@ -180,6 +180,8 @@ keymap("t", "<M-k>", "<Up>", opts)
 keymap("t", "<M-l>", "<Right>", opts)
 keymap("n", "<M-u>", "<PageUp>", opts)
 keymap("n", "<M-d>", "<PageDown>", opts)
+keymap("i", "<C-a>", "<Home>", opts)
+keymap("i", "<C-e>", "<End>", opts)
 keymap("c", "<C-a>", "<Home>", opts)
 keymap("c", "<C-e>", "<End>", opts)
 
