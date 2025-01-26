@@ -71,7 +71,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # ranger
 mkdir -p ~/.config
-cp -r ~/dotfiles/ranger ~/.config/ranger
+cp -r ~/dotfiles/ranger ~/.config/
 
 # fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
