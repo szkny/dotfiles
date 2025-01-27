@@ -1,8 +1,17 @@
 #!/usr/bin/zsh
-## install basic apt-get packages
+
+## tz-data
 echo 'install basic apt-get packages..'
 sudo apt-get update -y
 sudo apt-get upgrade -y
+export TZ=Asia/Tokyo
+export DEBIAN_FRONTEND=noninteractive
+sudo apt-get install -y tzdata
+ln -fs /usr/share/zoneinfo/$TZ /etc/localtime
+dpkg-reconfigure -f noninteractive tzdata
+
+## install basic apt-get packages
+echo 'install basic apt-get packages..'
 sudo apt-get install -y build-essential libbz2-dev libdb-dev \
   libreadline-dev libffi-dev libgdbm-dev liblzma-dev \
   libncursesw5-dev libsqlite3-dev libssl-dev \
@@ -79,9 +88,7 @@ mkdir -p ~/Project
 git clone https://github.com/ranger/ranger ~/Project/ranger
 cd ~/Project/ranger
 sudo make install
-git clone https://github.com/alexanderjeurissen/ranger_devicons \
-  ~/.config/ranger/plugins/ranger_devicons
-cp -r ~/dotfiles/ranger ~/.config/ranger
+cp -r ~/dotfiles/ranger ~/.config
 cd ~
 
 ## install neovim
@@ -91,6 +98,7 @@ sudo add-apt-repository -y ppa:neovim-ppa/unstable
 sudo apt-get update -y
 sudo apt-get install -y neovim
 sudo apt-get install -y python3-neovim
+sudo apt-get install -y luarocks
 pip2 install neovim
 pip3 install neovim
 npm install -g neovim
@@ -150,24 +158,24 @@ sudo dockerd
 sudo usermod -aG docker $USER
 newgrp docker
 
-## install flutter
-export ANDROID_SDK_ROOT=$HOME/Project/Android/sdk
-export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
-export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
-export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
-export PATH=$PATH:$HOME/flutter/bin
+# ## install flutter
+# export ANDROID_SDK_ROOT=$HOME/Project/Android/sdk
+# export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
+# export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+# export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+# export PATH=$PATH:$HOME/flutter/bin
+#
+# sudo apt-get install -y xz-utils libglu1-mesa clang cmake ninja-build pkg-config libgtk-3-dev openjdk-17-jdk
+# git clone https://github.com/flutter/flutter.git -b stable ~/flutter
+# flutter config --jdk-dir=/usr/lib/jvm/java-17-openjdk-amd64
+# flutter doctor
+# sudo snap install android-studio --classic
+# sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+# sdkmanager "system-images;android-35;google_apis;x86_64"
+# sdkmanager "emulator"
+# # avdmanager create avd -n flutter_emulator -k "system-images;android-35;google_apis;x86_64"
 
-sudo apt-get install -y xz-utils libglu1-mesa clang cmake ninja-build pkg-config libgtk-3-dev openjdk-17-jdk
-git clone https://github.com/flutter/flutter.git -b stable ~/flutter
-flutter config --jdk-dir=/usr/lib/jvm/java-17-openjdk-amd64
-flutter doctor
-sudo snap install android-studio --classic
-sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
-sdkmanager "system-images;android-35;google_apis;x86_64"
-sdkmanager "emulator"
-# avdmanager create avd -n flutter_emulator -k "system-images;android-35;google_apis;x86_64"
-
-### chrome
-mkdir -p ~/Project/chrome
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o ~/Project/chrome/google-chrome-stable_current_amd64.deb
-sudo apt-get install -y ~/Project/chrome/google-chrome-stable_current_amd64.deb
+# ### chrome
+# mkdir -p ~/Project/chrome
+# wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o ~/Project/chrome/google-chrome-stable_current_amd64.deb
+# sudo apt-get install -y ~/Project/chrome/google-chrome-stable_current_amd64.deb
