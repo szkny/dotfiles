@@ -38,7 +38,6 @@ curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable --profil
 echo 'install cargo packages..'
 cargo install eza bat rm-improved \
   code-minimap git-delta zoxide viu fd-find
-## cargo install deno
 
 ## install mise
 echo 'install mise..'
@@ -66,6 +65,9 @@ echo 'install node.js..'
 mise use -g node@lts
 eval "$(~/.local/bin/mise activate zsh)"
 npm install -g prettier
+
+## install deno
+mise use -g deno@1.41.0
 
 ## install go
 echo 'install go..'
