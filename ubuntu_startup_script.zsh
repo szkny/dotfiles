@@ -149,14 +149,14 @@ ln -s ~/dotfiles/w3m/keymap ~/.w3m/keymap
 ## git-cz
 npm install -g git-cz
 
-## install docker
-sudo apt-get install -y ca-certificates curl gnupg lsb-release
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-sudo apt-get update
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-sudo dockerd
-sudo usermod -aG docker $USER
-newgrp docker
+# ## install docker
+# sudo apt-get install -y ca-certificates curl gnupg lsb-release
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+# sudo apt-get update
+# sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+# sudo dockerd
+# sudo usermod -aG docker $USER
+# newgrp docker
 
 # ## install flutter
 # export ANDROID_SDK_ROOT=$HOME/Project/Android/sdk
