@@ -11,6 +11,12 @@ sudo ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
 sudo echo $TZ > /etc/timezone
 sudo dpkg-reconfigure -f noninteractive tzdata
 
+## locales
+echo 'setup locales..'
+sudo apt-get install locales
+sudo locale-gen C.UTF-8
+sudo update-locale LANG=C.UTF-8
+
 ## install basic apt-get packages
 echo 'install basic apt-get packages..'
 sudo apt-get install -y build-essential libbz2-dev libdb-dev \
@@ -57,7 +63,7 @@ ln -s ~/dotfiles/python_syntax_checker/pycodestyle ~/.config/pycodestyle
 
 ## install node.js
 echo 'install node.js..'
-mise use -g node@18.16.0
+mise use -g node@lts
 eval "$(~/.local/bin/mise activate zsh)"
 npm install -g prettier
 
