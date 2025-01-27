@@ -363,8 +363,8 @@ export PATH=$PATH:$HOME/flutter/bin
 ## mocword
 export MOCWORD_DATA=~/.mocword/mocword.sqlite
 
-## ChatGPT
-source "$HOME/.openai_key.zsh"
+# ## ChatGPT
+# source "$HOME/.openai_key.zsh"
 
 ## X11
 export DISPLAY=$(ipconfig.exe | grep -a "IPv4" | tail -1 | awk '{print $NF}' | awk 'sub(/\r$/,"")'):0.0
