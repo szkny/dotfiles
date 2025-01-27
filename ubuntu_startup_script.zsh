@@ -102,22 +102,28 @@ cd ~
 
 ## install neovim
 echo 'install neovim..'
-sudo apt-get install -y software-properties-common
-sudo add-apt-repository -y ppa:neovim-ppa/unstable
-sudo apt-get update -y
-sudo apt-get install -y neovim
+# sudo apt-get install -y software-properties-common
+# sudo add-apt-repository -y ppa:neovim-ppa/unstable
+# sudo apt-get update -y
+# sudo apt-get install -y neovim
+mkdir -p ~/Project/nvim
+cd ~/Project/nvim
+wget https://github.com/neovim/neovim/releases/download/v0.10.3/nvim.appimage
+chmod +x ./nvim.appimage
+./nvim.appimage --appimage-extract
+sudo ln -s ~/Project/nvim/squashfs-root/usr/bin/nvim /usr/local/bin/nvim
 sudo apt-get install -y python3-neovim
 sudo apt-get install -y luarocks
+sudo apt-get install terraform-ls
 pip2 install neovim
 pip3 install neovim
 npm install -g neovim
 mkdir -p ~/.config/nvim
 ln -s ~/dotfiles/nvim/init.lua ~/.config/nvim/
 ln -s ~/dotfiles/nvim/lua ~/.config/nvim/
-# ### for coc-nvim
-ln -s ~/dotfiles/nvim/coc-settings.json ~/.config/nvim/
-pip install -U jedi-language-server
-# sudo apt-get install terraform-ls
+# # ### for coc-nvim
+# ln -s ~/dotfiles/nvim/coc-settings.json ~/.config/nvim/
+# pip install -U jedi-language-server
 ### for treesitter
 cargo install tree-sitter-cli
 
