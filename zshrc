@@ -287,6 +287,11 @@ function fshow() {
   return 0
 }
 
+## language
+export LANGUAGE="C.UTF-8"
+export LANG=$LANGUAGE
+export LC_ALL=$LANGUAGE
+
 ## PATHs
 export PATH="$PATH:$HOME/Project/bin"
 
