@@ -2,12 +2,13 @@
 
 ## tz-data
 echo 'install basic apt-get packages..'
-sudo apt-get update -y
-sudo apt-get upgrade -y
 export TZ=Asia/Tokyo
 export DEBIAN_FRONTEND=noninteractive
+sudo apt-get update -y
+sudo apt-get upgrade -y
 sudo apt-get install -y tzdata
-ln -fs /usr/share/zoneinfo/$TZ /etc/localtime
+ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
+echo $TZ > /etc/timezone
 dpkg-reconfigure -f noninteractive tzdata
 
 ## install basic apt-get packages
