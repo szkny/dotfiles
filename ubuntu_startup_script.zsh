@@ -25,7 +25,7 @@ sudo apt-get install -y trash-cli
 
 ## install rust / cargo
 echo 'install rust / cargo..'
-curl https://sh.rustup.rs -sSf | sh
+curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable --profile default
 . "$HOME/.cargo/env"
 
 ## install cargo libs
