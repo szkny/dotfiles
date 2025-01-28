@@ -194,6 +194,7 @@ function start-tmux(){
   fi
   tmux_count=$(ps -ef | grep '[t]mux' | wc -l)
   if [[ $SHLVL -eq 1 && $tmux_count -eq 0 ]]; then
+    export TERM="screen-256color"
     tmux -u new-session
   # elif [[ $SHLVL -eq 1 && $tmux_count -gt 1 ]]; then
   #   tmux -u attach
@@ -373,10 +374,10 @@ export MOCWORD_DATA=~/.mocword/mocword.sqlite
 
 ## X11
 export DISPLAY=$(ipconfig.exe | grep -a "IPv4" | tail -1 | awk '{print $NF}' | awk 'sub(/\r$/,"")'):0.0
+export TERM="xterm-256color"
 
-## start tmux
-export TERM="screen-256color"
-start-tmux
+# ## start tmux
+# start-tmux
 
 ## measure zshrc startup time
 # zprof
