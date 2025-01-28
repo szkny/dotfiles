@@ -1,6 +1,9 @@
 ## measure zshrc startup time
 # zmodload zsh/zprof
 
+## cargo setup
+[ -f ~/.cargo/env ] && source ~/.cargo/env
+
 ## sheldon
 eval "$(sheldon source)"
 
@@ -346,9 +349,6 @@ export PATH=$PATH:$GOPATH/bin
 # ## pyenv setup
 # export PYENV_ROOT="$HOME/.pyenv"
 # export PATH="$PYENV_ROOT/bin:$PATH"
-
-## cargo setup
-[ -f ~/.cargo/env ] && source ~/.cargo/env
 
 # # volta
 # export VOLTA_HOME="$HOME/.volta"
