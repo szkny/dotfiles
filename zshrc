@@ -374,10 +374,11 @@ export MOCWORD_DATA=~/.mocword/mocword.sqlite
 
 ## X11
 export DISPLAY=$(ipconfig.exe | grep -a "IPv4" | tail -1 | awk '{print $NF}' | awk 'sub(/\r$/,"")'):0.0
-export TERM="xterm-256color"
+# export TERM="xterm-256color"
 
-# ## start tmux
-# start-tmux
+## start tmux
+export TERM="screen-256color"
+start-tmux
 
 ## measure zshrc startup time
 # zprof

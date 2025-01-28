@@ -93,6 +93,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ## install ranger-cli
 echo 'install ranger-cli..'
 pip install ranger-fm
+sudo apt-get install -y screen file
 # # sudo apt-get install -y python3-setuptools python3-distutils file
 # pip install setuptools
 # mkdir -p ~/Project

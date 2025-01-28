@@ -22,7 +22,7 @@ pkg install -y golang
 pkg install -y nodejs
 pkg install -y rust
 pkg install -y rustc cargo rustc-nightly
-pkg install -y ranger w3m lynx
+pkg install -y w3m lynx
 pkg install -y bat
 pkg install -y wol
 pkg install -y android-tools
@@ -70,6 +70,7 @@ ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # ranger
+pkg install -y ranger screen
 mkdir -p ~/.config
 cp -r ~/dotfiles/ranger ~/.config/
 
