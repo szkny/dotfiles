@@ -16,7 +16,7 @@ return {
 		},
 		cmdline = {
 			enabled = true,
-			view = "cmdline_popup",
+			view = "cmdline",
 			format = {
 				cmdline = { pattern = "^:", icon = "", lang = "vim" },
 				search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
