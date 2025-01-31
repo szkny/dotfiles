@@ -217,7 +217,6 @@ return {
       local new_winopts = {
         wrap    = false,
         number  = false,
-        -- scrolloff = 5,
       }
       return vim.tbl_extend("force", self.winopts, new_winopts)
     end
@@ -227,7 +226,7 @@ return {
       local command = "git show " .. commit_hash
         .. "| delta --paging=never "
         .. "| bat --color=always --paging=never --style=plain"
-        .. "; read -q"
+        .. "; sleep 1000"
       local tmpbuf = self:get_tmp_buffer()
       vim.api.nvim_buf_set_option(tmpbuf, "buftype", "nofile")
       vim.api.nvim_buf_set_option(tmpbuf, "bufhidden", "wipe")
