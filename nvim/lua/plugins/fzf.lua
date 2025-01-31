@@ -1,6 +1,9 @@
 return {
   "ibhagwan/fzf-lua",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+    "sindrets/diffview.nvim",
+  },
   event = "VeryLazy",
   commit = "b442569",
   cmd = {
@@ -78,6 +81,24 @@ return {
         ["<C-k>"] = "preview-page-up",
       },
     },
+    git = {
+      bcommits = {
+        prompt        = "Git Log❯ ",
+        cmd           = "git log --color --date=format:'%Y-%m-%d %H:%M' --pretty=format:\"%C(yellow)%h %C(blue)(%cd)%Creset %s %C(blue)<%an>\" -- {file}",
+        preview       = "git show --color {1} -- {file}",
+        actions = {
+          ["default"] = function(selected)
+            local commit_hash = selected[1]:match("^(%x+)")
+            if commit_hash then
+              local file_path = vim.fn.expand("%")
+              vim.cmd("DiffviewOpen " .. commit_hash .. " -- " .. file_path)
+            else
+              print("Invalid commit hash")
+            end
+          end,
+        },
+      },
+    }
   },
   config = function(_, opts)
     require("fzf-lua").setup(opts)
@@ -183,5 +204,85 @@ return {
         },
       })
     end, {})
+
+    -- Git log
+    local GitShowPreviewer = require("fzf-lua.previewer.builtin").base:extend()
+    function GitShowPreviewer:new(o, opts, fzf_win)
+      GitShowPreviewer.super.new(self, o, opts, fzf_win)
+      setmetatable(self, GitShowPreviewer)
+      return self
+    end
+
+    function GitShowPreviewer:gen_winopts()
+      local new_winopts = {
+        wrap    = false,
+        number  = false,
+        -- scrolloff = 5,
+      }
+      return vim.tbl_extend("force", self.winopts, new_winopts)
+    end
+
+    function GitShowPreviewer:populate_preview_buf(entry_str)
+      local commit_hash = entry_str:match("(%x+)%s%(")
+      local command = "git show " .. commit_hash
+        .. "| delta --paging=never "
+        .. "| bat --color=always --paging=never --style=plain"
+        .. "; read -q"
+      local tmpbuf = self:get_tmp_buffer()
+      vim.api.nvim_buf_set_option(tmpbuf, "buftype", "nofile")
+      vim.api.nvim_buf_set_option(tmpbuf, "bufhidden", "wipe")
+      vim.api.nvim_buf_call(tmpbuf, function() vim.fn.termopen(command) end)
+      self:set_preview_buf(tmpbuf)
+      self.win:update_scrollbar()
+    end
+
+    function GitShowPreviewer:scroll(direction)
+      local utils = require("fzf-lua.utils")
+      local preview_winid = self.win.preview_winid
+      if preview_winid < 0 or not direction then return end
+      if not vim.api.nvim_win_is_valid(preview_winid) then return end
+      if direction == "reset" then
+        pcall(vim.api.nvim_win_call, preview_winid, function()
+          vim.api.nvim_win_set_cursor(0, { 1, 0 })
+          if self.orig_pos then
+            vim.api.nvim_win_set_cursor(0, self.orig_pos)
+          end
+          utils.zz()
+        end)
+      else
+        local input = direction == "page-down" and "<C-d>" or "<C-u>"
+        vim.cmd("stopinsert")
+        utils.feed_keys_termcodes(([[:noa lua vim.api.nvim_win_call(%d, function() vim.cmd("norm! <C-v>%s") vim.cmd("startinsert") end)<CR>]]):format(tonumber(preview_winid), input))
+      end
+      self.win:update_scrollbar()
+    end
+    local GitLog =  function()
+      require("fzf-lua").fzf_exec(
+        "git log --color --date=format:'%Y-%m-%d %H:%M' --pretty=format:\"%C(yellow)%h %C(blue)(%cd)%Creset %s %C(blue)<%an>\" -- " .. vim.fn.expand("%"),
+        {
+          prompt = "Git Log❯ ",
+          previewer = GitShowPreviewer,
+          actions = {
+            ["default"] = function(selected)
+              local commit_hash = selected[1]:match("(%x+)%s%(")
+              if commit_hash then
+                local file_path = vim.fn.expand("%")
+                vim.cmd("DiffviewOpen " .. commit_hash .. " -- " .. file_path)
+              else
+                print("Invalid commit hash")
+              end
+            end,
+          },
+          fn_transform = function(entry_str)
+            return require("fzf-lua").make_entry.file(entry_str, {
+              file_icons = true,
+              color_icons = true,
+            })
+          end,
+        }
+      )
+    end
+    vim.api.nvim_create_user_command("GitLog", GitLog, {})
+    vim.keymap.set("n", "<Leader>gl", GitLog, { silent = true })
   end,
 }
