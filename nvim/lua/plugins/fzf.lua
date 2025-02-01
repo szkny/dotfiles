@@ -124,13 +124,13 @@ return {
     end
 
     local CustomPreviewer = require("fzf-lua.previewer.builtin").buffer_or_file:extend()
-    function CustomPreviewer:new(o, opts, fzf_win)
-      CustomPreviewer.super.new(self, o, opts, fzf_win)
+    function CustomPreviewer:new(o, previewer_opts, fzf_win)
+      CustomPreviewer.super.new(self, o, previewer_opts, fzf_win)
       setmetatable(self, CustomPreviewer)
       return self
     end
     function CustomPreviewer:populate_preview_buf(entry_str)
-      local entry_str = entry_str:match("([%w!-/:-@[-`{-~]+)$")
+      entry_str = entry_str:match("([%w!-/:-@[-`{-~]+)$")
       local tmpbuf = self:get_tmp_buffer()
       local preview_winid = self.win.preview_winid
       local ext = vim.fn.fnamemodify(entry_str, ':e')
