@@ -123,11 +123,44 @@ return {
       end
     end
 
+    local CustomPreviewer = require("fzf-lua.previewer.builtin").buffer_or_file:extend()
+    function CustomPreviewer:new(o, opts, fzf_win)
+      CustomPreviewer.super.new(self, o, opts, fzf_win)
+      setmetatable(self, CustomPreviewer)
+      return self
+    end
+    function CustomPreviewer:populate_preview_buf(entry_str)
+      local entry_str = entry_str:match("([%w!-/:-@[-`{-~]+)$")
+      local tmpbuf = self:get_tmp_buffer()
+      local preview_winid = self.win.preview_winid
+      local ext = vim.fn.fnamemodify(entry_str, ':e')
+      if vim.tbl_contains({ "png", "jpg", "jpeg" }, ext) then
+        local win_width = vim.api.nvim_win_get_width(preview_winid)
+        local command = ("viu -w %d %s; sleep 1000"):format(win_width - 4, entry_str)
+        vim.api.nvim_buf_call(tmpbuf, function() vim.fn.termopen(command) end)
+        self:set_preview_buf(tmpbuf)
+      else
+        local entry = self:parse_entry(entry_str)
+        require("fzf-lua.utils").read_file_async(entry_str, vim.schedule_wrap(function(data)
+          local lines = vim.split(data, "[\r]?\n")
+          if data:sub(#data, #data) == "\n" or data:sub(#data - 1, #data) == "\r\n" then
+            table.remove(lines)
+          end
+          vim.api.nvim_buf_set_lines(tmpbuf, 0, -1, false, lines)
+          self:set_preview_buf(tmpbuf)
+          self:preview_buf_post(entry)
+          self.win:update_scrollbar()
+        end))
+      end
+      self.win:update_scrollbar()
+    end
+
     local rg_cmd_file = "rg --files -uuu -g '!**/{.git,node_modules,.venv,.mypy_cache,__pycache__}/*' -L"
     local rg_cmd_grep = "rg --line-number --ignore-case --color=always -- "
+
     local fzf_exec_opts_file = {
       prompt = "Files❯ ",
-      previewer = "builtin",
+      previewer = CustomPreviewer,
       actions = {
         ["default"] = require("fzf-lua").actions.file_edit,
       },
@@ -255,6 +288,7 @@ return {
       end
       self.win:update_scrollbar()
     end
+
     local GitLog =  function()
       require("fzf-lua").fzf_exec(
         "git log --color --date=format:'%Y-%m-%d %H:%M' --pretty=format:\"%C(yellow)%h %C(blue)(%cd)%Creset %s %C(blue)<%an>\" -- " .. vim.fn.expand("%"),
