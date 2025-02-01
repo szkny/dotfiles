@@ -204,6 +204,8 @@ return {
     end, { silent = true })
 
     -- commands
+    vim.api.nvim_create_user_command("Files", function() require("fzf-lua").fzf_exec(rg_cmd_file, fzf_exec_opts_file) end, {})
+    vim.api.nvim_create_user_command("Rg",    function() require("fzf-lua").fzf_exec(rg_cmd_grep .. ".", fzf_exec_opts_grep) end, {})
     vim.api.nvim_create_user_command("Icons", function()
       local icons = require("data.icons").get_icons()
       require("fzf-lua").fzf_exec(function(fzf_cb)
