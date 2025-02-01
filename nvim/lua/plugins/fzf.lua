@@ -134,7 +134,7 @@ return {
       local tmpbuf = self:get_tmp_buffer()
       local preview_winid = self.win.preview_winid
       local ext = vim.fn.fnamemodify(entry_str, ':e')
-      if vim.tbl_contains({ "png", "jpg", "jpeg" }, ext) then
+      if vim.tbl_contains({ "png", "jpg", "jpeg" }, string.lower(ext)) then
         local win_width = vim.api.nvim_win_get_width(preview_winid)
         local command = ("viu -w %d %s; sleep 1000"):format(win_width - 4, entry_str)
         vim.api.nvim_buf_call(tmpbuf, function() vim.fn.termopen(command) end)
