@@ -242,8 +242,8 @@ return {
 
     -- Git log
     local GitShowPreviewer = require("fzf-lua.previewer.builtin").base:extend()
-    function GitShowPreviewer:new(o, opts, fzf_win)
-      GitShowPreviewer.super.new(self, o, opts, fzf_win)
+    function GitShowPreviewer:new(o, previewer_opts, fzf_win)
+      GitShowPreviewer.super.new(self, o, previewer_opts, fzf_win)
       setmetatable(self, GitShowPreviewer)
       return self
     end
