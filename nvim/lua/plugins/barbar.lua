@@ -86,7 +86,7 @@ return {
 		require("barbar").setup(opts)
 
 		local kopts = { noremap = true, silent = true }
-		vim.keymap.set("n", "<Leader>q", ":try | exe 'BufferDelete' | catch | endtry<CR>", kopts)
+		vim.keymap.set("n", "<Leader>q", ":try | exe 'BufferClose' | catch | endtry<CR>", kopts)
 		vim.keymap.set("n", "<Right>", ":BufferNext<CR>", kopts)
 		vim.keymap.set("n", "<Left>", ":BufferPrevious<CR>", kopts)
 		vim.keymap.set("n", "<M-l>", ":BufferNext<CR>", kopts)
