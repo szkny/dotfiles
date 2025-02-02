@@ -10,19 +10,6 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- general
-local function reload_nvim_config()
-  local dir = vim.fn.expand("~/.config/nvim/lua")
-  local files = vim.fn.readdir(dir)
-  for _, file in ipairs(files) do
-    if vim.fn.isdirectory(dir .. "/" .. file) == 0 and file:match("%.lua$") then
-      if file ~= "plugin_core.lua" then
-        dofile(dir .. "/" .. file)
-      end
-    end
-  end
-  print("Nvim configurations reloaded!")
-end
-keymap("n", "<leader><leader>", reload_nvim_config, opts)
 keymap("t", "<C-[>", "<C-\\><C-n>", opts)
 keymap("t", "<ESC>", "<C-\\><C-n><Plug>(esc)", opts)
 keymap("n", "<Plug>(esc)<ESC>", "i<ESC>", opts)

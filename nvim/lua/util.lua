@@ -136,3 +136,40 @@ function Dump(o)
     return tostring(o)
   end
 end
+
+-- reload nvim configurations
+local excluded_reload_plugins = {
+  ["lazy.nvim"] = true,
+  ["nvim-lspconfig"] = true,
+  ["promise-async"] = true,
+  ["plenary.nvim"] = true,
+  ["nvim-highlight-colors"] = true,
+  ["nui.nvim"] = true
+}
+local function reload_nvim_config()
+  local dir = vim.fn.expand("~/.config/nvim/lua")
+  local files = vim.fn.readdir(dir)
+  for _, file in ipairs(files) do
+    if vim.fn.isdirectory(dir .. "/" .. file) == 0 and file:match("%.lua$") then
+      if file ~= "plugin_core.lua" then
+        name = file:gsub("%.lua$", "")
+        package.loaded[name] = nil
+        dofile(dir .. "/" .. file)
+      end
+    end
+  end
+  local plugins = require("lazy").plugins()
+  for _, plugin in ipairs(plugins) do
+    if plugin._.loaded and not excluded_reload_plugins[plugin.name] then
+      Try({
+        function()
+          vim.cmd("try | silent! Lazy reload " .. plugin.name .. " | catch | echomsg 'Error: " .. plugin.name .. " not reloaded' | endtry")
+        end,
+        Catch({}),
+      })
+    end
+  end
+  vim.notify("Nvim configurations reloaded!")
+end
+-- keymap("n", "<leader><leader>", reload_nvim_config, opts)
+vim.api.nvim_create_user_command("ReloadConfig", reload_nvim_config, {})
