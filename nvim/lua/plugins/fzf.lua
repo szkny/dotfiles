@@ -163,6 +163,10 @@ return {
       previewer = CustomPreviewer,
       actions = {
         ["default"] = require("fzf-lua").actions.file_edit,
+        ["ctrl-s"] = require("fzf-lua").actions.file_split,
+        ["ctrl-v"] = require("fzf-lua").actions.file_vsplit,
+        ["ctrl-t"] = require("fzf-lua").actions.file_tabedit,
+        ["ctrl-q"] = require("fzf-lua").actions.file_sel_to_qf,
       },
       fn_transform = function(x)
         return require("fzf-lua").make_entry.file(x, {
@@ -170,11 +174,21 @@ return {
           color_icons = true,
         })
       end,
+      fzf_opts = {
+        ["--ansi"] = true,
+        ["--header"] = "ctrl-s:split, ctrl-v:vsplit, ctrl-t:tabedit, ctrl-q:qf",
+      }
     }
     local fzf_exec_opts_grep = {
       prompt = "Rg❯ ",
       previewer = "builtin",
-      actions = require("fzf-lua").defaults.actions.files,
+      actions = {
+        ["default"] = require("fzf-lua").actions.file_edit,
+        ["ctrl-s"] = require("fzf-lua").actions.file_split,
+        ["ctrl-v"] = require("fzf-lua").actions.file_vsplit,
+        ["ctrl-t"] = require("fzf-lua").actions.file_tabedit,
+        ["ctrl-q"] = require("fzf-lua").actions.file_sel_to_qf,
+      },
       fn_transform = function(x)
         x = string.gsub(x, "[ ]+", " ")
         return require("fzf-lua").make_entry.file(x, {
@@ -182,6 +196,10 @@ return {
           color_icons = true,
         })
       end,
+      fzf_opts = {
+        ["--ansi"] = true,
+        ["--header"] = "ctrl-s:split, ctrl-v:vsplit, ctrl-t:tabedit, ctrl-q:qf",
+      }
     }
 
     vim.keymap.set({ "n", "v" }, "<C-p>", function()
