@@ -139,7 +139,7 @@ function ranger-cd(){
 }
 
 function kill_process() {
-    selected=$(ps -e -o pid,user,comm --sort=-%cpu | fzf --header="Select processes to kill (Tab to select multiple)" --ansi --multi)
+    selected=$(ps -e -o pid,user,comm --sort=-%cpu | fzf --header="Select processes to kill (Tab to select multiple)" --ansi --multi --header-lines=1)
     if [[ -z "$selected" ]]; then
         echo "No process selected."
         return 0
