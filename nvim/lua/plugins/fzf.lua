@@ -130,7 +130,7 @@ return {
       return self
     end
     function CustomPreviewer:populate_preview_buf(entry_str)
-      entry_str = entry_str:match("([%w!-/:-@[-`{-~]+)$")
+      entry_str = entry_str:match("([%wぁ-んーァ-ヶーｱ-ﾝﾞﾟ一-龠!-/:-@[-`{-~]+)$")
       local tmpbuf = self:get_tmp_buffer()
       local preview_winid = self.win.preview_winid
       local ext = vim.fn.fnamemodify(entry_str, ':e')
