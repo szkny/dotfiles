@@ -166,7 +166,7 @@ return {
 				["C"] = "close_node",
 				-- ['C'] = 'close_all_subnodes',
 				["W"] = "close_all_nodes",
-				--["Z"] = "expand_all_nodes",
+				["Z"] = "expand_all_nodes",
 				["a"] = {
 					"add",
 					-- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
