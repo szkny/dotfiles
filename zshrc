@@ -63,6 +63,7 @@ alias gp='git pull'
 alias lg='lazygit'
 alias gg='lazygit'
 alias drop_caches="sudo sh -c \"echo 3 >'/proc/sys/vm/drop_caches'\""
+alias ssh-select='ssh "$(grep -E "^Host " ~/.ssh/config | awk "{print \$2}" | fzf --height=40% --reverse --prompt="Select SSH Host: ")"'
 
 ## setup for vim
 export EDITOR='nvim'
