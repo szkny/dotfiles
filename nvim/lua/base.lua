@@ -20,6 +20,24 @@ vim.api.nvim_set_var("loaded_tutor_mode_plugin", 1)
 vim.api.nvim_set_var("loaded_zipPlugin", 1)
 vim.api.nvim_set_var("skip_loading_mswin", 1)
 
+
+-- *****************************************************************************
+--   Neovide Setup
+-- *****************************************************************************
+if vim.g.neovide then
+  local alpha = function()
+    return string.format("%x", math.floor((255 * vim.g.transparency) or 0.90))
+  end
+  vim.g.neovide_transparency = 0.90
+  vim.g.neovide_normal_opacity = 0.90
+  vim.g.transparency = 0.0
+  vim.g.neovide_background_color = "#1f232f" .. alpha()
+  vim.g.neovide_show_border = false
+  vim.g.neovide_position_animation_length = 0.50
+  vim.g.neovide_scroll_animation_length = 0.50
+  vim.g.neovide_hide_mouse_when_typing = true
+end
+
 -- *****************************************************************************
 --   Basic Setup
 -- *****************************************************************************

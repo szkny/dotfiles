@@ -1,0 +1,8 @@
+# place this file to %AppData%\neovide\config.toml
+neovim-bin = "$HOME/Project/nvim/squashfs-root/usr/bin/nvim"
+wsl = true
+
+[font]
+normal = ["HackGen Console NFJ"]
+size = 12.0
+
