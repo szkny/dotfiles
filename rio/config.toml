@@ -1,0 +1,51 @@
+# place this file to %AppData%\rio\config.toml
+theme = "Argonaut"
+confirm-before-quit = true
+
+[platform]
+windows.shell.program = "wsl.exe"
+windows.shell.args = ["--cd", "~", "--exec", "/usr/bin/zsh", "-l"]
+
+[fonts]
+family = "HackGen Console NFJ"
+size = 18
+
+[renderer]
+performance = "High"
+
+[editor]
+program = "nvim"
+args = []
+
+[window]
+mode = "Windowed"
+width = 1200
+height = 800
+opacity = 0.7
+blur = true
+decorations = "Enabled"
+windows-corner-preference = "Round"
+# decorations = "Transparent"
+# decorations = "Buttonless"
+
+[navigation]
+mode = "Bookmark"
+clickable = true
+hide-if-single = true
+use-current-path = true
+use-split = true
+
+[title]
+content = "Ubuntu"
+placeholder = "▲"
+
+[cursor]
+shape = "block"
+blinking = false
+blinking-interval = 1000
+
+[bindings]
+keys = [
+  { key = "c", with = "control | shift", action = "Copy" },
+  { key = "v", with = "control | shift", action = "Paste" },
+]
