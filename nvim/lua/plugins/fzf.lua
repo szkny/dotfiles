@@ -262,7 +262,7 @@ return {
     -- Zg
     local ZgPreviewer = require("fzf-lua.previewer.builtin").base:extend()
     function ZgPreviewer:populate_preview_buf(entry_str)
-      local command = ("eza -T --color=always --icons %s; sleep 1000"):format(entry_str)
+      local command = ("eza -T --color=always --icons '%s'; sleep 1000"):format(entry_str)
       local tmpbuf = self:get_tmp_buffer()
       vim.api.nvim_buf_set_option(tmpbuf, "buftype", "nofile")
       vim.api.nvim_buf_set_option(tmpbuf, "bufhidden", "wipe")
@@ -307,23 +307,7 @@ return {
     end
 
     local Zg = function()
-      local cmd = "zoxide query --list --score"
-      local handle = io.popen(cmd)
-      if not handle then return end
-      local result = handle:read("*a")
-      handle:close()
-      local dirs = {}
-      for line in result:gmatch("[^\r\n]+") do
-        local path = line:match("%S+$")
-        if path then
-          table.insert(dirs, path)
-        end
-      end
-      if #dirs == 0 then
-        vim.notify("No directories found", vim.log.levels.WARN)
-        return
-      end
-      require("fzf-lua").fzf_exec(dirs, {
+      require("fzf-lua").fzf_exec("zoxide query --list", {
         prompt = "Zg❯ ",
         previewer = ZgPreviewer,
         actions = {
