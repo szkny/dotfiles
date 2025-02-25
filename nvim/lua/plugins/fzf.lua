@@ -10,11 +10,11 @@ return {
     "FzfLua",
   },
   keys = {
-    { "<C-g>", "<CMD>FzfLua lsp_document_symbols<CR>", mode = "n" },
     { "<C-b>", "<CMD>FzfLua buffers<CR>", mode = "n" },
     { "<Leader>[", function()
       require("fzf-lua").lsp_references({ ignore_current_line = true, includeDeclaration = false })
     end, mode = "n" },
+    { "<Leader>s", "<CMD>FzfLua lsp_document_symbols<CR>", mode = "n" },
     { "<Leader>/", "<CMD>FzfLua lines<CR>", mode = "n" },
     { "<Leader>b/", "<CMD>FzfLua blines<CR>", mode = "n" },
     { "<Leader>m", "<CMD>FzfLua marks<CR>", mode = "n" },
@@ -258,6 +258,87 @@ return {
         },
       })
     end, {})
+
+    -- Zg
+    local ZgPreviewer = require("fzf-lua.previewer.builtin").base:extend()
+    function ZgPreviewer:populate_preview_buf(entry_str)
+      local command = ("eza -T --color=always --icons %s; sleep 1000"):format(entry_str)
+      local tmpbuf = self:get_tmp_buffer()
+      vim.api.nvim_buf_set_option(tmpbuf, "buftype", "nofile")
+      vim.api.nvim_buf_set_option(tmpbuf, "bufhidden", "wipe")
+      vim.api.nvim_buf_call(tmpbuf, function() vim.fn.termopen(command) end)
+      self:set_preview_buf(tmpbuf)
+      self.win:update_scrollbar()
+    end
+
+    function ZgPreviewer:new(o, previewer_opts, fzf_win)
+      ZgPreviewer.super.new(self, o, previewer_opts, fzf_win)
+      setmetatable(self, ZgPreviewer)
+      return self
+    end
+
+    function ZgPreviewer:gen_winopts()
+      local new_winopts = {
+        wrap    = false,
+        number  = false,
+      }
+      return vim.tbl_extend("force", self.winopts, new_winopts)
+    end
+
+    function ZgPreviewer:scroll(direction)
+      local utils = require("fzf-lua.utils")
+      local preview_winid = self.win.preview_winid
+      if preview_winid < 0 or not direction then return end
+      if not vim.api.nvim_win_is_valid(preview_winid) then return end
+      if direction == "reset" then
+        pcall(vim.api.nvim_win_call, preview_winid, function()
+          vim.api.nvim_win_set_cursor(0, { 1, 0 })
+          if self.orig_pos then
+            vim.api.nvim_win_set_cursor(0, self.orig_pos)
+          end
+          utils.zz()
+        end)
+      else
+        local input = direction == "page-down" and "<C-d>" or "<C-u>"
+        vim.cmd("stopinsert")
+        utils.feed_keys_termcodes(([[:noa lua vim.api.nvim_win_call(%d, function() vim.cmd("norm! <C-v>%s") vim.cmd("startinsert") end)<CR>]]):format(tonumber(preview_winid), input))
+      end
+      self.win:update_scrollbar()
+    end
+
+    local Zg = function()
+      local cmd = "zoxide query --list --score"
+      local handle = io.popen(cmd)
+      if not handle then return end
+      local result = handle:read("*a")
+      handle:close()
+      local dirs = {}
+      for line in result:gmatch("[^\r\n]+") do
+        local path = line:match("%S+$")
+        if path then
+          table.insert(dirs, path)
+        end
+      end
+      if #dirs == 0 then
+        vim.notify("No directories found", vim.log.levels.WARN)
+        return
+      end
+      require("fzf-lua").fzf_exec(dirs, {
+        prompt = "Zg❯ ",
+        previewer = ZgPreviewer,
+        actions = {
+          ["default"] = function(selected)
+            if selected and #selected > 0 then
+              local dir = selected[1]
+              vim.cmd("cd " .. vim.fn.fnameescape(dir))
+              vim.notify("Changed directory to: " .. dir, vim.log.levels.INFO)
+            end
+          end,
+        },
+      })
+    end
+    vim.api.nvim_create_user_command("Zg", Zg, {})
+    vim.keymap.set("n", "<C-g>", Zg, { silent = true })
 
     -- Git log
     local GitShowPreviewer = require("fzf-lua.previewer.builtin").base:extend()

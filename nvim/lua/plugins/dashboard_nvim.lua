@@ -103,6 +103,14 @@ return {
             key = "<C-n>",
           },
           {
+            icon = " ",
+            icon_hl = "@variable",
+            desc = "Cd",
+            group = "@property",
+            action = "enew! | Zg",
+            key = "<C-g>",
+          },
+          {
             icon = " ",
             icon_hl = "@variable",
             desc = "Dotfiles",
