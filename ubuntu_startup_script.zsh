@@ -167,6 +167,9 @@ ln -s ~/dotfiles/w3m/keymap ~/.w3m/keymap
 ## git-cz
 npm install -g git-cz
 
+## repomix
+npm install -g repomix
+
 # ## install docker
 # sudo apt-get install -y ca-certificates curl gnupg lsb-release
 # curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg

@@ -122,6 +122,9 @@ ln -s ~/dotfiles/mpv ~/.config/
 # git-cz
 npm install -g git-cz
 
+## repomix
+npm install -g repomix
+
 # sshd
 pkg install -y openssh
 passwd
