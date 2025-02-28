@@ -83,7 +83,35 @@ return {
             icon_hl = "@variable",
             desc = "Files",
             group = "@property",
-            action = "Files",
+            action = function()
+              require("fzf-lua").fzf_exec(
+                "rg --files -uuu -g '!**/{.git,node_modules,.venv,.mypy_cache,__pycache__}/*' -L",
+                {
+                  prompt = "Files❯ ",
+                  previewer = "builtin",
+                  actions = {
+                    ["default"] = function(selected, opts)
+                      require("fzf-lua").actions.file_edit(selected, opts)
+                      vim.cmd("try | bnext | bdelete! | catch | endtry")
+                    end,
+                    ["ctrl-s"] = require("fzf-lua").actions.file_split,
+                    ["ctrl-v"] = require("fzf-lua").actions.file_vsplit,
+                    ["ctrl-t"] = require("fzf-lua").actions.file_tabedit,
+                    ["ctrl-q"] = require("fzf-lua").actions.file_sel_to_qf,
+                  },
+                  fn_transform = function(x)
+                    return require("fzf-lua").make_entry.file(x, {
+                      file_icons = true,
+                      color_icons = true,
+                    })
+                  end,
+                  fzf_opts = {
+                    ["--ansi"] = true,
+                    ["--header"] = "ctrl-s:split, ctrl-v:vsplit, ctrl-t:tabedit, ctrl-q:qf",
+                  }
+                }
+              )
+            end,
             key = "<C-p>",
           },
           {
@@ -91,7 +119,36 @@ return {
             icon_hl = "@variable",
             desc = "Grep",
             group = "@property",
-            action = "Rg",
+            action = function()
+              require("fzf-lua").fzf_exec(
+                "rg --line-number --ignore-case --color=always -- .",
+                {
+                  prompt = "Rg❯ ",
+                  previewer = "builtin",
+                  actions = {
+                    ["default"] = function(selected, opts)
+                      require("fzf-lua").actions.file_edit(selected, opts)
+                      vim.cmd("try | bnext | bdelete! | catch | endtry")
+                    end,
+                    ["ctrl-s"] = require("fzf-lua").actions.file_split,
+                    ["ctrl-v"] = require("fzf-lua").actions.file_vsplit,
+                    ["ctrl-t"] = require("fzf-lua").actions.file_tabedit,
+                    ["ctrl-q"] = require("fzf-lua").actions.file_sel_to_qf,
+                  },
+                  fn_transform = function(x)
+                    x = string.gsub(x, "[ ]+", " ")
+                    return require("fzf-lua").make_entry.file(x, {
+                      file_icons = true,
+                      color_icons = true,
+                    })
+                  end,
+                  fzf_opts = {
+                    ["--ansi"] = true,
+                    ["--header"] = "ctrl-s:split, ctrl-v:vsplit, ctrl-t:tabedit, ctrl-q:qf",
+                  }
+                }
+              )
+            end,
             key = "<C-f>",
           },
           {

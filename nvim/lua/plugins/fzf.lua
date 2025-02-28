@@ -8,6 +8,11 @@ return {
   commit = "b442569",
   cmd = {
     "FzfLua",
+    "Files",
+    "Rg",
+    "Zg",
+    "GitLog",
+    "Icons",
   },
   keys = {
     { "<C-b>", "<CMD>FzfLua buffers<CR>", mode = "n" },
