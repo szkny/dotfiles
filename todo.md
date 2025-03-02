@@ -1,5 +1,7 @@
 # TODO list
 
+- yazi file manager
+  - replace ranger-cli
 - neovim
   - vim-fugitive
     - customise keymaps in Gstatus window
