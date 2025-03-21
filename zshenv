@@ -15,8 +15,8 @@ export FZF_DEFAULT_COMMAND='rg --files -uuu --follow --glob "!**/.git/*"'
 export FZF_CTRL_T_COMMAND='rg --files -uuu --follow --glob "!**/.git/*"'
 export FZF_DEFAULT_OPTS=$(cat <<"EOF"
   --multi
-  --height=90%
-  --layout=reverse
+  --height 40%
+  --layout reverse
   --prompt '∷ '
   --pointer 
   --marker 
