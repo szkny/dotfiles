@@ -7,11 +7,12 @@ return {
     provider = "copilot",  -- AIプロバイダーとしてCopilotを使用
     auto_suggestions_provider = "copilot",
     behaviour = {
-      auto_suggestions = true,      -- 自動提案を有効化
+      auto_suggestions = false,      -- 自動提案を有効化
       auto_set_highlight_group = true,
       auto_set_keymaps = true,     -- キーマップを自動設定
-      auto_apply_diff_after_generation = true,
-      support_paste_from_clipboard = true,
+      auto_apply_diff_after_generation = false,
+      support_paste_from_clipboard = false,
+      minimize_diff = true,
     },
     windows = {
       position = "right",          -- サイドバーを右側に表示
