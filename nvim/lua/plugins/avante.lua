@@ -1,16 +1,34 @@
 return {
   "yetone/avante.nvim",
   event = "VeryLazy",
-  version = false, -- Never set this value to "*"! Never!
+  lazy = false,
+  version = false,
   opts = {
-    provider = "openai",
-    openai = {
-      endpoint = "https://api.openai.com/v1",
-      model = "gpt-4o",
-      timeout = 30000,
-      temperature = 0,
-      max_completion_tokens = 8192,
-      --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+    provider = "copilot",
+    auto_suggestions_provider = "copilot",
+    behaviour = {
+      auto_suggestions = true,
+      auto_set_highlight_group = true,
+      auto_set_keymaps = true,
+      auto_apply_diff_after_generation = true,
+      support_paste_from_clipboard = true,
+    },
+    windows = {
+      position = "right",
+      width = 30,
+      sidebar_header = {
+        align = "center",
+        rounded = false,
+      },
+      ask = {
+        floating = true,
+        start_insert = true,
+        border = "rounded",
+      },
+    },
+    copilot = {
+      model = "claude-3.5-sonnet",
+      max_tokens = 4096,
     },
   },
   build = "make BUILD_FROM_SOURCE=true",
@@ -19,12 +37,10 @@ return {
     "stevearc/dressing.nvim",
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
-    "hrsh7th/nvim-cmp",
-    "ibhagwan/fzf-lua",
     "nvim-tree/nvim-web-devicons",
     "zbirenbaum/copilot.lua",
+    'MeanderingProgrammer/render-markdown.nvim',
     {
-      -- support for image pasting
       "HakonHarnes/img-clip.nvim",
       event = "VeryLazy",
       opts = {
@@ -37,13 +53,6 @@ return {
           use_absolute_path = true,
         },
       },
-    },
-    {
-      'MeanderingProgrammer/render-markdown.nvim',
-      opts = {
-        file_types = { "markdown", "Avante" },
-      },
-      ft = { "markdown", "Avante" },
     },
   },
   config = function(_, opts)

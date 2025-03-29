@@ -2,10 +2,10 @@ return {
   "MeanderingProgrammer/markdown.nvim",
   name = "render-markdown",
   dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
-  ft = "markdown",
+  ft = { "markdown", "Avante" },
   opts = {
     enabled = true,
-    file_types = { "markdown" },
+    file_types = { "markdown", "Avante" },
     render_modes = { "n", "c", "t" },
     heading = {
       -- Turn on / off heading icon & background rendering
