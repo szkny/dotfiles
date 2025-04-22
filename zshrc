@@ -114,6 +114,17 @@ function fzf-command-widget() {
 zle -N fzf-command-widget
 bindkey '^I' fzf-command-widget
 
+# function fzf-history-widget() {
+#   local selected_command=$(history -n 0 | tac | uniq | fzf --height 40% --reverse | sed 's/ *[0-9]* *//')
+#   if [[ -n $selected_command ]]; then
+#     LBUFFER="$LBUFFER$selected_command"
+#     zle reset-prompt
+#   fi
+#   return 0
+# }
+# zle -N fzf-history-widget
+# bindkey '^R' fzf-history-widget
+
 function cdls(){
   \cd $@ && [ $( ls | wc -l ) -lt 20 ] && eza -G --icons
   return 0
