@@ -45,6 +45,7 @@ pip3 install setuptools wheel packaging pyproject_metadata cython meson-python v
 MATHLIB=m LDFLAGS="-lpython3.12" pip3 install --no-build-isolation --no-cache-dir numpy
 LDFLAGS="-lpython3.12" pip3 install --no-build-isolation --no-cache-dir pandas
 pkg install -y matplotlib
+pkg install -y tur-repo python-scipy
 pip3 install poetry
 
 ## python code linter
