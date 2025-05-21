@@ -42,10 +42,9 @@ cp ./HackGen*/HackGenConsoleNF-Regular.ttf ~/.termux/font.ttf
 # python
 pkg install -y python libopenblas libandroid-execinfo patchelf
 pip3 install setuptools wheel packaging pyproject_metadata cython meson-python versioneer
-MATHLIB=m LDFLAGS="-lpython3.12" pip3 install --no-build-isolation --no-cache-dir numpy
-LDFLAGS="-lpython3.12" pip3 install --no-build-isolation --no-cache-dir pandas
-pkg install -y matplotlib
-pkg install -y tur-repo python-scipy
+pkg install -y tur-repo python-numpy python-scipy python-pandas matplotlib
+# MATHLIB=m LDFLAGS="-lpython3.12" pip3 install --no-build-isolation --no-cache-dir numpy
+# LDFLAGS="-lpython3.12" pip3 install --no-build-isolation --no-cache-dir pandas
 pip3 install poetry
 
 ## python code linter
