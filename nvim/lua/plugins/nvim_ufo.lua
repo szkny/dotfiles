@@ -1,5 +1,5 @@
 return {
-	"szkny/nvim-ufo",
+	"kevinhwang91/nvim-ufo",
 	dependencies = { "kevinhwang91/promise-async" },
 	opts = {
 		filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason", "toggleterm" },
