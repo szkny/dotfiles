@@ -3,6 +3,6 @@ neovim-bin = "$HOME/Project/nvim/squashfs-root/usr/bin/nvim"
 wsl = true
 
 [font]
-normal = ["HackGen Console NFJ"]
+normal = ["HackGen Console NF"]
 size = 12.0
 

@@ -28,6 +28,7 @@ if vim.g.neovide then
   local alpha = function()
     return string.format("%x", math.floor((255 * vim.g.transparency) or 0.90))
   end
+  vim.o.guifont = "HackGen Console NF"
   vim.g.neovide_transparency = 0.90
   vim.g.neovide_normal_opacity = 0.90
   vim.g.transparency = 0.0

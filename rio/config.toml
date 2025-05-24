@@ -7,7 +7,7 @@ windows.shell.program = "wsl.exe"
 windows.shell.args = ["--cd", "~", "--exec", "/usr/bin/zsh", "-l"]
 
 [fonts]
-family = "HackGen Console NFJ"
+family = "HackGen Console NF"
 size = 18
 
 [renderer]
