@@ -1,5 +1,8 @@
 # TODO list
 
+- zsh_codex
+  - installation
+  - basic setup
 - yazi file manager
   - replace ranger-cli
 - neovim
