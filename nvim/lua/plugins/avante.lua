@@ -27,9 +27,16 @@ return {
         border = "rounded",        -- 角丸のボーダー
       },
     },
-    copilot = {
-      model = "claude-3.5-sonnet",  -- 使用するAIモデル
-      max_tokens = 4096,            -- 最大トークン数
+    providers = {
+      copilot = {
+        enabled = true,              -- Copilotを有効化
+        auto_accept = true,          -- 自動的に提案を受け入れる
+        auto_accept_timeout = 0.5,   -- 提案を自動的に受け入れるまでのタイムアウト
+        model = "claude-3.5-sonnet", -- 使用するAIモデル
+        extra_request_body = {
+          max_tokens = 4096,         -- 最大トークン数
+        },
+      },
     },
   },
   build = "make BUILD_FROM_SOURCE=true",  -- ソースからビルド
