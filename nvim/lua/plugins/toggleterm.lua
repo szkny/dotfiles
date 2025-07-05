@@ -7,6 +7,7 @@ return {
   keys = {
     { "t", "<CMD>ToggleTerm<CR>", mode = "n" },
     { "<leader>gg", "<CMD>LazyGit<CR>", mode = "n" },
+    { "<leader>gm", "<CMD>Gemini<CR>", mode = "n" },
   },
   event = "VeryLazy",
   version = "*",
@@ -35,8 +36,16 @@ return {
       hidden = true,
       direction = "float",
     })
+    local gemini = Terminal:new({
+      cmd = "gemini",
+      hidden = true,
+      direction = "float",
+    })
     vim.api.nvim_create_user_command("LazyGit", function()
       lazygit:toggle()
+    end, {})
+    vim.api.nvim_create_user_command("Gemini", function()
+      gemini:toggle()
     end, {})
     vim.api.nvim_create_user_command("Viu", function(opts)
       local file = opts.fargs[1]
