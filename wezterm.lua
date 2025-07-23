@@ -11,6 +11,7 @@ config.default_prog = { "wsl.exe", "--cd", "~", "--exec", "/usr/bin/zsh", "-l" }
 
 -- font
 config.font = wezterm.font("HackGen Console NF", { weight = "Regular", stretch = "Normal", italic = false })
+-- config.font = wezterm.font("PlemolJP35 Console NF", { weight = "Regular", stretch = "Normal", italic = false })
 config.font_size = 11.0
 config.adjust_window_size_when_changing_font_size = false
 
