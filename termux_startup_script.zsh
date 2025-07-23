@@ -38,6 +38,7 @@ cd ~/Project/font
 wget https://github.com/yuru7/HackGen/releases/download/v2.9.0/HackGen_NF_v2.9.0.zip
 unzip ./HackGen*.zip
 cp ./HackGen*/HackGenConsoleNF-Regular.ttf ~/.termux/font.ttf
+cd ~
 
 # python
 pkg install -y python libopenblas libandroid-execinfo patchelf
@@ -128,6 +129,12 @@ npm install -g repomix
 # sshd
 pkg install -y openssh
 passwd
+
+## tesseract
+pkg install -y tesseract
+cd /data/data/com.termux/files/usr/share/tessdata
+wget https://github.com/tesseract-ocr/tessdata/raw/main/jpn.traineddata
+cd ~
 
 # GUI env
 pkg install -y x11-repo termux-x11-nightly xfce4 xfce4-goodies
