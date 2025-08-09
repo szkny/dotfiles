@@ -43,7 +43,7 @@ cd ~
 # python
 pkg install -y python libopenblas libandroid-execinfo patchelf
 pip3 install setuptools wheel packaging pyproject_metadata cython meson-python versioneer
-pkg install -y tur-repo python-numpy python-scipy python-pandas matplotlib
+pkg install -y tur-repo python-numpy python-scipy python-pandas matplotlib opencv-python
 # MATHLIB=m LDFLAGS="-lpython3.12" pip3 install --no-build-isolation --no-cache-dir numpy
 # LDFLAGS="-lpython3.12" pip3 install --no-build-isolation --no-cache-dir pandas
 pip3 install --no-build-isolation scikit-learn
@@ -136,6 +136,7 @@ pkg install -y tesseract
 cd /data/data/com.termux/files/usr/share/tessdata
 wget https://github.com/tesseract-ocr/tessdata/raw/main/jpn.traineddata
 cd ~
+pip install pytesseract
 
 # GUI env
 pkg install -y x11-repo termux-x11-nightly xfce4 xfce4-goodies
