@@ -47,6 +47,7 @@ pkg install -y tur-repo python-numpy python-scipy python-pandas matplotlib openc
 # MATHLIB=m LDFLAGS="-lpython3.12" pip3 install --no-build-isolation --no-cache-dir numpy
 # LDFLAGS="-lpython3.12" pip3 install --no-build-isolation --no-cache-dir pandas
 pip3 install --no-build-isolation scikit-learn
+pip3 install lightgbm
 pip3 install poetry
 
 ## python code linter
