@@ -19,7 +19,7 @@ return {
         python_path = vim.g.python3_host_prog
         require("noice").redirect(function()
           local notify = require("notify")
-          notify("debugpy not found for " .. python_path, "warn", { title = "nvim-dap-python" })
+          -- notify("debugpy not found for " .. python_path, "warn", { title = "nvim-dap-python" })
         end)
       end
       require("dap-python").setup(python_path)
