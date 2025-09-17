@@ -263,7 +263,7 @@ return {
               callback = function()
                 if vim.bo.filetype ~= "lua" then
                   if formatter_on_save then
-                    vim.lsp.buf.format({ async = false })
+                    vim.lsp.buf.format({ async = false, timeout_ms = 5000 })
                   end
                 end
               end,
@@ -275,7 +275,7 @@ return {
 
       -- User command
       vim.api.nvim_create_user_command("Format", function()
-        vim.lsp.buf.format({ async = false })
+        vim.lsp.buf.format({ async = false, timeout_ms = 5000 })
       end, {})
       vim.api.nvim_create_user_command("FormatterEnable", function()
         formatter_on_save = true
