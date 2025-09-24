@@ -122,6 +122,9 @@ pkg install -y mpv
 pip install yewtube
 ln -s ~/dotfiles/mpv ~/.config/
 
+# gemini-cli
+npm install -g @google/gemini-cli --ignore-scripts
+
 # git-cz
 npm install -g git-cz
 
