@@ -37,6 +37,10 @@ Host sleep-szknypc
     RequestTTY no
     RemoteCommand source ~/.zshrc && rundll32.exe powrprof.dll,SetSuspendState Sleep > /dev/null 2>&1
 
+Host reboot-szknypc
+    RequestTTY no
+    RemoteCommand source ~/.zshrc && powershell.exe -Command "Restart-Computer" > /dev/null 2>&1
+
 Host jupyterlab
     localforward 8888 localhost:8888
     RequestTTY force
