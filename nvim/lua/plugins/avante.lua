@@ -3,6 +3,7 @@ return {
   event = "VeryLazy",
   lazy = false,
   version = false,
+  commit = "ab6fb1c",
   opts = {
     provider = "copilot",  -- AIプロバイダーとしてCopilotを使用
     auto_suggestions_provider = "copilot",
