@@ -1,7 +1,7 @@
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never
 gui:
   sidePanelWidth: 0.25
   showIcons: true
@@ -17,5 +17,5 @@ os:
 customCommands:
   - command: git cz
     context: files
-    subprocess: true
     key: C
+    output: terminal
