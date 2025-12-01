@@ -179,6 +179,7 @@ return {
   {
     "zbirenbaum/copilot.lua",
     event = { "InsertEnter", "LspAttach" },
+    commit = "af15584",
     fix_pairs = true,
     config = function()
       require("copilot").setup({

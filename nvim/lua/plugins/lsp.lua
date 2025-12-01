@@ -229,6 +229,7 @@ return {
       "nvimtools/none-ls.nvim",
       "williamboman/mason.nvim",
     },
+    commit = "ae0c5fa",
     event = "VeryLazy",
     opts = {
       ensure_installed = {
