@@ -311,6 +311,46 @@ export LC_ALL=$LANGUAGE
 ## PATHs
 export PATH="$PATH:$HOME/Project/bin"
 
+## fzf setup
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files -uuu --follow --glob "!**/.git/*"'
+export FZF_CTRL_T_COMMAND='rg --files -uuu --follow --glob "!**/.git/*"'
+export FZF_DEFAULT_OPTS=$(cat <<"EOF"
+  --multi
+  --height=90%
+  --layout=reverse
+  --prompt '∷ '
+  --pointer 
+  --marker 
+  --preview '
+      [ -f {} ] \
+      && bat --color=always --style=numbers {} \
+      || eza -T {} -I node_modules
+  '
+  --preview-window 'hidden,wrap,down,80%'
+  --bind 'ctrl-/:toggle-preview,ctrl-j:preview-down,ctrl-k:preview-up'
+  --select-1
+  --exit-0
+EOF
+)
+export FZF_CTRL_T_OPTS=$(cat <<"EOF"
+--preview '
+  [ -f {} ] \
+  && bat --color=always --style=numbers {} \
+  || eza -T {} -I node_modules
+' 
+EOF
+)
+export FZF_CTRL_R_OPTS=$(cat <<"EOF"
+  --preview '
+    echo {} \
+    | awk "{ sub(/\s*[0-9]*?\s*/, \"\"); gsub(/\\\\n/, \"\\n\"); print }" \
+    | bat --color=always --language=sh --style=plain
+  ' 
+  --preview-window 'hidden,wrap,down,3'
+EOF
+)
+
 ## mise
 eval "$(~/.local/bin/mise activate zsh)"
 
