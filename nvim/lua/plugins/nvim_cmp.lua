@@ -7,7 +7,12 @@ return {
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
-      "rinx/cmp-skkeleton",
+      {
+        "rinx/cmp-skkeleton",
+        cond = function ()
+          return vim.fn.executable("deno") == 1 and vim.fn.has("termux") == 0
+        end,
+      },
       "f3fora/cmp-spell",
       "saadparwaiz1/cmp_luasnip",
       "L3MON4D3/LuaSnip",
@@ -82,7 +87,7 @@ return {
           }
         },
       }
-      if vim.fn.executable("deno") == 1 then
+      if vim.fn.executable("deno") == 1 and vim.fn.has("termux") == 0 then
         table.insert(sources, 4, { name = "skkeleton" })
       end
       cmp.setup({
@@ -150,7 +155,7 @@ return {
       sources = {
           { name = "buffer" },
       }
-      if vim.fn.executable("deno") == 1 then
+      if vim.fn.executable("deno") == 1 and vim.fn.has("termux") == 0 then
         table.insert(sources, { name = "skkeleton" })
       end
       cmp.setup.cmdline({ "/", "?" }, {
@@ -161,7 +166,7 @@ return {
           { name = "path" },
           { name = "cmdline" },
       }
-      if vim.fn.executable("deno") == 1 then
+      if vim.fn.executable("deno") == 1 and vim.fn.has("termux") == 0 then
         table.insert(sources, { name = "skkeleton" })
       end
       cmp.setup.cmdline(":", {
@@ -180,6 +185,9 @@ return {
     "zbirenbaum/copilot.lua",
     event = { "InsertEnter", "LspAttach" },
     commit = "af15584",
+    cond = function ()
+      return vim.fn.executable("deno") == 1 and vim.fn.has("termux") == 0
+    end,
     fix_pairs = true,
     config = function()
       require("copilot").setup({
@@ -192,6 +200,9 @@ return {
   {
     "zbirenbaum/copilot-cmp",
     dependencies = { "zbirenbaum/copilot.lua" },
+    cond = function ()
+      return vim.fn.executable("deno") == 1 and vim.fn.has("termux") == 0
+    end,
     config = function()
       require("copilot_cmp").setup()
       vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
