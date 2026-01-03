@@ -196,6 +196,7 @@ return {
   },
   {
     "zbirenbaum/copilot-cmp",
+    commit = "15fc12a",
     dependencies = { "zbirenbaum/copilot.lua" },
     config = function()
       require("copilot_cmp").setup()
