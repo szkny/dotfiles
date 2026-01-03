@@ -75,7 +75,10 @@ return {
         syntax_limit_b = 1024 * 1024 * 0.5,
         limit_b = 1024 * 1024 * 0.5,
         -- limit_b = 1024 * 1024 * 10,
-        treesitter = { enable = true, disable = { "zsh" } },
+        treesitter = {
+          enable = true,
+          disable = { "zsh", "text" }
+        },
         toggle_behavior = "default",
       },
     },
