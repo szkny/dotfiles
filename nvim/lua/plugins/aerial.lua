@@ -5,6 +5,7 @@ return {
     "neovim/nvim-lspconfig",
     "nvim-treesitter/nvim-treesitter",
   },
+  commit = "c7cbbad",
   cmd = { "AerialToggle" },
   keys = {
     { "<C-t>", "<CMD>AerialToggle!<CR>", mode = "n" },
