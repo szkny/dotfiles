@@ -42,6 +42,12 @@ return {
 		},
 	},
 	config = function(_, opts)
-		require("nvim-treesitter.configs").setup(opts)
+    require("nvim-treesitter.configs").setup(opts)
+    -- Treat zsh files as bash for treesitter
+    vim.filetype.add({
+      extension = {
+        zsh = "bash",
+      },
+    })
 	end,
 }
