@@ -185,9 +185,6 @@ return {
     "zbirenbaum/copilot.lua",
     event = { "InsertEnter", "LspAttach" },
     commit = "af15584",
-    cond = function ()
-      return vim.fn.executable("deno") == 1 and vim.fn.has("termux") == 0
-    end,
     fix_pairs = true,
     config = function()
       require("copilot").setup({
@@ -200,9 +197,6 @@ return {
   {
     "zbirenbaum/copilot-cmp",
     dependencies = { "zbirenbaum/copilot.lua" },
-    cond = function ()
-      return vim.fn.executable("deno") == 1 and vim.fn.has("termux") == 0
-    end,
     config = function()
       require("copilot_cmp").setup()
       vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
