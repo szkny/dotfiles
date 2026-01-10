@@ -21,7 +21,13 @@ return {
       desc = "Sidekick Toggle Gemini",
     },
     {
-      "<leader>gsp",
+      "<leader>av",
+      function() require("sidekick.cli").send({ msg = "{this}\n{selection}" }) end,
+      mode = { "x" },
+      desc = "Send Visual Selection",
+    },
+    {
+      "<leader>ap",
       function() require("sidekick.cli").prompt() end,
       desc = "Sidekick Select Prompt",
     },
