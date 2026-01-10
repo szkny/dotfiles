@@ -111,7 +111,7 @@ echo 'install neovim..'
 # sudo apt-get install -y neovim
 mkdir -p ~/Project/nvim
 cd ~/Project/nvim
-wget https://github.com/neovim/neovim/releases/download/v0.10.3/nvim.appimage
+wget https://github.com/neovim/neovim/releases/download/v0.11.4/nvim.appimage
 chmod +x ./nvim.appimage
 ./nvim.appimage --appimage-extract
 sudo ln -s ~/Project/nvim/squashfs-root/usr/bin/nvim /usr/local/bin/nvim
