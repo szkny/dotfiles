@@ -24,12 +24,12 @@ return {
       "<leader>av",
       function() require("sidekick.cli").send({ msg = "{this}\n{selection}" }) end,
       mode = { "x" },
-      desc = "Ask Visual Selection",
+      desc = "Ask about Visual Selection to Sidekick",
     },
     {
       "<leader>ap",
       function() require("sidekick.cli").prompt() end,
-      desc = "Ask by Selection Prompt",
+      desc = "Ask from Selection Prompt to Sidekick",
     },
   },
   opts = {
