@@ -1,25 +1,39 @@
-vim.cmd([[
-    fun! LualineSkkeletonMode() abort
-        try
-            let l:current_mode = mode()
-            if (l:current_mode=='i' || l:current_mode=='c') && exists("*skkeleton#is_enabled") && skkeleton#is_enabled()
-                let l:mode_dict = #{
-                  \ hira:    'あ',
-                  \ kata:    'ア',
-                  \ hankata: '_ｱ',
-                  \ zenkaku: 'Ａ',
-                  \ abbrev:  'abbr',
-                  \ }
-                let l:mode = mode_dict[skkeleton#mode()]
-                return 'IME:'.l:mode
-            else
-                return ''
-            endif
-        catch
+local function LualineSkkeletonMode()
+    local success, result = pcall(function()
+        local current_mode = vim.fn.mode()
+        if (current_mode ~= 'i' and current_mode ~= 'c') then
             return ''
-        endtry
-    endf
-]])
+        end
+
+        if vim.fn.exists("*skkeleton#is_enabled") == 0 or vim.fn['skkeleton#is_enabled']() == 0 then
+            return ''
+        end
+
+        local mode_dict = {
+            hira = 'あ',
+            kata = 'ア',
+            hankata = '_ｱ',
+            zenkaku = 'Ａ',
+            abbrev = 'abbr',
+        }
+
+        local skk_mode = vim.fn['skkeleton#mode']()
+        local display_mode = mode_dict[skk_mode]
+
+        if display_mode then
+            return 'IME:' .. display_mode
+        end
+
+        return ''
+    end)
+
+    if success and result then
+        return result
+    else
+        return ''
+    end
+end
+
 vim.g.lualine_diagnostics_source = "nvim_diagnostic"
 local my_custom_theme = {
 	normal = {
@@ -127,7 +141,7 @@ return {
 		sections = {
 			lualine_a = {
 				{ "mode", separator = { left = "", right = "" } },
-				{ "LualineSkkeletonMode" },
+				{ LualineSkkeletonMode },
 			},
 			lualine_b = { "branch", lualine_diff },
 			lualine_c = {
