@@ -67,7 +67,7 @@ return {
   config = function(_, opts)
     require("avante_lib").load()    -- アヴァンテライブラリの読み込み
     require("avante").setup(opts)   -- アヴァンテの設定を適用
-    vim.keymap.set("n", "<leader>a", "<cmd>AvanteToggle<CR>")
+    -- vim.keymap.set("n", "<leader>a", "<cmd>AvanteToggle<CR>")
   end,
 }
 
