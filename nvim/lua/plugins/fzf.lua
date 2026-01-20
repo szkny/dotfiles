@@ -411,6 +411,6 @@ return {
     end
     vim.api.nvim_create_user_command("GitLog", GitLog, {})
     vim.api.nvim_create_user_command("GitFileHistory", function() vim.cmd("DiffviewFileHistory") end, {})
-    vim.keymap.set("n", "<Leader>gl", GitLog, { silent = true })
+    vim.keymap.set("n", "<Leader>gl", "<Cmd>GitLog<CR>", { silent = true })
   end,
 }
