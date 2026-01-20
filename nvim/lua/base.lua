@@ -83,10 +83,11 @@ if vim.fn.has("wsl") == 1 then
     -- command = ":call system('clip.exe', @\")",
   })
 elseif vim.fn.has("termux") == 1 then
-  vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-    pattern = "*",
-    command = ":call system('termux-clipboard-set', @\")",
-  })
+  vim.keymap.set(
+    "v", "y",
+    "y<CMD>call system('termux-clipboard-set', @\")<CR>",
+    { noremap = true, silent = true }
+  )
 else
   vim.opt.clipboard:append({ unnamedplus = true })
 end
