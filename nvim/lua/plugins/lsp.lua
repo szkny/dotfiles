@@ -251,13 +251,16 @@ return {
       local formatter_on_save = true
       require("mason-null-ls").setup(opts)
       local null_ls = require("null-ls")
+      local sources = {
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.black,
+      }
+      if not vim.fn.has("termux") == 1 then
+        table.insert(sources, null_ls.builtins.diagnostics.mypy)
+      end
       null_ls.setup({
-        sources = {
-          null_ls.builtins.formatting.stylua,
-          null_ls.builtins.formatting.prettier,
-          null_ls.builtins.formatting.black,
-          null_ls.builtins.diagnostics.mypy,
-        },
+        sources = sources,
         on_attach = function(client, bufnr)
           if client.supports_method("textDocument/formatting") then
             vim.api.nvim_create_autocmd("BufWritePre", {
