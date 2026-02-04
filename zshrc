@@ -169,6 +169,16 @@ function kill_process() {
     fi
 }
 
+function ai() {
+  if [ -t 0 ]; then
+    # パイプなし（引数）
+    gemini "$*" 2>/dev/null
+  else
+    # パイプあり（stdin）
+    cat | gemini "$*" 2>/dev/null
+  fi
+}
+
 function google() { # Goolge Search by Google Chrome
     local str opt
     if [ $# != 0 ]; then
