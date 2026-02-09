@@ -63,7 +63,6 @@ alias gp='git pull'
 alias lg='lazygit'
 alias gg='lazygit'
 alias drop_caches="sudo sh -c \"echo 3 >'/proc/sys/vm/drop_caches'\""
-alias ssh-select='ssh "$(grep -E "^Host " ~/.ssh/config | awk "{print \$2}" | fzf --height=40% --reverse --prompt="Select SSH Host: ")"'
 
 ## setup for vim
 export EDITOR='nvim'
@@ -97,6 +96,7 @@ bindkey -s '^H' '^uranger-cd\n'
 # bindkey -s '^H' '^ucd **\t'
 bindkey -s '^F' '^ufdghq\n'
 bindkey -s '^G' '^uzg\n'
+stty -ixon; bindkey -s '^S' '^ussh-select\n'
 
 ## functions
 function fzf-command-widget() {
@@ -235,6 +235,14 @@ function dotfiles(){
 function zg () {
   local dir=$(zoxide query --list --score | fzf --height 40% --no-sort | sed 's/^\ *[0-9.]\+ //')
   [ "${dir}" != "" ] && cd "${dir}" && [ -d .git ] && checked_git_pull
+  return 0
+}
+
+function ssh-select(){
+  local selected_host=$(grep -E "^Host " ~/.ssh/config | awk '{print $2}' | fzf --height=40% --reverse --prompt="Select SSH Host: ")
+  if [ -n "$selected_host" ]; then
+    ssh "$selected_host"
+  fi
   return 0
 }
 
