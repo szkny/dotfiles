@@ -96,7 +96,9 @@ bindkey -s '^H' '^uranger-cd\n'
 # bindkey -s '^H' '^ucd **\t'
 bindkey -s '^F' '^ufdghq\n'
 bindkey -s '^G' '^uzg\n'
-stty -ixon; bindkey -s '^S' '^ussh-select\n'
+if [[ -o interactive ]]; then
+  stty -ixon; bindkey -s '^S' '^ussh-select\n'
+fi
 
 ## functions
 function fzf-command-widget() {
