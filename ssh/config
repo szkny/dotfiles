@@ -3,7 +3,7 @@ Host *
   StrictHostKeyChecking no
   UserKnownHostsFile=/dev/null
   ServerAliveInterval 60
-  ServerAliveCountMax 300
+  ServerAliveCountMax 3
   TCPKeepAlive yes
   LogLevel QUIET
 
