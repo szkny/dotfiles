@@ -13,6 +13,12 @@ return {
   version = "*",
   config = function()
     local FloatBorderHl = vim.api.nvim_get_hl(0, { name = "FloatBorder" })
+    local function project_session()
+      local cwd = vim.fn.getcwd()
+      local hash = vim.fn.sha256(cwd):sub(1, 8)
+      local session_name = "toggleterm-" .. hash
+      return "tmux -L toggleterm -f ~/dotfiles/tmux-minimal.conf new-session -A -s " .. session_name
+    end
     require("toggleterm").setup({
       -- direction = "float",
       direction = "horizontal",
@@ -29,6 +35,8 @@ return {
       on_open = function()
         vim.cmd([[startinsert]])
       end,
+      close_on_exit = false,
+      shell = project_session(),
     })
     local Terminal = require("toggleterm.terminal").Terminal
     local lazygit = Terminal:new({
