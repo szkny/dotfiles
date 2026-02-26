@@ -34,7 +34,7 @@ return {
   },
   opts = {
     nes = {
-      enabled = function(buf)
+      enabled = function(_)
         return vim.g.sidekick_nes ~= false and vim.b.sidekick_nes ~= false
       end,
       debounce = 100,
