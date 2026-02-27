@@ -5,7 +5,7 @@ local M = {}
 local term_win = 0
 local term_buf = nil
 local scroll_buf = nil
-local closing = false
+local switching = false
 
 -- プロジェクトごとに一意なセッション名
 local function project_session_name()
@@ -67,6 +67,7 @@ function M.close_tmux()
   term_win = 0
   term_buf = nil
   scroll_buf = nil
+  switching = false
 end
 
 function M.toggle_tmux()
@@ -93,16 +94,21 @@ local function get_scrollback()
 end
 
 local function is_scrollback_open()
-  return scroll_buf
-    and type(scroll_buf) == "number"
-    and vim.api.nvim_buf_is_valid(scroll_buf)
-    and term_win ~= 0
-    and vim.api.nvim_win_is_valid(term_win)
-    and vim.api.nvim_win_get_buf(term_win) == scroll_buf
+  if not scroll_buf or not vim.api.nvim_buf_is_valid(scroll_buf) then
+    return false
+  end
+  if not term_win or term_win == 0 or not vim.api.nvim_win_is_valid(term_win) then
+    return false
+  end
+  return vim.api.nvim_win_get_buf(term_win) == scroll_buf
 end
 
 -- scrollback表示
 function M.open_scrollback()
+  if switching or is_scrollback_open() then
+    return
+  end
+
   if not term_buf or not vim.api.nvim_buf_is_valid(term_buf) then
     return
   end
@@ -112,66 +118,81 @@ function M.open_scrollback()
     return
   end
 
-  scroll_buf = vim.api.nvim_create_buf(false, true)
-  vim.bo[scroll_buf].bufhidden = "hide"
+  switching = true
+ 
+  vim.schedule(function()
+    pcall(function()
+      if not term_win or not vim.api.nvim_win_is_valid(term_win) then
+        return
+      end
 
-  vim.api.nvim_win_set_buf(term_win, scroll_buf)
-  apply_terminal_window_style(term_win)
+      scroll_buf = vim.api.nvim_create_buf(false, true)
+      vim.bo[scroll_buf].bufhidden = "wipe"
 
-  local chan = vim.api.nvim_open_term(scroll_buf, {})
-  vim.api.nvim_chan_send(chan, text)
+      vim.api.nvim_win_set_buf(term_win, scroll_buf)
+      apply_terminal_window_style(term_win)
 
-  -- redraw hack
-  vim.bo[scroll_buf].scrollback = 9999
-  vim.bo[scroll_buf].scrollback = 9998
+      local chan = vim.api.nvim_open_term(scroll_buf, {})
+      vim.api.nvim_chan_send(chan, text)
 
-  -- 最下部へスクロール
-  local height = vim.api.nvim_win_get_height(term_win)
-  local lines = vim.api.nvim_buf_line_count(scroll_buf)
-  local topline = math.max(1, lines - height + 1)
+      -- redraw hack
+      vim.bo[scroll_buf].scrollback = 9999
+      vim.bo[scroll_buf].scrollback = 9998
 
-  vim.api.nvim_win_call(term_win, function()
-    vim.fn.winrestview({
-      topline = topline,
-      lnum = lines,
-      col = 0,
-    })
+      -- 最下部へスクロール
+      local height = vim.api.nvim_win_get_height(term_win)
+      local lines = vim.api.nvim_buf_line_count(scroll_buf)
+      local topline = math.max(1, lines - height + 1)
+
+      vim.api.nvim_win_call(term_win, function()
+        vim.fn.winrestview({
+          topline = topline,
+          lnum = lines,
+          col = 0,
+        })
+      end)
+    end)
+    switching = false
   end)
-end
-
-local function close_scrollback()
-  if not is_scrollback_open() then
-    return
-  end
-  vim.api.nvim_win_set_buf(term_win, term_buf)
 end
 
 -- Sidekick式 update ロジック
 local function update(opts)
   opts = opts or {}
 
-  if not term_buf or not vim.api.nvim_buf_is_valid(term_buf) then
+  if switching or not term_buf or not vim.api.nvim_buf_is_valid(term_buf) then
     return
   end
 
-  local mode = vim.fn.mode(true)
+  local is_focused = (vim.api.nvim_get_current_win() == term_win)
+  if not is_focused then
+    return
+  end
+
+  local mode = vim.api.nvim_get_mode().mode
   local is_open = is_scrollback_open()
-  local is_focused = vim.api.nvim_get_current_win() == term_win
 
   if is_open then
-    if mode == "t" and is_focused then
-      closing = true
+    -- スクロールバック中：ターミナルモード(t)に入ろうとしたら戻す
+    if mode:sub(1,1) == "t" then
+      switching = true
+      -- クラッシュを防ぐため、一度挿入モードを抜けてからスケジュールで切り替える
       vim.cmd.stopinsert()
       vim.schedule(function()
-        close_scrollback()
-        vim.cmd.startinsert()
-        closing = false
+        pcall(function()
+          if term_win and vim.api.nvim_win_is_valid(term_win) then
+            vim.api.nvim_win_set_buf(term_win, term_buf)
+            scroll_buf = nil
+            vim.cmd.startinsert()
+            vim.cmd.redraw()
+          end
+        end)
+        switching = false
       end)
     end
-  elseif not closing then
-    if mode == "nt" and is_focused then
-      M.open_scrollback()
-    elseif opts.open then
+  else
+    -- 通常：ノーマルモード(nt)に入ったらスクロールバックを開く
+    if mode == "nt" or opts.open then
       M.open_scrollback()
     end
   end
@@ -179,73 +200,30 @@ end
 
 -- autocmd
 local group = vim.api.nvim_create_augroup("TmuxToggleScrollback", { clear = true })
-vim.api.nvim_create_autocmd("TermEnter", {
+vim.api.nvim_create_autocmd({ "TermEnter", "TermLeave", "WinEnter" }, {
   group = group,
   callback = function(args)
-    if vim.bo[args.buf].buftype ~= "terminal" then
+    if args.buf ~= term_buf and args.buf ~= scroll_buf then
       return
     end
-
-    if args.buf ~= term_buf then
-      return
-    end
-    -- print("term_buf", term_buf)
-    -- print("args.buf", args.buf)
-    -- print("buftype", vim.bo[args.buf].buftype)
-
-    update({ reason = "TermEnter" })
+    update()
   end,
 })
 
-vim.api.nvim_create_autocmd("TermLeave", {
-  group = group,
-  callback = function(args)
-    if vim.bo[args.buf].buftype ~= "terminal" then
-      return
-    end
-
-    if args.buf ~= term_buf then
-      return
-    end
-
-    vim.schedule(function()
-      update({ reason = "TermLeave" })
-    end)
-  end,
-})
-
-vim.api.nvim_create_autocmd("WinEnter", {
-  group = group,
-  callback = function(args)
-    if vim.bo[args.buf].buftype ~= "terminal" then
-      return
-    end
-
-    if args.buf ~= term_buf then
-      return
-    end
-
-    vim.schedule(function()
-      update({ reason = "WinEnter" })
-    end)
-  end,
-})
-
--- マウスイベント対応
+-- マウスイベント
 local MOUSE_SCROLL_UP = vim.keycode("<ScrollWheelUp>")
 local MOUSE_SCROLL_DOWN = vim.keycode("<ScrollWheelDown>")
-local MOUSE_CLICK = vim.keycode("<LeftMouse>")
 
 vim.on_key(function(key, typed)
   key = typed or key
-  if key ~= MOUSE_SCROLL_UP
-    and key ~= MOUSE_SCROLL_DOWN
-    and key ~= MOUSE_CLICK
-  then
+  if not term_win or term_win == 0 or not vim.api.nvim_win_is_valid(term_win) then
+    return
+  end
+  if vim.api.nvim_get_current_win() ~= term_win then
     return
   end
 
-  if vim.api.nvim_get_current_win() == term_win then
+  if (key == MOUSE_SCROLL_UP or key == MOUSE_SCROLL_DOWN) and not is_scrollback_open() then
     update({ open = true })
   end
 end)

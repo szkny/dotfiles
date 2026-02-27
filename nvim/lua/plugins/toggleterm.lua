@@ -5,7 +5,7 @@ return {
     "ToggleTermToggleAll",
   },
   keys = {
-    { "t", "<CMD>ToggleTerm<CR>", mode = "n" },
+    -- { "t", "<CMD>ToggleTerm<CR>", mode = "n" },
     { "<leader>gg", "<CMD>LazyGit<CR>", mode = "n" },
     -- { "<leader>gm", "<CMD>Gemini<CR>", mode = "n" },
   },
