@@ -193,4 +193,8 @@ keymap("n", "ｄｄ", "dd", opts)
 keymap("n", "ｙｙ", "yy", opts)
 
 -- for My Commands
-keymap("n", "<leader>t", "<CMD>Term<CR>i", opts)
+-- keymap("n", "<leader>t", "<CMD>Term<CR>i", opts)
+local tmux_toggle = require("tmux_toggle")
+-- vim.keymap.set("n", "t", function()
+--   tmux_toggle.toggle_tmux()
+-- end)
