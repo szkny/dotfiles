@@ -133,7 +133,7 @@ function M.open_scrollback()
   local win_row = vim.fn.winline()
   -- virtcol('.') は表示上の列（1-indexed）。
   -- ターミナルでは、カーソルが「次の入力位置」にあるため、それを引き継ぐ。
-  local win_col = vim.fn.virtcol('.') + 2
+  local win_col = vim.fn.virtcol('.')
   local text = get_scrollback()
 
   if not text or text == "" then
@@ -168,7 +168,7 @@ function M.open_scrollback()
       local topline = math.max(1, total_lines - win_height + 1)
 
       -- nvim_win_set_cursor は 0-indexed column
-      local target_col = math.max(0, win_col - 1)
+      local target_col = math.max(0, win_col + 1)
 
       vim.api.nvim_win_call(term_win, function()
         vim.fn.winrestview({
