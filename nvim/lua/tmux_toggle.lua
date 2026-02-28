@@ -36,38 +36,55 @@ end
 
 -- tmux 起動
 function M.open_tmux()
+  if switching then return end
   if term_win ~= 0 and vim.api.nvim_win_is_valid(term_win) then
     vim.api.nvim_set_current_win(term_win)
     return
   end
 
-  vim.cmd("wincmd t")
-  vim.cmd("botright split")
-  vim.cmd("resize 20")
+  switching = true
 
-  term_win = vim.api.nvim_get_current_win()
+  pcall(function()
+    vim.cmd("wincmd t")
+    vim.cmd("botright split")
+    vim.cmd("resize 20")
 
-  term_buf = vim.api.nvim_create_buf(false, true)
-  vim.api.nvim_win_set_buf(term_win, term_buf)
-  apply_terminal_window_style(term_win)
+    term_win = vim.api.nvim_get_current_win()
+    term_buf = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_win_set_buf(term_win, term_buf)
+    apply_terminal_window_style(term_win)
 
-  vim.fn.termopen(
-    "tmux -L tmux-toggle -f ~/dotfiles/tmux-minimal.conf new-session -A -s "
-      .. project_session_name()
-  )
+    vim.fn.termopen(
+      "tmux -L tmux-toggle -f ~/dotfiles/tmux-minimal.conf new-session -A -s "
+        .. project_session_name()
+    )
 
-  vim.cmd("startinsert")
+    -- ターミナル準備完了後に挿入モードへ
+    vim.schedule(function()
+      if term_win and vim.api.nvim_win_is_valid(term_win) then
+        vim.api.nvim_set_current_win(term_win)
+        vim.cmd("startinsert")
+        vim.cmd.redraw()
+      end
+      switching = false
+    end)
+  end)
+
+  -- 万が一 pcall 内で schedule が呼ばれなかった場合への備え
+  if not vim.api.nvim_win_is_valid(term_win) then
+    switching = false
+  end
 end
 
 -- tmux 閉じる（Neovim側のみ）
 function M.close_tmux()
+  if switching then return end
   if term_win ~= 0 and vim.api.nvim_win_is_valid(term_win) then
     vim.api.nvim_win_close(term_win, true)
   end
   term_win = 0
   term_buf = nil
   scroll_buf = nil
-  switching = false
 end
 
 function M.toggle_tmux()
@@ -119,7 +136,6 @@ function M.open_scrollback()
   end
 
   switching = true
- 
   vim.schedule(function()
     pcall(function()
       if not term_win or not vim.api.nvim_win_is_valid(term_win) then
@@ -173,10 +189,9 @@ local function update(opts)
   local is_open = is_scrollback_open()
 
   if is_open then
-    -- スクロールバック中：ターミナルモード(t)に入ろうとしたら戻す
+    -- スクロールバック中：入力モードに入ろうとしたら戻す
     if mode:sub(1,1) == "t" then
       switching = true
-      -- クラッシュを防ぐため、一度挿入モードを抜けてからスケジュールで切り替える
       vim.cmd.stopinsert()
       vim.schedule(function()
         pcall(function()
@@ -191,7 +206,7 @@ local function update(opts)
       end)
     end
   else
-    -- 通常：ノーマルモード(nt)に入ったらスクロールバックを開く
+    -- 通常：ノーマルモードに入ったらスクロールバックを開く
     if mode == "nt" or opts.open then
       M.open_scrollback()
     end
@@ -200,7 +215,19 @@ end
 
 -- autocmd
 local group = vim.api.nvim_create_augroup("TmuxToggleScrollback", { clear = true })
-vim.api.nvim_create_autocmd({ "TermEnter", "TermLeave", "WinEnter" }, {
+
+-- モード変更をトリガーにする (より高速で正確)
+vim.api.nvim_create_autocmd("ModeChanged", {
+  group = group,
+  pattern = "*:nt",
+  callback = function(args)
+    if args.buf == term_buf then
+      update()
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "TermEnter", "WinEnter" }, {
   group = group,
   callback = function(args)
     if args.buf ~= term_buf and args.buf ~= scroll_buf then
