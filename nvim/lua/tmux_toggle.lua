@@ -70,7 +70,6 @@ function M.open_tmux()
     end)
   end)
 
-  -- 万が一 pcall 内で schedule が呼ばれなかった場合への備え
   if not vim.api.nvim_win_is_valid(term_win) then
     switching = false
   end
@@ -130,7 +129,13 @@ function M.open_scrollback()
     return
   end
 
+  -- 表示位置の計算
+  local win_row = vim.fn.winline()
+  -- virtcol('.') は表示上の列（1-indexed）。
+  -- ターミナルでは、カーソルが「次の入力位置」にあるため、それを引き継ぐ。
+  local win_col = vim.fn.virtcol('.') + 2
   local text = get_scrollback()
+
   if not text or text == "" then
     return
   end
@@ -155,17 +160,24 @@ function M.open_scrollback()
       vim.bo[scroll_buf].scrollback = 9999
       vim.bo[scroll_buf].scrollback = 9998
 
-      -- 最下部へスクロール
-      local height = vim.api.nvim_win_get_height(term_win)
-      local lines = vim.api.nvim_buf_line_count(scroll_buf)
-      local topline = math.max(1, lines - height + 1)
+      -- カーソル位置の同期
+      local win_height = vim.api.nvim_win_get_height(term_win)
+      local total_lines = vim.api.nvim_buf_line_count(scroll_buf)
+
+      local target_line = math.max(1, total_lines - win_height + win_row)
+      local topline = math.max(1, total_lines - win_height + 1)
+
+      -- nvim_win_set_cursor は 0-indexed column
+      local target_col = math.max(0, win_col - 1)
 
       vim.api.nvim_win_call(term_win, function()
         vim.fn.winrestview({
           topline = topline,
-          lnum = lines,
-          col = 0,
+          lnum = target_line,
+          col = target_col,
         })
+        -- セーフガード付きでカーソルを設定
+        pcall(vim.api.nvim_win_set_cursor, term_win, { target_line, target_col })
       end)
     end)
     switching = false
@@ -216,7 +228,6 @@ end
 -- autocmd
 local group = vim.api.nvim_create_augroup("TmuxToggleScrollback", { clear = true })
 
--- モード変更をトリガーにする (より高速で正確)
 vim.api.nvim_create_autocmd("ModeChanged", {
   group = group,
   pattern = "*:nt",
