@@ -3,6 +3,9 @@ return {
   event = "VeryLazy",
   lazy = false,
   commit = "c2bdf8c",
+  dependencies = {
+    "stevearc/dressing.nvim",
+  },
   keys = {
     {
       "<tab>",
