@@ -151,7 +151,7 @@ local function start_refresh_timer()
               vim.b[scroll_buf].last_content = text:match("([^\n]*)\n?$") or ""
             end
             if is_at_end then
-              vim.api.nvim_win_call(term_win, function() vim.cmd("normal! G") end)
+              pcall(vim.api.nvim_win_set_cursor, term_win, { vim.api.nvim_buf_line_count(scroll_buf), 0 })
             else
               vim.api.nvim_win_call(term_win, function() vim.fn.winrestview(view) end)
             end
@@ -166,7 +166,7 @@ local function start_refresh_timer()
               vim.api.nvim_chan_send(scroll_chan, "\x1b[1A\r\x1b[2K" .. text)
               vim.b[scroll_buf].last_content = new_last
               if is_at_end then
-                vim.api.nvim_win_call(term_win, function() vim.cmd("normal! G") end)
+                pcall(vim.api.nvim_win_set_cursor, term_win, { vim.api.nvim_buf_line_count(scroll_buf), 0 })
               else
                 vim.api.nvim_win_call(term_win, function() vim.fn.winrestview(view) end)
               end
@@ -255,7 +255,7 @@ local function update_mode(opts)
       end)
     end
   else
-    if mode == "nt" or opts.open then M.open_scrollback() end
+    if opts.open then M.open_scrollback() end
   end
 end
 
