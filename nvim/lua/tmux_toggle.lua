@@ -194,6 +194,11 @@ function M.open_scrollback()
       switching = false
       if not text or not term_win or not vim.api.nvim_win_is_valid(term_win) then return end
 
+      -- モードが変更されていたり、別のバッファに切り替わっていたら中止
+      if vim.api.nvim_get_mode().mode ~= "nt" or vim.api.nvim_win_get_buf(term_win) ~= term_buf then
+        return
+      end
+
       scroll_buf = vim.api.nvim_create_buf(false, true)
       vim.bo[scroll_buf].bufhidden = "wipe"
       vim.api.nvim_set_option_value("scrollback", 100000, { buf = scroll_buf })
@@ -255,7 +260,7 @@ local function update_mode(opts)
       end)
     end
   else
-    if opts.open then M.open_scrollback() end
+    if mode == "nt" or opts.open then M.open_scrollback() end
   end
 end
 
