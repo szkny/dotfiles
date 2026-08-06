@@ -159,6 +159,9 @@ ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
 sudo apt-get -y install jq
 go install github.com/mikefarah/yq/v4@latest
 
+## install antigravity
+curl -fsSL https://antigravity.google/cli/install.sh | bash
+
 ## install w3m
 sudo apt-get install -y w3m
 mkdir -p ~/.w3m

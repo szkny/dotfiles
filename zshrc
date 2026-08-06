@@ -174,10 +174,10 @@ function kill_process() {
 function ai() {
   if [ -t 0 ]; then
     # パイプなし（引数）
-    gemini "$*" 2>/dev/null
+    agy --print "$*" 2>/dev/null
   else
     # パイプあり（stdin）
-    cat | gemini "$*" 2>/dev/null
+    cat | agy --print "$*" 2>/dev/null
   fi
 }
 
