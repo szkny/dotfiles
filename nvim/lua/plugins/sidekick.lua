@@ -24,6 +24,11 @@ return {
       desc = "Sidekick Toggle Antigravity",
     },
     {
+      "<leader>ao",
+      function() require("sidekick.cli").toggle({ name = "ollama_aider", focus = true }) end,
+      desc = "Sidekick Toggle Aider powered by Ollama",
+    },
+    {
       "<leader>av",
       function() require("sidekick.cli").send({ msg = "{this}\n{selection}" }) end,
       mode = { "x" },
@@ -53,6 +58,16 @@ return {
       tools = {
         antigravity = {
           cmd = { "agy" },
+        },
+        ollama_aider = {
+          cmd = {
+            "aider",
+            "--dark-mode",
+            "--code-theme", "monokai",
+            "--no-show-model-warnings",
+            "--model", "ollama_chat/qwen2.5-coder:3b",
+            "--chat-language", "japanese"
+          },
         },
       },
       watch = true, -- notify Neovim of file changes done by AI CLI tools
