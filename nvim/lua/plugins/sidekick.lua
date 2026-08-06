@@ -19,9 +19,9 @@ return {
       desc = "Goto/Apply Next Edit Suggestion",
     },
     {
-      "<leader>gm",
-      function() require("sidekick.cli").toggle({ name = "gemini", focus = true }) end,
-      desc = "Sidekick Toggle Gemini",
+      "<leader>ag",
+      function() require("sidekick.cli").toggle({ name = "antigravity", focus = true }) end,
+      desc = "Sidekick Toggle Antigravity",
     },
     {
       "<leader>av",
@@ -50,6 +50,11 @@ return {
       },
     },
     cli = {
+      tools = {
+        antigravity = {
+          cmd = { "agy" },
+        },
+      },
       watch = true, -- notify Neovim of file changes done by AI CLI tools
       win = {
         layout = "right",

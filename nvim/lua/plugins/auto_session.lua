@@ -54,7 +54,7 @@ return {
         state = false,
         save_index = 5,
         save_commands = {
-          'lua require("sidekick.cli").toggle({ name = "gemini", focus = true })'
+          'lua require("sidekick.cli").toggle({ name = "antigravity", focus = true })'
         }
       }
     }
