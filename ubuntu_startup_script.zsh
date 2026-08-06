@@ -162,6 +162,13 @@ go install github.com/mikefarah/yq/v4@latest
 ## install antigravity
 curl -fsSL https://antigravity.google/cli/install.sh | bash
 
+## install ollama
+sudo apt-get install -y zstd
+curl -fsSL https://ollama.com/install.sh | sh
+
+## install aider
+pip install aider-chat
+
 ## install w3m
 sudo apt-get install -y w3m
 mkdir -p ~/.w3m

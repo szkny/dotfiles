@@ -79,6 +79,9 @@ export MOCWORD_DATA=~/.mocword/mocword.sqlite
 ## ChatGPT
 source "$HOME/.openai_key.zsh"
 
+## ollama
+export OLLAMA_API_BASE=http://127.0.0.1:11434
+
 # ## X11
 # export DISPLAY=$(ipconfig.exe | grep -a "IPv4" | tail -1 | awk '{print $NF}' | awk 'sub(/\r$/,"")'):0.0
 # # export TERM="xterm-256color"
