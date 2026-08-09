@@ -404,6 +404,12 @@ export MOCWORD_DATA=~/.mocword/mocword.sqlite
 # ## ChatGPT
 # source "$HOME/.openai_key.zsh"
 
+# Antigravity CLI
+export PATH="/home/szkny/.local/bin:$PATH"
+
+# opencode
+export PATH="/home/szkny/.opencode/bin:$PATH"
+
 ## X11
 export DISPLAY=$(ipconfig.exe | grep -a "IPv4" | tail -1 | awk '{print $NF}' | awk 'sub(/\r$/,"")'):0.0
 # export TERM="xterm-256color"

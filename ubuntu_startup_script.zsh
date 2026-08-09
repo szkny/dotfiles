@@ -166,6 +166,9 @@ curl -fsSL https://antigravity.google/cli/install.sh | bash
 sudo apt-get install -y zstd
 curl -fsSL https://ollama.com/install.sh | sh
 
+## install opencode
+curl -fsSL https://opencode.ai/install | bash
+
 ## install aider
 pip install aider-chat
 
