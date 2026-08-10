@@ -24,7 +24,12 @@ return {
       desc = "Sidekick Toggle Antigravity",
     },
     {
-      "<leader>ao",
+      "<leader>aoc",
+      function() require("sidekick.cli").toggle({ name = "opencode", focus = true }) end,
+      desc = "Sidekick Toggle OpenCode",
+    },
+    {
+      "<leader>aoa",
       function() require("sidekick.cli").toggle({ name = "ollama_aider", focus = true }) end,
       desc = "Sidekick Toggle Aider powered by Ollama",
     },
@@ -58,6 +63,9 @@ return {
       tools = {
         antigravity = {
           cmd = { "agy" },
+        },
+        opencode = {
+          cmd = { "opencode" },
         },
         ollama_aider = {
           cmd = {
