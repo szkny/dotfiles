@@ -17,5 +17,9 @@ os:
 customCommands:
   - command: ai_commit_message
     context: files
+    key: c
+    output: terminal
+  - command: git cz
+    context: files
     key: C
     output: terminal
