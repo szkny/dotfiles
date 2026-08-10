@@ -15,7 +15,7 @@ refresher:
 os:
   edit: "nvim"
 customCommands:
-  - command: git cz
+  - command: ai_commit_message
     context: files
     key: C
     output: terminal
