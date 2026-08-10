@@ -16,6 +16,7 @@ pkg install -y clang
 pkg install -y binutils-is-llvm
 pkg install -y wget
 pkg install -y netcat-openbsd
+pkg install -y ripgrep
 pkg install -y pulseaudio
 pkg install -y file
 pkg install -y golang
@@ -127,6 +128,19 @@ npm install -g git-cz
 
 ## repomix
 npm install -g repomix
+
+# opencode
+mkdir -p ~/tmp/opencode
+mkdir -p $PREFIX/libexec/opencode $PREFIX/lib ~/.local/bin
+cd ~/tmp/opencode
+curl -LO https://github.com/guysoft/opencode-termux/releases/download/v0.2.1/opencode-1.17.9-android-aarch64.zip
+unzip opencode-*-android-aarch64.zip
+mv opencode ~/.local/bin/
+mv opencode.bin $PREFIX/libexec/opencode/opencode.bin
+mv libtagfix.so libc++_shared.so libopentui.so $PREFIX/lib/
+chmod +x ~/.local/bin/opencode
+chmod +x $PREFIX/libexec/opencode/opencode.bin
+cd ~
 
 # sshd
 pkg install -y openssh
