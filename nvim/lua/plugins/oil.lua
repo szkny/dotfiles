@@ -1,3 +1,7 @@
+local function open_home()
+  require("oil").open("~")
+end
+
 return {
   "stevearc/oil.nvim",
   event = "VeryLazy",
@@ -38,6 +42,14 @@ return {
       ["H"] = "actions.toggle_hidden",
       ["I"] = "actions.toggle_hidden",
       ["<BS>"] = "actions.toggle_hidden",
+      ["~"] = {
+        callback = open_home,
+        desc = "Go to home directory",
+      },
+      ["g~"] = {
+        callback = open_home,
+        desc = "Go to home directory",
+      },
     },
   },
   config = function(_, opts)
