@@ -157,11 +157,19 @@ return {
       hidden = true,
       direction = "float",
     })
+    local opencode = Terminal:new({
+      cmd = "opencode",
+      hidden = true,
+      direction = "float",
+    })
     vim.api.nvim_create_user_command("LazyGit", function()
       lazygit:toggle()
     end, {})
     vim.api.nvim_create_user_command("Antigravity", function()
       agy:toggle()
+    end, {})
+    vim.api.nvim_create_user_command("Opencode", function()
+      opencode:toggle()
     end, {})
     vim.api.nvim_create_user_command("Viu", function(opts)
       local file = opts.fargs[1]
