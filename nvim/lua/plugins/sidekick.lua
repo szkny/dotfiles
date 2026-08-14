@@ -24,15 +24,15 @@ return {
       desc = "Sidekick Toggle Antigravity",
     },
     {
-      "<leader>aoc",
+      "<leader>ao",
       function() require("sidekick.cli").toggle({ name = "opencode", focus = true }) end,
       desc = "Sidekick Toggle OpenCode",
     },
-    {
-      "<leader>aoa",
-      function() require("sidekick.cli").toggle({ name = "ollama_aider", focus = true }) end,
-      desc = "Sidekick Toggle Aider powered by Ollama",
-    },
+    -- {
+    --   "<leader>ao",
+    --   function() require("sidekick.cli").toggle({ name = "ollama_aider", focus = true }) end,
+    --   desc = "Sidekick Toggle Aider powered by Ollama",
+    -- },
     {
       "<leader>av",
       function() require("sidekick.cli").send({ msg = "{this}\n{selection}" }) end,
