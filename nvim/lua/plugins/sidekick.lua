@@ -98,6 +98,7 @@ return {
         document        = "{function|line}にドキュメントを追加してください",
         explain         = "{this}を説明してください",
         fix             = "{this}を修正してもらえますか？",
+        refactor        = "{this}をメンテナンスしやすいようにリファクタリングしてください",
         optimize        = "{this}をどのように最適化できますか？",
         review          = "{file}に問題や改善点がないかレビューしてもらえますか？",
         tests           = "{this}のテストを書いてもらえますか？",
