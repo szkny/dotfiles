@@ -174,10 +174,10 @@ function kill_process() {
 function ai() {
   if [ -t 0 ]; then
     # パイプなし（引数）
-    agy --print "$*" 2>/dev/null
+    opencode run "$@" 2>/dev/null
   else
     # パイプあり（stdin）
-    cat | agy --print "$*" 2>/dev/null
+    cat | opencode run "$@" 2>/dev/null
   fi
 }
 
