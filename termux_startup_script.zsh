@@ -132,6 +132,7 @@ npm install -g repomix
 # opencode
 mkdir -p ~/tmp/opencode
 mkdir -p $PREFIX/libexec/opencode $PREFIX/lib ~/.local/bin
+mkdir -p ~/.config/opencode
 cd ~/tmp/opencode
 curl -LO https://github.com/guysoft/opencode-termux/releases/download/v0.2.1/opencode-1.17.9-android-aarch64.zip
 unzip opencode-*-android-aarch64.zip
@@ -140,7 +141,13 @@ mv opencode.bin $PREFIX/libexec/opencode/opencode.bin
 mv libtagfix.so libc++_shared.so libopentui.so $PREFIX/lib/
 chmod +x ~/.local/bin/opencode
 chmod +x $PREFIX/libexec/opencode/opencode.bin
+ln -s ~/dotfiles/opencode/* ~/.config/opencode/
 cd ~
+
+# opencode plugin (tmux-agent-sidebar)
+mkdir -p ~/.config/opencode/plugins
+ln -sf ~/.tmux/plugins/tmux-agent-sidebar/.opencode/plugins/tmux-agent-sidebar.js \
+    ~/.config/opencode/plugins/tmux-agent-sidebar.js
 
 # sshd
 pkg install -y openssh

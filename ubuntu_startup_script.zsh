@@ -168,6 +168,13 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 ## install opencode
 curl -fsSL https://opencode.ai/install | bash
+mkdir -p ~/.config/opencode
+ln -s ~/dotfiles/opencode/* ~/.config/opencode/
+
+### opencode plugin (tmux-agent-sidebar)
+mkdir -p ~/.config/opencode/plugins
+ln -sf ~/.tmux/plugins/tmux-agent-sidebar/.opencode/plugins/tmux-agent-sidebar.js \
+    ~/.config/opencode/plugins/tmux-agent-sidebar.js
 
 ## install aider
 pip install aider-chat
