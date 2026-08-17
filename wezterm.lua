@@ -436,9 +436,9 @@ config.mouse_bindings = {
 config.audible_bell = "Disabled"
 config.visual_bell = {
 	fade_in_function = "EaseIn",
-	fade_in_duration_ms = 100,
+	fade_in_duration_ms = 0,
 	fade_out_function = "EaseOut",
-	fade_out_duration_ms = 350,
+	fade_out_duration_ms = 0,
 }
 config.colors.visual_bell = "#444444"
 
