@@ -7,6 +7,29 @@ return {
   keys = {
     -- { "t", "<CMD>ToggleTerm<CR>", mode = "n" },
     { "<leader>gg", "<CMD>LazyGit<CR>", mode = "n" },
+    {
+      "<leader>t",
+      function()
+        local selection = table.concat(
+          vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), {
+            type = vim.fn.mode(),
+          }),
+          "\n"
+        )
+        if selection == "" then
+          return
+        end
+
+        local prompt = "以下の文章を日本語(元の文章が日本語だった場合は英語)に翻訳してください。翻訳結果のみを出力してください。\n\n" .. selection
+        require("toggleterm.terminal").Terminal:new({
+          cmd = "ask " .. vim.fn.shellescape(prompt) .. "; printf '\\n[Press any key to close]'; read -q",
+          hidden = true,
+          direction = "float",
+        }):open()
+      end,
+      mode = "x",
+      desc = "Translate Visual Selection",
+    },
   },
   event = "VeryLazy",
   version = "*",

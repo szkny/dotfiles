@@ -174,10 +174,10 @@ function kill_process() {
 function ai() {
   if [ -t 0 ]; then
     # パイプなし（引数）
-    opencode run "$@"
+    ask "$@"
   else
     # パイプあり（stdin）
-    cat | opencode run "$@"
+    cat | ask "$@"
   fi
 }
 

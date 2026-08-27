@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ $# -eq 0 ]]; then
+    echo "Usage: ai <question>" >&2
+    exit 1
+fi
+
+question="$*"
+
+response="$(
+    jq -n --arg question "$question" '
+    {
+      model: "gpt-5-nano",
+      input: [
+        {
+          role: "system",
+          content: "Answer the user question accurately and concisely. Output only the answer."
+        },
+        {
+          role: "user",
+          content: $question
+        }
+      ]
+    }
+    ' |
+    curl -sS https://api.openai.com/v1/responses \
+        -H "Authorization: Bearer $OPENAI_API_KEY" \
+        -H "Content-Type: application/json" \
+        -d @-
+)"
+
+if echo "$response" | jq -e '.error' >/dev/null 2>&1; then
+    echo "$response" | jq -r '.error.message' >&2
+    exit 1
+fi
+
+echo "$response" |
+    jq -r '
+      [
+        .output[]
+        | select(.type == "message")
+        | .content[]
+        | select(.type == "output_text")
+        | .text
+      ][0] // empty
+    '
