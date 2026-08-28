@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
+MODEL="gpt-5-nano"
+
 set -euo pipefail
 
 if [[ $# -eq 0 ]]; then
-    echo "Usage: ai <question>" >&2
+    echo "Usage: ask <question>" >&2
     exit 1
 fi
 
@@ -12,7 +14,7 @@ question="$*"
 response="$(
     jq -n --arg question "$question" '
     {
-      model: "gpt-5-nano",
+      model: $MODEL,
       input: [
         {
           role: "system",
