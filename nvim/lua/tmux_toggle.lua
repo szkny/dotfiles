@@ -56,6 +56,7 @@ function M.open_tmux()
     vim.fn.termopen(
       string.format("tmux -L tmux-toggle -f ~/dotfiles/tmux-minimal.conf new-session -A -s %s", get_session_name())
     )
+    vim.api.nvim_buf_set_name(term_buf, "tmux-toggle")
 
     vim.schedule(function()
       if term_win and vim.api.nvim_win_is_valid(term_win) then
