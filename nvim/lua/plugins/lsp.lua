@@ -251,9 +251,12 @@ return {
       local formatter_on_save = true
       require("mason-null-ls").setup(opts)
       local null_ls = require("null-ls")
+      local prettier = null_ls.builtins.formatting.prettier.with({
+        prefer_local = "node_modules/.bin",
+      })
       local sources = {
         null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.prettier,
+        prettier,
         null_ls.builtins.formatting.black,
       }
       if not vim.fn.has("termux") == 1 then
@@ -267,7 +270,13 @@ return {
               callback = function()
                 if vim.bo.filetype ~= "lua" then
                   if formatter_on_save then
-                    vim.lsp.buf.format({ async = false, timeout_ms = 5000 })
+                    vim.lsp.buf.format({
+                      async = false,
+                      timeout_ms = 5000,
+                      filter = function(client)
+                        return client.name == "null-ls"
+                      end,
+                    })
                   end
                 end
               end,
@@ -279,7 +288,13 @@ return {
 
       -- User command
       vim.api.nvim_create_user_command("Format", function()
-        vim.lsp.buf.format({ async = false, timeout_ms = 5000 })
+        vim.lsp.buf.format({
+          async = false,
+          timeout_ms = 5000,
+          filter = function(client)
+            return client.name == "null-ls"
+          end,
+        })
       end, {})
       vim.api.nvim_create_user_command("FormatterEnable", function()
         formatter_on_save = true
