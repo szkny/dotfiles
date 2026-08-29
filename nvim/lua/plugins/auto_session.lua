@@ -5,6 +5,11 @@ return {
   opts = {
     log_level = "error",
     auto_session_root_dir = vim.fn.stdpath("data") .. "/sessions/",
+    pre_save_cmds = {
+      function()
+        vim.api.nvim_exec_autocmds("User", { pattern = "SessionSavePre" })
+      end,
+    },
     auto_session_enabled = true,
     auto_session_create_enabled = true,
     auto_session_enable_last_session = false,
@@ -20,7 +25,7 @@ return {
     },
   },
   config = function(_, opts)
-    vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,localoptions"
+    vim.o.sessionoptions = "blank,buffers,curdir,folds,globals,help,tabpages,winsize,winpos,localoptions"
 
     require("auto-session").setup(opts)
     local auto_session_plugins = {
