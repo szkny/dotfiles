@@ -86,6 +86,9 @@ export OLLAMA_API_BASE=http://127.0.0.1:11434
 # export DISPLAY=$(ipconfig.exe | grep -a "IPv4" | tail -1 | awk '{print $NF}' | awk 'sub(/\r$/,"")'):0.0
 # # export TERM="xterm-256color"
 
+## ranger
+export TERMINFO=/usr/share/terminfo
+
 ## start tmux
 export TERM="screen-256color"
 
