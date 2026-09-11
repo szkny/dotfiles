@@ -1,5 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+    version = "0.10.0",
 	build = ":TSUpdate",
 	event = "VimEnter",
 	opts = {
