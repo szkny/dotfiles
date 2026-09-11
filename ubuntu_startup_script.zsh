@@ -37,7 +37,7 @@ curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable --profil
 ## install cargo libs
 echo 'install cargo packages..'
 cargo install eza bat rm-improved \
-  code-minimap git-delta zoxide viu fd-find
+  code-minimap git-delta zoxide viu fd-find --locked
 
 ## install mise
 echo 'install mise..'
@@ -129,7 +129,7 @@ ln -s ~/dotfiles/nvim/lua ~/.config/nvim/
 # ln -s ~/dotfiles/nvim/coc-settings.json ~/.config/nvim/
 # pip install -U jedi-language-server
 ### for treesitter
-cargo install tree-sitter-cli
+cargo install tree-sitter-cli --locked
 
 ## install skk
 mkdir -p ~/.skk && cd ~/.skk
@@ -137,7 +137,7 @@ curl -LO https://skk-dev.github.io/dict/SKK-JISYO.L.gz && gunzip SKK-JISYO.L.gz
 cd ~
 
 ## install mocword
-cargo install mocword
+cargo install mocword --locked
 mkdir -p ~/.mocword
 cd ~/.mocword
 curl -LO https://github.com/high-moctane/mocword-data/releases/download/eng20200217/mocword.sqlite.gz
