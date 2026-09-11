@@ -133,7 +133,7 @@ cargo install tree-sitter-cli
 
 ## install skk
 mkdir -p ~/.skk && cd ~/.skk
-wget https://skk-dev.github.io/dict/SKK-JISYO.L.gz && gunzip SKK-JISYO.L.gz
+curl -LO https://skk-dev.github.io/dict/SKK-JISYO.L.gz && gunzip SKK-JISYO.L.gz
 cd ~
 
 ## install mocword
@@ -142,6 +142,7 @@ mkdir -p ~/.mocword
 cd ~/.mocword
 curl -LO https://github.com/high-moctane/mocword-data/releases/download/eng20200217/mocword.sqlite.gz
 gzip -d mocword.sqlite.gz
+cd ~
 
 ## install tmux
 sudo apt-get install -y tmux
