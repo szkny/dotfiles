@@ -154,7 +154,7 @@ cargo install sheldon --locked
 ln -s ~/dotfiles/sheldon ~/.config/
 
 ## install starship prompt
-curl -fsSL https://starship.rs/install.sh | sudo sh -s -- --yes
+cargo install starship --locked
 ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
 
 ## install jq / yq

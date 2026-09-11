@@ -96,7 +96,7 @@ cargo install sheldon --locked
 ln -s ~/dotfiles/sheldon ~/.config/
 
 # starship
-curl -sS https://starship.rs/install.sh | sh
+pkg install -y starship
 ln -s ~/dotfiles/starship.toml ~/.config/starship.toml
 
 # jq / yq
