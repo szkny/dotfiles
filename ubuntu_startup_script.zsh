@@ -68,7 +68,7 @@ eval "$(~/.local/bin/mise activate zsh)"
 npm install -g prettier
 
 ## install deno
-mise use -g deno@1.45.0
+mise use -g deno@latest
 
 ## install go
 echo 'install go..'
