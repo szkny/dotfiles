@@ -56,6 +56,7 @@ eval "$(~/.local/bin/mise activate zsh)"
 ## install python packages
 pip3 install -U pip
 pip2 install -U pip
+pip install pysocks
 pip install pandas poetry
 
 ## python code linter
