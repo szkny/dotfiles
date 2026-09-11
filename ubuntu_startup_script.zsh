@@ -22,7 +22,7 @@ echo 'install basic apt-get packages..'
 sudo apt-get install -y build-essential libbz2-dev libdb-dev \
   libreadline-dev libffi-dev libgdbm-dev liblzma-dev \
   libncursesw5-dev libsqlite3-dev libssl-dev \
-  zlib1g-dev uuid-dev tk-dev
+  zlib1g-dev uuid-dev tk-dev llvm xz-utils libxml2-dev libxmlsec1-dev
 sudo apt-get install -y git curl zip unzip wget bsdmainutils gawk
 sudo apt-get install -y silversearcher-ag
 sudo apt-get install -y ripgrep
