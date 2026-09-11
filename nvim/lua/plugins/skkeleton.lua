@@ -3,7 +3,6 @@ return {
   dependencies = {
     {
       "vim-denops/denops.vim",
-      commit = "a77c1fa5"
     }
   },
   cond = function ()
@@ -14,53 +13,71 @@ return {
     { "<C-j>", "<Plug>(skkeleton-enable)", mode = "i" },
     { "<C-j>", "<Plug>(skkeleton-enable)", mode = "c" },
   },
-  commit = "ce5968d",
-  init = function()
-    vim.cmd([[
-        "" skkeleton
-        fun! s:skkeleton_init() abort
-            call skkeleton#config(#{
-              \ globalJisyo: '~/.skk/SKK-JISYO.L',
-              \ kanaTable: 'rom',
-              \ eggLikeNewline: v:true,
-              \ showCandidatesCount: 10,
-              \ usePopup: v:false,
-              \ registerConvertResult: v:true,
-              \ acceptIllegalResult: v:true,
-              \ keepState: v:false,
-              \ })
-            call skkeleton#register_kanatable('rom', {
-              \ "z\<Space>": ["\u3000", ''],
-              \ })
-            call add(g:skkeleton#mapped_keys, '<C-h>')
-            call add(g:skkeleton#mapped_keys, '<F6>')
-            call add(g:skkeleton#mapped_keys, '<F7>')
-            call add(g:skkeleton#mapped_keys, '<F8>')
-            call add(g:skkeleton#mapped_keys, '<F9>')
-            call add(g:skkeleton#mapped_keys, '<F10>')
-            call add(g:skkeleton#mapped_keys, '<C-k>')
-            call add(g:skkeleton#mapped_keys, '<C-q>')
-            call add(g:skkeleton#mapped_keys, '<C-a>')
-            call skkeleton#register_keymap('input', '<C-h>', '')
-            call skkeleton#register_keymap('input', '<Up>', '')
-            call skkeleton#register_keymap('input', '<Down>', '')
-            call skkeleton#register_keymap('input', '<F6>',  'katakana')
-            call skkeleton#register_keymap('input', '<F7>',  'katakana')
-            call skkeleton#register_keymap('input', '<F8>',  'hankatakana')
-            call skkeleton#register_keymap('input', '<F9>',  'zenkaku')
-            call skkeleton#register_keymap('input', '<F10>', 'disable')
-            call skkeleton#register_keymap('input', '<C-k>', 'katakana')
-                call skkeleton#register_keymap('input', '<C-q>', 'hankatakana')
-                call skkeleton#register_keymap('input', '<C-a>', 'zenkaku')
-        endf
-        aug skkeleton-initialize-pre
-          au!
-          au User skkeleton-initialize-pre call s:skkeleton_init()
-        aug END
-        aug skkeleton-mode-changed
-          au!
-          au User skkeleton-mode-changed redrawstatus
-        aug END
-    ]])
+  config = function()
+    -- 1. skkeleton の初期化設定
+    local function skkeleton_init()
+      vim.fn["skkeleton#config"]({
+        globalDictionaries = { "~/.skk/SKK-JISYO.L" },
+        kanaTable = "rom",
+        eggLikeNewline = true,
+        showCandidatesCount = 0,
+        registerConvertResult = true,
+        acceptIllegalResult = true,
+        keepState = false,
+        immediatelyCancel = false,
+      })
+
+      -- カナテーブルの登録
+      vim.fn["skkeleton#register_kanatable"]("rom", {
+        ["z "] = { "　", "" },
+      })
+
+      -- マップされたキーへの追加
+      local mapped_keys = {
+        "<C-h>", "<F6>", "<F7>", "<F8>", "<F9>", "<F10>", "<C-k>", "<C-q>", "<C-a>"
+      }
+      for _, key in ipairs(mapped_keys) do
+        vim.fn.add(vim.g["skkeleton#mapped_keys"], key)
+      end
+
+      -- キーマップの登録
+      vim.fn["skkeleton#register_keymap"]("input", "<C-h>", "")
+      vim.fn["skkeleton#register_keymap"]("input", "<Up>", "")
+      vim.fn["skkeleton#register_keymap"]("input", "<Down>", "")
+      vim.fn["skkeleton#register_keymap"]("input", "<F6>",  "katakana")
+      vim.fn["skkeleton#register_keymap"]("input", "<F7>",  "katakana")
+      vim.fn["skkeleton#register_keymap"]("input", "<F8>",  "hankatakana")
+      vim.fn["skkeleton#register_keymap"]("input", "<F9>",  "zenkaku")
+      vim.fn["skkeleton#register_keymap"]("input", "<F10>", "disable")
+      vim.fn["skkeleton#register_keymap"]("input", "<C-k>", "katakana")
+      vim.fn["skkeleton#register_keymap"]("input", "<C-q>", "hankatakana")
+      vim.fn["skkeleton#register_keymap"]("input", "<C-a>", "zenkaku")
+    end
+
+    -- 2. Autocmd の登録
+    local group_pre = vim.api.nvim_create_augroup("skkeleton-initialize-pre", { clear = true })
+    vim.api.nvim_create_autocmd("User", {
+      group = group_pre,
+      pattern = "skkeleton-initialize-pre",
+      callback = skkeleton_init,
+    })
+
+    local group_changed = vim.api.nvim_create_augroup("skkeleton-mode-changed", { clear = true })
+    vim.api.nvim_create_autocmd("User", {
+      group = group_changed,
+      pattern = "skkeleton-mode-changed",
+      callback = function()
+        vim.cmd("redrawstatus")
+      end,
+    })
+
+    local group_handled = vim.api.nvim_create_augroup("skkeleton-handled", { clear = true })
+    vim.api.nvim_create_autocmd("User", {
+      group = group_handled,
+      pattern = "skkeleton-handled",
+      callback = function()
+        require("cmp").complete()
+      end,
+    })
   end,
 }
