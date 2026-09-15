@@ -62,6 +62,10 @@ pip install pandas poetry
 ## python code linter
 ln -s ~/dotfiles/python_syntax_checker/pycodestyle ~/.config/pycodestyle
 
+## install uv
+echo 'install uv..'
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
 ## install node.js
 echo 'install node.js..'
 mise use -g node@lts
