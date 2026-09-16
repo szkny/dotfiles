@@ -136,7 +136,7 @@ return {
     ]])
 
 		local kopts = { noremap = true, silent = true }
-		vim.keymap.set("v", "<Leader>t", "<CMD>Trans<CR>", kopts)
+		-- vim.keymap.set("v", "<Leader>t", "<CMD>Trans<CR>", kopts)
 		vim.keymap.set("n", "<Leader>gf", "<CMD>Fshow<CR>", kopts)
 	end,
 }
