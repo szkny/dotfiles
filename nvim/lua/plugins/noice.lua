@@ -37,6 +37,15 @@ return {
 			{
 				filter = {
 					event = "notify",
+					kind = "warn",
+				},
+				opts = {
+					skip = true,
+				},
+			},
+			{
+				filter = {
+					event = "notify",
 					find = "No information available",
 				},
 				opts = {
