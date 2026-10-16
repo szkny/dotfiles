@@ -14,7 +14,7 @@ echo "Generating commit message..."
 response="$(
     jq -n --arg diff "$diff" '
     {
-      model: "gpt-5-nano",
+      model: "gpt-6-luna",
       input: [
         {
           role: "system",
