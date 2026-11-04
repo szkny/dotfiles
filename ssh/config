@@ -11,6 +11,7 @@ Host *
 Host github github.com
     HostName github.com
     IdentityFile ~/.ssh/keyname
+    IdentitiesOnly yes
     User git
 
 # Dev server
