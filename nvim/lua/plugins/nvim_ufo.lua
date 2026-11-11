@@ -51,12 +51,7 @@ return {
 			dynamicRegistration = false,
 			lineFoldingOnly = true,
 		}
-		local language_servers = require("lspconfig").util.available_servers()
-		for _, ls in ipairs(language_servers) do
-			require("lspconfig")[ls].setup({
-				capabilities = capabilities,
-			})
-		end
+		vim.lsp.config("*", { capabilities = capabilities })
 
 		vim.api.nvim_create_autocmd("FileType", {
 			group = vim.api.nvim_create_augroup("local_detach_ufo", { clear = true }),
