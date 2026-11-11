@@ -5,7 +5,7 @@ return {
     "sindrets/diffview.nvim",
   },
   event = "VeryLazy",
-  commit = "b442569",
+  commit = "22f0bbd",
   cmd = {
     "FzfLua",
     "Files",
@@ -138,7 +138,9 @@ return {
       return self
     end
     function CustomPreviewer:populate_preview_buf(entry_str)
-      entry_str = entry_str:sub(8, -1):gsub("^[  ]", "")
+      local entry = self:parse_entry(entry_str)
+      entry_str = entry.path
+      if not entry_str or #entry_str == 0 then return false end
       -- entry_str = entry_str:match("([%wぁ-んーァ-ヶーｱ-ﾝﾞﾟ一-龠!-/:-@[-`{-~]+)$")
       local tmpbuf = self:get_tmp_buffer()
       local preview_winid = self.win.preview_winid
@@ -149,7 +151,6 @@ return {
         vim.api.nvim_buf_call(tmpbuf, function() vim.fn.termopen(command) end)
         self:set_preview_buf(tmpbuf)
       else
-        local entry = self:parse_entry(entry_str)
         require("fzf-lua.utils").read_file_async(entry_str, vim.schedule_wrap(function(data)
           local lines = vim.split(data, "[\r]?\n")
           if data:sub(#data, #data) == "\n" or data:sub(#data - 1, #data) == "\r\n" then
@@ -158,10 +159,10 @@ return {
           vim.api.nvim_buf_set_lines(tmpbuf, 0, -1, false, lines)
           self:set_preview_buf(tmpbuf)
           self:preview_buf_post(entry)
-          self.win:update_scrollbar()
+          self.win:update_preview_scrollbar()
         end))
       end
-      self.win:update_scrollbar()
+      self.win:update_preview_scrollbar()
     end
 
     local rg_cmd_file = "rg --files -uuu -g '!**/{.git,node_modules,.venv,.mypy_cache,__pycache__}/*' -L"
@@ -170,6 +171,7 @@ return {
     local fzf_exec_opts_file = {
       prompt = "Files❯ ",
       previewer = CustomPreviewer,
+      multiprocess = false,
       actions = {
         ["default"] = require("fzf-lua").actions.file_edit,
         ["ctrl-s"] = require("fzf-lua").actions.file_split,
@@ -191,6 +193,7 @@ return {
     local fzf_exec_opts_grep = {
       prompt = "Rg❯ ",
       previewer = "builtin",
+      multiprocess = false,
       actions = {
         ["default"] = require("fzf-lua").actions.file_edit,
         ["ctrl-s"] = require("fzf-lua").actions.file_split,
@@ -276,7 +279,7 @@ return {
       vim.api.nvim_buf_set_option(tmpbuf, "bufhidden", "wipe")
       vim.api.nvim_buf_call(tmpbuf, function() vim.fn.termopen(command) end)
       self:set_preview_buf(tmpbuf)
-      self.win:update_scrollbar()
+      self.win:update_preview_scrollbar()
     end
 
     function ZgPreviewer:new(o, previewer_opts, fzf_win)
@@ -311,7 +314,7 @@ return {
         vim.cmd("stopinsert")
         utils.feed_keys_termcodes(([[:noa lua vim.api.nvim_win_call(%d, function() vim.cmd("norm! <C-v>%s") vim.cmd("startinsert") end)<CR>]]):format(tonumber(preview_winid), input))
       end
-      self.win:update_scrollbar()
+      self.win:update_preview_scrollbar()
     end
 
     local Zg = function()
@@ -359,7 +362,7 @@ return {
       vim.api.nvim_buf_set_option(tmpbuf, "bufhidden", "wipe")
       vim.api.nvim_buf_call(tmpbuf, function() vim.fn.termopen(command) end)
       self:set_preview_buf(tmpbuf)
-      self.win:update_scrollbar()
+      self.win:update_preview_scrollbar()
     end
 
     function GitShowPreviewer:scroll(direction)
@@ -380,7 +383,7 @@ return {
         vim.cmd("stopinsert")
         utils.feed_keys_termcodes(([[:noa lua vim.api.nvim_win_call(%d, function() vim.cmd("norm! <C-v>%s") vim.cmd("startinsert") end)<CR>]]):format(tonumber(preview_winid), input))
       end
-      self.win:update_scrollbar()
+      self.win:update_preview_scrollbar()
     end
 
     local GitLog =  function()
