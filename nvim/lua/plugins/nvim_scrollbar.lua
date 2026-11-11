@@ -1,5 +1,6 @@
 return {
   "petertriho/nvim-scrollbar",
+  branch = "v1",
   dependencies = {
     "kevinhwang91/nvim-hlslens",
     "lewis6991/gitsigns.nvim",
@@ -103,7 +104,8 @@ return {
     },
   },
   config = function(_, opts)
-    require("scrollbar").setup(opts)
+    local scrollbar = require("scrollbar")
+    scrollbar.setup(opts)
 
     -- DiagnosticSignError
     local DgsErrorHl = vim.api.nvim_get_hl(0, { name = "DiagnosticSignError" })
@@ -128,5 +130,6 @@ return {
     vim.api.nvim_set_hl(0, "ScrollbarGitChangeHandle", { fg = "#cccc00", bg = "#555555" })
     vim.api.nvim_set_hl(0, "ScrollbarGitDelete", { fg = "#bb2222", bg = "none" })
     vim.api.nvim_set_hl(0, "ScrollbarGitDeleteHandle", { fg = "#bb2222", bg = "#555555" })
+    scrollbar.render()
   end,
 }

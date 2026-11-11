@@ -1,6 +1,6 @@
 return {
 	"kevinhwang91/nvim-hlslens",
-	tag = "v1.0.0",
+	commit = "be2d7b2",
 	-- lazy = false,
 	event = "VeryLazy",
 	opts = {

@@ -34,6 +34,9 @@ return {
     events = { "TextChanged", "InsertLeave", "DiagnosticChanged", "FileWritePost" },
   },
   config = function(_, opts)
+    if vim.hl then
+      vim.highlight = vim.hl
+    end
     local codewindow = require("codewindow")
     codewindow.setup(opts)
     local cursorLineHl = vim.api.nvim_get_hl(0, { name = "CursorLine" })
