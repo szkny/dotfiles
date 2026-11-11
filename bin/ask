@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MODEL="gpt-5-nano"
+MODEL="gpt-6-luna"
 
 set -euo pipefail
 
