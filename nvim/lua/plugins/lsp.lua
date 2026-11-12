@@ -1,7 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    commit = "b3fc67c",
+    commit = "443d92c",
   },
   {
     "microsoft/python-type-stubs",
@@ -62,12 +62,17 @@ return {
         ensure_installed = ensure_installed,
         automatic_installation = true,
       })
+      local server_aliases = {
+        tsserver = "ts_ls",
+        volar = "vue_ls",
+      }
       require("mason-lspconfig").setup_handlers({
         function(server)
+          local config_name = server_aliases[server] or server
           local opt = {
             capabilities = vim.lsp.protocol.make_client_capabilities(),
             on_attach = function(client, bufnr)
-              if client.supports_method("textDocument/documentHighlight") then
+              if client:supports_method("textDocument/documentHighlight") then
                 vim.api.nvim_create_autocmd(
                   { "CursorHold", "CursorHoldI" },
                   { callback = vim.lsp.buf.document_highlight, buffer = bufnr }
@@ -141,7 +146,8 @@ return {
             --   },
             -- }
           end
-          require("lspconfig")[server].setup(opt)
+          vim.lsp.config(config_name, opt)
+          vim.lsp.enable(config_name)
         end,
       })
 
@@ -229,7 +235,7 @@ return {
       "nvimtools/none-ls.nvim",
       "williamboman/mason.nvim",
     },
-    commit = "ae0c5fa",
+    commit = "8e7806a",
     event = "VeryLazy",
     opts = {
       ensure_installed = {
@@ -265,7 +271,7 @@ return {
       null_ls.setup({
         sources = sources,
         on_attach = function(client, bufnr)
-          if client.supports_method("textDocument/formatting") then
+          if client:supports_method("textDocument/formatting") then
             vim.api.nvim_create_autocmd("BufWritePre", {
               callback = function()
                 if vim.bo.filetype ~= "lua" then
@@ -306,6 +312,7 @@ return {
   },
   {
     "nvimdev/lspsaga.nvim",
+    commit = "cf6fc94",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons",

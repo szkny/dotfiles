@@ -184,13 +184,31 @@ return {
   {
     "zbirenbaum/copilot.lua",
     event = { "InsertEnter", "LspAttach" },
-    commit = "af15584",
+    commit = "1d674b416df08e5c54e442503b7703a0df462acf",
     fix_pairs = true,
     config = function()
+      local copilot_config = require("copilot.config")
+      copilot_config.get = copilot_config.get or function(key)
+        return copilot_config[key]
+      end
+      local copilot_api = require("copilot.api")
+      copilot_api.register_status_notification_handler = copilot_api.status.register_status_notification_handler
+      local copilot_node_command = "node"
+      if vim.fn.has("termux") == 1 then
+        copilot_node_command = {
+          vim.fn.exepath("node"),
+          "--require",
+          vim.fn.stdpath("config") .. "/lua/copilot-android-shim.js",
+        }
+      end
       require("copilot").setup({
         suggestion = { enabled = false },
         panel = { enabled = false },
-        copilot_node_command = 'node',
+        copilot_node_command = copilot_node_command,
+        server = { type = "nodejs" },
+        should_attach = function(bufnr)
+          return vim.bo[bufnr].buflisted and vim.bo[bufnr].buftype == ""
+        end,
       })
     end,
   },
@@ -199,6 +217,27 @@ return {
     commit = "15fc12a",
     dependencies = { "zbirenbaum/copilot.lua" },
     config = function()
+      local source = require("copilot_cmp.source")
+      source.is_available = function(self)
+        if self.client:is_stopped() or not self.client.name == "copilot" then
+          return false
+        end
+
+        local clients
+        if vim.lsp.get_clients == nil then
+          clients = vim.lsp.get_active_clients({
+            bufnr = vim.api.nvim_get_current_buf(),
+            id = self.client.id,
+          })
+        else
+          clients = vim.lsp.get_clients({
+            bufnr = vim.api.nvim_get_current_buf(),
+            id = self.client.id,
+          })
+        end
+
+        return next(clients) ~= nil
+      end
       require("copilot_cmp").setup()
       vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
     end,
